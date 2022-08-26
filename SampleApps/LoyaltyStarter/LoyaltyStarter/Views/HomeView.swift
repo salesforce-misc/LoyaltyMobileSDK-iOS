@@ -16,7 +16,7 @@ struct HomeView: View {
     
     var body: some View {
                        
-        Group {
+        NavigationView {
             let user = Auth.auth().currentUser
             let welcomeMessage = "Welcome \(user?.email ?? "")"
             

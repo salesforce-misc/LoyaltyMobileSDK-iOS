@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		216F217F28B6141E00DAA66D /* LoyaltyStarterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */; };
-		216F218328B6141F00DAA66D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 216F218228B6141F00DAA66D /* Assets.xcassets */; };
 		216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 216F218528B6141F00DAA66D /* Preview Assets.xcassets */; };
 		216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 216F218C28B6145200DAA66D /* GoogleService-Info.plist */; };
 		216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F218E28B6148800DAA66D /* AppViewRouter.swift */; };
@@ -17,12 +16,18 @@
 		216F219728B618AD00DAA66D /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F219628B618AD00DAA66D /* SignUpView.swift */; };
 		216F219928B618BB00DAA66D /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F219828B618BB00DAA66D /* SignInView.swift */; };
 		216F219B28B618C700DAA66D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F219A28B618C700DAA66D /* HomeView.swift */; };
+		218A36A828B85B7900FCEE39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 218A36A728B85B7900FCEE39 /* Assets.xcassets */; };
+		218A36AA28B85CA500FCEE39 /* BottomNavTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36A928B85CA500FCEE39 /* BottomNavTabsView.swift */; };
+		218A36AC28B85D5500FCEE39 /* RewardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36AB28B85D5500FCEE39 /* RewardsView.swift */; };
+		218A36AE28B85D6000FCEE39 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36AD28B85D6000FCEE39 /* FavoriteView.swift */; };
+		218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36AF28B85D9200FCEE39 /* RedeemView.swift */; };
+		218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36B128B85DA400FCEE39 /* ProfileView.swift */; };
+		218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36B428B85E4C00FCEE39 /* BenefitView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		216F217B28B6141E00DAA66D /* LoyaltyStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoyaltyStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyStarterApp.swift; sourceTree = "<group>"; };
-		216F218228B6141F00DAA66D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		216F218528B6141F00DAA66D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		216F218C28B6145200DAA66D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		216F218E28B6148800DAA66D /* AppViewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewRouter.swift; sourceTree = "<group>"; };
@@ -30,6 +35,13 @@
 		216F219628B618AD00DAA66D /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		216F219828B618BB00DAA66D /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		216F219A28B618C700DAA66D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		218A36A728B85B7900FCEE39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		218A36A928B85CA500FCEE39 /* BottomNavTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNavTabsView.swift; sourceTree = "<group>"; };
+		218A36AB28B85D5500FCEE39 /* RewardsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsView.swift; sourceTree = "<group>"; };
+		218A36AD28B85D6000FCEE39 /* FavoriteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		218A36AF28B85D9200FCEE39 /* RedeemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemView.swift; sourceTree = "<group>"; };
+		218A36B128B85DA400FCEE39 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		218A36B428B85E4C00FCEE39 /* BenefitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,10 +76,11 @@
 		216F217D28B6141E00DAA66D /* LoyaltyStarter */ = {
 			isa = PBXGroup;
 			children = (
+				216F9A1528B85F7C006B76D4 /* ViewModel */,
 				216F219328B6186400DAA66D /* Views */,
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
 				216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */,
-				216F218228B6141F00DAA66D /* Assets.xcassets */,
+				218A36A728B85B7900FCEE39 /* Assets.xcassets */,
 				216F218428B6141F00DAA66D /* Preview Content */,
 			);
 			path = LoyaltyStarter;
@@ -87,9 +100,22 @@
 				216F219428B6188600DAA66D /* AppRootView.swift */,
 				216F219628B618AD00DAA66D /* SignUpView.swift */,
 				216F219828B618BB00DAA66D /* SignInView.swift */,
+				218A36A928B85CA500FCEE39 /* BottomNavTabsView.swift */,
 				216F219A28B618C700DAA66D /* HomeView.swift */,
+				218A36B428B85E4C00FCEE39 /* BenefitView.swift */,
+				218A36B128B85DA400FCEE39 /* ProfileView.swift */,
+				218A36AF28B85D9200FCEE39 /* RedeemView.swift */,
+				218A36AD28B85D6000FCEE39 /* FavoriteView.swift */,
+				218A36AB28B85D5500FCEE39 /* RewardsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		216F9A1528B85F7C006B76D4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,7 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
-				216F218328B6141F00DAA66D /* Assets.xcassets in Resources */,
+				218A36A828B85B7900FCEE39 /* Assets.xcassets in Resources */,
 				216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,11 +196,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				216F219928B618BB00DAA66D /* SignInView.swift in Sources */,
+				218A36AA28B85CA500FCEE39 /* BottomNavTabsView.swift in Sources */,
 				216F219B28B618C700DAA66D /* HomeView.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
+				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
 				216F219528B6188600DAA66D /* AppRootView.swift in Sources */,
 				216F217F28B6141E00DAA66D /* LoyaltyStarterApp.swift in Sources */,
+				218A36AE28B85D6000FCEE39 /* FavoriteView.swift in Sources */,
+				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
+				218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */,
+				218A36AC28B85D5500FCEE39 /* RewardsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
