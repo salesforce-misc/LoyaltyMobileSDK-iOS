@@ -7,12 +7,14 @@
 
 import SwiftUI
 import Firebase
+import SwiftlySalesforce
 
 
 @main
 struct LoyaltyStarterApp: App {
 
     @StateObject var appViewRouter = AppViewRouter()
+    @StateObject var salesforce: Connection = try! Salesforce.connect()
 
     init(){
         FirebaseApp.configure()
@@ -20,7 +22,9 @@ struct LoyaltyStarterApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AppRootView().environmentObject(appViewRouter)
+            AppRootView()
+                .environmentObject(appViewRouter)
+                .environmentObject(salesforce)
         }
     }
 }

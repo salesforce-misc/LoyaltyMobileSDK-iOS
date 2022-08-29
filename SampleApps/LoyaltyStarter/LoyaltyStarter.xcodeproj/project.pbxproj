@@ -23,6 +23,12 @@
 		218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36AF28B85D9200FCEE39 /* RedeemView.swift */; };
 		218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36B128B85DA400FCEE39 /* ProfileView.swift */; };
 		218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36B428B85E4C00FCEE39 /* BenefitView.swift */; };
+		2944F87E28B98B890098ED1B /* SwiftlySalesforce in Frameworks */ = {isa = PBXBuildFile; productRef = 2944F87D28B98B890098ED1B /* SwiftlySalesforce */; };
+		2944F88128B98C7D0098ED1B /* Connection+API+RestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88028B98C7D0098ED1B /* Connection+API+RestService.swift */; };
+		2944F88428B98DA10098ED1B /* MemberBenefitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88328B98DA10098ED1B /* MemberBenefitModel.swift */; };
+		2944F88628B98DE40098ED1B /* BenefitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88528B98DE40098ED1B /* BenefitViewModel.swift */; };
+		2944F88828B98E5E0098ED1B /* Salesforce.json in Resources */ = {isa = PBXBuildFile; fileRef = 2944F88728B98E5E0098ED1B /* Salesforce.json */; };
+		2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +48,11 @@
 		218A36AF28B85D9200FCEE39 /* RedeemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemView.swift; sourceTree = "<group>"; };
 		218A36B128B85DA400FCEE39 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		218A36B428B85E4C00FCEE39 /* BenefitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitView.swift; sourceTree = "<group>"; };
+		2944F88028B98C7D0098ED1B /* Connection+API+RestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Connection+API+RestService.swift"; sourceTree = "<group>"; };
+		2944F88328B98DA10098ED1B /* MemberBenefitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberBenefitModel.swift; sourceTree = "<group>"; };
+		2944F88528B98DE40098ED1B /* BenefitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BenefitViewModel.swift; path = LoyaltyStarter/Models/BenefitViewModel.swift; sourceTree = SOURCE_ROOT; };
+		2944F88728B98E5E0098ED1B /* Salesforce.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Salesforce.json; sourceTree = "<group>"; };
+		2944F88928B9A7220098ED1B /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2944F87E28B98B890098ED1B /* SwiftlySalesforce in Frameworks */,
 				216F219228B6182D00DAA66D /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,12 +88,16 @@
 		216F217D28B6141E00DAA66D /* LoyaltyStarter */ = {
 			isa = PBXGroup;
 			children = (
-				216F9A1528B85F7C006B76D4 /* ViewModel */,
+				2944F87F28B98C2C0098ED1B /* Extensions */,
+				2944F88228B98D420098ED1B /* Models */,
+				216F9A1528B85F7C006B76D4 /* ViewModels */,
 				216F219328B6186400DAA66D /* Views */,
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
 				216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */,
+				2944F88928B9A7220098ED1B /* AppConstants.swift */,
 				218A36A728B85B7900FCEE39 /* Assets.xcassets */,
 				216F218428B6141F00DAA66D /* Preview Content */,
+				2944F88728B98E5E0098ED1B /* Salesforce.json */,
 			);
 			path = LoyaltyStarter;
 			sourceTree = "<group>";
@@ -111,11 +127,28 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		216F9A1528B85F7C006B76D4 /* ViewModel */ = {
+		216F9A1528B85F7C006B76D4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				2944F88528B98DE40098ED1B /* BenefitViewModel.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2944F87F28B98C2C0098ED1B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2944F88028B98C7D0098ED1B /* Connection+API+RestService.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2944F88228B98D420098ED1B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2944F88328B98DA10098ED1B /* MemberBenefitModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +169,7 @@
 			name = LoyaltyStarter;
 			packageProductDependencies = (
 				216F219128B6182D00DAA66D /* FirebaseAuth */,
+				2944F87D28B98B890098ED1B /* SwiftlySalesforce */,
 			);
 			productName = LoyaltyStarter;
 			productReference = 216F217B28B6141E00DAA66D /* LoyaltyStarter.app */;
@@ -167,6 +201,7 @@
 			mainGroup = 216F217228B6141E00DAA66D;
 			packageReferences = (
 				216F219028B6182D00DAA66D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2944F87C28B98B890098ED1B /* XCRemoteSwiftPackageReference "SwiftlySalesforce" */,
 			);
 			productRefGroup = 216F217C28B6141E00DAA66D /* Products */;
 			projectDirPath = "";
@@ -184,6 +219,7 @@
 			files = (
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
 				218A36A828B85B7900FCEE39 /* Assets.xcassets in Resources */,
+				2944F88828B98E5E0098ED1B /* Salesforce.json in Resources */,
 				216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,15 +232,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				216F219928B618BB00DAA66D /* SignInView.swift in Sources */,
+				2944F88628B98DE40098ED1B /* BenefitViewModel.swift in Sources */,
 				218A36AA28B85CA500FCEE39 /* BottomNavTabsView.swift in Sources */,
 				216F219B28B618C700DAA66D /* HomeView.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
 				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
 				216F219528B6188600DAA66D /* AppRootView.swift in Sources */,
+				2944F88128B98C7D0098ED1B /* Connection+API+RestService.swift in Sources */,
 				216F217F28B6141E00DAA66D /* LoyaltyStarterApp.swift in Sources */,
 				218A36AE28B85D6000FCEE39 /* FavoriteView.swift in Sources */,
+				2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
+				2944F88428B98DA10098ED1B /* MemberBenefitModel.swift in Sources */,
 				218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */,
 				218A36AC28B85D5500FCEE39 /* RewardsView.swift in Sources */,
 			);
@@ -417,6 +457,14 @@
 				kind = branch;
 			};
 		};
+		2944F87C28B98B890098ED1B /* XCRemoteSwiftPackageReference "SwiftlySalesforce" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mike4aday/SwiftlySalesforce";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -424,6 +472,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 216F219028B6182D00DAA66D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		2944F87D28B98B890098ED1B /* SwiftlySalesforce */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2944F87C28B98B890098ED1B /* XCRemoteSwiftPackageReference "SwiftlySalesforce" */;
+			productName = SwiftlySalesforce;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

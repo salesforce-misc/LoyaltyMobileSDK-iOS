@@ -6,31 +6,31 @@
 //
 
 import SwiftUI
+import SwiftlySalesforce
 
 struct BenefitView: View {
     
-//    @StateObject private var viewModel = BenefitViewModel()
+    @EnvironmentObject var salesforce: Connection
+    @StateObject private var viewModel = BenefitViewModel()
     
     var body: some View {
-        Text("BenefitView")
+//        Text("BenefitView")
+        VStack(alignment: .leading) {
+            Text("Benefits")
+                .font(.headline)
+            let benefits: [MemberBenefitModel] = viewModel.benefits
+            ForEach(benefits) { benefit in
+                Text("\(benefit.benefitName)")
+            }
+        }
+        .task {
+            do {
+                try await viewModel.fetchBenefits(connection: salesforce)
+            } catch {
+                print("Fetch Benefits Error: \(error.localizedDescription)")
+            }
 
-        
-//        VStack {
-//            Text("Benefits")
-//                .font(.headline)
-//            let benefits: [MemberBenefitModel] = viewModel.benefits
-//            ForEach(benefits) { benefit in
-//                Text("\(benefit.benefitName)")
-//            }
-//        }
-//        .task {
-//            do {
-//                try await viewModel.fetchBenefits()
-//            } catch {
-//                print("Fetch Benefits Error: \(error.localizedDescription)")
-//            }
-//
-//        }
+        }
     }
 
 }
@@ -38,6 +38,6 @@ struct BenefitView: View {
 
 struct BenefitView_Previews: PreviewProvider {
     static var previews: some View {
-        BenefitView()
+        BenefitView().environmentObject(try! Salesforce.connect())
     }
 }

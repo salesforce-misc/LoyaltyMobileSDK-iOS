@@ -107,6 +107,15 @@
         "revision" : "fa0fcd43f272a260e7f734f23e6dc55e16fcae0a",
         "version" : "1.19.1"
       }
+    },
+    {
+      "identity" : "swiftlysalesforce",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mike4aday/SwiftlySalesforce",
+      "state" : {
+        "branch" : "master",
+        "revision" : "e7e092e86ab02ef8c2cf74cf4bce00c1c461c187"
+      }
     }
   ],
   "version" : 2
