@@ -23,6 +23,7 @@
 		218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36AF28B85D9200FCEE39 /* RedeemView.swift */; };
 		218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36B128B85DA400FCEE39 /* ProfileView.swift */; };
 		218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36B428B85E4C00FCEE39 /* BenefitView.swift */; };
+		2941A23928BD7D44005026CF /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 2941A23828BD7D44005026CF /* .gitignore */; };
 		2944F87E28B98B890098ED1B /* SwiftlySalesforce in Frameworks */ = {isa = PBXBuildFile; productRef = 2944F87D28B98B890098ED1B /* SwiftlySalesforce */; };
 		2944F88128B98C7D0098ED1B /* Connection+API+RestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88028B98C7D0098ED1B /* Connection+API+RestService.swift */; };
 		2944F88428B98DA10098ED1B /* MemberBenefitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88328B98DA10098ED1B /* MemberBenefitModel.swift */; };
@@ -48,6 +49,7 @@
 		218A36AF28B85D9200FCEE39 /* RedeemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemView.swift; sourceTree = "<group>"; };
 		218A36B128B85DA400FCEE39 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		218A36B428B85E4C00FCEE39 /* BenefitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitView.swift; sourceTree = "<group>"; };
+		2941A23828BD7D44005026CF /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		2944F88028B98C7D0098ED1B /* Connection+API+RestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Connection+API+RestService.swift"; sourceTree = "<group>"; };
 		2944F88328B98DA10098ED1B /* MemberBenefitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberBenefitModel.swift; sourceTree = "<group>"; };
 		2944F88528B98DE40098ED1B /* BenefitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BenefitViewModel.swift; path = LoyaltyStarter/Models/BenefitViewModel.swift; sourceTree = SOURCE_ROOT; };
@@ -71,6 +73,7 @@
 		216F217228B6141E00DAA66D = {
 			isa = PBXGroup;
 			children = (
+				2941A23828BD7D44005026CF /* .gitignore */,
 				216F218C28B6145200DAA66D /* GoogleService-Info.plist */,
 				216F217D28B6141E00DAA66D /* LoyaltyStarter */,
 				216F217C28B6141E00DAA66D /* Products */,
@@ -217,6 +220,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2941A23928BD7D44005026CF /* .gitignore in Resources */,
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
 				218A36A828B85B7900FCEE39 /* Assets.xcassets in Resources */,
 				2944F88828B98E5E0098ED1B /* Salesforce.json in Resources */,
