@@ -10,12 +10,14 @@ import SwiftUI
 struct BenefitView: View {
     
     @StateObject private var viewModel = BenefitViewModel()
+    private let memberId: String = "0lM5i00000000KfEAI"
     
     var body: some View {
         VStack {
             HStack {
                 Text("Benefits")
                     .font(.headline)
+                    .foregroundColor(Color.theme.titleColor)
                 Spacer()
                 Text("View All")
                     .font(.subheadline)
@@ -53,7 +55,7 @@ struct BenefitView: View {
         }
         .task {
             do {
-                try await viewModel.fetchBenefits()
+                try await viewModel.fetchBenefits(memberId: memberId)
             } catch {
                 print("Fetch Benefits Error: \(error.localizedDescription)")
             }

@@ -13,7 +13,7 @@ class BenefitViewModel: ObservableObject {
     @Published var benefits: [BenefitModel] = []
     @Published var isLoaded = false
     
-    func fetchBenefits() async throws {
+    func fetchBenefits(memberId: String) async throws {
         
         do {
             isLoaded = false
@@ -22,7 +22,7 @@ class BenefitViewModel: ObservableObject {
                 type: Benefits.self,
                 method: "GET",
                 version: AppConstants.Config.apiVersion,
-                path: "/connect/loyalty/member/0lM5i00000000KfEAI/memberbenefits")
+                path: "/connect/loyalty/member/\(memberId)/memberbenefits")
             
             await MainActor.run {
                 isLoaded = true
