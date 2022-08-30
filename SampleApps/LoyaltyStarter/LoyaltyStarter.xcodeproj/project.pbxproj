@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		214B474128BDCC560037A1F7 /* BenefitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214B474028BDCC560037A1F7 /* BenefitViewModel.swift */; };
 		216F217F28B6141E00DAA66D /* LoyaltyStarterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */; };
 		216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 216F218528B6141F00DAA66D /* Preview Assets.xcassets */; };
 		216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 216F218C28B6145200DAA66D /* GoogleService-Info.plist */; };
@@ -26,12 +27,12 @@
 		2944F87E28B98B890098ED1B /* SwiftlySalesforce in Frameworks */ = {isa = PBXBuildFile; productRef = 2944F87D28B98B890098ED1B /* SwiftlySalesforce */; };
 		2944F88128B98C7D0098ED1B /* Connection+API+RestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88028B98C7D0098ED1B /* Connection+API+RestService.swift */; };
 		2944F88428B98DA10098ED1B /* MemberBenefitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88328B98DA10098ED1B /* MemberBenefitModel.swift */; };
-		2944F88628B98DE40098ED1B /* BenefitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88528B98DE40098ED1B /* BenefitViewModel.swift */; };
 		2944F88828B98E5E0098ED1B /* Salesforce.json in Resources */ = {isa = PBXBuildFile; fileRef = 2944F88728B98E5E0098ED1B /* Salesforce.json */; };
 		2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		214B474028BDCC560037A1F7 /* BenefitViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BenefitViewModel.swift; path = LoyaltyStarter/ViewModel/BenefitViewModel.swift; sourceTree = SOURCE_ROOT; };
 		216F217B28B6141E00DAA66D /* LoyaltyStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoyaltyStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyStarterApp.swift; sourceTree = "<group>"; };
 		216F218528B6141F00DAA66D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -50,7 +51,6 @@
 		218A36B428B85E4C00FCEE39 /* BenefitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitView.swift; sourceTree = "<group>"; };
 		2944F88028B98C7D0098ED1B /* Connection+API+RestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Connection+API+RestService.swift"; sourceTree = "<group>"; };
 		2944F88328B98DA10098ED1B /* MemberBenefitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberBenefitModel.swift; sourceTree = "<group>"; };
-		2944F88528B98DE40098ED1B /* BenefitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BenefitViewModel.swift; path = LoyaltyStarter/Models/BenefitViewModel.swift; sourceTree = SOURCE_ROOT; };
 		2944F88728B98E5E0098ED1B /* Salesforce.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Salesforce.json; sourceTree = "<group>"; };
 		2944F88928B9A7220098ED1B /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,7 +130,7 @@
 		216F9A1528B85F7C006B76D4 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				2944F88528B98DE40098ED1B /* BenefitViewModel.swift */,
+				214B474028BDCC560037A1F7 /* BenefitViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -232,7 +232,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				216F219928B618BB00DAA66D /* SignInView.swift in Sources */,
-				2944F88628B98DE40098ED1B /* BenefitViewModel.swift in Sources */,
 				218A36AA28B85CA500FCEE39 /* BottomNavTabsView.swift in Sources */,
 				216F219B28B618C700DAA66D /* HomeView.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
@@ -247,6 +246,7 @@
 				2944F88428B98DA10098ED1B /* MemberBenefitModel.swift in Sources */,
 				218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */,
 				218A36AC28B85D5500FCEE39 /* RewardsView.swift in Sources */,
+				214B474128BDCC560037A1F7 /* BenefitViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
