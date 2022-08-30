@@ -14,18 +14,44 @@ struct BenefitView: View {
     @StateObject private var viewModel = BenefitViewModel()
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Benefits")
-                .font(.headline)
+        VStack {
+            HStack {
+                Text("Benefits")
+                    .font(.headline)
+                Spacer()
+                Text("View All")
+                    .font(.subheadline)
+                    .foregroundColor(Color.theme.darkBlue)
+            }
+            .padding()
             
-            if !viewModel.isLoaded{
+            
+            if !viewModel.isLoaded {
                 ProgressView()
             }
             
             let benefits: [BenefitModel] = viewModel.benefits
+
             ForEach(benefits) { benefit in
-                Text("\(benefit.benefitName)")
+                HStack {
+                    Text("\(benefit.benefitName)")
+                        .font(.system(size: 14))
+                        .foregroundColor(Color.theme.lightBlue)
+                    Spacer()
+                }
+                .padding(.horizontal)
+                HStack {
+                    Text("This is benefit description. We need description here but it's currently not provided by the API call.")
+                        .font(.system(size: 14))
+                        .foregroundColor(Color.theme.accent)
+                    Spacer()
+                }
+                .padding(.horizontal)
+                .padding(.bottom)
+                
+                
             }
+            
         }
         .task {
             do {
