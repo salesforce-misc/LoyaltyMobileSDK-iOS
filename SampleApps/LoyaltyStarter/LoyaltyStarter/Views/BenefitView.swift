@@ -17,6 +17,11 @@ struct BenefitView: View {
         VStack(alignment: .leading) {
             Text("Benefits")
                 .font(.headline)
+            
+            if !viewModel.isLoaded{
+                ProgressView()
+            }
+            
             let benefits: [BenefitModel] = viewModel.benefits
             ForEach(benefits) { benefit in
                 Text("\(benefit.benefitName)")
