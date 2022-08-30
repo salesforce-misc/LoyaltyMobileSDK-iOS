@@ -26,7 +26,7 @@
 		218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36B428B85E4C00FCEE39 /* BenefitView.swift */; };
 		2944F87E28B98B890098ED1B /* SwiftlySalesforce in Frameworks */ = {isa = PBXBuildFile; productRef = 2944F87D28B98B890098ED1B /* SwiftlySalesforce */; };
 		2944F88128B98C7D0098ED1B /* Connection+API+RestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88028B98C7D0098ED1B /* Connection+API+RestService.swift */; };
-		2944F88428B98DA10098ED1B /* MemberBenefitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88328B98DA10098ED1B /* MemberBenefitModel.swift */; };
+		2944F88428B98DA10098ED1B /* BenefitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88328B98DA10098ED1B /* BenefitModel.swift */; };
 		2944F88828B98E5E0098ED1B /* Salesforce.json in Resources */ = {isa = PBXBuildFile; fileRef = 2944F88728B98E5E0098ED1B /* Salesforce.json */; };
 		2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppConstants.swift */; };
 /* End PBXBuildFile section */
@@ -50,7 +50,7 @@
 		218A36B128B85DA400FCEE39 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		218A36B428B85E4C00FCEE39 /* BenefitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitView.swift; sourceTree = "<group>"; };
 		2944F88028B98C7D0098ED1B /* Connection+API+RestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Connection+API+RestService.swift"; sourceTree = "<group>"; };
-		2944F88328B98DA10098ED1B /* MemberBenefitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberBenefitModel.swift; sourceTree = "<group>"; };
+		2944F88328B98DA10098ED1B /* BenefitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitModel.swift; sourceTree = "<group>"; };
 		2944F88728B98E5E0098ED1B /* Salesforce.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Salesforce.json; sourceTree = "<group>"; };
 		2944F88928B9A7220098ED1B /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,8 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				2944F87F28B98C2C0098ED1B /* Extensions */,
-				216A9CBF28BDD8A1007881FE /* ViewModels */,
 				2944F88228B98D420098ED1B /* Models */,
+				216A9CBF28BDD8A1007881FE /* ViewModels */,
 				216F219328B6186400DAA66D /* Views */,
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
 				216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */,
@@ -146,7 +146,7 @@
 		2944F88228B98D420098ED1B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2944F88328B98DA10098ED1B /* MemberBenefitModel.swift */,
+				2944F88328B98DA10098ED1B /* BenefitModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -244,7 +244,7 @@
 				216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */,
 				2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
-				2944F88428B98DA10098ED1B /* MemberBenefitModel.swift in Sources */,
+				2944F88428B98DA10098ED1B /* BenefitModel.swift in Sources */,
 				218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */,
 				218A36AC28B85D5500FCEE39 /* RewardsView.swift in Sources */,
 			);

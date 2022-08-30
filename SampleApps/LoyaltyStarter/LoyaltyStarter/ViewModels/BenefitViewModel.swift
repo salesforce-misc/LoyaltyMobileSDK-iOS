@@ -11,13 +11,13 @@ import SwiftUI
 
 class BenefitViewModel: ObservableObject {
     
-    @Published var benefits: [MemberBenefitModel] = []
+    @Published var benefits: [BenefitModel] = []
     
     func fetchBenefits(connection: Connection) async throws {
         
         do {
             let result = try await connection.rest(
-                type: MemberBenefits.self,
+                type: Benefits.self,
                 method: "GET",
                 version: AppConstants.Config.apiVersion,
                 path: "/connect/loyalty/member/0lM5i00000000KlEAI/memberbenefits")

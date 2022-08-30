@@ -8,12 +8,12 @@
 import Foundation
 
 // MARK: - MemberBenefits
-struct MemberBenefits: Codable {
-    let memberBenefits: [MemberBenefitModel]
+struct Benefits: Codable {
+    let memberBenefits: [BenefitModel]
 }
 
 // MARK: - MemberBenefit
-struct MemberBenefitModel: Identifiable, Codable {
+struct BenefitModel: Identifiable, Codable {
     let id, benefitName, benefitTypeID, benefitTypeName: String
     let createdRecordID, createdRecordName: String?
     let endDate: String?

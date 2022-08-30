@@ -17,7 +17,7 @@ struct BenefitView: View {
         VStack(alignment: .leading) {
             Text("Benefits")
                 .font(.headline)
-            let benefits: [MemberBenefitModel] = viewModel.benefits
+            let benefits: [BenefitModel] = viewModel.benefits
             ForEach(benefits) { benefit in
                 Text("\(benefit.benefitName)")
             }
