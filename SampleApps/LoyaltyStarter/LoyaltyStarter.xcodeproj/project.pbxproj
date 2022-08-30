@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		214B474128BDCC560037A1F7 /* BenefitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214B474028BDCC560037A1F7 /* BenefitViewModel.swift */; };
+		216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A9CC028BDD958007881FE /* BenefitViewModel.swift */; };
 		216F217F28B6141E00DAA66D /* LoyaltyStarterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */; };
 		216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 216F218528B6141F00DAA66D /* Preview Assets.xcassets */; };
 		216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 216F218C28B6145200DAA66D /* GoogleService-Info.plist */; };
@@ -32,7 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		214B474028BDCC560037A1F7 /* BenefitViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BenefitViewModel.swift; path = LoyaltyStarter/ViewModel/BenefitViewModel.swift; sourceTree = SOURCE_ROOT; };
+		216A9CC028BDD958007881FE /* BenefitViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitViewModel.swift; sourceTree = "<group>"; };
 		216F217B28B6141E00DAA66D /* LoyaltyStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoyaltyStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyStarterApp.swift; sourceTree = "<group>"; };
 		216F218528B6141F00DAA66D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -68,6 +68,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		216A9CBF28BDD8A1007881FE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				216A9CC028BDD958007881FE /* BenefitViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		216F217228B6141E00DAA66D = {
 			isa = PBXGroup;
 			children = (
@@ -89,8 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				2944F87F28B98C2C0098ED1B /* Extensions */,
+				216A9CBF28BDD8A1007881FE /* ViewModels */,
 				2944F88228B98D420098ED1B /* Models */,
-				216F9A1528B85F7C006B76D4 /* ViewModels */,
 				216F219328B6186400DAA66D /* Views */,
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
 				216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */,
@@ -125,14 +133,6 @@
 				218A36AB28B85D5500FCEE39 /* RewardsView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		216F9A1528B85F7C006B76D4 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				214B474028BDCC560037A1F7 /* BenefitViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		2944F87F28B98C2C0098ED1B /* Extensions */ = {
@@ -241,12 +241,12 @@
 				2944F88128B98C7D0098ED1B /* Connection+API+RestService.swift in Sources */,
 				216F217F28B6141E00DAA66D /* LoyaltyStarterApp.swift in Sources */,
 				218A36AE28B85D6000FCEE39 /* FavoriteView.swift in Sources */,
+				216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */,
 				2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
 				2944F88428B98DA10098ED1B /* MemberBenefitModel.swift in Sources */,
 				218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */,
 				218A36AC28B85D5500FCEE39 /* RewardsView.swift in Sources */,
-				214B474128BDCC560037A1F7 /* BenefitViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
