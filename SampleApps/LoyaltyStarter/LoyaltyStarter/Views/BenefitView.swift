@@ -14,7 +14,6 @@ struct BenefitView: View {
     @StateObject private var viewModel = BenefitViewModel()
     
     var body: some View {
-//        Text("BenefitView")
         VStack(alignment: .leading) {
             Text("Benefits")
                 .font(.headline)
