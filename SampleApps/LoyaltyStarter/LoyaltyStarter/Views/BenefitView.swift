@@ -6,11 +6,9 @@
 //
 
 import SwiftUI
-import SwiftlySalesforce
 
 struct BenefitView: View {
     
-    @EnvironmentObject var salesforce: Connection
     @StateObject private var viewModel = BenefitViewModel()
     
     var body: some View {
@@ -55,7 +53,7 @@ struct BenefitView: View {
         }
         .task {
             do {
-                try await viewModel.fetchBenefits(connection: salesforce)
+                try await viewModel.fetchBenefits()
             } catch {
                 print("Fetch Benefits Error: \(error.localizedDescription)")
             }
@@ -68,6 +66,6 @@ struct BenefitView: View {
 
 struct BenefitView_Previews: PreviewProvider {
     static var previews: some View {
-        BenefitView().environmentObject(try! Salesforce.connect())
+        BenefitView()
     }
 }

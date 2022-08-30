@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftlySalesforce
 import SwiftUI
 
 class BenefitViewModel: ObservableObject {
@@ -14,12 +13,12 @@ class BenefitViewModel: ObservableObject {
     @Published var benefits: [BenefitModel] = []
     @Published var isLoaded = false
     
-    func fetchBenefits(connection: Connection) async throws {
+    func fetchBenefits() async throws {
         
         do {
             isLoaded = false
             benefits = []
-            let result = try await connection.rest(
+            let result = try await NetworkManager.connection.rest(
                 type: Benefits.self,
                 method: "GET",
                 version: AppConstants.Config.apiVersion,
