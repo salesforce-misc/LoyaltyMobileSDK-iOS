@@ -20,15 +20,21 @@
 		2941A25B28BEBAD8005026CF /* BenefitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A25A28BEBAD8005026CF /* BenefitViewModel.swift */; };
 		2941A25E28BEC696005026CF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A25D28BEC696005026CF /* Color.swift */; };
 		2941A26028BEDF67005026CF /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A25F28BEDF67005026CF /* AppConstants.swift */; };
+		2941A26228BEE409005026CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2941A26128BEE409005026CF /* GoogleService-Info.plist */; };
 		2941A26528BEE4FD005026CF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2941A26428BEE4FD005026CF /* FirebaseAuth */; };
 		2941A26728BEE6D4005026CF /* AppViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A26628BEE6D4005026CF /* AppViewRouter.swift */; };
 		2941A26928BEE71C005026CF /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A26828BEE71C005026CF /* SignUpView.swift */; };
 		2941A26B28BEE73C005026CF /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A26A28BEE73C005026CF /* SignInView.swift */; };
 		2941A26D28BEEC17005026CF /* LoyaltyStarterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A26C28BEEC16005026CF /* LoyaltyStarterApp.swift */; };
+		4F13E942237DD5EE005BCAE9 /* usersyncs.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F13E940237DD5EE005BCAE9 /* usersyncs.json */; };
+		4F13E943237DD5EE005BCAE9 /* userstore.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F13E941237DD5EE005BCAE9 /* userstore.json */; };
 		4F393A291C3C8BCD00B3EA13 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F393A281C3C8BCD00B3EA13 /* main.swift */; };
 		4FD6C47A1B754AF1002F9F90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C4791B754AF1002F9F90 /* AppDelegate.swift */; };
 		4FD6C4A01B755242002F9F90 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C49D1B755242002F9F90 /* InitialViewController.swift */; };
+		B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7168FBB1FACC6F900A48DB5 /* LaunchScreen.storyboard */; };
 		B73B520D234FA65F001B069B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73B520C234FA65F001B069B /* SceneDelegate.swift */; };
+		B77BD8A321125B510036B284 /* bootconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B77BD8A221125B510036B284 /* bootconfig.plist */; };
+		CEA8CA041F071B2300448B51 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA8CA031F071B2300448B51 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -207,6 +213,7 @@
 				45FF32C74BC40D8E8B90FEC5 /* [CP] Check Pods Manifest.lock */,
 				4FD6C4701B754AF1002F9F90 /* Sources */,
 				4FD6C4711B754AF1002F9F90 /* Frameworks */,
+				4FD6C4721B754AF1002F9F90 /* Resources */,
 				006BCE0D0D25A7B08F7B5C95 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -262,6 +269,22 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4FD6C4721B754AF1002F9F90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F13E943237DD5EE005BCAE9 /* userstore.json in Resources */,
+				B77BD8A321125B510036B284 /* bootconfig.plist in Resources */,
+				4F13E942237DD5EE005BCAE9 /* usersyncs.json in Resources */,
+				CEA8CA041F071B2300448B51 /* Images.xcassets in Resources */,
+				B7168FBC1FACC6F900A48DB5 /* LaunchScreen.storyboard in Resources */,
+				2941A26228BEE409005026CF /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		006BCE0D0D25A7B08F7B5C95 /* [CP] Embed Pods Frameworks */ = {
