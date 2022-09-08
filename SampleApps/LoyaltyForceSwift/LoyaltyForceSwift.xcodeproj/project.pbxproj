@@ -32,6 +32,11 @@
 		2986139F28C1730000BDC744 /* ForceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2986139E28C1730000BDC744 /* ForceConfig.swift */; };
 		298613A228C174FE00BDC744 /* ForceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613A128C174FE00BDC744 /* ForceRequest.swift */; };
 		298613A428C175CA00BDC744 /* ForceAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613A328C175CA00BDC744 /* ForceAuth.swift */; };
+		298613A628C7D3B400BDC744 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613A528C7D3B400BDC744 /* MoreView.swift */; };
+		298613A828C9021400BDC744 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613A728C9021300BDC744 /* ProfileHeaderView.swift */; };
+		298613AE28C9652300BDC744 /* FontStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613AD28C9652300BDC744 /* FontStyles.swift */; };
+		298613B028C9698D00BDC744 /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613AF28C9698D00BDC744 /* SF-Pro.ttf */; };
+		298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613B128CA8A9600BDC744 /* Archivo-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +65,12 @@
 		2986139E28C1730000BDC744 /* ForceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceConfig.swift; sourceTree = "<group>"; };
 		298613A128C174FE00BDC744 /* ForceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceRequest.swift; sourceTree = "<group>"; };
 		298613A328C175CA00BDC744 /* ForceAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceAuth.swift; sourceTree = "<group>"; };
+		298613A528C7D3B400BDC744 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
+		298613A728C9021300BDC744 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		298613AC28C964D900BDC744 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		298613AD28C9652300BDC744 /* FontStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyles.swift; sourceTree = "<group>"; };
+		298613AF28C9698D00BDC744 /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
+		298613B128CA8A9600BDC744 /* Archivo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archivo-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +113,7 @@
 		216F217D28B6141E00DAA66D /* LoyaltyForceSwift */ = {
 			isa = PBXGroup;
 			children = (
+				298613AC28C964D900BDC744 /* Info.plist */,
 				298613A028C1747900BDC744 /* ForceSwift */,
 				2944F87F28B98C2C0098ED1B /* Extensions */,
 				2944F88228B98D420098ED1B /* Models */,
@@ -111,7 +123,9 @@
 				216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */,
 				2944F88928B9A7220098ED1B /* AppConstants.swift */,
 				218A36A728B85B7900FCEE39 /* Assets.xcassets */,
+				298613A928C9638400BDC744 /* Fonts */,
 				216F218428B6141F00DAA66D /* Preview Content */,
+				298613AD28C9652300BDC744 /* FontStyles.swift */,
 			);
 			path = LoyaltyForceSwift;
 			sourceTree = "<group>";
@@ -137,6 +151,8 @@
 				218A36AF28B85D9200FCEE39 /* RedeemView.swift */,
 				218A36AD28B85D6000FCEE39 /* FavoriteView.swift */,
 				218A36AB28B85D5500FCEE39 /* RewardsView.swift */,
+				298613A528C7D3B400BDC744 /* MoreView.swift */,
+				298613A728C9021300BDC744 /* ProfileHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -167,6 +183,15 @@
 				2986139E28C1730000BDC744 /* ForceConfig.swift */,
 			);
 			path = ForceSwift;
+			sourceTree = "<group>";
+		};
+		298613A928C9638400BDC744 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				298613AF28C9698D00BDC744 /* SF-Pro.ttf */,
+				298613B128CA8A9600BDC744 /* Archivo-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +261,8 @@
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
 				218A36A828B85B7900FCEE39 /* Assets.xcassets in Resources */,
 				216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */,
+				298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */,
+				298613B028C9698D00BDC744 /* SF-Pro.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,12 +282,15 @@
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
 				216F219528B6188600DAA66D /* AppRootView.swift in Sources */,
 				298613A228C174FE00BDC744 /* ForceRequest.swift in Sources */,
+				298613A628C7D3B400BDC744 /* MoreView.swift in Sources */,
 				2986139F28C1730000BDC744 /* ForceConfig.swift in Sources */,
 				216F217F28B6141E00DAA66D /* LoyaltyStarterApp.swift in Sources */,
 				218A36AE28B85D6000FCEE39 /* FavoriteView.swift in Sources */,
 				2986139A28C14C0100BDC744 /* ForceClient.swift in Sources */,
+				298613AE28C9652300BDC744 /* FontStyles.swift in Sources */,
 				216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */,
 				2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */,
+				298613A828C9021400BDC744 /* ProfileHeaderView.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
 				2944F88428B98DA10098ED1B /* BenefitModel.swift in Sources */,
 				218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */,
@@ -398,6 +428,7 @@
 				DEVELOPMENT_TEAM = FWC5C8VLC7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LoyaltyForceSwift/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -427,6 +458,7 @@
 				DEVELOPMENT_TEAM = FWC5C8VLC7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LoyaltyForceSwift/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

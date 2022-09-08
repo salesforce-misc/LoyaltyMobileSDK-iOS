@@ -18,7 +18,7 @@ struct BenefitModel: Identifiable, Codable {
     let createdRecordID, createdRecordName: String?
     let endDate: String?
     let isActive: Bool
-    let memberBenefitStatus, startDate: String
+    let memberBenefitStatus, startDate: String?
 
     enum CodingKeys: String, CodingKey {
         case id = "benefitId"
