@@ -31,6 +31,11 @@
 		2944F88428B98DA10098ED1B /* BenefitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88328B98DA10098ED1B /* BenefitModel.swift */; };
 		2944F88828B98E5E0098ED1B /* Salesforce.json in Resources */ = {isa = PBXBuildFile; fileRef = 2944F88728B98E5E0098ED1B /* Salesforce.json */; };
 		2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppConstants.swift */; };
+		298613B528CA8F2E00BDC744 /* Archivo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613B428CA8F2E00BDC744 /* Archivo-Regular.ttf */; };
+		298613B728CA8F3A00BDC744 /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613B628CA8F3A00BDC744 /* SF-Pro.ttf */; };
+		298613BA28CA918400BDC744 /* FontStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613B928CA918400BDC744 /* FontStyles.swift */; };
+		298613BC28CA91D600BDC744 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613BB28CA91D600BDC744 /* MoreView.swift */; };
+		298613BE28CA920600BDC744 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613BD28CA920600BDC744 /* ProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +62,12 @@
 		2944F88328B98DA10098ED1B /* BenefitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitModel.swift; sourceTree = "<group>"; };
 		2944F88728B98E5E0098ED1B /* Salesforce.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Salesforce.json; sourceTree = "<group>"; };
 		2944F88928B9A7220098ED1B /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		298613B428CA8F2E00BDC744 /* Archivo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archivo-Regular.ttf"; sourceTree = "<group>"; };
+		298613B628CA8F3A00BDC744 /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
+		298613B828CA8F5400BDC744 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		298613B928CA918400BDC744 /* FontStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyles.swift; sourceTree = "<group>"; };
+		298613BB28CA91D600BDC744 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
+		298613BD28CA920600BDC744 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +111,7 @@
 		216F217D28B6141E00DAA66D /* LoyaltyStarter */ = {
 			isa = PBXGroup;
 			children = (
+				298613B828CA8F5400BDC744 /* Info.plist */,
 				2941A24228BE9FFE005026CF /* Utilities */,
 				2944F87F28B98C2C0098ED1B /* Extensions */,
 				2944F88228B98D420098ED1B /* Models */,
@@ -109,6 +121,8 @@
 				216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */,
 				2944F88928B9A7220098ED1B /* AppConstants.swift */,
 				218A36A728B85B7900FCEE39 /* Assets.xcassets */,
+				298613B928CA918400BDC744 /* FontStyles.swift */,
+				298613B328CA8F0600BDC744 /* Fonts */,
 				216F218428B6141F00DAA66D /* Preview Content */,
 				2944F88728B98E5E0098ED1B /* Salesforce.json */,
 			);
@@ -136,6 +150,8 @@
 				218A36AF28B85D9200FCEE39 /* RedeemView.swift */,
 				218A36AD28B85D6000FCEE39 /* FavoriteView.swift */,
 				218A36AB28B85D5500FCEE39 /* RewardsView.swift */,
+				298613BB28CA91D600BDC744 /* MoreView.swift */,
+				298613BD28CA920600BDC744 /* ProfileHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -163,6 +179,15 @@
 				2944F88328B98DA10098ED1B /* BenefitModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		298613B328CA8F0600BDC744 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				298613B428CA8F2E00BDC744 /* Archivo-Regular.ttf */,
+				298613B628CA8F3A00BDC744 /* SF-Pro.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,8 +257,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
+				298613B728CA8F3A00BDC744 /* SF-Pro.ttf in Resources */,
 				218A36A828B85B7900FCEE39 /* Assets.xcassets in Resources */,
 				2944F88828B98E5E0098ED1B /* Salesforce.json in Resources */,
+				298613B528CA8F2E00BDC744 /* Archivo-Regular.ttf in Resources */,
 				216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +276,7 @@
 				218A36AA28B85CA500FCEE39 /* BottomNavTabsView.swift in Sources */,
 				216F219B28B618C700DAA66D /* HomeView.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
+				298613BE28CA920600BDC744 /* ProfileHeaderView.swift in Sources */,
 				2941A23F28BE803F005026CF /* Color.swift in Sources */,
 				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
@@ -262,7 +290,9 @@
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
 				2944F88428B98DA10098ED1B /* BenefitModel.swift in Sources */,
 				218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */,
+				298613BA28CA918400BDC744 /* FontStyles.swift in Sources */,
 				218A36AC28B85D5500FCEE39 /* RewardsView.swift in Sources */,
+				298613BC28CA91D600BDC744 /* MoreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +424,7 @@
 				DEVELOPMENT_TEAM = FWC5C8VLC7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LoyaltyStarter/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -423,6 +454,7 @@
 				DEVELOPMENT_TEAM = FWC5C8VLC7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LoyaltyStarter/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

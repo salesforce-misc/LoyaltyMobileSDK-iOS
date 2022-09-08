@@ -26,7 +26,7 @@ class BenefitViewModel: ObservableObject {
             
             await MainActor.run {
                 isLoaded = true
-                self.benefits = result.memberBenefits
+                benefits = result.memberBenefits
             }
             
         } catch {
