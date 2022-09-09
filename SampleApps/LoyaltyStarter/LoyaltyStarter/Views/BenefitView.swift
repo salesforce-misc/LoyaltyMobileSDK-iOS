@@ -49,10 +49,10 @@ struct BenefitView: View {
                 .padding(.horizontal)
                 .padding(.bottom)
                 
-                
             }
             
         }
+        .padding()
         .task {
             do {
                 try await viewModel.fetchBenefits(memberId: memberId)
@@ -69,5 +69,6 @@ struct BenefitView: View {
 struct BenefitView_Previews: PreviewProvider {
     static var previews: some View {
         BenefitView()
+            .previewLayout(.sizeThatFits)
     }
 }

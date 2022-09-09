@@ -84,5 +84,25 @@ extension Font {
     static var profileText: Font {
         return Font.custom("SFPro-Bold", size: 13)
     }
+    
+    static var editText: Font {
+        return Font.custom("SFPro-Semibold", size: 13)
+    }
+    
+    
+    /// More
+    
+    static var nameText: Font {
+        return Font.custom("Archivo-Bold", size: 18)
+    }
+    
+    static var menuText: Font {
+        return Font.custom("SFPro-Regular", size: 16)
+    }
+    
+    /// Bottom Navbar
+    static var tabTitle: Font {
+        return Font.custom("SFPro-Regular", size: 12)
+    }
 }
 

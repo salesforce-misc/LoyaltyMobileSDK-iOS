@@ -35,7 +35,11 @@
 		298613B728CA8F3A00BDC744 /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613B628CA8F3A00BDC744 /* SF-Pro.ttf */; };
 		298613BA28CA918400BDC744 /* FontStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613B928CA918400BDC744 /* FontStyles.swift */; };
 		298613BC28CA91D600BDC744 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613BB28CA91D600BDC744 /* MoreView.swift */; };
-		298613BE28CA920600BDC744 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613BD28CA920600BDC744 /* ProfileHeaderView.swift */; };
+		298613BE28CA920600BDC744 /* MoreHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613BD28CA920600BDC744 /* MoreHeaderView.swift */; };
+		298613C028CA94D400BDC744 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613BF28CA94D400BDC744 /* ProfileModel.swift */; };
+		298613C228CA976B00BDC744 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613C128CA976B00BDC744 /* ProfileViewModel.swift */; };
+		298613C428CA9B0F00BDC744 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613C328CA9B0F00BDC744 /* ProfileHeaderView.swift */; };
+		298613C628CAA74500BDC744 /* Archivo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613C528CAA74500BDC744 /* Archivo-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +71,11 @@
 		298613B828CA8F5400BDC744 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		298613B928CA918400BDC744 /* FontStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyles.swift; sourceTree = "<group>"; };
 		298613BB28CA91D600BDC744 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
-		298613BD28CA920600BDC744 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		298613BD28CA920600BDC744 /* MoreHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreHeaderView.swift; sourceTree = "<group>"; };
+		298613BF28CA94D400BDC744 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		298613C128CA976B00BDC744 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		298613C328CA9B0F00BDC744 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		298613C528CAA74500BDC744 /* Archivo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archivo-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				216A9CC028BDD958007881FE /* BenefitViewModel.swift */,
+				298613C128CA976B00BDC744 /* ProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -146,12 +155,13 @@
 				218A36A928B85CA500FCEE39 /* BottomNavTabsView.swift */,
 				216F219A28B618C700DAA66D /* HomeView.swift */,
 				218A36B428B85E4C00FCEE39 /* BenefitView.swift */,
+				298613C328CA9B0F00BDC744 /* ProfileHeaderView.swift */,
 				218A36B128B85DA400FCEE39 /* ProfileView.swift */,
 				218A36AF28B85D9200FCEE39 /* RedeemView.swift */,
 				218A36AD28B85D6000FCEE39 /* FavoriteView.swift */,
 				218A36AB28B85D5500FCEE39 /* RewardsView.swift */,
+				298613BD28CA920600BDC744 /* MoreHeaderView.swift */,
 				298613BB28CA91D600BDC744 /* MoreView.swift */,
-				298613BD28CA920600BDC744 /* ProfileHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -177,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				2944F88328B98DA10098ED1B /* BenefitModel.swift */,
+				298613BF28CA94D400BDC744 /* ProfileModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -184,8 +195,9 @@
 		298613B328CA8F0600BDC744 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				298613B428CA8F2E00BDC744 /* Archivo-Regular.ttf */,
 				298613B628CA8F3A00BDC744 /* SF-Pro.ttf */,
+				298613B428CA8F2E00BDC744 /* Archivo-Regular.ttf */,
+				298613C528CAA74500BDC744 /* Archivo-Bold.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -261,6 +273,7 @@
 				218A36A828B85B7900FCEE39 /* Assets.xcassets in Resources */,
 				2944F88828B98E5E0098ED1B /* Salesforce.json in Resources */,
 				298613B528CA8F2E00BDC744 /* Archivo-Regular.ttf in Resources */,
+				298613C628CAA74500BDC744 /* Archivo-Bold.ttf in Resources */,
 				216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,9 +288,11 @@
 				216F219928B618BB00DAA66D /* SignInView.swift in Sources */,
 				218A36AA28B85CA500FCEE39 /* BottomNavTabsView.swift in Sources */,
 				216F219B28B618C700DAA66D /* HomeView.swift in Sources */,
+				298613C028CA94D400BDC744 /* ProfileModel.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
-				298613BE28CA920600BDC744 /* ProfileHeaderView.swift in Sources */,
+				298613BE28CA920600BDC744 /* MoreHeaderView.swift in Sources */,
 				2941A23F28BE803F005026CF /* Color.swift in Sources */,
+				298613C428CA9B0F00BDC744 /* ProfileHeaderView.swift in Sources */,
 				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
 				216F219528B6188600DAA66D /* AppRootView.swift in Sources */,
@@ -286,6 +301,7 @@
 				2941A24428BEA05F005026CF /* NetworkManager.swift in Sources */,
 				218A36AE28B85D6000FCEE39 /* FavoriteView.swift in Sources */,
 				216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */,
+				298613C228CA976B00BDC744 /* ProfileViewModel.swift in Sources */,
 				2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
 				2944F88428B98DA10098ED1B /* BenefitModel.swift in Sources */,

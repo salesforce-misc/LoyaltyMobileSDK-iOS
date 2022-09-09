@@ -20,6 +20,7 @@ struct BottomNavTabsView: View {
                         Image("ic-home")
                             .renderingMode(.template)
                         Text("Home")
+                            .font(.tabTitle)
                     }
                     .tag(0)
                 
@@ -28,6 +29,7 @@ struct BottomNavTabsView: View {
                         Image("ic-rewards")
                             .renderingMode(.template)
                         Text("Offers")
+                            .font(.tabTitle)
                     }
                     .tag(1)
                 
@@ -36,6 +38,7 @@ struct BottomNavTabsView: View {
                         Image("ic-profile")
                             .renderingMode(.template)
                         Text("Profile")
+                            .font(.tabTitle)
                     }
                     .tag(2)
                 
@@ -44,6 +47,7 @@ struct BottomNavTabsView: View {
                         Image("ic-book")
                             .renderingMode(.template)
                         Text("Redeem")
+                            .font(.tabTitle)
                     }
                     .tag(3)
                 
@@ -52,6 +56,7 @@ struct BottomNavTabsView: View {
                         Image("ic-more")
                             .renderingMode(.template)
                         Text("More")
+                            .font(.tabTitle)
                     }
                     .tag(4)
                 
