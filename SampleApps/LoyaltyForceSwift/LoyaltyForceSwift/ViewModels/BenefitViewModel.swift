@@ -83,9 +83,12 @@ class BenefitViewModel: ObservableObject {
             isLoaded = false
             benefits = []
             
+            let auth = try await ForceAuthManager.shared.grantAuth(username: ForceConfig.username, password: ForceConfig.password)
+            
             let request = try ForceRequest.create(
-            method: "GET",
-            path: ForceConfig.path(for: "connect/loyalty/member/\(memberId)/memberbenefits"))
+                auth: auth,
+                method: "GET",
+                path: ForceConfig.path(for: "connect/loyalty/member/\(memberId)/memberbenefits"))
             
             let result = try await ForceClient.shared.fetch(type: Benefits.self, with: request)
             

@@ -28,7 +28,7 @@ struct MoreView: View {
         VStack {
             NavigationView {
                 List {
-                    ProfileHeaderView()
+                    MoreHeaderView()
                         .listRowSeparator(.hidden, edges: .top)
                         .frame(height: 85)
                     ForEach(menuItems) { menu in
@@ -36,6 +36,7 @@ struct MoreView: View {
                             // TODO: Links to each view
                         } label: {
                             Label(menu.title, image: menu.icon)
+                                .font(.menuText)
                                 .frame(height: 65)
                         }
                         .listRowSeparatorTint(Color.theme.listSeparatorPink)
@@ -45,6 +46,8 @@ struct MoreView: View {
                         // TODO: Logout
                     } label: {
                         Label("Logout", image: "ic-logout")
+                            .font(.menuText)
+                            .foregroundColor(Color.theme.accent)
                     }
                     .listRowSeparator(.hidden, edges: .bottom)
                     .frame(height: 65)

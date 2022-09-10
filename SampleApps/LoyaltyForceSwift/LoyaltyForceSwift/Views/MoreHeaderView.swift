@@ -1,8 +1,8 @@
 //
-//  ProfileHeaderView.swift
-//  LoyaltyStarter
+//  MoreHeaderView.swift
+//  LoyaltyForceSwift
 //
-//  Created by Leon Qi on 9/8/22.
+//  Created by Leon Qi on 9/9/22.
 //
 
 import SwiftUI
@@ -27,3 +27,4 @@ struct MoreHeaderView_Previews: PreviewProvider {
             .previewLayout(.sizeThatFits)
     }
 }
+
