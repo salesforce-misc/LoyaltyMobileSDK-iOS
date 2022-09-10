@@ -52,11 +52,9 @@ public struct ForceRequest {
         comps.host = URL(string: auth.instanceURL)?.host ?? ""
         comps.path = path.starts(with: "/") ? path : "/\(path)"
         if let queryItems = queryItems {
-            var urlQueryItems = [URLQueryItem]()
-            for item in queryItems {
-                urlQueryItems.append(URLQueryItem(name: item.key, value: item.value))
-            }
-            comps.queryItems = urlQueryItems
+            comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
+                URLQueryItem(name: key, value: value)
+            })
         }
         guard let url = comps.url else {
             throw URLError(.badURL)
@@ -103,11 +101,9 @@ public struct ForceRequest {
         comps.host = url.host
         comps.path = url.path
         if let queryItems = queryItems {
-            var urlQueryItems = [URLQueryItem]()
-            for item in queryItems {
-                urlQueryItems.append(URLQueryItem(name: item.key, value: item.value))
-            }
-            comps.queryItems = urlQueryItems
+            comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
+                URLQueryItem(name: key, value: value)
+            })
         }
         guard let url = comps.url else {
             throw URLError(.badURL)
@@ -135,5 +131,6 @@ public struct ForceRequest {
         
         return request
     }
+    
 }
 

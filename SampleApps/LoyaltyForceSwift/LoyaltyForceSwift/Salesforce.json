@@ -1,5 +1,10 @@
 {
-    "consumerKey" : "3MVG9wt4IL4O5wvLgzQEznR8DsDU2A4qU_soGM6g26umyfjWj2c_697323VYIgryLH4bWh4FcW5Hrzi_JMbvF",
-    "callbackURL" : "testsfdc:///loyaltymobileapp/oauth/success"
+    "consumerKey" : "3MVG9kBt168mda_.AhACC.RZAxIT77sS1y2_ltn1YMi4tG98ZA1nMiP2w6m51xen0Of_0TWZ8RTvPy05bK5p9",
+    "consumerSecret": "F89D25E00C8295DBDD0F8AD08750E69633B6E46B6515AA8BED7D30CDEEA2BD5E",
+    "callbackURL" : "testsfdc:///loyaltymobileapp/oauth/success",
+    "authURL": "https://login.salesforce.com/services/oauth2/token",
+    "instanceURL": "https://internalmobileteam-dev-ed.develop.my.salesforce.com",
+    "username": "admin_aa_22852@loyaltysampleapp.com",
+    "password": "test@123"
 }
 

@@ -42,6 +42,7 @@
 		298613CE28CBC10300BDC744 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613CD28CBC10300BDC744 /* ProfileModel.swift */; };
 		298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */; };
 		298613D428CC085D00BDC744 /* ForceAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613D328CC085D00BDC744 /* ForceAuthManager.swift */; };
+		298613D628CC275500BDC744 /* Salesforce.json in Resources */ = {isa = PBXBuildFile; fileRef = 298613D528CC275500BDC744 /* Salesforce.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		298613CD28CBC10300BDC744 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		298613D328CC085D00BDC744 /* ForceAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceAuthManager.swift; sourceTree = "<group>"; };
+		298613D528CC275500BDC744 /* Salesforce.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Salesforce.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				298613AD28C9652300BDC744 /* FontStyles.swift */,
 				298613A928C9638400BDC744 /* Fonts */,
 				216F218428B6141F00DAA66D /* Preview Content */,
+				298613D528CC275500BDC744 /* Salesforce.json */,
 			);
 			path = LoyaltyForceSwift;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */,
 				298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */,
 				298613B028C9698D00BDC744 /* SF-Pro.ttf in Resources */,
+				298613D628CC275500BDC744 /* Salesforce.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

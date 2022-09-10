@@ -17,7 +17,13 @@ class ProfileViewModel: ObservableObject {
         do {
             isLoaded = false
             
-            let auth = try await ForceAuthManager.shared.grantAuth(username: ForceConfig.username, password: ForceConfig.password)
+            let config = try ForceConfig.config()
+            let auth = try await ForceAuthManager.shared.grantAuth(
+                url: config.authURL,
+                username: config.username,
+                password: config.password,
+                consumerKey: config.consumerKey,
+                consumerSecret: config.consumerSecret)
             
             let request = try ForceRequest.create(
                 auth: auth,

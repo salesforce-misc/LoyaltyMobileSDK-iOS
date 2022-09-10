@@ -13,19 +13,20 @@ class ForceAuthManager {
     
     private init() {}
     
-    func grantAuth(username: String, password: String) async throws -> ForceAuth {
+    /// https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_username_password_flow.htm&type=5
+    func grantAuth(url: String, username: String, password: String, consumerKey: String, consumerSecret: String) async throws -> ForceAuth {
+        
+        guard let url = URL(string: url) else {
+            throw URLError(.badURL)
+        }
         
         let queryItems = [
             "username": username,
             "password": password,
             "grant_type": "password",
-            "client_id": ForceConfig.consumerKey,
-            "client_secret": ForceConfig.consumerSecret
+            "client_id": consumerKey,
+            "client_secret": consumerSecret
         ]
-        
-        guard let url = URL(string: ForceConfig.authURL) else {
-            throw URLError(.badURL)
-        }
         
         do {
             let request = try ForceRequest.create(url: url, method: ForceRequest.Method.post, queryItems: queryItems)
