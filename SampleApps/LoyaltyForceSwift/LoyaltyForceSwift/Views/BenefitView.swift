@@ -58,8 +58,8 @@ struct BenefitView: View {
         .task {
             do {
                 //try viewModel.fetchBenefitsOption1(memberId: memberId)
-                try viewModel.fetchBenefitsOption2(memberId: memberId)
-                //try await viewModel.fetchBenefitsOption3(memberId: memberId)
+                //try viewModel.fetchBenefitsOption2(memberId: memberId)
+                try await viewModel.fetchBenefitsOption3(memberId: memberId)
             } catch {
                 print("Fetch Benefits Error: \(error)")
             }

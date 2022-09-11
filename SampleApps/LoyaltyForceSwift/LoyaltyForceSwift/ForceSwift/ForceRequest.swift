@@ -29,14 +29,6 @@ public struct ForceRequest {
     }
     
     static func create(
-        auth: ForceAuth = ForceAuth(
-            accessToken: "00D4x000008ZreC!AQcAQKFd4HavSIWNgJHSpv5D_Pe1ANngAs5Rzb29Rdcp1Edx7R4q4rHpwSbL0kviz6sf8fEKy5YjNMyWu1MuqvPTWEf0co_p",
-            instanceURL: "https://internalmobileteam-dev-ed.develop.my.salesforce.com",
-            identityURL: "https://login.salesforce.com/id/00D4x000008ZreCEAS/0054x000005teDHAAY",
-            tokenType: "",
-            timestamp: "",
-            signature: "",
-            refreshToken: ""),
         method: String? = nil,
         path: String,
         queryItems: [String: String]? = nil,
@@ -49,7 +41,8 @@ public struct ForceRequest {
         // URL
         var comps = URLComponents()
         comps.scheme = "https"
-        comps.host = URL(string: auth.instanceURL)?.host ?? ""
+        
+        comps.host = URL(string: ForceAuthManager.shared.getAuth()?.instanceURL ?? "")?.host ?? ""
         comps.path = path.starts(with: "/") ? path : "/\(path)"
         if let queryItems = queryItems {
             comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
@@ -80,7 +73,7 @@ public struct ForceRequest {
         ].reduce(into: [:]) { $0[$1.0] = $1.1 }
         request.allHTTPHeaderFields = defaultHeaders.merging(headers ?? [:]) { (_, new) in new }
         
-        request.setValue("Bearer \(auth.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(ForceAuthManager.shared.getAuth()?.accessToken ?? "")", forHTTPHeaderField: "Authorization")
         
         return request
     }

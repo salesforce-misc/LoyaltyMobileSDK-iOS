@@ -63,7 +63,7 @@ class BenefitViewModel: ObservableObject {
                     case .finished:
                         break
                     case .failure(let error):
-                        print(error.localizedDescription)
+                        print("fetchBenefitsOption2: \(error.localizedDescription)")
                     }}, receiveValue: { [weak self] (returnedBenefits) in
                         self?.benefits = returnedBenefits.memberBenefits
                     self?.isLoaded = true
@@ -82,17 +82,8 @@ class BenefitViewModel: ObservableObject {
         do {
             isLoaded = false
             benefits = []
-            
-            let config = try ForceConfig.config()
-            let auth = try await ForceAuthManager.shared.grantAuth(
-                url: config.authURL,
-                username: config.username,
-                password: config.password,
-                consumerKey: config.consumerKey,
-                consumerSecret: config.consumerSecret)
-            
+                        
             let request = try ForceRequest.create(
-                auth: auth,
                 method: "GET",
                 path: ForceConfig.path(for: "connect/loyalty/member/\(memberId)/memberbenefits"))
             

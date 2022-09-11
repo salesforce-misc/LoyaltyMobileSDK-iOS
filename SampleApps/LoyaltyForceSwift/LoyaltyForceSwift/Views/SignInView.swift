@@ -74,6 +74,13 @@ struct SignInView: View {
                 signInProcessing = false
                 appViewRouter.currentPage = .homePage
                 appViewRouter.signedIn = true
+                Task{
+                    do {
+                        try await ForceAuthManager.shared.grantAuth()
+                    }catch {
+                        print("failed to grantAuth")
+                    }
+                }
             }
             
         }

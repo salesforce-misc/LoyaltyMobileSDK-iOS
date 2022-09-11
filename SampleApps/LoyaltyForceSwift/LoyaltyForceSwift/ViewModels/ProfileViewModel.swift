@@ -16,17 +16,8 @@ class ProfileViewModel: ObservableObject {
         
         do {
             isLoaded = false
-            
-            let config = try ForceConfig.config()
-            let auth = try await ForceAuthManager.shared.grantAuth(
-                url: config.authURL,
-                username: config.username,
-                password: config.password,
-                consumerKey: config.consumerKey,
-                consumerSecret: config.consumerSecret)
-            
+                        
             let request = try ForceRequest.create(
-                auth: auth,
                 method: "GET",
                 path: ForceConfig.path(for: "loyalty-programs/NTO Insider/members"),
                 queryItems: ["memberId": "\(memberId)"])
