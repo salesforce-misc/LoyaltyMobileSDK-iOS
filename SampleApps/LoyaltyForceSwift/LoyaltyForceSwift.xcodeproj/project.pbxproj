@@ -24,6 +24,12 @@
 		218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36AF28B85D9200FCEE39 /* RedeemView.swift */; };
 		218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36B128B85DA400FCEE39 /* ProfileView.swift */; };
 		218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36B428B85E4C00FCEE39 /* BenefitView.swift */; };
+		291CC0AF28D1248D00C08572 /* ForceUserIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */; };
+		291CC0B128D1410500C08572 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B028D1410500C08572 /* UserDefaults.swift */; };
+		2938C60228CE84B900F495AF /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938C60128CE84B900F495AF /* Keychain.swift */; };
+		2938C60428CE852D00F495AF /* ForceAuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938C60328CE852D00F495AF /* ForceAuthStore.swift */; };
+		2938C60628CFCBB200F495AF /* WebAuthenticationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938C60528CFCBB200F495AF /* WebAuthenticationSession.swift */; };
+		2938C60828CFED0600F495AF /* Collection+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938C60728CFED0600F495AF /* Collection+URLQueryItem.swift */; };
 		2941A23F28BE803F005026CF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A23E28BE803F005026CF /* Color.swift */; };
 		2944F88428B98DA10098ED1B /* BenefitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88328B98DA10098ED1B /* BenefitModel.swift */; };
 		2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppConstants.swift */; };
@@ -63,6 +69,12 @@
 		218A36AF28B85D9200FCEE39 /* RedeemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemView.swift; sourceTree = "<group>"; };
 		218A36B128B85DA400FCEE39 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		218A36B428B85E4C00FCEE39 /* BenefitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitView.swift; sourceTree = "<group>"; };
+		291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUserIdentifier.swift; sourceTree = "<group>"; };
+		291CC0B028D1410500C08572 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		2938C60128CE84B900F495AF /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		2938C60328CE852D00F495AF /* ForceAuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceAuthStore.swift; sourceTree = "<group>"; };
+		2938C60528CFCBB200F495AF /* WebAuthenticationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSession.swift; sourceTree = "<group>"; };
+		2938C60728CFED0600F495AF /* Collection+URLQueryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+URLQueryItem.swift"; sourceTree = "<group>"; };
 		2941A23E28BE803F005026CF /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2944F88328B98DA10098ED1B /* BenefitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitModel.swift; sourceTree = "<group>"; };
 		2944F88928B9A7220098ED1B /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
@@ -176,6 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				2941A23E28BE803F005026CF /* Color.swift */,
+				2938C60728CFED0600F495AF /* Collection+URLQueryItem.swift */,
+				291CC0B028D1410500C08572 /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -192,12 +206,16 @@
 		298613A028C1747900BDC744 /* ForceSwift */ = {
 			isa = PBXGroup;
 			children = (
-				298613A328C175CA00BDC744 /* ForceAuth.swift */,
-				298613D328CC085D00BDC744 /* ForceAuthManager.swift */,
-				298613A128C174FE00BDC744 /* ForceRequest.swift */,
 				2986139C28C15E9500BDC744 /* ForceError.swift */,
+				298613A328C175CA00BDC744 /* ForceAuth.swift */,
+				298613A128C174FE00BDC744 /* ForceRequest.swift */,
+				298613D328CC085D00BDC744 /* ForceAuthManager.swift */,
 				2986139928C14C0100BDC744 /* ForceClient.swift */,
 				2986139E28C1730000BDC744 /* ForceConfig.swift */,
+				291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */,
+				2938C60328CE852D00F495AF /* ForceAuthStore.swift */,
+				2938C60128CE84B900F495AF /* Keychain.swift */,
+				2938C60528CFCBB200F495AF /* WebAuthenticationSession.swift */,
 			);
 			path = ForceSwift;
 			sourceTree = "<group>";
@@ -300,7 +318,10 @@
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
 				2941A23F28BE803F005026CF /* Color.swift in Sources */,
 				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
+				2938C60828CFED0600F495AF /* Collection+URLQueryItem.swift in Sources */,
+				2938C60228CE84B900F495AF /* Keychain.swift in Sources */,
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
+				291CC0AF28D1248D00C08572 /* ForceUserIdentifier.swift in Sources */,
 				216F219528B6188600DAA66D /* AppRootView.swift in Sources */,
 				298613A228C174FE00BDC744 /* ForceRequest.swift in Sources */,
 				298613A628C7D3B400BDC744 /* MoreView.swift in Sources */,
@@ -312,14 +333,17 @@
 				2986139A28C14C0100BDC744 /* ForceClient.swift in Sources */,
 				298613AE28C9652300BDC744 /* FontStyles.swift in Sources */,
 				216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */,
+				291CC0B128D1410500C08572 /* UserDefaults.swift in Sources */,
 				298613CC28CBC08800BDC744 /* MoreHeaderView.swift in Sources */,
 				2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */,
+				2938C60428CE852D00F495AF /* ForceAuthStore.swift in Sources */,
 				298613A828C9021400BDC744 /* ProfileHeaderView.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
 				2944F88428B98DA10098ED1B /* BenefitModel.swift in Sources */,
 				218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */,
 				218A36AC28B85D5500FCEE39 /* RewardsView.swift in Sources */,
 				2986139D28C15E9500BDC744 /* ForceError.swift in Sources */,
+				2938C60628CFCBB200F495AF /* WebAuthenticationSession.swift in Sources */,
 				298613A428C175CA00BDC744 /* ForceAuth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

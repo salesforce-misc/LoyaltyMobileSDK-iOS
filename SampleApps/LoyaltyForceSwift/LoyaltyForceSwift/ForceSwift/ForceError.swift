@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum ForceError: Error {
+public enum ForceError: Error, Equatable {
 
     case requestFailed(description: String)
     case jsonConversionFailure(description: String)
@@ -16,6 +16,9 @@ public enum ForceError: Error {
     case jsonParsingFailure
     case noInternet
     case failedSerialization
+    case authenticationNeeded
+    case userIdentityUnknown
+    case authNotFoundInKeychain
 
     var customDescription: String {
         switch self {
@@ -26,6 +29,9 @@ public enum ForceError: Error {
         case let .jsonConversionFailure(description): return "JSON Conversion Failure -> \(description)"
         case .noInternet: return "No internet connection"
         case .failedSerialization: return "Serialization print for debug failed."
+        case .authenticationNeeded: return "Authentication is need."
+        case .userIdentityUnknown: return "User Identity has not been set."
+        case .authNotFoundInKeychain: return "Cannot find the auth from Keychain."
         }
     }
 }

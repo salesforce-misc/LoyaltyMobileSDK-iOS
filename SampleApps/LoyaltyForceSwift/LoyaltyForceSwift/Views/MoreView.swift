@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct MenuItem: Identifiable {
     var id: UUID = UUID()
@@ -14,6 +15,10 @@ struct MenuItem: Identifiable {
 }
 
 struct MoreView: View {
+    
+    @EnvironmentObject var appViewRouter: AppViewRouter
+    
+    @State var signOutProcessing = false
     
     let menuItems: [MenuItem] = [
         MenuItem(icon: "ic-person", title: "Personal Information"),
@@ -42,8 +47,11 @@ struct MoreView: View {
                         .listRowSeparatorTint(Color.theme.listSeparatorPink)
                         
                     }
+                    if signOutProcessing {
+                        ProgressView()
+                    }
                     Button {
-                        // TODO: Logout
+                        signOutUser()
                     } label: {
                         Label("Logout", image: "ic-logout")
                             .font(.menuText)
@@ -58,6 +66,22 @@ struct MoreView: View {
             }
         }
 
+    }
+    
+    func signOutUser() {
+        signOutProcessing = true
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            ForceAuthManager.shared.clearAuth()
+            
+        } catch let signOutError as NSError {
+            print("Error signing out: \(signOutError)")
+
+            signOutProcessing = false
+        }
+        appViewRouter.currentPage = .signInPage
+        appViewRouter.signedIn = false
     }
 }
 

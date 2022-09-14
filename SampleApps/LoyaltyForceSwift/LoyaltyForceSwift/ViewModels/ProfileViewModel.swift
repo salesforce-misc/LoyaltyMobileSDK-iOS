@@ -16,6 +16,7 @@ class ProfileViewModel: ObservableObject {
         
         do {
             isLoaded = false
+            profile = nil
                         
             let request = try ForceRequest.create(
                 method: "GET",

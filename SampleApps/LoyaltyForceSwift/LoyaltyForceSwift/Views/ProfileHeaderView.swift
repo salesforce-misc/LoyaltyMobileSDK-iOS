@@ -23,6 +23,10 @@ struct ProfileHeaderView: View {
             }
             .padding()
             
+            if !viewModel.isLoaded {
+                ProgressView()
+            }
+            
             HStack {
                 Image("img-profile-larger")
                 .clipShape(Circle())
