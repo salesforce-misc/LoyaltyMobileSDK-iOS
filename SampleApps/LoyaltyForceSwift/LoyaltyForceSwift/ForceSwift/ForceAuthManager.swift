@@ -139,7 +139,7 @@ class ForceAuthManager {
     /// OAuth 2.0 Rrefresh Token Flow - use refresh token to get a new accessToken
     /// https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_refresh_token_flow.htm&type=5
     /// If consumerSelect is not used, then be sure that "Require Secret for Refresh Token Flow" is not checked in Connected App settings. If "Require Secret for Refresh Token Flow" is checked, consumerSelect must be provided.
-    func refresh(url: String = ForceConfig.defaultTokenURL, consumerKey: String, consumerSelect: String?, refreshToken: String) async throws -> ForceAuth {
+    func refresh(url: String = ForceConfig.defaultTokenURL, consumerKey: String, consumerSelect: String? = nil, refreshToken: String) async throws -> ForceAuth {
         
         guard let url = URL(string: url) else {
             throw URLError(.badURL)
@@ -188,7 +188,7 @@ class ForceAuthManager {
     func saveAuth(for auth: ForceAuth) throws {
         do {
             try ForceAuthStore.save(auth: auth)
-            defaults.userIdentifier = auth.instanceURL
+            defaults.userIdentifier = auth.identityURL
         } catch {
             throw error
         }

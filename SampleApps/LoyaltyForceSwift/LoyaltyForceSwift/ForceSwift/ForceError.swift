@@ -9,15 +9,25 @@ import Foundation
 
 public enum ForceError: Error, Equatable {
 
+    // 0
     case requestFailed(description: String)
+    // 1
     case jsonConversionFailure(description: String)
+    // 2
     case invalidData
+    // 3
     case responseUnsuccessful(description: String)
+    // 4
     case jsonParsingFailure
+    // 5
     case noInternet
+    // 6
     case failedSerialization
+    // 7
     case authenticationNeeded
+    // 8
     case userIdentityUnknown
+    // 9
     case authNotFoundInKeychain
 
     var customDescription: String {

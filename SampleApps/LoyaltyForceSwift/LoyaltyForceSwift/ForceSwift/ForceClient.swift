@@ -39,6 +39,15 @@ public class ForceClient {
         }
     }
     
+    func handleUnauthResponseReturnOutput(output: URLSession.DataTaskPublisher.Output) throws -> URLSession.DataTaskPublisher.Output {
+        guard let response = output.response as? HTTPURLResponse,
+              response.statusCode != 401 else {
+            throw ForceError.authenticationNeeded
+        }
+        
+        return output
+    }
+    
     func handleCompletion(completion: Subscribers.Completion<Error>) {
         switch completion {
         case .finished:
@@ -48,66 +57,58 @@ public class ForceClient {
         }
     }
     
-//    // Option 1: @escaping closure
-//    public func fetch<T: Decodable>(
-//        type: T.Type,
-//        with request: URLRequest,
-//        completion: @escaping (_ data: Data?) -> Void) {
-//            
-////            Task {
-////                // To test request without a valid accessToken
-////                if let token = ForceAuthManager.shared.auth?.accessToken {
-////                    try await ForceAuthManager.shared.revoke(token: token)
-////                }
-////            }
-//                
-//            do {
-//                // Get a updated request with a new token
-//                let newRequest = try getNewRequest(for: request)
-//                
-//                URLSession.shared.dataTask(with: newRequest) { (data, response, error) in
-//            
-//                    guard let data = data, error == nil, let response = response else {
-//                        return
-//                    }
-//                    self.handleResponse(response: response)
-//                    completion(data)
-//                    
-//                }.resume()
-//            } catch {
-//                print("Error fetching request (@escaping closure): \(error.localizedDescription)")
-//            }
-//
-//    }
+    // Option 1: @escaping closure
+    public func fetch<T: Decodable>(
+        type: T.Type,
+        with request: URLRequest,
+        completion: @escaping (_ data: Data?) -> Void) {
+            
+            Task {
+                do {
+                    // Get a updated request with a new token
+                    let newRequest = try await getNewRequest(for: request)
+                    
+                    URLSession.shared.dataTask(with: newRequest) { (data, response, error) in
+                
+                        guard let data = data, error == nil, let response = response else {
+                            return
+                        }
+                        self.handleResponse(response: response)
+                        completion(data)
+                        
+                    }.resume()
+                } catch {
+                    print("Error fetching request (@escaping closure): \(error.localizedDescription)")
+                }
+            }
+    }
     
-//    // OPtion 2: Combine
+    // OPtion 2: Combine
 //    public func fetch<T: Decodable>(
 //        type: T.Type,
 //        with request: URLRequest) -> AnyPublisher<T, Error> {
 //            
-////            Task {
-////                // To test request without a valid accessToken
-////                if let token = ForceAuthManager.shared.auth?.accessToken {
-////                    try await ForceAuthManager.shared.revoke(token: token)
-////                }
-////            }
-//            
-//            do {
-//                // Get a updated request with a new token
-//                let newRequest = try getNewRequest(for: request)
-//                
-//                return URLSession.shared.dataTaskPublisher(for: newRequest)
-//                        .retry(3)
-//                        .tryMap(handleDataAndResponse)
-//                        .decode(type: T.self, decoder: JSONDecoder())
-//                        .eraseToAnyPublisher()
-//                    
-//            } catch {
-//                print("Error fetching request (Combine): \(error.localizedDescription)")
-//                return Empty(completeImmediately: false).eraseToAnyPublisher()
+//            Task {
+//                // To test request without a valid accessToken
+//                if let token = ForceAuthManager.shared.auth?.accessToken {
+//                    try await ForceAuthManager.shared.revoke(token: token)
+//                }
+//
+//                do {
+//                    // Get a updated request with a new token
+//                    let newRequest = try await getNewRequest(for: request)
+//
+//                    return URLSession.shared.dataTaskPublisher(for: newRequest)
+//                            .tryMap(handleDataAndResponse)
+//                            .decode(type: T.self, decoder: JSONDecoder())
+//                            .eraseToAnyPublisher()
+//
+//                } catch {
+//                    print("Error fetching request (Combine): \(error.localizedDescription)")
+//                    return Empty(completeImmediately: false).eraseToAnyPublisher()
+//                }
 //            }
-//            
-//        
+//    
 //    }
 
     // Option 3: Async/Await
@@ -140,11 +141,25 @@ public class ForceClient {
     func getNewRequest(for request: URLRequest) async throws -> URLRequest {
         
         do {
-            try await ForceAuthManager.shared.grantAuth()
-            guard let auth = ForceAuthManager.shared.getAuth() else {
-                throw ForceError.authenticationNeeded
+            guard let id = ForceAuthManager.shared.userIdentifier else {
+                throw ForceError.userIdentityUnknown
             }
-            return ForceRequest.updateRequest(from: request, with: auth)
+            guard let auth = try ForceAuthStore.retrieve(for: id) else {
+                throw ForceError.authNotFoundInKeychain
+            }
+            if let refreshToken = auth.refreshToken {
+                let newAuth = try await ForceAuthManager.shared.refresh(consumerKey: ForceConfig.defaultConsumerKey, refreshToken: refreshToken)
+                return ForceRequest.updateRequest(from: request, with: newAuth)
+            } else {
+                let config = try ForceConfig.config()
+                let newAuth = try await ForceAuthManager.shared.grantAuth(
+                    url: config.authURL,
+                    username: config.username,
+                    password: config.password,
+                    consumerKey: config.consumerKey,
+                    consumerSecret: config.consumerSecret)
+                return ForceRequest.updateRequest(from: request, with: newAuth)
+            }
         } catch {
             throw error
         }

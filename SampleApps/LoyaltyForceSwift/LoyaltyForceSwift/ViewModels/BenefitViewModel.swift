@@ -15,35 +15,35 @@ class BenefitViewModel: ObservableObject {
     @Published var isLoaded = false
     private var benefitsCancellable: AnyCancellable?
     
-//    // ForceSwift Option 1: @escaping closure
-//    func fetchBenefitsOption1(memberId: String) throws {
-//
-//        do {
-//            isLoaded = false
-//            benefits = []
-//
-//            let request = try ForceRequest.create(
-//            method: "GET",
-//            path: ForceConfig.path(for: "connect/loyalty/member/\(memberId)/memberbenefits"))
-//
-//            ForceClient.shared.fetch(type: Benefits.self, with: request) { (returnedData) in
-//                if let data = returnedData {
-//                    guard let result = try? JSONDecoder().decode(Benefits.self, from: data) else { return }
-//                    DispatchQueue.main.async { [weak self] in
-//                        self?.isLoaded = true
-//                        self?.benefits = result.memberBenefits
-//                    }
-//                } else {
-//                    print("No data returned.")
-//                }
-//            }
-//
-//        }
-//        catch {
-//            throw error
-//        }
-//
-//    }
+    // ForceSwift Option 1: @escaping closure
+    func fetchBenefitsOption1(memberId: String) throws {
+
+        do {
+            isLoaded = false
+            benefits = []
+
+            let request = try ForceRequest.create(
+            method: "GET",
+            path: ForceConfig.path(for: "connect/loyalty/member/\(memberId)/memberbenefits"))
+
+            ForceClient.shared.fetch(type: Benefits.self, with: request) { (returnedData) in
+                if let data = returnedData {
+                    guard let result = try? JSONDecoder().decode(Benefits.self, from: data) else { return }
+                    DispatchQueue.main.async { [weak self] in
+                        self?.isLoaded = true
+                        self?.benefits = result.memberBenefits
+                    }
+                } else {
+                    print("No data returned.")
+                }
+            }
+
+        }
+        catch {
+            throw error
+        }
+
+    }
     
 //    // ForceSwift Option 2: Combine
 //    func fetchBenefitsOption2(memberId: String) throws {

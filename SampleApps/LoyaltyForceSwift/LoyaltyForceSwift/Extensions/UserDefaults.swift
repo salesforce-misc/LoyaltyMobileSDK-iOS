@@ -14,7 +14,7 @@ extension UserDefaults {
     
     var userIdentifier: ForceUserIdentifier? {
         get {
-            return #function
+            return string(forKey: #function)
         }
         set {
             guard let user = newValue else {
