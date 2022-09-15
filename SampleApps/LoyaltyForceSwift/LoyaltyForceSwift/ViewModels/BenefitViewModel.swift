@@ -21,10 +21,9 @@ class BenefitViewModel: ObservableObject {
         do {
             isLoaded = false
             benefits = []
-
-            let request = try ForceRequest.create(
-            method: "GET",
-            path: ForceConfig.path(for: "connect/loyalty/member/\(memberId)/memberbenefits"))
+            
+            let path = ForceConfig.path(for: LoyaltyAPIManager.getPath(for: .getMemberBenefits(memberId: memberId)))
+            let request = try ForceRequest.create(method: "GET", path: path)
 
             ForceClient.shared.fetch(type: Benefits.self, with: request) { (returnedData) in
                 if let data = returnedData {

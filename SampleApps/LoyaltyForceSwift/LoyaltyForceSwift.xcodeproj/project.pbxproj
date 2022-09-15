@@ -26,6 +26,7 @@
 		218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36B428B85E4C00FCEE39 /* BenefitView.swift */; };
 		291CC0AF28D1248D00C08572 /* ForceUserIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */; };
 		291CC0B128D1410500C08572 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B028D1410500C08572 /* UserDefaults.swift */; };
+		291CC0B428D39D4A00C08572 /* LoyaltyAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */; };
 		2938C60228CE84B900F495AF /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938C60128CE84B900F495AF /* Keychain.swift */; };
 		2938C60428CE852D00F495AF /* ForceAuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938C60328CE852D00F495AF /* ForceAuthStore.swift */; };
 		2938C60628CFCBB200F495AF /* WebAuthenticationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938C60528CFCBB200F495AF /* WebAuthenticationSession.swift */; };
@@ -71,6 +72,7 @@
 		218A36B428B85E4C00FCEE39 /* BenefitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitView.swift; sourceTree = "<group>"; };
 		291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUserIdentifier.swift; sourceTree = "<group>"; };
 		291CC0B028D1410500C08572 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyAPIManager.swift; sourceTree = "<group>"; };
 		2938C60128CE84B900F495AF /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		2938C60328CE852D00F495AF /* ForceAuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceAuthStore.swift; sourceTree = "<group>"; };
 		2938C60528CFCBB200F495AF /* WebAuthenticationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSession.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			children = (
 				298613AC28C964D900BDC744 /* Info.plist */,
 				298613A028C1747900BDC744 /* ForceSwift */,
+				291CC0B228D39D1600C08572 /* LoyaltyManagement */,
 				2944F87F28B98C2C0098ED1B /* Extensions */,
 				2944F88228B98D420098ED1B /* Models */,
 				216A9CBF28BDD8A1007881FE /* ViewModels */,
@@ -182,6 +185,14 @@
 				298613CB28CBC08800BDC744 /* MoreHeaderView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		291CC0B228D39D1600C08572 /* LoyaltyManagement */ = {
+			isa = PBXGroup;
+			children = (
+				291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */,
+			);
+			path = LoyaltyManagement;
 			sourceTree = "<group>";
 		};
 		2944F87F28B98C2C0098ED1B /* Extensions */ = {
@@ -340,6 +351,7 @@
 				298613A828C9021400BDC744 /* ProfileHeaderView.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
 				2944F88428B98DA10098ED1B /* BenefitModel.swift in Sources */,
+				291CC0B428D39D4A00C08572 /* LoyaltyAPIManager.swift in Sources */,
 				218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */,
 				218A36AC28B85D5500FCEE39 /* RewardsView.swift in Sources */,
 				2986139D28C15E9500BDC744 /* ForceError.swift in Sources */,

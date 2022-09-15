@@ -18,10 +18,11 @@ class ProfileViewModel: ObservableObject {
             isLoaded = false
             profile = nil
                         
-            let request = try ForceRequest.create(
-                method: "GET",
-                path: ForceConfig.path(for: "loyalty-programs/NTO Insider/members"),
-                queryItems: ["memberId": "\(memberId)"])
+            // TODO: get program name after login
+            let programName = "NTO Insider"
+            let path = ForceConfig.path(for: LoyaltyAPIManager.getPath(for: .getMemberProfile(programName: programName)))
+            let queryItems = ["memberId": "\(memberId)"]
+            let request = try ForceRequest.create(method: "GET", path: path, queryItems: queryItems)
             
             let result = try await ForceClient.shared.fetch(type: ProfileModel.self, with: request)
             
