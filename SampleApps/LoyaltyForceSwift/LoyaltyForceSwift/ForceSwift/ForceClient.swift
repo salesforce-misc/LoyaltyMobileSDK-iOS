@@ -141,12 +141,7 @@ public class ForceClient {
     func getNewRequest(for request: URLRequest) async throws -> URLRequest {
         
         do {
-            guard let id = ForceAuthManager.shared.userIdentifier else {
-                throw ForceError.userIdentityUnknown
-            }
-            guard let auth = try ForceAuthStore.retrieve(for: id) else {
-                throw ForceError.authNotFoundInKeychain
-            }
+            let auth = try ForceAuthManager.shared.retrieveAuth()
             if let refreshToken = auth.refreshToken {
                 let newAuth = try await ForceAuthManager.shared.refresh(consumerKey: ForceConfig.defaultConsumerKey, refreshToken: refreshToken)
                 return ForceRequest.updateRequest(from: request, with: newAuth)

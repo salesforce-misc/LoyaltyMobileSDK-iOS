@@ -12,6 +12,11 @@ class ForceAuthManager {
     var auth: ForceAuth? = nil
     private let defaults: UserDefaults
     
+    enum OauthFlow {
+        case UserAgent
+        case UsernamePassword
+    }
+    
     static let shared = ForceAuthManager()
     
     /// Unique identifier for current Salesforce user.
@@ -50,20 +55,22 @@ class ForceAuthManager {
         
     }
     
-    func grantAuth() async throws {
+    func grantAuth(oauthFlow: OauthFlow = .UsernamePassword) async throws {
         
         do {
             let config = try ForceConfig.config()
-            self.auth = try await self.grantAuth(
-                url: config.authURL,
-                username: config.username,
-                password: config.password,
-                consumerKey: config.consumerKey,
-                consumerSecret: config.consumerSecret)
             
-//            // Test salesforce login
-//            self.auth = try await self.authenticate(consumerKey: config.consumerKey, callbackURL: config.callbackURL)
-            
+            switch oauthFlow {
+            case .UsernamePassword:
+                self.auth = try await self.grantAuth(
+                    url: config.authURL,
+                    username: config.username,
+                    password: config.password,
+                    consumerKey: config.consumerKey,
+                    consumerSecret: config.consumerSecret)
+            case .UserAgent:
+                self.auth = try await self.authenticate(consumerKey: config.consumerKey, callbackURL: config.callbackURL)
+            }
         } catch {
             throw error
         }
@@ -185,6 +192,7 @@ class ForceAuthManager {
 
     }
     
+    /// Save Auth to ForceAuthStore
     func saveAuth(for auth: ForceAuth) throws {
         do {
             try ForceAuthStore.save(auth: auth)
@@ -194,10 +202,22 @@ class ForceAuthManager {
         }
     }
     
+    /// Delete Auth from ForceAuthStore
     func deleteAuth() throws {
         if let id = self.userIdentifier {
             try? ForceAuthStore.delete(for: id)
         }
+    }
+    
+    /// Retrieve Auth from ForceAuthStore
+    func retrieveAuth() throws -> ForceAuth {
+        guard let id = ForceAuthManager.shared.userIdentifier else {
+            throw ForceError.userIdentityUnknown
+        }
+        guard let auth = try ForceAuthStore.retrieve(for: id) else {
+            throw ForceError.authNotFoundInKeychain
+        }
+        return auth
     }
     
 }

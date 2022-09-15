@@ -42,7 +42,7 @@ public struct ForceRequest {
         var comps = URLComponents()
         comps.scheme = "https"
         
-        comps.host = URL(string: ForceAuthManager.shared.userIdentifier ?? ForceConfig.defaultInstanceURL)?.host ?? ""
+        comps.host = URL(string: ForceAuthManager.shared.auth?.instanceURL ?? ForceConfig.defaultInstanceURL)?.host ?? ""
         comps.path = path.starts(with: "/") ? path : "/\(path)"
         if let queryItems = queryItems {
             comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
@@ -134,14 +134,7 @@ public struct ForceRequest {
     static func updateRequestWithSavedAuth(for request: URLRequest) throws -> URLRequest {
 
         do {
-            guard let id = ForceAuthManager.shared.userIdentifier else {
-                print("updateRequestWithSavedAuth Error: \(ForceError.userIdentityUnknown.customDescription)")
-                throw ForceError.userIdentityUnknown
-            }
-            guard let auth = try ForceAuthStore.retrieve(for: id) else {
-                print("updateRequestWithSavedAuth Error: \(ForceError.authenticationNeeded.customDescription)")
-                throw ForceError.authenticationNeeded
-            }
+            let auth = try ForceAuthManager.shared.retrieveAuth()
             return updateRequest(from: request, with: auth)
         } catch {
             throw error
