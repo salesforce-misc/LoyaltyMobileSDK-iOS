@@ -89,6 +89,14 @@ extension Font {
         return Font.custom("SFPro-Semibold", size: 13)
     }
     
+    /// Benefits
+    static var benefitText: Font {
+        return Font.custom("SFPro-Semibold", size: 14)
+    }
+    
+    static var benefitDescription: Font {
+        return Font.custom("SFPro-Regular", size: 12)
+    }
     
     /// More
     

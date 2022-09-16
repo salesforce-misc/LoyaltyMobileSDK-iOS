@@ -10,8 +10,10 @@ import SwiftUI
 struct ProfileHeaderView: View {
     
     @StateObject var viewModel = ProfileViewModel()
-    private let memberId: String = "0lM4x000000LECA"
     
+    // TODO: replace memebrId and programName with real data
+    let memberId: String = "0lM4x000000LECA"
+    let programName = "NTO Insider"
     
     var body: some View {
         VStack {
@@ -22,6 +24,10 @@ struct ProfileHeaderView: View {
                 Spacer()
             }
             .padding()
+            
+            if !viewModel.isLoaded {
+                ProgressView()
+            }
             
             HStack {
                 Image("img-profile-larger")
@@ -74,7 +80,7 @@ struct ProfileHeaderView: View {
         .frame(width: 375, height: 344)
         .task {
             do {
-                try await viewModel.getProfileData(memberId: memberId)
+                try await viewModel.getProfileData(memberId: memberId, programName: programName)
             } catch {
                 print("Fetch Benefits Error: \(error.localizedDescription)")
             }

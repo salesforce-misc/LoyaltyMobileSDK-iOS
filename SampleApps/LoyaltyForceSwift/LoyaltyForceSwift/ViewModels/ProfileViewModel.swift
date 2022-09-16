@@ -12,17 +12,13 @@ class ProfileViewModel: ObservableObject {
     @Published var profile: ProfileModel?
     @Published var isLoaded = false
     
-    func getProfileData(memberId: String) async throws {
+    func getProfileData(memberId: String, programName: String) async throws {
         
         do {
             isLoaded = false
-                        
-            let request = try ForceRequest.create(
-                method: "GET",
-                path: ForceConfig.path(for: "loyalty-programs/NTO Insider/members"),
-                queryItems: ["memberId": "\(memberId)"])
+            profile = nil
             
-            let result = try await ForceClient.shared.fetch(type: ProfileModel.self, with: request)
+            let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId, programName: programName)
             
             await MainActor.run {
                 isLoaded = true

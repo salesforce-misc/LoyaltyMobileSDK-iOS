@@ -14,7 +14,7 @@ public class ForceClient {
     
     private init() {}
     
-    func handleDataAndResponse(output: (data: Data, response: URLResponse)) -> Data {
+    func handleDataAndResponse(output: URLSession.DataTaskPublisher.Output) -> Data {
         handleResponse(response: output.response)
         return output.data
     }
@@ -31,7 +31,23 @@ public class ForceClient {
         }
 
     }
-
+    
+    func handleUnauthResponse(output: URLSession.DataTaskPublisher.Output) throws {
+        guard let response = output.response as? HTTPURLResponse,
+              response.statusCode != 401 else {
+            throw ForceError.authenticationNeeded
+        }
+    }
+    
+    func handleUnauthResponseReturnOutput(output: URLSession.DataTaskPublisher.Output) throws -> URLSession.DataTaskPublisher.Output {
+        guard let response = output.response as? HTTPURLResponse,
+              response.statusCode != 401 else {
+            throw ForceError.authenticationNeeded
+        }
+        
+        return output
+    }
+    
     func handleCompletion(completion: Subscribers.Completion<Error>) {
         switch completion {
         case .finished:
@@ -47,28 +63,53 @@ public class ForceClient {
         with request: URLRequest,
         completion: @escaping (_ data: Data?) -> Void) {
             
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-    
-            guard let data = data, error == nil, let response = response else {
-                return
+            Task {
+                do {
+                    // Get a updated request with a new token
+                    let newRequest = try await getNewRequest(for: request)
+                    
+                    URLSession.shared.dataTask(with: newRequest) { (data, response, error) in
+                
+                        guard let data = data, error == nil, let response = response else {
+                            return
+                        }
+                        self.handleResponse(response: response)
+                        completion(data)
+                        
+                    }.resume()
+                } catch {
+                    print("Error fetching request (@escaping closure): \(error.localizedDescription)")
+                }
             }
-            self.handleResponse(response: response)
-            completion(data)
-            
-        }.resume()
-
     }
     
     // OPtion 2: Combine
-    public func fetch<T: Decodable>(
-        type: T.Type,
-        with request: URLRequest) -> AnyPublisher<T, Error> {
-            
-        return URLSession.shared.dataTaskPublisher(for: request)
-                .tryMap(handleDataAndResponse)
-                .decode(type: T.self, decoder: JSONDecoder())
-                .eraseToAnyPublisher()
-    }
+//    public func fetch<T: Decodable>(
+//        type: T.Type,
+//        with request: URLRequest) -> AnyPublisher<T, Error> {
+//            
+//            Task {
+//                // To test request without a valid accessToken
+//                if let token = ForceAuthManager.shared.auth?.accessToken {
+//                    try await ForceAuthManager.shared.revoke(token: token)
+//                }
+//
+//                do {
+//                    // Get a updated request with a new token
+//                    let newRequest = try await getNewRequest(for: request)
+//
+//                    return URLSession.shared.dataTaskPublisher(for: newRequest)
+//                            .tryMap(handleDataAndResponse)
+//                            .decode(type: T.self, decoder: JSONDecoder())
+//                            .eraseToAnyPublisher()
+//
+//                } catch {
+//                    print("Error fetching request (Combine): \(error.localizedDescription)")
+//                    return Empty(completeImmediately: false).eraseToAnyPublisher()
+//                }
+//            }
+//    
+//    }
 
     // Option 3: Async/Await
     public func fetch<T: Decodable>(
@@ -76,9 +117,44 @@ public class ForceClient {
         with request: URLRequest) async throws -> T {
       
         do {
+            
+//            // To test request without a valid accessToken
+//            if let token = ForceAuthManager.shared.auth?.accessToken {
+//                try await ForceAuthManager.shared.revoke(token: token)
+//            }
+            
             let output = try await URLSession.shared.data(for: request)
+            try handleUnauthResponse(output: output)
             let data = handleDataAndResponse(output: output)
             return try JSONDecoder().decode(type, from: data)
+        } catch ForceError.authenticationNeeded {
+            let newRequet = try await getNewRequest(for: request)
+            let output = try await URLSession.shared.data(for: newRequet)
+            try handleUnauthResponse(output: output)
+            let data = handleDataAndResponse(output: output)
+            return try JSONDecoder().decode(type, from: data)
+        } catch {
+            throw error
+        }
+    }
+    
+    func getNewRequest(for request: URLRequest) async throws -> URLRequest {
+        
+        do {
+            let auth = try ForceAuthManager.shared.retrieveAuth()
+            if let refreshToken = auth.refreshToken {
+                let newAuth = try await ForceAuthManager.shared.refresh(consumerKey: ForceConfig.defaultConsumerKey, refreshToken: refreshToken)
+                return ForceRequest.updateRequest(from: request, with: newAuth)
+            } else {
+                let config = try ForceConfig.config()
+                let newAuth = try await ForceAuthManager.shared.grantAuth(
+                    url: config.authURL,
+                    username: config.username,
+                    password: config.password,
+                    consumerKey: config.consumerKey,
+                    consumerSecret: config.consumerSecret)
+                return ForceRequest.updateRequest(from: request, with: newAuth)
+            }
         } catch {
             throw error
         }

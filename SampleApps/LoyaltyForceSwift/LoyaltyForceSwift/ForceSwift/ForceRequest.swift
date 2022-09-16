@@ -42,7 +42,7 @@ public struct ForceRequest {
         var comps = URLComponents()
         comps.scheme = "https"
         
-        comps.host = URL(string: ForceAuthManager.shared.getAuth()?.instanceURL ?? "")?.host ?? ""
+        comps.host = URL(string: ForceAuthManager.shared.auth?.instanceURL ?? ForceConfig.defaultInstanceURL)?.host ?? ""
         comps.path = path.starts(with: "/") ? path : "/\(path)"
         if let queryItems = queryItems {
             comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
@@ -53,25 +53,7 @@ public struct ForceRequest {
             throw URLError(.badURL)
         }
         
-        // URLRequest
-        var request = URLRequest(url: url, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
-        request.httpMethod = method
-        request.httpBody = body
-        
-        // Headers
-        let contentType: String = {
-            switch method?.uppercased() {
-            case nil, Method.get.uppercased(), Method.delete.uppercased():
-                return MIMEType.formUrlEncoded
-            default:
-                return MIMEType.json
-            }
-        }()
-        let defaultHeaders: [String:String] = [
-            Header.accept : MIMEType.json,
-            Header.contentType : contentType
-        ].reduce(into: [:]) { $0[$1.0] = $1.1 }
-        request.allHTTPHeaderFields = defaultHeaders.merging(headers ?? [:]) { (_, new) in new }
+        var request = createRequest(from: url, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
         
         request.setValue("Bearer \(ForceAuthManager.shared.getAuth()?.accessToken ?? "")", forHTTPHeaderField: "Authorization")
         
@@ -88,19 +70,36 @@ public struct ForceRequest {
         timeoutInterval: TimeInterval = 60.0
     ) throws -> URLRequest {
         
-        // URL
+        var requestURL = url
+        if let queryItems = queryItems {
+            requestURL = try transform(from: url, add: queryItems)
+        }
+        
+        return createRequest(from: requestURL, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
+    }
+    
+    static func transform(from url: URL, add queryItems: [String: String]) throws -> URL {
+
         var comps = URLComponents()
         comps.scheme = url.scheme
         comps.host = url.host
         comps.path = url.path
-        if let queryItems = queryItems {
-            comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
-                URLQueryItem(name: key, value: value)
-            })
-        }
-        guard let url = comps.url else {
+        comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
+            URLQueryItem(name: key, value: value)
+        })
+        guard let newURL = comps.url else {
             throw URLError(.badURL)
         }
+        
+        return newURL
+    }
+    
+    static func createRequest(from url: URL,
+                       method: String? = nil,
+                       headers: [String: String]? = nil,
+                       body: Data? = nil,
+                       cachePolicy: URLRequest.CachePolicy,
+                       timeoutInterval: TimeInterval ) -> URLRequest {
         
         // URLRequest
         var request = URLRequest(url: url, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
@@ -125,5 +124,22 @@ public struct ForceRequest {
         return request
     }
     
+    static func updateRequest(from request: URLRequest, with newAuth: ForceAuth) -> URLRequest {
+        
+        var newRequest = request
+        newRequest.setValue("Bearer \(newAuth.accessToken)", forHTTPHeaderField: "Authorization")
+        return newRequest
+    }
+    
+    static func updateRequestWithSavedAuth(for request: URLRequest) throws -> URLRequest {
+
+        do {
+            let auth = try ForceAuthManager.shared.retrieveAuth()
+            return updateRequest(from: request, with: auth)
+        } catch {
+            throw error
+        }
+        
+    }
 }
 

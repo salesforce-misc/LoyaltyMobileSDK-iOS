@@ -10,10 +10,6 @@ import Firebase
 
 struct HomeView: View {
     
-    @EnvironmentObject var appViewRouter: AppViewRouter
-    
-    @State var signOutProcessing = false
-    
     var body: some View {
                        
         NavigationView {
@@ -22,35 +18,7 @@ struct HomeView: View {
             
             Text("HomeView")
                 .navigationTitle(welcomeMessage)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        if signOutProcessing {
-                            ProgressView()
-                        } else {
-                            Button("Sign Out") {
-                                signOutUser()
-                            }
-                        }
-                    }
-                }
         }
-    }
-        
-    func signOutUser() {
-        signOutProcessing = true
-        let firebaseAuth = Auth.auth()
-        do {
-          try firebaseAuth.signOut()
-            ForceAuthManager.shared.clearAuth()
-            
-        } catch let signOutError as NSError {
-//            print("Error signing out: %@", signOutError)
-            print("Error signing out: \(signOutError)")
-
-            signOutProcessing = false
-        }
-        appViewRouter.currentPage = .signInPage
-        appViewRouter.signedIn = false
     }
 }
 
