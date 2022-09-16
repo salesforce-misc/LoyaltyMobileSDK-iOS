@@ -8,7 +8,11 @@
 
 import Foundation
 
-public struct LoyaltyAPIManager {
+public class LoyaltyAPIManager {
+    
+    public static let shared = LoyaltyAPIManager()
+    
+    private init() {}
     
     public enum Resource {
         case individualEnrollment(programName: String)
@@ -19,21 +23,37 @@ public struct LoyaltyAPIManager {
         case redeemPoints(programName: String, programProcessName: String)
     }
     
-    public static func getPath(for resource: Resource) -> String {
+    public func getPath(for resource: Resource) -> String {
         
         switch resource {
         case .individualEnrollment(let programName):
-            return "connect/loyalty-programs/\(programName)/individual-member-enrollments"
+            return ForceConfig.path(for: "connect/loyalty-programs/\(programName)/individual-member-enrollments")
         case .getMemberBenefits(let memberId):
-            return "connect/loyalty/member/\(memberId)/memberbenefits"
+            return ForceConfig.path(for: "connect/loyalty/member/\(memberId)/memberbenefits")
         case .getMemberProfile(let programName):
-            return "loyalty-programs/\(programName)/members"
+            return ForceConfig.path(for: "loyalty-programs/\(programName)/members")
         case .getTransactions(let programName):
-            return "connect/loyalty/programs/\(programName)/transaction-history" // ?page=1 Will deal with it later
+            return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/transaction-history") // ?page=1 Will deal with it later
         case .getPromotions(let programName, let programProcessName):
-            return "connect/loyalty/programs/\(programName)/program-processes/\(programProcessName)"
+            return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/\(programProcessName)")
         case .redeemPoints(let programName, let programProcessName):
-            return "connect/loyalty/programs/\(programName)/program-processes/\(programProcessName)"
+            return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/\(programProcessName)")
         }
+    }
+    
+    public func getMemberBenefits(for memberid: String) async throws -> [BenefitModel] {
+        
+        let path = getPath(for: .getMemberBenefits(memberId: memberid))
+        let request = try ForceRequest.create(method: "GET", path: path)
+        let result = try await ForceClient.shared.fetch(type: Benefits.self, with: request)
+        return result.memberBenefits
+    }
+    
+    public func getMemberProfile(for memberId: String, programName: String) async throws -> ProfileModel {
+        
+        let path = getPath(for: .getMemberProfile(programName: programName))
+        let queryItems = ["memberId": "\(memberId)"]
+        let request = try ForceRequest.create(method: "GET", path: path, queryItems: queryItems)
+        return try await ForceClient.shared.fetch(type: ProfileModel.self, with: request)
     }
 }

@@ -4,16 +4,11 @@
 //
 //  Created by Leon Qi on 9/9/22.
 //
-// https://app.quicktype.io/
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let profileModel = try? newJSONDecoder().decode(ProfileModel.self, from: jsonData)
 
 import Foundation
 
 // MARK: - ProfileModel
-struct ProfileModel: Codable {
+public struct ProfileModel: Codable {
     let additionalLoyaltyProgramMemberFields: [String: Bool?]
     let associatedAccount: AssociatedAccount?
     let associatedContact: AssociatedContact
@@ -40,11 +35,11 @@ struct ProfileModel: Codable {
 }
 
 // MARK: - AssociatedAccount
-struct AssociatedAccount: Codable {
+public struct AssociatedAccount: Codable {
 }
 
 // MARK: - AssociatedContact
-struct AssociatedContact: Codable {
+public struct AssociatedContact: Codable {
     let contactID, email, firstName, lastName: String
 
     enum CodingKeys: String, CodingKey {
@@ -54,7 +49,7 @@ struct AssociatedContact: Codable {
 }
 
 // MARK: - MemberCurrency
-struct MemberCurrency: Codable {
+public struct MemberCurrency: Codable {
     let additionalLoyaltyMemberCurrencyFields: AdditionalLoyaltyMemberFields
     let escrowPointsBalance, expirablePoints: Int
     let lastAccrualProcessedDate, lastEscrowProcessedDate, lastExpirationProcessRunDate, lastPointsAggregationDate: String?
@@ -76,11 +71,11 @@ struct MemberCurrency: Codable {
 }
 
 // MARK: - AdditionalLoyaltyMemberFields
-struct AdditionalLoyaltyMemberFields: Codable {
+public struct AdditionalLoyaltyMemberFields: Codable {
 }
 
 // MARK: - MemberTier
-struct MemberTier: Codable {
+public struct MemberTier: Codable {
     let additionalLoyaltyMemberTierFields: AdditionalLoyaltyMemberFields
     let areTierBenefitsAssigned: Bool
     let loyaltyMemberTierID, loyaltyMemberTierName: String

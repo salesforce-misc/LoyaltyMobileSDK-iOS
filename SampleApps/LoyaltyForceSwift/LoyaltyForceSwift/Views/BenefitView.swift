@@ -22,7 +22,7 @@ struct BenefitView: View {
                 Spacer()
                 Text("View All")
                     .font(.subheadline)
-                    .foregroundColor(Color.theme.darkBlue)
+                    .foregroundColor(Color.theme.accent)
             }
             .padding()
             
@@ -36,21 +36,22 @@ struct BenefitView: View {
             ForEach(benefits) { benefit in
                 HStack {
                     Text("\(benefit.benefitName)")
-                        .font(.system(size: 14))
-                        .foregroundColor(Color.theme.lightBlue)
+                        .font(.benefitText)
+                        .foregroundColor(Color.theme.accent)
+                        .lineSpacing(5)
                     Spacer()
                 }
                 .padding(.horizontal)
                 HStack {
                     Text("This is benefit description. We need description here but it's currently not provided by the API call.")
-                        .font(.system(size: 14))
-                        .foregroundColor(Color.theme.accent)
+                        .font(.benefitDescription)
+                        .foregroundColor(Color.theme.superLightText)
+                        .lineSpacing(5)
                     Spacer()
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
-                
-                
+                Divider()
             }
             
         }
