@@ -41,19 +41,34 @@ public class LoyaltyAPIManager {
         }
     }
     
-    public func getMemberBenefits(for memberid: String) async throws -> [BenefitModel] {
-        
-        let path = getPath(for: .getMemberBenefits(memberId: memberid))
-        let request = try ForceRequest.create(method: "GET", path: path)
-        let result = try await ForceClient.shared.fetch(type: Benefits.self, with: request)
-        return result.memberBenefits
+    /// Get Member Benefits - Makes an asynchronous request for data from the Salesforce
+    /// - Parameters:
+    ///   - for memberId: The member who has these benefits
+    /// - Returns: An ``BenefitModel`` array
+    public func getMemberBenefits(for memberId: String) async throws -> [BenefitModel] {
+        do {
+            let path = getPath(for: .getMemberBenefits(memberId: memberId))
+            let request = try ForceRequest.create(method: "GET", path: path)
+            let result = try await ForceClient.shared.fetch(type: Benefits.self, with: request)
+            return result.memberBenefits
+        } catch {
+            throw error
+        }
     }
     
+    /// Get Member Profile - Makes an asynchronous request for data from the Salesforce
+    /// - Parameters:
+    ///   - for memberId: The member who has these benefits
+    ///   - programName: The loytalty program name
+    /// - Returns: An ``ProfileModel`` instance
     public func getMemberProfile(for memberId: String, programName: String) async throws -> ProfileModel {
-        
-        let path = getPath(for: .getMemberProfile(programName: programName))
-        let queryItems = ["memberId": "\(memberId)"]
-        let request = try ForceRequest.create(method: "GET", path: path, queryItems: queryItems)
-        return try await ForceClient.shared.fetch(type: ProfileModel.self, with: request)
+        do {
+            let path = getPath(for: .getMemberProfile(programName: programName))
+            let queryItems = ["memberId": "\(memberId)"]
+            let request = try ForceRequest.create(method: "GET", path: path, queryItems: queryItems)
+            return try await ForceClient.shared.fetch(type: ProfileModel.self, with: request)
+        } catch {
+            throw error
+        }
     }
 }
