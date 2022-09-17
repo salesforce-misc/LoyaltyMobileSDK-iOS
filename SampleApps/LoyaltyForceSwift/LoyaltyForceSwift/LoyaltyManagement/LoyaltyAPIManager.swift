@@ -70,7 +70,7 @@ public class LoyaltyAPIManager {
     /// Use public func SOQL(for query: String) async throws -> QueryResult<Record>
     public func getBenefitRecord(by benefitId: String) async throws -> [Record] {
         do {
-            let query = "SELECT Description FROM Benefit WHERE Id = \'\(benefitId)\'"
+            let query = "SELECT Description FROM Benefit WHERE Id = '\(benefitId)'"
             let queryResult = try await ForceClient.shared.SOQL(for: query)
             return queryResult.records
         } catch {

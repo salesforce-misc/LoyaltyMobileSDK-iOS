@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// Each model is created for JSONDecoder to decode to QueryResult<T>
+/// Alternative is to use generic Record model, which will be decoded to QueryResult<Record>
 public struct LoyaltyQueryModels {
     
     // SOQL Query Object

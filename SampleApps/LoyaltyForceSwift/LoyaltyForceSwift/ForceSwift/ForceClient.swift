@@ -29,7 +29,6 @@ public class ForceClient {
             print(ForceError.responseUnsuccessful(description: "ForceError=> Unsuccessful, HTTP response status code \(httpResponse.statusCode)").customDescription)
             return
         }
-
     }
     
     func handleUnauthResponse(output: URLSession.DataTaskPublisher.Output) throws {
@@ -38,80 +37,8 @@ public class ForceClient {
             throw ForceError.authenticationNeeded
         }
     }
-    
-    func handleUnauthResponseReturnOutput(output: URLSession.DataTaskPublisher.Output) throws -> URLSession.DataTaskPublisher.Output {
-        guard let response = output.response as? HTTPURLResponse,
-              response.statusCode != 401 else {
-            throw ForceError.authenticationNeeded
-        }
-        
-        return output
-    }
-    
-    func handleCompletion(completion: Subscribers.Completion<Error>) {
-        switch completion {
-        case .finished:
-            break
-        case .failure(let error):
-            print(error.localizedDescription)
-        }
-    }
-    
-    // Option 1: @escaping closure
-    public func fetch<T: Decodable>(
-        type: T.Type,
-        with request: URLRequest,
-        completion: @escaping (_ data: Data?) -> Void) {
-            
-            Task {
-                do {
-                    // Get a updated request with a new token
-                    let newRequest = try await getNewRequest(for: request)
-                    
-                    URLSession.shared.dataTask(with: newRequest) { (data, response, error) in
-                
-                        guard let data = data, error == nil, let response = response else {
-                            return
-                        }
-                        self.handleResponse(response: response)
-                        completion(data)
-                        
-                    }.resume()
-                } catch {
-                    print("Error fetching request (@escaping closure): \(error.localizedDescription)")
-                }
-            }
-    }
-    
-    // OPtion 2: Combine
-//    public func fetch<T: Decodable>(
-//        type: T.Type,
-//        with request: URLRequest) -> AnyPublisher<T, Error> {
-//            
-//            Task {
-//                // To test request without a valid accessToken
-//                if let token = ForceAuthManager.shared.auth?.accessToken {
-//                    try await ForceAuthManager.shared.revoke(token: token)
-//                }
-//
-//                do {
-//                    // Get a updated request with a new token
-//                    let newRequest = try await getNewRequest(for: request)
-//
-//                    return URLSession.shared.dataTaskPublisher(for: newRequest)
-//                            .tryMap(handleDataAndResponse)
-//                            .decode(type: T.self, decoder: JSONDecoder())
-//                            .eraseToAnyPublisher()
-//
-//                } catch {
-//                    print("Error fetching request (Combine): \(error.localizedDescription)")
-//                    return Empty(completeImmediately: false).eraseToAnyPublisher()
-//                }
-//            }
-//    
-//    }
 
-    // Option 3: Async/Await
+    /// Use Async/Await to fetch all REST requests
     public func fetch<T: Decodable>(
         type: T.Type,
         with request: URLRequest) async throws -> T {
@@ -170,10 +97,24 @@ public class ForceClient {
     public func SOQL(for query: String) async throws -> QueryResult<Record> {
         
         do {
-            let path = ForceConfig.path(for: "query")
-            let queryItems = ["q": query]
-            let request = try ForceRequest.create(path: path, queryItems: queryItems)
+            return try await SOQL(type: Record.self, for: query)
+        } catch {
+            throw error
+        }
+    }
+    
+    public func SOQLNextRecords<T: Decodable>(type: T.Type, path: String) async throws -> QueryResult<T> {
+        do {
+            let request = try ForceRequest.create(path: path)
             return try await fetch(type: QueryResult.self, with: request)
+        } catch {
+            throw error
+        }
+    }
+    
+    public func SOQLNextRecords(path: String) async throws -> QueryResult<Record> {
+        do {
+            return try await SOQLNextRecords(type: Record.self, path: path)
         } catch {
             throw error
         }

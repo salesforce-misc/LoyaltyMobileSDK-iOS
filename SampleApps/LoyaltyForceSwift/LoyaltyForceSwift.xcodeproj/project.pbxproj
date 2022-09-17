@@ -150,7 +150,7 @@
 			children = (
 				298613AC28C964D900BDC744 /* Info.plist */,
 				298613A028C1747900BDC744 /* ForceSwift */,
-				291CC0B928D5264C00C08572 /* SalesforceModels */,
+				291CC0B928D5264C00C08572 /* ForceModels */,
 				291CC0B228D39D1600C08572 /* LoyaltyManagement */,
 				2944F87F28B98C2C0098ED1B /* Extensions */,
 				2944F88228B98D420098ED1B /* Models */,
@@ -205,14 +205,14 @@
 			path = LoyaltyManagement;
 			sourceTree = "<group>";
 		};
-		291CC0B928D5264C00C08572 /* SalesforceModels */ = {
+		291CC0B928D5264C00C08572 /* ForceModels */ = {
 			isa = PBXGroup;
 			children = (
 				291CC0B528D4EEF300C08572 /* QueryResult.swift */,
 				291CC0B728D5260A00C08572 /* Record.swift */,
 				291CC0BA28D526A600C08572 /* Address.swift */,
 			);
-			path = SalesforceModels;
+			path = ForceModels;
 			sourceTree = "<group>";
 		};
 		2944F87F28B98C2C0098ED1B /* Extensions */ = {
