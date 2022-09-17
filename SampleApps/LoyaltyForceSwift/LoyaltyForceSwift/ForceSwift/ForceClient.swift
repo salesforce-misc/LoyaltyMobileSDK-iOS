@@ -118,11 +118,6 @@ public class ForceClient {
       
         do {
             
-//            // To test request without a valid accessToken
-//            if let token = ForceAuthManager.shared.auth?.accessToken {
-//                try await ForceAuthManager.shared.revoke(token: token)
-//            }
-            
             let output = try await URLSession.shared.data(for: request)
             try handleUnauthResponse(output: output)
             let data = handleDataAndResponse(output: output)
@@ -159,5 +154,30 @@ public class ForceClient {
             throw error
         }
     }
+    
+    public func SOQL<T: Decodable>(type: T.Type, for query: String) async throws -> QueryResult<T> {
+        
+        do {
+            let path = ForceConfig.path(for: "query")
+            let queryItems = ["q": query]
+            let request = try ForceRequest.create(path: path, queryItems: queryItems)
+            return try await fetch(type: QueryResult.self, with: request)
+        } catch {
+            throw error
+        }
+    }
+    
+    public func SOQL(for query: String) async throws -> QueryResult<Record> {
+        
+        do {
+            let path = ForceConfig.path(for: "query")
+            let queryItems = ["q": query]
+            let request = try ForceRequest.create(path: path, queryItems: queryItems)
+            return try await fetch(type: QueryResult.self, with: request)
+        } catch {
+            throw error
+        }
+    }
+
     
 }

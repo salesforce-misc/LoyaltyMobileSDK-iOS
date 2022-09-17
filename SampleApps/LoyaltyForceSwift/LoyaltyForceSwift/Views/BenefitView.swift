@@ -12,6 +12,7 @@ struct BenefitView: View {
     @StateObject private var viewModel = BenefitViewModel()
     //private let memberId: String = "0lM5i00000000KfEAI"
     private let memberId: String = "0lM4x000000LECA"
+    @State var benefitDesc: String?
     
     var body: some View {
         VStack {
@@ -43,7 +44,7 @@ struct BenefitView: View {
                 }
                 .padding(.horizontal)
                 HStack {
-                    Text("This is benefit description. We need description here but it's currently not provided by the API call.")
+                    Text("\(viewModel.benefitDescs[benefit.id] ?? "")")
                         .font(.benefitDescription)
                         .foregroundColor(Color.theme.superLightText)
                         .lineSpacing(5)
@@ -58,9 +59,7 @@ struct BenefitView: View {
         .padding()
         .task {
             do {
-                //try viewModel.fetchBenefitsOption1(memberId: memberId)
-                //try viewModel.fetchBenefitsOption2(memberId: memberId)
-                try await viewModel.fetchBenefitsOption3(memberId: memberId)
+                try await viewModel.getBenefits(memberId: memberId)
             } catch {
                 print("Fetch Benefits Error: \(error)")
             }

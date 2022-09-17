@@ -27,6 +27,10 @@
 		291CC0AF28D1248D00C08572 /* ForceUserIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */; };
 		291CC0B128D1410500C08572 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B028D1410500C08572 /* UserDefaults.swift */; };
 		291CC0B428D39D4A00C08572 /* LoyaltyAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */; };
+		291CC0B628D4EEF300C08572 /* QueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B528D4EEF300C08572 /* QueryResult.swift */; };
+		291CC0B828D5260A00C08572 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B728D5260A00C08572 /* Record.swift */; };
+		291CC0BB28D526A600C08572 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0BA28D526A600C08572 /* Address.swift */; };
+		291CC0BD28D53A0000C08572 /* LoyaltyQueryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0BC28D53A0000C08572 /* LoyaltyQueryModels.swift */; };
 		2938C60228CE84B900F495AF /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938C60128CE84B900F495AF /* Keychain.swift */; };
 		2938C60428CE852D00F495AF /* ForceAuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938C60328CE852D00F495AF /* ForceAuthStore.swift */; };
 		2938C60628CFCBB200F495AF /* WebAuthenticationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938C60528CFCBB200F495AF /* WebAuthenticationSession.swift */; };
@@ -73,6 +77,10 @@
 		291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUserIdentifier.swift; sourceTree = "<group>"; };
 		291CC0B028D1410500C08572 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyAPIManager.swift; sourceTree = "<group>"; };
+		291CC0B528D4EEF300C08572 /* QueryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryResult.swift; sourceTree = "<group>"; };
+		291CC0B728D5260A00C08572 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		291CC0BA28D526A600C08572 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		291CC0BC28D53A0000C08572 /* LoyaltyQueryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyQueryModels.swift; sourceTree = "<group>"; };
 		2938C60128CE84B900F495AF /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		2938C60328CE852D00F495AF /* ForceAuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceAuthStore.swift; sourceTree = "<group>"; };
 		2938C60528CFCBB200F495AF /* WebAuthenticationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSession.swift; sourceTree = "<group>"; };
@@ -142,6 +150,7 @@
 			children = (
 				298613AC28C964D900BDC744 /* Info.plist */,
 				298613A028C1747900BDC744 /* ForceSwift */,
+				291CC0B928D5264C00C08572 /* SalesforceModels */,
 				291CC0B228D39D1600C08572 /* LoyaltyManagement */,
 				2944F87F28B98C2C0098ED1B /* Extensions */,
 				2944F88228B98D420098ED1B /* Models */,
@@ -191,8 +200,19 @@
 			isa = PBXGroup;
 			children = (
 				291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */,
+				291CC0BC28D53A0000C08572 /* LoyaltyQueryModels.swift */,
 			);
 			path = LoyaltyManagement;
+			sourceTree = "<group>";
+		};
+		291CC0B928D5264C00C08572 /* SalesforceModels */ = {
+			isa = PBXGroup;
+			children = (
+				291CC0B528D4EEF300C08572 /* QueryResult.swift */,
+				291CC0B728D5260A00C08572 /* Record.swift */,
+				291CC0BA28D526A600C08572 /* Address.swift */,
+			);
+			path = SalesforceModels;
 			sourceTree = "<group>";
 		};
 		2944F87F28B98C2C0098ED1B /* Extensions */ = {
@@ -323,14 +343,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				216F219928B618BB00DAA66D /* SignInView.swift in Sources */,
+				291CC0B828D5260A00C08572 /* Record.swift in Sources */,
 				218A36AA28B85CA500FCEE39 /* BottomNavTabsView.swift in Sources */,
 				216F219B28B618C700DAA66D /* HomeView.swift in Sources */,
 				298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
 				2941A23F28BE803F005026CF /* Color.swift in Sources */,
+				291CC0BD28D53A0000C08572 /* LoyaltyQueryModels.swift in Sources */,
 				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
 				2938C60828CFED0600F495AF /* Collection+URLQueryItem.swift in Sources */,
 				2938C60228CE84B900F495AF /* Keychain.swift in Sources */,
+				291CC0B628D4EEF300C08572 /* QueryResult.swift in Sources */,
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
 				291CC0AF28D1248D00C08572 /* ForceUserIdentifier.swift in Sources */,
 				216F219528B6188600DAA66D /* AppRootView.swift in Sources */,
@@ -344,6 +367,7 @@
 				2986139A28C14C0100BDC744 /* ForceClient.swift in Sources */,
 				298613AE28C9652300BDC744 /* FontStyles.swift in Sources */,
 				216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */,
+				291CC0BB28D526A600C08572 /* Address.swift in Sources */,
 				291CC0B128D1410500C08572 /* UserDefaults.swift in Sources */,
 				298613CC28CBC08800BDC744 /* MoreHeaderView.swift in Sources */,
 				2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */,
