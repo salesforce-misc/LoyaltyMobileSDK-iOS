@@ -12,7 +12,6 @@ struct BenefitView: View {
     @StateObject private var viewModel = BenefitViewModel()
     //private let memberId: String = "0lM5i00000000KfEAI"
     private let memberId: String = "0lM4x000000LECA"
-    @State var benefitDesc: String?
     
     var body: some View {
         VStack {
@@ -39,19 +38,17 @@ struct BenefitView: View {
                     Text("\(benefit.benefitName)")
                         .font(.benefitText)
                         .foregroundColor(Color.theme.accent)
-                        .lineSpacing(5)
                     Spacer()
                 }
-                .padding(.horizontal)
+                .padding([.horizontal, .top])
+                .padding(.bottom, 2)
                 HStack {
                     Text("\(viewModel.benefitDescs[benefit.id] ?? "")")
                         .font(.benefitDescription)
                         .foregroundColor(Color.theme.superLightText)
-                        .lineSpacing(5)
                     Spacer()
                 }
-                .padding(.horizontal)
-                .padding(.bottom)
+                .padding([.horizontal, .bottom])
                 Divider()
             }
             
