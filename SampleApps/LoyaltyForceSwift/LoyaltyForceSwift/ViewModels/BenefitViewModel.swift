@@ -22,7 +22,7 @@ class BenefitViewModel: ObservableObject {
             benefits = []
                         
             let results: [BenefitModel] = try await LoyaltyAPIManager.shared.getMemberBenefits(for: memberId)
-            await updateBenefitDescs(benefits: results)
+            try await updateBenefitDescs(benefits: results)
 
             await MainActor.run {
                 isLoaded = true
@@ -34,13 +34,24 @@ class BenefitViewModel: ObservableObject {
         }
     }
     
-    func updateBenefitDescs(benefits: [BenefitModel]) async {
+    func updateBenefitDescs(benefits: [BenefitModel]) async throws {
         
-        for benefit in benefits {
-            let desc = await benefit.getBenefitDescription(benefitId: benefit.id)
-            await MainActor.run {
-                self.benefitDescs[benefit.id] = desc
+        do {
+            let benefitIds = benefits.map { $0.id }
+            let results = try await LoyaltyAPIManager.shared.getBenefitRecord(by: benefitIds)
+            for result in results {
+                guard let id = result.string(forField: "Id"),
+                      let desc = result.string(forField: "Description") else {
+                    continue
+                }
+                await MainActor.run {
+                    self.benefitDescs[id] = desc
+                }
+                
             }
+        } catch {
+            throw error
         }
+         
     }
 }

@@ -30,22 +30,4 @@ public struct BenefitModel: Identifiable, Codable {
         case createdRecordName, endDate, isActive, memberBenefitStatus, startDate
     }
     
-    func getBenefitDescription(benefitId: String) async -> String {
-        do {
-//            let result = try await LoyaltyAPIManager.shared.getBenefit(by: benefitId)
-//            guard let description = result.first?.benefitDescription else {
-//                return ""
-//            }
-            
-            let result = try await LoyaltyAPIManager.shared.getBenefitRecord(by: benefitId)
-            guard let description = result.first?.string(forField: "Description") else {
-                return ""
-            }
-            return description
-        } catch {
-            print("Error getting benefit description: \(error)")
-            return ""
-        }
-    }
-    
 }

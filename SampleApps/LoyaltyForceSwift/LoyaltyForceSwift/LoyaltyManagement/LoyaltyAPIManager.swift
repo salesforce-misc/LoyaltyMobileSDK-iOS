@@ -57,9 +57,10 @@ public class LoyaltyAPIManager {
     }
     
     /// Use public func SOQL<T: Decodable>(type: T.Type, for query: String) async throws -> QueryResult<T>
-    public func getBenefit(by benefitId: String) async throws -> [LoyaltyQueryModels.Benefit] {
+    public func getBenefit(by benefitIds: [String]) async throws -> [LoyaltyQueryModels.Benefit] {
         do {
-            let query = "SELECT Description FROM Benefit WHERE Id = \'\(benefitId)\'"
+            let ids = benefitIds.map { "'" + $0 + "'" }.joined(separator: ",")
+            let query = "SELECT Id, Description FROM Benefit WHERE Id in ('\(ids)')"
             let queryResult = try await ForceClient.shared.SOQL(type: LoyaltyQueryModels.Benefit.self, for: query)
             return queryResult.records
         } catch {
@@ -68,9 +69,10 @@ public class LoyaltyAPIManager {
     }
 
     /// Use public func SOQL(for query: String) async throws -> QueryResult<Record>
-    public func getBenefitRecord(by benefitId: String) async throws -> [Record] {
+    public func getBenefitRecord(by benefitIds: [String]) async throws -> [Record] {
         do {
-            let query = "SELECT Description FROM Benefit WHERE Id = '\(benefitId)'"
+            let ids = benefitIds.map { "'" + $0 + "'" }.joined(separator: ",")
+            let query = "SELECT Id, Description FROM Benefit WHERE Id in (\(ids))"
             let queryResult = try await ForceClient.shared.SOQL(for: query)
             return queryResult.records
         } catch {
