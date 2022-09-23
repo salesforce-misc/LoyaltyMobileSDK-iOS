@@ -10,8 +10,6 @@ import SwiftUI
 struct OnboardingCardView: View {
     
     let card : OnboardingModel
-    let pageCount: Int
-    @Binding var currentPage: Int
     
     var body: some View {
         ZStack {
@@ -25,50 +23,13 @@ struct OnboardingCardView: View {
             }
             .ignoresSafeArea()
             
-            VStack {
-                Spacer()
-                
-                HStack {
-                    Image("img-nt-logo")
-                    Spacer()
-                }
-                .padding(.leading, 25)
-                
-                HStack {
-                    Text(card.description)
-                        .foregroundColor(Color.white)
-                        .font(.onboardingText)
-                    Spacer()
-                }
-                .padding(.leading, 25)
-                
-                
-                // paging indicator
-                HStack {
-                    ForEach(0..<pageCount, id: \.self) { index in
-                        Capsule()
-                            .fill(.white)
-                            .frame(width: index == currentPage ? 20 : 7, height: 7, alignment: .leading)
-                            .animation(.easeInOut, value: index)
-                    }
-                    Spacer()
-
-                }
-                .padding(.leading, 25)
-                
-                JoinButton()
-                Text("Already a member? Sign In")
-                    .foregroundColor(Color.white)
-                    .padding()
-            }
-            
         }
     }
 }
 
 struct OnboardingCardView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingCardView(card: testData[0], pageCount: 3, currentPage: .constant(0))
+        OnboardingCardView(card: testData[0])
     }
 }
 
@@ -87,17 +48,3 @@ struct BottomLayer: View {
             .frame(height: 545)
     }
 }
-
-struct JoinButton: View {
-    var body: some View {
-        
-        Text("Join Now")
-            .font(.buttonText)
-            .foregroundColor(.accentColor)
-            .frame(width: 327, height: 48)
-            .background(Color.theme.lightButton)
-            .cornerRadius(24)
-            .padding()
-    }
-}
-
