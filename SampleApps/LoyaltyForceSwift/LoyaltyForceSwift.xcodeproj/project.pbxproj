@@ -38,6 +38,11 @@
 		2941A23F28BE803F005026CF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A23E28BE803F005026CF /* Color.swift */; };
 		2944F88428B98DA10098ED1B /* BenefitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88328B98DA10098ED1B /* BenefitModel.swift */; };
 		2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppConstants.swift */; };
+		296D393128DBCB530078C88E /* OnboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393028DBCB530078C88E /* OnboardingModel.swift */; };
+		296D393328DBCE050078C88E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393228DBCE050078C88E /* OnboardingView.swift */; };
+		296D393528DBCFFB0078C88E /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393428DBCFFB0078C88E /* OnboardingCardView.swift */; };
+		296D393728DCE6C20078C88E /* ForceClient+SOQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393628DCE6C20078C88E /* ForceClient+SOQL.swift */; };
+		296D393A28DD022A0078C88E /* ForceClient+SOSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393928DD022A0078C88E /* ForceClient+SOSL.swift */; };
 		2986139A28C14C0100BDC744 /* ForceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2986139928C14C0100BDC744 /* ForceClient.swift */; };
 		2986139D28C15E9500BDC744 /* ForceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2986139C28C15E9500BDC744 /* ForceError.swift */; };
 		2986139F28C1730000BDC744 /* ForceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2986139E28C1730000BDC744 /* ForceConfig.swift */; };
@@ -88,6 +93,11 @@
 		2941A23E28BE803F005026CF /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2944F88328B98DA10098ED1B /* BenefitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitModel.swift; sourceTree = "<group>"; };
 		2944F88928B9A7220098ED1B /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		296D393028DBCB530078C88E /* OnboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingModel.swift; sourceTree = "<group>"; };
+		296D393228DBCE050078C88E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		296D393428DBCFFB0078C88E /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
+		296D393628DCE6C20078C88E /* ForceClient+SOQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceClient+SOQL.swift"; sourceTree = "<group>"; };
+		296D393928DD022A0078C88E /* ForceClient+SOSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceClient+SOSL.swift"; sourceTree = "<group>"; };
 		2986139928C14C0100BDC744 /* ForceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceClient.swift; sourceTree = "<group>"; };
 		2986139C28C15E9500BDC744 /* ForceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceError.swift; sourceTree = "<group>"; };
 		2986139E28C1730000BDC744 /* ForceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceConfig.swift; sourceTree = "<group>"; };
@@ -155,6 +165,7 @@
 				2944F87F28B98C2C0098ED1B /* Extensions */,
 				2944F88228B98D420098ED1B /* Models */,
 				216A9CBF28BDD8A1007881FE /* ViewModels */,
+				296D393828DCE9890078C88E /* UICompnents */,
 				216F219328B6186400DAA66D /* Views */,
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
 				216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */,
@@ -192,6 +203,8 @@
 				218A36AB28B85D5500FCEE39 /* RewardsView.swift */,
 				298613A528C7D3B400BDC744 /* MoreView.swift */,
 				298613CB28CBC08800BDC744 /* MoreHeaderView.swift */,
+				296D393228DBCE050078C88E /* OnboardingView.swift */,
+				296D393428DBCFFB0078C88E /* OnboardingCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -230,8 +243,16 @@
 			children = (
 				2944F88328B98DA10098ED1B /* BenefitModel.swift */,
 				298613CD28CBC10300BDC744 /* ProfileModel.swift */,
+				296D393028DBCB530078C88E /* OnboardingModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		296D393828DCE9890078C88E /* UICompnents */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UICompnents;
 			sourceTree = "<group>";
 		};
 		298613A028C1747900BDC744 /* ForceSwift */ = {
@@ -242,6 +263,8 @@
 				298613A128C174FE00BDC744 /* ForceRequest.swift */,
 				298613D328CC085D00BDC744 /* ForceAuthManager.swift */,
 				2986139928C14C0100BDC744 /* ForceClient.swift */,
+				296D393628DCE6C20078C88E /* ForceClient+SOQL.swift */,
+				296D393928DD022A0078C88E /* ForceClient+SOSL.swift */,
 				2986139E28C1730000BDC744 /* ForceConfig.swift */,
 				291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */,
 				2938C60328CE852D00F495AF /* ForceAuthStore.swift */,
@@ -349,6 +372,7 @@
 				298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
 				2941A23F28BE803F005026CF /* Color.swift in Sources */,
+				296D393328DBCE050078C88E /* OnboardingView.swift in Sources */,
 				291CC0BD28D53A0000C08572 /* LoyaltyQueryModels.swift in Sources */,
 				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
 				2938C60828CFED0600F495AF /* Collection+URLQueryItem.swift in Sources */,
@@ -356,6 +380,7 @@
 				291CC0B628D4EEF300C08572 /* QueryResult.swift in Sources */,
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
 				291CC0AF28D1248D00C08572 /* ForceUserIdentifier.swift in Sources */,
+				296D393528DBCFFB0078C88E /* OnboardingCardView.swift in Sources */,
 				216F219528B6188600DAA66D /* AppRootView.swift in Sources */,
 				298613A228C174FE00BDC744 /* ForceRequest.swift in Sources */,
 				298613A628C7D3B400BDC744 /* MoreView.swift in Sources */,
@@ -366,6 +391,7 @@
 				298613CE28CBC10300BDC744 /* ProfileModel.swift in Sources */,
 				2986139A28C14C0100BDC744 /* ForceClient.swift in Sources */,
 				298613AE28C9652300BDC744 /* FontStyles.swift in Sources */,
+				296D393728DCE6C20078C88E /* ForceClient+SOQL.swift in Sources */,
 				216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */,
 				291CC0BB28D526A600C08572 /* Address.swift in Sources */,
 				291CC0B128D1410500C08572 /* UserDefaults.swift in Sources */,
@@ -376,7 +402,9 @@
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
 				2944F88428B98DA10098ED1B /* BenefitModel.swift in Sources */,
 				291CC0B428D39D4A00C08572 /* LoyaltyAPIManager.swift in Sources */,
+				296D393128DBCB530078C88E /* OnboardingModel.swift in Sources */,
 				218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */,
+				296D393A28DD022A0078C88E /* ForceClient+SOSL.swift in Sources */,
 				218A36AC28B85D5500FCEE39 /* RewardsView.swift in Sources */,
 				2986139D28C15E9500BDC744 /* ForceError.swift in Sources */,
 				2938C60628CFCBB200F495AF /* WebAuthenticationSession.swift in Sources */,

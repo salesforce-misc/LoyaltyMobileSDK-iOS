@@ -22,6 +22,7 @@ struct LoyaltyStarterApp: App {
         WindowGroup {
             AppRootView()
                 .environmentObject(appViewRouter)
+//            OnboardingView()
         }
     }
 }
