@@ -80,7 +80,7 @@ struct MoreView: View {
 
             signOutProcessing = false
         }
-        appViewRouter.currentPage = .signInPage
+        appViewRouter.currentPage = .onboardingPage
         appViewRouter.signedIn = false
     }
 }

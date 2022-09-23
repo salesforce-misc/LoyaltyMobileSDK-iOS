@@ -43,6 +43,7 @@
 		296D393528DBCFFB0078C88E /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393428DBCFFB0078C88E /* OnboardingCardView.swift */; };
 		296D393728DCE6C20078C88E /* ForceClient+SOQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393628DCE6C20078C88E /* ForceClient+SOQL.swift */; };
 		296D393A28DD022A0078C88E /* ForceClient+SOSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393928DD022A0078C88E /* ForceClient+SOSL.swift */; };
+		296D393E28DE1EFF0078C88E /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393D28DE1EFF0078C88E /* ButtonStyles.swift */; };
 		2986139A28C14C0100BDC744 /* ForceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2986139928C14C0100BDC744 /* ForceClient.swift */; };
 		2986139D28C15E9500BDC744 /* ForceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2986139C28C15E9500BDC744 /* ForceError.swift */; };
 		2986139F28C1730000BDC744 /* ForceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2986139E28C1730000BDC744 /* ForceConfig.swift */; };
@@ -98,6 +99,7 @@
 		296D393428DBCFFB0078C88E /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
 		296D393628DCE6C20078C88E /* ForceClient+SOQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceClient+SOQL.swift"; sourceTree = "<group>"; };
 		296D393928DD022A0078C88E /* ForceClient+SOSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceClient+SOSL.swift"; sourceTree = "<group>"; };
+		296D393D28DE1EFF0078C88E /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		2986139928C14C0100BDC744 /* ForceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceClient.swift; sourceTree = "<group>"; };
 		2986139C28C15E9500BDC744 /* ForceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceError.swift; sourceTree = "<group>"; };
 		2986139E28C1730000BDC744 /* ForceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceConfig.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 		296D393828DCE9890078C88E /* UICompnents */ = {
 			isa = PBXGroup;
 			children = (
+				296D393D28DE1EFF0078C88E /* ButtonStyles.swift */,
 			);
 			path = UICompnents;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
 				2944F88428B98DA10098ED1B /* BenefitModel.swift in Sources */,
 				291CC0B428D39D4A00C08572 /* LoyaltyAPIManager.swift in Sources */,
+				296D393E28DE1EFF0078C88E /* ButtonStyles.swift in Sources */,
 				296D393128DBCB530078C88E /* OnboardingModel.swift in Sources */,
 				218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */,
 				296D393A28DD022A0078C88E /* ForceClient+SOSL.swift in Sources */,

@@ -17,7 +17,7 @@ struct AppRootView: View {
         Group {
             if appViewRouter.signedIn {
                 BottomNavTabsView()
-            }else{
+            } else {
                 switch appViewRouter.currentPage {
                 case .signUpPage:
                     SignUpView()
@@ -25,9 +25,12 @@ struct AppRootView: View {
                     SignInView()
                 case .homePage:
                     BottomNavTabsView()
+                case .onboardingPage:
+                    OnboardingView()
                 }
             }
-        }.onAppear(){
+        }
+        .onAppear() {
             appViewRouter.signedIn = appViewRouter.isSignedIn
         }
     }

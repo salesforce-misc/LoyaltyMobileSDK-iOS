@@ -43,16 +43,16 @@ struct SignUpView: View {
             }
             Spacer()
             HStack {
-                Text("Already have an account?")
+                Text("Already a member?")
                 Button(action: {
                     appViewRouter.currentPage = .signInPage
                 }) {
-                    Text("Log In")
+                    Text("Sign In")
                 }
             }
-                .opacity(0.9)
+            .opacity(0.9)
         }
-            .padding()
+        .padding()
     }
     
     func signUpUser(userEmail: String, userPassword: String) {

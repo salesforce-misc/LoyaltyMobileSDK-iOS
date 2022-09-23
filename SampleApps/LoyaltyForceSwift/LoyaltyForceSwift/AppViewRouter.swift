@@ -10,7 +10,7 @@ import Firebase
 
 class AppViewRouter: ObservableObject {
     // used for routing to different top views.
-    @Published var currentPage: Page = .signInPage
+    @Published var currentPage: Page = .onboardingPage
     // used for managing the signIn state.
     @Published var signedIn = false
     
@@ -25,6 +25,7 @@ enum Page {
     case signUpPage
     case signInPage
     case homePage
+    case onboardingPage
 }
 
 //struct User {

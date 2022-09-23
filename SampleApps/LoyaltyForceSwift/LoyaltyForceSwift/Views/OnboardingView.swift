@@ -10,6 +10,9 @@ import SwiftUI
 struct OnboardingView: View {
     
     @State var selectedPage = 0
+    @State var joinPresented: Bool = false
+    @State var signInPresented: Bool = false
+    
     let onboardingData: [OnboardingModel] = [
         OnboardingModel(image: "img-onboarding1", description: "Convert your points into reward coupons!"),
         OnboardingModel(image: "img-onboarding2", description: "The more points, the more rewards!"),
@@ -59,10 +62,37 @@ struct OnboardingView: View {
                 .padding(.leading, 25)
                 .padding([.top, .bottom])
 
-                JoinButton()
-                Text("Already a member? Sign In")
-                    .foregroundColor(Color.white)
-                    .padding()
+                Button(action: {
+                    joinPresented.toggle()
+                }, label: {
+                    Text("Join Now")
+                })
+                .buttonStyle(LightLongButton())
+                .sheet(isPresented: $joinPresented) {
+                    // present join form
+                    SignUpView()
+                }
+
+
+                HStack {
+                    Text("Already a member?")
+                        .foregroundColor(Color.white)
+                        .padding()
+                    Button {
+                        signInPresented.toggle()
+                    } label: {
+                        Text("Sign In")
+                    }
+                    .foregroundColor(.white)
+                    .font(.buttonText)
+                    .offset(x: -20)
+                    .sheet(isPresented: $signInPresented) {
+                        // Sign In form
+                        SignInView()
+                    }
+
+                }
+                
             }
 
         }
@@ -73,18 +103,5 @@ struct OnboardingView: View {
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
         OnboardingView()
-    }
-}
-
-struct JoinButton: View {
-    var body: some View {
-        
-        Text("Join Now")
-            .font(.buttonText)
-            .foregroundColor(.accentColor)
-            .frame(width: 327, height: 48)
-            .background(Color.theme.lightButton)
-            .cornerRadius(24)
-            .padding()
     }
 }
