@@ -37,13 +37,12 @@ struct OnboardingView: View {
                 .padding(.leading, 25)
 
                 HStack {
-                    Text( onboardingData[selectedPage].description)
+                    Text(onboardingData[selectedPage].description)
                         .foregroundColor(Color.white)
                         .font(.onboardingText)
                     Spacer()
                 }
                 .padding(.leading, 25)
-
 
                 // paging indicator
                 HStack(spacing: 4) {
@@ -52,8 +51,8 @@ struct OnboardingView: View {
                             .fill(.white)
                             .opacity(index == selectedPage ? 1 : 0.6)
                             .frame(width: index == selectedPage ? 16 : 8, height: 8, alignment: .leading)
-                            .animation(.easeInOut, value: index)
                     }
+                    .animation(.easeInOut, value: selectedPage)
                     Spacer()
 
                 }
@@ -65,8 +64,6 @@ struct OnboardingView: View {
                     .foregroundColor(Color.white)
                     .padding()
             }
-
-            
 
         }
 
