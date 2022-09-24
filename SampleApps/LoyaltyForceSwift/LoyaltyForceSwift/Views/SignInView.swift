@@ -20,19 +20,14 @@ struct SignInView: View {
     
     var body: some View {
         VStack(spacing: 15) {
-            LogoView()
-            Spacer()
             SignInCredentialFields(email: $email, password: $password)
             Button(action: {
                 signInUser(userEmail: email, userPassword: password)
             }) {
-                Text("Log In")
-                    .bold()
-                    .frame(width: 360, height: 50)
-                    .background(.thinMaterial)
-                    .cornerRadius(10)
+                Text("Sign In")
             }
-                .disabled(!signInProcessing && !email.isEmpty && !password.isEmpty ? false : true)
+            .buttonStyle(DarkLongButton())
+            .disabled(!signInProcessing && !email.isEmpty && !password.isEmpty ? false : true)
             if signInProcessing {
                 ProgressView()
             }
@@ -40,13 +35,13 @@ struct SignInView: View {
                 Text("Failed creating account: \(signInErrorMessage)")
                     .foregroundColor(.red)
             }
-            Spacer()
             HStack {
                 Text("Not a member?")
                 Button(action: {
                     appViewRouter.currentPage = .signUpPage
                 }) {
                     Text("Join Now")
+                        .font(.buttonText)
                 }
             }
             .opacity(0.9)
@@ -91,6 +86,7 @@ struct SignInView: View {
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView()
+            .previewLayout(.sizeThatFits)
     }
 }
 
@@ -102,15 +98,8 @@ struct SignInCredentialFields: View {
     var body: some View {
         Group {
             TextField("Email", text: $email)
-                .padding()
-                .background(.thinMaterial)
-                .cornerRadius(10)
-                .textInputAutocapitalization(.never)
-            SecureField("Password", text: $password)
-                .padding()
-                .background(.thinMaterial)
-                .cornerRadius(10)
-                .padding(.bottom, 30)
+                .textFieldStyle(RegularTextFieldStyle())
+            RevealableSecureField("Password", text: $password)
         }
     }
 }

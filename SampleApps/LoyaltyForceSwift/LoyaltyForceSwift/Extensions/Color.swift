@@ -53,4 +53,6 @@ struct ColorTheme {
     let superLightText = Color("TextSuperLightColor")
     let lightButton = Color("ButtonLightColor")
     let darkButton = Color("ButtonDarkColor")
+    let textFieldBackground = Color("TextFieldBackgroundColor")
+    let textFieldBorder = Color("TextFieldBorderColor")
 }

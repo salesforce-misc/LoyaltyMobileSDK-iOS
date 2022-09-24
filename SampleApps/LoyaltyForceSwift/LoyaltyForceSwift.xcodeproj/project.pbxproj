@@ -44,6 +44,8 @@
 		296D393728DCE6C20078C88E /* ForceClient+SOQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393628DCE6C20078C88E /* ForceClient+SOQL.swift */; };
 		296D393A28DD022A0078C88E /* ForceClient+SOSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393928DD022A0078C88E /* ForceClient+SOSL.swift */; };
 		296D393E28DE1EFF0078C88E /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393D28DE1EFF0078C88E /* ButtonStyles.swift */; };
+		296D394028DE59240078C88E /* TextFieldStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393F28DE59240078C88E /* TextFieldStyles.swift */; };
+		296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D394128DE76A40078C88E /* RevealableSecureField.swift */; };
 		2986139A28C14C0100BDC744 /* ForceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2986139928C14C0100BDC744 /* ForceClient.swift */; };
 		2986139D28C15E9500BDC744 /* ForceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2986139C28C15E9500BDC744 /* ForceError.swift */; };
 		2986139F28C1730000BDC744 /* ForceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2986139E28C1730000BDC744 /* ForceConfig.swift */; };
@@ -100,6 +102,8 @@
 		296D393628DCE6C20078C88E /* ForceClient+SOQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceClient+SOQL.swift"; sourceTree = "<group>"; };
 		296D393928DD022A0078C88E /* ForceClient+SOSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceClient+SOSL.swift"; sourceTree = "<group>"; };
 		296D393D28DE1EFF0078C88E /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		296D393F28DE59240078C88E /* TextFieldStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyles.swift; sourceTree = "<group>"; };
+		296D394128DE76A40078C88E /* RevealableSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealableSecureField.swift; sourceTree = "<group>"; };
 		2986139928C14C0100BDC744 /* ForceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceClient.swift; sourceTree = "<group>"; };
 		2986139C28C15E9500BDC744 /* ForceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceError.swift; sourceTree = "<group>"; };
 		2986139E28C1730000BDC744 /* ForceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceConfig.swift; sourceTree = "<group>"; };
@@ -254,6 +258,8 @@
 			isa = PBXGroup;
 			children = (
 				296D393D28DE1EFF0078C88E /* ButtonStyles.swift */,
+				296D393F28DE59240078C88E /* TextFieldStyles.swift */,
+				296D394128DE76A40078C88E /* RevealableSecureField.swift */,
 			);
 			path = UICompnents;
 			sourceTree = "<group>";
@@ -400,6 +406,7 @@
 				291CC0B128D1410500C08572 /* UserDefaults.swift in Sources */,
 				298613CC28CBC08800BDC744 /* MoreHeaderView.swift in Sources */,
 				2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */,
+				296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */,
 				2938C60428CE852D00F495AF /* ForceAuthStore.swift in Sources */,
 				298613A828C9021400BDC744 /* ProfileHeaderView.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
@@ -413,6 +420,7 @@
 				2986139D28C15E9500BDC744 /* ForceError.swift in Sources */,
 				2938C60628CFCBB200F495AF /* WebAuthenticationSession.swift in Sources */,
 				298613A428C175CA00BDC744 /* ForceAuth.swift in Sources */,
+				296D394028DE59240078C88E /* TextFieldStyles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
