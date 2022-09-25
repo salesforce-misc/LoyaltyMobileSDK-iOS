@@ -27,6 +27,10 @@ struct AppRootView: View {
                     BottomNavTabsView()
                 case .onboardingPage:
                     OnboardingView()
+                case .signInPageFromSignUp:
+                    OnboardingView(signUpPresented: false, signInPresented: true)
+                case .signUpPageFromSignIn:
+                    OnboardingView(signUpPresented: true, signInPresented: false)
                 }
             }
         }

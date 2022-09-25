@@ -26,6 +26,8 @@ enum Page {
     case signInPage
     case homePage
     case onboardingPage
+    case signUpPageFromSignIn
+    case signInPageFromSignUp
 }
 
 //struct User {

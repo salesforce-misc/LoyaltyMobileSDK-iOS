@@ -11,6 +11,7 @@ import Firebase
 struct SignUpView: View {
     
     @EnvironmentObject var appViewRouter: AppViewRouter
+    @Environment(\.dismiss) private var dismiss
     
     @State var email = ""
     @State var password = ""
@@ -39,7 +40,10 @@ struct SignUpView: View {
             HStack {
                 Text("Already a member?")
                 Button(action: {
-                    appViewRouter.currentPage = .signInPage
+                    dismiss()
+                    //appViewRouter.currentPage = .signInPage
+                    appViewRouter.currentPage = .signInPageFromSignUp
+                    print("To Sign In: \(appViewRouter.currentPage)")
                 }) {
                     Text("Sign In")
                         .font(.buttonText)

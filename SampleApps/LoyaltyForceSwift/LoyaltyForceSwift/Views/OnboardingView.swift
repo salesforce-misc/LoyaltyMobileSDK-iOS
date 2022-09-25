@@ -10,7 +10,7 @@ import SwiftUI
 struct OnboardingView: View {
     
     @State var selectedPage = 0
-    @State var joinPresented: Bool = false
+    @State var signUpPresented: Bool = false
     @State var signInPresented: Bool = false
     
     let onboardingData: [OnboardingModel] = [
@@ -38,17 +38,18 @@ struct OnboardingView: View {
                     Spacer()
                 }
                 .padding(.leading, 25)
+                .offset(y: -125)
 
-                HStack {
-                    Text(onboardingData[selectedPage].description)
-                        .foregroundColor(Color.white)
-                        .font(.onboardingText)
-                    Spacer()
-                }
-                .padding(.leading, 25)
+//                HStack {
+//                    Text(onboardingData[selectedPage].description)
+//                        .foregroundColor(Color.white)
+//                        .font(.onboardingText)
+//                    Spacer()
+//                }
+//                .padding(.leading, 25)
 
                 // paging indicator
-                HStack(spacing: 4) {
+                HStack(spacing: 6) {
                     ForEach(0..<pageCount, id: \.self) { index in
                         Capsule()
                             .fill(.white)
@@ -59,16 +60,23 @@ struct OnboardingView: View {
                     Spacer()
 
                 }
+                .overlay(
+                    Capsule()
+                        .fill(.white)
+                        .frame(width: 16, height: 8)
+                        .offset(x: CGFloat(14 * selectedPage)) // 14 = 6 (spacing) + 8 (dot width)
+                    , alignment: .leading
+                )
                 .padding(.leading, 25)
                 .padding([.top, .bottom])
 
                 Button(action: {
-                    joinPresented.toggle()
+                    signUpPresented.toggle()
                 }, label: {
                     Text("Join Now")
                 })
                 .buttonStyle(LightLongButton())
-                .sheet(isPresented: $joinPresented) {
+                .sheet(isPresented: $signUpPresented) {
                     // present join form
                     SignUpView()
                 }

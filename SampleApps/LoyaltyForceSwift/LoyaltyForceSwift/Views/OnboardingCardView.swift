@@ -23,6 +23,16 @@ struct OnboardingCardView: View {
             }
             .ignoresSafeArea()
             
+            HStack {
+                Text(card.description)
+                    .foregroundColor(Color.white)
+                    .font(.onboardingText)
+                Spacer()
+            }
+            .padding(.leading, 25)
+            .offset(y: 125)
+//            .animation(.spring(), value: card.description)
+//            .transition(.slide)
         }
     }
 }
