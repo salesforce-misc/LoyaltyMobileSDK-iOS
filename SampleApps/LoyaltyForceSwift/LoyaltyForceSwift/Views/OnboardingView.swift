@@ -12,6 +12,7 @@ struct OnboardingView: View {
     @State var selectedPage = 0
     @State var signUpPresented: Bool = false
     @State var signInPresented: Bool = false
+    @State var opacityText: Double = 1
     
     let onboardingData: [OnboardingModel] = [
         OnboardingModel(image: "img-onboarding1", description: "Convert your points into reward coupons!"),
@@ -28,6 +29,14 @@ struct OnboardingView: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .onChange(of: selectedPage) { _ in
+                    //debugPrint("[a]: new value \(newValue)")
+                    opacityText = 0
+                    withAnimation(.easeInOut(duration: 1), {
+                        opacityText = 1
+                    })
+                  }
+
             .ignoresSafeArea()
             
             VStack {
@@ -40,13 +49,15 @@ struct OnboardingView: View {
                 .padding(.leading, 25)
                 .offset(y: -125)
 
-//                HStack {
-//                    Text(onboardingData[selectedPage].description)
-//                        .foregroundColor(Color.white)
-//                        .font(.onboardingText)
-//                    Spacer()
-//                }
-//                .padding(.leading, 25)
+                HStack {
+                    Text(onboardingData[selectedPage].description)
+                        .foregroundColor(Color.white)
+                        .font(.onboardingText)
+                    Spacer()
+                }
+                .opacity(opacityText)
+                .padding(.leading, 25)
+                
 
                 // paging indicator
                 HStack(spacing: 6) {
