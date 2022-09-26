@@ -20,6 +20,8 @@ struct SignUpView: View {
     @State var signUpProcessing = false
     @State var signUpErrorMessage = ""
     
+    @State var signInPresented = false
+    
     var body: some View {
         VStack(spacing: 15) {
             SignUpCredentialFields(email: $email, password: $password, passwordConfirmation: $passwordConfirmation)
@@ -40,16 +42,15 @@ struct SignUpView: View {
             HStack {
                 Text("Already a member?")
                 Button(action: {
-                    dismiss()
-                    //appViewRouter.currentPage = .signInPage
-                    appViewRouter.currentPage = .signInPageFromSignUp
-                    print("To Sign In: \(appViewRouter.currentPage)")
+                    signInPresented.toggle()
                 }) {
                     Text("Sign In")
                         .font(.buttonText)
                 }
+                .sheet(isPresented: $signInPresented) {
+                    SignInView()
+                }
             }
-            .opacity(0.9)
         }
         .padding()
     }

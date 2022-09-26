@@ -9,12 +9,12 @@ import SwiftUI
 
 struct OnboardingView: View {
     
-    @State var selectedPage = 0
+    @State var selectedPage: Int = 0
     @State var signUpPresented: Bool = false
     @State var signInPresented: Bool = false
     @State var opacityText: Double = 1
     
-    let onboardingData: [OnboardingModel] = [
+    private let onboardingData: [OnboardingModel] = [
         OnboardingModel(image: "img-onboarding1", description: "Convert your points into reward coupons!"),
         OnboardingModel(image: "img-onboarding2", description: "The more points, the more rewards!"),
         OnboardingModel(image: "img-onboarding3", description: "Get personalized offers, just for you!")
@@ -30,24 +30,21 @@ struct OnboardingView: View {
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .onChange(of: selectedPage) { _ in
-                    //debugPrint("[a]: new value \(newValue)")
-                    opacityText = 0
-                    withAnimation(.easeInOut(duration: 1), {
-                        opacityText = 1
-                    })
-                  }
-
+                //debugPrint("[a]: new value \(newValue)")
+                opacityText = 0
+                withAnimation(.easeInOut(duration: 1), {
+                    opacityText = 1
+                })
+            }
             .ignoresSafeArea()
             
             VStack {
                 Spacer()
-
                 HStack {
                     Image("img-nt-logo")
                     Spacer()
                 }
                 .padding(.leading, 25)
-                .offset(y: -125)
 
                 HStack {
                     Text(onboardingData[selectedPage].description)
@@ -57,7 +54,6 @@ struct OnboardingView: View {
                 }
                 .opacity(opacityText)
                 .padding(.leading, 25)
-                
 
                 // paging indicator
                 HStack(spacing: 6) {
@@ -88,11 +84,9 @@ struct OnboardingView: View {
                 })
                 .buttonStyle(LightLongButton())
                 .sheet(isPresented: $signUpPresented) {
-                    // present join form
                     SignUpView()
                 }
-
-
+                
                 HStack {
                     Text("Already a member?")
                         .foregroundColor(Color.white)
@@ -106,7 +100,6 @@ struct OnboardingView: View {
                     .font(.buttonText)
                     .offset(x: -20)
                     .sheet(isPresented: $signInPresented) {
-                        // Sign In form
                         SignInView()
                     }
 

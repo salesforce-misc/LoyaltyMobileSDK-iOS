@@ -197,6 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				216F219428B6188600DAA66D /* AppRootView.swift */,
+				296D393428DBCFFB0078C88E /* OnboardingCardView.swift */,
+				296D393228DBCE050078C88E /* OnboardingView.swift */,
 				216F219628B618AD00DAA66D /* SignUpView.swift */,
 				216F219828B618BB00DAA66D /* SignInView.swift */,
 				218A36A928B85CA500FCEE39 /* BottomNavTabsView.swift */,
@@ -209,8 +211,6 @@
 				218A36AB28B85D5500FCEE39 /* RewardsView.swift */,
 				298613A528C7D3B400BDC744 /* MoreView.swift */,
 				298613CB28CBC08800BDC744 /* MoreHeaderView.swift */,
-				296D393228DBCE050078C88E /* OnboardingView.swift */,
-				296D393428DBCFFB0078C88E /* OnboardingCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -546,10 +546,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LoyaltyForceSwift/Preview Content\"";
-				DEVELOPMENT_TEAM = FWC5C8VLC7;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LoyaltyForceSwift/Info.plist;
@@ -565,6 +566,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.LoyaltyForceSwift;
 				PRODUCT_NAME = LoyaltyForceSwift;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -576,10 +578,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LoyaltyForceSwift/Preview Content\"";
-				DEVELOPMENT_TEAM = FWC5C8VLC7;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LoyaltyForceSwift/Info.plist;
@@ -595,6 +598,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.LoyaltyForceSwift;
 				PRODUCT_NAME = LoyaltyForceSwift;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
