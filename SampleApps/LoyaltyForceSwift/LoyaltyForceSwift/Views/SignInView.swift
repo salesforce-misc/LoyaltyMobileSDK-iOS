@@ -11,12 +11,15 @@ import Firebase
 struct SignInView: View {
     
     @EnvironmentObject var appViewRouter: AppViewRouter
+    @Environment(\.dismiss) private var dismiss
     
     @State var email = ""
     @State var password = ""
     
     @State var signInProcessing = false
     @State var signInErrorMessage = ""
+    
+    @State var signUpPresented = false
     
     var body: some View {
         VStack(spacing: 15) {
@@ -38,13 +41,15 @@ struct SignInView: View {
             HStack {
                 Text("Not a member?")
                 Button(action: {
-                    appViewRouter.currentPage = .signUpPage
+                    signUpPresented.toggle()
                 }) {
                     Text("Join Now")
                         .font(.buttonText)
                 }
+                .sheet(isPresented: $signUpPresented) {
+                    SignUpView()
+                }
             }
-            .opacity(0.9)
         }
         .padding()
     }

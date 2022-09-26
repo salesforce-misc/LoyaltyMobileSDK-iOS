@@ -22,7 +22,6 @@ struct OnboardingCardView: View {
                 BottomLayer()
             }
             .ignoresSafeArea()
-            
         }
     }
 }
