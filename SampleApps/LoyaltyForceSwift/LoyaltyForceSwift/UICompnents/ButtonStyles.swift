@@ -12,7 +12,7 @@ struct LightLongButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.buttonText)
-            .foregroundColor(.accentColor)
+            .foregroundColor(Color.theme.accent)
             .frame(width: 327, height: 48)
             .background(Color.theme.lightButton)
             .cornerRadius(24)

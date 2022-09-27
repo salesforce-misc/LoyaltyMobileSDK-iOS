@@ -28,6 +28,7 @@ struct SheetHeader: View {
                 .padding()
 
             }
+            .padding(.top)
             Divider()
         }
     }
