@@ -84,7 +84,7 @@ struct OnboardingView: View {
                 })
                 .buttonStyle(LightLongButton())
                 .sheet(isPresented: $signUpPresented) {
-                    SignUpView()
+                    SignUpView(signInPresented: $signInPresented)
                 }
                 .presentationDetents([.medium, .large])
                 
@@ -101,7 +101,7 @@ struct OnboardingView: View {
                     .font(.buttonText)
                     .offset(x: -20)
                     .sheet(isPresented: $signInPresented) {
-                        SignInView()
+                        SignInView(signUpPresented: $signUpPresented)
                     }
                     .presentationDetents([.medium, .large])
 

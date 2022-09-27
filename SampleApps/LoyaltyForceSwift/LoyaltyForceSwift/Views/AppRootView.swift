@@ -19,10 +19,6 @@ struct AppRootView: View {
                 BottomNavTabsView()
             } else {
                 switch appViewRouter.currentPage {
-                case .signUpPage:
-                    SignUpView()
-                case .signInPage:
-                    SignInView()
                 case .homePage:
                     BottomNavTabsView()
                 case .onboardingPage:

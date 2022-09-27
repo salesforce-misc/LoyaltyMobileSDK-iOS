@@ -22,8 +22,6 @@ class AppViewRouter: ObservableObject {
 }
 
 enum Page {
-    case signUpPage
-    case signInPage
     case homePage
     case onboardingPage
 }

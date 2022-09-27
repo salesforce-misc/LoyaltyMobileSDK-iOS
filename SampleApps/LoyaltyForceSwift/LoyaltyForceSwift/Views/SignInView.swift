@@ -19,7 +19,7 @@ struct SignInView: View {
     @State var signInProcessing = false
     @State var signInErrorMessage = ""
     
-    @State var signUpPresented = false
+    @Binding var signUpPresented: Bool
     
     var body: some View {
         
@@ -44,13 +44,12 @@ struct SignInView: View {
             HStack {
                 Text("Not a member?")
                 Button(action: {
-                    signUpPresented.toggle()
+                    dismiss()
+                    signUpPresented = true
+                    appViewRouter.currentPage = .onboardingPage
                 }) {
                     Text("Join Now")
                         .font(.buttonText)
-                }
-                .sheet(isPresented: $signUpPresented) {
-                    SignUpView()
                 }
                 .presentationDetents([.medium, .large])
             }
@@ -94,7 +93,7 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView()
+        SignInView(signUpPresented: .constant(false))
             .previewLayout(.sizeThatFits)
     }
 }
