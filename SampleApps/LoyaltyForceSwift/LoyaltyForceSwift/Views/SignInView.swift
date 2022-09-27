@@ -23,38 +23,83 @@ struct SignInView: View {
     
     var body: some View {
         
-        SheetHeader(title: "Sign In")
-        
-        VStack(spacing: 15) {
-            SignInCredentialFields(email: $email, password: $password)
-            Button(action: {
-                signInUser(userEmail: email, userPassword: password)
-            }) {
-                Text("Sign In")
-            }
-            .buttonStyle(DarkLongButton())
-            .disabled(!signInProcessing && !email.isEmpty && !password.isEmpty ? false : true)
-            if signInProcessing {
-                ProgressView()
-            }
-            if !signInErrorMessage.isEmpty {
-                Text("Failed creating account: \(signInErrorMessage)")
-                    .foregroundColor(.red)
-            }
-            HStack {
-                Text("Not a member?")
-                Button(action: {
-                    dismiss()
-                    signUpPresented = true
-                    appViewRouter.currentPage = .onboardingPage
-                }) {
-                    Text("Join Now")
-                        .font(.buttonText)
+        if #available(iOS 16.0, *) {
+            VStack {
+                SheetHeader(title: "Sign In")
+                VStack(spacing: 15) {
+                    SignInCredentialFields(email: $email, password: $password)
+                    Button(action: {
+                        signInUser(userEmail: email, userPassword: password)
+                    }) {
+                        Text("Sign In")
+                    }
+                    .buttonStyle(DarkLongButton())
+                    .disabled(!signInProcessing && !email.isEmpty && !password.isEmpty ? false : true)
+                    if signInProcessing {
+                        ProgressView()
+                    }
+                    if !signInErrorMessage.isEmpty {
+                        Text("Failed creating account: \(signInErrorMessage)")
+                            .foregroundColor(.red)
+                    }
+                    HStack {
+                        Text("Not a member?")
+                        Button(action: {
+                            dismiss()
+                            signUpPresented = true
+                            appViewRouter.currentPage = .onboardingPage
+                        }) {
+                            Text("Join Now")
+                                .font(.buttonText)
+                        }
+                        .presentationDetents([.height(405)])
+                    }
                 }
-                .presentationDetents([.medium, .large])
+                .padding()
+                Spacer()
+            }
+            
+        } else {
+            HalfSheet {
+                VStack {
+                    SheetHeader(title: "Sign In")
+                    VStack(spacing: 15) {
+                        SignInCredentialFields(email: $email, password: $password)
+                        Button(action: {
+                            signInUser(userEmail: email, userPassword: password)
+                        }) {
+                            Text("Sign In")
+                        }
+                        .buttonStyle(DarkLongButton())
+                        .disabled(!signInProcessing && !email.isEmpty && !password.isEmpty ? false : true)
+                        if signInProcessing {
+                            ProgressView()
+                        }
+                        if !signInErrorMessage.isEmpty {
+                            Text("Failed creating account: \(signInErrorMessage)")
+                                .foregroundColor(.red)
+                        }
+                        HStack {
+                            Text("Not a member?")
+                            Button(action: {
+                                dismiss()
+                                signUpPresented = true
+                                appViewRouter.currentPage = .onboardingPage
+                            }) {
+                                Text("Join Now")
+                                    .font(.buttonText)
+                            }
+
+                        }
+                    }
+                    .padding()
+                    Spacer()
+                }
+                
             }
         }
-        .padding()
+
+
     }
     
     func signInUser(userEmail: String, userPassword: String) {

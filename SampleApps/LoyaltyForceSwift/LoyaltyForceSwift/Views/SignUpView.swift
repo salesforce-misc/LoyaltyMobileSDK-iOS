@@ -24,38 +24,84 @@ struct SignUpView: View {
     
     var body: some View {
         
-        SheetHeader(title: "Join")
+        if #available(iOS 16.0, *) {
+            VStack {
+                SheetHeader(title: "Join")
+                VStack(spacing: 15) {
+                    SignUpCredentialFields(email: $email, password: $password, passwordConfirmation: $passwordConfirmation)
+                    Button(action: {
+                        signUpUser(userEmail: email, userPassword: password)
+                    }) {
+                        Text("Join")
+                    }
+                    .buttonStyle(DarkLongButton())
+                    .disabled(!signUpProcessing && !email.isEmpty && !password.isEmpty && !passwordConfirmation.isEmpty && password == passwordConfirmation ? false : true)
+                    if signUpProcessing {
+                        ProgressView()
+                    }
+                    if !signUpErrorMessage.isEmpty {
+                        Text("Failed creating account: \(signUpErrorMessage)")
+                            .foregroundColor(.red)
+                    }
+                    HStack {
+                        Text("Already a member?")
+                        Button(action: {
+                            dismiss()
+                            signInPresented = true
+                            appViewRouter.currentPage = .onboardingPage
+                        }) {
+                            Text("Sign In")
+                                .font(.buttonText)
+                        }
+                        .presentationDetents([.height(746)])
 
-        VStack(spacing: 15) {
-            SignUpCredentialFields(email: $email, password: $password, passwordConfirmation: $passwordConfirmation)
-            Button(action: {
-                signUpUser(userEmail: email, userPassword: password)
-            }) {
-                Text("Join")
-            }
-            .buttonStyle(DarkLongButton())
-            .disabled(!signUpProcessing && !email.isEmpty && !password.isEmpty && !passwordConfirmation.isEmpty && password == passwordConfirmation ? false : true)
-            if signUpProcessing {
-                ProgressView()
-            }
-            if !signUpErrorMessage.isEmpty {
-                Text("Failed creating account: \(signUpErrorMessage)")
-                    .foregroundColor(.red)
-            }
-            HStack {
-                Text("Already a member?")
-                Button(action: {
-                    dismiss()
-                    signInPresented = true
-                    appViewRouter.currentPage = .onboardingPage
-                }) {
-                    Text("Sign In")
-                        .font(.buttonText)
+                    }
                 }
-                .presentationDetents([.medium, .large])
+                .padding()
+                Spacer()
+            }
+            
+        } else {
+            HalfSheet {
+                VStack {
+                    SheetHeader(title: "Join")
+                    VStack(spacing: 15) {
+                        SignUpCredentialFields(email: $email, password: $password, passwordConfirmation: $passwordConfirmation)
+                        Button(action: {
+                            signUpUser(userEmail: email, userPassword: password)
+                        }) {
+                            Text("Join")
+                        }
+                        .buttonStyle(DarkLongButton())
+                        .disabled(!signUpProcessing && !email.isEmpty && !password.isEmpty && !passwordConfirmation.isEmpty && password == passwordConfirmation ? false : true)
+                        if signUpProcessing {
+                            ProgressView()
+                        }
+                        if !signUpErrorMessage.isEmpty {
+                            Text("Failed creating account: \(signUpErrorMessage)")
+                                .foregroundColor(.red)
+                        }
+                        HStack {
+                            Text("Already a member?")
+                            Button(action: {
+                                dismiss()
+                                signInPresented = true
+                                appViewRouter.currentPage = .onboardingPage
+                            }) {
+                                Text("Sign In")
+                                    .font(.buttonText)
+                            }
+
+                        }
+                    }
+                    .padding()
+                    Spacer()
+                }
+                
             }
         }
-        .padding()
+        
+
     }
     
     func signUpUser(userEmail: String, userPassword: String) {
