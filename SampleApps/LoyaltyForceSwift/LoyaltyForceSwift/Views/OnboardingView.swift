@@ -86,6 +86,7 @@ struct OnboardingView: View {
                 .sheet(isPresented: $signUpPresented) {
                     SignUpView()
                 }
+                .presentationDetents([.medium, .large])
                 
                 HStack {
                     Text("Already a member?")
@@ -102,6 +103,7 @@ struct OnboardingView: View {
                     .sheet(isPresented: $signInPresented) {
                         SignInView()
                     }
+                    .presentationDetents([.medium, .large])
 
                 }
                 

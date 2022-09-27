@@ -23,6 +23,9 @@ struct SignUpView: View {
     @State var signInPresented = false
     
     var body: some View {
+        
+        SheetHeader(title: "Join")
+
         VStack(spacing: 15) {
             SignUpCredentialFields(email: $email, password: $password, passwordConfirmation: $passwordConfirmation)
             Button(action: {
@@ -50,6 +53,7 @@ struct SignUpView: View {
                 .sheet(isPresented: $signInPresented) {
                     SignInView()
                 }
+                .presentationDetents([.medium, .large])
             }
         }
         .padding()
