@@ -24,6 +24,8 @@ struct SignUpView: View {
     
     var body: some View {
         
+//https://swiftversion.net/
+#if compiler(>=5.7)
         if #available(iOS 16.0, *) {
             VStack {
                 SheetHeader(title: "Join")
@@ -60,8 +62,10 @@ struct SignUpView: View {
                 .padding()
                 Spacer()
             }
+        }
+#endif
             
-        } else {
+        if #available(iOS 16.0, *) {} else {
             HalfSheet {
                 VStack {
                     SheetHeader(title: "Join")

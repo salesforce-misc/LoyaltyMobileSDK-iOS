@@ -23,6 +23,9 @@ struct SignInView: View {
     
     var body: some View {
         
+//https://swiftversion.net/
+#if compiler(>=5.7)
+
         if #available(iOS 16.0, *) {
             VStack {
                 SheetHeader(title: "Sign In")
@@ -59,7 +62,10 @@ struct SignInView: View {
                 Spacer()
             }
             
-        } else {
+        }
+#endif
+
+        if #available(iOS 16.0, *) {} else {
             HalfSheet {
                 VStack {
                     SheetHeader(title: "Sign In")
