@@ -12,6 +12,9 @@ public class LoyaltyAPIManager {
     
     public static let shared = LoyaltyAPIManager()
     
+    // TODO: move to a app config or other places
+    private let loyaltyProgramName = "NTO Insider"
+    
     private init() {}
     
     public enum Resource {
@@ -27,7 +30,7 @@ public class LoyaltyAPIManager {
         
         switch resource {
         case .individualEnrollment(let programName):
-            return ForceConfig.path(for: "connect/loyalty-programs/\(programName)/individual-member-enrollments")
+            return ForceConfig.path(for: "loyalty-programs/\(programName)/individual-member-enrollments")
         case .getMemberBenefits(let memberId):
             return ForceConfig.path(for: "connect/loyalty/member/\(memberId)/memberbenefits")
         case .getMemberProfile(let programName):
@@ -94,5 +97,60 @@ public class LoyaltyAPIManager {
         } catch {
             throw error
         }
+    }
+    
+    private func randomString(of length: Int) -> String {
+         let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+         var s = ""
+         for _ in 0 ..< length {
+             s.append(letters.randomElement()!)
+         }
+         return s
+    }
+    
+    public func postEnrollment(firstName: String, lastName: String, email: String) async throws -> EnrollmentOutputModel {
+        
+        let currentDate = Date()
+        let membershipNumber = randomString(of: 8)
+        let attributes: [String: String] = [:]
+        let additionalValues = AdditionalFieldValues(attributes: attributes)
+        let contactDetails = AssociatedContactDetails(
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            allowDuplicateRecords: false,
+            additionalContactFieldValues: additionalValues)
+        
+        let enrollment = EnrollmentModel(
+            enrollmentDate: currentDate,
+            membershipNumber: membershipNumber,
+            associatedContactDetails: contactDetails,
+            memberStatus: "Active",
+            referredBy: nil,
+            createTransactionJournals: true,
+            transactionJournalStatementFrequency: "Monthly",
+            transactionJournalStatementMethod: "Mail",
+            enrollmentChannel: "Email",
+            canReceivePromotions: true,
+            canReceivePartnerPromotions: true,
+            membershipEndDate: nil,
+            relatedCorporate​MembershipNumber: nil,
+            additionalMemberFieldValues: additionalValues)
+        
+        do {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .formatted(.forceFormatter())
+            let requestBody = try encoder.encode(enrollment)
+            if let requestJson = String(data: requestBody, encoding: .utf8) {
+                print(requestJson)
+            }
+            let path = getPath(for: .individualEnrollment(programName: loyaltyProgramName))
+            let request = try ForceRequest.create(method: "POST", path: path, body: requestBody)
+            return try await ForceClient.shared.fetch(type: EnrollmentOutputModel.self, with: request)
+            
+        } catch {
+            throw error
+        }
+        
     }
 }

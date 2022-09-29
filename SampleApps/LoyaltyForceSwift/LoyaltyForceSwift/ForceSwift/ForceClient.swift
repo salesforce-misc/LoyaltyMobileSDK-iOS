@@ -21,12 +21,12 @@ public class ForceClient {
     
     func handleResponse(response: URLResponse) {
         guard let httpResponse = response as? HTTPURLResponse else {
-            print(ForceError.requestFailed(description: "ForceError=> Invalid response").customDescription)
+            print(ForceError.requestFailed(description: "<ForceError> - Invalid response").customDescription)
             return
         }
             
         guard httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
-            print(ForceError.responseUnsuccessful(description: "ForceError=> Unsuccessful, HTTP response status code \(httpResponse.statusCode)").customDescription)
+            print(ForceError.responseUnsuccessful(description: "<ForceError> - HTTP response status code \(httpResponse.statusCode)").customDescription)
             return
         }
     }

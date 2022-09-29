@@ -84,7 +84,7 @@ struct OnboardingView: View {
                 })
                 .buttonStyle(LightLongButton())
                 .sheet(isPresented: $signUpPresented) {
-                    SignUpView(signInPresented: $signInPresented)
+                    SignUpView(signInPresented: $signInPresented, signUpPresented: $signUpPresented)
                 }
                 
                 HStack {
