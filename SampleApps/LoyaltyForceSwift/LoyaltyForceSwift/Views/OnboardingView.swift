@@ -9,10 +9,12 @@ import SwiftUI
 
 struct OnboardingView: View {
     
-    @State var selectedPage: Int = 0
-    @State var signUpPresented: Bool = false
-    @State var signInPresented: Bool = false
-    @State var opacityText: Double = 1
+    @EnvironmentObject private var appViewRouter: AppViewRouter
+    
+    @State private var selectedPage: Int = 0
+    @State private var signUpPresented: Bool = false
+    @State private var signInPresented: Bool = false
+    @State private var opacityText: Double = 1
     
     private let onboardingData: [OnboardingModel] = [
         OnboardingModel(image: "img-onboarding1", description: "Convert your points into reward coupons!"),
@@ -84,7 +86,10 @@ struct OnboardingView: View {
                 })
                 .buttonStyle(LightLongButton())
                 .sheet(isPresented: $signUpPresented) {
-                    SignUpView(signInPresented: $signInPresented, signUpPresented: $signUpPresented)
+                    HalfSheet {
+                        SignUpView(signInPresented: $signInPresented, signUpPresented: $signUpPresented)
+                    }
+                    
                 }
                 
                 HStack {
@@ -100,7 +105,10 @@ struct OnboardingView: View {
                     .font(.buttonText)
                     .offset(x: -20)
                     .sheet(isPresented: $signInPresented) {
-                        SignInView(signUpPresented: $signUpPresented)
+                        HalfSheet {
+                            SignInView(appViewRouter: appViewRouter ,signUpPresented: $signUpPresented)
+                        }
+                        
                     }
                 }
                 

@@ -6,162 +6,97 @@
 //
 
 import SwiftUI
-import Firebase
 
 struct SignUpView: View {
     
-    @EnvironmentObject var appViewRouter: AppViewRouter
+    @EnvironmentObject private var appViewRouter: AppViewRouter
     @Environment(\.dismiss) private var dismiss
     
     @StateObject private var viewModel = SignUpViewModel()
     
-    @State var firstName = ""
-    @State var lastName = ""
-    //@State var mobileNumber = ""
-    @State var email = ""
-    //@State var username = ""
-    @State var password = ""
-    @State var passwordConfirmation = ""
-    
-    @State var signUpProcessing = false
+    @State private var firstName = ""
+    @State private var lastName = ""
+    //@State private var mobileNumber = ""
+    @State private var email = ""
+    //@State private var username = ""
+    @State private var password = ""
+    @State private var passwordConfirmation = ""
     
     @Binding var signInPresented: Bool
     @Binding var signUpPresented: Bool
     
-    @State var signUpSuccessful = false
-    
     var body: some View {
         
-//https://swiftversion.net/
-#if compiler(>=5.7)
-        if #available(iOS 16.0, *) {
-            VStack {
-                SheetHeader(title: "Join")
+        VStack {
+            SheetHeader(title: "Join")
+            
+            VStack(spacing: 15) {
+                SignUpCredentialFields(
+                    firstName: $firstName,
+                    lastName: $lastName,
+                    email: $email,
+                    password: $password,
+                    passwordConfirmation: $passwordConfirmation)
                 
-                VStack(spacing: 15) {
-                    SignUpCredentialFields(
-                        firstName: $firstName,
-                        lastName: $lastName,
-                        email: $email,
-                        password: $password,
-                        passwordConfirmation: $passwordConfirmation)
-                    
+                Button(action: {
+                    viewModel.signUpUser(userEmail: email, userPassword: password, firstName: firstName, lastName: lastName)
+                }) {
+                    Text("Join")
+                }
+                .buttonStyle(DarkLongButton())
+                .disabled(disableForm)
+                .opacity(disableForm ? 0.5 : 1)
+                .sheet(isPresented: $viewModel.signUpSuccesful) {
+                    CongratsView(email: email)
+                        .interactiveDismissDisabled()
+                        .onDisappear {
+                            signUpPresented = false
+                            appViewRouter.signedIn = true
+                            appViewRouter.currentPage = .homePage
+                        }
+                }
+                //.presentationDetents([.height(746)])
+                
+                if viewModel.signUpProcessing {
+                    ProgressView()
+                }
+                
+                if !viewModel.signUpErrorMessage.isEmpty {
+                    Text("Failed creating account: \(viewModel.signUpErrorMessage)")
+                        .foregroundColor(.red)
+                }
+                
+                HStack {
+                    Text("Already a member?")
                     Button(action: {
-                        viewModel.signUpUser(userEmail: email, userPassword: password, firstName: firstName, lastName: lastName)
+                        dismiss()
+                        signInPresented = true
+                        appViewRouter.currentPage = .onboardingPage
                     }) {
-                        Text("Join")
-                    }
-                    .buttonStyle(DarkLongButton())
-                    .disabled(disableForm)
-                    .sheet(isPresented: $viewModel.signUpSuccesful) {
-                        CongratsView(email: email)
-                            .interactiveDismissDisabled()
-                            .onDisappear {
-                                signUpPresented = false
-                                appViewRouter.signedIn = true
-                                appViewRouter.currentPage = .homePage
-                            }
+                        Text("Sign In")
+                            .font(.buttonText)
                     }
                     //.presentationDetents([.height(746)])
                     
-                    if viewModel.signUpProcessing {
-                        ProgressView()
-                    }
-                    
-                    if !viewModel.signUpErrorMessage.isEmpty {
-                        Text("Failed creating account: \(viewModel.signUpErrorMessage)")
-                            .foregroundColor(.red)
-                    }
-                    
-                    HStack {
-                        Text("Already a member?")
-                        Button(action: {
-                            dismiss()
-                            signInPresented = true
-                            appViewRouter.currentPage = .onboardingPage
-                        }) {
-                            Text("Sign In")
-                                .font(.buttonText)
-                        }
-                        .presentationDetents([.height(746)])
-
-                    }
                 }
-                .padding()
-                Spacer()
             }
+            .padding()
+            Spacer()
         }
-#endif
-            
-        if #available(iOS 16.0, *) {} else {
-            HalfSheet {
-                VStack {
-                    SheetHeader(title: "Join")
-                    
-                    VStack(spacing: 15) {
-                        SignUpCredentialFields(
-                            firstName: $firstName,
-                            lastName: $lastName,
-                            email: $email,
-                            password: $password,
-                            passwordConfirmation: $passwordConfirmation)
-                        
-                        Button(action: {
-                            viewModel.signUpUser(userEmail: email, userPassword: password, firstName: firstName, lastName: lastName)
-                        }) {
-                            Text("Join")
-                        }
-                        .buttonStyle(DarkLongButton())
-                        .disabled(disableForm)
-                        .sheet(isPresented: $viewModel.signUpSuccesful) {
-                            CongratsView(email: email)
-                                .interactiveDismissDisabled()
-                                .onDisappear {
-                                    signUpPresented = false
-                                    appViewRouter.signedIn = true
-                                    appViewRouter.currentPage = .homePage
-                                }
-                        }
-                        
-                        if viewModel.signUpProcessing {
-                            ProgressView()
-                        }
-                        
-                        if !viewModel.signUpErrorMessage.isEmpty {
-                            Text("Failed creating account: \(viewModel.signUpErrorMessage)")
-                                .foregroundColor(.red)
-                        }
-                        
-                        HStack {
-                            Text("Already a member?")
-                            Button(action: {
-                                dismiss()
-                                signInPresented = true
-                                appViewRouter.currentPage = .onboardingPage
-                            }) {
-                                Text("Sign In")
-                                    .font(.buttonText)
-                            }
-
-                        }
-                    }
-                    .padding()
-                    Spacer()
-                }
-                
-            }
-        }
-        
 
     }
     
     var disableForm: Bool {
-        firstName.isEmpty ||
-        lastName.isEmpty ||
-        email.isEmpty ||
-        password.isEmpty ||
-        passwordConfirmation.isEmpty ||
-        password != passwordConfirmation
+        if firstName.isEmpty ||
+            lastName.isEmpty ||
+            email.isEmpty ||
+            password.isEmpty ||
+            passwordConfirmation.isEmpty ||
+            password != passwordConfirmation ||
+            viewModel.signUpProcessing {
+            return true
+        }
+        return false
     }
     
 }

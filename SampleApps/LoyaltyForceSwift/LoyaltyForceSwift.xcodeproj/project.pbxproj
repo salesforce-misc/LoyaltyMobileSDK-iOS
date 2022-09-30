@@ -68,6 +68,7 @@
 		299B38D028E3DECE00E45D97 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38CF28E3DECE00E45D97 /* SignUpViewModel.swift */; };
 		299B38D228E510DD00E45D97 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D128E510DD00E45D97 /* DateFormatter.swift */; };
 		299B38D428E5F78400E45D97 /* CongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D328E5F78400E45D97 /* CongratsView.swift */; };
+		299B38D628E6B6D600E45D97 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D528E6B6D600E45D97 /* SignInViewModel.swift */; };
 		29AB2E1C28E2763700D4B32C /* SheetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AB2E1B28E2763700D4B32C /* SheetHeader.swift */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +135,7 @@
 		299B38CF28E3DECE00E45D97 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		299B38D128E510DD00E45D97 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		299B38D328E5F78400E45D97 /* CongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsView.swift; sourceTree = "<group>"; };
+		299B38D528E6B6D600E45D97 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		29AB2E1B28E2763700D4B32C /* SheetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +157,7 @@
 				216A9CC028BDD958007881FE /* BenefitViewModel.swift */,
 				298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */,
 				299B38CF28E3DECE00E45D97 /* SignUpViewModel.swift */,
+				299B38D528E6B6D600E45D97 /* SignInViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
 				291CC0AF28D1248D00C08572 /* ForceUserIdentifier.swift in Sources */,
 				296D393528DBCFFB0078C88E /* OnboardingCardView.swift in Sources */,
+				299B38D628E6B6D600E45D97 /* SignInViewModel.swift in Sources */,
 				216F219528B6188600DAA66D /* AppRootView.swift in Sources */,
 				298613A228C174FE00BDC744 /* ForceRequest.swift in Sources */,
 				298613A628C7D3B400BDC744 /* MoreView.swift in Sources */,
