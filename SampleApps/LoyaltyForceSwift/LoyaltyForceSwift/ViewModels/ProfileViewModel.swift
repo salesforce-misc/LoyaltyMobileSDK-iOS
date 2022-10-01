@@ -15,8 +15,10 @@ class ProfileViewModel: ObservableObject {
     func getProfileData(memberId: String, programName: String) async throws {
         
         do {
-            isLoaded = false
-            profile = nil
+            await MainActor.run {
+                isLoaded = false
+                profile = nil
+            }
             
             let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId, programName: programName)
             

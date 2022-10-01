@@ -10,10 +10,10 @@ import SwiftUI
 struct OnboardingView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
+    @StateObject private var signUpVM: SignUpViewModel
+    @StateObject private var signInVM: SignInViewModel
     
     @State private var selectedPage: Int = 0
-    @State private var signUpPresented: Bool = false
-    @State private var signInPresented: Bool = false
     @State private var opacityText: Double = 1
     
     private let onboardingData: [OnboardingModel] = [
@@ -21,6 +21,11 @@ struct OnboardingView: View {
         OnboardingModel(image: "img-onboarding2", description: "The more points, the more rewards!"),
         OnboardingModel(image: "img-onboarding3", description: "Get personalized offers, just for you!")
        ]
+    
+    init(appViewRouter: AppViewRouter) {
+        _signUpVM = StateObject(wrappedValue: SignUpViewModel(appViewRouter: appViewRouter))
+        _signInVM = StateObject(wrappedValue: SignInViewModel(appViewRouter: appViewRouter))
+    }
     
     var body: some View {
         let pageCount = onboardingData.count
@@ -80,16 +85,19 @@ struct OnboardingView: View {
                 .padding([.top, .bottom])
 
                 Button(action: {
-                    signUpPresented.toggle()
+                    signUpVM.signUpPresented.toggle()
+                    print("Join Now Clicked: \(signUpVM.signUpPresented)")
                 }, label: {
                     Text("Join Now")
                 })
                 .buttonStyle(LightLongButton())
-                .sheet(isPresented: $signUpPresented) {
-                    HalfSheet {
-                        SignUpView(signInPresented: $signInPresented, signUpPresented: $signUpPresented)
+                .sheet(isPresented: $signUpVM.signUpPresented) {
+                    FullSheet {
+                        SignUpView()
+                            .environmentObject(signUpVM)
+                            .environmentObject(signInVM)
                     }
-                    
+      
                 }
                 
                 HStack {
@@ -97,16 +105,18 @@ struct OnboardingView: View {
                         .foregroundColor(Color.white)
                         .padding()
                     Button {
-                        signInPresented.toggle()
+                        signInVM.signInPresented.toggle()
                     } label: {
                         Text("Sign In")
                     }
                     .foregroundColor(.white)
                     .font(.buttonText)
                     .offset(x: -20)
-                    .sheet(isPresented: $signInPresented) {
+                    .sheet(isPresented: $signInVM.signInPresented) {
                         HalfSheet {
-                            SignInView(appViewRouter: appViewRouter ,signUpPresented: $signUpPresented)
+                            SignInView()
+                                .environmentObject(signInVM)
+                                .environmentObject(signUpVM)
                         }
                         
                     }
@@ -115,12 +125,17 @@ struct OnboardingView: View {
             }
 
         }
+        .sheet(isPresented: $signUpVM.signUpSuccesful) {
+            CongratsView(email: signUpVM.email)
+                .interactiveDismissDisabled()
+        }
 
     }
 }
 
 struct OnboardingView_Previews: PreviewProvider {
+    static var appViewRouter = AppViewRouter()
     static var previews: some View {
-        OnboardingView()
+        OnboardingView(appViewRouter: appViewRouter)
     }
 }

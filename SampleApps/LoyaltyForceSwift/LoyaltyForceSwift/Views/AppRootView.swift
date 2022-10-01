@@ -22,7 +22,7 @@ struct AppRootView: View {
                 case .homePage:
                     BottomNavTabsView()
                 case .onboardingPage:
-                    OnboardingView()
+                    OnboardingView(appViewRouter: appViewRouter)
                 }
             }
         }

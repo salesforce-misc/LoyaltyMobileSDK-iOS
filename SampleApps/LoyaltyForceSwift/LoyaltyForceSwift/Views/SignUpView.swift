@@ -10,9 +10,8 @@ import SwiftUI
 struct SignUpView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
-    @Environment(\.dismiss) private var dismiss
-    
-    @StateObject private var viewModel = SignUpViewModel()
+    @EnvironmentObject private var signUpVM: SignUpViewModel
+    @EnvironmentObject private var signInVM: SignInViewModel
     
     @State private var firstName = ""
     @State private var lastName = ""
@@ -21,9 +20,6 @@ struct SignUpView: View {
     //@State private var username = ""
     @State private var password = ""
     @State private var passwordConfirmation = ""
-    
-    @Binding var signInPresented: Bool
-    @Binding var signUpPresented: Bool
     
     var body: some View {
         
@@ -39,39 +35,32 @@ struct SignUpView: View {
                     passwordConfirmation: $passwordConfirmation)
                 
                 Button(action: {
-                    viewModel.signUpUser(userEmail: email, userPassword: password, firstName: firstName, lastName: lastName)
+                    signUpVM.signUpUser(userEmail: email, userPassword: password, firstName: firstName, lastName: lastName)
                 }) {
                     Text("Join")
                 }
                 .buttonStyle(DarkLongButton())
                 .disabled(disableForm)
                 .opacity(disableForm ? 0.5 : 1)
-                .sheet(isPresented: $viewModel.signUpSuccesful) {
-                    CongratsView(email: email)
-                        .interactiveDismissDisabled()
-                        .onDisappear {
-                            signUpPresented = false
-                            appViewRouter.signedIn = true
-                            appViewRouter.currentPage = .homePage
-                        }
-                }
-                //.presentationDetents([.height(746)])
                 
-                if viewModel.signUpProcessing {
+                if signUpVM.signUpProcessing {
                     ProgressView()
                 }
                 
-                if !viewModel.signUpErrorMessage.isEmpty {
-                    Text("Failed creating account: \(viewModel.signUpErrorMessage)")
+                if !signUpVM.signUpErrorMessage.isEmpty {
+                    Text("Failed creating account: \(signUpVM.signUpErrorMessage)")
                         .foregroundColor(.red)
                 }
                 
                 HStack {
                     Text("Already a member?")
                     Button(action: {
-                        dismiss()
-                        signInPresented = true
+                        signUpVM.signUpPresented = false
+                        signInVM.signInPresented = true
                         appViewRouter.currentPage = .onboardingPage
+                        print("Aleady a member clicked: signUpVM.signUpPresented=\(signUpVM.signUpPresented)")
+                        print("Aleady a member clicked: signInVM.signInPresented=\(signInVM.signInPresented)")
+                        
                     }) {
                         Text("Sign In")
                             .font(.buttonText)
@@ -93,7 +82,7 @@ struct SignUpView: View {
             password.isEmpty ||
             passwordConfirmation.isEmpty ||
             password != passwordConfirmation ||
-            viewModel.signUpProcessing {
+            signUpVM.signUpProcessing {
             return true
         }
         return false
@@ -103,7 +92,7 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView(signInPresented: .constant(false), signUpPresented: .constant(false))
+        SignUpView()
             .previewLayout(.sizeThatFits)
     }
 }

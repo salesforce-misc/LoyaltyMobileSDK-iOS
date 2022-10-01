@@ -12,13 +12,22 @@ import Firebase
 class SignUpViewModel: ObservableObject {
     
     @Published var enrolledMember: EnrollmentOutputModel?
+    @Published var signUpPresented = false
     @Published var signUpProcessing = false
     @Published var signUpErrorMessage = ""
     @Published var signUpSuccesful = false
+    @Published var email = ""
+    
+    var appViewRouter: AppViewRouter
+    
+    init(appViewRouter: AppViewRouter) {
+        self.appViewRouter = appViewRouter
+    }
     
     func signUpUser(userEmail: String, userPassword: String, firstName: String, lastName: String) {
         
         signUpProcessing = true
+        email = userEmail
         
         Auth.auth().createUser(withEmail: userEmail, password: userPassword) { [weak self] authResult, error in
             
@@ -40,9 +49,11 @@ class SignUpViewModel: ObservableObject {
                         try await ForceAuthManager.shared.grantAuth()
                         self?.enrolledMember = try await LoyaltyAPIManager.shared.postEnrollment(firstName: firstName, lastName: lastName, email: userEmail)
                         if let member = self?.enrolledMember {
-                            self?.signUpSuccesful = true
                             print(member)
                         }
+                        self?.signUpPresented = false
+                        self?.signUpSuccesful = true
+                        self?.appViewRouter.currentPage = .onboardingPage
                         self?.signUpProcessing = false
                     } catch {
                         self?.signUpErrorMessage = error.localizedDescription

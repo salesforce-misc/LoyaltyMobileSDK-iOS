@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CongratsView: View {
     
+    @EnvironmentObject private var appViewRouter: AppViewRouter
     @Environment(\.dismiss) private var dismiss
     
     let email: String
@@ -50,6 +51,8 @@ struct CongratsView: View {
             
             Button(action: {
                 dismiss()
+                appViewRouter.signedIn = true
+                appViewRouter.currentPage = .homePage
             }) {
                 Text("Shop Now!")
             }

@@ -11,9 +11,9 @@ import Firebase
 @MainActor
 class SignInViewModel: ObservableObject {
     
+    @Published var signInPresented = false
     @Published var signInProcessing = false
     @Published var signInErrorMessage = ""
-    @Published var signInSuccesful = false
     
     var appViewRouter: AppViewRouter
     
@@ -43,7 +43,7 @@ class SignInViewModel: ObservableObject {
                     do {
                         try await ForceAuthManager.shared.grantAuth()
                         self?.signInProcessing = false
-                        //self?.signInSuccesful = true
+                        self?.signInPresented = false
                         self?.appViewRouter.signedIn = true
                         self?.appViewRouter.currentPage = .homePage
                     } catch {

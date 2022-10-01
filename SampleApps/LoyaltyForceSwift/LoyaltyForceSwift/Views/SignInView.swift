@@ -10,28 +10,20 @@ import SwiftUI
 struct SignInView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
-    @Environment(\.dismiss) private var dismiss
-    
-    @StateObject private var viewModel: SignInViewModel
+    @EnvironmentObject private var signInVM: SignInViewModel
+    @EnvironmentObject private var signUpVM: SignUpViewModel
     
     @State private var email = ""
     @State private var password = ""
-    
-    @Binding var signUpPresented: Bool
-    
-    init(appViewRouter: AppViewRouter, signUpPresented: Binding<Bool>) {
-        _viewModel = StateObject(wrappedValue: SignInViewModel(appViewRouter: appViewRouter))
-        self._signUpPresented = signUpPresented
-    }
     
     var body: some View {
         
         VStack {
             SheetHeader(title: "Sign In")
-            VStack(spacing: 15) {
+            VStack {
                 SignInCredentialFields(email: $email, password: $password)
                 Button(action: {
-                    viewModel.signInUser(userEmail: email, userPassword: password)
+                    signInVM.signInUser(userEmail: email, userPassword: password)
                 }) {
                     Text("Sign In")
                 }
@@ -39,20 +31,22 @@ struct SignInView: View {
                 .disabled(disableForm)
                 .opacity(disableForm ? 0.5 : 1)
                 
-                if viewModel.signInProcessing {
+                if signInVM.signInProcessing {
                     ProgressView()
                 }
                 
-                if !viewModel.signInErrorMessage.isEmpty {
-                    Text("Failed creating account: \(viewModel.signInErrorMessage)")
+                if !signInVM.signInErrorMessage.isEmpty {
+                    Text("Failed creating account: \(signInVM.signInErrorMessage)")
                         .foregroundColor(.red)
                 }
                 HStack {
                     Text("Not a member?")
                     Button(action: {
-                        dismiss()
-                        signUpPresented = true
+                        signInVM.signInPresented = false
+                        signUpVM.signUpPresented = true
                         appViewRouter.currentPage = .onboardingPage
+                        print("Not a member? Join Now clicked: signUpVM.signUpPresented=\(signUpVM.signUpPresented)")
+                        print("Not a member? Join Now clicked: signInVM.signInPresented=\(signInVM.signInPresented)")
                     }) {
                         Text("Join Now")
                             .font(.buttonText)
@@ -69,7 +63,7 @@ struct SignInView: View {
     var disableForm: Bool {
         if email.isEmpty ||
             password.isEmpty ||
-            viewModel.signInProcessing {
+            signInVM.signInProcessing {
             return true
         }
         return false
@@ -77,10 +71,8 @@ struct SignInView: View {
 }
 
 struct SignInView_Previews: PreviewProvider {
-    static var appViewRouter = AppViewRouter()
     static var previews: some View {
-        SignInView(appViewRouter: appViewRouter, signUpPresented: .constant(false))
-            .environmentObject(appViewRouter)
+        SignInView()
             .previewLayout(.sizeThatFits)
     }
 }

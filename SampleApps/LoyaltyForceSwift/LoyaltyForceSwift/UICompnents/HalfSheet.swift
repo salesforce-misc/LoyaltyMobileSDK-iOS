@@ -12,10 +12,11 @@ class HalfSheetController<Content>: UIHostingController<Content> where Content :
         super.viewWillAppear(animated)
         
         if let presentation = sheetPresentationController {
-            presentation.detents = [.medium(), .large()]
-            presentation.prefersGrabberVisible = true
+            presentation.detents = [.medium()]
+            //presentation.prefersGrabberVisible = true
             presentation.largestUndimmedDetentIdentifier = .medium
             presentation.preferredCornerRadius = 20.0
+            //presentation.selectedDetentIdentifier = .large
         }
     }
 }
