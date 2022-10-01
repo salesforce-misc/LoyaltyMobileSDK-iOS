@@ -9,14 +9,18 @@ import Foundation
 import Firebase
 
 @MainActor
-class SignUpViewModel: ObservableObject {
+class OnboardingViewModel: ObservableObject {
     
     @Published var enrolledMember: EnrollmentOutputModel?
+    
     @Published var signUpPresented = false
     @Published var signUpProcessing = false
     @Published var signUpErrorMessage = ""
     @Published var signUpSuccesful = false
     @Published var email = ""
+    @Published var signInPresented = false
+    @Published var signInProcessing = false
+    @Published var signInErrorMessage = ""
     
     var appViewRouter: AppViewRouter
     
@@ -53,8 +57,8 @@ class SignUpViewModel: ObservableObject {
                         }
                         self?.signUpPresented = false
                         self?.signUpSuccesful = true
-                        self?.appViewRouter.currentPage = .onboardingPage
                         self?.signUpProcessing = false
+                        self?.appViewRouter.currentPage = .onboardingPage
                     } catch {
                         self?.signUpErrorMessage = error.localizedDescription
                         
@@ -77,6 +81,41 @@ class SignUpViewModel: ObservableObject {
             }
             
         }
+    }
+    
+    func signInUser(userEmail: String, userPassword: String) {
+        
+        signInProcessing = true
+        
+        Auth.auth().signIn(withEmail: userEmail, password: userPassword) { [weak self] authResult, error in
+            
+            if let error = error {
+                self?.signInProcessing = false
+                self?.signInErrorMessage = error.localizedDescription
+                return
+            }
+            
+            switch authResult {
+            case .none:
+                print("<Firebase> - Could not sign in user.")
+                self?.signInProcessing = false
+            case .some(_):
+                print("<Firebase> - User signed in")
+                Task{
+                    do {
+                        try await ForceAuthManager.shared.grantAuth()
+                        self?.signInPresented = false
+                        self?.signInProcessing = false
+                        self?.appViewRouter.currentPage = .homePage
+                        self?.appViewRouter.signedIn = true
+                    } catch {
+                        self?.signInErrorMessage = error.localizedDescription
+                    }
+                }
+            }
+            
+        }
+
     }
     
 }

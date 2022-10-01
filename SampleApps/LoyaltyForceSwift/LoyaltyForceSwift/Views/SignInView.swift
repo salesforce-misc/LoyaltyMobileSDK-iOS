@@ -10,8 +10,7 @@ import SwiftUI
 struct SignInView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
-    @EnvironmentObject private var signInVM: SignInViewModel
-    @EnvironmentObject private var signUpVM: SignUpViewModel
+    @EnvironmentObject private var viewModel: OnboardingViewModel
     
     @State private var email = ""
     @State private var password = ""
@@ -23,7 +22,7 @@ struct SignInView: View {
             VStack {
                 SignInCredentialFields(email: $email, password: $password)
                 Button(action: {
-                    signInVM.signInUser(userEmail: email, userPassword: password)
+                    viewModel.signInUser(userEmail: email, userPassword: password)
                 }) {
                     Text("Sign In")
                 }
@@ -31,22 +30,20 @@ struct SignInView: View {
                 .disabled(disableForm)
                 .opacity(disableForm ? 0.5 : 1)
                 
-                if signInVM.signInProcessing {
+                if viewModel.signInProcessing {
                     ProgressView()
                 }
                 
-                if !signInVM.signInErrorMessage.isEmpty {
-                    Text("Failed creating account: \(signInVM.signInErrorMessage)")
+                if !viewModel.signInErrorMessage.isEmpty {
+                    Text("Failed signing in: \(viewModel.signInErrorMessage)")
                         .foregroundColor(.red)
                 }
                 HStack {
                     Text("Not a member?")
                     Button(action: {
-                        signInVM.signInPresented = false
-                        signUpVM.signUpPresented = true
+                        viewModel.signInPresented = false
+                        viewModel.signUpPresented = true
                         appViewRouter.currentPage = .onboardingPage
-                        print("Not a member? Join Now clicked: signUpVM.signUpPresented=\(signUpVM.signUpPresented)")
-                        print("Not a member? Join Now clicked: signInVM.signInPresented=\(signInVM.signInPresented)")
                     }) {
                         Text("Join Now")
                             .font(.buttonText)
@@ -63,7 +60,7 @@ struct SignInView: View {
     var disableForm: Bool {
         if email.isEmpty ||
             password.isEmpty ||
-            signInVM.signInProcessing {
+            viewModel.signInProcessing {
             return true
         }
         return false

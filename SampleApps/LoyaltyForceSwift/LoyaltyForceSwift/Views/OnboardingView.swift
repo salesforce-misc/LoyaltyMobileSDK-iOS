@@ -10,8 +10,7 @@ import SwiftUI
 struct OnboardingView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
-    @StateObject private var signUpVM: SignUpViewModel
-    @StateObject private var signInVM: SignInViewModel
+    @StateObject private var viewModel: OnboardingViewModel
     
     @State private var selectedPage: Int = 0
     @State private var opacityText: Double = 1
@@ -23,8 +22,7 @@ struct OnboardingView: View {
        ]
     
     init(appViewRouter: AppViewRouter) {
-        _signUpVM = StateObject(wrappedValue: SignUpViewModel(appViewRouter: appViewRouter))
-        _signInVM = StateObject(wrappedValue: SignInViewModel(appViewRouter: appViewRouter))
+        _viewModel = StateObject(wrappedValue: OnboardingViewModel(appViewRouter: appViewRouter))
     }
     
     var body: some View {
@@ -85,17 +83,16 @@ struct OnboardingView: View {
                 .padding([.top, .bottom])
 
                 Button(action: {
-                    signUpVM.signUpPresented.toggle()
-                    print("Join Now Clicked: \(signUpVM.signUpPresented)")
+                    viewModel.signUpPresented.toggle()
+                    print("Join Now Clicked: \(viewModel.signUpPresented)")
                 }, label: {
                     Text("Join Now")
                 })
                 .buttonStyle(LightLongButton())
-                .sheet(isPresented: $signUpVM.signUpPresented) {
+                .sheet(isPresented: $viewModel.signUpPresented) {
                     FullSheet {
                         SignUpView()
-                            .environmentObject(signUpVM)
-                            .environmentObject(signInVM)
+                            .environmentObject(viewModel)
                     }
       
                 }
@@ -105,18 +102,17 @@ struct OnboardingView: View {
                         .foregroundColor(Color.white)
                         .padding()
                     Button {
-                        signInVM.signInPresented.toggle()
+                        viewModel.signInPresented.toggle()
                     } label: {
                         Text("Sign In")
                     }
                     .foregroundColor(.white)
                     .font(.buttonText)
                     .offset(x: -20)
-                    .sheet(isPresented: $signInVM.signInPresented) {
+                    .sheet(isPresented: $viewModel.signInPresented) {
                         HalfSheet {
                             SignInView()
-                                .environmentObject(signInVM)
-                                .environmentObject(signUpVM)
+                                .environmentObject(viewModel)
                         }
                         
                     }
@@ -125,8 +121,8 @@ struct OnboardingView: View {
             }
 
         }
-        .sheet(isPresented: $signUpVM.signUpSuccesful) {
-            CongratsView(email: signUpVM.email)
+        .sheet(isPresented: $viewModel.signUpSuccesful) {
+            CongratsView(email: viewModel.email)
                 .interactiveDismissDisabled()
         }
 

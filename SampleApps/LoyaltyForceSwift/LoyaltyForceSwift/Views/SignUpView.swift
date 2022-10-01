@@ -10,8 +10,7 @@ import SwiftUI
 struct SignUpView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
-    @EnvironmentObject private var signUpVM: SignUpViewModel
-    @EnvironmentObject private var signInVM: SignInViewModel
+    @EnvironmentObject private var viewModel: OnboardingViewModel
     
     @State private var firstName = ""
     @State private var lastName = ""
@@ -35,7 +34,7 @@ struct SignUpView: View {
                     passwordConfirmation: $passwordConfirmation)
                 
                 Button(action: {
-                    signUpVM.signUpUser(userEmail: email, userPassword: password, firstName: firstName, lastName: lastName)
+                    viewModel.signUpUser(userEmail: email, userPassword: password, firstName: firstName, lastName: lastName)
                 }) {
                     Text("Join")
                 }
@@ -43,23 +42,21 @@ struct SignUpView: View {
                 .disabled(disableForm)
                 .opacity(disableForm ? 0.5 : 1)
                 
-                if signUpVM.signUpProcessing {
+                if viewModel.signUpProcessing {
                     ProgressView()
                 }
                 
-                if !signUpVM.signUpErrorMessage.isEmpty {
-                    Text("Failed creating account: \(signUpVM.signUpErrorMessage)")
+                if !viewModel.signUpErrorMessage.isEmpty {
+                    Text("Failed creating account: \(viewModel.signUpErrorMessage)")
                         .foregroundColor(.red)
                 }
                 
                 HStack {
                     Text("Already a member?")
                     Button(action: {
-                        signUpVM.signUpPresented = false
-                        signInVM.signInPresented = true
+                        viewModel.signUpPresented = false
+                        viewModel.signInPresented = true
                         appViewRouter.currentPage = .onboardingPage
-                        print("Aleady a member clicked: signUpVM.signUpPresented=\(signUpVM.signUpPresented)")
-                        print("Aleady a member clicked: signInVM.signInPresented=\(signInVM.signInPresented)")
                         
                     }) {
                         Text("Sign In")
@@ -82,7 +79,7 @@ struct SignUpView: View {
             password.isEmpty ||
             passwordConfirmation.isEmpty ||
             password != passwordConfirmation ||
-            signUpVM.signUpProcessing {
+            viewModel.signUpProcessing {
             return true
         }
         return false

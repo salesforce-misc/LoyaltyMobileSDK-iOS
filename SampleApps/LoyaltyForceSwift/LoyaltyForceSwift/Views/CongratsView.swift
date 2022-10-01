@@ -51,8 +51,8 @@ struct CongratsView: View {
             
             Button(action: {
                 dismiss()
-                appViewRouter.signedIn = true
                 appViewRouter.currentPage = .homePage
+                appViewRouter.signedIn = true
             }) {
                 Text("Shop Now!")
             }
