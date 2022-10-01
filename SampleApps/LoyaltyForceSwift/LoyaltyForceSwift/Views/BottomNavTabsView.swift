@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BottomNavTabsView: View {
-    @Environment(\.scenePhase) var scenePhase
+
     @State private var selectedTab = 0
     
     var body: some View {

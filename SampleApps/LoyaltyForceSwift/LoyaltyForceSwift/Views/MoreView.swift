@@ -23,10 +23,10 @@ struct MoreView: View {
     let menuItems: [MenuItem] = [
         MenuItem(icon: "ic-person", title: "Personal Information"),
         MenuItem(icon: "ic-address", title: "Address"),
-        MenuItem(icon: "ic-card", title: "Payment Methods"),
-        MenuItem(icon: "ic-orders", title: "Orders"),
-        MenuItem(icon: "ic-benefits", title: "Benefits"),
-        MenuItem(icon: "ic-case", title: "Case Tickets"),
+        //MenuItem(icon: "ic-card", title: "Payment Methods"),
+        //MenuItem(icon: "ic-orders", title: "Orders"),
+        //MenuItem(icon: "ic-benefits", title: "Benefits"),
+        //MenuItem(icon: "ic-case", title: "Case Tickets"),
         MenuItem(icon: "ic-heart", title: "Favorites")
     ]
     var body: some View {
@@ -57,8 +57,9 @@ struct MoreView: View {
                             .font(.menuText)
                             .foregroundColor(Color.theme.accent)
                     }
+                    .buttonStyle(.plain)
                     .listRowSeparator(.hidden, edges: .bottom)
-                    .frame(height: 65)
+                    .frame(height: 72)
                 }
                 .listStyle(.plain)
                 .navigationBarHidden(true)

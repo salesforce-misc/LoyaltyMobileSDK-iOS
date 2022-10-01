@@ -63,6 +63,12 @@
 		298613D428CC085D00BDC744 /* ForceAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613D328CC085D00BDC744 /* ForceAuthManager.swift */; };
 		298613D628CC275500BDC744 /* Salesforce.json in Resources */ = {isa = PBXBuildFile; fileRef = 298613D528CC275500BDC744 /* Salesforce.json */; };
 		299B38CA28E365AD00E45D97 /* HalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38C928E365AD00E45D97 /* HalfSheet.swift */; };
+		299B38CC28E3B57200E45D97 /* EnrollmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38CB28E3B57200E45D97 /* EnrollmentModel.swift */; };
+		299B38CE28E3CF9900E45D97 /* EnrollmentOutputModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38CD28E3CF9900E45D97 /* EnrollmentOutputModel.swift */; };
+		299B38D028E3DECE00E45D97 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38CF28E3DECE00E45D97 /* OnboardingViewModel.swift */; };
+		299B38D228E510DD00E45D97 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D128E510DD00E45D97 /* DateFormatter.swift */; };
+		299B38D428E5F78400E45D97 /* CongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D328E5F78400E45D97 /* CongratsView.swift */; };
+		299B38D828E796BC00E45D97 /* FullSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D728E796BC00E45D97 /* FullSheet.swift */; };
 		29AB2E1C28E2763700D4B32C /* SheetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AB2E1B28E2763700D4B32C /* SheetHeader.swift */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +130,12 @@
 		298613D328CC085D00BDC744 /* ForceAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceAuthManager.swift; sourceTree = "<group>"; };
 		298613D528CC275500BDC744 /* Salesforce.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Salesforce.json; sourceTree = "<group>"; };
 		299B38C928E365AD00E45D97 /* HalfSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSheet.swift; sourceTree = "<group>"; };
+		299B38CB28E3B57200E45D97 /* EnrollmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentModel.swift; sourceTree = "<group>"; };
+		299B38CD28E3CF9900E45D97 /* EnrollmentOutputModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentOutputModel.swift; sourceTree = "<group>"; };
+		299B38CF28E3DECE00E45D97 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		299B38D128E510DD00E45D97 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		299B38D328E5F78400E45D97 /* CongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsView.swift; sourceTree = "<group>"; };
+		299B38D728E796BC00E45D97 /* FullSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullSheet.swift; sourceTree = "<group>"; };
 		29AB2E1B28E2763700D4B32C /* SheetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +156,7 @@
 			children = (
 				216A9CC028BDD958007881FE /* BenefitViewModel.swift */,
 				298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */,
+				299B38CF28E3DECE00E45D97 /* OnboardingViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -206,6 +219,7 @@
 				216F219628B618AD00DAA66D /* SignUpView.swift */,
 				216F219828B618BB00DAA66D /* SignInView.swift */,
 				29AB2E1B28E2763700D4B32C /* SheetHeader.swift */,
+				299B38D328E5F78400E45D97 /* CongratsView.swift */,
 				218A36A928B85CA500FCEE39 /* BottomNavTabsView.swift */,
 				216F219A28B618C700DAA66D /* HomeView.swift */,
 				218A36B428B85E4C00FCEE39 /* BenefitView.swift */,
@@ -245,6 +259,7 @@
 				2941A23E28BE803F005026CF /* Color.swift */,
 				2938C60728CFED0600F495AF /* Collection+URLQueryItem.swift */,
 				291CC0B028D1410500C08572 /* UserDefaults.swift */,
+				299B38D128E510DD00E45D97 /* DateFormatter.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -255,6 +270,8 @@
 				2944F88328B98DA10098ED1B /* BenefitModel.swift */,
 				298613CD28CBC10300BDC744 /* ProfileModel.swift */,
 				296D393028DBCB530078C88E /* OnboardingModel.swift */,
+				299B38CB28E3B57200E45D97 /* EnrollmentModel.swift */,
+				299B38CD28E3CF9900E45D97 /* EnrollmentOutputModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -266,6 +283,7 @@
 				296D393F28DE59240078C88E /* TextFieldStyles.swift */,
 				296D394128DE76A40078C88E /* RevealableSecureField.swift */,
 				299B38C928E365AD00E45D97 /* HalfSheet.swift */,
+				299B38D728E796BC00E45D97 /* FullSheet.swift */,
 			);
 			path = UICompnents;
 			sourceTree = "<group>";
@@ -381,16 +399,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				216F219928B618BB00DAA66D /* SignInView.swift in Sources */,
+				299B38D428E5F78400E45D97 /* CongratsView.swift in Sources */,
 				291CC0B828D5260A00C08572 /* Record.swift in Sources */,
+				299B38D228E510DD00E45D97 /* DateFormatter.swift in Sources */,
 				218A36AA28B85CA500FCEE39 /* BottomNavTabsView.swift in Sources */,
 				216F219B28B618C700DAA66D /* HomeView.swift in Sources */,
 				298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */,
+				299B38CC28E3B57200E45D97 /* EnrollmentModel.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
 				2941A23F28BE803F005026CF /* Color.swift in Sources */,
 				296D393328DBCE050078C88E /* OnboardingView.swift in Sources */,
 				291CC0BD28D53A0000C08572 /* LoyaltyQueryModels.swift in Sources */,
 				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
 				2938C60828CFED0600F495AF /* Collection+URLQueryItem.swift in Sources */,
+				299B38D828E796BC00E45D97 /* FullSheet.swift in Sources */,
 				2938C60228CE84B900F495AF /* Keychain.swift in Sources */,
 				291CC0B628D4EEF300C08572 /* QueryResult.swift in Sources */,
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
@@ -417,6 +439,7 @@
 				2938C60428CE852D00F495AF /* ForceAuthStore.swift in Sources */,
 				298613A828C9021400BDC744 /* ProfileHeaderView.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
+				299B38CE28E3CF9900E45D97 /* EnrollmentOutputModel.swift in Sources */,
 				2944F88428B98DA10098ED1B /* BenefitModel.swift in Sources */,
 				291CC0B428D39D4A00C08572 /* LoyaltyAPIManager.swift in Sources */,
 				296D393E28DE1EFF0078C88E /* ButtonStyles.swift in Sources */,
@@ -426,6 +449,7 @@
 				218A36AC28B85D5500FCEE39 /* RewardsView.swift in Sources */,
 				2986139D28C15E9500BDC744 /* ForceError.swift in Sources */,
 				2938C60628CFCBB200F495AF /* WebAuthenticationSession.swift in Sources */,
+				299B38D028E3DECE00E45D97 /* OnboardingViewModel.swift in Sources */,
 				298613A428C175CA00BDC744 /* ForceAuth.swift in Sources */,
 				29AB2E1C28E2763700D4B32C /* SheetHeader.swift in Sources */,
 				296D394028DE59240078C88E /* TextFieldStyles.swift in Sources */,
@@ -576,9 +600,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.LoyaltyForceSwift;
 				PRODUCT_NAME = LoyaltyForceSwift;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -609,9 +636,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.LoyaltyForceSwift;
 				PRODUCT_NAME = LoyaltyForceSwift;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

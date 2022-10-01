@@ -6,145 +6,73 @@
 //
 
 import SwiftUI
-import Firebase
 
 struct SignInView: View {
     
-    @EnvironmentObject var appViewRouter: AppViewRouter
-    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var appViewRouter: AppViewRouter
+    @EnvironmentObject private var viewModel: OnboardingViewModel
     
-    @State var email = ""
-    @State var password = ""
+    @State private var email = ""
+    @State private var password = ""
     
-    @State var signInProcessing = false
-    @State var signInErrorMessage = ""
-    
+    @Binding var signInPresented: Bool
     @Binding var signUpPresented: Bool
     
     var body: some View {
         
-//https://swiftversion.net/
-#if compiler(>=5.7)
-
-        if #available(iOS 16.0, *) {
+        VStack {
+            SheetHeader(title: "Sign In")
             VStack {
-                SheetHeader(title: "Sign In")
-                VStack(spacing: 15) {
-                    SignInCredentialFields(email: $email, password: $password)
-                    Button(action: {
-                        signInUser(userEmail: email, userPassword: password)
-                    }) {
-                        Text("Sign In")
-                    }
-                    .buttonStyle(DarkLongButton())
-                    .disabled(!signInProcessing && !email.isEmpty && !password.isEmpty ? false : true)
-                    if signInProcessing {
-                        ProgressView()
-                    }
-                    if !signInErrorMessage.isEmpty {
-                        Text("Failed creating account: \(signInErrorMessage)")
-                            .foregroundColor(.red)
-                    }
-                    HStack {
-                        Text("Not a member?")
-                        Button(action: {
-                            dismiss()
-                            signUpPresented = true
-                            appViewRouter.currentPage = .onboardingPage
-                        }) {
-                            Text("Join Now")
-                                .font(.buttonText)
-                        }
-                        .presentationDetents([.height(405)])
-                    }
+                SignInCredentialFields(email: $email, password: $password)
+                Button(action: {
+                    viewModel.signInUser(userEmail: email, userPassword: password)
+                }) {
+                    Text("Sign In")
                 }
-                .padding()
-                Spacer()
-            }
-            
-        }
-#endif
-
-        if #available(iOS 16.0, *) {} else {
-            HalfSheet {
-                VStack {
-                    SheetHeader(title: "Sign In")
-                    VStack(spacing: 15) {
-                        SignInCredentialFields(email: $email, password: $password)
-                        Button(action: {
-                            signInUser(userEmail: email, userPassword: password)
-                        }) {
-                            Text("Sign In")
-                        }
-                        .buttonStyle(DarkLongButton())
-                        .disabled(!signInProcessing && !email.isEmpty && !password.isEmpty ? false : true)
-                        if signInProcessing {
-                            ProgressView()
-                        }
-                        if !signInErrorMessage.isEmpty {
-                            Text("Failed creating account: \(signInErrorMessage)")
-                                .foregroundColor(.red)
-                        }
-                        HStack {
-                            Text("Not a member?")
-                            Button(action: {
-                                dismiss()
-                                signUpPresented = true
-                                appViewRouter.currentPage = .onboardingPage
-                            }) {
-                                Text("Join Now")
-                                    .font(.buttonText)
-                            }
-
-                        }
-                    }
-                    .padding()
-                    Spacer()
+                .buttonStyle(DarkLongButton())
+                .disabled(disableForm)
+                .opacity(disableForm ? 0.5 : 1)
+                
+                if viewModel.signInProcessing {
+                    ProgressView()
                 }
                 
-            }
-        }
-
-
-    }
-    
-    func signInUser(userEmail: String, userPassword: String) {
-        
-        signInProcessing = true
-        
-        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-            
-            guard error == nil else {
-                signInProcessing = false
-                signInErrorMessage = error!.localizedDescription
-                return
-            }
-            switch authResult {
-            case .none:
-                print("Could not sign in user.")
-                signInProcessing = false
-            case .some(_):
-                print("User signed in")
-                signInProcessing = false
-                appViewRouter.currentPage = .homePage
-                appViewRouter.signedIn = true
-                Task{
-                    do {
-                        try await ForceAuthManager.shared.grantAuth()
-                    }catch {
-                        print("failed to grantAuth")
+                if !viewModel.signInErrorMessage.isEmpty {
+                    Text("Failed signing in: \(viewModel.signInErrorMessage)")
+                        .foregroundColor(.red)
+                }
+                HStack {
+                    Text("Not a member?")
+                    Button(action: {
+                        signInPresented = false
+                        signUpPresented = true
+                        appViewRouter.currentPage = .onboardingPage
+                    }) {
+                        Text("Join Now")
+                            .font(.buttonText)
                     }
+                    //.presentationDetents([.height(405)])
                 }
             }
-            
+            .padding()
+            Spacer()
         }
-
+        
+    }
+    
+    var disableForm: Bool {
+        if email.isEmpty ||
+            password.isEmpty ||
+            viewModel.signInProcessing {
+            return true
+        }
+        return false
     }
 }
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView(signUpPresented: .constant(false))
+        SignInView(signInPresented: .constant(false), signUpPresented: .constant(false))
             .previewLayout(.sizeThatFits)
     }
 }
@@ -158,6 +86,7 @@ struct SignInCredentialFields: View {
         Group {
             TextField("Email", text: $email)
                 .textFieldStyle(RegularTextFieldStyle())
+                .keyboardType(.emailAddress)
             RevealableSecureField("Password", text: $password)
         }
     }

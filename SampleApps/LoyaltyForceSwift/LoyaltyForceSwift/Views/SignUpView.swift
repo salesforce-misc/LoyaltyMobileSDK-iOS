@@ -6,164 +6,122 @@
 //
 
 import SwiftUI
-import Firebase
 
 struct SignUpView: View {
     
-    @EnvironmentObject var appViewRouter: AppViewRouter
-    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var appViewRouter: AppViewRouter
+    @EnvironmentObject private var viewModel: OnboardingViewModel
     
-    @State var email = ""
-    @State var password = ""
-    @State var passwordConfirmation = ""
-    
-    @State var signUpProcessing = false
-    @State var signUpErrorMessage = ""
+    @State private var firstName = ""
+    @State private var lastName = ""
+    //@State private var mobileNumber = ""
+    @State private var email = ""
+    //@State private var username = ""
+    @State private var password = ""
+    @State private var passwordConfirmation = ""
     
     @Binding var signInPresented: Bool
+    @Binding var signUpPresented: Bool
     
     var body: some View {
         
-//https://swiftversion.net/
-#if compiler(>=5.7)
-        if #available(iOS 16.0, *) {
-            VStack {
-                SheetHeader(title: "Join")
-                VStack(spacing: 15) {
-                    SignUpCredentialFields(email: $email, password: $password, passwordConfirmation: $passwordConfirmation)
-                    Button(action: {
-                        signUpUser(userEmail: email, userPassword: password)
-                    }) {
-                        Text("Join")
-                    }
-                    .buttonStyle(DarkLongButton())
-                    .disabled(!signUpProcessing && !email.isEmpty && !password.isEmpty && !passwordConfirmation.isEmpty && password == passwordConfirmation ? false : true)
-                    if signUpProcessing {
-                        ProgressView()
-                    }
-                    if !signUpErrorMessage.isEmpty {
-                        Text("Failed creating account: \(signUpErrorMessage)")
-                            .foregroundColor(.red)
-                    }
-                    HStack {
-                        Text("Already a member?")
-                        Button(action: {
-                            dismiss()
-                            signInPresented = true
-                            appViewRouter.currentPage = .onboardingPage
-                        }) {
-                            Text("Sign In")
-                                .font(.buttonText)
-                        }
-                        .presentationDetents([.height(746)])
-
-                    }
-                }
-                .padding()
-                Spacer()
-            }
-        }
-#endif
+        VStack {
+            SheetHeader(title: "Join")
             
-        if #available(iOS 16.0, *) {} else {
-            HalfSheet {
-                VStack {
-                    SheetHeader(title: "Join")
-                    VStack(spacing: 15) {
-                        SignUpCredentialFields(email: $email, password: $password, passwordConfirmation: $passwordConfirmation)
-                        Button(action: {
-                            signUpUser(userEmail: email, userPassword: password)
-                        }) {
-                            Text("Join")
-                        }
-                        .buttonStyle(DarkLongButton())
-                        .disabled(!signUpProcessing && !email.isEmpty && !password.isEmpty && !passwordConfirmation.isEmpty && password == passwordConfirmation ? false : true)
-                        if signUpProcessing {
-                            ProgressView()
-                        }
-                        if !signUpErrorMessage.isEmpty {
-                            Text("Failed creating account: \(signUpErrorMessage)")
-                                .foregroundColor(.red)
-                        }
-                        HStack {
-                            Text("Already a member?")
-                            Button(action: {
-                                dismiss()
-                                signInPresented = true
-                                appViewRouter.currentPage = .onboardingPage
-                            }) {
-                                Text("Sign In")
-                                    .font(.buttonText)
-                            }
-
-                        }
-                    }
-                    .padding()
-                    Spacer()
+            VStack(spacing: 15) {
+                SignUpCredentialFields(
+                    firstName: $firstName,
+                    lastName: $lastName,
+                    email: $email,
+                    password: $password,
+                    passwordConfirmation: $passwordConfirmation)
+                
+                Button(action: {
+                    viewModel.signUpUser(userEmail: email, userPassword: password, firstName: firstName, lastName: lastName)
+                }) {
+                    Text("Join")
+                }
+                .buttonStyle(DarkLongButton())
+                .disabled(disableForm)
+                .opacity(disableForm ? 0.5 : 1)
+                
+                if viewModel.signUpProcessing {
+                    ProgressView()
                 }
                 
+                if !viewModel.signUpErrorMessage.isEmpty {
+                    Text("Failed creating account: \(viewModel.signUpErrorMessage)")
+                        .foregroundColor(.red)
+                }
+                
+                HStack {
+                    Text("Already a member?")
+                    Button(action: {
+                        signUpPresented = false
+                        signInPresented = true
+                        appViewRouter.currentPage = .onboardingPage
+                        
+                    }) {
+                        Text("Sign In")
+                            .font(.buttonText)
+                    }
+                    //.presentationDetents([.height(746)])
+                    
+                }
             }
+            .padding()
+            Spacer()
         }
-        
 
     }
     
-    func signUpUser(userEmail: String, userPassword: String) {
-        
-        signUpProcessing = true
-        
-        Auth.auth().createUser(withEmail: userEmail, password: userPassword) { authResult, error in
-            guard error == nil else {
-                signUpErrorMessage = error!.localizedDescription
-                signUpProcessing = false
-                return
-            }
-            
-            switch authResult {
-            case .none:
-                print("Could not create account.")
-                signUpProcessing = false
-            case .some(_):
-                print("User created")
-                signUpProcessing = false
-                appViewRouter.currentPage = .homePage
-                appViewRouter.signedIn = true
-                Task{
-                    do {
-                        try await ForceAuthManager.shared.grantAuth()
-                    }catch {
-                        print("failed to grantAuth")
-                    }
-                }
-            }
+    var disableForm: Bool {
+        if firstName.isEmpty ||
+            lastName.isEmpty ||
+            email.isEmpty ||
+            password.isEmpty ||
+            passwordConfirmation.isEmpty ||
+            password != passwordConfirmation ||
+            viewModel.signUpProcessing {
+            return true
         }
-        
+        return false
     }
     
 }
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView(signInPresented: .constant(false))
+        SignUpView(signInPresented: .constant(false), signUpPresented: .constant(false))
             .previewLayout(.sizeThatFits)
     }
 }
 
 struct SignUpCredentialFields: View {
     
+    @Binding var firstName: String
+    @Binding var lastName: String
+    //@Binding var mobileNumber: String
     @Binding var email: String
+    //@Binding var username: String
     @Binding var password: String
     @Binding var passwordConfirmation: String
     
     var body: some View {
         Group {
-            TextField("Email", text: $email)
+            TextField("First Name", text: $firstName)
                 .textFieldStyle(RegularTextFieldStyle())
-
+            TextField("Last Name", text: $lastName)
+                .textFieldStyle(RegularTextFieldStyle())
+            TextField("Email Address", text: $email)
+                .textFieldStyle(RegularTextFieldStyle())
+                .keyboardType(.emailAddress)
             RevealableSecureField("Password", text: $password)
-
             RevealableSecureField("Confirm Password", text: $passwordConfirmation)
-                .border(Color.red, width: passwordConfirmation != password ? 1 : 0)
+                .overlay(RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.red, lineWidth: passwordConfirmation != password ? 2 : 0)
+                    .padding([.leading, .trailing])
+                )
             
         }
     }

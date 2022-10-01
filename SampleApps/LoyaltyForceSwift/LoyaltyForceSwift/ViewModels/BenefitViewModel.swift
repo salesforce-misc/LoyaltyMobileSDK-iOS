@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import Combine
 
 class BenefitViewModel: ObservableObject {
     
@@ -18,15 +17,17 @@ class BenefitViewModel: ObservableObject {
     func getBenefits(memberId: String) async throws {
         
         do {
-            isLoaded = false
-            benefits = []
+            await MainActor.run {
+                isLoaded = false
+                benefits = []
+            }
                         
             let results: [BenefitModel] = try await LoyaltyAPIManager.shared.getMemberBenefits(for: memberId)
             try await updateBenefitDescs(benefits: results)
 
             await MainActor.run {
                 isLoaded = true
-                self.benefits = results
+                benefits = results
             }
             
         } catch {
@@ -45,7 +46,7 @@ class BenefitViewModel: ObservableObject {
                     continue
                 }
                 await MainActor.run {
-                    self.benefitDescs[id] = desc
+                    benefitDescs[id] = desc
                 }
                 
             }
