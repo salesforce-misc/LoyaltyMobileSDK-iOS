@@ -14,9 +14,9 @@ class HalfSheetController<Content>: UIHostingController<Content> where Content :
         if let presentation = sheetPresentationController {
             presentation.detents = [.medium()]
             //presentation.prefersGrabberVisible = true
-            presentation.largestUndimmedDetentIdentifier = .medium
+            //presentation.largestUndimmedDetentIdentifier = .medium // This will cause TabView losing accent color of selected tab
             presentation.preferredCornerRadius = 20.0
-            //presentation.selectedDetentIdentifier = .large
+            presentation.selectedDetentIdentifier = .medium
         }
     }
 }

@@ -14,6 +14,8 @@ struct OnboardingView: View {
     
     @State private var selectedPage: Int = 0
     @State private var opacityText: Double = 1
+    @State private var signUpPresented: Bool = false
+    @State private var signInPresented: Bool = false
     
     private let onboardingData: [OnboardingModel] = [
         OnboardingModel(image: "img-onboarding1", description: "Convert your points into reward coupons!"),
@@ -83,15 +85,15 @@ struct OnboardingView: View {
                 .padding([.top, .bottom])
 
                 Button(action: {
-                    viewModel.signUpPresented.toggle()
-                    print("Join Now Clicked: \(viewModel.signUpPresented)")
+                    signUpPresented.toggle()
+                    print("Join Now Clicked: \(signUpPresented)")
                 }, label: {
                     Text("Join Now")
                 })
                 .buttonStyle(LightLongButton())
-                .sheet(isPresented: $viewModel.signUpPresented) {
+                .sheet(isPresented: $signUpPresented) {
                     FullSheet {
-                        SignUpView()
+                        SignUpView(signInPresented: $signInPresented, signUpPresented: $signUpPresented)
                             .environmentObject(viewModel)
                     }
       
@@ -102,16 +104,16 @@ struct OnboardingView: View {
                         .foregroundColor(Color.white)
                         .padding()
                     Button {
-                        viewModel.signInPresented.toggle()
+                        signInPresented.toggle()
                     } label: {
                         Text("Sign In")
                     }
                     .foregroundColor(.white)
                     .font(.buttonText)
                     .offset(x: -20)
-                    .sheet(isPresented: $viewModel.signInPresented) {
+                    .sheet(isPresented: $signInPresented) {
                         HalfSheet {
-                            SignInView()
+                            SignInView(signInPresented: $signInPresented, signUpPresented: $signUpPresented)
                                 .environmentObject(viewModel)
                         }
                         

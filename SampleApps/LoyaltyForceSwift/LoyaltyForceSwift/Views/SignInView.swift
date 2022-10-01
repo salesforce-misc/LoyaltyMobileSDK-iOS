@@ -15,6 +15,9 @@ struct SignInView: View {
     @State private var email = ""
     @State private var password = ""
     
+    @Binding var signInPresented: Bool
+    @Binding var signUpPresented: Bool
+    
     var body: some View {
         
         VStack {
@@ -41,8 +44,8 @@ struct SignInView: View {
                 HStack {
                     Text("Not a member?")
                     Button(action: {
-                        viewModel.signInPresented = false
-                        viewModel.signUpPresented = true
+                        signInPresented = false
+                        signUpPresented = true
                         appViewRouter.currentPage = .onboardingPage
                     }) {
                         Text("Join Now")
@@ -69,7 +72,7 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView()
+        SignInView(signInPresented: .constant(false), signUpPresented: .constant(false))
             .previewLayout(.sizeThatFits)
     }
 }

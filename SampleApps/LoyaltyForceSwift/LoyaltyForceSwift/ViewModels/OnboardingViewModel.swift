@@ -13,12 +13,10 @@ class OnboardingViewModel: ObservableObject {
     
     @Published var enrolledMember: EnrollmentOutputModel?
     
-    @Published var signUpPresented = false
     @Published var signUpProcessing = false
     @Published var signUpErrorMessage = ""
     @Published var signUpSuccesful = false
     @Published var email = ""
-    @Published var signInPresented = false
     @Published var signInProcessing = false
     @Published var signInErrorMessage = ""
     
@@ -55,7 +53,6 @@ class OnboardingViewModel: ObservableObject {
                         if let member = self?.enrolledMember {
                             print(member)
                         }
-                        self?.signUpPresented = false
                         self?.signUpSuccesful = true
                         self?.signUpProcessing = false
                         self?.appViewRouter.currentPage = .onboardingPage
@@ -104,7 +101,6 @@ class OnboardingViewModel: ObservableObject {
                 Task{
                     do {
                         try await ForceAuthManager.shared.grantAuth()
-                        self?.signInPresented = false
                         self?.signInProcessing = false
                         self?.appViewRouter.currentPage = .homePage
                         self?.appViewRouter.signedIn = true
