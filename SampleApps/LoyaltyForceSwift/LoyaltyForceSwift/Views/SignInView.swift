@@ -22,7 +22,7 @@ struct SignInView: View {
         
         VStack {
             SheetHeader(title: "Sign In")
-            VStack {
+            VStack(spacing: 15) {
                 SignInCredentialFields(email: $email, password: $password)
                 Button(action: {
                     viewModel.signInUser(userEmail: email, userPassword: password)

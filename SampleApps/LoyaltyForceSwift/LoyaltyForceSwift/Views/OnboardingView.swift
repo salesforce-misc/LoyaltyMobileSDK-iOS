@@ -32,7 +32,7 @@ struct OnboardingView: View {
         ZStack {
             TabView(selection: $selectedPage) {
                 ForEach(0..<pageCount, id: \.self) { index in
-                    OnboardingCardView(card : onboardingData[index]).tag(index)
+                    OnboardingCardView(card: onboardingData[index]).tag(index)
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
@@ -86,7 +86,6 @@ struct OnboardingView: View {
 
                 Button(action: {
                     signUpPresented.toggle()
-                    print("Join Now Clicked: \(signUpPresented)")
                 }, label: {
                     Text("Join Now")
                 })
