@@ -16,6 +16,8 @@ struct OnboardingView: View {
     @State private var opacityText: Double = 1
     @State private var signUpPresented: Bool = false
     @State private var signInPresented: Bool = false
+    @State private var showResetPassword: Bool = false
+    @State private var showCreateNewPassword: Bool = false
     
     private let onboardingData: [OnboardingModel] = [
         OnboardingModel(image: "img-onboarding1", description: "Convert your points into reward coupons!"),
@@ -112,7 +114,9 @@ struct OnboardingView: View {
                     .offset(x: -20)
                     .sheet(isPresented: $signInPresented) {
                         HalfSheet {
-                            SignInView(signInPresented: $signInPresented, signUpPresented: $signUpPresented)
+                            SignInView(signInPresented: $signInPresented,
+                                       signUpPresented: $signUpPresented,
+                                       showResetPassword: $showResetPassword)
                                 .environmentObject(viewModel)
                         }
                         
@@ -121,6 +125,15 @@ struct OnboardingView: View {
                 
             }
 
+            if showResetPassword {
+                ResetPasswordView(showResetPassword: $showResetPassword, signInPresented: $signInPresented)
+                    .environmentObject(viewModel)
+                    .transition(.move(edge: .trailing))
+            }
+            
+            if showCreateNewPassword {
+                CreateNewPasswordView(showCreateNewPassword: $showCreateNewPassword)
+            }
         }
         .sheet(isPresented: $viewModel.signUpSuccesful) {
             CongratsView(email: viewModel.email)

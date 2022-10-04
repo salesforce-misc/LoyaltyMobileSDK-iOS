@@ -19,6 +19,9 @@ class OnboardingViewModel: ObservableObject {
     @Published var email = ""
     @Published var signInProcessing = false
     @Published var signInErrorMessage = ""
+    @Published var requestResetPassProcessing = false
+    @Published var requestResetPassErrorMessage = ""
+    @Published var resetPasswordEmailSent = false
     
     var appViewRouter: AppViewRouter
     
@@ -112,6 +115,24 @@ class OnboardingViewModel: ObservableObject {
             
         }
 
+    }
+    
+    func requestResetPassword(userEmail: String) {
+        
+        requestResetPassProcessing = true
+        
+        Auth.auth().sendPasswordReset(withEmail: userEmail) { [weak self] error in
+            
+            if let error = error {
+                self?.requestResetPassProcessing = false
+                self?.requestResetPassErrorMessage = error.localizedDescription
+                return
+            }
+            
+            self?.resetPasswordEmailSent = true
+            self?.requestResetPassProcessing = false
+            
+        }
     }
     
 }

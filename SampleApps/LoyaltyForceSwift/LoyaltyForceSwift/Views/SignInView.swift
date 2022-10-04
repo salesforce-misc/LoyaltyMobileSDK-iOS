@@ -17,6 +17,8 @@ struct SignInView: View {
     
     @Binding var signInPresented: Bool
     @Binding var signUpPresented: Bool
+    @Binding var showResetPassword: Bool
+    
     
     var body: some View {
         
@@ -24,6 +26,24 @@ struct SignInView: View {
             SheetHeader(title: "Sign In")
             VStack(spacing: 15) {
                 SignInCredentialFields(email: $email, password: $password)
+                
+                // reset password
+                HStack {
+                    Text("Forgor Password?")
+                        .foregroundColor(Color.theme.accent)
+                        .font(.regularText)
+                        .onTapGesture {
+                            withAnimation {
+                                signUpPresented = false
+                                signInPresented = false
+                                showResetPassword.toggle()
+                            }
+                            
+                        }
+                    Spacer()
+                }
+                .padding([.top, .leading, .trailing])
+                
                 Button(action: {
                     viewModel.signInUser(userEmail: email, userPassword: password)
                 }) {
@@ -72,7 +92,9 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView(signInPresented: .constant(false), signUpPresented: .constant(false))
+        SignInView(signInPresented: .constant(false),
+                   signUpPresented: .constant(false),
+                   showResetPassword: .constant(false))
             .previewLayout(.sizeThatFits)
     }
 }

@@ -45,6 +45,18 @@ extension Font {
         return Font.custom("SFPro-Regular", size: 16)
     }
     
+    /// Check you email
+    
+    static var skipText: Font {
+        return Font.custom("SFPro-Medium", size: 16)
+    }
+    
+    /// Create New Password
+    
+    static var textFieldLabel: Font {
+        return Font.custom("Archivo-Semibold", size: 14)
+    }
+    
     /// Landing Page
     
     static var pageTitle: Font {
