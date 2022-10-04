@@ -19,12 +19,7 @@ class OnboardingViewModel: ObservableObject {
     @Published var email = ""
     @Published var signInProcessing = false
     @Published var signInErrorMessage = ""
-    
-    var appViewRouter: AppViewRouter
-    
-    init(appViewRouter: AppViewRouter) {
-        self.appViewRouter = appViewRouter
-    }
+    @Published var signInSuccesful = false
     
     func signUpUser(userEmail: String, userPassword: String, firstName: String, lastName: String) {
         
@@ -55,7 +50,6 @@ class OnboardingViewModel: ObservableObject {
                         }
                         self?.signUpSuccesful = true
                         self?.signUpProcessing = false
-                        self?.appViewRouter.currentPage = .onboardingPage
                     } catch {
                         self?.signUpErrorMessage = error.localizedDescription
                         
@@ -102,8 +96,7 @@ class OnboardingViewModel: ObservableObject {
                     do {
                         try await ForceAuthManager.shared.grantAuth()
                         self?.signInProcessing = false
-                        self?.appViewRouter.currentPage = .homePage
-                        self?.appViewRouter.signedIn = true
+                        self?.signInSuccesful = true
                     } catch {
                         self?.signInErrorMessage = error.localizedDescription
                     }
