@@ -10,7 +10,7 @@ import SwiftUI
 struct OnboardingView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
-    @StateObject private var viewModel: OnboardingViewModel
+    @StateObject private var viewModel = OnboardingViewModel()
     
     @State private var selectedPage: Int = 0
     @State private var opacityText: Double = 1
@@ -24,10 +24,6 @@ struct OnboardingView: View {
         OnboardingModel(image: "img-onboarding2", description: "The more points, the more rewards!"),
         OnboardingModel(image: "img-onboarding3", description: "Get personalized offers, just for you!")
        ]
-    
-    init(appViewRouter: AppViewRouter) {
-        _viewModel = StateObject(wrappedValue: OnboardingViewModel(appViewRouter: appViewRouter))
-    }
     
     var body: some View {
         let pageCount = onboardingData.count
@@ -99,6 +95,12 @@ struct OnboardingView: View {
                     }
       
                 }
+                .onReceive(viewModel.$signUpSuccesful) { successful in
+                    if successful {
+                        signUpPresented = false
+                        appViewRouter.currentPage = .onboardingPage
+                    }
+                }
                 
                 HStack {
                     Text("Already a member?")
@@ -120,6 +122,12 @@ struct OnboardingView: View {
                                 .environmentObject(viewModel)
                         }
                         
+                    }
+                    .onReceive(viewModel.$signInSuccesful) { successful in
+                        if successful {
+                            appViewRouter.currentPage = .homePage
+                            appViewRouter.signedIn = true
+                        }
                     }
                 }
                 
@@ -144,8 +152,7 @@ struct OnboardingView: View {
 }
 
 struct OnboardingView_Previews: PreviewProvider {
-    static var appViewRouter = AppViewRouter()
     static var previews: some View {
-        OnboardingView(appViewRouter: appViewRouter)
+        OnboardingView()
     }
 }
