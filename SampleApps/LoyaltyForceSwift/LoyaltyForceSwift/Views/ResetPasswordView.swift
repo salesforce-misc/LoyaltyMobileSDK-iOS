@@ -54,15 +54,6 @@ struct ResetPasswordView: View {
                     .padding(.top, 20)
                     .padding(.bottom, 10)
                 
-                if viewModel.requestResetPassProcessing {
-                    ProgressView()
-                }
-                
-                if !viewModel.requestResetPassErrorMessage.isEmpty {
-                    Text("Failed resetting password: \(viewModel.requestResetPassErrorMessage)")
-                        .foregroundColor(.red)
-                }
-                
                 Button("Send Instructions") {
                     viewModel.requestResetPassword(userEmail: email)
                     UIApplication.shared.dismissKeyboard()
@@ -72,10 +63,20 @@ struct ResetPasswordView: View {
                 .opacity(disableForm ? 0.5 : 1)
                 .onReceive(viewModel.$resetPasswordEmailSent) { emailSent in
                     if emailSent {
+                        self.email = ""
                         withAnimation {
                             showCheckEmail.toggle()
                         }
                     }
+                }
+                
+                if viewModel.requestResetPassProcessing {
+                    ProgressView()
+                }
+                
+                if !viewModel.requestResetPassErrorMessage.isEmpty {
+                    Text("Failed resetting password: \(viewModel.requestResetPassErrorMessage)")
+                        .foregroundColor(.red)
                 }
                 
                 Spacer()

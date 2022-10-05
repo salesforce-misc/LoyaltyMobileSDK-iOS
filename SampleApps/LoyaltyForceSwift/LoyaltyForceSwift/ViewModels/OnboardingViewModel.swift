@@ -173,7 +173,6 @@ class OnboardingViewModel: ObservableObject {
             let request = try ForceRequest.create(url: url, method: "POST", body: bodyJsonData)
             let result = try await ForceClient.shared.fetch(type: PasswordResetModel.self, with: request)
             email = result.email
-            createNewPassProgressing = false
             createNewPassSuccessful = true
         } catch {
             createNewPassErrorMessage = error.localizedDescription

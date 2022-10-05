@@ -71,15 +71,6 @@ struct CreateNewPasswordView: View {
                         )
                 }
                 
-                if viewModel.createNewPassProgressing {
-                    ProgressView()
-                }
-                
-                if !viewModel.createNewPassErrorMessage.isEmpty {
-                    Text("Failed creating new password: \(viewModel.requestResetPassErrorMessage)")
-                        .foregroundColor(.red)
-                }
-                
                 Button("Reset Password") {
                     Task {
                         await viewModel.resetPassword(newPassword: password, oobCode: viewModel.oobCode, apiKey: viewModel.apiKey)
@@ -92,12 +83,29 @@ struct CreateNewPasswordView: View {
                 .onReceive(viewModel.$createNewPassSuccessful) { succesful in
                     if succesful {
                         print("Password reset for \(viewModel.email) is successful.")
+                        viewModel.signInUser(userEmail: viewModel.email, userPassword: password)
                         
-                        //TODO: redirect to other page: home or onboarding?
-                        appViewRouter.signedIn = true
-                        appViewRouter.currentPage = .navTabsPage(selectedTab: .home)
+//                        //TODO: redirect to other page: home or onboarding?
+//                        appViewRouter.signedIn = true
+//                        appViewRouter.currentPage = .navTabsPage(selectedTab: .home)
                         
                     }
+                }
+                .onReceive(viewModel.$signInSuccesful) { successful in
+                    if successful {
+                        viewModel.createNewPassProgressing = false
+                        appViewRouter.signedIn = true
+                        appViewRouter.currentPage = .navTabsPage(selectedTab: .home)
+                    }
+                }
+                
+                if viewModel.createNewPassProgressing {
+                    ProgressView()
+                }
+                
+                if !viewModel.createNewPassErrorMessage.isEmpty {
+                    Text("Failed creating new password: \(viewModel.requestResetPassErrorMessage)")
+                        .foregroundColor(.red)
                 }
                 
                 Spacer()
