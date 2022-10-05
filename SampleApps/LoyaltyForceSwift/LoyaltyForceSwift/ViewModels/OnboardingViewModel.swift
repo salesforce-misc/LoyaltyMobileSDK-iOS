@@ -26,6 +26,8 @@ class OnboardingViewModel: ObservableObject {
     @Published var createNewPassProgressing = false
     @Published var createNewPassErrorMessage = ""
     @Published var createNewPassSuccessful = false
+    @Published var signOutProcessing = false
+    @Published var signOutSuccessful = false
     
     // Password Reset
     @Published var oobCode = ""
@@ -86,6 +88,7 @@ class OnboardingViewModel: ObservableObject {
     
     func signInUser(userEmail: String, userPassword: String) {
         
+        signOutSuccessful = true
         signInProcessing = true
         
         Auth.auth().signIn(withEmail: userEmail, password: userPassword) { [weak self] authResult, error in
@@ -115,6 +118,22 @@ class OnboardingViewModel: ObservableObject {
             
         }
 
+    }
+    
+    func signOutUser() {
+        
+        signOutProcessing = true
+        
+        do {
+            try Auth.auth().signOut()
+            ForceAuthManager.shared.clearAuth()
+            signInSuccesful = false
+            signOutSuccessful = true
+            signOutProcessing = false
+        } catch {
+            print("<Firebase> - Error signing out: \(error.localizedDescription)")
+            signOutProcessing = false
+        }
     }
     
     func requestResetPassword(userEmail: String) {

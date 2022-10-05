@@ -65,6 +65,7 @@ struct ResetPasswordView: View {
                 
                 Button("Send Instructions") {
                     viewModel.requestResetPassword(userEmail: email)
+                    UIApplication.shared.dismissKeyboard()
                 }
                 .buttonStyle(DarkLongButton())
                 .disabled(disableForm)

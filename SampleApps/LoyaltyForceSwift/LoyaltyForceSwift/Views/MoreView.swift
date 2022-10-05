@@ -17,8 +17,7 @@ struct MenuItem: Identifiable {
 struct MoreView: View {
     
     @EnvironmentObject var appViewRouter: AppViewRouter
-    
-    @State var signOutProcessing = false
+    @EnvironmentObject var viewModel: OnboardingViewModel
     
     let menuItems: [MenuItem] = [
         MenuItem(icon: "ic-person", title: "Personal Information"),
@@ -49,7 +48,7 @@ struct MoreView: View {
                     }
 
                     Button {
-                        signOutUser()
+                        viewModel.signOutUser()
                     } label: {
                         Label("Logout", image: "ic-logout")
                             .font(.menuText)
@@ -58,32 +57,22 @@ struct MoreView: View {
                     .buttonStyle(.plain)
                     .listRowSeparator(.hidden, edges: .bottom)
                     .frame(height: 72)
+                    .onReceive(viewModel.$signOutSuccessful) { sucessful in
+                        if sucessful {
+                            appViewRouter.signedIn = false
+                            appViewRouter.currentPage = .onboardingPage
+                        }
+                    }
                 }
                 .listStyle(.plain)
                 .navigationBarHidden(true)
                 
             }
-            if signOutProcessing {
+            if viewModel.signOutProcessing {
                 ProgressView()
             }
         }
 
-    }
-    
-    func signOutUser() {
-        signOutProcessing = true
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            ForceAuthManager.shared.clearAuth()
-            
-        } catch {
-            print("<Firebase> - Error signing out: \(error.localizedDescription)")
-            signOutProcessing = false
-        }
-        signOutProcessing = false
-        appViewRouter.signedIn = false
-        appViewRouter.currentPage = .onboardingPage
     }
 }
 

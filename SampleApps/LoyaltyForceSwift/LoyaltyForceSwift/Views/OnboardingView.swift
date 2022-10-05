@@ -95,6 +95,13 @@ struct OnboardingView: View {
                     }
       
                 }
+                .onReceive(viewModel.$signUpSuccesful) { successful in
+                    if successful {
+                        signUpPresented = false
+                        appViewRouter.currentPage = .onboardingPage
+                    }
+                }
+                
                 
                 HStack {
                     Text("Already a member?")
@@ -116,6 +123,12 @@ struct OnboardingView: View {
                                 .environmentObject(viewModel)
                         }
                         
+                    }
+                    .onReceive(viewModel.$signInSuccesful) { successful in
+                        if successful {
+                            appViewRouter.signedIn = true
+                            appViewRouter.currentPage = .navTabsPage(selectedTab: .home)
+                        }
                     }
                 }
                 

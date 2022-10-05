@@ -46,18 +46,13 @@ struct SignInView: View {
                 
                 Button(action: {
                     viewModel.signInUser(userEmail: email, userPassword: password)
+                    UIApplication.shared.dismissKeyboard()
                 }) {
                     Text("Sign In")
                 }
                 .buttonStyle(DarkLongButton())
                 .disabled(disableForm)
                 .opacity(disableForm ? 0.5 : 1)
-                .onReceive(viewModel.$signInSuccesful) { successful in
-                    if successful {
-                        appViewRouter.signedIn = true
-                        appViewRouter.currentPage = .navTabsPage(selectedTab: .home)
-                    }
-                }
                 
                 if viewModel.signInProcessing {
                     ProgressView()

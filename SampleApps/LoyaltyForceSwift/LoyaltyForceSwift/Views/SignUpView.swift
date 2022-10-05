@@ -38,18 +38,13 @@ struct SignUpView: View {
                 
                 Button(action: {
                     viewModel.signUpUser(userEmail: email, userPassword: password, firstName: firstName, lastName: lastName)
+                    UIApplication.shared.dismissKeyboard()
                 }) {
                     Text("Join")
                 }
                 .buttonStyle(DarkLongButton())
                 .disabled(disableForm)
                 .opacity(disableForm ? 0.5 : 1)
-                .onReceive(viewModel.$signUpSuccesful) { successful in
-                    if successful {
-                        signUpPresented = false
-                        appViewRouter.currentPage = .onboardingPage
-                    }
-                }
                 
                 if viewModel.signUpProcessing {
                     ProgressView()

@@ -73,6 +73,7 @@
 		299B38DC28EB7F7000E45D97 /* CheckYourEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38DB28EB7F7000E45D97 /* CheckYourEmailView.swift */; };
 		299B38DE28EB8D4900E45D97 /* CreateNewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38DD28EB8D4900E45D97 /* CreateNewPasswordView.swift */; };
 		299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38E128ED24B900E45D97 /* PasswordResetModel.swift */; };
+		299B38E428EE040900E45D97 /* UIApplication+DismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */; };
 		29AB2E1C28E2763700D4B32C /* SheetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AB2E1B28E2763700D4B32C /* SheetHeader.swift */; };
 /* End PBXBuildFile section */
 
@@ -144,6 +145,7 @@
 		299B38DB28EB7F7000E45D97 /* CheckYourEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckYourEmailView.swift; sourceTree = "<group>"; };
 		299B38DD28EB8D4900E45D97 /* CreateNewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPasswordView.swift; sourceTree = "<group>"; };
 		299B38E128ED24B900E45D97 /* PasswordResetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetModel.swift; sourceTree = "<group>"; };
+		299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DismissKeyboard.swift"; sourceTree = "<group>"; };
 		29AB2E1B28E2763700D4B32C /* SheetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -271,6 +273,7 @@
 				2938C60728CFED0600F495AF /* Collection+URLQueryItem.swift */,
 				291CC0B028D1410500C08572 /* UserDefaults.swift */,
 				299B38D128E510DD00E45D97 /* DateFormatter.swift */,
+				299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				218A36AE28B85D6000FCEE39 /* FavoriteView.swift in Sources */,
 				298613CE28CBC10300BDC744 /* ProfileModel.swift in Sources */,
 				2986139A28C14C0100BDC744 /* ForceClient.swift in Sources */,
+				299B38E428EE040900E45D97 /* UIApplication+DismissKeyboard.swift in Sources */,
 				298613AE28C9652300BDC744 /* FontStyles.swift in Sources */,
 				299B38CA28E365AD00E45D97 /* HalfSheet.swift in Sources */,
 				296D393728DCE6C20078C88E /* ForceClient+SOQL.swift in Sources */,
@@ -598,7 +602,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LoyaltyForceSwift/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 79M55C8S7M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LoyaltyForceSwift/Info.plist;
@@ -613,7 +617,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.LoyaltyForceSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.LoyaltyForceSwiftApp;
 				PRODUCT_NAME = LoyaltyForceSwift;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -634,7 +638,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LoyaltyForceSwift/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 79M55C8S7M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LoyaltyForceSwift/Info.plist;
@@ -649,7 +653,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.LoyaltyForceSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.LoyaltyForceSwiftApp;
 				PRODUCT_NAME = LoyaltyForceSwift;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
