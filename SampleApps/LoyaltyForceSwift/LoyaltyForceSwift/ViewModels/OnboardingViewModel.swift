@@ -20,6 +20,18 @@ class OnboardingViewModel: ObservableObject {
     @Published var signInProcessing = false
     @Published var signInErrorMessage = ""
     @Published var signInSuccesful = false
+    @Published var requestResetPassProcessing = false
+    @Published var requestResetPassErrorMessage = ""
+    @Published var resetPasswordEmailSent = false
+    @Published var createNewPassProgressing = false
+    @Published var createNewPassErrorMessage = ""
+    @Published var createNewPassSuccessful = false
+    @Published var signOutProcessing = false
+    @Published var signOutSuccessful = false
+    
+    // Password Reset
+    @Published var oobCode = ""
+    @Published var apiKey = ""
     
     func signUpUser(userEmail: String, userPassword: String, firstName: String, lastName: String) {
         
@@ -76,6 +88,7 @@ class OnboardingViewModel: ObservableObject {
     
     func signInUser(userEmail: String, userPassword: String) {
         
+        signOutSuccessful = true
         signInProcessing = true
         
         Auth.auth().signIn(withEmail: userEmail, password: userPassword) { [weak self] authResult, error in
@@ -105,6 +118,66 @@ class OnboardingViewModel: ObservableObject {
             
         }
 
+    }
+    
+    func signOutUser() {
+        
+        signOutProcessing = true
+        
+        do {
+            try Auth.auth().signOut()
+            ForceAuthManager.shared.clearAuth()
+            signInSuccesful = false
+            signOutSuccessful = true
+            signOutProcessing = false
+        } catch {
+            print("<Firebase> - Error signing out: \(error.localizedDescription)")
+            signOutProcessing = false
+        }
+    }
+    
+    func requestResetPassword(userEmail: String) {
+        
+        requestResetPassProcessing = true
+        
+        Auth.auth().sendPasswordReset(withEmail: userEmail) { [weak self] error in
+            
+            if let error = error {
+                self?.requestResetPassProcessing = false
+                self?.requestResetPassErrorMessage = error.localizedDescription
+                return
+            }
+            
+            self?.resetPasswordEmailSent = true
+            self?.requestResetPassProcessing = false
+            
+        }
+    }
+    
+    // Firebase REST API Endpoint: https://identitytoolkit.googleapis.com/v1/accounts:resetPassword?key=[API_KEY]
+    // Refrence: https://firebase.google.com/docs/reference/rest/auth#section-verify-password-reset-code
+    func resetPassword(newPassword: String, oobCode: String, apiKey: String) async {
+        
+        createNewPassProgressing = true
+        
+        guard let url = URL(string: "https://identitytoolkit.googleapis.com/v1/accounts:resetPassword?key=\(apiKey)") else {
+            createNewPassErrorMessage = URLError(.badURL).localizedDescription
+            return
+        }
+        let body = [
+            "oobCode": oobCode,
+            "newPassword": newPassword
+        ]
+        do {
+            let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
+            let request = try ForceRequest.create(url: url, method: "POST", body: bodyJsonData)
+            let result = try await ForceClient.shared.fetch(type: PasswordResetModel.self, with: request)
+            email = result.email
+            createNewPassProgressing = false
+            createNewPassSuccessful = true
+        } catch {
+            createNewPassErrorMessage = error.localizedDescription
+        }
     }
     
 }

@@ -38,6 +38,7 @@ struct SignUpView: View {
                 
                 Button(action: {
                     viewModel.signUpUser(userEmail: email, userPassword: password, firstName: firstName, lastName: lastName)
+                    UIApplication.shared.dismissKeyboard()
                 }) {
                     Text("Join")
                 }
@@ -91,9 +92,10 @@ struct SignUpView: View {
 }
 
 struct SignUpView_Previews: PreviewProvider {
+    @EnvironmentObject private var viewModel: OnboardingViewModel
     static var previews: some View {
         SignUpView(signInPresented: .constant(false), signUpPresented: .constant(false))
-            .previewLayout(.sizeThatFits)
+            .environmentObject(OnboardingViewModel())
     }
 }
 

@@ -69,6 +69,11 @@
 		299B38D228E510DD00E45D97 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D128E510DD00E45D97 /* DateFormatter.swift */; };
 		299B38D428E5F78400E45D97 /* CongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D328E5F78400E45D97 /* CongratsView.swift */; };
 		299B38D828E796BC00E45D97 /* FullSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D728E796BC00E45D97 /* FullSheet.swift */; };
+		299B38DA28EB597700E45D97 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D928EB597700E45D97 /* ResetPasswordView.swift */; };
+		299B38DC28EB7F7000E45D97 /* CheckYourEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38DB28EB7F7000E45D97 /* CheckYourEmailView.swift */; };
+		299B38DE28EB8D4900E45D97 /* CreateNewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38DD28EB8D4900E45D97 /* CreateNewPasswordView.swift */; };
+		299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38E128ED24B900E45D97 /* PasswordResetModel.swift */; };
+		299B38E428EE040900E45D97 /* UIApplication+DismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */; };
 		29AB2E1C28E2763700D4B32C /* SheetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AB2E1B28E2763700D4B32C /* SheetHeader.swift */; };
 /* End PBXBuildFile section */
 
@@ -136,6 +141,11 @@
 		299B38D128E510DD00E45D97 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		299B38D328E5F78400E45D97 /* CongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsView.swift; sourceTree = "<group>"; };
 		299B38D728E796BC00E45D97 /* FullSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullSheet.swift; sourceTree = "<group>"; };
+		299B38D928EB597700E45D97 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		299B38DB28EB7F7000E45D97 /* CheckYourEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckYourEmailView.swift; sourceTree = "<group>"; };
+		299B38DD28EB8D4900E45D97 /* CreateNewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPasswordView.swift; sourceTree = "<group>"; };
+		299B38E128ED24B900E45D97 /* PasswordResetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetModel.swift; sourceTree = "<group>"; };
+		299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DismissKeyboard.swift"; sourceTree = "<group>"; };
 		29AB2E1B28E2763700D4B32C /* SheetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -219,6 +229,9 @@
 				216F219628B618AD00DAA66D /* SignUpView.swift */,
 				216F219828B618BB00DAA66D /* SignInView.swift */,
 				29AB2E1B28E2763700D4B32C /* SheetHeader.swift */,
+				299B38D928EB597700E45D97 /* ResetPasswordView.swift */,
+				299B38DB28EB7F7000E45D97 /* CheckYourEmailView.swift */,
+				299B38DD28EB8D4900E45D97 /* CreateNewPasswordView.swift */,
 				299B38D328E5F78400E45D97 /* CongratsView.swift */,
 				218A36A928B85CA500FCEE39 /* BottomNavTabsView.swift */,
 				216F219A28B618C700DAA66D /* HomeView.swift */,
@@ -260,6 +273,7 @@
 				2938C60728CFED0600F495AF /* Collection+URLQueryItem.swift */,
 				291CC0B028D1410500C08572 /* UserDefaults.swift */,
 				299B38D128E510DD00E45D97 /* DateFormatter.swift */,
+				299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -272,6 +286,7 @@
 				296D393028DBCB530078C88E /* OnboardingModel.swift */,
 				299B38CB28E3B57200E45D97 /* EnrollmentModel.swift */,
 				299B38CD28E3CF9900E45D97 /* EnrollmentOutputModel.swift */,
+				299B38E128ED24B900E45D97 /* PasswordResetModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -398,9 +413,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				299B38DE28EB8D4900E45D97 /* CreateNewPasswordView.swift in Sources */,
 				216F219928B618BB00DAA66D /* SignInView.swift in Sources */,
 				299B38D428E5F78400E45D97 /* CongratsView.swift in Sources */,
 				291CC0B828D5260A00C08572 /* Record.swift in Sources */,
+				299B38DA28EB597700E45D97 /* ResetPasswordView.swift in Sources */,
+				299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */,
 				299B38D228E510DD00E45D97 /* DateFormatter.swift in Sources */,
 				218A36AA28B85CA500FCEE39 /* BottomNavTabsView.swift in Sources */,
 				216F219B28B618C700DAA66D /* HomeView.swift in Sources */,
@@ -427,6 +445,7 @@
 				218A36AE28B85D6000FCEE39 /* FavoriteView.swift in Sources */,
 				298613CE28CBC10300BDC744 /* ProfileModel.swift in Sources */,
 				2986139A28C14C0100BDC744 /* ForceClient.swift in Sources */,
+				299B38E428EE040900E45D97 /* UIApplication+DismissKeyboard.swift in Sources */,
 				298613AE28C9652300BDC744 /* FontStyles.swift in Sources */,
 				299B38CA28E365AD00E45D97 /* HalfSheet.swift in Sources */,
 				296D393728DCE6C20078C88E /* ForceClient+SOQL.swift in Sources */,
@@ -437,6 +456,7 @@
 				2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */,
 				296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */,
 				2938C60428CE852D00F495AF /* ForceAuthStore.swift in Sources */,
+				299B38DC28EB7F7000E45D97 /* CheckYourEmailView.swift in Sources */,
 				298613A828C9021400BDC744 /* ProfileHeaderView.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
 				299B38CE28E3CF9900E45D97 /* EnrollmentOutputModel.swift in Sources */,
@@ -582,7 +602,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LoyaltyForceSwift/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 79M55C8S7M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LoyaltyForceSwift/Info.plist;
@@ -597,7 +617,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.LoyaltyForceSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.LoyaltyForceSwiftApp;
 				PRODUCT_NAME = LoyaltyForceSwift;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -618,7 +638,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LoyaltyForceSwift/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 79M55C8S7M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LoyaltyForceSwift/Info.plist;
@@ -633,7 +653,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.LoyaltyForceSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.LoyaltyForceSwiftApp;
 				PRODUCT_NAME = LoyaltyForceSwift;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

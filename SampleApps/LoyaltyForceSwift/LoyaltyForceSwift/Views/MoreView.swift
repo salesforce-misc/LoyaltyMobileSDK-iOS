@@ -17,8 +17,7 @@ struct MenuItem: Identifiable {
 struct MoreView: View {
     
     @EnvironmentObject var appViewRouter: AppViewRouter
-    
-    @State var signOutProcessing = false
+    @EnvironmentObject var viewModel: OnboardingViewModel
     
     let menuItems: [MenuItem] = [
         MenuItem(icon: "ic-person", title: "Personal Information"),
@@ -47,11 +46,9 @@ struct MoreView: View {
                         .listRowSeparatorTint(Color.theme.listSeparatorPink)
                         
                     }
-                    if signOutProcessing {
-                        ProgressView()
-                    }
+
                     Button {
-                        signOutUser()
+                        viewModel.signOutUser()
                     } label: {
                         Label("Logout", image: "ic-logout")
                             .font(.menuText)
@@ -60,29 +57,22 @@ struct MoreView: View {
                     .buttonStyle(.plain)
                     .listRowSeparator(.hidden, edges: .bottom)
                     .frame(height: 72)
+                    .onReceive(viewModel.$signOutSuccessful) { sucessful in
+                        if sucessful {
+                            appViewRouter.signedIn = false
+                            appViewRouter.currentPage = .onboardingPage
+                        }
+                    }
                 }
                 .listStyle(.plain)
                 .navigationBarHidden(true)
                 
             }
+            if viewModel.signOutProcessing {
+                ProgressView()
+            }
         }
 
-    }
-    
-    func signOutUser() {
-        signOutProcessing = true
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            ForceAuthManager.shared.clearAuth()
-            
-        } catch let signOutError as NSError {
-            print("Error signing out: \(signOutError)")
-
-            signOutProcessing = false
-        }
-        appViewRouter.currentPage = .onboardingPage
-        appViewRouter.signedIn = false
     }
 }
 

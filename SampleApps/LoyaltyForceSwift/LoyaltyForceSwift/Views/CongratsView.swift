@@ -46,13 +46,13 @@ struct CongratsView: View {
                 .font(.congratsText)
                 .lineSpacing(5)
                 .multilineTextAlignment(.center)
-                .padding([.top, .bottom], 70)
+                .padding([.top, .bottom], 60)
                 .padding([.leading, .trailing], 50)
             
             Button(action: {
                 dismiss()
-                appViewRouter.currentPage = .homePage
                 appViewRouter.signedIn = true
+                appViewRouter.currentPage = .navTabsPage(selectedTab: .home)
             }) {
                 Text("Shop Now!")
             }

@@ -145,8 +145,8 @@ class ForceAuthManager {
     
     /// OAuth 2.0 Rrefresh Token Flow - use refresh token to get a new accessToken
     /// https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_refresh_token_flow.htm&type=5
-    /// If consumerSelect is not used, then be sure that "Require Secret for Refresh Token Flow" is not checked in Connected App settings. If "Require Secret for Refresh Token Flow" is checked, consumerSelect must be provided.
-    func refresh(url: String = ForceConfig.defaultTokenURL, consumerKey: String, consumerSelect: String? = nil, refreshToken: String) async throws -> ForceAuth {
+    /// If consumerSecret is not used, then be sure that "Require Secret for Refresh Token Flow" is not checked in Connected App settings. If "Require Secret for Refresh Token Flow" is checked, consumerSecret must be provided.
+    func refresh(url: String = ForceConfig.defaultTokenURL, consumerKey: String, consumerSecret: String? = nil, refreshToken: String) async throws -> ForceAuth {
         
         guard let url = URL(string: url) else {
             throw URLError(.badURL)
@@ -157,7 +157,7 @@ class ForceAuthManager {
             "client_id": consumerKey,
             "fresh_token": refreshToken
         ]
-        consumerSelect.map { queryItems["client_secret"] = $0 }
+        consumerSecret.map { queryItems["client_secret"] = $0 }
         
         do {
             let request = try ForceRequest.create(url: url, method: ForceRequest.Method.post, queryItems: queryItems)
