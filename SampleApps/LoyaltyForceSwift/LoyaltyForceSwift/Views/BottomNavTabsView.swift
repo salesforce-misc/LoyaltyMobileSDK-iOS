@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BottomNavTabsView: View {
 
-    @State private var selectedTab = 0
+    @State var selectedTab: Tab = .home
     
     var body: some View {
         
@@ -21,7 +21,7 @@ struct BottomNavTabsView: View {
                             .renderingMode(.template)
                         Text("Home")
                     }
-                    .tag(0)
+                    .tag(Tab.home)
                 
                 RewardsView()
                     .tabItem {
@@ -29,7 +29,7 @@ struct BottomNavTabsView: View {
                             .renderingMode(.template)
                         Text("Offers")
                     }
-                    .tag(1)
+                    .tag(Tab.offers)
                 
                 ProfileView()
                     .tabItem {
@@ -37,7 +37,7 @@ struct BottomNavTabsView: View {
                             .renderingMode(.template)
                         Text("Profile")
                     }
-                    .tag(2)
+                    .tag(Tab.profile)
                 
                 RedeemView()
                     .tabItem {
@@ -45,7 +45,7 @@ struct BottomNavTabsView: View {
                             .renderingMode(.template)
                         Text("Redeem")
                     }
-                    .tag(3)
+                    .tag(Tab.redeem)
                 
                 MoreView()
                     .tabItem {
@@ -53,7 +53,7 @@ struct BottomNavTabsView: View {
                             .renderingMode(.template)
                         Text("More")
                     }
-                    .tag(4)
+                    .tag(Tab.more)
                 
             }
             

@@ -44,6 +44,12 @@ struct SignUpView: View {
                 .buttonStyle(DarkLongButton())
                 .disabled(disableForm)
                 .opacity(disableForm ? 0.5 : 1)
+                .onReceive(viewModel.$signUpSuccesful) { successful in
+                    if successful {
+                        signUpPresented = false
+                        appViewRouter.currentPage = .onboardingPage
+                    }
+                }
                 
                 if viewModel.signUpProcessing {
                     ProgressView()
@@ -91,9 +97,10 @@ struct SignUpView: View {
 }
 
 struct SignUpView_Previews: PreviewProvider {
+    @EnvironmentObject private var viewModel: OnboardingViewModel
     static var previews: some View {
         SignUpView(signInPresented: .constant(false), signUpPresented: .constant(false))
-            .previewLayout(.sizeThatFits)
+            .environmentObject(OnboardingViewModel())
     }
 }
 

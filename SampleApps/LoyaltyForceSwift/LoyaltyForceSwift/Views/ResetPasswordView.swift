@@ -27,6 +27,7 @@ struct ResetPasswordView: View {
                             showResetPassword.toggle()
                         }
                         signInPresented.toggle()
+                        viewModel.requestResetPassErrorMessage = ""
                         
                     } label: {
                         Image("ic-backarrow")
@@ -66,6 +67,8 @@ struct ResetPasswordView: View {
                     viewModel.requestResetPassword(userEmail: email)
                 }
                 .buttonStyle(DarkLongButton())
+                .disabled(disableForm)
+                .opacity(disableForm ? 0.5 : 1)
                 .onReceive(viewModel.$resetPasswordEmailSent) { emailSent in
                     if emailSent {
                         withAnimation {
@@ -89,10 +92,20 @@ struct ResetPasswordView: View {
         .zIndex(2.0)
         .ignoresSafeArea()
     }
+    
+    var disableForm: Bool {
+        if email.isEmpty ||
+            viewModel.requestResetPassProcessing {
+            return true
+        }
+        return false
+    }
 }
 
 struct ResetPasswordView_Previews: PreviewProvider {
+    @EnvironmentObject private var viewModel: OnboardingViewModel
     static var previews: some View {
-        ResetPasswordView(showResetPassword: .constant(true), signInPresented: .constant(false) )
+        ResetPasswordView(showResetPassword: .constant(true), signInPresented: .constant(false))
+            .environmentObject(OnboardingViewModel())
     }
 }

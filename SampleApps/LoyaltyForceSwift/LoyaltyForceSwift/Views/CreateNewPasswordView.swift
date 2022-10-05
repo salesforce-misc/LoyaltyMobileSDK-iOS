@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CreateNewPasswordView: View {
     
+    @EnvironmentObject private var viewModel: OnboardingViewModel
+    
     @Binding var showCreateNewPassword: Bool
     
     @State private var password = ""
@@ -44,31 +46,54 @@ struct CreateNewPasswordView: View {
                     .lineSpacing(5)
                     .padding(.bottom, 50)
                 
-                HStack {
-                    Text("Password")
-                        .font(.textFieldLabel)
-                    Spacer()
+                Group {
+                    HStack {
+                        Text("Password")
+                            .font(.textFieldLabel)
+                        Spacer()
+                    }
+                    .padding(.leading, 15)
+                    RevealableSecureField("Enter password", text: $password)
+                        .padding(.bottom, 5)
+                    
+                    HStack {
+                        Text("Confirm Password")
+                            .font(.textFieldLabel)
+                        Spacer()
+                    }
+                    .padding(.leading, 15)
+                    RevealableSecureField("Re-enter your password", text: $passwordConfirmation)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.red, lineWidth: passwordConfirmation != password ? 2 : 0)
+                            .padding([.leading, .trailing])
+                        )
                 }
-                .padding(.leading, 15)
-                RevealableSecureField("Enter password", text: $password)
-                    .padding(.bottom, 5)
                 
-                HStack {
-                    Text("Confirm Password")
-                        .font(.textFieldLabel)
-                    Spacer()
+                if viewModel.createNewPassProgressing {
+                    ProgressView()
                 }
-                .padding(.leading, 15)
-                RevealableSecureField("Re-enter your password", text: $passwordConfirmation)
-                    .overlay(RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.red, lineWidth: passwordConfirmation != password ? 2 : 0)
-                        .padding([.leading, .trailing])
-                    )
+                
+                if !viewModel.createNewPassErrorMessage.isEmpty {
+                    Text("Failed creating new password: \(viewModel.requestResetPassErrorMessage)")
+                        .foregroundColor(.red)
+                }
                 
                 Button("Reset Password") {
-                    
+                    Task {
+                        try await viewModel.resetPassword(newPassword: password, oobCode: viewModel.oobCode, apiKey: viewModel.apiKey)
+                    }
                 }
                 .buttonStyle(DarkLongButton())
+                .disabled(disableForm)
+                .opacity(disableForm ? 0.5 : 1)
+                .onReceive(viewModel.$createNewPassSuccessful) { succesful in
+                    if succesful {
+                        print("Password reset for \(viewModel.email) is successful.")
+                        
+                        //TODO: redirect to other page
+                    }
+                }
                 
                 Spacer()
             }
@@ -79,10 +104,21 @@ struct CreateNewPasswordView: View {
         .zIndex(2.0)
         .ignoresSafeArea()
     }
+    
+    var disableForm: Bool {
+        if password.isEmpty ||
+            passwordConfirmation.isEmpty ||
+            viewModel.createNewPassProgressing {
+            return true
+        }
+        return false
+    }
 }
 
 struct CreateNewPasswordView_Previews: PreviewProvider {
+    @EnvironmentObject private var viewModel: OnboardingViewModel
     static var previews: some View {
         CreateNewPasswordView(showCreateNewPassword: .constant(false))
+            .environmentObject(OnboardingViewModel())
     }
 }

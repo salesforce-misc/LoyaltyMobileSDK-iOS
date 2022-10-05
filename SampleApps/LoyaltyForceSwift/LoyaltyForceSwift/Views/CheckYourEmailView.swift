@@ -51,7 +51,7 @@ struct CheckYourEmailView: View {
                 Spacer()
         
                 
-                Text("Did not receive the email? Check your spam folder, or \(Text("you may try to reset again.").foregroundColor(Color.theme.accent))")
+                Text("Did not receive the email? Check your spam folder, or \(Text("try another email address").foregroundColor(Color.theme.accent))")
                 .multilineTextAlignment(.center)
                 .lineSpacing(5)
                 .foregroundColor(Color.theme.superLightText)
@@ -72,7 +72,9 @@ struct CheckYourEmailView: View {
 }
 
 struct CheckYourEmailView_Previews: PreviewProvider {
+    @EnvironmentObject private var viewModel: OnboardingViewModel
     static var previews: some View {
         CheckYourEmailView(showCheckEmail: .constant(false), showResetPassowrd: .constant(false))
+            .environmentObject(OnboardingViewModel())
     }
 }

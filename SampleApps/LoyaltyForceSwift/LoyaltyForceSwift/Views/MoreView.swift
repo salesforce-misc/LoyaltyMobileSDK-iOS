@@ -47,9 +47,7 @@ struct MoreView: View {
                         .listRowSeparatorTint(Color.theme.listSeparatorPink)
                         
                     }
-                    if signOutProcessing {
-                        ProgressView()
-                    }
+
                     Button {
                         signOutUser()
                     } label: {
@@ -65,6 +63,9 @@ struct MoreView: View {
                 .navigationBarHidden(true)
                 
             }
+            if signOutProcessing {
+                ProgressView()
+            }
         }
 
     }
@@ -76,13 +77,13 @@ struct MoreView: View {
             try firebaseAuth.signOut()
             ForceAuthManager.shared.clearAuth()
             
-        } catch let signOutError as NSError {
-            print("Error signing out: \(signOutError)")
-
+        } catch {
+            print("<Firebase> - Error signing out: \(error.localizedDescription)")
             signOutProcessing = false
         }
-        appViewRouter.currentPage = .onboardingPage
+        signOutProcessing = false
         appViewRouter.signedIn = false
+        appViewRouter.currentPage = .onboardingPage
     }
 }
 

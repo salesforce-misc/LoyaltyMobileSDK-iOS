@@ -15,26 +15,26 @@ class AppViewRouter: ObservableObject {
     @Published var signedIn = false
     
     // check if the user is signedin already when app starts.
-    let auth = Auth.auth()
+    private let auth = Auth.auth()
     var isSignedIn: Bool {
         return auth.currentUser != nil
     }
+    
+    enum deeplinkHosts: String {
+        case resetPassword = "resetpassword"
+    }
 }
 
-enum Page {
-    case homePage
+enum Page: Hashable {
     case onboardingPage
+    case createNewPasswordPage
+    case navTabsPage(selectedTab: Tab)
 }
 
-//struct User {
-//    var uid: String
-//    var email: String?
-//    var displayName: String?
-//
-//    init(uid: String, email: String?, displayName: String?) {
-//        self.uid = uid
-//        self.email = email
-//        self.displayName = displayName
-//    }
-//}
-
+enum Tab: Hashable {
+    case home
+    case offers
+    case profile
+    case redeem
+    case more
+}

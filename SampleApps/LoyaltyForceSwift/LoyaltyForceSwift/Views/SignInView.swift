@@ -52,6 +52,12 @@ struct SignInView: View {
                 .buttonStyle(DarkLongButton())
                 .disabled(disableForm)
                 .opacity(disableForm ? 0.5 : 1)
+                .onReceive(viewModel.$signInSuccesful) { successful in
+                    if successful {
+                        appViewRouter.signedIn = true
+                        appViewRouter.currentPage = .navTabsPage(selectedTab: .home)
+                    }
+                }
                 
                 if viewModel.signInProcessing {
                     ProgressView()
@@ -91,11 +97,12 @@ struct SignInView: View {
 }
 
 struct SignInView_Previews: PreviewProvider {
+    @EnvironmentObject private var viewModel: OnboardingViewModel
     static var previews: some View {
         SignInView(signInPresented: .constant(false),
                    signUpPresented: .constant(false),
                    showResetPassword: .constant(false))
-            .previewLayout(.sizeThatFits)
+            .environmentObject(OnboardingViewModel())
     }
 }
 

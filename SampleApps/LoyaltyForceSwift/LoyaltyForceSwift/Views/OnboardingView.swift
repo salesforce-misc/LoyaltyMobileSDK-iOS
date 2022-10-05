@@ -10,14 +10,14 @@ import SwiftUI
 struct OnboardingView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
-    @StateObject private var viewModel = OnboardingViewModel()
+    @EnvironmentObject private var viewModel: OnboardingViewModel
     
     @State private var selectedPage: Int = 0
     @State private var opacityText: Double = 1
     @State private var signUpPresented: Bool = false
     @State private var signInPresented: Bool = false
     @State private var showResetPassword: Bool = false
-    @State private var showCreateNewPassword: Bool = false
+    @State var showCreateNewPassword: Bool = false
     
     private let onboardingData: [OnboardingModel] = [
         OnboardingModel(image: "img-onboarding1", description: "Convert your points into reward coupons!"),
@@ -95,12 +95,6 @@ struct OnboardingView: View {
                     }
       
                 }
-                .onReceive(viewModel.$signUpSuccesful) { successful in
-                    if successful {
-                        signUpPresented = false
-                        appViewRouter.currentPage = .onboardingPage
-                    }
-                }
                 
                 HStack {
                     Text("Already a member?")
@@ -123,12 +117,6 @@ struct OnboardingView: View {
                         }
                         
                     }
-                    .onReceive(viewModel.$signInSuccesful) { successful in
-                        if successful {
-                            appViewRouter.currentPage = .homePage
-                            appViewRouter.signedIn = true
-                        }
-                    }
                 }
                 
             }
@@ -141,6 +129,7 @@ struct OnboardingView: View {
             
             if showCreateNewPassword {
                 CreateNewPasswordView(showCreateNewPassword: $showCreateNewPassword)
+                    .environmentObject(viewModel)
             }
         }
         .sheet(isPresented: $viewModel.signUpSuccesful) {

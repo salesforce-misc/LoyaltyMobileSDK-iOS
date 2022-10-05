@@ -72,6 +72,7 @@
 		299B38DA28EB597700E45D97 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D928EB597700E45D97 /* ResetPasswordView.swift */; };
 		299B38DC28EB7F7000E45D97 /* CheckYourEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38DB28EB7F7000E45D97 /* CheckYourEmailView.swift */; };
 		299B38DE28EB8D4900E45D97 /* CreateNewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38DD28EB8D4900E45D97 /* CreateNewPasswordView.swift */; };
+		299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38E128ED24B900E45D97 /* PasswordResetModel.swift */; };
 		29AB2E1C28E2763700D4B32C /* SheetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AB2E1B28E2763700D4B32C /* SheetHeader.swift */; };
 /* End PBXBuildFile section */
 
@@ -142,6 +143,7 @@
 		299B38D928EB597700E45D97 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		299B38DB28EB7F7000E45D97 /* CheckYourEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckYourEmailView.swift; sourceTree = "<group>"; };
 		299B38DD28EB8D4900E45D97 /* CreateNewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPasswordView.swift; sourceTree = "<group>"; };
+		299B38E128ED24B900E45D97 /* PasswordResetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetModel.swift; sourceTree = "<group>"; };
 		29AB2E1B28E2763700D4B32C /* SheetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -281,6 +283,7 @@
 				296D393028DBCB530078C88E /* OnboardingModel.swift */,
 				299B38CB28E3B57200E45D97 /* EnrollmentModel.swift */,
 				299B38CD28E3CF9900E45D97 /* EnrollmentOutputModel.swift */,
+				299B38E128ED24B900E45D97 /* PasswordResetModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				299B38D428E5F78400E45D97 /* CongratsView.swift in Sources */,
 				291CC0B828D5260A00C08572 /* Record.swift in Sources */,
 				299B38DA28EB597700E45D97 /* ResetPasswordView.swift in Sources */,
+				299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */,
 				299B38D228E510DD00E45D97 /* DateFormatter.swift in Sources */,
 				218A36AA28B85CA500FCEE39 /* BottomNavTabsView.swift in Sources */,
 				216F219B28B618C700DAA66D /* HomeView.swift in Sources */,
