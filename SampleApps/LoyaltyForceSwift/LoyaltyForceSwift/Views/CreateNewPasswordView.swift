@@ -116,6 +116,15 @@ struct CreateNewPasswordView: View {
         }
         .zIndex(2.0)
         .ignoresSafeArea()
+        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+            .onEnded({ value in
+                if value.translation.width > 0 {
+                    withAnimation {
+                        showCreateNewPassword.toggle()
+                    }
+                }
+            })
+        )
     }
     
     var disableForm: Bool {
@@ -129,7 +138,6 @@ struct CreateNewPasswordView: View {
 }
 
 struct CreateNewPasswordView_Previews: PreviewProvider {
-    @EnvironmentObject private var viewModel: OnboardingViewModel
     static var previews: some View {
         CreateNewPasswordView(showCreateNewPassword: .constant(false))
             .environmentObject(OnboardingViewModel())

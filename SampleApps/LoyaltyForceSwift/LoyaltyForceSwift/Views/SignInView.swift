@@ -92,7 +92,6 @@ struct SignInView: View {
 }
 
 struct SignInView_Previews: PreviewProvider {
-    @EnvironmentObject private var viewModel: OnboardingViewModel
     static var previews: some View {
         SignInView(signInPresented: .constant(false),
                    signUpPresented: .constant(false),

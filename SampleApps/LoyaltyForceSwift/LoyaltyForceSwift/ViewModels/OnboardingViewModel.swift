@@ -13,19 +13,30 @@ class OnboardingViewModel: ObservableObject {
     
     @Published var enrolledMember: EnrollmentOutputModel?
     
+    // SignUpView
     @Published var signUpProcessing = false
     @Published var signUpErrorMessage = ""
     @Published var signUpSuccesful = false
+    
+    // CongratsView
     @Published var email = ""
+    
+    // SignInView
     @Published var signInProcessing = false
     @Published var signInErrorMessage = ""
     @Published var signInSuccesful = false
+    
+    // ResetPasswordView
     @Published var requestResetPassProcessing = false
     @Published var requestResetPassErrorMessage = ""
     @Published var resetPasswordEmailSent = false
+    
+    // CreateNewPasswordView
     @Published var createNewPassProgressing = false
     @Published var createNewPassErrorMessage = ""
     @Published var createNewPassSuccessful = false
+    
+    // SignOutView
     @Published var signOutProcessing = false
     @Published var signOutSuccessful = false
     
@@ -170,7 +181,7 @@ class OnboardingViewModel: ObservableObject {
         ]
         do {
             let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
-            let request = try ForceRequest.create(url: url, method: "POST", body: bodyJsonData)
+            let request = ForceRequest.createRequest(from: url, method: "POST", body: bodyJsonData)
             let result = try await ForceClient.shared.fetch(type: PasswordResetModel.self, with: request)
             email = result.email
             createNewPassSuccessful = true

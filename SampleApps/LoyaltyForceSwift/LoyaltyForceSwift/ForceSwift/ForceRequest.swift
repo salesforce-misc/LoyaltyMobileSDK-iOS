@@ -98,8 +98,8 @@ public struct ForceRequest {
                        method: String? = nil,
                        headers: [String: String]? = nil,
                        body: Data? = nil,
-                       cachePolicy: URLRequest.CachePolicy,
-                       timeoutInterval: TimeInterval ) -> URLRequest {
+                       cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
+                       timeoutInterval: TimeInterval = 60.0 ) -> URLRequest {
         
         // URLRequest
         var request = URLRequest(url: url, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)

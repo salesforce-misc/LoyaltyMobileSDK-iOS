@@ -88,11 +88,21 @@ struct ResetPasswordView: View {
             if showCheckEmail {
                 CheckYourEmailView(showCheckEmail: $showCheckEmail, showResetPassowrd: $showResetPassword)
                     .transition(.move(edge: .bottom))
-                    .environmentObject(viewModel)
             }
         }
         .zIndex(2.0)
         .ignoresSafeArea()
+        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+            .onEnded({ value in
+                if value.translation.width > 0 {
+                    withAnimation {
+                        showResetPassword.toggle()
+                    }
+                    signInPresented.toggle()
+                    viewModel.requestResetPassErrorMessage = ""
+                }
+            })
+        )
     }
     
     var disableForm: Bool {
@@ -105,7 +115,6 @@ struct ResetPasswordView: View {
 }
 
 struct ResetPasswordView_Previews: PreviewProvider {
-    @EnvironmentObject private var viewModel: OnboardingViewModel
     static var previews: some View {
         ResetPasswordView(showResetPassword: .constant(true), signInPresented: .constant(false))
             .environmentObject(OnboardingViewModel())

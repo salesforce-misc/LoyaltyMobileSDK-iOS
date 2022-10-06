@@ -72,7 +72,6 @@ struct CheckYourEmailView: View {
 }
 
 struct CheckYourEmailView_Previews: PreviewProvider {
-    @EnvironmentObject private var viewModel: OnboardingViewModel
     static var previews: some View {
         CheckYourEmailView(showCheckEmail: .constant(false), showResetPassowrd: .constant(false))
             .environmentObject(OnboardingViewModel())

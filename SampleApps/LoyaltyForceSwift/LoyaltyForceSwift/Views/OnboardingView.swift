@@ -45,42 +45,45 @@ struct OnboardingView: View {
             
             VStack {
                 Spacer()
-                HStack {
-                    Image("img-nt-logo")
-                    Spacer()
-                }
-                .padding(.leading, 25)
+                Group {
+                    HStack {
+                        Image("img-nt-logo")
+                        Spacer()
+                    }
+                    .padding(.leading, 25)
 
-                HStack {
-                    Text(onboardingData[selectedPage].description)
-                        .foregroundColor(Color.white)
-                        .font(.onboardingText)
-                    Spacer()
-                }
-                .opacity(opacityText)
-                .padding(.leading, 25)
+                    HStack {
+                        Text(onboardingData[selectedPage].description)
+                            .foregroundColor(Color.white)
+                            .font(.onboardingText)
+                        Spacer()
+                    }
+                    .opacity(opacityText)
+                    .padding(.leading, 25)
 
-                // paging indicator
-                HStack(spacing: 6) {
-                    ForEach(0..<pageCount, id: \.self) { index in
+                    // paging indicator
+                    HStack(spacing: 6) {
+                        ForEach(0..<pageCount, id: \.self) { index in
+                            Capsule()
+                                .fill(.white)
+                                .opacity(index == selectedPage ? 1 : 0.6)
+                                .frame(width: index == selectedPage ? 16 : 8, height: 8, alignment: .leading)
+                        }
+                        .animation(.easeInOut, value: selectedPage)
+                        Spacer()
+
+                    }
+                    .overlay(
                         Capsule()
                             .fill(.white)
-                            .opacity(index == selectedPage ? 1 : 0.6)
-                            .frame(width: index == selectedPage ? 16 : 8, height: 8, alignment: .leading)
-                    }
-                    .animation(.easeInOut, value: selectedPage)
-                    Spacer()
-
+                            .frame(width: 16, height: 8)
+                            .offset(x: CGFloat(14 * selectedPage)) // 14 = 6 (spacing) + 8 (dot width)
+                        , alignment: .leading
+                    )
+                    .padding(.leading, 25)
+                    .padding([.top, .bottom])
                 }
-                .overlay(
-                    Capsule()
-                        .fill(.white)
-                        .frame(width: 16, height: 8)
-                        .offset(x: CGFloat(14 * selectedPage)) // 14 = 6 (spacing) + 8 (dot width)
-                    , alignment: .leading
-                )
-                .padding(.leading, 25)
-                .padding([.top, .bottom])
+                .allowsHitTesting(false)
 
                 Button(action: {
                     signUpPresented.toggle()
@@ -91,7 +94,6 @@ struct OnboardingView: View {
                 .sheet(isPresented: $signUpPresented) {
                     FullSheet {
                         SignUpView(signInPresented: $signInPresented, signUpPresented: $signUpPresented)
-                            .environmentObject(viewModel)
                     }
       
                 }
@@ -107,6 +109,7 @@ struct OnboardingView: View {
                     Text("Already a member?")
                         .foregroundColor(Color.white)
                         .padding()
+                        .allowsHitTesting(false)
                     Button {
                         signInPresented.toggle()
                     } label: {
@@ -120,7 +123,6 @@ struct OnboardingView: View {
                             SignInView(signInPresented: $signInPresented,
                                        signUpPresented: $signUpPresented,
                                        showResetPassword: $showResetPassword)
-                                .environmentObject(viewModel)
                         }
                         
                     }
@@ -133,16 +135,15 @@ struct OnboardingView: View {
                 }
                 
             }
+            
 
             if showResetPassword {
                 ResetPasswordView(showResetPassword: $showResetPassword, signInPresented: $signInPresented)
-                    .environmentObject(viewModel)
                     .transition(.move(edge: .trailing))
             }
             
             if showCreateNewPassword {
                 CreateNewPasswordView(showCreateNewPassword: $showCreateNewPassword)
-                    .environmentObject(viewModel)
             }
         }
         .sheet(isPresented: $viewModel.signUpSuccesful) {
@@ -156,5 +157,6 @@ struct OnboardingView: View {
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
         OnboardingView()
+            .environmentObject(OnboardingViewModel())
     }
 }
