@@ -13,7 +13,7 @@ struct LightLongButton: ButtonStyle {
         configuration.label
             .font(.buttonText)
             .foregroundColor(Color.theme.accent)
-            .frame(maxWidth: 343, maxHeight: 48)
+            .frame(width: 343, height: 48)
             .background(Color.theme.lightButton)
             .cornerRadius(24)
             .padding()
@@ -26,7 +26,7 @@ struct DarkLongButton: ButtonStyle {
         configuration.label
             .font(.buttonText)
             .foregroundColor(.white)
-            .frame(maxWidth: 343, maxHeight: 48)
+            .frame(width: 343, height: 48)
             .background(Color.theme.darkButton)
             .cornerRadius(24)
             .padding()

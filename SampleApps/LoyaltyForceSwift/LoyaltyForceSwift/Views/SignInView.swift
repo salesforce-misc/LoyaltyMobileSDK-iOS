@@ -21,62 +21,66 @@ struct SignInView: View {
     
     
     var body: some View {
-        
-        VStack {
-            SheetHeader(title: "Sign In")
-            VStack(spacing: 15) {
-                SignInCredentialFields(email: $email, password: $password)
-                
-                // reset password
-                HStack {
-                    Text("Forgor Password?")
-                        .foregroundColor(Color.theme.accent)
-                        .font(.regularText)
-                        .onTapGesture {
-                            withAnimation {
-                                signUpPresented = false
-                                signInPresented = false
-                                showResetPassword.toggle()
-                            }
-                            
-                        }
-                    Spacer()
-                }
-                .padding([.top, .leading, .trailing])
-                
-                Button(action: {
-                    viewModel.signInUser(userEmail: email, userPassword: password)
-                    UIApplication.shared.dismissKeyboard()
-                }) {
-                    Text("Sign In")
-                }
-                .buttonStyle(DarkLongButton())
-                .disabled(disableForm)
-                .opacity(disableForm ? 0.5 : 1)
-                
-                if viewModel.signInProcessing {
-                    ProgressView()
-                }
-                
-                if !viewModel.signInErrorMessage.isEmpty {
-                    Text("Failed signing in: \(viewModel.signInErrorMessage)")
-                        .foregroundColor(.red)
-                }
-                HStack {
-                    Text("Not a member?")
-                    Button(action: {
-                        signInPresented = false
-                        signUpPresented = true
-                        appViewRouter.currentPage = .onboardingPage
-                    }) {
-                        Text("Join Now")
-                            .font(.buttonText)
+        ZStack {
+            VStack {
+                SheetHeader(title: "Sign In")
+                VStack(spacing: 15) {
+                    SignInCredentialFields(email: $email, password: $password)
+                    
+                    if !viewModel.signInErrorMessage.isEmpty {
+                        Text("Failed signing in: \(viewModel.signInErrorMessage)")
+                            .foregroundColor(.red)
+                            .font(.footnote)
                     }
-                    //.presentationDetents([.height(405)])
+                    
+                    // reset password
+                    HStack {
+                        Text("Forgor Password?")
+                            .foregroundColor(Color.theme.accent)
+                            .font(.regularText)
+                            .onTapGesture {
+                                withAnimation {
+                                    signUpPresented = false
+                                    signInPresented = false
+                                    showResetPassword.toggle()
+                                }
+                                
+                            }
+                        Spacer()
+                    }
+                    .padding([.top, .leading, .trailing])
+                    
+                    Button(action: {
+                        viewModel.signInUser(userEmail: email, userPassword: password)
+                        UIApplication.shared.dismissKeyboard()
+                    }) {
+                        Text("Sign In")
+                    }
+                    .buttonStyle(DarkLongButton())
+                    .disabled(disableForm)
+                    .opacity(disableForm ? 0.5 : 1)
+                    
+                    HStack {
+                        Text("Not a member?")
+                        Button(action: {
+                            signInPresented = false
+                            signUpPresented = true
+                            appViewRouter.currentPage = .onboardingPage
+                        }) {
+                            Text("Join Now")
+                                .font(.buttonText)
+                        }
+                        //.presentationDetents([.height(405)])
+                    }
                 }
+                .padding()
+                Spacer()
             }
-            .padding()
-            Spacer()
+            
+            if viewModel.signInProcessing {
+                ProgressView()
+            }
+            
         }
         
     }

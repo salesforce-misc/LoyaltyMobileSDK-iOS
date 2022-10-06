@@ -20,6 +20,17 @@ struct ResetPasswordView: View {
     var body: some View {
         ZStack {
             Color.white
+                .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                    .onEnded({ value in
+                        if value.translation.width > 0 {
+                            withAnimation {
+                                showResetPassword.toggle()
+                            }
+                            signInPresented.toggle()
+                            viewModel.requestResetPassErrorMessage = ""
+                        }
+                    })
+                )
             VStack(spacing: 15) {
                 HStack {
                     Button {
@@ -54,6 +65,11 @@ struct ResetPasswordView: View {
                     .padding(.top, 20)
                     .padding(.bottom, 10)
                 
+                if !viewModel.requestResetPassErrorMessage.isEmpty {
+                    Text("Failed resetting password: \(viewModel.requestResetPassErrorMessage)")
+                        .foregroundColor(.red)
+                }
+                
                 Button("Send Instructions") {
                     viewModel.requestResetPassword(userEmail: email)
                     UIApplication.shared.dismissKeyboard()
@@ -70,20 +86,15 @@ struct ResetPasswordView: View {
                     }
                 }
                 
-                if viewModel.requestResetPassProcessing {
-                    ProgressView()
-                }
-                
-                if !viewModel.requestResetPassErrorMessage.isEmpty {
-                    Text("Failed resetting password: \(viewModel.requestResetPassErrorMessage)")
-                        .foregroundColor(.red)
-                }
-                
                 Spacer()
 
             }
             .padding([.leading, .trailing], 10)
             .padding()
+            
+            if viewModel.requestResetPassProcessing {
+                ProgressView()
+            }
             
             if showCheckEmail {
                 CheckYourEmailView(showCheckEmail: $showCheckEmail, showResetPassowrd: $showResetPassword)
@@ -92,17 +103,7 @@ struct ResetPasswordView: View {
         }
         .zIndex(2.0)
         .ignoresSafeArea()
-        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-            .onEnded({ value in
-                if value.translation.width > 0 {
-                    withAnimation {
-                        showResetPassword.toggle()
-                    }
-                    signInPresented.toggle()
-                    viewModel.requestResetPassErrorMessage = ""
-                }
-            })
-        )
+
     }
     
     var disableForm: Bool {

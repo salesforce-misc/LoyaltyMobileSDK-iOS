@@ -20,6 +20,15 @@ struct CreateNewPasswordView: View {
     var body: some View {
         ZStack {
             Color.white
+                .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                    .onEnded({ value in
+                        if value.translation.width > 0 {
+                            withAnimation {
+                                showCreateNewPassword.toggle()
+                            }
+                        }
+                    })
+                )
             VStack(spacing: 15) {
                 HStack {
                     Button {
@@ -71,6 +80,11 @@ struct CreateNewPasswordView: View {
                         )
                 }
                 
+                if !viewModel.createNewPassErrorMessage.isEmpty {
+                    Text("Failed creating new password: \(viewModel.requestResetPassErrorMessage)")
+                        .foregroundColor(.red)
+                }
+                
                 Button("Reset Password") {
                     Task {
                         await viewModel.resetPassword(newPassword: password, oobCode: viewModel.oobCode, apiKey: viewModel.apiKey)
@@ -99,32 +113,18 @@ struct CreateNewPasswordView: View {
                     }
                 }
                 
-                if viewModel.createNewPassProgressing {
-                    ProgressView()
-                }
-                
-                if !viewModel.createNewPassErrorMessage.isEmpty {
-                    Text("Failed creating new password: \(viewModel.requestResetPassErrorMessage)")
-                        .foregroundColor(.red)
-                }
-                
                 Spacer()
             }
             .padding([.leading, .trailing], 10)
             .padding()
             
+            if viewModel.createNewPassProgressing {
+                ProgressView()
+            }
+            
         }
         .zIndex(2.0)
         .ignoresSafeArea()
-        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-            .onEnded({ value in
-                if value.translation.width > 0 {
-                    withAnimation {
-                        showCreateNewPassword.toggle()
-                    }
-                }
-            })
-        )
     }
     
     var disableForm: Bool {

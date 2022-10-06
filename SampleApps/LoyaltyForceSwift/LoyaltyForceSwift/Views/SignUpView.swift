@@ -24,54 +24,54 @@ struct SignUpView: View {
     @Binding var signUpPresented: Bool
     
     var body: some View {
-        
-        VStack {
-            SheetHeader(title: "Join")
-            
-            VStack(spacing: 15) {
-                SignUpCredentialFields(
-                    firstName: $firstName,
-                    lastName: $lastName,
-                    email: $email,
-                    password: $password,
-                    passwordConfirmation: $passwordConfirmation)
+        ZStack {
+            VStack {
+                SheetHeader(title: "Join")
                 
-                Button(action: {
-                    viewModel.signUpUser(userEmail: email, userPassword: password, firstName: firstName, lastName: lastName)
-                    UIApplication.shared.dismissKeyboard()
-                }) {
-                    Text("Join")
-                }
-                .buttonStyle(DarkLongButton())
-                .disabled(disableForm)
-                .opacity(disableForm ? 0.5 : 1)
-                
-                if viewModel.signUpProcessing {
-                    ProgressView()
-                }
-                
-                if !viewModel.signUpErrorMessage.isEmpty {
-                    Text("Failed creating account: \(viewModel.signUpErrorMessage)")
-                        .foregroundColor(.red)
-                }
-                
-                HStack {
-                    Text("Already a member?")
-                    Button(action: {
-                        signUpPresented = false
-                        signInPresented = true
-                        appViewRouter.currentPage = .onboardingPage
-                        
-                    }) {
-                        Text("Sign In")
-                            .font(.buttonText)
-                    }
-                    //.presentationDetents([.height(746)])
+                VStack(spacing: 15) {
+                    SignUpCredentialFields(
+                        firstName: $firstName,
+                        lastName: $lastName,
+                        email: $email,
+                        password: $password,
+                        passwordConfirmation: $passwordConfirmation)
                     
+                    if !viewModel.signUpErrorMessage.isEmpty {
+                        Text("Failed creating account: \(viewModel.signUpErrorMessage)")
+                            .foregroundColor(.red)
+                    }
+                    
+                    Button(action: {
+                        viewModel.signUpUser(userEmail: email, userPassword: password, firstName: firstName, lastName: lastName)
+                        UIApplication.shared.dismissKeyboard()
+                    }) {
+                        Text("Join")
+                    }
+                    .buttonStyle(DarkLongButton())
+                    .disabled(disableForm)
+                    .opacity(disableForm ? 0.5 : 1)
+                    
+                    HStack {
+                        Text("Already a member?")
+                        Button(action: {
+                            signUpPresented = false
+                            signInPresented = true
+                            appViewRouter.currentPage = .onboardingPage
+                            
+                        }) {
+                            Text("Sign In")
+                                .font(.buttonText)
+                        }
+                        //.presentationDetents([.height(746)])
+                        
+                    }
                 }
+                .padding()
+                Spacer()
             }
-            .padding()
-            Spacer()
+            if viewModel.signUpProcessing {
+                ProgressView()
+            }
         }
 
     }

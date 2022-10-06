@@ -144,6 +144,7 @@ struct OnboardingView: View {
             
             if showCreateNewPassword {
                 CreateNewPasswordView(showCreateNewPassword: $showCreateNewPassword)
+                    .transition(.move(edge: .trailing))
             }
         }
         .sheet(isPresented: $viewModel.signUpSuccesful) {
