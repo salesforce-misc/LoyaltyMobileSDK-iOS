@@ -72,6 +72,7 @@ class OnboardingViewModel: ObservableObject {
                             print(member)
                         }
                         self?.signUpSuccesful = true
+                        self?.signOutSuccessful = false
                         self?.signUpProcessing = false
                     } catch {
                         self?.signUpErrorMessage = error.localizedDescription
@@ -99,7 +100,6 @@ class OnboardingViewModel: ObservableObject {
     
     func signInUser(userEmail: String, userPassword: String) {
         
-        signOutSuccessful = true
         signInProcessing = true
         
         Auth.auth().signIn(withEmail: userEmail, password: userPassword) { [weak self] authResult, error in
@@ -121,6 +121,7 @@ class OnboardingViewModel: ObservableObject {
                         try await ForceAuthManager.shared.grantAuth()
                         self?.signInProcessing = false
                         self?.signInSuccesful = true
+                        self?.signOutSuccessful = false
                     } catch {
                         self?.signInErrorMessage = error.localizedDescription
                     }

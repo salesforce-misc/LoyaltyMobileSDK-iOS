@@ -43,6 +43,7 @@ struct ColorTheme {
     
     let accent = Color("AccentColor")
     let background = Color("BackgroundColor")
+    let backgroundPink = Color("BackgroundPinkColor")
     let darkBlue = Color("DarkBlueColor")
     let lightBlue = Color("LightBlueColor")
     let superLightBlue = Color("SuperLightBlueColor")

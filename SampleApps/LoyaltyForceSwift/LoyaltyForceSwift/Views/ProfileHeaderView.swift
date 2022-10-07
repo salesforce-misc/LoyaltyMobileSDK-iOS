@@ -25,9 +25,9 @@ struct ProfileHeaderView: View {
             }
             .padding()
             
-            if !viewModel.isLoaded {
-                ProgressView()
-            }
+//            if !viewModel.isLoaded {
+//                ProgressView()
+//            }
             
             HStack {
                 Image("img-profile-larger")
@@ -38,12 +38,6 @@ struct ProfileHeaderView: View {
                         Text("\(viewModel.profile?.associatedContact.firstName ?? "") \(viewModel.profile?.associatedContact.lastName ?? "")")
                             .font(.profileTitle)
                         Spacer()
-                        Button {
-                            //
-                        } label: {
-                            Label("Edit", image: "ic-edit")
-                                .font(.editText)
-                        }
 
                     }
                     HStack {
@@ -77,7 +71,7 @@ struct ProfileHeaderView: View {
             
             Spacer()
         }
-        .frame(width: 375, height: 344)
+        .frame(width: 375, height: 421)
         .task {
             do {
                 try await viewModel.getProfileData(memberId: memberId, programName: programName)
