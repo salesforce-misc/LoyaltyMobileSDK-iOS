@@ -11,7 +11,7 @@ import Firebase
 struct AppRootView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
-    @EnvironmentObject private var viewModel: OnboardingViewModel
+    @EnvironmentObject private var viewModel: AppRootViewModel
     
     var body: some View {
                
@@ -89,10 +89,10 @@ struct AppRootView: View {
     }
 }
 
-struct AppStateManagerView_Previews: PreviewProvider {
+struct AppRootView_Previews: PreviewProvider {
     static var previews: some View {
         AppRootView()
             .environmentObject(AppViewRouter())
-            .environmentObject(OnboardingViewModel())
+            .environmentObject(AppRootViewModel())
     }
 }

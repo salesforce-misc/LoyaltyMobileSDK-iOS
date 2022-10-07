@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ResetPasswordView: View {
     
-    @EnvironmentObject private var viewModel: OnboardingViewModel
+    @EnvironmentObject private var viewModel: AppRootViewModel
     
     @Binding var showResetPassword: Bool
     @Binding var signInPresented: Bool
@@ -118,6 +118,6 @@ struct ResetPasswordView: View {
 struct ResetPasswordView_Previews: PreviewProvider {
     static var previews: some View {
         ResetPasswordView(showResetPassword: .constant(true), signInPresented: .constant(false))
-            .environmentObject(OnboardingViewModel())
+            .environmentObject(AppRootViewModel())
     }
 }

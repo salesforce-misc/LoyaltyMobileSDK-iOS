@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CheckYourEmailView: View {
     
-    @EnvironmentObject private var viewModel: OnboardingViewModel
+    @EnvironmentObject private var viewModel: AppRootViewModel
     
     @Binding var showCheckEmail: Bool
     @Binding var showResetPassowrd: Bool
@@ -74,6 +74,6 @@ struct CheckYourEmailView: View {
 struct CheckYourEmailView_Previews: PreviewProvider {
     static var previews: some View {
         CheckYourEmailView(showCheckEmail: .constant(false), showResetPassowrd: .constant(false))
-            .environmentObject(OnboardingViewModel())
+            .environmentObject(AppRootViewModel())
     }
 }

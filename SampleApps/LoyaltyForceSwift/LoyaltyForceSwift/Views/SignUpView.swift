@@ -10,7 +10,7 @@ import SwiftUI
 struct SignUpView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
-    @EnvironmentObject private var viewModel: OnboardingViewModel
+    @EnvironmentObject private var viewModel: AppRootViewModel
     
     @State private var firstName = ""
     @State private var lastName = ""
@@ -94,7 +94,7 @@ struct SignUpView: View {
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView(signInPresented: .constant(false), signUpPresented: .constant(false))
-            .environmentObject(OnboardingViewModel())
+            .environmentObject(AppRootViewModel())
     }
 }
 

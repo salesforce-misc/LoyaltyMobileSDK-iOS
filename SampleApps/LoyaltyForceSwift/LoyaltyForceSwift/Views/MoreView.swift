@@ -17,7 +17,7 @@ struct MenuItem: Identifiable {
 struct MoreView: View {
     
     @EnvironmentObject var appViewRouter: AppViewRouter
-    @EnvironmentObject var viewModel: OnboardingViewModel
+    @EnvironmentObject var viewModel: AppRootViewModel
     
     let menuItems: [MenuItem] = [
         MenuItem(icon: "ic-person", title: "Personal Information"),

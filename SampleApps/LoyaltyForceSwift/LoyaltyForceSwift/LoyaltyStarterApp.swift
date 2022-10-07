@@ -13,7 +13,7 @@ import Firebase
 struct LoyaltyStarterApp: App {
 
     @StateObject var appViewRouter = AppViewRouter()
-    @StateObject var onboardingVM = OnboardingViewModel()
+    @StateObject var appRootVM = AppRootViewModel()
 
     init(){
         FirebaseApp.configure()
@@ -23,7 +23,7 @@ struct LoyaltyStarterApp: App {
         WindowGroup {
             AppRootView()
                 .environmentObject(appViewRouter)
-                .environmentObject(onboardingVM)
+                .environmentObject(appRootVM)
         }
     }
 }

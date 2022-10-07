@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 
 @MainActor
-class OnboardingViewModel: ObservableObject {
+class AppRootViewModel: ObservableObject {
     
     @Published var enrolledMember: EnrollmentOutputModel?
     
@@ -168,7 +168,7 @@ class OnboardingViewModel: ObservableObject {
     
     // Firebase REST API Endpoint: https://identitytoolkit.googleapis.com/v1/accounts:resetPassword?key=[API_KEY]
     // Refrence: https://firebase.google.com/docs/reference/rest/auth#section-verify-password-reset-code
-    func resetPassword(newPassword: String, oobCode: String, apiKey: String) async {
+    func resetPassword(newPassword: String) async {
         
         createNewPassProgressing = true
         

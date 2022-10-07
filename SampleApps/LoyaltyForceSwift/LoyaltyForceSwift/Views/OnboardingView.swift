@@ -10,7 +10,7 @@ import SwiftUI
 struct OnboardingView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
-    @EnvironmentObject private var viewModel: OnboardingViewModel
+    @EnvironmentObject private var viewModel: AppRootViewModel
     
     @State private var selectedPage: Int = 0
     @State private var opacityText: Double = 1
@@ -158,6 +158,6 @@ struct OnboardingView: View {
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
         OnboardingView()
-            .environmentObject(OnboardingViewModel())
+            .environmentObject(AppRootViewModel())
     }
 }

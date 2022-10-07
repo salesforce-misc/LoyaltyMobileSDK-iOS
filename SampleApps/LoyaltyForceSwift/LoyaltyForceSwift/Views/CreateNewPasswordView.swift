@@ -10,7 +10,7 @@ import SwiftUI
 struct CreateNewPasswordView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
-    @EnvironmentObject private var viewModel: OnboardingViewModel
+    @EnvironmentObject private var viewModel: AppRootViewModel
     
     @Binding var showCreateNewPassword: Bool
     
@@ -87,7 +87,7 @@ struct CreateNewPasswordView: View {
                 
                 Button("Reset Password") {
                     Task {
-                        await viewModel.resetPassword(newPassword: password, oobCode: viewModel.oobCode, apiKey: viewModel.apiKey)
+                        await viewModel.resetPassword(newPassword: password)
                     }
                     UIApplication.shared.dismissKeyboard()
                 }
@@ -98,13 +98,8 @@ struct CreateNewPasswordView: View {
                     if succesful {
                         print("Password reset for \(viewModel.email) is successful.")
                         viewModel.signInUser(userEmail: viewModel.email, userPassword: password)
-                        
-//                        //TODO: redirect to other page: home or onboarding?
-//                        appViewRouter.signedIn = true
-//                        appViewRouter.currentPage = .navTabsPage(selectedTab: .home)
-                        
                     }
-                }
+                } //TODO: redirect to other page: home or onboarding? Need confirmation
                 .onReceive(viewModel.$signInSuccesful) { successful in
                     if successful {
                         viewModel.createNewPassProgressing = false
@@ -140,6 +135,6 @@ struct CreateNewPasswordView: View {
 struct CreateNewPasswordView_Previews: PreviewProvider {
     static var previews: some View {
         CreateNewPasswordView(showCreateNewPassword: .constant(false))
-            .environmentObject(OnboardingViewModel())
+            .environmentObject(AppRootViewModel())
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct SignInView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
-    @EnvironmentObject private var viewModel: OnboardingViewModel
+    @EnvironmentObject private var viewModel: AppRootViewModel
     
     @State private var email = ""
     @State private var password = ""
@@ -100,7 +100,7 @@ struct SignInView_Previews: PreviewProvider {
         SignInView(signInPresented: .constant(false),
                    signUpPresented: .constant(false),
                    showResetPassword: .constant(false))
-            .environmentObject(OnboardingViewModel())
+            .environmentObject(AppRootViewModel())
     }
 }
 
