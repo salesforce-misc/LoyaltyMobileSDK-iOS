@@ -1,0 +1,87 @@
+//
+//  Carousel.swift
+//  LoyaltyForceSwift
+//
+//  Created by Leon Qi on 10/7/22.
+//
+
+import Foundation
+import SwiftUI
+
+struct Carousel<Content: View, T: Identifiable>: View {
+    let content: (T) -> Content
+    let items: [T]
+    let spacing: CGFloat
+    let trailingSpace: CGFloat
+    
+    @Binding var index: Int
+    @GestureState var offset: CGFloat = 0
+    @State var currentIndex: Int = 0
+    
+    init(spacing: CGFloat = 10,
+         trailingSpace: CGFloat = UIScreen.main.bounds.width - 320, // 320 = OfferCardView().width, should normalize
+         index: Binding<Int>,
+         items: [T],
+         @ViewBuilder content: @escaping (T) -> Content) {
+        
+        self.items = items
+        self.spacing = spacing
+        self.trailingSpace = trailingSpace
+        self._index = index
+        self.content = content
+    }
+    
+    var body: some View {
+        
+        VStack {
+            GeometryReader { proxy in
+                
+                let width = proxy.size.width - (trailingSpace - spacing)
+                let adjustmentWidth = (trailingSpace / 2) - spacing
+                
+                VStack {
+                    HStack(spacing: spacing) {
+                        ForEach(items) { item in
+                            content(item)
+                                .frame(width: proxy.size.width - trailingSpace)
+                        }
+                    }
+                    .padding(.horizontal, spacing)
+                    .offset(x: (CGFloat(currentIndex) * -width) + adjustmentWidth + offset)
+                    .gesture(
+                        DragGesture()
+                            .updating($offset, body: { value, out, _ in
+                                out = value.translation.width
+                            })
+                            .onEnded({ value in
+
+                                let offsetX = value.translation.width
+                                let progress = -offsetX / width
+                                let roundIndex = progress.rounded()
+                                currentIndex = max(min(currentIndex + Int(roundIndex), items.count - 1), 0)
+                                currentIndex = index
+                            })
+                            .onChanged({ value in
+                                let offsetX = value.translation.width
+                                let progress = -offsetX / width
+                                let roundIndex = progress.rounded()
+                                index = max(min(currentIndex + Int(roundIndex), items.count - 1), 0)
+                            })
+                    )
+                    
+                }
+            }
+            .animation(.easeInOut, value: offset == 0)
+        }
+        
+        
+        
+    }
+}
+
+
+struct Carousel_Previews: PreviewProvider {
+    static var previews: some View {
+        SampleCarouselView()
+    }
+}

@@ -22,6 +22,10 @@ extension Font {
         return Font.custom("SFPro-Semibold", size: 16)
     }
     
+    static var smallButtonText: Font {
+        return Font.custom("SFPro-bold", size: 13.39)
+    }
+    
     /// Input fields placeholder text
     static var placeholderText: Font {
         return Font.custom("SFPro-Regular", size: 14)
@@ -71,8 +75,12 @@ extension Font {
         return Font.custom("SFPro-Regular", size: 14)
     }
     
-    // Offer Cards
+    // Offer Card
     static var offerTitle: Font {
+        return Font.custom("SFPro-Bold", size: 16)
+    }
+    
+    static var offerViewAll: Font {
         return Font.custom("SFPro-Bold", size: 13)
     }
     
@@ -82,6 +90,15 @@ extension Font {
     
     static var labelText: Font {
         return Font.custom("SFPro-Medium", size: 11)
+    }
+    
+    /// Redeem Card
+    static var redeemTitle: Font {
+        return Font.custom("SFPro-Medium", size: 14)
+    }
+    
+    static var redeemText: Font {
+        return Font.custom("SFPro-Regular", size: 12)
     }
     
     /// My Profile

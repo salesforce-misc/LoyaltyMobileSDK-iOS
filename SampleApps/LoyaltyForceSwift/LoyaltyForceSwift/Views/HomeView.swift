@@ -12,13 +12,13 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
-            Color.theme.background
+            Color(hex: "f7f4fb")
             //Color.black
             ScrollView(showsIndicators: false) {
                 Rectangle()
                     .frame(height: 400)
                     .foregroundColor(Color.theme.accent)
-                    .padding(.top, -360)
+                    .padding(.top, -350)
                 HStack {
                     Text("Welcome, Julia Green!")
                         .padding(.leading, 15)
@@ -26,29 +26,31 @@ struct HomeView: View {
                     Text("17850 Points")
                         .padding(.trailing, 15)
                 }
-                .frame(height: 58)
+                .frame(height: 48)
                 .frame(maxWidth: .infinity)
                 .background(Color.theme.backgroundPink)
-                .background(Color.black)
                 .padding(.top, -10)
-                
+                .background(
+                    Rectangle()
+                        .fill(Color.white)
+                        .shadow(
+                            color: Color.gray.opacity(0.4),
+                            radius: 5,
+                            x: 0,
+                            y: 0
+                         )
+                )
                 
                 // Offers & Promotions
-                Rectangle()
-                    .frame(width: 400, height: 400)
+                //OffersCarouselView()
+                SampleCarouselView()
+                    .frame(height: 400)
                     .foregroundColor(.pink)
-                    .padding(.top, 50)
-                    .overlay(
-                        Text("Offers & Promotions")
-                    )
-                
+                    .padding(.top, 100)
+                    .padding(.bottom, 20)
+            
                 // Redeem Points
-                Rectangle()
-                    .frame(width: 400, height: 400)
-                    .foregroundColor(.blue)
-                    .overlay(
-                        Text("Redeem Points")
-                    )
+                RedeemPointsView()
             }
             
             
