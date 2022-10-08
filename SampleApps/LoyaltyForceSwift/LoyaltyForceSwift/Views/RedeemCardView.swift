@@ -35,7 +35,18 @@ struct RedeemCardView: View {
         }
         .frame(width: 165, height: 203)
         .background(Color.white)
-        .cornerRadius(5)
+        .cornerRadius(10)
+        .background(
+            Rectangle()
+                .fill(Color.white)
+                .cornerRadius(10)
+                .shadow(
+                    color: Color.gray.opacity(0.4),
+                    radius: 10,
+                    x: 0,
+                    y: 0
+                 )
+        )
     }
 }
 
