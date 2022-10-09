@@ -8,6 +8,10 @@
 import SwiftUI
 import Firebase
 
+// recommend MainActor in ObservableObject class
+//https://www.hackingwithswift.com/quick-start/concurrency/how-to-use-mainactor-to-run-code-on-the-main-queue
+
+@MainActor
 class AppViewRouter: ObservableObject {
     // used for routing to different top views.
     @Published var currentPage: Page = .onboardingPage

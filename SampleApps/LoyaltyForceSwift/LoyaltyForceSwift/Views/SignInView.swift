@@ -27,8 +27,8 @@ struct SignInView: View {
                 VStack(spacing: 15) {
                     SignInCredentialFields(email: $email, password: $password)
                     
-                    if !viewModel.signInErrorMessage.isEmpty {
-                        Text("Failed signing in: \(viewModel.signInErrorMessage)")
+                    if !viewModel.userErrorMessage.0.isEmpty {
+                        Text("Failed signing in: \(viewModel.userErrorMessage.0)")
                             .foregroundColor(.red)
                             .font(.footnote)
                     }
@@ -77,7 +77,7 @@ struct SignInView: View {
                 Spacer()
             }
             
-            if viewModel.signInProcessing {
+            if viewModel.isInProgress {
                 ProgressView()
             }
             
@@ -88,7 +88,7 @@ struct SignInView: View {
     var disableForm: Bool {
         if email.isEmpty ||
             password.isEmpty ||
-            viewModel.signInProcessing {
+            viewModel.isInProgress {
             return true
         }
         return false

@@ -44,7 +44,7 @@ struct CheckYourEmailView: View {
                             showResetPassowrd = false
                             showCheckEmail = false
                         }
-                        viewModel.resetPasswordEmailSent = false
+                        viewModel.userState = .none
                     }
                 
                 Spacer()
@@ -61,7 +61,7 @@ struct CheckYourEmailView: View {
                     withAnimation {
                         showCheckEmail.toggle()
                     }
-                    viewModel.resetPasswordEmailSent = false
+                    viewModel.userState = .none
                 }
             }
         }

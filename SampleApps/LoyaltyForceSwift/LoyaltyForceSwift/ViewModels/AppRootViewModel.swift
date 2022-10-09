@@ -8,59 +8,57 @@
 import Foundation
 import Firebase
 
+enum ErrorType: Hashable {
+    case signup
+    case signin
+    case resetpassword
+    case newpassword
+    case noerror
+}
+
+enum UserState: Hashable {
+    case signin
+    case signup
+    case resetpassword
+    case newpassword
+    case signout
+    case none
+}
+
 @MainActor
 class AppRootViewModel: ObservableObject {
     
     @Published var enrolledMember: EnrollmentOutputModel?
     
-    // SignUpView
-    @Published var signUpProcessing = false
-    @Published var signUpErrorMessage = ""
-    @Published var signUpSuccesful = false
+    @Published var isInProgress = false
+    @Published var userErrorMessage = ("", ErrorType.noerror)
+    @Published var userState = UserState.none
     
-    // CongratsView
+
+    //Do we need observe those two String variable??
     @Published var email = ""
-    
-    // SignInView
-    @Published var signInProcessing = false
-    @Published var signInErrorMessage = ""
-    @Published var signInSuccesful = false
-    
-    // ResetPasswordView
-    @Published var requestResetPassProcessing = false
-    @Published var requestResetPassErrorMessage = ""
-    @Published var resetPasswordEmailSent = false
-    
-    // CreateNewPasswordView
-    @Published var createNewPassProgressing = false
-    @Published var createNewPassErrorMessage = ""
-    @Published var createNewPassSuccessful = false
-    
-    // SignOutView
-    @Published var signOutProcessing = false
-    @Published var signOutSuccessful = false
-    
-    // Password Reset
+        
+    //Do we need observe those two String variable??
     @Published var oobCode = ""
     @Published var apiKey = ""
     
     func signUpUser(userEmail: String, userPassword: String, firstName: String, lastName: String) {
         
-        signUpProcessing = true
+        isInProgress = true
         email = userEmail
         
         Auth.auth().createUser(withEmail: userEmail, password: userPassword) { [weak self] authResult, error in
             
             if let error = error {
-                self?.signUpProcessing = false
-                self?.signUpErrorMessage = error.localizedDescription
+                self?.isInProgress = false
+                self?.userErrorMessage = (error.localizedDescription, .signup)
                 return
             }
 
             switch authResult {
             case .none:
                 print("<Firebase> - Could not create account.")
-                self?.signUpProcessing = false
+                self?.isInProgress = false
             case .some(_):
                 print("<Firebase> - User created on Firebase.")
                 
@@ -71,12 +69,11 @@ class AppRootViewModel: ObservableObject {
                         if let member = self?.enrolledMember {
                             print(member)
                         }
-                        self?.signUpSuccesful = true
-                        self?.signOutSuccessful = false
-                        self?.signUpProcessing = false
+                        self?.userState = .signup
+                        self?.isInProgress = false
                     } catch {
-                        self?.signUpErrorMessage = error.localizedDescription
-                        
+                        self?.userErrorMessage = (error.localizedDescription, .signup)
+
                         // Member Enrollment failed, then delete User from Firebase
                         let user = Auth.auth().currentUser
 
@@ -87,7 +84,7 @@ class AppRootViewModel: ObservableObject {
                               print("<Firebase - User was deleted.")
                           }
                         }
-                        self?.signUpProcessing = false
+                        self?.isInProgress = false
                         return
                     }
 
@@ -100,30 +97,29 @@ class AppRootViewModel: ObservableObject {
     
     func signInUser(userEmail: String, userPassword: String) {
         
-        signInProcessing = true
+        isInProgress = true
         
         Auth.auth().signIn(withEmail: userEmail, password: userPassword) { [weak self] authResult, error in
             
             if let error = error {
-                self?.signInProcessing = false
-                self?.signInErrorMessage = error.localizedDescription
+                self?.isInProgress = false
+                self?.userErrorMessage = (error.localizedDescription, .signin)
                 return
             }
             
             switch authResult {
             case .none:
                 print("<Firebase> - Could not sign in user.")
-                self?.signInProcessing = false
+                self?.isInProgress = false
             case .some(_):
                 print("<Firebase> - User signed in")
                 Task{
                     do {
                         try await ForceAuthManager.shared.grantAuth()
-                        self?.signInProcessing = false
-                        self?.signInSuccesful = true
-                        self?.signOutSuccessful = false
+                        self?.isInProgress = false
+                        self?.userState = .signin
                     } catch {
-                        self?.signInErrorMessage = error.localizedDescription
+                        self?.userErrorMessage = (error.localizedDescription, .signin)
                     }
                 }
             }
@@ -134,34 +130,33 @@ class AppRootViewModel: ObservableObject {
     
     func signOutUser() {
         
-        signOutProcessing = true
+        isInProgress = true
         
         do {
             try Auth.auth().signOut()
             ForceAuthManager.shared.clearAuth()
-            signInSuccesful = false
-            signOutSuccessful = true
-            signOutProcessing = false
+            userState = .signout
+            isInProgress = false
         } catch {
             print("<Firebase> - Error signing out: \(error.localizedDescription)")
-            signOutProcessing = false
+            isInProgress = false
         }
     }
     
     func requestResetPassword(userEmail: String) {
         
-        requestResetPassProcessing = true
+        isInProgress = true
         
         Auth.auth().sendPasswordReset(withEmail: userEmail) { [weak self] error in
             
             if let error = error {
-                self?.requestResetPassProcessing = false
-                self?.requestResetPassErrorMessage = error.localizedDescription
+                self?.isInProgress = false
+                self?.userErrorMessage = (error.localizedDescription, .resetpassword)
                 return
             }
             
-            self?.resetPasswordEmailSent = true
-            self?.requestResetPassProcessing = false
+            self?.userState = .resetpassword
+            self?.isInProgress = false
             
         }
     }
@@ -170,10 +165,10 @@ class AppRootViewModel: ObservableObject {
     // Refrence: https://firebase.google.com/docs/reference/rest/auth#section-verify-password-reset-code
     func resetPassword(newPassword: String) async {
         
-        createNewPassProgressing = true
+        isInProgress = true
         
         guard let url = URL(string: "https://identitytoolkit.googleapis.com/v1/accounts:resetPassword?key=\(apiKey)") else {
-            createNewPassErrorMessage = URLError(.badURL).localizedDescription
+            userErrorMessage = (URLError(.badURL).localizedDescription, .resetpassword)
             return
         }
         let body = [
@@ -185,9 +180,9 @@ class AppRootViewModel: ObservableObject {
             let request = ForceRequest.createRequest(from: url, method: "POST", body: bodyJsonData)
             let result = try await ForceClient.shared.fetch(type: PasswordResetModel.self, with: request)
             email = result.email
-            createNewPassSuccessful = true
+            userState = .newpassword
         } catch {
-            createNewPassErrorMessage = error.localizedDescription
+            userErrorMessage = (error.localizedDescription, .resetpassword)
         }
     }
     

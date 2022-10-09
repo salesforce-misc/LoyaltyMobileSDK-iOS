@@ -57,8 +57,8 @@ struct MoreView: View {
                     .buttonStyle(.plain)
                     .listRowSeparator(.hidden, edges: .bottom)
                     .frame(height: 72)
-                    .onReceive(viewModel.$signOutSuccessful) { sucessful in
-                        if sucessful {
+                    .onReceive(viewModel.$userState) { state in
+                        if state == UserState.signout {
                             appViewRouter.signedIn = false
                             appViewRouter.currentPage = .onboardingPage
                         }
@@ -68,7 +68,7 @@ struct MoreView: View {
                 .navigationBarHidden(true)
                 
             }
-            if viewModel.signOutProcessing {
+            if viewModel.isInProgress {
                 ProgressView()
             }
         }

@@ -36,8 +36,8 @@ struct SignUpView: View {
                         password: $password,
                         passwordConfirmation: $passwordConfirmation)
                     
-                    if !viewModel.signUpErrorMessage.isEmpty {
-                        Text("Failed creating account: \(viewModel.signUpErrorMessage)")
+                    if !viewModel.userErrorMessage.0.isEmpty {
+                        Text("Failed creating account: \(viewModel.userErrorMessage.0)")
                             .foregroundColor(.red)
                     }
                     
@@ -69,7 +69,7 @@ struct SignUpView: View {
                 .padding()
                 Spacer()
             }
-            if viewModel.signUpProcessing {
+            if viewModel.isInProgress {
                 ProgressView()
             }
         }
@@ -83,7 +83,7 @@ struct SignUpView: View {
             password.isEmpty ||
             passwordConfirmation.isEmpty ||
             password != passwordConfirmation ||
-            viewModel.signUpProcessing {
+            viewModel.isInProgress {
             return true
         }
         return false

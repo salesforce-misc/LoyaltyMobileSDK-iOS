@@ -27,7 +27,7 @@ struct ResetPasswordView: View {
                                 showResetPassword.toggle()
                             }
                             signInPresented.toggle()
-                            viewModel.requestResetPassErrorMessage = ""
+                            viewModel.userErrorMessage = ("", .noerror)
                         }
                     })
                 )
@@ -38,7 +38,7 @@ struct ResetPasswordView: View {
                             showResetPassword.toggle()
                         }
                         signInPresented.toggle()
-                        viewModel.requestResetPassErrorMessage = ""
+                        viewModel.userErrorMessage = ("", .noerror)
                         
                     } label: {
                         Image("ic-backarrow")
@@ -65,8 +65,8 @@ struct ResetPasswordView: View {
                     .padding(.top, 20)
                     .padding(.bottom, 10)
                 
-                if !viewModel.requestResetPassErrorMessage.isEmpty {
-                    Text("Failed resetting password: \(viewModel.requestResetPassErrorMessage)")
+                if !viewModel.userErrorMessage.0.isEmpty {
+                    Text("Failed resetting password: \(viewModel.userErrorMessage.0)")
                         .foregroundColor(.red)
                 }
                 
@@ -77,8 +77,8 @@ struct ResetPasswordView: View {
                 .buttonStyle(DarkLongButton())
                 .disabled(disableForm)
                 .opacity(disableForm ? 0.5 : 1)
-                .onReceive(viewModel.$resetPasswordEmailSent) { emailSent in
-                    if emailSent {
+                .onReceive(viewModel.$userState) { state in
+                    if state == UserState.resetpassword {
                         self.email = ""
                         withAnimation {
                             showCheckEmail.toggle()
@@ -92,7 +92,7 @@ struct ResetPasswordView: View {
             .padding([.leading, .trailing], 10)
             .padding()
             
-            if viewModel.requestResetPassProcessing {
+            if viewModel.isInProgress {
                 ProgressView()
             }
             
@@ -108,7 +108,7 @@ struct ResetPasswordView: View {
     
     var disableForm: Bool {
         if email.isEmpty ||
-            viewModel.requestResetPassProcessing {
+            viewModel.isInProgress {
             return true
         }
         return false
