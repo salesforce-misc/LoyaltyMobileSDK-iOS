@@ -55,7 +55,7 @@ struct AppRootView: View {
     /// loyaltyapp://resetpassword?mode=resetPassword&oobCode=BIteQhy4O0-go_XjLjnbaF3C0KLZXPOQjViTajZTx18AAAGDpVgcog&apiKey=AIzaSyC6N0qud6ZeKl_chRjY_JUEi7QTSPbNWz4&lang=en
     func redirectDeeplink(url: URL) {
         
-        let defaultPage: Page = appViewRouter.signedIn ? .navTabsPage(selectedTab: .home) : .onboardingPage
+        let defaultPage: Page = appViewRouter.signedIn ? appViewRouter.currentPage : .onboardingPage
         
         guard url.scheme == AppConstants.Config.deeplinkScheme,
               let components = URLComponents(url: url, resolvingAgainstBaseURL: true),

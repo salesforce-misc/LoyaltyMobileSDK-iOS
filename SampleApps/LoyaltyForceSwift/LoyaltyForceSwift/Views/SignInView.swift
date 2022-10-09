@@ -65,7 +65,6 @@ struct SignInView: View {
                         Button(action: {
                             signInPresented = false
                             signUpPresented = true
-                            appViewRouter.currentPage = .onboardingPage
                         }) {
                             Text("Join Now")
                                 .font(.buttonText)

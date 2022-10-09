@@ -95,13 +95,13 @@ struct CreateNewPasswordView: View {
                 .disabled(disableForm)
                 .opacity(disableForm ? 0.5 : 1)
                 .onReceive(viewModel.$userState) { state in
-                    if state == UserState.newpassword {
+                    if state == UserState.newPasswordSet {
                         print("Password reset for \(viewModel.email) is successful.")
                         viewModel.signInUser(userEmail: viewModel.email, userPassword: password)
                     }
                 } //TODO: redirect to other page: home or onboarding? Need confirmation
                 .onReceive(viewModel.$userState) { state in
-                    if state == UserState.signin  {
+                    if state == UserState.signedIn  {
                         viewModel.isInProgress = false
                         appViewRouter.signedIn = true
                         appViewRouter.currentPage = .navTabsPage(selectedTab: .home)

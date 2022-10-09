@@ -9,19 +9,19 @@ import Foundation
 import Firebase
 
 enum ErrorType: Hashable {
-    case signup
-    case signin
-    case resetpassword
-    case newpassword
-    case noerror
+    case signUp
+    case signIn
+    case resetPassword
+    case createNewPassword
+    case noError
 }
 
 enum UserState: Hashable {
-    case signin
-    case signup
-    case resetpassword
-    case newpassword
-    case signout
+    case signedIn
+    case signedUp
+    case resetPasswordRequested
+    case newPasswordSet
+    case signedOut
     case none
 }
 
@@ -31,16 +31,12 @@ class AppRootViewModel: ObservableObject {
     @Published var enrolledMember: EnrollmentOutputModel?
     
     @Published var isInProgress = false
-    @Published var userErrorMessage = ("", ErrorType.noerror)
+    @Published var userErrorMessage = ("", ErrorType.noError)
     @Published var userState = UserState.none
     
-
-    //Do we need observe those two String variable??
-    @Published var email = ""
-        
-    //Do we need observe those two String variable??
-    @Published var oobCode = ""
-    @Published var apiKey = ""
+    var email = ""
+    var oobCode = ""
+    var apiKey = ""
     
     func signUpUser(userEmail: String, userPassword: String, firstName: String, lastName: String) {
         
@@ -51,7 +47,7 @@ class AppRootViewModel: ObservableObject {
             
             if let error = error {
                 self?.isInProgress = false
-                self?.userErrorMessage = (error.localizedDescription, .signup)
+                self?.userErrorMessage = (error.localizedDescription, .signUp)
                 return
             }
 
@@ -69,10 +65,10 @@ class AppRootViewModel: ObservableObject {
                         if let member = self?.enrolledMember {
                             print(member)
                         }
-                        self?.userState = .signup
+                        self?.userState = .signedUp
                         self?.isInProgress = false
                     } catch {
-                        self?.userErrorMessage = (error.localizedDescription, .signup)
+                        self?.userErrorMessage = (error.localizedDescription, .signUp)
 
                         // Member Enrollment failed, then delete User from Firebase
                         let user = Auth.auth().currentUser
@@ -81,7 +77,7 @@ class AppRootViewModel: ObservableObject {
                           if let error = error {
                               print("<Firebase> - Could not delete current user. \(error)")
                           } else {
-                              print("<Firebase - User was deleted.")
+                              print("<Firebase> - User was deleted.")
                           }
                         }
                         self?.isInProgress = false
@@ -103,7 +99,7 @@ class AppRootViewModel: ObservableObject {
             
             if let error = error {
                 self?.isInProgress = false
-                self?.userErrorMessage = (error.localizedDescription, .signin)
+                self?.userErrorMessage = (error.localizedDescription, .signIn)
                 return
             }
             
@@ -117,9 +113,9 @@ class AppRootViewModel: ObservableObject {
                     do {
                         try await ForceAuthManager.shared.grantAuth()
                         self?.isInProgress = false
-                        self?.userState = .signin
+                        self?.userState = .signedIn
                     } catch {
-                        self?.userErrorMessage = (error.localizedDescription, .signin)
+                        self?.userErrorMessage = (error.localizedDescription, .signIn)
                     }
                 }
             }
@@ -135,7 +131,7 @@ class AppRootViewModel: ObservableObject {
         do {
             try Auth.auth().signOut()
             ForceAuthManager.shared.clearAuth()
-            userState = .signout
+            userState = .signedOut
             isInProgress = false
         } catch {
             print("<Firebase> - Error signing out: \(error.localizedDescription)")
@@ -151,11 +147,11 @@ class AppRootViewModel: ObservableObject {
             
             if let error = error {
                 self?.isInProgress = false
-                self?.userErrorMessage = (error.localizedDescription, .resetpassword)
+                self?.userErrorMessage = (error.localizedDescription, .resetPassword)
                 return
             }
             
-            self?.userState = .resetpassword
+            self?.userState = .resetPasswordRequested
             self?.isInProgress = false
             
         }
@@ -168,7 +164,7 @@ class AppRootViewModel: ObservableObject {
         isInProgress = true
         
         guard let url = URL(string: "https://identitytoolkit.googleapis.com/v1/accounts:resetPassword?key=\(apiKey)") else {
-            userErrorMessage = (URLError(.badURL).localizedDescription, .resetpassword)
+            userErrorMessage = (URLError(.badURL).localizedDescription, .createNewPassword)
             return
         }
         let body = [
@@ -180,9 +176,9 @@ class AppRootViewModel: ObservableObject {
             let request = ForceRequest.createRequest(from: url, method: "POST", body: bodyJsonData)
             let result = try await ForceClient.shared.fetch(type: PasswordResetModel.self, with: request)
             email = result.email
-            userState = .newpassword
+            userState = .newPasswordSet
         } catch {
-            userErrorMessage = (error.localizedDescription, .resetpassword)
+            userErrorMessage = (error.localizedDescription, .createNewPassword)
         }
     }
     

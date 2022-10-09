@@ -27,7 +27,7 @@ struct ResetPasswordView: View {
                                 showResetPassword.toggle()
                             }
                             signInPresented.toggle()
-                            viewModel.userErrorMessage = ("", .noerror)
+                            viewModel.userErrorMessage = ("", .noError)
                         }
                     })
                 )
@@ -38,7 +38,7 @@ struct ResetPasswordView: View {
                             showResetPassword.toggle()
                         }
                         signInPresented.toggle()
-                        viewModel.userErrorMessage = ("", .noerror)
+                        viewModel.userErrorMessage = ("", .noError)
                         
                     } label: {
                         Image("ic-backarrow")
@@ -78,7 +78,7 @@ struct ResetPasswordView: View {
                 .disabled(disableForm)
                 .opacity(disableForm ? 0.5 : 1)
                 .onReceive(viewModel.$userState) { state in
-                    if state == UserState.resetpassword {
+                    if state == UserState.resetPasswordRequested {
                         self.email = ""
                         withAnimation {
                             showCheckEmail.toggle()

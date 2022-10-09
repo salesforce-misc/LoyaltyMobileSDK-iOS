@@ -16,7 +16,7 @@ struct OnboardingView: View {
     @State private var opacityText: Double = 1
     @State private var signUpPresented: Bool = false
     @State private var signInPresented: Bool = false
-    @State private var congratPresented: Bool = false
+    @State private var congratsPresented: Bool = false
     @State private var showResetPassword: Bool = false
     @State var showCreateNewPassword: Bool = false
     
@@ -99,10 +99,9 @@ struct OnboardingView: View {
       
                 }
                 .onReceive(viewModel.$userState) { state in
-                    if state == UserState.signup {
+                    if state == UserState.signedUp {
                         signUpPresented = false
-                        congratPresented = true
-                        appViewRouter.currentPage = .onboardingPage
+                        congratsPresented = true
                     }
                 }
                 
@@ -129,7 +128,7 @@ struct OnboardingView: View {
                         
                     }
                     .onReceive(viewModel.$userState) { state in
-                        if state == UserState.signin {
+                        if state == UserState.signedIn {
                             appViewRouter.signedIn = true
                             appViewRouter.currentPage = .navTabsPage(selectedTab: .home)
                         }
@@ -149,7 +148,7 @@ struct OnboardingView: View {
                     .transition(.move(edge: .trailing))
             }
         }
-        .sheet(isPresented: $congratPresented) {
+        .sheet(isPresented: $congratsPresented) {
             CongratsView(email: viewModel.email)
                 .interactiveDismissDisabled()
         }

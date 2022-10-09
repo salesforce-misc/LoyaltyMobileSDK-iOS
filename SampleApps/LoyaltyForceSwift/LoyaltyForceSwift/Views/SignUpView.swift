@@ -55,9 +55,7 @@ struct SignUpView: View {
                         Text("Already a member?")
                         Button(action: {
                             signUpPresented = false
-                            signInPresented = true
-                            appViewRouter.currentPage = .onboardingPage
-                            
+                            signInPresented = true                            
                         }) {
                             Text("Sign In")
                                 .font(.buttonText)

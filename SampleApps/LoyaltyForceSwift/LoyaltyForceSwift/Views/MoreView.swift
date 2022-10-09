@@ -58,7 +58,7 @@ struct MoreView: View {
                     .listRowSeparator(.hidden, edges: .bottom)
                     .frame(height: 72)
                     .onReceive(viewModel.$userState) { state in
-                        if state == UserState.signout {
+                        if state == UserState.signedOut {
                             appViewRouter.signedIn = false
                             appViewRouter.currentPage = .onboardingPage
                         }
@@ -79,5 +79,6 @@ struct MoreView: View {
 struct MoreView_Previews: PreviewProvider {
     static var previews: some View {
         MoreView()
+            .environmentObject(AppRootViewModel())
     }
 }
