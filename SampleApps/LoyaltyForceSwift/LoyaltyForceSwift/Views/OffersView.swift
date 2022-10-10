@@ -1,5 +1,5 @@
 //
-//  RedeemView.swift
+//  RewardsView.swift
 //  LoyaltyMobile
 //
 //  Created by Leon Qi on 8/22/22.
@@ -7,36 +7,35 @@
 
 import SwiftUI
 
-struct RedeemView: View {
+struct OffersView: View {
+    
+    @State var offerTabSelected: Int = 0
+    let barItems = ["All", "Active", "Expiring Soon"]
     
     var body: some View {
         ZStack {
             Color.theme.background
+            
             ScrollView(showsIndicators: false) {
-                
+
                 VStack(spacing: 15) {
-                    HStack(spacing: 15) {
-                        RedeemCardView()
-                        RedeemCardView()
-                    }
-                    
-                    HStack(spacing: 15) {
-                        RedeemCardView()
-                        RedeemCardView()
-                    }
-                    
+                    MyOffersCardView()
+                    MyOffersCardView()
+                    MyOffersCardView()
+                    MyOffersCardView()
+                    MyOffersCardView()
                     MyOffersCardView()
                     MyOffersCardView()
                     MyOffersCardView()
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.top, 110)
-                
+
             }
             
             VStack(spacing: 0) {
                 HStack {
-                    Text("Redeem Points")
+                    Text("My Offers")
                         .font(.congratsTitle)
                         .padding(.leading, 15)
                     Spacer()
@@ -47,18 +46,7 @@ struct RedeemView: View {
                 .frame(maxWidth: .infinity)
                 .background(Color.white)
                 
-                HStack {
-                    Text("4300 Points")
-                        .foregroundColor(Color.theme.accent)
-                        .font(.pointsText)
-                        .padding(.leading, 15)
-                    Spacer()
-                }
-                .frame(height: 44)
-                .frame(maxWidth: .infinity)
-                .background(Color.white)
-                
-                
+                TopTabBar(barItems: barItems, tabIndex: $offerTabSelected)
                 Spacer()
             }
             
@@ -66,8 +54,10 @@ struct RedeemView: View {
     }
 }
 
-struct RedeemView_Previews: PreviewProvider {
+struct RewardsView_Previews: PreviewProvider {
     static var previews: some View {
-        RedeemView()
+        OffersView()
+        //TabBarButton(text: "All", isSelected: .constant(true))
+        //TopTabBar(tabIndex: .constant(2))
     }
 }

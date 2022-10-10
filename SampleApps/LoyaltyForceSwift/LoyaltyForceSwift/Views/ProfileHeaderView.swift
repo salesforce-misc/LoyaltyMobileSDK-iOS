@@ -17,18 +17,6 @@ struct ProfileHeaderView: View {
     
     var body: some View {
         VStack {
-            
-            HStack {
-                Text("My Profile")
-                    .font(Font.pageTitle)
-                Spacer()
-            }
-            .padding()
-            
-//            if !viewModel.isLoaded {
-//                ProgressView()
-//            }
-            
             HStack {
                 Image("img-profile-larger")
                 .clipShape(Circle())
@@ -48,30 +36,20 @@ struct ProfileHeaderView: View {
                     }
                     
                 }
+                //.background(.pink)
 
                 Spacer()
             }
             .padding()
+            //.background(.blue)
             
-            ZStack {
-                Image("img-card-base")
-                HStack {
-                    Spacer()
-                    Image("img-card-layer1")
-                }
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Image("img-card-layer2")
-                    }
-                }
 
-            }
+            
             
             Spacer()
         }
-        .frame(width: 375, height: 421)
+        .frame(height: 421)
+        .background(.white)
         .task {
             do {
                 try await viewModel.getProfileData(memberId: memberId, programName: programName)

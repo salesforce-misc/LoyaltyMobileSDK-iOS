@@ -92,6 +92,28 @@ extension Font {
         return Font.custom("SFPro-Medium", size: 11)
     }
     
+    // Offers tabs
+    static var offersTabSelected: Font {
+        return Font.custom("SFPro-Bold", size: 16)
+    }
+    
+    static var offersTabUnselected: Font {
+        return Font.custom("SFPro-Medium", size: 16)
+    }
+    
+    // Transaction
+    static var transactionText: Font {
+        return Font.custom("SFPro-Bold", size: 13)
+    }
+    
+    static var transactionDate: Font {
+        return Font.custom("SFPro-Regular", size: 13)
+    }
+    
+    static var transactionPoints: Font {
+        return Font.custom("SFPro-Bold", size: 14)
+    }
+    
     /// Redeem Card
     static var redeemTitle: Font {
         return Font.custom("SFPro-Medium", size: 14)
@@ -99,6 +121,15 @@ extension Font {
     
     static var redeemText: Font {
         return Font.custom("SFPro-Regular", size: 12)
+    }
+    
+    static var pointsText: Font {
+        return Font.custom("SFPro-Bold", size: 18)
+    }
+    
+    // badge
+    static var badgeLabel: Font {
+        return Font.custom("SFPro-Medium", size: 14)
     }
     
     /// My Profile

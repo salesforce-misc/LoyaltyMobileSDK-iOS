@@ -56,4 +56,9 @@ struct ColorTheme {
     let darkButton = Color("ButtonDarkColor")
     let textFieldBackground = Color("TextFieldBackgroundColor")
     let textFieldBorder = Color("TextFieldBorderColor")
+    let voucherCode = Color("VoucherCodeColor")
+    let voucherBorder = Color("VoucherCodeBorderColor")
+    let voucherBackground = Color("VoucherCodeBackgroundColor")
+    let points = Color("PointsColor")
+    let badgeBackground = Color("BadgeTextBackgroundColor")
 }

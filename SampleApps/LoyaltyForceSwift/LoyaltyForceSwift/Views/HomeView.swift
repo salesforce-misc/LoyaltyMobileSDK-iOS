@@ -12,8 +12,7 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
-            Color(hex: "f7f4fb")
-            //Color.black
+            Color.theme.background
             ScrollView(showsIndicators: false) {
                 Rectangle()
                     .frame(height: 400)
