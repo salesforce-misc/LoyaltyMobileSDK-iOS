@@ -45,3 +45,14 @@ struct LightShortButton: ButtonStyle {
     }
 }
 
+struct DarkShortButton: ButtonStyle {
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.buttonText)
+            .foregroundColor(.white)
+            .frame(width: 319, height: 48)
+            .background(Color.theme.darkButton)
+            .cornerRadius(24)
+    }
+}

@@ -114,6 +114,15 @@ extension Font {
         return Font.custom("SFPro-Bold", size: 14)
     }
     
+    // Voucher Detail
+    static var voucherTitle: Font {
+        return Font.custom("SFPro-Bold", size: 24)
+    }
+    
+    static var voucherText: Font {
+        return Font.custom("SFPro-Regular", size: 14)
+    }
+    
     /// Redeem Card
     static var redeemTitle: Font {
         return Font.custom("SFPro-Medium", size: 14)
@@ -147,6 +156,22 @@ extension Font {
     
     static var editText: Font {
         return Font.custom("SFPro-Semibold", size: 13)
+    }
+    
+    static var cardPointsText: Font {
+        return Font.custom("SFPro-Bold", size: 32)
+    }
+    
+    static var cardExpiringPointsText: Font {
+        return Font.custom("SFPro-Bold", size: 12)
+    }
+    
+    static var tierPointsText: Font {
+        return Font.custom("SFPro-Bold", size: 13.58)
+    }
+    
+    static var tierPointsNotes: Font {
+        return Font.custom("SFPro-Regular", size: 12)
     }
     
     /// Benefits

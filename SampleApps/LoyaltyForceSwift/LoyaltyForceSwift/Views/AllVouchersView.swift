@@ -10,26 +10,29 @@ import SwiftUI
 struct AllVouchersView: View {
 
     @Binding var showAllVouchersView: Bool
+    @State var showVoucherDetailView = false
     @State var tabSelected: Int = 0
     let barItems = ["Available", "Redeemed", "Expired"]
     
     var body: some View {
         ZStack {
             Color.theme.background
-//                .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-//                    .onEnded({ value in
-//                        if value.translation.width > 0 {
-//                            withAnimation {
-//                                showAllVouchersView.toggle()
-//                            }
-//                        }
-//                    })
-//                )
+                
             ScrollView(showsIndicators: false) {
                 
                 VStack(spacing: 15) {
                     HStack {
-                        VoucherCardView()
+                        Button {
+                            showVoucherDetailView.toggle()
+                        } label: {
+                            VoucherCardView()
+                                .foregroundColor(.black)
+                        }
+                        .sheet(isPresented: $showVoucherDetailView) {
+                            VoucherDetailView()
+                        }
+
+                        
                         VoucherCardView()
                     }
                     HStack {
@@ -49,7 +52,21 @@ struct AllVouchersView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.top, 150)
                 
+                if showVoucherDetailView {
+                    VoucherDetailView()
+                        .transition(.move(edge: .bottom))
+                }
+                
             }
+            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                .onEnded({ value in
+                    if value.translation.width > 0 {
+                        withAnimation {
+                            showAllVouchersView.toggle()
+                        }
+                    }
+                })
+            )
             
             VStack(spacing: 0) {
                 HStack {

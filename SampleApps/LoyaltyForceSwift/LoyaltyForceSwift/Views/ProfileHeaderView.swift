@@ -36,19 +36,16 @@ struct ProfileHeaderView: View {
                     }
                     
                 }
-                //.background(.pink)
 
                 Spacer()
             }
             .padding()
-            //.background(.blue)
             
-
-            
+            RewardPointsCardView()
             
             Spacer()
         }
-        .frame(height: 421)
+        .frame(height: 400)
         .background(.white)
         .task {
             do {

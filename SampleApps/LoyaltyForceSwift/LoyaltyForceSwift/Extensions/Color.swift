@@ -61,4 +61,7 @@ struct ColorTheme {
     let voucherBackground = Color("VoucherCodeBackgroundColor")
     let points = Color("PointsColor")
     let badgeBackground = Color("BadgeTextBackgroundColor")
+    let memberStatus = Color("GoldColor")
+    let progressBarBackground = Color("ProgressBarBackgroundColor")
+    let tierPoints = Color("TierPointsColor")
 }
