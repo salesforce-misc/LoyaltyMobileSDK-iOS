@@ -95,6 +95,7 @@
 		29BAF6F128F5D6D600A3F9EB /* VoucherDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6F028F5D6D600A3F9EB /* VoucherDetailView.swift */; };
 		29BAF6F628F5DEC100A3F9EB /* LoyaltyUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6F528F5DEC100A3F9EB /* LoyaltyUtilities.swift */; };
 		29BAF6FE28F63A5800A3F9EB /* RewardPointsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6FD28F63A5800A3F9EB /* RewardPointsCardView.swift */; };
+		29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -187,6 +188,7 @@
 		29BAF6F028F5D6D600A3F9EB /* VoucherDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherDetailView.swift; sourceTree = "<group>"; };
 		29BAF6F528F5DEC100A3F9EB /* LoyaltyUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyUtilities.swift; sourceTree = "<group>"; };
 		29BAF6FD28F63A5800A3F9EB /* RewardPointsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardPointsCardView.swift; sourceTree = "<group>"; };
+		29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +300,7 @@
 				29BAF6EC28F4DE1C00A3F9EB /* BadgeCardView.swift */,
 				29BAF6EE28F4E27400A3F9EB /* BadgesView.swift */,
 				29BAF6FD28F63A5800A3F9EB /* RewardPointsCardView.swift */,
+				29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				296D393328DBCE050078C88E /* OnboardingView.swift in Sources */,
 				291CC0BD28D53A0000C08572 /* LoyaltyQueryModels.swift in Sources */,
 				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
+				29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */,
 				2938C60828CFED0600F495AF /* Collection+URLQueryItem.swift in Sources */,
 				299B38D828E796BC00E45D97 /* FullSheet.swift in Sources */,
 				2938C60228CE84B900F495AF /* Keychain.swift in Sources */,

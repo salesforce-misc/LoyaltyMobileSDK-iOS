@@ -12,11 +12,6 @@ struct ProfileView: View {
     @State var showAllVouchersView = false
     
     var body: some View {
-//        ScrollView {
-//            ProfileHeaderView()
-//            BenefitView()
-//            Spacer()
-//        }
         
         ZStack {
             Color.theme.background
@@ -51,7 +46,6 @@ struct ProfileView: View {
                 .frame(height: 44)
                 .frame(maxWidth: .infinity)
                 .background(Color.white)
-                //ProfileHeaderView()
                 
                 Spacer()
             }

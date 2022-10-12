@@ -18,6 +18,8 @@ struct RewardPointsCardView: View {
     let currentTierPoints: Int = 4000
     let currentTierLimit: Int = 6000
     
+    @State var showQRCode: Bool = false
+    
     var body: some View {
         
         let imageData = LoyaltyUtilities.generateQRCode(from: membershipNumber, color: UIColor(Color.theme.accent)) ?? Data.init()
@@ -61,12 +63,20 @@ struct RewardPointsCardView: View {
                         .padding(.bottom, 15)
                 }
                 .overlay(alignment: .bottomTrailing) {
-                    Image(uiImage: coloredImage)
-                        .resizable()
-                        .frame(width: 46, height: 46)
-                        .cornerRadius(4)
-                        .padding(.trailing, 35)
-                        .padding(.bottom, 15)
+                    
+                    Button {
+                        showQRCode.toggle()
+                    } label: {
+                        Image(uiImage: coloredImage)
+                            .resizable()
+                            .frame(width: 46, height: 46)
+                            .cornerRadius(4)
+                            .padding(.trailing, 35)
+                            .padding(.bottom, 15)
+                    }
+                    .sheet(isPresented: $showQRCode) {
+                        QRCodeView(QRCodeImage: coloredImage)
+                    }
                 }
                 .overlay(alignment: .leading) {
                     VStack(alignment: .leading) {
@@ -95,8 +105,8 @@ struct RewardPointsCardView: View {
                             .padding()
                     }
                 HStack {
-                    Text("\(String(currentTierPoints))/\(Text(String(currentTierLimit)).foregroundColor(Color.theme.tierPoints))")
-                        .foregroundColor(Color.theme.accent)
+                    Text("\(Text(String(currentTierPoints)).foregroundColor(Color.theme.accent))/\(String(currentTierLimit))")
+                        .foregroundColor(Color.theme.tierPoints)
                         .font(.tierPointsText)
                     Spacer()
                     Text("Tier Expiring on Dec 31")

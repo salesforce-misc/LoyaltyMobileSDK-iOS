@@ -174,6 +174,19 @@ extension Font {
         return Font.custom("SFPro-Regular", size: 12)
     }
     
+    // QRCode View
+    static var qrcodeTitle: Font {
+        return Font.custom("SFPro-Bold", size: 16)
+    }
+    
+    static var qrcodeSubtitle: Font {
+        return Font.custom("SFPro-Regular", size: 14)
+    }
+    
+    static var qrcodeNumber: Font {
+        return Font.custom("SFPro-Medium", size: 16)
+    }
+    
     /// Benefits
     static var benefitText: Font {
         return Font.custom("SFPro-Semibold", size: 14)
