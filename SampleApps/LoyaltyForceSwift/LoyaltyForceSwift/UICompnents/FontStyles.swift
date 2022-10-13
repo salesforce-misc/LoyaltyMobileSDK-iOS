@@ -114,6 +114,10 @@ extension Font {
         return Font.custom("SFPro-Bold", size: 14)
     }
     
+    static var transactionPeriod: Font {
+        return Font.custom("Roboto-Regular", size: 14)
+    }
+    
     // Voucher Detail
     static var voucherTitle: Font {
         return Font.custom("SFPro-Bold", size: 24)

@@ -64,4 +64,5 @@ struct ColorTheme {
     let memberStatus = Color("GoldColor")
     let progressBarBackground = Color("ProgressBarBackgroundColor")
     let tierPoints = Color("TierPointsColor")
+    let lightBlackText = Color("TextLightBlackColor") // #231F20
 }

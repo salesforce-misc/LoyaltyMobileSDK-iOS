@@ -16,7 +16,7 @@ struct TransactionsView: View {
                     .font(.offerTitle)
                     .foregroundColor(.black)
                 Spacer()
-                NavigationLink(destination: {
+                LoyaltyNavLink(destination: {
                     AllTransactionsView()
                 }, label: {
                     Text("View All")

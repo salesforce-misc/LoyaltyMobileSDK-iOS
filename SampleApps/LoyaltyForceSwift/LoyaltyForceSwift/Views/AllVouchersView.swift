@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AllVouchersView: View {
 
-    @Environment(\.dismiss) private var dismiss
     @State var showVoucherDetailView = false
     @State var tabSelected: Int = 0
     let barItems = ["Available", "Redeemed", "Expired"]
@@ -50,7 +49,7 @@ struct AllVouchersView: View {
                     
                 }
                 .frame(maxWidth: .infinity)
-                .padding(.top, 150)
+                .padding(.top, 20)
                 
                 if showVoucherDetailView {
                     VoucherDetailView()
@@ -59,56 +58,9 @@ struct AllVouchersView: View {
                 
             }
             
-            VStack(spacing: 0) {
-//                HStack {
-//                    Button {
-//                    } label: {
-//                        Image("ic-backarrow")
-//                    }
-//                    .padding(.leading, 15)
-//
-//                    Spacer()
-//                    Image("ic-search")
-//                        .padding(.trailing, 15)
-//                }
-//                .frame(height: 44)
-//                .frame(maxWidth: .infinity)
-//                .background(Color.white)
-//
-//                HStack {
-//                    Text("Vouchers")
-//                        .font(.nameText)
-//                        .padding(.leading, 15)
-//                    Spacer()
-//                }
-//                .frame(height: 44)
-//                .frame(maxWidth: .infinity)
-//                .background(Color.white)
-                
-                TopTabBar(barItems: barItems, tabIndex: $tabSelected)
-                Spacer()
-            }
-            
         }
-        .navigationTitle("Vouchers")
-        .navigationBarTitleDisplayMode(.large)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image("ic-backarrow")
-                }
-            }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    //
-                } label: {
-                    Image("ic-search")
-                }
-            }
-        }
+        .loytaltyNavigationTitle("Vouchers")
+        .loyaltyNavBarTabBar(TopTabBar(barItems: barItems, tabIndex: $tabSelected))
 
     }
 

@@ -15,12 +15,14 @@ struct RedeemPointsView: View {
                     .font(.offerTitle)
                     .foregroundColor(.black)
                 Spacer()
-                Text("View All")
-                    .foregroundColor(Color.theme.accent)
-                    .font(.offerViewAll)
-                    .onTapGesture {
-                        // All redeem view
-                    }
+                LoyaltyNavLink {
+                    AllRedeemPointsView()
+                } label: {
+                    Text("View All")
+                        .foregroundColor(Color.theme.accent)
+                        .font(.offerViewAll)
+                }
+
             }
             .padding()
             

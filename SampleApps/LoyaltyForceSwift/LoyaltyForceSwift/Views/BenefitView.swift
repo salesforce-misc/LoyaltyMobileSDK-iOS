@@ -15,28 +15,26 @@ struct BenefitView: View {
     
     var body: some View {
         
-        ZStack {
+        let benefits: [BenefitModel] = viewModel.benefits
+        
+        //ZStack {
             VStack {
                 HStack {
                     Text("Benefits")
                         .font(.offerTitle)
                         .foregroundColor(.black)
                     Spacer()
-                    Text("View All")
-                        .foregroundColor(Color.theme.accent)
-                        .font(.offerViewAll)
-                        .onTapGesture {
-                            print("clicked")
-                            withAnimation {
-                                //
-                            }
-                            
-                        }
+                    LoyaltyNavLink {
+                        AllBenefitsView(viewModel: viewModel)
+                    } label: {
+                        Text("View All")
+                            .foregroundColor(Color.theme.accent)
+                            .font(.offerViewAll)
+                    }
+
                 }
                 .padding()
                 
-                let benefits: [BenefitModel] = viewModel.benefits
-
                 ForEach(benefits) { benefit in
                     HStack {
                         Circle()
@@ -46,22 +44,22 @@ struct BenefitView: View {
                                 Image("return")
                             )
                         
-                        VStack(spacing: 8) {
+                        VStack(spacing: 6) {
                             HStack {
                                 Text("\(benefit.benefitName)")
                                     .font(.benefitText)
                                     .foregroundColor(Color.theme.accent)
                                 Spacer()
                             }
-                            //.padding([.horizontal, .top])
+
                             HStack {
                                 Text("\(viewModel.benefitDescs[benefit.id] ?? "")")
                                     .font(.benefitDescription)
-                                    .lineSpacing(4)
+                                    .lineSpacing(3)
                                     .foregroundColor(Color.theme.superLightText)
                                 Spacer()
                             }
-                            //.padding([.horizontal, .bottom])
+
                         }
                         
                     }
@@ -85,7 +83,7 @@ struct BenefitView: View {
                 ProgressView()
             }
 
-        }
+        //}
         
     }
 

@@ -9,11 +9,6 @@ import SwiftUI
 
 struct ProfileView: View {
     
-    init() {
-        // Use this if NavigationBarTitle is with large font
-        UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont(name: "Archivo-Bold", size: 18)!]
-    }
-    
     var body: some View {
        
         NavigationView {
@@ -34,7 +29,8 @@ struct ProfileView: View {
                             BenefitView()
                             BadgesView()
                         }
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .padding(.bottom, 50)
                     }
                     
 
@@ -70,6 +66,7 @@ struct ProfileView_Previews: PreviewProvider {
     }
 }
 
+// Add this for custom navigationLink
 extension UINavigationController {
 
     open override func viewDidLoad() {
