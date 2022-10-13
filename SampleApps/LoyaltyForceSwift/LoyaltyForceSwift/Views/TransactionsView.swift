@@ -9,19 +9,21 @@ import SwiftUI
 
 struct TransactionsView: View {
     var body: some View {
-        
+    
         VStack {
             HStack {
                 Text("Transations")
                     .font(.offerTitle)
                     .foregroundColor(.black)
                 Spacer()
-                Text("View All")
-                    .foregroundColor(Color.theme.accent)
-                    .font(.offerViewAll)
-                    .onTapGesture {
-                        
-                    }
+                LoyaltyNavLink(destination: {
+                    AllTransactionsView()
+                }, label: {
+                    Text("View All")
+                        .foregroundColor(Color.theme.accent)
+                        .font(.offerViewAll)
+                })
+                
             }
             .padding()
             
@@ -32,7 +34,8 @@ struct TransactionsView: View {
             }
             
         }
-        .frame(height: 360)
+        .frame(height: 320)
+        
     }
 }
 

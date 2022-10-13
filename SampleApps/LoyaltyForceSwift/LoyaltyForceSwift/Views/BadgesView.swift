@@ -11,17 +11,19 @@ struct BadgesView: View {
     var body: some View {
         
         VStack {
+            Spacer()
             HStack {
                 Text("Badges")
                     .font(.offerTitle)
                     .foregroundColor(.black)
                 Spacer()
-                Text("View All")
-                    .foregroundColor(Color.theme.accent)
-                    .font(.offerViewAll)
-                    .onTapGesture {
-                        // All redeem view
-                    }
+                LoyaltyNavLink {
+                    AllBadgesView()
+                } label: {
+                    Text("View All")
+                        .foregroundColor(Color.theme.accent)
+                        .font(.offerViewAll)
+                }
             }
             .padding()
             
@@ -36,7 +38,7 @@ struct BadgesView: View {
             }
             
         }
-        .frame(height: 300)
+        .frame(height: 400)
     }
 }
 

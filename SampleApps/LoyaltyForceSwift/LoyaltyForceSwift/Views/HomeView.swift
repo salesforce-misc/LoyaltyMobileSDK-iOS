@@ -11,70 +11,67 @@ import Firebase
 struct HomeView: View {
     
     var body: some View {
-        ZStack {
-            Color.theme.background
-            ScrollView(showsIndicators: false) {
-                Rectangle()
-                    .frame(height: 400)
-                    .foregroundColor(Color.theme.accent)
-                    .padding(.top, -350)
-                HStack {
-                    Text("Welcome, Julia Green!")
-                        .padding(.leading, 15)
-                    Spacer()
-                    Text("17850 Points")
-                        .padding(.trailing, 15)
-                }
-                .frame(height: 48)
-                .frame(maxWidth: .infinity)
-                .background(Color.theme.backgroundPink)
-                .padding(.top, -10)
-                .background(
+        NavigationView {
+            ZStack {
+                Color.theme.background
+                ScrollView(showsIndicators: false) {
                     Rectangle()
-                        .fill(Color.white)
-                        .shadow(
-                            color: Color.gray.opacity(0.4),
-                            radius: 5,
-                            x: 0,
-                            y: 0
-                         )
-                )
-                
-                // Offers & Promotions
-                //OffersCarouselView()
-                SampleCarouselView()
-                    .frame(height: 400)
-                    .foregroundColor(.pink)
-                    .padding(.top, 100)
-                    .padding(.bottom, 20)
-            
-                // Redeem Points
-                RedeemPointsView()
-            }
-            
-            
-            VStack{
-                VStack(spacing: 0) {
+                        .frame(height: 400)
+                        .foregroundColor(Color.theme.accent)
+                        .padding(.top, -350)
                     HStack {
-                        Image("ic-logo-home")
+                        Text("Welcome, Julia Green!")
                             .padding(.leading, 15)
                         Spacer()
-                        Image("ic-magnifier")
+                        Text("17850 Points")
                             .padding(.trailing, 15)
                     }
-                    .frame(height: 44)
+                    .frame(height: 48)
                     .frame(maxWidth: .infinity)
-                    .background(Color.theme.accent)
+                    .background(Color.theme.backgroundPink)
+                    .padding(.top, -10)
+                    .background(
+                        Rectangle()
+                            .fill(Color.white)
+                            .shadow(
+                                color: Color.gray.opacity(0.4),
+                                radius: 5,
+                                x: 0,
+                                y: 0
+                             )
+                    )
+                    
+                    // Offers & Promotions
+                    //OffersCarouselView()
+                    SampleCarouselView()
+                        .frame(height: 400)
+                        .foregroundColor(.pink)
+                        .padding(.top, 80)
+                        .padding(.bottom, 20)
+                
+                    // Redeem Points
+                    RedeemPointsView()
                 }
-                Spacer()
+                
+                
+                VStack{
+                    VStack(spacing: 0) {
+                        HStack {
+                            Image("ic-logo-home")
+                                .padding(.leading, 15)
+                            Spacer()
+                            Image("ic-magnifier")
+                                .padding(.trailing, 15)
+                        }
+                        .frame(height: 44)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.theme.accent)
+                    }
+                    Spacer()
+                }
+                
             }
-                
-                
-                
-
-            
         }
-        
         
     }
 }

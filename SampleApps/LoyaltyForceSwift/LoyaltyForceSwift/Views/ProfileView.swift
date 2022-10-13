@@ -9,53 +9,50 @@ import SwiftUI
 
 struct ProfileView: View {
     
-    @State var showAllVouchersView = false
-    
     var body: some View {
-        
-        ZStack {
-            Color.theme.background
-            
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 0) {
-                    Rectangle()
-                        .frame(height: 400)
-                        .foregroundColor(Color.white)
-                        .padding(.top, -356)
-                    VStack(spacing: 15) {
-                        
-                        ProfileHeaderView()
-                        TransactionsView()
-                        VouchersView(showAllVouchersView: $showAllVouchersView)
-                        BenefitView()
-                        BadgesView()
+       
+        NavigationView {
+            ZStack {
+                Color.theme.background
+                
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 0) {
+                        Rectangle()
+                            .frame(height: 400)
+                            .foregroundColor(Color.white)
+                            .padding(.top, -356)
+                        VStack(spacing: 10) {
+                            
+                            ProfileHeaderView()
+                            TransactionsView()
+                            VouchersView()
+                            BenefitView()
+                            BadgesView()
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .padding(.bottom, 50)
                     }
-                    .frame(maxWidth: .infinity)
+                    
+
                 }
                 
-
-            }
-            
-            VStack(spacing: 0) {
-                HStack {
-                    Text("My Profile")
-                        .font(.congratsTitle)
-                        .padding(.leading, 15)
+                VStack(spacing: 0) {
+                    HStack {
+                        Text("My Profile")
+                            .font(.congratsTitle)
+                            .padding(.leading, 15)
+                        Spacer()
+                    }
+                    .frame(height: 44)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.white)
+                    
                     Spacer()
                 }
-                .frame(height: 44)
-                .frame(maxWidth: .infinity)
-                .background(Color.white)
                 
-                Spacer()
             }
-            
-            if showAllVouchersView {
-                AllVouchersView(showAllVouchersView: $showAllVouchersView)
-                    .transition(.move(edge: .trailing))
-            }
-            
         }
+        
         
         
         
@@ -66,5 +63,14 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
+    }
+}
+
+// Add this for custom navigationLink
+extension UINavigationController {
+
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = nil
     }
 }

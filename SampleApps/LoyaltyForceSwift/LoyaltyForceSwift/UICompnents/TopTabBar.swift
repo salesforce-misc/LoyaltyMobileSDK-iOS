@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct TopTabBar: View {
-    
+struct TopTabBar: View, Equatable {
+
     let barItems: [String]
     @Binding var tabIndex: Int
     
@@ -26,8 +26,19 @@ struct TopTabBar: View {
         }
         .frame(height: 44)
         .frame(maxWidth: .infinity)
-        .padding(.leading, 15)
+        .padding(.leading)
         .background(Color.white)
+    }
+    
+    static func == (lhs: TopTabBar, rhs: TopTabBar) -> Bool {
+        return lhs.barItems == rhs.barItems
+    }
+}
+
+struct TopTabBar_Previews: PreviewProvider {
+    static var previews: some View {
+        TopTabBar(barItems: ["Available", "Redeemed", "Expired"], tabIndex: .constant(0))
+
     }
 }
 
