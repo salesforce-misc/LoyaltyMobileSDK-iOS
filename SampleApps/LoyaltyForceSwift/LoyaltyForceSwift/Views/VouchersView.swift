@@ -9,8 +9,6 @@ import SwiftUI
 
 struct VouchersView: View {
     
-    @Binding var showAllVouchersView: Bool
-    
     var body: some View {
         
         VStack {
@@ -18,17 +16,14 @@ struct VouchersView: View {
                 Text("Vouchers")
                     .font(.offerTitle)
                     .foregroundColor(.black)
-                Spacer()
-                Text("View All")
-                    .foregroundColor(Color.theme.accent)
-                    .font(.offerViewAll)
-                    .onTapGesture {
-                        //print("clicked")
-                        withAnimation {
-                            showAllVouchersView.toggle()
-                        }
-                        
-                    }
+                Spacer()                
+                NavigationLink(destination: {
+                    AllVouchersView()
+                }, label: {
+                    Text("View All")
+                        .foregroundColor(Color.theme.accent)
+                        .font(.offerViewAll)
+                })
             }
             .padding()
             
@@ -41,12 +36,12 @@ struct VouchersView: View {
             }
             
         }
-        .frame(height: 400)
+        .frame(height: 320)
     }
 }
 
 struct VouchersView_Previews: PreviewProvider {
     static var previews: some View {
-        VouchersView(showAllVouchersView: .constant(false))
+        VouchersView()
     }
 }

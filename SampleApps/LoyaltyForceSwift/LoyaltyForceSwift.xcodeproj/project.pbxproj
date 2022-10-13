@@ -96,6 +96,7 @@
 		29BAF6F628F5DEC100A3F9EB /* LoyaltyUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6F528F5DEC100A3F9EB /* LoyaltyUtilities.swift */; };
 		29BAF6FE28F63A5800A3F9EB /* RewardPointsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6FD28F63A5800A3F9EB /* RewardPointsCardView.swift */; };
 		29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */; };
+		29BAF70228F78FA400A3F9EB /* AllTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -189,6 +190,7 @@
 		29BAF6F528F5DEC100A3F9EB /* LoyaltyUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyUtilities.swift; sourceTree = "<group>"; };
 		29BAF6FD28F63A5800A3F9EB /* RewardPointsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardPointsCardView.swift; sourceTree = "<group>"; };
 		29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
+		29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +299,7 @@
 				29BAF6E628F4BE5A00A3F9EB /* AllVouchersView.swift */,
 				29BAF6E828F4CA1000A3F9EB /* TransactionCardView.swift */,
 				29BAF6EA28F4D24500A3F9EB /* TransactionsView.swift */,
+				29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */,
 				29BAF6EC28F4DE1C00A3F9EB /* BadgeCardView.swift */,
 				29BAF6EE28F4E27400A3F9EB /* BadgesView.swift */,
 				29BAF6FD28F63A5800A3F9EB /* RewardPointsCardView.swift */,
@@ -511,6 +514,7 @@
 				2938C60228CE84B900F495AF /* Keychain.swift in Sources */,
 				291CC0B628D4EEF300C08572 /* QueryResult.swift in Sources */,
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
+				29BAF70228F78FA400A3F9EB /* AllTransactionsView.swift in Sources */,
 				291CC0AF28D1248D00C08572 /* ForceUserIdentifier.swift in Sources */,
 				296D393528DBCFFB0078C88E /* OnboardingCardView.swift in Sources */,
 				29BAF6D728F15CF300A3F9EB /* RedeemCardView.swift in Sources */,

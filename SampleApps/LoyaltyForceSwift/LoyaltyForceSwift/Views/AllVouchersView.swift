@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AllVouchersView: View {
 
-    @Binding var showAllVouchersView: Bool
+    @Environment(\.dismiss) private var dismiss
     @State var showVoucherDetailView = false
     @State var tabSelected: Int = 0
     let barItems = ["Available", "Redeemed", "Expired"]
@@ -58,51 +58,57 @@ struct AllVouchersView: View {
                 }
                 
             }
-            .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                .onEnded({ value in
-                    if value.translation.width > 0 {
-                        withAnimation {
-                            showAllVouchersView.toggle()
-                        }
-                    }
-                })
-            )
             
             VStack(spacing: 0) {
-                HStack {
-                    Button {
-                        withAnimation {
-                            showAllVouchersView.toggle()
-                        }
-                    } label: {
-                        Image("ic-backarrow")
-                    }
-                    .padding(.leading, 15)
-
-                    Spacer()
-                    Image("ic-search")
-                        .padding(.trailing, 15)
-                }
-                .frame(height: 44)
-                .frame(maxWidth: .infinity)
-                .background(Color.white)
-                
-                HStack {
-                    Text("Vouchers")
-                        .font(.nameText)
-                        .padding(.leading, 15)
-                    Spacer()
-                }
-                .frame(height: 44)
-                .frame(maxWidth: .infinity)
-                .background(Color.white)
+//                HStack {
+//                    Button {
+//                    } label: {
+//                        Image("ic-backarrow")
+//                    }
+//                    .padding(.leading, 15)
+//
+//                    Spacer()
+//                    Image("ic-search")
+//                        .padding(.trailing, 15)
+//                }
+//                .frame(height: 44)
+//                .frame(maxWidth: .infinity)
+//                .background(Color.white)
+//
+//                HStack {
+//                    Text("Vouchers")
+//                        .font(.nameText)
+//                        .padding(.leading, 15)
+//                    Spacer()
+//                }
+//                .frame(height: 44)
+//                .frame(maxWidth: .infinity)
+//                .background(Color.white)
                 
                 TopTabBar(barItems: barItems, tabIndex: $tabSelected)
                 Spacer()
             }
             
         }
-        .zIndex(2.0)
+        .navigationTitle("Vouchers")
+        .navigationBarTitleDisplayMode(.large)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image("ic-backarrow")
+                }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    //
+                } label: {
+                    Image("ic-search")
+                }
+            }
+        }
 
     }
 
@@ -110,6 +116,6 @@ struct AllVouchersView: View {
 
 struct AllVouchersView_Previews: PreviewProvider {
     static var previews: some View {
-        AllVouchersView(showAllVouchersView: .constant(false))
+        AllVouchersView()
     }
 }
