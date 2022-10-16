@@ -91,30 +91,30 @@ struct RewardPointsCardView: View {
                     
                 }
             
-            let progressLength = CGFloat(Float(currentTierPoints) / Float(currentTierLimit)) * (UIScreen.main.bounds.size.width - 2*16)
-            
-            VStack(spacing: 0) {
-                Capsule()
-                    .fill(Color.theme.progressBarBackground)
-                    .frame(height: 6)
-                    .padding()
-                    .overlay(alignment: .leading) {
-                        Capsule()
-                            .fill(Color.theme.accent)
-                            .frame(width: progressLength, height: 6)
-                            .padding()
+                VStack(spacing: 0) {
+                    GeometryReader { geo in
+                        ZStack(alignment: .topLeading) {
+                            Capsule()
+                                .fill(Color.theme.progressBarBackground)
+                            Capsule()
+                                .fill(Color.theme.accent)
+    //                            .frame(maxWidth: CGFloat(Float(currentTierPoints) / Float(currentTierLimit)) * (UIScreen.main.bounds.size.width))
+                                .frame(maxWidth: CGFloat(Float(currentTierPoints) / Float(currentTierLimit)) * (geo.size.width))
+                        }
+                        .frame(height: 6)
                     }
-                HStack {
-                    Text("\(Text(String(currentTierPoints)).foregroundColor(Color.theme.accent))/\(String(currentTierLimit))")
-                        .foregroundColor(Color.theme.tierPoints)
-                        .font(.tierPointsText)
-                    Spacer()
-                    Text("Tier Expiring on Dec 31")
-                        .font(.tierPointsNotes)
-                }
-                .padding(.horizontal)
                 
+                    HStack {
+                        Text("\(Text(String(currentTierPoints)).foregroundColor(Color.theme.accent))/\(String(currentTierLimit))")
+                            .foregroundColor(Color.theme.tierPoints)
+                            .font(.tierPointsText)
+                        Spacer()
+                        Text("Tier Expiring on Dec 31")
+                            .font(.tierPointsNotes)
+                    }
+                    .padding(.vertical)
             }
+            .padding()
             
         }
     }
