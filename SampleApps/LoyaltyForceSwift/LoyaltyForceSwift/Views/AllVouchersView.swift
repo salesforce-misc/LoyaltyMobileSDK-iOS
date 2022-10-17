@@ -16,48 +16,55 @@ struct AllVouchersView: View {
     var body: some View {
         ZStack {
             Color.theme.background
-                
-            ScrollView(showsIndicators: false) {
-                
-                VStack(spacing: 15) {
-                    HStack {
-                        Button {
-                            showVoucherDetailView.toggle()
-                        } label: {
-                            VoucherCardView()
-                                .foregroundColor(.black)
-                        }
-                        .sheet(isPresented: $showVoucherDetailView) {
-                            VoucherDetailView()
-                        }
-
-                        
-                        VoucherCardView()
-                    }
-                    HStack {
-                        VoucherCardView()
-                        VoucherCardView()
-                    }
-                    HStack {
-                        VoucherCardView()
-                        VoucherCardView()
-                    }
-                    HStack {
-                        VoucherCardView()
-                        VoucherCardView()
-                    }
-                    
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.top, 20)
-                
-                if showVoucherDetailView {
-                    VoucherDetailView()
-                        .transition(.move(edge: .bottom))
-                }
-                
-            }
             
+            TabView(selection: $tabSelected) {
+                ForEach(0..<barItems.count, id: \.self) { index in
+                    
+                    ScrollView(showsIndicators: false) {
+                        
+                        VStack(spacing: 15) {
+                            HStack {
+                                Button {
+                                    showVoucherDetailView.toggle()
+                                } label: {
+                                    VoucherCardView()
+                                        .foregroundColor(.black)
+                                }
+                                .sheet(isPresented: $showVoucherDetailView) {
+                                    VoucherDetailView()
+                                }
+
+                                
+                                VoucherCardView()
+                            }
+                            HStack {
+                                VoucherCardView()
+                                VoucherCardView()
+                            }
+                            HStack {
+                                VoucherCardView()
+                                VoucherCardView()
+                            }
+                            HStack {
+                                VoucherCardView()
+                                VoucherCardView()
+                            }
+                            
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.top, 20)
+                        
+                        if showVoucherDetailView {
+                            VoucherDetailView()
+                                .transition(.move(edge: .bottom))
+                        }
+                        
+                    }
+                    .tag(index)
+                }
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+
         }
         .loytaltyNavigationTitle("Vouchers")
         .loyaltyNavBarTabBar(TopTabBar(barItems: barItems, tabIndex: $tabSelected))

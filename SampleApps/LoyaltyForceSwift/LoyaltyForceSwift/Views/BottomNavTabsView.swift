@@ -58,12 +58,11 @@ struct BottomNavTabsView: View {
             }
             
         }
-        .zIndex(3.0)
         
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct BottomNavTabsView_Previews: PreviewProvider {
     static var previews: some View {
         BottomNavTabsView()
     }

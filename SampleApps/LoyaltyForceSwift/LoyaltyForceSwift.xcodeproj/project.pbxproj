@@ -299,6 +299,7 @@
 				29AC2F0628F8B70D003F56F6 /* AllBenefitsView.swift */,
 				218A36B128B85DA400FCEE39 /* ProfileView.swift */,
 				298613A728C9021300BDC744 /* ProfileHeaderView.swift */,
+				29BAF6FD28F63A5800A3F9EB /* RewardPointsCardView.swift */,
 				218A36AF28B85D9200FCEE39 /* RedeemView.swift */,
 				218A36AD28B85D6000FCEE39 /* FavoriteView.swift */,
 				218A36AB28B85D5500FCEE39 /* OffersView.swift */,
@@ -321,7 +322,6 @@
 				29BAF6EC28F4DE1C00A3F9EB /* BadgeCardView.swift */,
 				29BAF6EE28F4E27400A3F9EB /* BadgesView.swift */,
 				29AC2F0828F8B724003F56F6 /* AllBadgesView.swift */,
-				29BAF6FD28F63A5800A3F9EB /* RewardPointsCardView.swift */,
 				29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */,
 			);
 			path = Views;

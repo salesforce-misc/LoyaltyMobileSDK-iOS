@@ -16,22 +16,29 @@ struct OffersView: View {
         ZStack {
             Color.theme.background
             
-            ScrollView(showsIndicators: false) {
-
-                VStack(spacing: 15) {
-                    MyOffersCardView()
-                    MyOffersCardView()
-                    MyOffersCardView()
-                    MyOffersCardView()
-                    MyOffersCardView()
-                    MyOffersCardView()
-                    MyOffersCardView()
-                    MyOffersCardView()
+            TabView(selection: $offerTabSelected) {
+                ForEach(0..<barItems.count, id: \.self) { index in
+                    
+                    ScrollView(showsIndicators: false) {
+                        
+                        VStack(spacing: 15) {
+                            MyOffersCardView()
+                            MyOffersCardView()
+                            MyOffersCardView()
+                            MyOffersCardView()
+                            MyOffersCardView()
+                            MyOffersCardView()
+                            MyOffersCardView()
+                            MyOffersCardView()
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.top, 110)
+                        
+                    }
+                    .tag(index)
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.top, 110)
-
             }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             
             VStack(spacing: 0) {
                 HStack {

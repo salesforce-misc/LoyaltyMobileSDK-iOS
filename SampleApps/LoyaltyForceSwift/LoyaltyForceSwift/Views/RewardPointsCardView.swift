@@ -98,11 +98,11 @@ struct RewardPointsCardView: View {
                                 .fill(Color.theme.progressBarBackground)
                             Capsule()
                                 .fill(Color.theme.accent)
-    //                            .frame(maxWidth: CGFloat(Float(currentTierPoints) / Float(currentTierLimit)) * (UIScreen.main.bounds.size.width))
                                 .frame(maxWidth: CGFloat(Float(currentTierPoints) / Float(currentTierLimit)) * (geo.size.width))
                         }
                         .frame(height: 6)
                     }
+                    .frame(height: 6)
                 
                     HStack {
                         Text("\(Text(String(currentTierPoints)).foregroundColor(Color.theme.accent))/\(String(currentTierLimit))")

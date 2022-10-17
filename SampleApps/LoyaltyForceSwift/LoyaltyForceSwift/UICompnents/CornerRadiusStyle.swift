@@ -34,3 +34,12 @@ extension View {
         ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
     }
 }
+
+struct CornerRadiusExtension_Previews: PreviewProvider {
+    static var previews: some View {
+        Rectangle()
+            .foregroundColor(.blue)
+            .frame(width: 200, height: 100)
+            .cornerRadius(25, corners: [.topLeft, .bottomRight])
+    }
+}

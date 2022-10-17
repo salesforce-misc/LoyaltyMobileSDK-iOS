@@ -18,7 +18,7 @@ struct HomeView: View {
                     Rectangle()
                         .frame(height: 400)
                         .foregroundColor(Color.theme.accent)
-                        .padding(.top, -350)
+                        .padding(.top, -354)
                     HStack {
                         Text("Welcome, Julia Green!")
                             .padding(.leading, 15)
@@ -38,17 +38,16 @@ struct HomeView: View {
                                 radius: 5,
                                 x: 0,
                                 y: 0
-                             )
+                            )
                     )
                     
                     // Offers & Promotions
                     //OffersCarouselView()
                     SampleCarouselView()
                         .frame(height: 400)
-                        .foregroundColor(.pink)
                         .padding(.top, 80)
                         .padding(.bottom, 20)
-                
+                    
                     // Redeem Points
                     RedeemPointsView()
                 }
@@ -71,8 +70,8 @@ struct HomeView: View {
                 }
                 
             }
+            .navigationBarHidden(true)
         }
-        
     }
 }
 

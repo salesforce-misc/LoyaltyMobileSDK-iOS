@@ -51,6 +51,7 @@ struct TabBarButton: View {
         Text(text)
             .font(isSelected ? .offersTabSelected : .offersTabUnselected)
             .foregroundColor(isSelected ? Color.theme.accent : Color.theme.textInactive)
+            .frame(width: 20 + text.stringWidth(), height: 4)
             .overlay(
                 Capsule()
                     .fill(Color.theme.accent)
