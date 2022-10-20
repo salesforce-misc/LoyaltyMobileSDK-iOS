@@ -15,14 +15,16 @@ struct OnboardingCardView: View {
         ZStack {
             Image(card.image)
                 .resizable()
-                .ignoresSafeArea()
-
+                .scaledToFill()
+                .frame(maxWidth: UIScreen.main.bounds.width,
+                       maxHeight: UIScreen.main.bounds.height)
             VStack {
                 Spacer()
                 BottomLayer()
             }
-            .ignoresSafeArea()
         }
+        .clipped()
+        .ignoresSafeArea()
     }
 }
 

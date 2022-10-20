@@ -21,10 +21,10 @@ struct OnboardingView: View {
     @State var showCreateNewPassword: Bool = false
     
     private let onboardingData: [OnboardingModel] = [
-        OnboardingModel(image: "img-onboarding1", description: "Convert your points into reward coupons!"),
-        OnboardingModel(image: "img-onboarding2", description: "The more points, the more rewards!"),
-        OnboardingModel(image: "img-onboarding3", description: "Get personalized offers, just for you!")
-       ]
+        OnboardingModel(image: "img-preview1", description: "Convert your points into reward coupons!"),
+        OnboardingModel(image: "img-preview2", description: "The more points, the more rewards!"),
+        OnboardingModel(image: "img-preview3", description: "Get personalized offers, just for you!")
+    ]
     
     var body: some View {
         let pageCount = onboardingData.count
