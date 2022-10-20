@@ -35,11 +35,7 @@ class AppRootViewModel: ObservableObject {
     @Published var userErrorMessage = ("", ErrorType.noError)
     @Published var userState = UserState.none
     
-    @AppStorage("email") var email = "" {
-        willSet {
-            objectWillChange.send()
-        }
-    }
+    @AppStorage("email") var email = ""
     var oobCode = ""
     var apiKey = ""
     
@@ -82,12 +78,14 @@ class AppRootViewModel: ObservableObject {
                                                  joinEmailList: joinEmailList,
                                                  enrollmentDetails: enrolledMember)
                         self?.member = member
-//                        //create member in Firestore
-//                        try FirestoreManager.addMemberData(member: member)
-//                        print("<Firestore> - Member info saved.")
                         
                         // Save member to local disk
                         LocalFileManager.instance.saveData(item: member, id: member.email, folderName: String(describing: MemberModel.self))
+                        
+                        // Also backup to a centralized local in case the user deletes the app
+                        // then we can retrieve the member info linked to Salesforce
+                        try FirestoreManager.addMemberData(member: member)
+                        print("<Firestore> - Member info saved.")
                         
                         self?.userState = .signedUp
                         self?.isInProgress = false
@@ -136,12 +134,23 @@ class AppRootViewModel: ObservableObject {
                 print("<Firebase> - User signed in")
                 Task{
                     do {
-                        try await ForceAuthManager.shared.grantAuth()
-//                        self?.member = try await FirestoreManager.getMemberData(by: userEmail)
-//                        print("<Firestore> - Member info retrieved.")
+                        try await ForceAuthManager.shared.grantAuth()                        
                         
                         // Retrieve member data from local disk
-                        self?.member = LocalFileManager.instance.getData(type: MemberModel.self, id: userEmail, folderName: String(describing: MemberModel.self))
+                        let member = LocalFileManager.instance.getData(type: MemberModel.self, id: userEmail, folderName: String(describing: MemberModel.self))
+                        
+                        if let member = member {
+                            self?.member = member
+                        } else {
+                            // Cannot get the member info from local, may have been deleted by the user
+                            // retrieve it from a centralized location, i.e. Firestore
+                            let memberReturned = try await FirestoreManager.getMemberData(by: userEmail)
+                            print("<Firestore> - Member info retrieved.")
+                            self?.member = memberReturned
+                            // Save member to local disk
+                            LocalFileManager.instance.saveData(item: memberReturned, id: memberReturned.email, folderName: String(describing: MemberModel.self))
+                            
+                        }
                         
                         self?.isInProgress = false
                         self?.userState = .signedIn

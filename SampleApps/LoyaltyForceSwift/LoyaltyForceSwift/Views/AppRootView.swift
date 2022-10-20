@@ -44,6 +44,11 @@ struct AppRootView: View {
         }
         .onAppear() {
             appViewRouter.signedIn = appViewRouter.isSignedIn
+            if appViewRouter.isSignedIn && viewModel.member == nil {
+                viewModel.member = LocalFileManager.instance.getData(type: MemberModel.self, id: viewModel.email, folderName: String(describing: MemberModel.self))
+                // One bug found: If you delete the app without logout then reinstall it, the app still remain logged in - but why?
+                // Then there is no way to get it connected with Salesforce since you cannot get member info without logout and relogin
+            }
         }
         .onOpenURL { url in
             print(url)

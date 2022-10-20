@@ -9,7 +9,6 @@ import SwiftUI
 
 struct BottomNavTabsView: View {
 
-    @EnvironmentObject private var viewModel: AppRootViewModel
     @State var selectedTab: Tab = .home
     
     var body: some View {
@@ -58,11 +57,6 @@ struct BottomNavTabsView: View {
                 
             }
             
-        }
-        .onAppear {
-            if viewModel.member == nil {
-                viewModel.member = LocalFileManager.instance.getData(type: MemberModel.self, id: viewModel.email, folderName: String(describing: MemberModel.self))
-            }
         }
         
     }
