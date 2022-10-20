@@ -15,10 +15,10 @@ struct BenefitView: View {
     
     var body: some View {
         
-        let benefits: [BenefitModel] = viewModel.benefits
+        let benefits: [BenefitModel] = viewModel.benefitsPreview
         
         //ZStack {
-            VStack {
+        VStack {
                 HStack {
                     Text("Benefits")
                         .font(.offerTitle)
@@ -67,9 +67,9 @@ struct BenefitView: View {
                     
                     Divider()
                 }
-                
+                Spacer()
             }
-            .frame(height: 400)
+            .frame(height: 450)
             .task {
                 do {
                     try await viewModel.getBenefits(memberId: memberId)

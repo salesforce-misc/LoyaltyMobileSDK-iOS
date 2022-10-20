@@ -30,6 +30,12 @@
 		2906B1E42900CD43006EAB2D /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2906B1E32900CD43006EAB2D /* LocalFileManager.swift */; };
 		2906B1E6290127F5006EAB2D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2906B1E5290127F5006EAB2D /* FirebaseFirestore */; };
 		2906B1E8290127FD006EAB2D /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2906B1E7290127FD006EAB2D /* FirebaseFirestoreSwift */; };
+		2906B1EB2901DD21006EAB2D /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2906B1EA2901DD21006EAB2D /* TransactionModel.swift */; };
+		2906B1ED2901DE3F006EAB2D /* PromotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2906B1EC2901DE3F006EAB2D /* PromotionModel.swift */; };
+		2906B1F12901E1A4006EAB2D /* Vouchers.json in Resources */ = {isa = PBXBuildFile; fileRef = 2906B1F02901E1A4006EAB2D /* Vouchers.json */; };
+		2906B1F32901E218006EAB2D /* Promotions.json in Resources */ = {isa = PBXBuildFile; fileRef = 2906B1F22901E218006EAB2D /* Promotions.json */; };
+		2906B1F52901E308006EAB2D /* Transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = 2906B1F42901E308006EAB2D /* Transactions.json */; };
+		2906B1F72901E3EB006EAB2D /* Benefits.json in Resources */ = {isa = PBXBuildFile; fileRef = 2906B1F62901E3EA006EAB2D /* Benefits.json */; };
 		291CC0AF28D1248D00C08572 /* ForceUserIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */; };
 		291CC0B128D1410500C08572 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B028D1410500C08572 /* UserDefaults.swift */; };
 		291CC0B428D39D4A00C08572 /* LoyaltyAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */; };
@@ -135,6 +141,12 @@
 		2906B1D528FF5E88006EAB2D /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		2906B1DA28FF7348006EAB2D /* CheckboxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxStyle.swift; sourceTree = "<group>"; };
 		2906B1E32900CD43006EAB2D /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
+		2906B1EA2901DD21006EAB2D /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		2906B1EC2901DE3F006EAB2D /* PromotionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionModel.swift; sourceTree = "<group>"; };
+		2906B1F02901E1A4006EAB2D /* Vouchers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Vouchers.json; sourceTree = "<group>"; };
+		2906B1F22901E218006EAB2D /* Promotions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Promotions.json; sourceTree = "<group>"; };
+		2906B1F42901E308006EAB2D /* Transactions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Transactions.json; sourceTree = "<group>"; };
+		2906B1F62901E3EA006EAB2D /* Benefits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Benefits.json; sourceTree = "<group>"; };
 		291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUserIdentifier.swift; sourceTree = "<group>"; };
 		291CC0B028D1410500C08572 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyAPIManager.swift; sourceTree = "<group>"; };
@@ -274,6 +286,7 @@
 				216A9CBF28BDD8A1007881FE /* ViewModels */,
 				296D393828DCE9890078C88E /* UICompnents */,
 				216F219328B6186400DAA66D /* Views */,
+				2906B1E92901D97E006EAB2D /* JSONFiles */,
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
 				216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */,
 				2944F88928B9A7220098ED1B /* AppConstants.swift */,
@@ -347,6 +360,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2906B1E92901D97E006EAB2D /* JSONFiles */ = {
+			isa = PBXGroup;
+			children = (
+				2906B1F02901E1A4006EAB2D /* Vouchers.json */,
+				2906B1F22901E218006EAB2D /* Promotions.json */,
+				2906B1F42901E308006EAB2D /* Transactions.json */,
+				2906B1F62901E3EA006EAB2D /* Benefits.json */,
+			);
+			path = JSONFiles;
+			sourceTree = "<group>";
+		};
 		291CC0B228D39D1600C08572 /* LoyaltyManagement */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,6 +413,8 @@
 				299B38CD28E3CF9900E45D97 /* EnrollmentOutputModel.swift */,
 				299B38E128ED24B900E45D97 /* PasswordResetModel.swift */,
 				2906B1D328FF5031006EAB2D /* MemberModel.swift */,
+				2906B1EA2901DD21006EAB2D /* TransactionModel.swift */,
+				2906B1EC2901DE3F006EAB2D /* PromotionModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -531,11 +557,15 @@
 				298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */,
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
 				29AC2F0328F8B2D7003F56F6 /* Roboto-Regular.ttf in Resources */,
+				2906B1F12901E1A4006EAB2D /* Vouchers.json in Resources */,
 				218A36A828B85B7900FCEE39 /* Assets.xcassets in Resources */,
+				2906B1F72901E3EB006EAB2D /* Benefits.json in Resources */,
 				216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */,
 				298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */,
 				298613B028C9698D00BDC744 /* SF-Pro.ttf in Resources */,
 				298613D628CC275500BDC744 /* Salesforce.json in Resources */,
+				2906B1F52901E308006EAB2D /* Transactions.json in Resources */,
+				2906B1F32901E218006EAB2D /* Promotions.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +597,7 @@
 				29BAF6D528F14E4400A3F9EB /* OfferCardView.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
 				2941A23F28BE803F005026CF /* Color.swift in Sources */,
+				2906B1ED2901DE3F006EAB2D /* PromotionModel.swift in Sources */,
 				296D393328DBCE050078C88E /* OnboardingView.swift in Sources */,
 				291CC0BD28D53A0000C08572 /* LoyaltyQueryModels.swift in Sources */,
 				2906B1D628FF5E88006EAB2D /* FirestoreManager.swift in Sources */,
@@ -588,6 +619,7 @@
 				216F217F28B6141E00DAA66D /* LoyaltyStarterApp.swift in Sources */,
 				29AC2F0528F8B6E6003F56F6 /* AllRedeemPointsView.swift in Sources */,
 				29AC2F0128F89EBE003F56F6 /* LoyaltyNavLink.swift in Sources */,
+				2906B1EB2901DD21006EAB2D /* TransactionModel.swift in Sources */,
 				298613D428CC085D00BDC744 /* ForceAuthManager.swift in Sources */,
 				218A36AE28B85D6000FCEE39 /* FavoriteView.swift in Sources */,
 				298613CE28CBC10300BDC744 /* ProfileModel.swift in Sources */,

@@ -60,6 +60,17 @@ public class ForceClient {
         }
     }
     
+    public func fetchLocalJson<T: Decodable>(
+        type: T.Type,
+        file: String) throws -> T {
+            
+        guard let fileURL = Bundle.main.url(forResource: file, withExtension: "json") else {
+            throw URLError(.badURL, userInfo: [NSURLErrorFailingURLStringErrorKey : "\(file).json"])
+        }
+      
+        return try JSONDecoder().decode(T.self, from: try Data(contentsOf: fileURL))
+    }
+    
     func getNewRequest(for request: URLRequest) async throws -> URLRequest {
         
         do {

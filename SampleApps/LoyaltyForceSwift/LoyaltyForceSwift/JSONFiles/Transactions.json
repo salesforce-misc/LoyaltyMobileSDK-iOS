@@ -1,0 +1,25 @@
+{
+    "message": null,
+    "status": true,
+    "totalCount": 1,
+    "transactionJournals": [
+        {
+            "Status": "Pending",
+            "LastModifiedDate": "2022-09-08T08:53:05.000Z",
+            "IsDeleted": false,
+            "JournalTypeId": "0lE4x000000XpU5EAK",
+            "JournalDate": "2022-09-08T15:53:05.000Z",
+            "ActivityDate": "2022-01-01T08:00:00.000Z",
+            "UsageType": "Loyalty",
+            "Name": "00000297",
+            "SystemModstamp": "2022-09-08T08:53:05.000Z",
+            "MemberId": "0lM4x000000LECAEA4",
+            "JournalSubTypeId": "0lS4x000000TRQBEA4",
+            "CreatedById": "0054x000005teDHAAY",
+            "CreatedDate": "2022-09-08T08:53:05.000Z",
+            "Id": "0lV4x000000CbfMEAS",
+            "LastModifiedById": "0054x000005teDHAAY",
+            "LoyaltyProgramId": "0lp4x000000PL4MAAW"
+        }
+    ]
+}
