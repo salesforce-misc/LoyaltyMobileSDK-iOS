@@ -20,42 +20,41 @@ struct RevealableSecureField: View {
     }
     
     var body: some View {
-        //ZStack(alignment: .trailing) {
-            Group {
-                if isSecured {
-                    SecureField(title, text: $text)
-                        .textFieldStyle(RegularTextFieldStyle())
-                        .overlay(
-                            HStack {
-                                Spacer()
-                                Button(action: {
-                                    isSecured.toggle()
-                                }) {
-                                    Image("ic-preview")
-                                    //Image(systemName: "eye")
-                                }
+        Group {
+            if isSecured {
+                SecureField(title, text: $text)
+                    .textFieldStyle(RegularTextFieldStyle())
+                    .overlay(
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                isSecured.toggle()
+                            }) {
+                                Image("ic-preview")
+                                    .opacity(text.count == 0 ? 0 : 1)
                             }
-                            .padding(.trailing, 25)
-                        )
-                } else {
-                    TextField(title, text: $text)
-                        .textFieldStyle(RegularTextFieldStyle())
-                        .overlay(
-                            HStack {
-                                Spacer()
-                                Button(action: {
-                                    isSecured.toggle()
-                                }) {
-                                    Image("ic-hide")
-                                    //Image(systemName: "eye.slash")
-                                }
+                            .disabled(text.count == 0)
+                        }
+                        .padding(.trailing, 25)
+                    )
+            } else {
+                TextField(title, text: $text)
+                    .textFieldStyle(RegularTextFieldStyle())
+                    .overlay(
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                isSecured.toggle()
+                            }) {
+                                Image("ic-hide")
+                                    .opacity(text.count == 0 ? 0 : 1)
                             }
-                            .padding(.trailing, 25)
-                        )
-                }
+                            .disabled(text.count == 0)
+                        }
+                        .padding(.trailing, 25)
+                    )
             }
-
-        //}
+        }
     }
 }
 

@@ -9,11 +9,7 @@ import SwiftUI
 
 struct ProfileHeaderView: View {
     
-    @StateObject var viewModel = ProfileViewModel()
-    
-    // TODO: replace memebrId and programName with real data
-    let memberId: String = "0lM4x000000LECA"
-    let programName = "NTO Insider"
+    @EnvironmentObject private var viewModel: AppRootViewModel
     
     var body: some View {
         VStack {
@@ -23,13 +19,13 @@ struct ProfileHeaderView: View {
                 
                 VStack {
                     HStack {
-                        Text("\(viewModel.profile?.associatedContact.firstName ?? "") \(viewModel.profile?.associatedContact.lastName ?? "")")
+                        Text("\(viewModel.member?.firstName ?? "") \(viewModel.member?.lastName ?? "")")
                             .font(.profileTitle)
                         Spacer()
 
                     }
                     HStack {
-                        Text(viewModel.profile?.membershipNumber ?? "")
+                        Text(viewModel.member?.enrollmentDetails?.membershipNumber ?? "")
                             .foregroundColor(Color.theme.textInactive)
                             .font(.profileSubtitle)
                         Spacer()
@@ -47,14 +43,6 @@ struct ProfileHeaderView: View {
         }
         .frame(height: 400)
         .background(.white)
-        .task {
-            do {
-                try await viewModel.getProfileData(memberId: memberId, programName: programName)
-            } catch {
-                print("Fetch Benefits Error: \(error.localizedDescription)")
-            }
-
-        }
 
     }
     

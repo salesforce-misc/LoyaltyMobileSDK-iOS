@@ -21,66 +21,73 @@ struct SignInView: View {
     
     
     var body: some View {
-        ZStack {
-            VStack {
-                SheetHeader(title: "Sign In")
-                VStack(spacing: 15) {
-                    SignInCredentialFields(email: $email, password: $password)
-                    
-                    if !viewModel.userErrorMessage.0.isEmpty {
-                        Text("Failed signing in: \(viewModel.userErrorMessage.0)")
-                            .foregroundColor(.red)
-                            .font(.footnote)
-                    }
-                    
-                    // reset password
-                    HStack {
-                        Text("Forgor Password?")
-                            .foregroundColor(Color.theme.accent)
-                            .font(.regularText)
-                            .onTapGesture {
-                                withAnimation {
-                                    signUpPresented = false
-                                    signInPresented = false
-                                    showResetPassword.toggle()
-                                }
-                                
+        VStack {
+            SheetHeader(title: "Sign In")
+            ScrollView {
+                ZStack {
+                    VStack {
+                        
+                        VStack(spacing: 15) {
+                            SignInCredentialFields(email: $email, password: $password)
+                            
+                            if !viewModel.userErrorMessage.0.isEmpty {
+                                Text("Failed signing in: \(viewModel.userErrorMessage.0)")
+                                    .foregroundColor(.red)
+                                    .font(.footnote)
                             }
+                            
+                            // reset password
+                            HStack {
+                                Text("Forgot Password?")
+                                    .foregroundColor(Color.theme.accent)
+                                    .font(.regularText)
+                                    .onTapGesture {
+                                        withAnimation {
+                                            signUpPresented = false
+                                            signInPresented = false
+                                            showResetPassword.toggle()
+                                        }
+                                        
+                                    }
+                                Spacer()
+                            }
+                            .padding([.top, .leading, .trailing])
+                            
+                            Button(action: {
+                                viewModel.signInUser(userEmail: email, userPassword: password)
+                                UIApplication.shared.dismissKeyboard()
+                            }) {
+                                Text("Sign In")
+                            }
+                            .buttonStyle(DarkLongButton())
+                            .disabled(disableForm)
+                            .opacity(disableForm ? 0.5 : 1)
+                            
+                            HStack {
+                                Text("Not a member?")
+                                Button(action: {
+                                    signInPresented = false
+                                    signUpPresented = true
+                                }) {
+                                    Text("Join Now")
+                                        .font(.buttonText)
+                                }
+                                //.presentationDetents([.height(405)])
+                            }
+                        }
+                        .padding()
                         Spacer()
                     }
-                    .padding([.top, .leading, .trailing])
                     
-                    Button(action: {
-                        viewModel.signInUser(userEmail: email, userPassword: password)
-                        UIApplication.shared.dismissKeyboard()
-                    }) {
-                        Text("Sign In")
+                    if viewModel.isInProgress {
+                        ProgressView()
                     }
-                    .buttonStyle(DarkLongButton())
-                    .disabled(disableForm)
-                    .opacity(disableForm ? 0.5 : 1)
                     
-                    HStack {
-                        Text("Not a member?")
-                        Button(action: {
-                            signInPresented = false
-                            signUpPresented = true
-                        }) {
-                            Text("Join Now")
-                                .font(.buttonText)
-                        }
-                        //.presentationDetents([.height(405)])
-                    }
                 }
-                .padding()
-                Spacer()
-            }
-            
-            if viewModel.isInProgress {
-                ProgressView()
             }
             
         }
+        
         
     }
     

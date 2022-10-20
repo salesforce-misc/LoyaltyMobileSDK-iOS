@@ -51,7 +51,8 @@ struct ColorTheme {
     
     let listSeparatorPink = Color("ListSeparatorColor")
     let textInactive = Color("TextInactiveColor")
-    let superLightText = Color("TextSuperLightColor")
+    let lightText = Color("TextLightColor")
+    let superLightText = Color("TextSuperLightColor") // #181818
     let lightButton = Color("ButtonLightColor")
     let darkButton = Color("ButtonDarkColor")
     let textFieldBackground = Color("TextFieldBackgroundColor")

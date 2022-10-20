@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
-import Firebase
 
 struct HomeView: View {
+    
+    @EnvironmentObject private var viewModel: AppRootViewModel
     
     var body: some View {
         NavigationView {
@@ -20,7 +21,7 @@ struct HomeView: View {
                         .foregroundColor(Color.theme.accent)
                         .padding(.top, -354)
                     HStack {
-                        Text("Welcome, Julia Green!")
+                        Text("Welcome, \(viewModel.member?.firstName ?? "") \(viewModel.member?.lastName ?? "")!")
                             .padding(.leading, 15)
                         Spacer()
                         Text("17850 Points")

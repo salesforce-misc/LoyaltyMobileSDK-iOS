@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import SwiftUI
 
 enum ErrorType: Hashable {
     case signUp
@@ -28,17 +29,27 @@ enum UserState: Hashable {
 @MainActor
 class AppRootViewModel: ObservableObject {
     
-    @Published var enrolledMember: EnrollmentOutputModel?
+    @Published var member: MemberModel?
     
     @Published var isInProgress = false
     @Published var userErrorMessage = ("", ErrorType.noError)
     @Published var userState = UserState.none
     
-    var email = ""
+    @AppStorage("email") var email = "" {
+        willSet {
+            objectWillChange.send()
+        }
+    }
     var oobCode = ""
     var apiKey = ""
     
-    func signUpUser(userEmail: String, userPassword: String, firstName: String, lastName: String) {
+    func signUpUser(userEmail: String,
+                    userPassword: String,
+                    firstName: String,
+                    lastName: String,
+                    mobileNumber: String,
+                    username: String,
+                    joinEmailList: Bool) {
         
         isInProgress = true
         email = userEmail
@@ -61,10 +72,23 @@ class AppRootViewModel: ObservableObject {
                 Task {
                     do {
                         try await ForceAuthManager.shared.grantAuth()
-                        self?.enrolledMember = try await LoyaltyAPIManager.shared.postEnrollment(firstName: firstName, lastName: lastName, email: userEmail)
-                        if let member = self?.enrolledMember {
-                            print(member)
-                        }
+                        let enrolledMember = try await LoyaltyAPIManager.shared.postEnrollment(firstName: firstName, lastName: lastName, email: userEmail)
+                        
+                        let member = MemberModel(firstName: firstName,
+                                                 lastName: lastName,
+                                                 email: userEmail,
+                                                 mobileNumber: mobileNumber,
+                                                 username: username,
+                                                 joinEmailList: joinEmailList,
+                                                 enrollmentDetails: enrolledMember)
+                        self?.member = member
+//                        //create member in Firestore
+//                        try FirestoreManager.addMemberData(member: member)
+//                        print("<Firestore> - Member info saved.")
+                        
+                        // Save member to local disk
+                        LocalFileManager.instance.saveData(item: member, id: member.email, folderName: String(describing: MemberModel.self))
+                        
                         self?.userState = .signedUp
                         self?.isInProgress = false
                     } catch {
@@ -94,6 +118,7 @@ class AppRootViewModel: ObservableObject {
     func signInUser(userEmail: String, userPassword: String) {
         
         isInProgress = true
+        email = userEmail
         
         Auth.auth().signIn(withEmail: userEmail, password: userPassword) { [weak self] authResult, error in
             
@@ -112,6 +137,12 @@ class AppRootViewModel: ObservableObject {
                 Task{
                     do {
                         try await ForceAuthManager.shared.grantAuth()
+//                        self?.member = try await FirestoreManager.getMemberData(by: userEmail)
+//                        print("<Firestore> - Member info retrieved.")
+                        
+                        // Retrieve member data from local disk
+                        self?.member = LocalFileManager.instance.getData(type: MemberModel.self, id: userEmail, folderName: String(describing: MemberModel.self))
+                        
                         self?.isInProgress = false
                         self?.userState = .signedIn
                     } catch {
@@ -133,6 +164,7 @@ class AppRootViewModel: ObservableObject {
             ForceAuthManager.shared.clearAuth()
             userState = .signedOut
             isInProgress = false
+            member = nil
         } catch {
             print("<Firebase> - Error signing out: \(error.localizedDescription)")
             isInProgress = false
