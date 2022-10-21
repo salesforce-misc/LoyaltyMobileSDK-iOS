@@ -70,13 +70,18 @@ class AppRootViewModel: ObservableObject {
                         try await ForceAuthManager.shared.grantAuth()
                         let enrolledMember = try await LoyaltyAPIManager.shared.postEnrollment(firstName: firstName, lastName: lastName, email: userEmail)
                         
+                        let enrollmentDetails = EnrollmentDetails(loyaltyProgramMemberId: enrolledMember.loyaltyProgramMemberId,
+                                                                  loyaltyProgramName: enrolledMember.loyaltyProgramName,
+                                                                  membershipNumber: enrolledMember.membershipNumber)
+                        
                         let member = MemberModel(firstName: firstName,
                                                  lastName: lastName,
                                                  email: userEmail,
                                                  mobileNumber: mobileNumber,
                                                  username: username,
                                                  joinEmailList: joinEmailList,
-                                                 enrollmentDetails: enrolledMember)
+                                                 dateCreated: Date(),
+                                                 enrollmentDetails: enrollmentDetails)
                         self?.member = member
                         
                         // Save member to local disk
