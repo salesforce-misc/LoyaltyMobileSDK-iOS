@@ -71,6 +71,7 @@ struct SignUpView: View {
                                 Button(action: {
                                     signUpPresented = false
                                     signInPresented = true
+                                    viewModel.userErrorMessage = ("", ErrorType.noError)
                                 }) {
                                     Text("Sign In")
                                         .font(.buttonText)

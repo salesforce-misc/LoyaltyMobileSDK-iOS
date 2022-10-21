@@ -155,6 +155,7 @@ class AppRootViewModel: ObservableObject {
                         self?.isInProgress = false
                         self?.userState = .signedIn
                     } catch {
+                        self?.isInProgress = false
                         self?.userErrorMessage = (error.localizedDescription, .signIn)
                     }
                 }
