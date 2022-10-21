@@ -25,7 +25,7 @@ struct ProfileHeaderView: View {
 
                     }
                     HStack {
-                        Text(viewModel.member?.enrollmentDetails?.membershipNumber ?? "")
+                        Text(viewModel.member?.enrollmentDetails.membershipNumber ?? "")
                             .foregroundColor(Color.theme.textInactive)
                             .font(.profileSubtitle)
                         Spacer()
