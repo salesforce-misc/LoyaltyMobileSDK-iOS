@@ -88,6 +88,7 @@ struct OnboardingView: View {
 
                 Button(action: {
                     signUpPresented.toggle()
+                    viewModel.userErrorMessage = ("", ErrorType.noError)
                 }, label: {
                     Text("Join Now")
                 })
@@ -113,6 +114,7 @@ struct OnboardingView: View {
                         .allowsHitTesting(false)
                     Button {
                         signInPresented.toggle()
+                        viewModel.userErrorMessage = ("", ErrorType.noError)
                     } label: {
                         Text("Sign In")
                     }
