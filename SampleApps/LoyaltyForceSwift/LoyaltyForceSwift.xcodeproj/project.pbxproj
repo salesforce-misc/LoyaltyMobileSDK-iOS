@@ -23,6 +23,7 @@
 		218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36AF28B85D9200FCEE39 /* RedeemView.swift */; };
 		218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36B128B85DA400FCEE39 /* ProfileView.swift */; };
 		218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36B428B85E4C00FCEE39 /* BenefitView.swift */; };
+		29053F7D2907452800F84561 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29053F7C2907452800F84561 /* Assets.swift */; };
 		2906B1D428FF5031006EAB2D /* MemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2906B1D328FF5031006EAB2D /* MemberModel.swift */; };
 		2906B1D628FF5E88006EAB2D /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2906B1D528FF5E88006EAB2D /* FirestoreManager.swift */; };
 		2906B1DB28FF7348006EAB2D /* CheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2906B1DA28FF7348006EAB2D /* CheckboxStyle.swift */; };
@@ -74,6 +75,7 @@
 		298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */; };
 		298613D428CC085D00BDC744 /* ForceAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613D328CC085D00BDC744 /* ForceAuthManager.swift */; };
 		298613D628CC275500BDC744 /* Salesforce.json in Resources */ = {isa = PBXBuildFile; fileRef = 298613D528CC275500BDC744 /* Salesforce.json */; };
+		2993A8442903328D00EC3C0D /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2993A8432903328D00EC3C0D /* PreviewProvider.swift */; };
 		299B38CA28E365AD00E45D97 /* HalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38C928E365AD00E45D97 /* HalfSheet.swift */; };
 		299B38CC28E3B57200E45D97 /* EnrollmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38CB28E3B57200E45D97 /* EnrollmentModel.swift */; };
 		299B38CE28E3CF9900E45D97 /* EnrollmentOutputModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38CD28E3CF9900E45D97 /* EnrollmentOutputModel.swift */; };
@@ -137,6 +139,7 @@
 		218A36AF28B85D9200FCEE39 /* RedeemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemView.swift; sourceTree = "<group>"; };
 		218A36B128B85DA400FCEE39 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		218A36B428B85E4C00FCEE39 /* BenefitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitView.swift; sourceTree = "<group>"; };
+		29053F7C2907452800F84561 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		2906B1D328FF5031006EAB2D /* MemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberModel.swift; sourceTree = "<group>"; };
 		2906B1D528FF5E88006EAB2D /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		2906B1DA28FF7348006EAB2D /* CheckboxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxStyle.swift; sourceTree = "<group>"; };
@@ -186,6 +189,7 @@
 		298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		298613D328CC085D00BDC744 /* ForceAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceAuthManager.swift; sourceTree = "<group>"; };
 		298613D528CC275500BDC744 /* Salesforce.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Salesforce.json; sourceTree = "<group>"; };
+		2993A8432903328D00EC3C0D /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		299B38C928E365AD00E45D97 /* HalfSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSheet.swift; sourceTree = "<group>"; };
 		299B38CB28E3B57200E45D97 /* EnrollmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentModel.swift; sourceTree = "<group>"; };
 		299B38CD28E3CF9900E45D97 /* EnrollmentOutputModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentOutputModel.swift; sourceTree = "<group>"; };
@@ -399,6 +403,7 @@
 				299B38D128E510DD00E45D97 /* DateFormatter.swift */,
 				299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */,
 				29BAF6DC28F3AE8B00A3F9EB /* String+StringWidth.swift */,
+				2993A8432903328D00EC3C0D /* PreviewProvider.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -433,6 +438,7 @@
 				29BAF6DE28F3ECA600A3F9EB /* TopTabBar.swift */,
 				29AC2EF728F88FAB003F56F6 /* LoyaltyNavigationLink */,
 				2906B1DA28FF7348006EAB2D /* CheckboxStyle.swift */,
+				29053F7C2907452800F84561 /* Assets.swift */,
 			);
 			path = UICompnents;
 			sourceTree = "<group>";
@@ -637,6 +643,7 @@
 				2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */,
 				296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */,
 				29BAF6DD28F3AE8B00A3F9EB /* String+StringWidth.swift in Sources */,
+				2993A8442903328D00EC3C0D /* PreviewProvider.swift in Sources */,
 				29BAF6E128F3EEA000A3F9EB /* MyOffersCardView.swift in Sources */,
 				2938C60428CE852D00F495AF /* ForceAuthStore.swift in Sources */,
 				29BAF6EB28F4D24500A3F9EB /* TransactionsView.swift in Sources */,
@@ -658,6 +665,7 @@
 				29BAF6CF28F0FC3A00A3F9EB /* CornerRadiusStyle.swift in Sources */,
 				29BAF6CB28F0DB9200A3F9EB /* OffersCarouselView.swift in Sources */,
 				2906B1DB28FF7348006EAB2D /* CheckboxStyle.swift in Sources */,
+				29053F7D2907452800F84561 /* Assets.swift in Sources */,
 				29AC2F0728F8B70D003F56F6 /* AllBenefitsView.swift in Sources */,
 				296D393A28DD022A0078C88E /* ForceClient+SOSL.swift in Sources */,
 				218A36AC28B85D5500FCEE39 /* OffersView.swift in Sources */,

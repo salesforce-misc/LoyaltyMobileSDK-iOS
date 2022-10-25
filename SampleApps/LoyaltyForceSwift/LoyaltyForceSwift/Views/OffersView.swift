@@ -61,7 +61,7 @@ struct OffersView: View {
     }
 }
 
-struct RewardsView_Previews: PreviewProvider {
+struct OffersView_Previews: PreviewProvider {
     static var previews: some View {
         OffersView()
         //TabBarButton(text: "All", isSelected: .constant(true))

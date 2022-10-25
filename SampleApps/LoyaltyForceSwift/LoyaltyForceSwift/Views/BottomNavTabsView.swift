@@ -65,5 +65,6 @@ struct BottomNavTabsView: View {
 struct BottomNavTabsView_Previews: PreviewProvider {
     static var previews: some View {
         BottomNavTabsView()
+            .environmentObject(dev.rootVM)
     }
 }

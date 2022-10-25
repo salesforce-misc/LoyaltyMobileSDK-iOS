@@ -9,23 +9,23 @@ import SwiftUI
 
 struct BenefitView: View {
     
-    @StateObject private var viewModel = BenefitViewModel()
-    //private let memberId: String = "0lM5i00000000KfEAI"
-    private let memberId: String = "0lM4x000000LECA"
+    @EnvironmentObject private var rootVM: AppRootViewModel
+    @StateObject private var benefitVM = BenefitViewModel()
+    //private let memberId: String = "0lM4x000000LECA"
     
     var body: some View {
         
-        let benefits: [BenefitModel] = viewModel.benefitsPreview
+        let benefits: [BenefitModel] = benefitVM.benefitsPreview
         
-        //ZStack {
-        VStack {
+        ZStack {
+            VStack {
                 HStack {
                     Text("Benefits")
                         .font(.offerTitle)
                         .foregroundColor(.black)
                     Spacer()
                     LoyaltyNavLink {
-                        AllBenefitsView(viewModel: viewModel)
+                        AllBenefitsView(viewModel: benefitVM)
                     } label: {
                         Text("View All")
                             .foregroundColor(Color.theme.accent)
@@ -34,17 +34,19 @@ struct BenefitView: View {
 
                 }
                 .padding()
-                
+
                 ForEach(benefits) { benefit in
                     HStack {
                         Circle()
                             .frame(width: 32, height: 32)
                             .foregroundColor(.white)
                             .overlay(
-                                Image("return")
+                                Assets.getBenefitsLogo(for: benefit.benefitTypeName)
+                                    .renderingMode(.template)
+                                    .foregroundColor(Color.theme.accent)
                             )
-                        
-                        VStack(spacing: 6) {
+
+                        VStack(spacing: 5) {
                             HStack {
                                 Text("\(benefit.benefitName)")
                                     .font(.benefitText)
@@ -53,7 +55,7 @@ struct BenefitView: View {
                             }
 
                             HStack {
-                                Text("\(viewModel.benefitDescs[benefit.id] ?? "")")
+                                Text("\(benefitVM.benefitDescs[benefit.id] ?? "")")
                                     .font(.benefitDescription)
                                     .lineSpacing(3)
                                     .foregroundColor(Color.theme.superLightText)
@@ -61,29 +63,30 @@ struct BenefitView: View {
                             }
 
                         }
-                        
+
                     }
                     .padding()
-                    
+
                     Divider()
+                        .padding(.horizontal)
                 }
                 Spacer()
             }
-            .frame(height: 450)
+            .frame(height: 500)
             .task {
                 do {
-                    try await viewModel.getBenefits(memberId: memberId)
+                    try await benefitVM.getBenefits(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
                 } catch {
                     print("Fetch Benefits Error: \(error)")
                 }
 
             }
-            
-            if !viewModel.isLoaded {
+
+            if !benefitVM.isLoaded {
                 ProgressView()
             }
-
-        //}
+            
+        }
         
     }
 
@@ -93,5 +96,7 @@ struct BenefitView: View {
 struct BenefitView_Previews: PreviewProvider {
     static var previews: some View {
         BenefitView()
+            .environmentObject(dev.rootVM)
+            .environmentObject(dev.benefitVM)
     }
 }
