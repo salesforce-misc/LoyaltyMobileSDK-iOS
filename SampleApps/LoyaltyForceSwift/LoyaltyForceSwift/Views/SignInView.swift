@@ -45,6 +45,7 @@ struct SignInView: View {
                                         withAnimation {
                                             signUpPresented = false
                                             signInPresented = false
+                                            viewModel.userErrorMessage = ("", ErrorType.noError)
                                             showResetPassword.toggle()
                                         }
                                         
