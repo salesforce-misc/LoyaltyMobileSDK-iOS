@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MoreHeaderView: View {
+    
+    @EnvironmentObject private var viewModel: AppRootViewModel
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -15,7 +18,7 @@ struct MoreHeaderView: View {
                 Spacer()
             }
             
-            Text("Julia Green")
+            Text("\(viewModel.member?.firstName ?? "") \(viewModel.member?.lastName ?? "")")
                 .font(.nameText)
         }
     }
@@ -24,6 +27,7 @@ struct MoreHeaderView: View {
 struct MoreHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         MoreHeaderView()
+            .environmentObject(dev.rootVM)
             .previewLayout(.sizeThatFits)
     }
 }

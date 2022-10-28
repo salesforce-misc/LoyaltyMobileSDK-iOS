@@ -50,7 +50,7 @@ struct ColorTheme {
     let titleColor = Color("TitleColor")
     
     let listSeparatorPink = Color("ListSeparatorColor")
-    let textInactive = Color("TextInactiveColor")
+    let textInactive = Color("TextInactiveColor") // #747474
     let lightText = Color("TextLightColor")
     let superLightText = Color("TextSuperLightColor") // #181818
     let lightButton = Color("ButtonLightColor")

@@ -12,8 +12,9 @@ struct TransactionCardView: View {
         
         HStack(spacing: 0) {
             Assets.getTransactionsLogo(for: "Enrollment")
+                .renderingMode(.template)
+                .foregroundColor(Color.theme.textInactive)
                 .frame(width: 63)
-                //.background(.pink)
             VStack(spacing: 8) {
                 HStack{
                     Text("Promotion Enrollment")
@@ -30,12 +31,10 @@ struct TransactionCardView: View {
                 
             }
             .frame(width: 180)
-            //.background(.green)
             Text("+1500 Pts")
                 .font(.transactionPoints)
                 .foregroundColor(Color.theme.points)
                 .frame(width: 100)
-                //.background(.blue)
 
         }
         .frame(width: 343, height: 66)
@@ -60,8 +59,9 @@ struct TransactionCardView2: View {
         
         HStack(spacing: 0) {
             Assets.getTransactionsLogo(for: "Purchase")
+                .renderingMode(.template)
+                .foregroundColor(Color.theme.textInactive)
                 .frame(width: 63)
-                //.background(.pink)
             VStack(spacing: 8) {
                 HStack{
                     Text("Purchase")
@@ -78,12 +78,10 @@ struct TransactionCardView2: View {
                 
             }
             .frame(width: 180)
-            //.background(.green)
             Text("+1000 Pts")
                 .font(.transactionPoints)
                 .foregroundColor(Color.theme.points)
                 .frame(width: 100)
-                //.background(.blue)
 
         }
         .frame(width: 343, height: 66)
@@ -108,8 +106,9 @@ struct TransactionCardView3: View {
         
         HStack(spacing: 0) {
             Assets.getTransactionsLogo(for: "Voucher")
+                .renderingMode(.template)
+                .foregroundColor(Color.theme.textInactive)
                 .frame(width: 63)
-                //.background(.pink)
             VStack(spacing: 8) {
                 HStack{
                     Text("Voucher")
@@ -126,12 +125,10 @@ struct TransactionCardView3: View {
                 
             }
             .frame(width: 180)
-            //.background(.green)
             Text("+500 Pts")
                 .font(.transactionPoints)
                 .foregroundColor(Color.theme.points)
                 .frame(width: 100)
-                //.background(.blue)
 
         }
         .frame(width: 343, height: 66)

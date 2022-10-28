@@ -70,7 +70,7 @@ struct VoucherCardView2: View {
                 .frame(width: 165, height: 92)
                 .cornerRadius(5, corners: [.topLeft, .topRight])
             VStack(alignment: .leading, spacing: 10) {
-                Text("$50 Gift Card at Adidas")
+                Text("$50 Off at Adidas")
                     .font(.redeemTitle)
                 
                 VStack(alignment: .leading, spacing: 4) {
