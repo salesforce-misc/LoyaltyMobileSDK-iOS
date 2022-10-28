@@ -11,7 +11,6 @@ struct BadgesView: View {
     var body: some View {
         
         VStack {
-            Spacer()
             HStack {
                 Text("Badges")
                     .font(.offerTitle)
@@ -36,7 +35,7 @@ struct BadgesView: View {
                 BadgeCardView(image: "sheriff", label: "All Star")
                 Spacer()
             }
-            
+            Spacer()
         }
         .frame(height: 400)
     }

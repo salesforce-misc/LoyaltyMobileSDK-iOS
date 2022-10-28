@@ -30,7 +30,7 @@ struct OffersCarouselView: View {
             .padding()
             TabView(selection: $index) {
                 ForEach((0..<4), id: \.self) { index in
-                    OfferCardView()
+                    //PromotionCardView()
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))

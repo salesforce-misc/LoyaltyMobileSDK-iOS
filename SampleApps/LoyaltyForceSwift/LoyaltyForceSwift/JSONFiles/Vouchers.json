@@ -1,0 +1,38 @@
+{
+    "totalSize": 2,
+    "done": true,
+    "records": [
+        {
+            "attributes": {
+                "type": "Voucher",
+                "url": "/services/data/v56.0/sobjects/Voucher/0kD4x000000wr6FEAQ"
+            },
+            "VoucherDefinition": {
+                "attributes": {
+                    "type": "VoucherDefinition",
+                    "url": "/services/data/v56.0/sobjects/VoucherDefinition/2Xa4x0000008RABCA2"
+                },
+                "Name": "Holiday season voucher",
+                "Description": null
+            },
+            "VoucherCode": "HLDY2001SEAS",
+            "ExpirationDate": "2022-12-29"
+        },
+        {
+            "attributes": {
+                "type": "Voucher",
+                "url": "/services/data/v56.0/sobjects/Voucher/0kD4x000000wr6GEAQ"
+            },
+            "VoucherDefinition": {
+                "attributes": {
+                    "type": "VoucherDefinition",
+                    "url": "/services/data/v56.0/sobjects/VoucherDefinition/2Xa4x0000008RABCA2"
+                },
+                "Name": "Holiday season voucher",
+                "Description": null
+            },
+            "VoucherCode": "HLDY2002SEAS",
+            "ExpirationDate": "2021-01-14"
+        }
+    ]
+}

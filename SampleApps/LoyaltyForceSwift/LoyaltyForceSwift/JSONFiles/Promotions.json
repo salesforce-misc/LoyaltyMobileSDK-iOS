@@ -1,0 +1,61 @@
+{
+    "message": null,
+    "outputParameters": {
+        "outputParameters": {
+            "results": [
+                {
+                    "promotionName": "Fitness Promotion",
+                    "fulfillmentAction": "CREDIT_POINTS",
+                    "promotionEnrollmentRqr": false,
+                    "memberEligibilityCategory": "Eligible",
+                    "maximumPromotionRewardValue": 0,
+                    "totalPromotionRewardPointsVal": 0,
+                    "loyaltyProgramCurrency": "0lc4x000000L1bmAAC",
+                    "loyaltyPromotionType": "STANDARD",
+                    "promotionId": "0c84x000000CoNjAAK",
+                    "startDate": "2021-06-01",
+                    "endDate": "2021-07-01",
+                    "description": "Targeted promotion for specific users with fitness as interest"
+                },
+                {
+                    "promotionName": "Labor Day promotion",
+                    "fulfillmentAction": "ISSUE_VOUCHER",
+                    "promotionEnrollmentRqr": false,
+                    "memberEligibilityCategory": "Eligible",
+                    "maximumPromotionRewardValue": 0,
+                    "loyaltyPromotionType": "STANDARD",
+                    "promotionId": "0c84x090000CoNZAA0",
+                    "startDate": "2021-08-15",
+                    "endDate": "2021-09-15",
+                    "description": "Promotion issues a 10% discount voucher applicable on all products."
+                },
+                {
+                    "promotionName": "Thanksgiving promotion",
+                    "fulfillmentAction": "ISSUE_VOUCHER",
+                    "promotionEnrollmentRqr": false,
+                    "memberEligibilityCategory": "Eligible",
+                    "maximumPromotionRewardValue": 0,
+                    "loyaltyPromotionType": "STANDARD",
+                    "promotionId": "0c84x000000CoNZAA0",
+                    "startDate": "2021-11-01",
+                    "endDate": "2021-11-30",
+                    "description": "Promotion issues a 10% discount voucher applicable on all products."
+                },
+                {
+                    "promotionName": "Christmas promotion",
+                    "fulfillmentAction": "ISSUE_VOUCHER",
+                    "promotionEnrollmentRqr": false,
+                    "memberEligibilityCategory": "Eligible",
+                    "maximumPromotionRewardValue": 0,
+                    "loyaltyPromotionType": "STANDARD",
+                    "promotionId": "0c84x110000CoNZAA0",
+                    "startDate": "2021-12-01",
+                    "endDate": "2022-01-15",
+                    "description": "Promotion issues a 15% discount voucher applicable on all products."
+                }
+            ]
+        }
+    },
+    "simulationDetails": {},
+    "status": true
+}

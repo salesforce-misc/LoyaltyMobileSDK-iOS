@@ -31,7 +31,7 @@ struct VouchersView: View {
                 Spacer()
                 VoucherCardView()
                 Spacer()
-                VoucherCardView()
+                VoucherCardView2()
                 Spacer()
             }
             

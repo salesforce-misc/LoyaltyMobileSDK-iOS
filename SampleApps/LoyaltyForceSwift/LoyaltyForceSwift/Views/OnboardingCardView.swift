@@ -16,6 +16,7 @@ struct OnboardingCardView: View {
             Image(card.image)
                 .resizable()
                 .scaledToFill()
+                .offset(card.offset)
                 .frame(maxWidth: UIScreen.main.bounds.width,
                        maxHeight: UIScreen.main.bounds.height)
             VStack {

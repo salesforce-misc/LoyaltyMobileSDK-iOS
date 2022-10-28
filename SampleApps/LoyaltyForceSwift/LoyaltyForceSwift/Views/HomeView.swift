@@ -44,7 +44,7 @@ struct HomeView: View {
                     
                     // Offers & Promotions
                     //OffersCarouselView()
-                    SampleCarouselView()
+                    PromotionCarouselView()
                         .frame(height: 400)
                         .padding(.top, 80)
                         .padding(.bottom, 20)
@@ -79,6 +79,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environmentObject(dev.rootVM)
     }
 }
 

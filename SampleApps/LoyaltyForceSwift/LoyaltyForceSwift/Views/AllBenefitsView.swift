@@ -24,7 +24,9 @@ struct AllBenefitsView: View {
                                 .frame(width: 32, height: 32)
                                 .foregroundColor(.white)
                                 .overlay(
-                                    Image("return")
+                                    Assets.getBenefitsLogo(for: benefit.benefitTypeName)
+                                        .renderingMode(.template)
+                                        .foregroundColor(Color.theme.accent)
                                 )
                             
                             VStack(spacing: 8) {
@@ -49,6 +51,7 @@ struct AllBenefitsView: View {
                         .padding()
                         
                         Divider()
+                            .padding(.horizontal)
                     }
                 }
             }

@@ -30,7 +30,7 @@ struct RedeemPointsView: View {
                 Spacer()
                 RedeemCardView()
                 Spacer()
-                RedeemCardView()
+                RedeemCardView2()
                 Spacer()
             }
             

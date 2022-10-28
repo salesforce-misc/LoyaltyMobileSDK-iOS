@@ -17,17 +17,14 @@ struct RedeemView: View {
                 VStack(spacing: 15) {
                     HStack(spacing: 15) {
                         RedeemCardView()
-                        RedeemCardView()
-                    }
-                    
-                    HStack(spacing: 15) {
-                        RedeemCardView()
-                        RedeemCardView()
+                        RedeemCardView2()
                     }
                     
                     MyOffersCardView()
-                    MyOffersCardView()
-                    MyOffersCardView()
+                    MyOffersCardView2()
+                    MyOffersCardView3()
+                    MyOffersCardView4()
+                    MyOffersCardView5()
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.top, 110)

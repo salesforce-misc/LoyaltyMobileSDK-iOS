@@ -29,8 +29,8 @@ struct TransactionsView: View {
             
             VStack(spacing: 15) {
                 TransactionCardView()
-                TransactionCardView()
-                TransactionCardView()
+                TransactionCardView2()
+                TransactionCardView3()
             }
             
         }

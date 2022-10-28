@@ -11,25 +11,26 @@ import SwiftUI
 class BenefitViewModel: ObservableObject {
     
     @Published var benefits: [BenefitModel] = []
+    @Published var benefitsPreview: [BenefitModel] = []
     @Published var benefitDescs: [String: String] = [:]
     @Published var isLoaded = false
     
+    @MainActor
     func getBenefits(memberId: String) async throws {
         
         do {
-            await MainActor.run {
-                isLoaded = false
-                benefits = []
-            }
-                        
+
+            isLoaded = false
+            benefits = []
+            benefitsPreview = []
+
             let results: [BenefitModel] = try await LoyaltyAPIManager.shared.getMemberBenefits(for: memberId)
             try await updateBenefitDescs(benefits: results)
 
-            await MainActor.run {
-                isLoaded = true
-                benefits = results
-            }
-            
+            isLoaded = true
+            benefits = results
+            benefitsPreview = Array(results.prefix(5))
+
         } catch {
             throw error
         }

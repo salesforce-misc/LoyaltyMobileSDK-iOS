@@ -52,5 +52,6 @@ struct ProfileHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileHeaderView()
             .previewLayout(.sizeThatFits)
+            .environmentObject(dev.rootVM)
     }
 }

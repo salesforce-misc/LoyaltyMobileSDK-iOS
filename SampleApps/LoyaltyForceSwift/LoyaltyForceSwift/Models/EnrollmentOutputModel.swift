@@ -7,7 +7,7 @@
 
 import Foundation
 
-/* Respeonse - Sample output
+/* Response - Sample output
 
  {
      "contactId": "0034x00001ITEYf",
