@@ -16,7 +16,6 @@ struct SignUpView: View {
     @State private var lastName = ""
     @State private var mobileNumber = ""
     @State private var email = ""
-    @State private var username = ""
     @State private var password = ""
     @State private var passwordConfirmation = ""
     @State private var acceptTerms = false
@@ -38,7 +37,6 @@ struct SignUpView: View {
                                 lastName: $lastName,
                                 mobileNumber: $mobileNumber,
                                 email: $email,
-                                username: $username,
                                 password: $password,
                                 passwordConfirmation: $passwordConfirmation,
                                 acceptTerms: $acceptTerms,
@@ -56,7 +54,6 @@ struct SignUpView: View {
                                                      firstName: firstName,
                                                      lastName: lastName,
                                                      mobileNumber: mobileNumber,
-                                                     username: username,
                                                      joinEmailList: joinEmailList)
                                 UIApplication.shared.dismissKeyboard()
                             }) {
@@ -97,7 +94,6 @@ struct SignUpView: View {
             lastName.isEmpty ||
             mobileNumber.isEmpty ||
             email.isEmpty ||
-            username.isEmpty ||
             password.isEmpty ||
             passwordConfirmation.isEmpty ||
             password != passwordConfirmation ||
@@ -123,7 +119,6 @@ struct SignUpCredentialFields: View {
     @Binding var lastName: String
     @Binding var mobileNumber: String
     @Binding var email: String
-    @Binding var username: String
     @Binding var password: String
     @Binding var passwordConfirmation: String
     @Binding var acceptTerms: Bool
@@ -144,8 +139,6 @@ struct SignUpCredentialFields: View {
             TextField("Email Address", text: $email)
                 .textFieldStyle(RegularTextFieldStyle())
                 .keyboardType(.emailAddress)
-            TextField("Username", text: $username)
-                .textFieldStyle(RegularTextFieldStyle())
             RevealableSecureField("Password", text: $password)
             RevealableSecureField("Confirm Password", text: $passwordConfirmation)
                 //.focused($passwordConfirmationIsFocused)

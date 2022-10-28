@@ -44,7 +44,6 @@ class AppRootViewModel: ObservableObject {
                     firstName: String,
                     lastName: String,
                     mobileNumber: String,
-                    username: String,
                     joinEmailList: Bool) {
         
         isInProgress = true
@@ -78,7 +77,6 @@ class AppRootViewModel: ObservableObject {
                                                  lastName: lastName,
                                                  email: userEmail,
                                                  mobileNumber: mobileNumber,
-                                                 username: username,
                                                  joinEmailList: joinEmailList,
                                                  dateCreated: Date(),
                                                  enrollmentDetails: enrollmentDetails)

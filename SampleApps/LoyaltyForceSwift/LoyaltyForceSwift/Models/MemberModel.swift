@@ -12,7 +12,6 @@ struct MemberModel: Codable {
     let lastName: String
     let email: String
     let mobileNumber: String
-    let username: String
     let joinEmailList: Bool
     let dateCreated: Date
     let enrollmentDetails: EnrollmentDetails
