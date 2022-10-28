@@ -43,7 +43,6 @@ struct HomeView: View {
                     )
                     
                     // Offers & Promotions
-                    //OffersCarouselView()
                     PromotionCarouselView()
                         .frame(height: 400)
                         .padding(.top, 80)
@@ -73,6 +72,7 @@ struct HomeView: View {
             }
             .navigationBarHidden(true)
         }
+        .navigationViewStyle(.stack)
     }
 }
 

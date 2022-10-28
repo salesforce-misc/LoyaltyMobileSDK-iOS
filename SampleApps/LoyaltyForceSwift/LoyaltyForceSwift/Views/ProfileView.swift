@@ -53,10 +53,8 @@ struct ProfileView: View {
             }
             .navigationBarHidden(true)
         }
-        
-        
-        
-        
+        .navigationViewStyle(.stack)
+         
     }
     
 }

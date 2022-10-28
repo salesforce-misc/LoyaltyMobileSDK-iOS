@@ -68,6 +68,8 @@ struct MoreView: View {
                 .navigationBarHidden(true)
                 
             }
+            .navigationViewStyle(.stack)
+            
             if viewModel.isInProgress {
                 ProgressView()
             }
