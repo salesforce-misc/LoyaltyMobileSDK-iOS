@@ -21,7 +21,7 @@ struct HomeView: View {
                         .foregroundColor(Color.theme.accent)
                         .padding(.top, -354)
                     HStack {
-                        Text("Welcome, \(viewModel.member?.firstName ?? "") \(viewModel.member?.lastName ?? "")!")
+                        Text("Welcome, \(viewModel.member?.firstName.capitalized ?? "") \(viewModel.member?.lastName.capitalized ?? "")!")
                             .padding(.leading, 15)
                         Spacer()
                         Text("17850 Points")

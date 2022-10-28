@@ -9,24 +9,25 @@ import Foundation
 import SwiftUI
 
 struct Carousel<Content: View, T: Identifiable>: View {
+    
     let content: (T) -> Content
     let items: [T]
     let spacing: CGFloat
-    let trailingSpace: CGFloat
+    let contentWidth: CGFloat
     
     @Binding var index: Int
     @GestureState var offset: CGFloat = 0
     @State var currentIndex: Int = 0
     
     init(spacing: CGFloat = 10,
-         trailingSpace: CGFloat = UIScreen.main.bounds.width - 320, // 320 = OfferCardView().width, should normalize
+         contentWidth: CGFloat = 320, // 320 = OfferCardView().width, should normalize
          index: Binding<Int>,
          items: [T],
          @ViewBuilder content: @escaping (T) -> Content) {
         
         self.items = items
         self.spacing = spacing
-        self.trailingSpace = trailingSpace
+        self.contentWidth = contentWidth
         self._index = index
         self.content = content
     }
@@ -36,6 +37,7 @@ struct Carousel<Content: View, T: Identifiable>: View {
         VStack {
             GeometryReader { proxy in
                 
+                let trailingSpace = proxy.size.width - contentWidth
                 let width = proxy.size.width - (trailingSpace - spacing)
                 let adjustmentWidth = (trailingSpace / 2) - spacing
                 
@@ -43,7 +45,7 @@ struct Carousel<Content: View, T: Identifiable>: View {
                     HStack(spacing: spacing) {
                         ForEach(items) { item in
                             content(item)
-                                .frame(width: proxy.size.width - trailingSpace)
+                                .frame(minWidth: contentWidth, maxWidth: proxy.size.width)
                         }
                     }
                     .padding(.horizontal, spacing)

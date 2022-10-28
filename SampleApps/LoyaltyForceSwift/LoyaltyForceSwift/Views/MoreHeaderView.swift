@@ -18,7 +18,7 @@ struct MoreHeaderView: View {
                 Spacer()
             }
             
-            Text("\(viewModel.member?.firstName ?? "") \(viewModel.member?.lastName ?? "")")
+            Text("\(viewModel.member?.firstName.capitalized ?? "") \(viewModel.member?.lastName.capitalized ?? "")")
                 .font(.nameText)
         }
     }
