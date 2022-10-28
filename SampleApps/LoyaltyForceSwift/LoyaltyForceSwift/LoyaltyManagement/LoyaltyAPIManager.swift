@@ -154,4 +154,22 @@ public class LoyaltyAPIManager {
         }
         
     }
+    
+    func getPromotions(for memberId: String) async throws -> PromotionModel {
+        do {
+            let result = try ForceClient.shared.fetchLocalJson(type: PromotionModel.self, file: "Promotions")
+            return result
+        } catch {
+            throw error
+        }
+    }
+    
+    func getPromotions(for memberId: String) async throws -> TransactionModel {
+        do {
+            let result = try ForceClient.shared.fetchLocalJson(type: TransactionModel.self, file: "Transactions")
+            return result
+        } catch {
+            throw error
+        }
+    }
 }

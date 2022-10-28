@@ -12,6 +12,8 @@ struct OffersView: View {
     @State var offerTabSelected: Int = 0
     let barItems = ["All", "Active", "Expiring Soon"]
     
+//    let myOffers = []
+    
     var body: some View {
         ZStack {
             Color.theme.background
@@ -23,13 +25,13 @@ struct OffersView: View {
                         
                         VStack(spacing: 15) {
                             MyOffersCardView()
-                            MyOffersCardView()
-                            MyOffersCardView()
-                            MyOffersCardView()
-                            MyOffersCardView()
-                            MyOffersCardView()
-                            MyOffersCardView()
-                            MyOffersCardView()
+                            MyOffersCardView1()
+                            MyOffersCardView2()
+                            MyOffersCardView3()
+                            MyOffersCardView4()
+                            MyOffersCardView5()
+                            MyOffersCardView3()
+                            MyOffersCardView5()
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.top, 110)

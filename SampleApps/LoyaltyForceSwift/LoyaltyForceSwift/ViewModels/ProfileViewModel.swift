@@ -17,7 +17,7 @@ class ProfileViewModel: ObservableObject {
             let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId, programName: programName)
             
 //            // Save to local disk
-//            LocalFileManager.instance.saveData(item: result, id: memberId, folderName: String(describing: ProfileModel.self))
+//            LocalFileManager.instance.saveData(item: result, id: memberId)
             
             await MainActor.run {
                 profile = result

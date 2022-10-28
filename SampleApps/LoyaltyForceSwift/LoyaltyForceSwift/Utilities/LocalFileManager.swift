@@ -13,8 +13,9 @@ class LocalFileManager {
     static let instance = LocalFileManager()
     private init() {}
     
-    func saveData<T: Encodable>(item: T, id: String, folderName: String) {
+    func saveData<T: Encodable>(item: T, id: String) {
         
+        let folderName = String(describing: T.self)
         // create folder
         createFolderIfNeeded(folderName: folderName)
         
@@ -31,8 +32,9 @@ class LocalFileManager {
         }
     }
     
-    func getData<T: Decodable>(type: T.Type, id: String, folderName: String) -> T? {
+    func getData<T: Decodable>(type: T.Type, id: String) -> T? {
         
+        let folderName = String(describing: T.self)
         guard
             let url = getURLForItem(type: type, id: id, folderName: folderName),
             FileManager.default.fileExists(atPath: url.path) else {
@@ -47,10 +49,26 @@ class LocalFileManager {
             let member = try JSONDecoder().decode(T.self, from: memberData)
             return member
         } catch let error {
-            print("Error retrieving member data. Decoding error: \(error)")
+            print("Error retrieving data. Decoding error: \(error)")
             return nil
         }
         
+    }
+    
+    func removeData<T>(type: T.Type, id: String) {
+        
+        let folderName = String(describing: T.self)
+        guard
+            let url = getURLForItem(type: type, id: id, folderName: folderName),
+            FileManager.default.fileExists(atPath: url.path) else {
+            return
+        }
+        
+        do {
+            try FileManager.default.removeItem(atPath: url.path)
+        } catch let error {
+            print("Error deleting data. \(error)")
+        }
     }
     
     
@@ -67,10 +85,14 @@ class LocalFileManager {
     }
     
     private func getURLForFolder(folderName: String) -> URL? {
-        guard let url = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+        
+        guard
+            let bundleID = Bundle.main.bundleIdentifier,
+            let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
             return nil
         }
-        return url.appendingPathComponent(folderName)
+        let folderPath = bundleID + "/" + folderName
+        return url.appendingPathComponent(folderPath)
     }
     
     private func getURLForItem<T>(type: T.Type, id: String, folderName: String) -> URL? {

@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-struct OfferCardView: View {
+struct PromotionCardView: View {
+    let offer: Offer
+    
     var body: some View {
         VStack {
-            Image("offers")
+            Image(offer.offerImage)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 289, height: 154)
@@ -18,12 +20,12 @@ struct OfferCardView: View {
                 .padding(.top)
             
             VStack(alignment: .leading, spacing: 10) {
-                Text("Camping Fun For Entire Family")
+                Text(offer.offerTitle)
                     .font(.offerTitle)
-                Text("The ultimate family camping destination is closer than you might think.")
+                Text(offer.offerDescription)
                     .font(.offerText)
                     .lineSpacing(3)
-                Text("Expiration: **12/12/2022**")
+                Text("Expiration: **\(offer.offerExpirationDate)**")
                     .font(.offerText)
                     .padding(.top)
             }
@@ -54,9 +56,9 @@ struct OfferCardView: View {
     }
 }
 
-struct OfferCardView_Previews: PreviewProvider {
+struct PromotionCardView_Previews: PreviewProvider {
     static var previews: some View {
-        OfferCardView()
+        PromotionCardView(offer: Offer(offerImage:"offers", offerTitle: "Camping Fun For Entire Family", offerDescription: "The ultimate family camping destination is closer than you might think.", offerExpirationDate: "12/12/2022"))
             .previewLayout(.sizeThatFits)
     }
 }

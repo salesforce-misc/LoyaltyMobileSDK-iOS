@@ -85,7 +85,7 @@ class AppRootViewModel: ObservableObject {
                         self?.member = member
                         
                         // Save member to local disk
-                        LocalFileManager.instance.saveData(item: member, id: member.email, folderName: String(describing: MemberModel.self))
+                        LocalFileManager.instance.saveData(item: member, id: member.email)
                         
                         // Also backup to a centralized local in case the user deletes the app
                         // then we can retrieve the member info linked to Salesforce
@@ -142,7 +142,7 @@ class AppRootViewModel: ObservableObject {
                         try await ForceAuthManager.shared.grantAuth()                        
                         
                         // Retrieve member data from local disk
-                        let member = LocalFileManager.instance.getData(type: MemberModel.self, id: userEmail, folderName: String(describing: MemberModel.self))
+                        let member = LocalFileManager.instance.getData(type: MemberModel.self, id: userEmail)
                         
                         if let member = member {
                             self?.member = member
@@ -153,7 +153,7 @@ class AppRootViewModel: ObservableObject {
                             print("<Firestore> - Member info retrieved.")
                             self?.member = memberReturned
                             // Save member to local disk
-                            LocalFileManager.instance.saveData(item: memberReturned, id: memberReturned.email, folderName: String(describing: MemberModel.self))
+                            LocalFileManager.instance.saveData(item: memberReturned, id: memberReturned.email)
                             
                         }
                         

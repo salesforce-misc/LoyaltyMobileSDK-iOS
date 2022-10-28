@@ -36,17 +36,17 @@ struct Assets {
         
         switch type {
         case "Purchase":
-            return Image("ic-tranaction-purchase")
+            return Image("ic-transaction-purchase")
         case "Redemption":
-            return Image("ic-tranaction-redemption")
+            return Image("ic-transaction-redemption")
         case "Member Referral":
-            return Image("ic-tranaction-member-referral")
+            return Image("ic-transaction-member-referral")
         case "Voucher":
-            return Image("ic-tranaction-voucher")
+            return Image("ic-transaction-voucher")
         case "Social Media Activity":
-            return Image("ic-tranaction-social-media-activity")
+            return Image("ic-transaction-social-media-activity")
         case "Enrollment":
-            return Image("ic-tranaction-enrollment")
+            return Image("ic-transaction-enrollment")
         default:
             return Image("ic-transaction-default")
         }

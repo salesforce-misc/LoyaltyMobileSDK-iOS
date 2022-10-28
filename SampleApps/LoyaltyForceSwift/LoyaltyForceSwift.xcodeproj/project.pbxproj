@@ -100,8 +100,8 @@
 		29BAF6CB28F0DB9200A3F9EB /* OffersCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6CA28F0DB9200A3F9EB /* OffersCarouselView.swift */; };
 		29BAF6CF28F0FC3A00A3F9EB /* CornerRadiusStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6CE28F0FC3A00A3F9EB /* CornerRadiusStyle.swift */; };
 		29BAF6D128F1032800A3F9EB /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6D028F1032800A3F9EB /* Carousel.swift */; };
-		29BAF6D328F103B600A3F9EB /* SampleCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6D228F103B500A3F9EB /* SampleCarouselView.swift */; };
-		29BAF6D528F14E4400A3F9EB /* OfferCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6D428F14E4400A3F9EB /* OfferCardView.swift */; };
+		29BAF6D328F103B600A3F9EB /* PromotionCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6D228F103B500A3F9EB /* PromotionCarouselView.swift */; };
+		29BAF6D528F14E4400A3F9EB /* PromotionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6D428F14E4400A3F9EB /* PromotionCardView.swift */; };
 		29BAF6D728F15CF300A3F9EB /* RedeemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6D628F15CF300A3F9EB /* RedeemCardView.swift */; };
 		29BAF6D928F1642000A3F9EB /* RedeemPointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6D828F1642000A3F9EB /* RedeemPointsView.swift */; };
 		29BAF6DD28F3AE8B00A3F9EB /* String+StringWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6DC28F3AE8B00A3F9EB /* String+StringWidth.swift */; };
@@ -214,8 +214,8 @@
 		29BAF6CA28F0DB9200A3F9EB /* OffersCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCarouselView.swift; sourceTree = "<group>"; };
 		29BAF6CE28F0FC3A00A3F9EB /* CornerRadiusStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyle.swift; sourceTree = "<group>"; };
 		29BAF6D028F1032800A3F9EB /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
-		29BAF6D228F103B500A3F9EB /* SampleCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCarouselView.swift; sourceTree = "<group>"; };
-		29BAF6D428F14E4400A3F9EB /* OfferCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCardView.swift; sourceTree = "<group>"; };
+		29BAF6D228F103B500A3F9EB /* PromotionCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionCarouselView.swift; sourceTree = "<group>"; };
+		29BAF6D428F14E4400A3F9EB /* PromotionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionCardView.swift; sourceTree = "<group>"; };
 		29BAF6D628F15CF300A3F9EB /* RedeemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemCardView.swift; sourceTree = "<group>"; };
 		29BAF6D828F1642000A3F9EB /* RedeemPointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemPointsView.swift; sourceTree = "<group>"; };
 		29BAF6DC28F3AE8B00A3F9EB /* String+StringWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+StringWidth.swift"; sourceTree = "<group>"; };
@@ -332,16 +332,16 @@
 				29BAF6FD28F63A5800A3F9EB /* RewardPointsCardView.swift */,
 				218A36AF28B85D9200FCEE39 /* RedeemView.swift */,
 				218A36AD28B85D6000FCEE39 /* FavoriteView.swift */,
+				29BAF6E028F3EEA000A3F9EB /* MyOffersCardView.swift */,
 				218A36AB28B85D5500FCEE39 /* OffersView.swift */,
 				298613A528C7D3B400BDC744 /* MoreView.swift */,
 				298613CB28CBC08800BDC744 /* MoreHeaderView.swift */,
-				29BAF6D428F14E4400A3F9EB /* OfferCardView.swift */,
+				29BAF6D428F14E4400A3F9EB /* PromotionCardView.swift */,
 				29BAF6CA28F0DB9200A3F9EB /* OffersCarouselView.swift */,
-				29BAF6D228F103B500A3F9EB /* SampleCarouselView.swift */,
+				29BAF6D228F103B500A3F9EB /* PromotionCarouselView.swift */,
 				29BAF6D628F15CF300A3F9EB /* RedeemCardView.swift */,
 				29BAF6D828F1642000A3F9EB /* RedeemPointsView.swift */,
 				29AC2F0428F8B6E6003F56F6 /* AllRedeemPointsView.swift */,
-				29BAF6E028F3EEA000A3F9EB /* MyOffersCardView.swift */,
 				29BAF6E228F4824B00A3F9EB /* VoucherCardView.swift */,
 				29BAF6F028F5D6D600A3F9EB /* VoucherDetailView.swift */,
 				29BAF6E428F485DA00A3F9EB /* VouchersView.swift */,
@@ -600,7 +600,7 @@
 				298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */,
 				29BAF6F128F5D6D600A3F9EB /* VoucherDetailView.swift in Sources */,
 				299B38CC28E3B57200E45D97 /* EnrollmentModel.swift in Sources */,
-				29BAF6D528F14E4400A3F9EB /* OfferCardView.swift in Sources */,
+				29BAF6D528F14E4400A3F9EB /* PromotionCardView.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
 				2941A23F28BE803F005026CF /* Color.swift in Sources */,
 				2906B1ED2901DE3F006EAB2D /* PromotionModel.swift in Sources */,
@@ -652,7 +652,7 @@
 				298613A828C9021400BDC744 /* ProfileHeaderView.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
 				29BAF6ED28F4DE1C00A3F9EB /* BadgeCardView.swift in Sources */,
-				29BAF6D328F103B600A3F9EB /* SampleCarouselView.swift in Sources */,
+				29BAF6D328F103B600A3F9EB /* PromotionCarouselView.swift in Sources */,
 				29BAF6DF28F3ECA600A3F9EB /* TopTabBar.swift in Sources */,
 				299B38CE28E3CF9900E45D97 /* EnrollmentOutputModel.swift in Sources */,
 				2944F88428B98DA10098ED1B /* BenefitModel.swift in Sources */,
