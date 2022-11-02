@@ -48,12 +48,15 @@ public class LoyaltyAPIManager {
     /// - Parameters:
     ///   - for memberId: The member who has these benefits
     /// - Returns: An ``BenefitModel`` array
-    public func getMemberBenefits(for memberId: String) async throws -> [BenefitModel] {
+    public func getMemberBenefits(for memberId: String, devMode: Bool = false) async throws -> [BenefitModel] {
         do {
-//            let path = getPath(for: .getMemberBenefits(memberId: memberId))
-//            let request = try ForceRequest.create(method: "GET", path: path)
-//            let result = try await ForceClient.shared.fetch(type: Benefits.self, with: request)
-            let result = try ForceClient.shared.fetchLocalJson(type: Benefits.self, file: "Benefits")
+            if devMode {
+                let result = try ForceClient.shared.fetchLocalJson(type: Benefits.self, file: "Benefits")
+                return result.memberBenefits
+            }
+            let path = getPath(for: .getMemberBenefits(memberId: memberId))
+            let request = try ForceRequest.create(method: "GET", path: path)
+            let result = try await ForceClient.shared.fetch(type: Benefits.self, with: request)
             return result.memberBenefits
         } catch {
             throw error
@@ -164,7 +167,7 @@ public class LoyaltyAPIManager {
         }
     }
     
-    func getPromotions(for memberId: String) async throws -> TransactionModel {
+    func getTransactions(for memberId: String) async throws -> TransactionModel {
         do {
             let result = try ForceClient.shared.fetchLocalJson(type: TransactionModel.self, file: "Transactions")
             return result

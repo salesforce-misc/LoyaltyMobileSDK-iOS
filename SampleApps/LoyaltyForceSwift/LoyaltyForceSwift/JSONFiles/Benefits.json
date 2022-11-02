@@ -25,19 +25,7 @@
             "startDate": null
         },
         {
-            "benefitId": "0ji4x1000008REdAAM",
-            "benefitName": "Free Sample",
-            "benefitTypeId": "0jh4x0000008REQAA2",
-            "benefitTypeName": "Free Sample",
-            "createdRecordId": null,
-            "createdRecordName": null,
-            "endDate": null,
-            "isActive": true,
-            "memberBenefitStatus": null,
-            "startDate": null
-        },
-        {
-            "benefitId": "0ji4x2000008REjAAM",
+            "benefitId": "0ji4x0000008REeAAM",
             "benefitName": "Free Subscription",
             "benefitTypeId": "0jh4x0000008REXAA2",
             "benefitTypeName": "Free Subscription",
@@ -49,7 +37,7 @@
             "startDate": null
         },
         {
-            "benefitId": "0ji4x3000008REdAAM",
+            "benefitId": "0ji4x0000008REZAA2",
             "benefitName": "Free Shipping",
             "benefitTypeId": "0jh4x0000008REQAA2",
             "benefitTypeName": "Free Shipping",
@@ -61,7 +49,7 @@
             "startDate": null
         },
         {
-            "benefitId": "0ji4x4000008REjAAM",
+            "benefitId": "0ji4x0000008REiAAM",
             "benefitName": "Tier Exclusive Offer",
             "benefitTypeId": "0jh4x0000008REXAA2",
             "benefitTypeName": "Tier Exclusive Offer",
@@ -73,7 +61,7 @@
             "startDate": null
         },
         {
-            "benefitId": "0ji4x5000008REdAAM",
+            "benefitId": "0ji4x0000008REfAAM",
             "benefitName": "Complimentry Voouchers",
             "benefitTypeId": "0jh4x0000008REQAA2",
             "benefitTypeName": "Complimentry Voouchers",

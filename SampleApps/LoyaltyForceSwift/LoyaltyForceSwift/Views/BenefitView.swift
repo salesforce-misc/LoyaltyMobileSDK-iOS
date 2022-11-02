@@ -25,7 +25,8 @@ struct BenefitView: View {
                         .foregroundColor(.black)
                     Spacer()
                     LoyaltyNavLink {
-                        AllBenefitsView(viewModel: benefitVM)
+                        AllBenefitsView()
+                            .environmentObject(benefitVM)
                     } label: {
                         Text("View All")
                             .foregroundColor(Color.theme.accent)
