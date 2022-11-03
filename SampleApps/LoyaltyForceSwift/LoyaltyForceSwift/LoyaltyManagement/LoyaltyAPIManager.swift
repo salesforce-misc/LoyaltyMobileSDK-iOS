@@ -112,18 +112,20 @@ public class LoyaltyAPIManager {
          return s
     }
     
-    public func postEnrollment(firstName: String, lastName: String, email: String) async throws -> EnrollmentOutputModel {
+    public func postEnrollment(firstName: String, lastName: String, email: String, phone: String, emailNotification: Bool) async throws -> EnrollmentOutputModel {
         
         let currentDate = Date()
         let membershipNumber = randomString(of: 8)
-        let attributes: [String: String] = [:]
-        let additionalValues = AdditionalFieldValues(attributes: attributes)
+        let attributesContact = ["Phone": phone]
+        let additionalContactValues = AdditionalFieldValues(attributes: attributesContact)
+        let attributesMember = ["Email_Notifications__c": String(emailNotification)]
+        let additionalMemberValues = AdditionalFieldValues(attributes: attributesMember)
         let contactDetails = AssociatedContactDetails(
             firstName: firstName,
             lastName: lastName,
             email: email,
             allowDuplicateRecords: false,
-            additionalContactFieldValues: additionalValues)
+            additionalContactFieldValues: additionalContactValues)
         
         let enrollment = EnrollmentModel(
             enrollmentDate: currentDate,
@@ -139,7 +141,7 @@ public class LoyaltyAPIManager {
             canReceivePartnerPromotions: true,
             membershipEndDate: nil,
             relatedCorporate​MembershipNumber: nil,
-            additionalMemberFieldValues: additionalValues)
+            additionalMemberFieldValues: additionalMemberValues)
         
         do {
             let encoder = JSONEncoder()
