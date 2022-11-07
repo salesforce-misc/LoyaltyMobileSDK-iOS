@@ -91,6 +91,7 @@ struct RewardPointsCardView: View {
                     
                 }
             
+            /* After MVP item. Hide tier points progressbar for now.
                 VStack(spacing: 0) {
                     GeometryReader { geo in
                         ZStack(alignment: .topLeading) {
@@ -103,7 +104,7 @@ struct RewardPointsCardView: View {
                         .frame(height: 6)
                     }
                     .frame(height: 6)
-                
+                    
                     HStack {
                         Text("\(Text(String(currentTierPoints)).foregroundColor(Color.theme.accent))/\(String(currentTierLimit))")
                             .foregroundColor(Color.theme.tierPoints)
@@ -113,8 +114,9 @@ struct RewardPointsCardView: View {
                             .font(.tierPointsNotes)
                     }
                     .padding(.vertical)
-            }
-            .padding()
+                }
+                .padding()
+             */
             
         }
     }

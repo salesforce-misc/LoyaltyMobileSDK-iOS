@@ -16,61 +16,88 @@ class BenefitViewModel: ObservableObject {
     @Published var benefitDescs: [String: String] = [:]
     @Published var isLoaded = false
     
-    private let benefitCache = Cache<String, [BenefitModel]>()
-    private let benefitDescCache = Cache<String, String>()
-    
     func getBenefits(memberId: String, reload: Bool = false) async throws {
-        
         var descReload = false
-        do {
-            isLoaded = false
+        isLoaded = false
+        if !reload {
+            if benefits.isEmpty {
+                // get from local cache
+                if let cached = LocalFileManager.instance.getData(type: Benefits.self, id: memberId) {
+                    benefits = cached.memberBenefits
+                    benefitsPreview = Array(benefits.prefix(5))
+                    do {
+                        // get benefit description
+                        let ids = benefits.map { $0.id }
+                        try await updateBenefitDescs(benefitIds: ids, reload: descReload)
+                    } catch {
+                        isLoaded = true
+                        throw error
+                    }
+ 
+                } else {
+                    do {
+                        try await fetchBenefits(memberId: memberId, reloadDescription: descReload)
+                    } catch {
+                        isLoaded = true
+                        throw error
+                    }
+                    
+                }
+
+            }
+            
+        } else {
+            descReload = true
             benefits = []
             benefitsPreview = []
-            if reload {
-                benefitCache.removeValue(forKey: memberId)
-                descReload = true
-            }
             
-            guard let cached = benefitCache[memberId] else {
-                let results: [BenefitModel] = try await LoyaltyAPIManager.shared.getMemberBenefits(for: memberId, devMode: true) // use json for testing
-                let ids = results.map { $0.id }
-                try await updateBenefitDescs(benefitIds: ids, reload: descReload)
-                benefitCache[memberId] = results
+            do {
+                try await fetchBenefits(memberId: memberId, reloadDescription: descReload)
+            } catch {
                 isLoaded = true
-                benefits = results
-                benefitsPreview = Array(results.prefix(5))
-//                let ids = benefits.map { $0.id }
-//                try await updateBenefitDescs(benefitIds: ids)
-                return
+                throw error
             }
-            isLoaded = true
-            benefits = cached
-            benefitsPreview = Array(cached.prefix(5))
+        }
+        isLoaded = true
+    }
+    
+    private func fetchBenefits(memberId: String, reloadDescription: Bool) async throws {
+        
+        do {
+            let results: [BenefitModel] = try await LoyaltyAPIManager.shared.getMemberBenefits(for: memberId, devMode: true)
+            // update benefit description for each benefit
+            let ids = results.map { $0.id }
+            try await updateBenefitDescs(benefitIds: ids, reload: reloadDescription)
             
+            benefits = results
+            benefitsPreview = Array(benefits.prefix(5))
+            // save to local cache
+            let benefitsData = Benefits(memberBenefits: results)
+            LocalFileManager.instance.saveData(item: benefitsData, id: memberId)
         } catch {
             throw error
         }
     }
     
-    func updateBenefitDescs(benefitIds: [String], reload: Bool = false) async throws {
+    private func updateBenefitDescs(benefitIds: [String], reload: Bool = false) async throws {
         
         var uncachedIds: [String] = []
-        
-        for id in benefitIds {
-            if let cached = benefitDescCache[id] {
-                if reload {
-                    benefitDescCache.removeValue(forKey: id)
-                    uncachedIds.append(id)
-                } else {
-                    benefitDescs[id] = cached
-                }
-                
-            } else {
-                uncachedIds.append(id)
-            }
-        }
 
         do {
+            for id in benefitIds {
+                
+                if reload {
+                    uncachedIds.append(id)
+                } else {
+                    if let cached = LocalFileManager.instance.getData(type: String.self, id: id, folderName: "BenefitDescription") {
+                        benefitDescs[id] = cached
+                    } else {
+                        uncachedIds.append(id)
+                    }
+                }
+                
+            }
+            
             if uncachedIds != [] {
                 let results = try await LoyaltyAPIManager.shared.getBenefitRecord(by: uncachedIds)
                 for result in results {
@@ -79,7 +106,8 @@ class BenefitViewModel: ObservableObject {
                         continue
                     }
                     benefitDescs[id] = desc
-                    benefitDescCache[id] = desc
+                    // save to local cache
+                    LocalFileManager.instance.saveData(item: desc, id: id, folderName: "BenefitDescription")
                 }
             }
             
@@ -89,32 +117,6 @@ class BenefitViewModel: ObservableObject {
          
     }
     
-//    func updateBenefitDescs(benefits: [BenefitModel]) async throws {
-//
-//        var uncachedIds = [String]()
-//
-//        let benefitIds = benefits.map { $0.id }
-//        for id in benefitIds {
-//            if let cached = benefitDescCache[id] {
-//                benefitDescs[id] = cached
-//            } else {
-//                uncachedIds.append(id)
-//            }
-//        }
-//
-//        do {
-//            let results = try await LoyaltyAPIManager.shared.getBenefitRecord(by: uncachedIds)
-//            for result in results {
-//                guard let id = result.string(forField: "Id"),
-//                      let desc = result.string(forField: "Description") else {
-//                    continue
-//                }
-//                benefitDescs[id] = desc
-//            }
-//        } catch {
-//            throw error
-//        }
-//
-//    }
+
     
 }

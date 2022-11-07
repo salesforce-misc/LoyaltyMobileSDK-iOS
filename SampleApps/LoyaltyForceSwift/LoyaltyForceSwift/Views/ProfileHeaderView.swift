@@ -41,7 +41,7 @@ struct ProfileHeaderView: View {
             
             Spacer()
         }
-        .frame(height: 400)
+        .frame(height: 360)
         .background(.white)
 
     }

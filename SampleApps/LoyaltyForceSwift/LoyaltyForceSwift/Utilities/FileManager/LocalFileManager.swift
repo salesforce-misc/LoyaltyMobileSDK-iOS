@@ -13,41 +13,51 @@ class LocalFileManager {
     static let instance = LocalFileManager()
     private init() {}
     
-    func saveData<T: Encodable>(item: T, id: String) {
+    func saveData<T: Codable>(item: T, id: String, folderName: String? = nil, expiry: Expiry = .never) {
         
-        let folderName = String(describing: T.self)
+        let folderName = folderName ?? String(describing: T.self)
         // create folder
         createFolderIfNeeded(folderName: folderName)
         
         // get path for data
         guard let url = getURLForItem(type: type(of: item), id: id, folderName: folderName) else { return }
         
+        // create an Entry for saving
+        let entry = Entry(object: item, expiry: expiry, filePath: url)
+        
         // save data to path
         do {
-            let data = try JSONEncoder().encode(item)
-            try data.write(to: url)
+            let data = try JSONEncoder().encode(entry)
+            try data.write(to: url, options: .atomic) // use `atomic`, will overwrite if already exists
             print("Data saved at location: \(url.absoluteString)")
         } catch let error {
             print("Error saving member data. Member Id: \(id). \(error)")
         }
     }
     
-    func getData<T: Decodable>(type: T.Type, id: String) -> T? {
+    func getData<T: Codable>(type: T.Type, id: String, folderName: String? = nil) -> T? {
         
-        let folderName = String(describing: T.self)
+        let folderName = folderName ?? String(describing: T.self)
         guard
             let url = getURLForItem(type: type, id: id, folderName: folderName),
             FileManager.default.fileExists(atPath: url.path) else {
             return nil
         }
-        let memberData = FileManager.default.contents(atPath: url.path)
-        guard let memberData = memberData else {
-            print("Error retrieving member data. No data found for \(id)")
+        let data = FileManager.default.contents(atPath: url.path)
+        guard let data = data else {
+            print("Error retrieving data. No data found for \(id)")
             return nil
         }
         do {
-            let member = try JSONDecoder().decode(T.self, from: memberData)
-            return member
+            let entry = try JSONDecoder().decode(Entry<T>.self, from: data)
+            
+            // check whether item is expired or not
+            if entry.expiry.isExpired {
+                // remove data from disk
+                deleteData(url: entry.filePath)
+                return nil
+            }
+            return entry.object
         } catch let error {
             print("Error retrieving data. Decoding error: \(error)")
             return nil
@@ -55,22 +65,25 @@ class LocalFileManager {
         
     }
     
-    func removeData<T>(type: T.Type, id: String) {
+    func removeData<T>(type: T.Type, id: String, folderName: String? = nil) {
         
-        let folderName = String(describing: T.self)
+        let folderName = folderName ?? String(describing: T.self)
         guard
             let url = getURLForItem(type: type, id: id, folderName: folderName),
             FileManager.default.fileExists(atPath: url.path) else {
             return
         }
         
+        deleteData(url: url)
+    }
+    
+    private func deleteData(url: URL) {
         do {
             try FileManager.default.removeItem(atPath: url.path)
         } catch let error {
             print("Error deleting data. \(error)")
         }
     }
-    
     
     private func createFolderIfNeeded(folderName: String) {
         guard let url = getURLForFolder(folderName: folderName) else { return }
