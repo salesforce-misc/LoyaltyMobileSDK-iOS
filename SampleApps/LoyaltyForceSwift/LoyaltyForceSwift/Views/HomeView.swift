@@ -47,9 +47,11 @@ struct HomeView: View {
                         .frame(height: 400)
                         .padding(.top, 80)
                         .padding(.bottom, 20)
-                    
+                   
+                    /* Post MVP
                     // Redeem Points
                     RedeemPointsView()
+                     */
                 }
                 
                 

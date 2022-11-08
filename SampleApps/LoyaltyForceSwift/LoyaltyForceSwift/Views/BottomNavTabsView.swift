@@ -39,6 +39,7 @@ struct BottomNavTabsView: View {
                     }
                     .tag(Tab.profile)
                 
+                /* Post MVP
                 RedeemView()
                     .tabItem {
                         Image("ic-book")
@@ -46,7 +47,7 @@ struct BottomNavTabsView: View {
                         Text("Redeem")
                     }
                     .tag(Tab.redeem)
-                
+                */
                 MoreView()
                     .tabItem {
                         Image("ic-more")
