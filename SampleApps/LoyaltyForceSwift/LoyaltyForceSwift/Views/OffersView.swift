@@ -10,7 +10,7 @@ import SwiftUI
 struct OffersView: View {
     
     @State var offerTabSelected: Int = 0
-    let barItems = ["All", "Active", "Expiring Soon"]
+    let barItems = ["All", "Active", "Ending Soon"]
     
 //    let myOffers = []
     

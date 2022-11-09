@@ -49,15 +49,18 @@ struct ResetPasswordView: View {
                 .padding(.bottom, 20)
                 
                 HStack {
-                    Text("Reset password")
+                    Text("Forgot Your Password?")
                         .font(.congratsTitle)
                     Spacer()
                 }
                 
-                Text("Enter the email or member number associated with your account and we’ll send an email with instructions to reset your password.")
-                    .font(.congratsText)
-                    .foregroundColor(Color.theme.superLightText)
-                    .lineSpacing(5)
+                HStack {
+                    Text("Enter your email address or membership number, and we'll send an email with the link to reset your password.")
+                        .font(.congratsText)
+                        .foregroundColor(Color.theme.superLightText)
+                        .lineSpacing(5)
+                    Spacer()
+                }
                 
                 TextField("Email", text: $email)
                     .textFieldStyle(RegularTextFieldStyle())
@@ -70,7 +73,7 @@ struct ResetPasswordView: View {
                         .foregroundColor(.red)
                 }
                 
-                Button("Send Instructions") {
+                Button("Send Email") {
                     viewModel.requestResetPassword(userEmail: email)
                     UIApplication.shared.dismissKeyboard()
                 }

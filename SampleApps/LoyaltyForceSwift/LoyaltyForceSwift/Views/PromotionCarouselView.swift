@@ -29,7 +29,7 @@ struct PromotionCarouselView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Offers & Promotions")
+                Text("Offers and Promotions")
                     .font(.offerTitle)
                     .foregroundColor(.black)
                 Spacer()

@@ -20,12 +20,12 @@ struct MoreView: View {
     @EnvironmentObject var viewModel: AppRootViewModel
     
     let menuItems: [MenuItem] = [
-        MenuItem(icon: "ic-person", title: "Personal Information"),
-        MenuItem(icon: "ic-address", title: "Address"),
-        //MenuItem(icon: "ic-card", title: "Payment Methods"),
-        //MenuItem(icon: "ic-orders", title: "Orders"),
+        MenuItem(icon: "ic-person", title: "Account"),
+        MenuItem(icon: "ic-address", title: "Addresses"),
+        MenuItem(icon: "ic-card", title: "Payment Methods"),
+        MenuItem(icon: "ic-orders", title: "Orders"),
         //MenuItem(icon: "ic-benefits", title: "Benefits"),
-        //MenuItem(icon: "ic-case", title: "Case Tickets"),
+        MenuItem(icon: "ic-case", title: "Support"),
         MenuItem(icon: "ic-heart", title: "Favorites")
     ]
     var body: some View {
@@ -50,7 +50,7 @@ struct MoreView: View {
                     Button {
                         viewModel.signOutUser()
                     } label: {
-                        Label("Logout", image: "ic-logout")
+                        Label("Log Out", image: "ic-logout")
                             .font(.menuText)
                             .foregroundColor(Color.theme.accent)
                     }

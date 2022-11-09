@@ -10,6 +10,7 @@ import SwiftUI
 struct CongratsView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
+    @EnvironmentObject private var viewModel: AppRootViewModel
     @Environment(\.dismiss) private var dismiss
     
     let email: String
@@ -31,18 +32,18 @@ struct CongratsView: View {
                     .offset(x: -195, y: 50)
             }
             
-            Text("Congratulations!!!")
+            Text("Welcome on board!")
                 .font(.congratsTitle)
                 .padding(.top, 40)
                 .padding()
             
-            Text("Welcome to our Loyalty group. Enjoy more benefits and offers with every purchase.")
+            Text("We’re thrilled that you joined \(viewModel.member?.enrollmentDetails.loyaltyProgramName ?? "our loyalty program"). You’re on your way to earning points and receiving exclusive rewards.")
                 .font(.congratsText)
                 .lineSpacing(5)
                 .multilineTextAlignment(.center)
                 .padding([.leading, .trailing], 40)
             
-            Text("Please check your registered email id **\(email)** for more details.")
+            Text("We’ve sent an email to **\(email)** with more details.")
                 .font(.congratsText)
                 .lineSpacing(5)
                 .multilineTextAlignment(.center)
@@ -54,7 +55,7 @@ struct CongratsView: View {
                 appViewRouter.signedIn = true
                 appViewRouter.currentPage = .navTabsPage(selectedTab: .home)
             }) {
-                Text("Shop Now!")
+                Text("Shop Now")
             }
             .buttonStyle(DarkLongButton())
 
@@ -67,5 +68,6 @@ struct CongratsView: View {
 struct CongratsView_Previews: PreviewProvider {
     static var previews: some View {
         CongratsView(email: "julia.green@gmail.com")
+            .environmentObject(AppRootViewModel())
     }
 }

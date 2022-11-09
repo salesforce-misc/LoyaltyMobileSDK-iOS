@@ -33,8 +33,9 @@ struct VoucherDetailView: View {
 
                     VStack(alignment: .leading, spacing: 5) {
                         Text("Type: **Online stores**")
-                        Text("Blance: **$11**")
-                        Text("Valid till: **05 Jan 2023**")
+                        Text("Value: **$11**")
+                        Text("Expiring on **05 Jan 2023**")
+                        Text("Voucher Code:")
                     }
                     .font(.voucherText)
                     
@@ -73,7 +74,7 @@ struct VoucherDetailView: View {
                     
                     HStack {
                         Spacer()
-                        Button("Done") {
+                        Button("Close") {
                             dismiss()
                         }
                         .buttonStyle(DarkShortButton())

@@ -33,7 +33,7 @@ struct RedeemView: View {
             
             VStack(spacing: 0) {
                 HStack {
-                    Text("Redeem Points")
+                    Text("Redeem")
                         .font(.congratsTitle)
                         .padding(.leading, 15)
                     Spacer()

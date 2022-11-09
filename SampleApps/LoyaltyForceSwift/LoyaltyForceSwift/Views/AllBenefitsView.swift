@@ -69,7 +69,7 @@ struct AllBenefitsView: View {
                     print("Reload Benefits Error: \(error)")
                 }
             }
-            .loytaltyNavigationTitle("Benefits")
+            .loytaltyNavigationTitle("My Benefits")
 
         } else {
             List {
@@ -123,7 +123,7 @@ struct AllBenefitsView: View {
                     print("Reload Benefits Error: \(error)")
                 }
             }
-            .loytaltyNavigationTitle("Benefits")
+            .loytaltyNavigationTitle("My Benefits")
             .onAppear(perform: {
                 // set the current background color
                 UITableView.appearance().backgroundColor = UIColor(Color.theme.background)

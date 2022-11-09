@@ -12,7 +12,7 @@ struct BadgesView: View {
         
         VStack {
             HStack {
-                Text("Badges")
+                Text("My Badges")
                     .font(.offerTitle)
                     .foregroundColor(.black)
                 Spacer()

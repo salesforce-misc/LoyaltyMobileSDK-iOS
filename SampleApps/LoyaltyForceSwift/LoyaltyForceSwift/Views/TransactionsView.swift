@@ -12,7 +12,7 @@ struct TransactionsView: View {
     
         VStack {
             HStack {
-                Text("Transations")
+                Text("My Transations")
                     .font(.offerTitle)
                     .foregroundColor(.black)
                 Spacer()

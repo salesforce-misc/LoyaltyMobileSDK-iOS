@@ -20,7 +20,7 @@ struct BenefitView: View {
         ZStack {
             VStack {
                 HStack {
-                    Text("Benefits")
+                    Text("My Benefits")
                         .font(.offerTitle)
                         .foregroundColor(.black)
                     Spacer()
@@ -73,7 +73,7 @@ struct BenefitView: View {
                 }
                 Spacer()
             }
-            .frame(height: 500)
+            .frame(height: 520)
             .task {
                 do {
                     try await benefitVM.getBenefits(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")

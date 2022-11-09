@@ -64,13 +64,13 @@ struct SignUpView: View {
                             .opacity(disableForm ? 0.5 : 1)
                             
                             HStack {
-                                Text("Already a member?")
+                                Text("Already a Member?")
                                 Button(action: {
                                     signUpPresented = false
                                     signInPresented = true
                                     viewModel.userErrorMessage = ("", ErrorType.noError)
                                 }) {
-                                    Text("Sign In")
+                                    Text("Log In")
                                         .font(.buttonText)
                                 }
                             }
@@ -129,18 +129,18 @@ struct SignUpCredentialFields: View {
     
     var body: some View {
         Group {
-            TextField("First Name", text: $firstName)
+            TextField("First name", text: $firstName)
                 .textFieldStyle(RegularTextFieldStyle())
-            TextField("Last Name", text: $lastName)
+            TextField("Last name", text: $lastName)
                 .textFieldStyle(RegularTextFieldStyle())
-            TextField("Mobile Number", text: $mobileNumber)
+            TextField("Mobile number", text: $mobileNumber)
                 .textFieldStyle(RegularTextFieldStyle())
                 .keyboardType(.phonePad)
-            TextField("Email Address", text: $email)
+            TextField("Email address", text: $email)
                 .textFieldStyle(RegularTextFieldStyle())
                 .keyboardType(.emailAddress)
             RevealableSecureField("Password", text: $password)
-            RevealableSecureField("Confirm Password", text: $passwordConfirmation)
+            RevealableSecureField("Confirm password", text: $passwordConfirmation)
                 //.focused($passwordConfirmationIsFocused)
                 .overlay(RoundedRectangle(cornerRadius: 8)
                     .stroke(Color.red, lineWidth: passwordConfirmation != password ? 2 : 0)
@@ -148,11 +148,11 @@ struct SignUpCredentialFields: View {
                 )
             Toggle(isOn: $acceptTerms) {
                 HStack(spacing: 0) {
-                    Text("I accept the ")
+                    Text("I agree to the ")
                     Button(action: {
                         showTermsPopover.toggle()
                     }, label: {
-                        Text("Terms and Conditions")
+                        Text("terms and conditions")
                             .foregroundColor(Color.theme.accent)
                     })
                     .popover(isPresented: $showTermsPopover) {
@@ -164,7 +164,7 @@ struct SignUpCredentialFields: View {
             .toggleStyle(CheckboxStyle())
             .padding(.horizontal)
             Toggle(isOn: $joinEmailList) {
-                Text("Please add me to your email list")
+                Text("Add me to the loyalty program's mailing list")
             }
             .toggleStyle(CheckboxStyle())
             .padding(.horizontal)

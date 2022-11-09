@@ -13,7 +13,7 @@ struct VouchersView: View {
         
         VStack {
             HStack {
-                Text("Vouchers")
+                Text("My Vouchers")
                     .font(.offerTitle)
                     .foregroundColor(.black)
                 Spacer()                

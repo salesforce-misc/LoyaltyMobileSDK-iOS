@@ -25,13 +25,13 @@ struct PromotionCardView: View {
                 Text(offer.offerDescription)
                     .font(.offerText)
                     .lineSpacing(3)
-                Text("Expiration: **\(offer.offerExpirationDate)**")
+                Text("Expiring on **\(offer.offerExpirationDate)**")
                     .font(.offerText)
                     .padding(.top)
             }
             .padding()
             
-            Button("Enroll Now") {
+            Button("Join") {
                 
             }
             .buttonStyle(LightShortButton())

@@ -22,7 +22,7 @@ struct SignInView: View {
     
     var body: some View {
         VStack {
-            SheetHeader(title: "Sign In")
+            SheetHeader(title: "Log In")
             ScrollView {
                 ZStack {
                     VStack {
@@ -38,7 +38,7 @@ struct SignInView: View {
                             
                             // reset password
                             HStack {
-                                Text("Forgot Password?")
+                                Text("Forgot Your Password?")
                                     .foregroundColor(Color.theme.accent)
                                     .font(.regularText)
                                     .onTapGesture {
@@ -58,14 +58,14 @@ struct SignInView: View {
                                 viewModel.signInUser(userEmail: email, userPassword: password)
                                 UIApplication.shared.dismissKeyboard()
                             }) {
-                                Text("Sign In")
+                                Text("Log In")
                             }
                             .buttonStyle(DarkLongButton())
                             .disabled(disableForm)
                             .opacity(disableForm ? 0.5 : 1)
                             
                             HStack {
-                                Text("Not a member?")
+                                Text("Not a Member?")
                                 Button(action: {
                                     signInPresented = false
                                     signUpPresented = true
@@ -119,7 +119,7 @@ struct SignInCredentialFields: View {
     
     var body: some View {
         Group {
-            TextField("Email", text: $email)
+            TextField("Email address", text: $email)
                 .textFieldStyle(RegularTextFieldStyle())
                 .keyboardType(.emailAddress)
             RevealableSecureField("Password", text: $password)

@@ -20,7 +20,7 @@ class LocalFileManager {
         createFolderIfNeeded(folderName: folderName)
         
         // get path for data
-        guard let url = getURLForItem(type: type(of: item), id: id, folderName: folderName) else { return }
+        guard let url = getURLForItem(id: id, folderName: folderName) else { return }
         
         // create an Entry for saving
         let entry = Entry(object: item, expiry: expiry, filePath: url)
@@ -39,7 +39,7 @@ class LocalFileManager {
         
         let folderName = folderName ?? String(describing: T.self)
         guard
-            let url = getURLForItem(type: type, id: id, folderName: folderName),
+            let url = getURLForItem(id: id, folderName: folderName),
             FileManager.default.fileExists(atPath: url.path) else {
             return nil
         }
@@ -69,7 +69,7 @@ class LocalFileManager {
         
         let folderName = folderName ?? String(describing: T.self)
         guard
-            let url = getURLForItem(type: type, id: id, folderName: folderName),
+            let url = getURLForItem(id: id, folderName: folderName),
             FileManager.default.fileExists(atPath: url.path) else {
             return
         }
@@ -108,10 +108,10 @@ class LocalFileManager {
         return url.appendingPathComponent(folderPath)
     }
     
-    private func getURLForItem<T>(type: T.Type, id: String, folderName: String) -> URL? {
+    private func getURLForItem(id: String, folderName: String) -> URL? {
         guard let folderURL = getURLForFolder(folderName: folderName) else {
             return nil
         }
-        return folderURL.appendingPathComponent(id + "." + String(describing: type.self))
+        return folderURL.appendingPathComponent("\(id).json")
     }
 }

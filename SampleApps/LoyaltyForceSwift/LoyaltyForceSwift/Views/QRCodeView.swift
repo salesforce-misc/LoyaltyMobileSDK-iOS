@@ -17,7 +17,7 @@ struct QRCodeView: View {
             Color.theme.background
             VStack {
                 HStack {
-                    Text("QR Code")
+                    Text("My Referral Code")
                         .font(.qrcodeTitle)
                     Spacer()
                     Image("ic-close")
@@ -37,7 +37,7 @@ struct QRCodeView: View {
                             Image("img-profile-larger")
                             Text("Julia Green")
                                 .font(.qrcodeTitle)
-                            Text("Membership QR Code")
+                            Text("QR Code")
                                 .font(.qrcodeSubtitle)
                                 .foregroundColor(Color.theme.superLightText)
                             //Spacer()
@@ -46,7 +46,7 @@ struct QRCodeView: View {
                                 .frame(width: 120, height: 120)
                                 .padding(.vertical)
                             //Spacer()
-                            Text("JULIA COM M250D")
+                            Text("Referral Code: 24345671")
                                 .font(.qrcodeNumber)
                                 .foregroundColor(Color.theme.superLightText)
                         }
@@ -56,13 +56,13 @@ struct QRCodeView: View {
                 //Spacer()
                 
                 
-                Text("Scan this QR code at participating stores and online sites to earn or redeem points.")
+                Text("Share the referral code with your family and friends. Earn rewards every time someone uses your referral code to join the loyalty program.")
                     .font(.qrcodeSubtitle)
                     .foregroundColor(Color.theme.superLightText)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 40)
                 Spacer()
-                Button("Done") {
+                Button("Close") {
                     dismiss()
                 }
                 .buttonStyle(DarkShortButton())

@@ -21,22 +21,22 @@ struct CheckYourEmailView: View {
                 Spacer()
                 Image("ic-email")
                 
-                Text("Check you email")
+                Text("Password Reset Email Sent")
                     .font(.congratsTitle)
                 
-                Text("We have sent a password recovery instructions to your email.")
+                Text("We have sent an email to \(viewModel.email) with the password reset link.")
                     .multilineTextAlignment(.center)
                     .lineSpacing(5)
                     .foregroundColor(Color.theme.superLightText)
                     .padding([.leading, .trailing], 40)
                 
-                Button("Open Email App") {
-                    
+                Button("Open Email") {
+                    // TODO open default email client
                 }
                 .buttonStyle(DarkLongButton())
                 .padding(.top, 20)
                 
-                Text("Skip, I'll confirm later")
+                Text("Skip, I’ll check my email later")
                     .foregroundColor(Color.theme.accent)
                     .font(.skipText)
                     .onTapGesture {
@@ -51,7 +51,7 @@ struct CheckYourEmailView: View {
                 Spacer()
         
                 
-                Text("Did not receive the email? Check your spam folder, or \(Text("try another email address").foregroundColor(Color.theme.accent))")
+                Text("Didn't receive the email? Check your Spam folder or \(Text("enter another email address.").foregroundColor(Color.theme.accent))")
                 .multilineTextAlignment(.center)
                 .lineSpacing(5)
                 .foregroundColor(Color.theme.superLightText)

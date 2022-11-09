@@ -45,16 +45,20 @@ struct CreateNewPasswordView: View {
                 .padding(.bottom, 20)
                 
                 HStack {
-                    Text("Create New Password")
+                    Text("New Password")
                         .font(.congratsTitle)
                     Spacer()
                 }
             
-                Text("Your new password must be different from previous used passwords.")
-                    .font(.congratsText)
-                    .foregroundColor(Color.theme.superLightText)
-                    .lineSpacing(5)
-                    .padding(.bottom, 50)
+                HStack {
+                    Text("Enter a password that's not the same as your previous passwords.")
+                        .font(.congratsText)
+                        .foregroundColor(Color.theme.superLightText)
+                        .lineSpacing(5)
+                        .padding(.bottom, 50)
+                    Spacer()
+                }
+                
                 
                 Group {
                     HStack {
@@ -63,7 +67,7 @@ struct CreateNewPasswordView: View {
                         Spacer()
                     }
                     .padding(.leading, 15)
-                    RevealableSecureField("Enter password", text: $password)
+                    RevealableSecureField("Enter password...", text: $password)
                         .padding(.bottom, 5)
                     
                     HStack {
@@ -72,7 +76,7 @@ struct CreateNewPasswordView: View {
                         Spacer()
                     }
                     .padding(.leading, 15)
-                    RevealableSecureField("Re-enter your password", text: $passwordConfirmation)
+                    RevealableSecureField("Enter your password again...", text: $passwordConfirmation)
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
                             .stroke(Color.red, lineWidth: passwordConfirmation != password ? 2 : 0)
@@ -85,7 +89,7 @@ struct CreateNewPasswordView: View {
                         .foregroundColor(.red)
                 }
                 
-                Button("Reset Password") {
+                Button("Confirm") {
                     Task {
                         await viewModel.resetPassword(newPassword: password)
                     }

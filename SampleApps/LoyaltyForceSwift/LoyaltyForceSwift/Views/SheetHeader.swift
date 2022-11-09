@@ -36,7 +36,7 @@ struct SheetHeader: View {
 
 struct SheetHeader_Previews: PreviewProvider {
     static var previews: some View {
-        SheetHeader(title: "Sign In")
+        SheetHeader(title: "Log In")
             .previewLayout(.sizeThatFits)
     }
 }

@@ -27,7 +27,7 @@ struct BottomNavTabsView: View {
                     .tabItem {
                         Image("ic-rewards")
                             .renderingMode(.template)
-                        Text("Offers")
+                        Text("My Offers")
                     }
                     .tag(Tab.offers)
                 
@@ -35,7 +35,7 @@ struct BottomNavTabsView: View {
                     .tabItem {
                         Image("ic-profile")
                             .renderingMode(.template)
-                        Text("Profile")
+                        Text("My Profile")
                     }
                     .tag(Tab.profile)
                 
