@@ -37,13 +37,13 @@ struct CongratsView: View {
                 .padding(.top, 40)
                 .padding()
             
-            Text("We’re thrilled that you joined \(viewModel.member?.enrollmentDetails.loyaltyProgramName ?? "our loyalty program"). You’re on your way to earning points and receiving exclusive rewards.")
+            Text("We're thrilled that you joined \(viewModel.member?.enrollmentDetails.loyaltyProgramName ?? "our loyalty program"). You're on your way to earning points and receiving exclusive rewards.")
                 .font(.congratsText)
                 .lineSpacing(5)
                 .multilineTextAlignment(.center)
                 .padding([.leading, .trailing], 40)
             
-            Text("We’ve sent an email to **\(email)** with more details.")
+            Text("We've sent an email to **\(email)** with more details.")
                 .font(.congratsText)
                 .lineSpacing(5)
                 .multilineTextAlignment(.center)
@@ -68,6 +68,6 @@ struct CongratsView: View {
 struct CongratsView_Previews: PreviewProvider {
     static var previews: some View {
         CongratsView(email: "julia.green@gmail.com")
-            .environmentObject(AppRootViewModel())
+            .environmentObject(dev.rootVM)
     }
 }

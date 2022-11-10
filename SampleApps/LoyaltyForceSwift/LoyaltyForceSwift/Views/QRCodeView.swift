@@ -17,7 +17,7 @@ struct QRCodeView: View {
             Color.theme.background
             VStack {
                 HStack {
-                    Text("My Referral Code")
+                    Text("My Membership Code")
                         .font(.qrcodeTitle)
                     Spacer()
                     Image("ic-close")
@@ -46,7 +46,7 @@ struct QRCodeView: View {
                                 .frame(width: 120, height: 120)
                                 .padding(.vertical)
                             //Spacer()
-                            Text("Referral Code: 24345671")
+                            Text("Membership Number: 24345671")
                                 .font(.qrcodeNumber)
                                 .foregroundColor(Color.theme.superLightText)
                         }
@@ -56,7 +56,7 @@ struct QRCodeView: View {
                 //Spacer()
                 
                 
-                Text("Share the referral code with your family and friends. Earn rewards every time someone uses your referral code to join the loyalty program.")
+                Text("Scan the QR code or enter your membership number at participating stores and online sites to earn and redeem points.")
                     .font(.qrcodeSubtitle)
                     .foregroundColor(Color.theme.superLightText)
                     .multilineTextAlignment(.center)
