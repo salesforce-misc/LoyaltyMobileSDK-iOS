@@ -77,6 +77,17 @@ class LocalFileManager {
         deleteData(url: url)
     }
     
+    func removeAllAppData() {
+        guard
+            let bundleID = Bundle.main.bundleIdentifier,
+            let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
+            print("Error deleting all data - BundleID or URL error")
+            return
+        }
+        let dataFolder = url.appendingPathComponent(bundleID)
+        deleteData(url: dataFolder)
+    }
+    
     private func deleteData(url: URL) {
         do {
             try FileManager.default.removeItem(atPath: url.path)
