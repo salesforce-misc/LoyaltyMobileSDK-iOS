@@ -8,12 +8,13 @@
 import Foundation
 import SwiftUI
 
-class LocalFileManager {
+public class LocalFileManager {
     
-    static let instance = LocalFileManager()
+    public static let instance = LocalFileManager()
+    private let defaultImagesFolder = "Images"
     private init() {}
     
-    func saveData<T: Codable>(item: T, id: String, folderName: String? = nil, expiry: Expiry = .never) {
+    public func saveData<T: Codable>(item: T, id: String, folderName: String? = nil, expiry: Expiry = .never) {
         
         let folderName = folderName ?? String(describing: T.self)
         // create folder
@@ -35,7 +36,7 @@ class LocalFileManager {
         }
     }
     
-    func getData<T: Codable>(type: T.Type, id: String, folderName: String? = nil) -> T? {
+    public func getData<T: Codable>(type: T.Type, id: String, folderName: String? = nil) -> T? {
         
         let folderName = folderName ?? String(describing: T.self)
         guard
@@ -65,7 +66,7 @@ class LocalFileManager {
         
     }
     
-    func removeData<T>(type: T.Type, id: String, folderName: String? = nil) {
+    public func removeData<T>(type: T.Type, id: String, folderName: String? = nil) {
         
         let folderName = folderName ?? String(describing: T.self)
         guard
@@ -77,7 +78,7 @@ class LocalFileManager {
         deleteData(url: url)
     }
     
-    func removeAllAppData() {
+    public func removeAllAppData() {
         guard
             let bundleID = Bundle.main.bundleIdentifier,
             let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
@@ -86,6 +87,33 @@ class LocalFileManager {
         }
         let dataFolder = url.appendingPathComponent(bundleID)
         deleteData(url: dataFolder)
+    }
+    
+    public func saveImage(image: UIImage, imageName: String, folderName: String? = nil, expiry: Expiry = .never) {
+        
+        let folderName = folderName ?? defaultImagesFolder
+        
+        guard let imageData = image.pngData() else {
+            print("Error saving image. The image format is incorrect.")
+            return
+        }
+        
+        saveData(item: imageData, id: imageName, folderName: folderName, expiry: expiry)
+    }
+    
+    public func getImage(imageName: String, folderName: String? = nil) -> UIImage? {
+        
+        let folderName = folderName ?? defaultImagesFolder
+        
+        guard let imageData = getData(type: Data.self, id: imageName, folderName: folderName) else {
+            return nil
+        }
+        return UIImage(data: imageData)
+    }
+    
+    public func removeImage(imageName: String, folderName: String? = nil) {
+        let folderName = folderName ?? defaultImagesFolder
+        removeData(type: Data.self, id: imageName, folderName: folderName)
     }
     
     private func deleteData(url: URL) {
