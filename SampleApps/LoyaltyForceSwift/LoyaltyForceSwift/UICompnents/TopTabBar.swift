@@ -11,16 +11,30 @@ struct TopTabBar: View, Equatable {
 
     let barItems: [String]
     @Binding var tabIndex: Int
+    @Namespace private var namespace
     
     var body: some View {
         HStack(spacing: 30) {
             ForEach(0..<barItems.count, id: \.self) { index in
-                TabBarButton(text: barItems[index], isSelected: .constant(tabIndex == index))
-                    .onTapGesture {
-                        withAnimation {
-                            tabIndex = index
-                        }
+                let lableText = barItems[index]
+                ZStack(alignment: .bottom){
+                    if(tabIndex == index) {
+                        Capsule()
+                            .fill(Color.theme.accent)
+                            .matchedGeometryEffect(id: "offer_underscore", in: namespace, properties: .frame)
+                            .frame(width: 20 + lableText.stringWidth(), height: 4)
+                            .offset(y: 20)
                     }
+                    Text(lableText)
+                        .font(.offersTabSelected)
+                        .foregroundColor(tabIndex == index ? Color.theme.accent : Color.theme.textInactive)
+                        .frame(width: 20 + lableText.stringWidth(), height: 4)
+                }
+                .onTapGesture {
+                    withAnimation(.spring()) {
+                        tabIndex = index
+                    }
+                }
             }
             Spacer()
         }
@@ -39,25 +53,5 @@ struct TopTabBar_Previews: PreviewProvider {
     static var previews: some View {
         TopTabBar(barItems: ["Available", "Redeemed", "Expired"], tabIndex: .constant(0))
 
-    }
-}
-
-struct TabBarButton: View {
-    
-    let text: String
-    @Binding var isSelected: Bool
-    
-    var body: some View {
-        Text(text)
-            .font(isSelected ? .offersTabSelected : .offersTabUnselected)
-            .foregroundColor(isSelected ? Color.theme.accent : Color.theme.textInactive)
-            .frame(width: 20 + text.stringWidth(), height: 4)
-            .overlay(
-                Capsule()
-                    .fill(Color.theme.accent)
-                    .frame(width: 20 + text.stringWidth(), height: 4)
-                    .offset(y: 20)
-                    .opacity(isSelected ? 1 : 0)
-            )
     }
 }
