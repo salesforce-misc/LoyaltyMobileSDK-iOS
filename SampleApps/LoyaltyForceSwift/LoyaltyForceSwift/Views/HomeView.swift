@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject private var viewModel: AppRootViewModel
+    @Binding var selectedTab: Tab
     
     var body: some View {
         NavigationView {
@@ -43,15 +44,18 @@ struct HomeView: View {
                     )
                     
                     // Offers & Promotions
-                    PromotionCarouselView()
+                    PromotionCarouselView(selectedTab: $selectedTab)
                         .frame(height: 400)
                         .padding(.top, 80)
-                        .padding(.bottom, 20)
+                        .padding(.bottom, 80)
                    
                     /* Post MVP
                     // Redeem Points
                     RedeemPointsView()
                      */
+                    
+                    VouchersView()
+                    
                 }
                 
                 
@@ -80,7 +84,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(selectedTab: .constant(.home))
             .environmentObject(dev.rootVM)
     }
 }

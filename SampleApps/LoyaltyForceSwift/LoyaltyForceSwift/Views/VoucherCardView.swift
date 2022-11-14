@@ -22,8 +22,8 @@ struct VoucherCardView: View {
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Online stores")
-                    Text("Blance: **$11**")
-                    Text("Valid till: **05 Jan 2023**")
+                    Text("Value: **$11**")
+                    Text("Expiring on **05 Jan 2023**")
                 }
                 .font(.offerText)
                 
@@ -75,12 +75,12 @@ struct VoucherCardView2: View {
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Online stores")
-                    Text("Blance: **$50**")
-                    Text("Valid till: **31 Dec 2023**")
+                    Text("Value: **$50**")
+                    Text("Expiring on **31 Dec 2023**")
                 }
                 .font(.offerText)
                 
-                Text("876EES")
+                Text("876EEFS")
                     .font(.profileSubtitle)
                     .foregroundColor(Color.theme.voucherCode)
                     .frame(width: 145, height: 32)

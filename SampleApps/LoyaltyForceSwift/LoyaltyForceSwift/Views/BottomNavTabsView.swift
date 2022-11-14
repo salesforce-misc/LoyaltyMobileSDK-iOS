@@ -15,7 +15,7 @@ struct BottomNavTabsView: View {
         
         ZStack(alignment: .bottomLeading) {
             TabView(selection: $selectedTab) {
-                HomeView()
+                HomeView(selectedTab: $selectedTab)
                     .tabItem {
                         Image("ic-home")
                             .renderingMode(.template)
@@ -27,7 +27,7 @@ struct BottomNavTabsView: View {
                     .tabItem {
                         Image("ic-rewards")
                             .renderingMode(.template)
-                        Text("My Offers")
+                        Text("My Promotions")
                     }
                     .tag(Tab.offers)
                 

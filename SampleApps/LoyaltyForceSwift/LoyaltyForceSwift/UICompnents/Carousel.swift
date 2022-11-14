@@ -82,6 +82,6 @@ struct Carousel<Content: View, T: Identifiable>: View {
 
 struct Carousel_Previews: PreviewProvider {
     static var previews: some View {
-        PromotionCarouselView()
+        PromotionCarouselView(selectedTab: .constant(.home))
     }
 }

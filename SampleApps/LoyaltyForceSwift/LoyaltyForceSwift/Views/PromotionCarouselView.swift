@@ -16,6 +16,9 @@ struct Offer: Identifiable{
 }
 
 struct PromotionCarouselView: View {
+    
+    @Binding var selectedTab: Tab
+    @State var showPromotionDetailView = false
 
     let offers = [
         Offer(offerImage:"offers", offerTitle: "Camping Fun For Entire Family", offerDescription: "The ultimate family camping destination is closer than you might think.", offerExpirationDate: "12/12/2022"),
@@ -29,7 +32,7 @@ struct PromotionCarouselView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Offers and Promotions")
+                Text("Promotions")
                     .font(.offerTitle)
                     .foregroundColor(.black)
                 Spacer()
@@ -37,15 +40,22 @@ struct PromotionCarouselView: View {
                     .foregroundColor(Color.theme.accent)
                     .font(.offerViewAll)
                     .onTapGesture {
-                        // All offers View
+                        // redirect to My Promotions Tab
+                        selectedTab = .offers
                     }
             }
             .padding()
             
             Carousel(index: $currentIndex, items: offers) { offer in
                 PromotionCardView(offer: offer)
+                    .onTapGesture {
+                        showPromotionDetailView.toggle()
+                    }
+                    .sheet(isPresented: $showPromotionDetailView) {
+                        PromotionDetailView(currentIndex: $currentIndex)
+                    }
             }
-            
+
             HStack(spacing: 8){
                 
                 ForEach(offers.indices, id: \.self) { index in
@@ -65,7 +75,7 @@ struct PromotionCarouselView: View {
 
 struct PromotionCarouselView_Previews: PreviewProvider {
     static var previews: some View {
-        PromotionCarouselView()
+        PromotionCarouselView(selectedTab: .constant(Tab.home))
             .previewLayout(.sizeThatFits)
     }
 }

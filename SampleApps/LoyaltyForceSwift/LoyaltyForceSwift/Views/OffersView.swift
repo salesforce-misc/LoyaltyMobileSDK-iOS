@@ -10,7 +10,7 @@ import SwiftUI
 struct OffersView: View {
     
     @State var offerTabSelected: Int = 0
-    let barItems = ["All", "Active", "Ending Soon"]
+    let barItems = ["Unenrolled", "Active", "All"]
     
 //    let myOffers = []
     
@@ -21,9 +21,8 @@ struct OffersView: View {
             TabView(selection: $offerTabSelected) {
                 ForEach(0..<barItems.count, id: \.self) { index in
                     
-                    ScrollView(showsIndicators: false) {
-                        
-                        VStack(spacing: 15) {
+                    ScrollView {
+                        LazyVStack(spacing: 15) {
                             MyOffersCardView()
                             MyOffersCardView1()
                             MyOffersCardView2()
@@ -44,7 +43,7 @@ struct OffersView: View {
             
             VStack(spacing: 0) {
                 HStack {
-                    Text("My Offers")
+                    Text("My Promotions")
                         .font(.congratsTitle)
                         .padding(.leading, 15)
                     Spacer()

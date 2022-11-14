@@ -31,11 +31,14 @@ struct PromotionCardView: View {
             }
             .padding()
             
+            /*
             Button("Join") {
                 
             }
             .buttonStyle(LightShortButton())
             .padding(.bottom)
+             */
+            Spacer()
         }
         .frame(width: 320, height: 384)
         .foregroundColor(.black)
@@ -58,7 +61,10 @@ struct PromotionCardView: View {
 
 struct PromotionCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PromotionCardView(offer: Offer(offerImage:"offers", offerTitle: "Camping Fun For Entire Family", offerDescription: "The ultimate family camping destination is closer than you might think.", offerExpirationDate: "12/12/2022"))
+        PromotionCardView(offer: Offer(offerImage:"offers",
+                                       offerTitle: "Camping Fun For Entire Family",
+                                       offerDescription: "The ultimate family camping destination is closer than you might think.",
+                                       offerExpirationDate: "12/12/2022"))
             .previewLayout(.sizeThatFits)
     }
 }

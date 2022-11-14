@@ -24,17 +24,14 @@ struct AllVouchersView: View {
                         
                         VStack(spacing: 15) {
                             HStack {
-                                Button {
-                                    showVoucherDetailView.toggle()
-                                } label: {
-                                    VoucherCardView()
-                                        .foregroundColor(.black)
-                                }
-                                .sheet(isPresented: $showVoucherDetailView) {
-                                    VoucherDetailView()
-                                }
-
-                                
+                                VoucherCardView()
+                                    .foregroundColor(.black)
+                                    .onTapGesture {
+                                        showVoucherDetailView.toggle()
+                                    }
+                                    .sheet(isPresented: $showVoucherDetailView) {
+                                        VoucherDetailView()
+                                    }
                                 VoucherCardView()
                             }
                             HStack {
