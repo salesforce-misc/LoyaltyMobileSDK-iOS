@@ -4,54 +4,54 @@
         "outputParameters": {
             "results": [
                 {
-                    "promotionName": "Fitness Promotion",
-                    "fulfillmentAction": "CREDIT_POINTS",
-                    "promotionEnrollmentRqr": false,
-                    "memberEligibilityCategory": "Eligible",
+                    "loyaltyPromotionType": "STANDARD",
                     "maximumPromotionRewardValue": 0,
                     "totalPromotionRewardPointsVal": 0,
                     "loyaltyProgramCurrency": "0lc4x000000L1bmAAC",
-                    "loyaltyPromotionType": "STANDARD",
-                    "promotionId": "0c84x000000CoNjAAK",
-                    "startDate": "2021-06-01",
-                    "endDate": "2021-07-01",
-                    "description": "Targeted promotion for specific users with fitness as interest"
+                    "memberEligibilityCategory": "Eligible",
+                    "promotionEnrollmentRqr": false,
+                    "fulfillmentAction": "CREDIT_POINTS",
+                    "promotionName": "Anniversary promotion",
+                    "promotionId": "0c84x000000CoNhAAK",
+                    "startDate": "2020-01-01",
+                    "description": "Double point promotion on member purchases on their anniversary",
+                    "imageName": "offers"
                 },
                 {
-                    "promotionName": "Labor Day promotion",
-                    "fulfillmentAction": "ISSUE_VOUCHER",
-                    "promotionEnrollmentRqr": false,
-                    "memberEligibilityCategory": "Eligible",
+                    "loyaltyPromotionType": "CUMULATIVE",
                     "maximumPromotionRewardValue": 0,
-                    "loyaltyPromotionType": "STANDARD",
-                    "promotionId": "0c84x090000CoNZAA0",
-                    "startDate": "2021-08-15",
-                    "endDate": "2021-09-15",
-                    "description": "Promotion issues a 10% discount voucher applicable on all products."
+                    "totalPromotionRewardPointsVal": 200,
+                    "loyaltyProgramCurrency": "0lc4x000000L1bmAAC",
+                    "memberEligibilityCategory": "Eligible",
+                    "promotionEnrollmentRqr": false,
+                    "fulfillmentAction": "CREDIT_POINTS",
+                    "promotionName": "Referral Promotions",
+                    "promotionId": "0c84x000000CoNiAAK",
+                    "startDate": "2021-01-02",
+                    "description": "Additional points for member referral",
+                    "imageName": "promotion1"
                 },
                 {
-                    "promotionName": "Thanksgiving promotion",
-                    "fulfillmentAction": "ISSUE_VOUCHER",
-                    "promotionEnrollmentRqr": false,
-                    "memberEligibilityCategory": "Eligible",
-                    "maximumPromotionRewardValue": 0,
-                    "loyaltyPromotionType": "STANDARD",
-                    "promotionId": "0c84x000000CoNZAA0",
-                    "startDate": "2021-11-01",
-                    "endDate": "2021-11-30",
-                    "description": "Promotion issues a 10% discount voucher applicable on all products."
+                    "promEnrollmentStartDate": "2022-11-01",
+                    "memberEligibilityCategory": "EligibleButNotEnrolled",
+                    "promotionEnrollmentEndDate": "2022-11-30",
+                    "promotionEnrollmentRqr": true,
+                    "promotionName": "New Year Promotion Premium",
+                    "promotionId": "0c84x000000CtzRAAS",
+                    "startDate": "2022-11-01",
+                    "description": "New Year Promotion Premium",
+                    "imageName": "promotion2"
                 },
                 {
-                    "promotionName": "Christmas promotion",
-                    "fulfillmentAction": "ISSUE_VOUCHER",
-                    "promotionEnrollmentRqr": false,
-                    "memberEligibilityCategory": "Eligible",
-                    "maximumPromotionRewardValue": 0,
-                    "loyaltyPromotionType": "STANDARD",
-                    "promotionId": "0c84x110000CoNZAA0",
-                    "startDate": "2021-12-01",
-                    "endDate": "2022-01-15",
-                    "description": "Promotion issues a 15% discount voucher applicable on all products."
+                    "promEnrollmentStartDate": "2022-11-01",
+                    "memberEligibilityCategory": "Ineligible",
+                    "promotionEnrollmentEndDate": "2022-11-30",
+                    "promotionEnrollmentRqr": true,
+                    "promotionName": "New Year Promotion Premium",
+                    "promotionId": "0c84x000000CtzWAAS",
+                    "startDate": "2022-11-01",
+                    "description": "New Year Promotion Premium - Ineligible",
+                    "imageName": "promotion3"
                 }
             ]
         }

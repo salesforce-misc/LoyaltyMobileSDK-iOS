@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - PromotionModel
-struct PromotionModel: Codable {
+public struct PromotionModel: Codable {
     let message: String?
     let outputParameters: PromotionModelOutputParameters
     let simulationDetails: SimulationDetails
@@ -16,34 +16,40 @@ struct PromotionModel: Codable {
 }
 
 // MARK: - PromotionModelOutputParameters
-struct PromotionModelOutputParameters: Codable {
-    let outputParameters: OutputParametersOutputParameters
+public struct PromotionModelOutputParameters: Codable {
+    let outputParameters: PromotionOutputsOutputParameters
 }
 
 // MARK: - OutputParametersOutputParameters
-struct OutputParametersOutputParameters: Codable {
-    let results: [Result]
+public struct PromotionOutputsOutputParameters: Codable {
+    let results: [PromotionResult]
 }
 
 // MARK: - Result
-struct Result: Codable {
-    let promotionName, fulfillmentAction: String
-    let promotionEnrollmentRqr: Bool
-    let memberEligibilityCategory: String
-    let maximumPromotionRewardValue: Int
-    let totalPromotionRewardPointsVal: Int?
+public struct PromotionResult: Codable, Identifiable {
+    public let id: String
+    let loyaltyPromotionType: String?
+    let maximumPromotionRewardValue, totalPromotionRewardPointsVal: Int?
     let loyaltyProgramCurrency: String?
-    let loyaltyPromotionType, promotionID, startDate, endDate: String
-    let resultDescription: String
+    let memberEligibilityCategory: String
+    let promotionEnrollmentRqr: Bool
+    let fulfillmentAction: String?
+    let promotionName: String
+    let startDate: String
+    let endDate: String?
+    let description: String?
+    let promEnrollmentStartDate, promotionEnrollmentEndDate: String?
+    let imageName: String?
 
     enum CodingKeys: String, CodingKey {
-        case promotionName, fulfillmentAction, promotionEnrollmentRqr, memberEligibilityCategory, maximumPromotionRewardValue, totalPromotionRewardPointsVal, loyaltyProgramCurrency, loyaltyPromotionType
-        case promotionID = "promotionId"
+        case loyaltyPromotionType, maximumPromotionRewardValue, totalPromotionRewardPointsVal, loyaltyProgramCurrency, memberEligibilityCategory, promotionEnrollmentRqr, fulfillmentAction, promotionName
+        case id = "promotionId"
         case startDate, endDate
-        case resultDescription = "description"
+        case description, promEnrollmentStartDate, promotionEnrollmentEndDate
+        case imageName
     }
 }
 
 // MARK: - SimulationDetails
-struct SimulationDetails: Codable {
+public struct SimulationDetails: Codable {
 }

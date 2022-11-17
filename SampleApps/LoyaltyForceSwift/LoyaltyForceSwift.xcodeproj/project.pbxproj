@@ -39,6 +39,7 @@
 		2906B1F52901E308006EAB2D /* Transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = 2906B1F42901E308006EAB2D /* Transactions.json */; };
 		2906B1F72901E3EB006EAB2D /* Benefits.json in Resources */ = {isa = PBXBuildFile; fileRef = 2906B1F62901E3EA006EAB2D /* Benefits.json */; };
 		290EA9B5291F3B5200BBF2F2 /* PromotionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9B4291F3B5200BBF2F2 /* PromotionDetailView.swift */; };
+		290EA9B72923178C00BBF2F2 /* LoyaltyOutputModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9B62923178C00BBF2F2 /* LoyaltyOutputModel.swift */; };
 		291CC0AF28D1248D00C08572 /* ForceUserIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */; };
 		291CC0B128D1410500C08572 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B028D1410500C08572 /* UserDefaults.swift */; };
 		291CC0B428D39D4A00C08572 /* LoyaltyAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */; };
@@ -159,6 +160,7 @@
 		2906B1F42901E308006EAB2D /* Transactions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Transactions.json; sourceTree = "<group>"; };
 		2906B1F62901E3EA006EAB2D /* Benefits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Benefits.json; sourceTree = "<group>"; };
 		290EA9B4291F3B5200BBF2F2 /* PromotionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionDetailView.swift; sourceTree = "<group>"; };
+		290EA9B62923178C00BBF2F2 /* LoyaltyOutputModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyOutputModel.swift; sourceTree = "<group>"; };
 		291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUserIdentifier.swift; sourceTree = "<group>"; };
 		291CC0B028D1410500C08572 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyAPIManager.swift; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 				2906B1D328FF5031006EAB2D /* MemberModel.swift */,
 				2906B1EA2901DD21006EAB2D /* TransactionModel.swift */,
 				2906B1EC2901DE3F006EAB2D /* PromotionModel.swift */,
+				290EA9B62923178C00BBF2F2 /* LoyaltyOutputModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				296D393528DBCFFB0078C88E /* OnboardingCardView.swift in Sources */,
 				29BAF6D728F15CF300A3F9EB /* RedeemCardView.swift in Sources */,
 				216F219528B6188600DAA66D /* AppRootView.swift in Sources */,
+				290EA9B72923178C00BBF2F2 /* LoyaltyOutputModel.swift in Sources */,
 				298613A228C174FE00BDC744 /* ForceRequest.swift in Sources */,
 				298613A628C7D3B400BDC744 /* MoreView.swift in Sources */,
 				2986139F28C1730000BDC744 /* ForceConfig.swift in Sources */,

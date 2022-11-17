@@ -8,36 +8,46 @@
 import SwiftUI
 
 struct PromotionCardView: View {
-    let offer: Offer
+
+    let promotion: PromotionResult
     
     var body: some View {
         VStack {
-            Image(offer.offerImage)
+            Image(promotion.imageName ?? "offers")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 289, height: 154)
                 .cornerRadius(5, corners: [.topLeft, .topRight])
                 .padding(.top)
             
-            VStack(alignment: .leading, spacing: 10) {
-                Text(offer.offerTitle)
-                    .font(.offerTitle)
-                Text(offer.offerDescription)
-                    .font(.offerText)
-                    .lineSpacing(3)
-                Text("Expiring on **\(offer.offerExpirationDate)**")
-                    .font(.offerText)
-                    .padding(.top)
+            HStack {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(promotion.promotionName)
+                        .font(.offerTitle)
+                    if let desc = promotion.description {
+                        Text(desc)
+                            .font(.offerText)
+                            .lineSpacing(3)
+                    }
+                    if let endDate = promotion.endDate {
+                        Text("Expiring on **\(endDate)**")
+                            .font(.offerText)
+                            .padding(.top)
+                    }
+                    
+                }
+                Spacer()
             }
             .padding()
             
-            /*
-            Button("Join") {
-                
-            }
-            .buttonStyle(LightShortButton())
-            .padding(.bottom)
-             */
+//            Spacer()
+//            if promotion.memberEligibilityCategory == "EligibleButNotEnrolled" {
+//                Button("Join") {
+//                    // enroll the promotion
+//                }
+//                .buttonStyle(LightShortButton())
+//                .padding(.bottom)
+//            }
             Spacer()
         }
         .frame(width: 320, height: 384)
@@ -61,10 +71,7 @@ struct PromotionCardView: View {
 
 struct PromotionCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PromotionCardView(offer: Offer(offerImage:"offers",
-                                       offerTitle: "Camping Fun For Entire Family",
-                                       offerDescription: "The ultimate family camping destination is closer than you might think.",
-                                       offerExpirationDate: "12/12/2022"))
+        PromotionCardView(promotion: dev.promotion)
             .previewLayout(.sizeThatFits)
     }
 }
