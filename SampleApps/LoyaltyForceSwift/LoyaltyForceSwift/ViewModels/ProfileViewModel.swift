@@ -10,22 +10,45 @@ import Foundation
 class ProfileViewModel: ObservableObject {
     
     @Published var profile: ProfileModel?
+    @Published var isLoading = false
     
-    func getProfileData(memberId: String, programName: String) async throws {
+    @MainActor
+    func getProfileData(memberId: String, reload: Bool = false) async throws {
         
-        do {
-            let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId, programName: programName)
-            
-//            // Save to local disk
-//            LocalFileManager.instance.saveData(item: result, id: memberId)
-            
-            await MainActor.run {
-                profile = result
+        isLoading = true
+        
+        if !reload {
+            if profile == nil {
+                if let cached = LocalFileManager.instance.getData(type: ProfileModel.self, id: memberId) {
+                    profile = cached
+                } else {
+                    do {
+                        let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId)
+                        //let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId, devMode: true)
+                        profile = result
+                        isLoading = false
+                        // Save to local disk
+                        LocalFileManager.instance.saveData(item: result, id: memberId)
+                        
+                    } catch {
+                        throw error
+                    }
+                }
             }
-            
-        } catch {
-            throw error
+        } else {
+            do {
+                let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId)
+                //let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId, devMode: true)
+                profile = result
+                isLoading = false
+                // Save to local disk
+                LocalFileManager.instance.saveData(item: result, id: memberId)
+                
+            } catch {
+                throw error
+            }
         }
+        isLoading = false
     }
-    
+
 }

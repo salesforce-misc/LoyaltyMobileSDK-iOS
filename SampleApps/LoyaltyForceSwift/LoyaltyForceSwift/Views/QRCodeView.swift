@@ -11,6 +11,8 @@ struct QRCodeView: View {
     
     @Environment(\.dismiss) private var dismiss
     let QRCodeImage: UIImage
+    let name: String
+    let membershipNumber: String
     
     var body: some View {
         ZStack {
@@ -35,7 +37,7 @@ struct QRCodeView: View {
                     .overlay(
                         VStack(spacing: 12) {
                             Image("img-profile-larger")
-                            Text("Julia Green")
+                            Text(name)
                                 .font(.qrcodeTitle)
                             Text("QR Code")
                                 .font(.qrcodeSubtitle)
@@ -46,7 +48,7 @@ struct QRCodeView: View {
                                 .frame(width: 120, height: 120)
                                 .padding(.vertical)
                             //Spacer()
-                            Text("Membership Number: 24345671")
+                            Text("Membership Number: \(membershipNumber)")
                                 .font(.qrcodeNumber)
                                 .foregroundColor(Color.theme.superLightText)
                         }
@@ -81,6 +83,6 @@ struct QRCodeView_Previews: PreviewProvider {
         let imageData = LoyaltyUtilities.generateQRCode(from: "sampleMembershipNumber", color: UIColor(Color.theme.accent)) ?? Data.init()
         let coloredImage = UIImage(data: imageData) ?? UIImage(systemName: "xmark.octagon") ?? UIImage()
         
-        QRCodeView(QRCodeImage: coloredImage)
+        QRCodeView(QRCodeImage: coloredImage, name: "Julia Green", membershipNumber: "24345671")
     }
 }

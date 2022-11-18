@@ -7,12 +7,10 @@
 
 import SwiftUI
 
-struct OffersView: View {
+struct MyPromotionsView: View {
     
     @State var offerTabSelected: Int = 0
     let barItems = ["Unenrolled", "Active", "All"]
-    
-//    let myOffers = []
     
     var body: some View {
         ZStack {
@@ -62,10 +60,8 @@ struct OffersView: View {
     }
 }
 
-struct OffersView_Previews: PreviewProvider {
+struct MyPromotionsView_Previews: PreviewProvider {
     static var previews: some View {
-        OffersView()
-        //TabBarButton(text: "All", isSelected: .constant(true))
-        //TopTabBar(tabIndex: .constant(2))
+        MyPromotionsView()
     }
 }

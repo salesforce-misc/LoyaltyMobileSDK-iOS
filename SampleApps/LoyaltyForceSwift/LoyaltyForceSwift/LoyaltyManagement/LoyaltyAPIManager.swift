@@ -96,9 +96,13 @@ public class LoyaltyAPIManager {
     ///   - for memberId: The member who has these benefits
     ///   - programName: The loytalty program name
     /// - Returns: An ``ProfileModel`` instance
-    public func getMemberProfile(for memberId: String, programName: String) async throws -> ProfileModel {
+    public func getMemberProfile(for memberId: String, devMode: Bool = false) async throws -> ProfileModel {
         do {
-            let path = getPath(for: .getMemberProfile(programName: programName))
+            if devMode {
+                let result = try ForceClient.shared.fetchLocalJson(type: ProfileModel.self, file: "Profile")
+                return result
+            }
+            let path = getPath(for: .getMemberProfile(programName: loyaltyProgramName))
             let queryItems = ["memberId": "\(memberId)"]
             let request = try ForceRequest.create(method: "GET", path: path, queryItems: queryItems)
             return try await ForceClient.shared.fetch(type: ProfileModel.self, with: request)

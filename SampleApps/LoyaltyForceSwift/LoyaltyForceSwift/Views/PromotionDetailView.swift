@@ -58,8 +58,17 @@ struct PromotionDetailView: View {
                     if promotion.memberEligibilityCategory == "EligibleButNotEnrolled" {
                         HStack {
                             Spacer()
-                            Button("Join") {
+                            Button("Enroll") {
                                 // enroll to the promotion
+                            }
+                            .buttonStyle(DarkShortButton())
+                            Spacer()
+                        }
+                    } else if promotion.memberEligibilityCategory == "Eligible" && promotion.promotionEnrollmentRqr == true {
+                        HStack {
+                            Spacer()
+                            Button("Unenroll") {
+                                // unenroll to the promotion
                             }
                             .buttonStyle(DarkShortButton())
                             Spacer()

@@ -51,4 +51,22 @@ struct Assets {
             return Image("ic-transaction-default")
         }
     }
+    
+    static func getTierColor(tierName: String) -> Color {
+        
+        switch tierName.lowercased() {
+        case "silver":
+            return Color.tierColor.silver
+        case "gold":
+            return Color.tierColor.gold
+        case "bronze":
+            return Color.tierColor.bronze
+        case "platinum":
+            return Color.tierColor.platinum
+        case "ruby":
+            return Color.tierColor.ruby
+        default:
+            return Color.white
+        }
+    }
 }

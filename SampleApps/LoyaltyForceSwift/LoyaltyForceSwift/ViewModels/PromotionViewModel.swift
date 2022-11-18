@@ -15,10 +15,10 @@ class PromotionViewModel: ObservableObject {
         
         do {
             let result = try await LoyaltyAPIManager.shared.getPromotions(membershipNumber: membershipNumber, devMode: true)
-            //return result.outputParameters.outputParameters.results
             
             await MainActor.run {
-                promotions = result.outputParameters.outputParameters.results
+                // get max of 5 promotions
+                promotions = Array(result.outputParameters.outputParameters.results.prefix(5))
             }
             
         } catch {

@@ -18,7 +18,7 @@
 		216F219B28B618C700DAA66D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F219A28B618C700DAA66D /* HomeView.swift */; };
 		218A36A828B85B7900FCEE39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 218A36A728B85B7900FCEE39 /* Assets.xcassets */; };
 		218A36AA28B85CA500FCEE39 /* BottomNavTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36A928B85CA500FCEE39 /* BottomNavTabsView.swift */; };
-		218A36AC28B85D5500FCEE39 /* OffersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36AB28B85D5500FCEE39 /* OffersView.swift */; };
+		218A36AC28B85D5500FCEE39 /* MyPromotionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36AB28B85D5500FCEE39 /* MyPromotionsView.swift */; };
 		218A36AE28B85D6000FCEE39 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36AD28B85D6000FCEE39 /* FavoriteView.swift */; };
 		218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36AF28B85D9200FCEE39 /* RedeemView.swift */; };
 		218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A36B128B85DA400FCEE39 /* ProfileView.swift */; };
@@ -40,6 +40,7 @@
 		2906B1F72901E3EB006EAB2D /* Benefits.json in Resources */ = {isa = PBXBuildFile; fileRef = 2906B1F62901E3EA006EAB2D /* Benefits.json */; };
 		290EA9B5291F3B5200BBF2F2 /* PromotionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9B4291F3B5200BBF2F2 /* PromotionDetailView.swift */; };
 		290EA9B72923178C00BBF2F2 /* LoyaltyOutputModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9B62923178C00BBF2F2 /* LoyaltyOutputModel.swift */; };
+		290EA9B92926F1A700BBF2F2 /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 290EA9B82926F1A700BBF2F2 /* Profile.json */; };
 		291CC0AF28D1248D00C08572 /* ForceUserIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */; };
 		291CC0B128D1410500C08572 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B028D1410500C08572 /* UserDefaults.swift */; };
 		291CC0B428D39D4A00C08572 /* LoyaltyAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */; };
@@ -142,7 +143,7 @@
 		216F219A28B618C700DAA66D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		218A36A728B85B7900FCEE39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		218A36A928B85CA500FCEE39 /* BottomNavTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNavTabsView.swift; sourceTree = "<group>"; };
-		218A36AB28B85D5500FCEE39 /* OffersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffersView.swift; sourceTree = "<group>"; };
+		218A36AB28B85D5500FCEE39 /* MyPromotionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPromotionsView.swift; sourceTree = "<group>"; };
 		218A36AD28B85D6000FCEE39 /* FavoriteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		218A36AF28B85D9200FCEE39 /* RedeemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemView.swift; sourceTree = "<group>"; };
 		218A36B128B85DA400FCEE39 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 		2906B1F62901E3EA006EAB2D /* Benefits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Benefits.json; sourceTree = "<group>"; };
 		290EA9B4291F3B5200BBF2F2 /* PromotionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionDetailView.swift; sourceTree = "<group>"; };
 		290EA9B62923178C00BBF2F2 /* LoyaltyOutputModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyOutputModel.swift; sourceTree = "<group>"; };
+		290EA9B82926F1A700BBF2F2 /* Profile.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Profile.json; sourceTree = "<group>"; };
 		291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUserIdentifier.swift; sourceTree = "<group>"; };
 		291CC0B028D1410500C08572 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyAPIManager.swift; sourceTree = "<group>"; };
@@ -348,10 +350,11 @@
 				218A36B128B85DA400FCEE39 /* ProfileView.swift */,
 				298613A728C9021300BDC744 /* ProfileHeaderView.swift */,
 				29BAF6FD28F63A5800A3F9EB /* RewardPointsCardView.swift */,
+				29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */,
 				218A36AF28B85D9200FCEE39 /* RedeemView.swift */,
 				218A36AD28B85D6000FCEE39 /* FavoriteView.swift */,
 				29BAF6E028F3EEA000A3F9EB /* MyOffersCardView.swift */,
-				218A36AB28B85D5500FCEE39 /* OffersView.swift */,
+				218A36AB28B85D5500FCEE39 /* MyPromotionsView.swift */,
 				298613A528C7D3B400BDC744 /* MoreView.swift */,
 				298613CB28CBC08800BDC744 /* MoreHeaderView.swift */,
 				29BAF6D428F14E4400A3F9EB /* PromotionCardView.swift */,
@@ -371,7 +374,6 @@
 				29BAF6EC28F4DE1C00A3F9EB /* BadgeCardView.swift */,
 				29BAF6EE28F4E27400A3F9EB /* BadgesView.swift */,
 				29AC2F0828F8B724003F56F6 /* AllBadgesView.swift */,
-				29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -390,6 +392,7 @@
 				2906B1F22901E218006EAB2D /* Promotions.json */,
 				2906B1F42901E308006EAB2D /* Transactions.json */,
 				2906B1F62901E3EA006EAB2D /* Benefits.json */,
+				290EA9B82926F1A700BBF2F2 /* Profile.json */,
 			);
 			path = JSONFiles;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */,
+				290EA9B92926F1A700BBF2F2 /* Profile.json in Resources */,
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
 				29AC2F0328F8B2D7003F56F6 /* Roboto-Regular.ttf in Resources */,
 				2906B1F12901E1A4006EAB2D /* Vouchers.json in Resources */,
@@ -707,7 +711,7 @@
 				29053F7D2907452800F84561 /* Assets.swift in Sources */,
 				29AC2F0728F8B70D003F56F6 /* AllBenefitsView.swift in Sources */,
 				296D393A28DD022A0078C88E /* ForceClient+SOSL.swift in Sources */,
-				218A36AC28B85D5500FCEE39 /* OffersView.swift in Sources */,
+				218A36AC28B85D5500FCEE39 /* MyPromotionsView.swift in Sources */,
 				29BAF6FE28F63A5800A3F9EB /* RewardPointsCardView.swift in Sources */,
 				2986139D28C15E9500BDC744 /* ForceError.swift in Sources */,
 				2938C60628CFCBB200F495AF /* WebAuthenticationSession.swift in Sources */,
@@ -775,7 +779,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -829,7 +833,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -857,7 +861,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -893,7 +897,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

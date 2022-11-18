@@ -116,7 +116,7 @@ import Foundation
 
 // MARK: - ProfileModel
 public struct ProfileModel: Codable {
-    let additionalLoyaltyProgramMemberFields: [String: Bool?]
+    let additionalLoyaltyProgramMemberFields: AdditionalLoyaltyProgramMemberFields
     let associatedAccount: AssociatedAccount?
     let associatedContact: AssociatedContact
     let canReceivePartnerPromotions, canReceivePromotions: Bool
@@ -126,7 +126,8 @@ public struct ProfileModel: Codable {
     let memberCurrencies: [MemberCurrency]
     let memberStatus: String
     let memberTiers: [MemberTier]
-    let memberType, membershipEndDate: String
+    let memberType: String
+    let membershipEndDate: String?
     let membershipLastRenewalDate: String?
     let membershipNumber: String
     let referredBy, relatedCorporateMembershipNumber: String?
@@ -138,6 +139,47 @@ public struct ProfileModel: Codable {
         case additionalLoyaltyProgramMemberFields, associatedAccount, associatedContact, canReceivePartnerPromotions, canReceivePromotions, enrollmentChannel, enrollmentDate, groupCreatedByMember, groupName, lastActivityDate
         case loyaltyProgramMemberID = "loyaltyProgramMemberId"
         case loyaltyProgramName, memberCurrencies, memberStatus, memberTiers, memberType, membershipEndDate, membershipLastRenewalDate, membershipNumber, referredBy, relatedCorporateMembershipNumber, transactionJournalStatementFrequency, transactionJournalStatementLastGeneratedDate, transactionJournalStatementMethod
+    }
+    
+    func getRewardPoints() -> Int {
+        for currency in memberCurrencies {
+            if currency.loyaltyMemberCurrencyName.capitalized == "Reward Points" {
+                return currency.pointsBalance
+            }
+        }
+        return 0
+    }
+    
+    func getTierPoints() -> Int {
+        for currency in memberCurrencies {
+            if currency.loyaltyMemberCurrencyName.capitalized == "Tier Points" {
+                return currency.pointsBalance
+            }
+        }
+        return 0
+    }
+}
+
+// MARK: - AdditionalLoyaltyProgramMemberFields
+struct AdditionalLoyaltyProgramMemberFields: Codable {
+    let cityC: String?
+    let ageC, anniversaryC, referredMemberPromotionC, dateOfBirthC: String?
+    let hobbiesC, genderC: String?
+    let seedDataC: Bool
+    let incomeC, stateC, b2CRetailMostRecentSurveyEmailDateC: String?
+
+    enum CodingKeys: String, CodingKey {
+        case cityC = "City__c"
+        case ageC = "Age__c"
+        case anniversaryC = "Anniversary__c"
+        case referredMemberPromotionC = "ReferredMemberPromotion__c"
+        case dateOfBirthC = "DateOfBirth__c"
+        case hobbiesC = "Hobbies__c"
+        case genderC = "Gender__c"
+        case seedDataC = "SeedData__c"
+        case incomeC = "Income__c"
+        case stateC = "State__c"
+        case b2CRetailMostRecentSurveyEmailDateC = "B2CRetail_Most_Recent_Survey_Email_Date__c"
     }
 }
 

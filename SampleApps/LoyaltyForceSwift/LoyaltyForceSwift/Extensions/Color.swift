@@ -11,6 +11,7 @@ import SwiftUI
 extension Color {
     
     static let theme = ColorTheme()
+    static let tierColor = TierColor()
     
     init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
@@ -66,4 +67,13 @@ struct ColorTheme {
     let progressBarBackground = Color("ProgressBarBackgroundColor")
     let tierPoints = Color("TierPointsColor")
     let lightBlackText = Color("TextLightBlackColor") // #231F20
+    
+}
+
+struct TierColor {
+    let silver = Color(hex: "#A0A0A0")
+    let gold = Color(hex: "#FCC003")
+    let bronze = Color(hex: "#CA9b8C")
+    let platinum = Color(hex: "#E3E3E3")
+    let ruby = Color(hex: "#E28787")
 }

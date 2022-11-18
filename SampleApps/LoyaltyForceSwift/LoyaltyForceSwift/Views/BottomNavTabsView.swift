@@ -23,7 +23,7 @@ struct BottomNavTabsView: View {
                     }
                     .tag(Tab.home)
                 
-                OffersView()
+                MyPromotionsView()
                     .tabItem {
                         Image("ic-rewards")
                             .renderingMode(.template)
