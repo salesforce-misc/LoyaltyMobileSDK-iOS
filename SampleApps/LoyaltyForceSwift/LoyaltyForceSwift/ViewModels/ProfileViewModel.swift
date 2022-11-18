@@ -23,13 +23,8 @@ class ProfileViewModel: ObservableObject {
                     profile = cached
                 } else {
                     do {
-                        let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId)
-                        //let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId, devMode: true)
-                        profile = result
+                        try await fetchProfile(memberId: memberId)
                         isLoading = false
-                        // Save to local disk
-                        LocalFileManager.instance.saveData(item: result, id: memberId)
-                        
                     } catch {
                         throw error
                     }
@@ -37,18 +32,31 @@ class ProfileViewModel: ObservableObject {
             }
         } else {
             do {
-                let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId)
-                //let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId, devMode: true)
-                profile = result
+                try await fetchProfile(memberId: memberId)
                 isLoading = false
-                // Save to local disk
-                LocalFileManager.instance.saveData(item: result, id: memberId)
-                
             } catch {
                 throw error
             }
+            
         }
         isLoading = false
+    }
+    
+    // Fetch profile from Salesforce
+    @MainActor
+    func fetchProfile(memberId: String) async throws {
+        do {
+            
+            let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId)
+            //let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId, devMode: true)
+            
+            profile = result
+            // Save to local disk
+            LocalFileManager.instance.saveData(item: result, id: memberId)
+            
+        } catch {
+            throw error
+        }
     }
 
 }

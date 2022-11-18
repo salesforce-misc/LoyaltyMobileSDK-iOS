@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ProfileView: View {
+
+    @EnvironmentObject private var rootVM: AppRootViewModel
+    @StateObject private var profileVM = ProfileViewModel()
     
     var body: some View {
        
@@ -17,13 +20,17 @@ struct ProfileView: View {
                 
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 0) {
-                        Rectangle()
-                            .frame(height: 400)
-                            .foregroundColor(Color.white)
-                            .padding(.top, -356)
+                        ZStack {
+                            Rectangle()
+                                .frame(height: 400)
+                                .foregroundColor(Color.white)
+                                .padding(.top, -356)
+                            ProgressView()
+                        }
+                        
                         VStack(spacing: 10) {
                             
-                            ProfileHeaderView()
+                            profileHeader
                             TransactionsView()
                             VouchersView()
                             BenefitView()
@@ -34,6 +41,15 @@ struct ProfileView: View {
                     }
                     
 
+                }
+                .refreshable {
+                    print("Refresh content...")
+                    do {
+                        try await profileVM.fetchProfile(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
+                    } catch {
+                        print("Reload profile Error: \(error)")
+                    }
+                    
                 }
                 
                 VStack(spacing: 0) {
@@ -46,7 +62,6 @@ struct ProfileView: View {
                     .frame(height: 44)
                     .frame(maxWidth: .infinity)
                     .background(Color.white)
-                    
                     Spacer()
                 }
                 
@@ -55,6 +70,42 @@ struct ProfileView: View {
         }
         .navigationViewStyle(.stack)
          
+    }
+    
+    var profileHeader: some View {
+        VStack {
+            HStack {
+                Image("img-profile-larger")
+                .clipShape(Circle())
+                
+                VStack {
+                    HStack {
+                        Text("\(rootVM.member?.firstName ?? "") \(rootVM.member?.lastName ?? "")")
+                            .font(.profileTitle)
+                        Spacer()
+
+                    }
+                    HStack {
+                        Text("Membership Number: \(rootVM.member?.enrollmentDetails.membershipNumber ?? "")")
+                            .foregroundColor(Color.theme.textInactive)
+                            .font(.profileSubtitle)
+                        Spacer()
+                    }
+                    
+                }
+
+                Spacer()
+            }
+            .padding()
+            
+            RewardPointsCardView()
+                .environmentObject(profileVM)
+            
+            Spacer()
+        }
+        .frame(height: 360)
+        .background(.white)
+
     }
     
 }

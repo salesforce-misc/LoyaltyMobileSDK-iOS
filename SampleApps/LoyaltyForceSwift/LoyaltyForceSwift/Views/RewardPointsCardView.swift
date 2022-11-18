@@ -19,7 +19,7 @@ struct RewardPointsCardView: View {
 //    let currentTierLimit: Int = 6000
     
     @EnvironmentObject private var rootVM: AppRootViewModel
-    @StateObject private var profileVM = ProfileViewModel()
+    @EnvironmentObject private var profileVM: ProfileViewModel
     
     @State var showQRCode: Bool = false
     
