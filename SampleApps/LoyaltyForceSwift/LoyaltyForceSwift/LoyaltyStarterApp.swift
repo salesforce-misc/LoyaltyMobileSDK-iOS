@@ -14,6 +14,7 @@ struct LoyaltyStarterApp: App {
 
     @StateObject var appViewRouter = AppViewRouter()
     @StateObject var appRootVM = AppRootViewModel()
+    @StateObject var profileVM = ProfileViewModel()
 
     init(){
         FirebaseApp.configure()
@@ -24,6 +25,7 @@ struct LoyaltyStarterApp: App {
             AppRootView()
                 .environmentObject(appViewRouter)
                 .environmentObject(appRootVM)
+                .environmentObject(profileVM)
         }
     }
 }

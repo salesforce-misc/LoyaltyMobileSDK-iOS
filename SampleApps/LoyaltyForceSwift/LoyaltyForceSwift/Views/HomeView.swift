@@ -9,7 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @EnvironmentObject private var viewModel: AppRootViewModel
+    @EnvironmentObject private var rootVM: AppRootViewModel
+    @EnvironmentObject private var profileVM: ProfileViewModel
     @Binding var selectedTab: Tab
     
     var body: some View {
@@ -22,10 +23,10 @@ struct HomeView: View {
                         .foregroundColor(Color.theme.accent)
                         .padding(.top, -354)
                     HStack {
-                        Text("Hello \(viewModel.member?.firstName.capitalized ?? ""),")
+                        Text("Hello \(rootVM.member?.firstName.capitalized ?? ""),")
                             .padding(.leading, 15)
                         Spacer()
-                        Text("17850 Points")
+                        Text("\(String(profileVM.profile?.getRewardPoints() ?? 0)) Points")
                             .padding(.trailing, 15)
                     }
                     .frame(height: 48)
@@ -56,6 +57,13 @@ struct HomeView: View {
                     
                     VouchersView()
                     
+                }
+                .task {
+                    do {
+                        try await profileVM.getProfileData(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
+                    } catch {
+                        print("Fetch profile Error: \(error)")
+                    }
                 }
                 
                 

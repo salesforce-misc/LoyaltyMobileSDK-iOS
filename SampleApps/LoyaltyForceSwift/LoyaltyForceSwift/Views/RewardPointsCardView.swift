@@ -171,5 +171,6 @@ struct RewardPointsCardView_Previews: PreviewProvider {
     static var previews: some View {
         RewardPointsCardView()
             .environmentObject(dev.rootVM)
+            .environmentObject(dev.profileVM)
     }
 }

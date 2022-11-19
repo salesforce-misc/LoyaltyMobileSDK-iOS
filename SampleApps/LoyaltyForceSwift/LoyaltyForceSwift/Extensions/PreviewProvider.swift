@@ -97,9 +97,11 @@ class DeveloperPreview {
     let rootVM = AppRootViewModel()
     let benefitVM = BenefitViewModel()
     let promotionVM = PromotionViewModel()
+    let profileVM = ProfileViewModel()
     
     private init() {
         setMember(member: member)
+        promotionVM.promotions = [promotion]
     }
     
     func setMember(member: MemberModel) {

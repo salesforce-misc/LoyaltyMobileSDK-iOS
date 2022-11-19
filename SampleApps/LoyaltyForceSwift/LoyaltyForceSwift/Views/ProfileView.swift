@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileView: View {
 
     @EnvironmentObject private var rootVM: AppRootViewModel
-    @StateObject private var profileVM = ProfileViewModel()
+    @EnvironmentObject private var profileVM: ProfileViewModel
     
     var body: some View {
        
@@ -114,6 +114,7 @@ struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
             .environmentObject(dev.rootVM)
+            .environmentObject(dev.profileVM)
     }
 }
 

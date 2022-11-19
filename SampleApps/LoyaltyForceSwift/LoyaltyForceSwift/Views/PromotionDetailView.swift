@@ -10,8 +10,10 @@ import SwiftUI
 struct PromotionDetailView: View {
     
     @Environment(\.dismiss) private var dismiss
-    @EnvironmentObject var promotionVM: PromotionViewModel
+    @EnvironmentObject private var rootVM: AppRootViewModel
+    @EnvironmentObject private var promotionVM: PromotionViewModel
     @Binding var currentIndex: Int
+    @State private var processing = false
     
     var body: some View {
         
@@ -60,8 +62,23 @@ struct PromotionDetailView: View {
                             Spacer()
                             Button("Enroll") {
                                 // enroll to the promotion
+                                processing = true
+                                Task {
+                                    do {
+                                        try await promotionVM.enroll(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "",
+                                                           promotionName: promotion.promotionName)
+                                        processing = false
+                                    } catch {
+                                        print("Enroll in Promotion Error: \(error)")
+                                        processing = false
+                                    }
+                                }
+
                             }
                             .buttonStyle(DarkShortButton())
+                            .disabled(processing)
+                            .opacity(processing ? 0.5 : 1)
+                            
                             Spacer()
                         }
                     } else if promotion.memberEligibilityCategory == "Eligible" && promotion.promotionEnrollmentRqr == true {
@@ -91,6 +108,10 @@ struct PromotionDetailView: View {
                 Spacer()
             }
             .ignoresSafeArea()
+            
+            if processing {
+                ProgressView()
+            }
         }
         .zIndex(3.0)
         
@@ -99,6 +120,8 @@ struct PromotionDetailView: View {
 
 struct PromotionDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PromotionDetailView(currentIndex: .constant(1))
+        PromotionDetailView(currentIndex: .constant(0))
+            .environmentObject(dev.rootVM)
+            .environmentObject(dev.promotionVM)
     }
 }

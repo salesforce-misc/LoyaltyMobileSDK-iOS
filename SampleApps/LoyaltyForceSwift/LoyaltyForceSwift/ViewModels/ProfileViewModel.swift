@@ -47,8 +47,8 @@ class ProfileViewModel: ObservableObject {
     func fetchProfile(memberId: String) async throws {
         do {
             
-            let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId)
-            //let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId, devMode: true)
+            //let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId)
+            let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId, devMode: true)
             
             profile = result
             // Save to local disk
