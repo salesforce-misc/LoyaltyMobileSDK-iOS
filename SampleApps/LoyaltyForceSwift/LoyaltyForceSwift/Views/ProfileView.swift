@@ -16,21 +16,14 @@ struct ProfileView: View {
        
         NavigationView {
             ZStack {
-                Color.theme.background
+                Color.white
                 
                 ScrollView(showsIndicators: false) {
-                    VStack(spacing: 0) {
-                        ZStack {
-                            Rectangle()
-                                .frame(height: 400)
-                                .foregroundColor(Color.white)
-                                .padding(.top, -356)
-                            ProgressView()
-                        }
-                        
+                    profileHeader
+                    
+                    ZStack {
+                        Color.theme.background
                         VStack(spacing: 10) {
-                            
-                            profileHeader
                             TransactionsView()
                             VouchersView()
                             BenefitView()
@@ -40,7 +33,6 @@ struct ProfileView: View {
                         .padding(.bottom, 50)
                     }
                     
-
                 }
                 .refreshable {
                     print("Refresh content...")
@@ -51,6 +43,7 @@ struct ProfileView: View {
                     }
                     
                 }
+                .offset(y: 40)
                 
                 VStack(spacing: 0) {
                     HStack {

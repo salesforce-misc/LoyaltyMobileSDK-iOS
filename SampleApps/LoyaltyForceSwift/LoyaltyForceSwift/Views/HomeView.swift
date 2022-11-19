@@ -94,6 +94,7 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(selectedTab: .constant(.home))
             .environmentObject(dev.rootVM)
+            .environmentObject(dev.profileVM)
     }
 }
 
