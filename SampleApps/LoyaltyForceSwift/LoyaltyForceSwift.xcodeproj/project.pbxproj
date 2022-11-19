@@ -74,7 +74,6 @@
 		298613B028C9698D00BDC744 /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613AF28C9698D00BDC744 /* SF-Pro.ttf */; };
 		298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613B128CA8A9600BDC744 /* Archivo-Regular.ttf */; };
 		298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613C928CBBFA200BDC744 /* Archivo-Bold.ttf */; };
-		298613CC28CBC08800BDC744 /* MoreHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613CB28CBC08800BDC744 /* MoreHeaderView.swift */; };
 		298613CE28CBC10300BDC744 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613CD28CBC10300BDC744 /* ProfileModel.swift */; };
 		298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */; };
 		298613D428CC085D00BDC744 /* ForceAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613D328CC085D00BDC744 /* ForceAuthManager.swift */; };
@@ -197,7 +196,6 @@
 		298613AF28C9698D00BDC744 /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		298613B128CA8A9600BDC744 /* Archivo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archivo-Regular.ttf"; sourceTree = "<group>"; };
 		298613C928CBBFA200BDC744 /* Archivo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archivo-Bold.ttf"; sourceTree = "<group>"; };
-		298613CB28CBC08800BDC744 /* MoreHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreHeaderView.swift; sourceTree = "<group>"; };
 		298613CD28CBC10300BDC744 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		298613D328CC085D00BDC744 /* ForceAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceAuthManager.swift; sourceTree = "<group>"; };
@@ -355,7 +353,6 @@
 				29BAF6E028F3EEA000A3F9EB /* MyOffersCardView.swift */,
 				218A36AB28B85D5500FCEE39 /* MyPromotionsView.swift */,
 				298613A528C7D3B400BDC744 /* MoreView.swift */,
-				298613CB28CBC08800BDC744 /* MoreHeaderView.swift */,
 				29BAF6D428F14E4400A3F9EB /* PromotionCardView.swift */,
 				29BAF6CA28F0DB9200A3F9EB /* OffersCarouselView.swift */,
 				29BAF6D228F103B500A3F9EB /* PromotionCarouselView.swift */,
@@ -681,7 +678,6 @@
 				2906B1E42900CD43006EAB2D /* LocalFileManager.swift in Sources */,
 				291CC0BB28D526A600C08572 /* Address.swift in Sources */,
 				291CC0B128D1410500C08572 /* UserDefaults.swift in Sources */,
-				298613CC28CBC08800BDC744 /* MoreHeaderView.swift in Sources */,
 				2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */,
 				296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */,
 				29BAF6DD28F3AE8B00A3F9EB /* String+StringWidth.swift in Sources */,

@@ -30,11 +30,20 @@ struct MoreView: View {
     ]
     var body: some View {
         VStack {
+            VStack(alignment: .leading) {
+                HStack {
+                    Image("img-profile")
+                    Spacer()
+                }
+                
+                Text("\(viewModel.member?.firstName.capitalized ?? "") \(viewModel.member?.lastName.capitalized ?? "")")
+                    .font(.nameText)
+            }
+            .frame(height: 85)
+            .padding(.horizontal)
+
             NavigationView {
                 List {
-                    MoreHeaderView()
-                        .listRowSeparator(.hidden, edges: .top)
-                        .frame(height: 85)
                     ForEach(menuItems) { menu in
                         NavigationLink {
                             // TODO: Links to each view
@@ -81,6 +90,6 @@ struct MoreView: View {
 struct MoreView_Previews: PreviewProvider {
     static var previews: some View {
         MoreView()
-            .environmentObject(AppRootViewModel())
+            .environmentObject(dev.rootVM)
     }
 }
