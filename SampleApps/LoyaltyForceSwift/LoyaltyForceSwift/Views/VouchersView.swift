@@ -11,22 +11,9 @@ struct VouchersView: View {
     
     var body: some View {
         
-        VStack {
-            HStack {
-                Text("My Vouchers")
-                    .font(.offerTitle)
-                    .foregroundColor(.black)
-                Spacer()                
-                LoyaltyNavLink(destination: {
-                    AllVouchersView()
-                }, label: {
-                    Text("View All")
-                        .foregroundColor(Color.theme.accent)
-                        .font(.offerViewAll)
-                })
-            }
-            .padding()
-            
+        ViewAllView(title: "My Vouchers") {
+            AllVouchersView()
+        } content: {
             HStack {
                 Spacer()
                 VoucherCardView()
@@ -34,9 +21,9 @@ struct VouchersView: View {
                 VoucherCardView2()
                 Spacer()
             }
-            
         }
         .frame(height: 320)
+        
     }
 }
 

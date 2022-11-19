@@ -10,22 +10,9 @@ import SwiftUI
 struct BadgesView: View {
     var body: some View {
         
-        VStack {
-            HStack {
-                Text("My Badges")
-                    .font(.offerTitle)
-                    .foregroundColor(.black)
-                Spacer()
-                LoyaltyNavLink {
-                    AllBadgesView()
-                } label: {
-                    Text("View All")
-                        .foregroundColor(Color.theme.accent)
-                        .font(.offerViewAll)
-                }
-            }
-            .padding()
-            
+        ViewAllView(title: "My Badges") {
+            AllBadgesView()
+        } content: {
             HStack {
                 Spacer()
                 BadgeCardView(image: "gift", label: "Giver")

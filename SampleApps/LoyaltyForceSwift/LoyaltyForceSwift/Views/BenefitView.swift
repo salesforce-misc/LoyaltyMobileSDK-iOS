@@ -18,24 +18,11 @@ struct BenefitView: View {
         let benefits: [BenefitModel] = benefitVM.benefitsPreview
         
         ZStack {
-            VStack {
-                HStack {
-                    Text("My Benefits")
-                        .font(.offerTitle)
-                        .foregroundColor(.black)
-                    Spacer()
-                    LoyaltyNavLink {
-                        AllBenefitsView()
-                            .environmentObject(benefitVM)
-                    } label: {
-                        Text("View All")
-                            .foregroundColor(Color.theme.accent)
-                            .font(.offerViewAll)
-                    }
-
-                }
-                .padding()
-
+            
+            ViewAllView(title: "My Benefits") {
+                AllBenefitsView()
+                    .environmentObject(benefitVM)
+            } content: {
                 ForEach(benefits) { benefit in
                     HStack {
                         Circle()
@@ -82,7 +69,7 @@ struct BenefitView: View {
                 }
 
             }
-
+            
             if !benefitVM.isLoaded {
                 ProgressView()
             }

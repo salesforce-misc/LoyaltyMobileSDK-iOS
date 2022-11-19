@@ -41,6 +41,7 @@
 		290EA9B5291F3B5200BBF2F2 /* PromotionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9B4291F3B5200BBF2F2 /* PromotionDetailView.swift */; };
 		290EA9B72923178C00BBF2F2 /* LoyaltyOutputModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9B62923178C00BBF2F2 /* LoyaltyOutputModel.swift */; };
 		290EA9B92926F1A700BBF2F2 /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 290EA9B82926F1A700BBF2F2 /* Profile.json */; };
+		290EA9BD2928ADB700BBF2F2 /* ViewAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */; };
 		291CC0AF28D1248D00C08572 /* ForceUserIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */; };
 		291CC0B128D1410500C08572 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B028D1410500C08572 /* UserDefaults.swift */; };
 		291CC0B428D39D4A00C08572 /* LoyaltyAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */; };
@@ -162,6 +163,7 @@
 		290EA9B4291F3B5200BBF2F2 /* PromotionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionDetailView.swift; sourceTree = "<group>"; };
 		290EA9B62923178C00BBF2F2 /* LoyaltyOutputModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyOutputModel.swift; sourceTree = "<group>"; };
 		290EA9B82926F1A700BBF2F2 /* Profile.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Profile.json; sourceTree = "<group>"; };
+		290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllView.swift; sourceTree = "<group>"; };
 		291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUserIdentifier.swift; sourceTree = "<group>"; };
 		291CC0B028D1410500C08572 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyAPIManager.swift; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 				29AC2EF728F88FAB003F56F6 /* LoyaltyNavigationLink */,
 				2906B1DA28FF7348006EAB2D /* CheckboxStyle.swift */,
 				29053F7C2907452800F84561 /* Assets.swift */,
+				290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */,
 			);
 			path = UICompnents;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				291CC0BD28D53A0000C08572 /* LoyaltyQueryModels.swift in Sources */,
 				2906B1D628FF5E88006EAB2D /* FirestoreManager.swift in Sources */,
 				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
+				290EA9BD2928ADB700BBF2F2 /* ViewAllView.swift in Sources */,
 				29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */,
 				2938C60828CFED0600F495AF /* Collection+URLQueryItem.swift in Sources */,
 				29053F81290C9A0600F84561 /* Cache.swift in Sources */,
