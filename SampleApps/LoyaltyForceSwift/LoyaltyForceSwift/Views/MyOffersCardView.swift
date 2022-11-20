@@ -8,13 +8,25 @@
 import SwiftUI
 
 struct MyOffersCardView: View {
+    @State var loadImage: Bool = false
+
     var body: some View {
         HStack {
-            Image("offer2")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 133, height: 166)
-                .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+            if loadImage {
+                Image("offer2")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 133, height: 166)
+                    .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+            }else{
+                Rectangle()
+                    .foregroundColor(.white)
+                    .frame(width: 133, height: 166)
+                    .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+                    .overlay(){
+                        ProgressView()
+                    }
+            }
             VStack(alignment: .leading, spacing: 10) {
                 HStack(alignment: .top) {
                     Text("Shop and get free product samples")
@@ -45,6 +57,11 @@ struct MyOffersCardView: View {
             .padding(.all, 6)
             Spacer()
         }
+        .onAppear {
+            withAnimation(Animation.spring().delay(0)) {
+                loadImage = true
+            }
+        }
         .frame(width: 343, height: 166)
         .background(Color.white)
         .cornerRadius(10)
@@ -63,13 +80,26 @@ struct MyOffersCardView: View {
 }
 
 struct MyOffersCardView1: View {
+    @State var loadImage: Bool = false
+
     var body: some View {
         HStack {
-            Image("shoes1")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 133, height: 166)
-                .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+            if loadImage {
+                Image("shoes1")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 133, height: 166)
+                    .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+            }else{
+                Rectangle()
+                    .foregroundColor(.white)
+                    .frame(width: 133, height: 166)
+                    .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+                    .overlay(){
+                        ProgressView()
+                    }
+            }
+
             VStack(alignment: .leading, spacing: 10) {
                 HStack(alignment: .top) {
                     Text("Discount on your next shoes purchase")
@@ -100,6 +130,11 @@ struct MyOffersCardView1: View {
             .padding(.all, 6)
             Spacer()
         }
+        .onAppear {
+            withAnimation(Animation.spring().delay(0)) {
+                loadImage = true
+            }
+        }
         .frame(width: 343, height: 166)
         .background(Color.white)
         .cornerRadius(10)
@@ -118,13 +153,26 @@ struct MyOffersCardView1: View {
 }
 
 struct MyOffersCardView2: View {
+    @State var loadImage: Bool = false
+
     var body: some View {
         HStack {
-            Image("jean1")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 133, height: 166)
-                .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+            if loadImage {
+                Image("jean1")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 133, height: 166)
+                    .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+            }else{
+                Rectangle()
+                    .foregroundColor(.white)
+                    .frame(width: 133, height: 166)
+                    .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+                    .overlay(){
+                        ProgressView()
+                    }
+            }
+
             VStack(alignment: .leading, spacing: 10) {
                 HStack(alignment: .top) {
                     Text("20% off on demin jeans")
@@ -155,6 +203,11 @@ struct MyOffersCardView2: View {
             .padding(.all, 6)
             Spacer()
         }
+        .onAppear {
+            withAnimation(Animation.spring().delay(0)) {
+                loadImage = true
+            }
+        }
         .frame(width: 343, height: 166)
         .background(Color.white)
         .cornerRadius(10)
@@ -173,13 +226,26 @@ struct MyOffersCardView2: View {
 }
 
 struct MyOffersCardView3: View {
+    @State var loadImage: Bool = false
+
     var body: some View {
         HStack {
-            Image("cosmetics1")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 133, height: 166)
-                .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+            if loadImage {
+                Image("cosmetics1")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 133, height: 166)
+                    .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+            }else{
+                Rectangle()
+                    .foregroundColor(.white)
+                    .frame(width: 133, height: 166)
+                    .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+                    .overlay(){
+                        ProgressView()
+                    }
+            }
+
             VStack(alignment: .leading, spacing: 10) {
                 HStack(alignment: .top) {
                     Text("Shop and get free product samples")
@@ -210,6 +276,11 @@ struct MyOffersCardView3: View {
             .padding(.all, 6)
             Spacer()
         }
+        .onAppear {
+            withAnimation(Animation.spring().delay(0)) {
+                loadImage = true
+            }
+        }
         .frame(width: 343, height: 166)
         .background(Color.white)
         .cornerRadius(10)
@@ -228,13 +299,26 @@ struct MyOffersCardView3: View {
 }
 
 struct MyOffersCardView4: View {
+    @State var loadImage: Bool = false
+
     var body: some View {
         HStack {
-            Image("meal1")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 133, height: 166)
-                .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+            if loadImage {
+                Image("meal1")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 133, height: 166)
+                    .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+            }else{
+                Rectangle()
+                    .foregroundColor(.white)
+                    .frame(width: 133, height: 166)
+                    .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+                    .overlay(){
+                        ProgressView()
+                    }
+            }
+
             VStack(alignment: .leading, spacing: 10) {
                 HStack(alignment: .top) {
                     Text("Dinner at a French Restaurant")
@@ -265,6 +349,11 @@ struct MyOffersCardView4: View {
             .padding(.all, 6)
             Spacer()
         }
+        .onAppear {
+            withAnimation(Animation.spring().delay(0)) {
+                loadImage = true
+            }
+        }
         .frame(width: 343, height: 166)
         .background(Color.white)
         .cornerRadius(10)
@@ -283,13 +372,25 @@ struct MyOffersCardView4: View {
 }
 
 struct MyOffersCardView5: View {
+    @State var loadImage: Bool = false
+
     var body: some View {
         HStack {
-            Image("coffee1")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 133, height: 166)
-                .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+            if loadImage {
+                Image("coffee1")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 133, height: 166)
+                    .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+            }else{
+                Rectangle()
+                    .foregroundColor(.white)
+                    .frame(width: 133, height: 166)
+                    .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+                    .overlay(){
+                        ProgressView()
+                    }
+            }
             VStack(alignment: .leading, spacing: 10) {
                 HStack(alignment: .top) {
                     Text("Shop and get free product samples")
@@ -319,6 +420,11 @@ struct MyOffersCardView5: View {
             }
             .padding(.all, 6)
             Spacer()
+        }
+        .onAppear {
+            withAnimation(Animation.spring().delay(0)) {
+                loadImage = true
+            }
         }
         .frame(width: 343, height: 166)
         .background(Color.white)
