@@ -12,6 +12,10 @@ struct ProfileView: View {
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var profileVM: ProfileViewModel
     
+    @State var loadRewardPointCardView: Bool = false
+
+    
+    
     var body: some View {
        
         NavigationView {
@@ -91,10 +95,20 @@ struct ProfileView: View {
             }
             .padding()
             
-            RewardPointsCardView()
-                .environmentObject(profileVM)
+            if loadRewardPointCardView {
+                RewardPointsCardView()
+                    .environmentObject(profileVM)
+            }else{
+                ProgressView()
+            }
+
             
             Spacer()
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+                loadRewardPointCardView = true
+            }
         }
         .frame(height: 360)
         .background(.white)
