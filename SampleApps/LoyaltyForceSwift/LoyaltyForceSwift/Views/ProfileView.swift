@@ -14,8 +14,6 @@ struct ProfileView: View {
     
     @State var loadRewardPointCardView: Bool = false
 
-    
-    
     var body: some View {
        
         NavigationView {
@@ -32,6 +30,10 @@ struct ProfileView: View {
                             VouchersView()
                             BenefitView()
                             BadgesView()
+                            Rectangle()
+                                .frame(height: 400)
+                                .foregroundColor(Color.theme.background)
+                                .padding(.bottom, -400)
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .padding(.bottom, 50)
@@ -98,11 +100,19 @@ struct ProfileView: View {
             if loadRewardPointCardView {
                 RewardPointsCardView()
                     .environmentObject(profileVM)
-            }else{
-                ProgressView()
+            } else {
+                ZStack {
+                    VStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(height: 220)
+                            .padding(.horizontal)
+                            .foregroundColor(Color.theme.accent)
+                    }
+                    ProgressView()
+                        .tint(.white)
+                }
             }
 
-            
             Spacer()
         }
         .onAppear {
