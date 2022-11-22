@@ -7,18 +7,22 @@
 
 import SwiftUI
 
-struct MyOffersCardView: View {
+struct MyPromotionCardView: View {
+    
+    let promotion: PromotionResult
+    
     @State var loadImage: Bool = false
+    @State var showPromotionDetailView = false
 
     var body: some View {
         HStack {
             if loadImage {
-                Image("offer2")
+                Image(promotion.imageName ?? "offers")
                     .resizable()
                     .scaledToFill()
                     .frame(width: 133, height: 166)
                     .cornerRadius(5, corners: [.topLeft, .bottomLeft])
-            }else{
+            } else {
                 Rectangle()
                     .foregroundColor(.white)
                     .frame(width: 133, height: 166)
@@ -29,14 +33,14 @@ struct MyOffersCardView: View {
             }
             VStack(alignment: .leading, spacing: 10) {
                 HStack(alignment: .top) {
-                    Text("Shop and get free product samples")
+                    Text(promotion.promotionName)
                         .font(.redeemTitle)
                         .lineSpacing(5)
                     Spacer()
-                    Image("ic-heart")
+                    //Image("ic-heart")
                 }
                 .padding(.top, 10)
-                Text("Get free sample on orders above $5000")
+                Text(promotion.description ?? "")
                     .font(.redeemText)
                     .foregroundColor(.theme.textInactive)
                     .lineSpacing(5)
@@ -76,9 +80,16 @@ struct MyOffersCardView: View {
                     y: 0
                  )
         )
+        .onTapGesture {
+            showPromotionDetailView.toggle()
+        }
+        .sheet(isPresented: $showPromotionDetailView) {
+            MyPromotionDetailView(promotion: promotion)
+        }
     }
 }
 
+/*
 struct MyOffersCardView1: View {
     @State var loadImage: Bool = false
 
@@ -442,12 +453,13 @@ struct MyOffersCardView5: View {
         )
     }
 }
+*/
 
-struct MyOffersCardView_Previews: PreviewProvider {
+struct MyPromotionCardView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.theme.background
-            MyOffersCardView5()
+            MyPromotionCardView(promotion: dev.promotion)
         }
         
     }

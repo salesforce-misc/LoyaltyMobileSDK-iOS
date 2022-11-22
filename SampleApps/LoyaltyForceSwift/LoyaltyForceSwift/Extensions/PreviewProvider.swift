@@ -93,7 +93,7 @@ class DeveloperPreview {
                                     description: "New Year Promotion Premium",
                                     promEnrollmentStartDate: "2022-11-01",
                                     promotionEnrollmentEndDate: "2022-11-30",
-                                    imageName: "promotion2")
+                                    imageName: "promotion1")
     let rootVM = AppRootViewModel()
     let benefitVM = BenefitViewModel()
     let promotionVM = PromotionViewModel()

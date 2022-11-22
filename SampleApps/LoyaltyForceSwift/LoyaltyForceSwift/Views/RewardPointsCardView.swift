@@ -91,12 +91,12 @@ struct RewardPointsCardView: View {
                     }
                     .overlay(alignment: .leading) {
                         VStack(alignment: .leading) {
-                            Text(String(profileVM.profile?.getRewardPoints() ?? 0))
+                            Text(String(profileVM.profile?.getCurrencyPoints(currencyName: AppConstants.Config.rewardCurrencyName) ?? 0))
                                 .font(.cardPointsText)
                             
                             // Need confirmation
                             if let expiringDate = profileVM.profile?.memberTiers[0].tierExpirationDate,
-                               let expiringPoints = profileVM.profile?.getTierPoints() {
+                               let expiringPoints = profileVM.profile?.getCurrencyPoints(currencyName: AppConstants.Config.tierCurrencyName) {
                                 Text("\(expiringPoints) points expiring on \(expiringDate)")
                                     .font(.cardExpiringPointsText)
                             }

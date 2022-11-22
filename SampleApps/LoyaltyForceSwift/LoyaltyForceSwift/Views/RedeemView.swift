@@ -20,11 +20,10 @@ struct RedeemView: View {
                         RedeemCardView2()
                     }
                     
-                    MyOffersCardView()
-                    MyOffersCardView2()
-                    MyOffersCardView3()
-                    MyOffersCardView4()
-                    MyOffersCardView5()
+//                    MyOffersCardView2()
+//                    MyOffersCardView3()
+//                    MyOffersCardView4()
+//                    MyOffersCardView5()
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.top, 110)

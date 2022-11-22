@@ -141,18 +141,9 @@ public struct ProfileModel: Codable {
         case loyaltyProgramName, memberCurrencies, memberStatus, memberTiers, memberType, membershipEndDate, membershipLastRenewalDate, membershipNumber, referredBy, relatedCorporateMembershipNumber, transactionJournalStatementFrequency, transactionJournalStatementLastGeneratedDate, transactionJournalStatementMethod
     }
     
-    func getRewardPoints() -> Int {
+    func getCurrencyPoints(currencyName: String) -> Int {
         for currency in memberCurrencies {
-            if currency.loyaltyMemberCurrencyName.capitalized == "Reward Points" {
-                return currency.pointsBalance
-            }
-        }
-        return 0
-    }
-    
-    func getTierPoints() -> Int {
-        for currency in memberCurrencies {
-            if currency.loyaltyMemberCurrencyName.capitalized == "Tier Points" {
+            if currency.loyaltyMemberCurrencyName.capitalized == currencyName.capitalized {
                 return currency.pointsBalance
             }
         }

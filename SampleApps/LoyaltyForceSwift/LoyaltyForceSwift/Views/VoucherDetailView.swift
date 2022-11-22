@@ -19,6 +19,7 @@ struct VoucherDetailView: View {
                     .resizable()
                     .scaledToFill()
                     .frame(height: 220)
+                    .clipped()
                     .overlay(alignment: .topTrailing) {
                         Image("ic-dismiss")
                             .padding()

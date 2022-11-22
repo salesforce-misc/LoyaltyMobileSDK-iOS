@@ -15,24 +15,36 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                Color.theme.background
+            VStack(spacing: 0) {
+                VStack(spacing: 0) {
+                    HStack {
+                        Image("ic-logo-home")
+                            .padding(.leading, 15)
+                        Spacer()
+                        Image("ic-magnifier")
+                            .padding(.trailing, 15)
+                    }
+                    .frame(height: 44)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.theme.accent)
+                }
+                
                 ScrollView(showsIndicators: false) {
-                    Rectangle()
-                        .frame(height: 400)
-                        .foregroundColor(Color.theme.accent)
-                        .padding(.top, -354)
+//                        Rectangle()
+//                            .frame(height: 400)
+//                            .foregroundColor(Color.theme.accent)
+//                            .padding(.top, -400)
                     HStack {
                         Text("Hello \(rootVM.member?.firstName.capitalized ?? ""),")
                             .padding(.leading, 15)
                         Spacer()
-                        Text("\(String(profileVM.profile?.getRewardPoints() ?? 0)) Points")
+                        Text("\(String(profileVM.profile?.getCurrencyPoints(currencyName: AppConstants.Config.rewardCurrencyName) ?? 0)) \(AppConstants.Config.rewardCurrencyName)")
                             .padding(.trailing, 15)
                     }
                     .frame(height: 48)
                     .frame(maxWidth: .infinity)
                     .background(Color.theme.backgroundPink)
-                    .padding(.top, -10)
+                    //.padding(.top, -10)
                     .background(
                         Rectangle()
                             .fill(Color.white)
@@ -43,21 +55,23 @@ struct HomeView: View {
                                 y: 0
                             )
                     )
-                    
+
                     // Offers & Promotions
                     PromotionCarouselView(selectedTab: $selectedTab)
                         .frame(height: 400)
-                        .padding(.top, 80)
-                        .padding(.bottom, 80)
-                   
+                        .padding(.top, 60)
+                        .padding(.bottom, 40)
+
                     /* Post MVP
                     // Redeem Points
                     RedeemPointsView()
                      */
-                    
+
                     VouchersView()
-                    
+                        .padding(.bottom, 100)
+
                 }
+                .background(Color.theme.background)
                 .task {
                     do {
                         try await profileVM.getProfileData(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
@@ -65,22 +79,13 @@ struct HomeView: View {
                         print("Fetch profile Error: \(error)")
                     }
                 }
-                
-                
-                VStack{
-                    VStack(spacing: 0) {
-                        HStack {
-                            Image("ic-logo-home")
-                                .padding(.leading, 15)
-                            Spacer()
-                            Image("ic-magnifier")
-                                .padding(.trailing, 15)
-                        }
-                        .frame(height: 44)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.theme.accent)
+                .refreshable {
+                    print("Reloading home...")
+                    do {
+                        try await profileVM.getProfileData(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "", reload: true)
+                    } catch {
+                        print("Reload profile Error: \(error)")
                     }
-                    Spacer()
                 }
                 
             }

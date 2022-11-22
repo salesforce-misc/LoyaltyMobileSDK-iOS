@@ -35,7 +35,7 @@ struct Carousel<Content: View, T: Identifiable>: View {
             GeometryReader { proxy in
                 
                 let trailingSpace = proxy.size.width - contentWidth
-                let spacing = trailingSpace * 0.2
+                let spacing = proxy.size.width > 400 ? trailingSpace * 0.25 : trailingSpace * 0.2
                 let width = proxy.size.width - (trailingSpace - spacing)
                 let adjustmentWidth = (trailingSpace / 2) - spacing
                 
@@ -54,7 +54,6 @@ struct Carousel<Content: View, T: Identifiable>: View {
                                 out = value.translation.width
                             })
                             .onEnded({ value in
-
                                 let offsetX = value.translation.width
                                 let progress = -offsetX / width
                                 let roundIndex = progress.rounded()
@@ -71,10 +70,8 @@ struct Carousel<Content: View, T: Identifiable>: View {
                     
                 }
             }
-            .animation(.easeInOut, value: offset == 0)
+            .animation(.spring(), value: offset == 0)
         }
-        
-        
         
     }
 }

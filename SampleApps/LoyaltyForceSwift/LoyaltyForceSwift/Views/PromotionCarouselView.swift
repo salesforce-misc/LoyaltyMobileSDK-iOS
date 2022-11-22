@@ -10,7 +10,7 @@ import SwiftUI
 struct PromotionCarouselView: View {
     
     @EnvironmentObject private var rootVM: AppRootViewModel
-    @StateObject private var promotionVM = PromotionViewModel()
+    @EnvironmentObject private var promotionVM: PromotionViewModel
     
     @Binding var selectedTab: Tab
     @State var showPromotionDetailView = false
@@ -32,7 +32,7 @@ struct PromotionCarouselView: View {
                         selectedTab = .offers
                     }
             }
-            .padding()
+            .padding([.top, .leading, .trailing])
             
             Carousel(index: $currentIndex, items: promotionVM.promotions) { promotion in
                 PromotionCardView(promotion: promotion)
@@ -55,9 +55,9 @@ struct PromotionCarouselView: View {
                         .animation(.easeInOut, value: currentIndex == index)
                 }
             }
-            .padding(.top, -40)
+            .padding(.top, -25)
         }
-        .frame(height: 540)
+        .frame(height: 490)
         .background(Color.white)
         .task {
             do {

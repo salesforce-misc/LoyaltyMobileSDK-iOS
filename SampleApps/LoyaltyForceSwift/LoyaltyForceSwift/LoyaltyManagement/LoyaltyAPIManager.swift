@@ -21,10 +21,11 @@ public class LoyaltyAPIManager {
         case individualEnrollment(programName: String)
         case getMemberBenefits(memberId: String)
         case getMemberProfile(programName: String)
-        case getTransactions(programName: String)
+        case getTransactionHistory
         case getPromotions(programName: String)
         case redeemPoints(programName: String, programProcessName: String)
         case enrollInPromotion(programName: String)
+        case unenrollInPromotion
     }
     
     public func getPath(for resource: Resource) -> String {
@@ -36,14 +37,16 @@ public class LoyaltyAPIManager {
             return ForceConfig.path(for: "connect/loyalty/member/\(memberId)/memberbenefits")
         case .getMemberProfile(let programName):
             return ForceConfig.path(for: "loyalty-programs/\(programName)/members")
-        case .getTransactions(let programName):
-            return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/transaction-history") // ?page=1 Will deal with it later
+        case .getTransactionHistory:
+            return "/services/apexrest/TransactionHistory/"
         case .getPromotions(let programName):
             return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/GetMemberPromotions")
         case .redeemPoints(let programName, let programProcessName):
             return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/\(programProcessName)")
         case .enrollInPromotion(let programName):
             return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/EnrollInPromotion")
+        case .unenrollInPromotion:
+            return "/services/apexrest/UnenrollInPromotion/"
         }
     
     }
@@ -186,6 +189,26 @@ public class LoyaltyAPIManager {
         }
     }
     
+    public func unenrollIn(promotion promotionName: String, for membershipNumber: String) async throws {
+        let body = [
+            "processParameters": [
+                "programName": loyaltyProgramName,
+                "membershipNumber": membershipNumber,
+                "PromotionName": promotionName
+            ]
+        ]
+        
+        do {
+            let path = getPath(for: .unenrollInPromotion)
+            let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
+            let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
+            let _ = try await ForceClient.shared.fetch(type: UnenrollPromotionOutPutModel.self, with: request)
+        } catch {
+            throw error
+        }
+    }
+    
+    
     public func getPromotions(memberId: String, devMode: Bool = false) async throws -> PromotionModel {
         let body = [
             "processParameters": [
@@ -225,6 +248,17 @@ public class LoyaltyAPIManager {
         do {
             let result = try ForceClient.shared.fetchLocalJson(type: TransactionModel.self, file: "Transactions")
             return result
+        } catch {
+            throw error
+        }
+    }
+    
+    /// Use public func SOQL(for query: String) async throws -> QueryResult<Record>
+    public func getVoucherRecords(membershipNumber: String) async throws -> [Record] {
+        do {
+            let query = "SELECT VoucherDefinition.Name, Voucher.Image__c, VoucherDefinition.Description, VoucherCode, ExpirationDate, VoucherNumber, Status from Voucher where LoyaltyProgramMember.MembershipNumber = '\(membershipNumber)'"
+            let queryResult = try await ForceClient.shared.SOQL(for: query)
+            return queryResult.records
         } catch {
             throw error
         }

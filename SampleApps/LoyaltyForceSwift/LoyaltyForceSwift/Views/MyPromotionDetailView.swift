@@ -1,23 +1,25 @@
 //
-//  PromotionDetailView.swift
+//  MyPromotionDetailView.swift
 //  LoyaltyForceSwift
 //
-//  Created by Leon Qi on 11/11/22.
+//  Created by Leon Qi on 11/21/22.
 //
 
 import SwiftUI
 
-struct PromotionDetailView: View {
+struct MyPromotionDetailView: View {
     
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
-    @Binding var currentIndex: Int
+    //@Binding var currentIndex: Int
     @State private var processing = false
+    
+    let promotion: PromotionResult
     
     var body: some View {
         
-        let promotion = promotionVM.promotions[currentIndex]
+        //let promotion = promotionVM.promotions[currentIndex]
         
         ZStack {
             Color.white
@@ -134,9 +136,9 @@ struct PromotionDetailView: View {
     }
 }
 
-struct PromotionDetailView_Previews: PreviewProvider {
+struct MyPromotionDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PromotionDetailView(currentIndex: .constant(0))
+        MyPromotionDetailView(promotion: dev.promotion)
             .environmentObject(dev.rootVM)
             .environmentObject(dev.promotionVM)
     }

@@ -42,6 +42,9 @@
 		290EA9B72923178C00BBF2F2 /* LoyaltyOutputModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9B62923178C00BBF2F2 /* LoyaltyOutputModel.swift */; };
 		290EA9B92926F1A700BBF2F2 /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 290EA9B82926F1A700BBF2F2 /* Profile.json */; };
 		290EA9BD2928ADB700BBF2F2 /* ViewAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */; };
+		290EA9C1292C0ACF00BBF2F2 /* VoucherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9C0292C0ACF00BBF2F2 /* VoucherViewModel.swift */; };
+		290EA9C3292C106500BBF2F2 /* VoucherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9C2292C106500BBF2F2 /* VoucherModel.swift */; };
+		290EA9C5292C4DA500BBF2F2 /* MyPromotionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9C4292C4DA500BBF2F2 /* MyPromotionDetailView.swift */; };
 		291CC0AF28D1248D00C08572 /* ForceUserIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */; };
 		291CC0B128D1410500C08572 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B028D1410500C08572 /* UserDefaults.swift */; };
 		291CC0B428D39D4A00C08572 /* LoyaltyAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */; };
@@ -111,7 +114,7 @@
 		29BAF6D928F1642000A3F9EB /* RedeemPointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6D828F1642000A3F9EB /* RedeemPointsView.swift */; };
 		29BAF6DD28F3AE8B00A3F9EB /* String+StringWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6DC28F3AE8B00A3F9EB /* String+StringWidth.swift */; };
 		29BAF6DF28F3ECA600A3F9EB /* TopTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6DE28F3ECA600A3F9EB /* TopTabBar.swift */; };
-		29BAF6E128F3EEA000A3F9EB /* MyOffersCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6E028F3EEA000A3F9EB /* MyOffersCardView.swift */; };
+		29BAF6E128F3EEA000A3F9EB /* MyPromotionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6E028F3EEA000A3F9EB /* MyPromotionCardView.swift */; };
 		29BAF6E328F4824B00A3F9EB /* VoucherCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6E228F4824B00A3F9EB /* VoucherCardView.swift */; };
 		29BAF6E528F485DA00A3F9EB /* VouchersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6E428F485DA00A3F9EB /* VouchersView.swift */; };
 		29BAF6E728F4BE5A00A3F9EB /* AllVouchersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6E628F4BE5A00A3F9EB /* AllVouchersView.swift */; };
@@ -163,6 +166,9 @@
 		290EA9B62923178C00BBF2F2 /* LoyaltyOutputModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyOutputModel.swift; sourceTree = "<group>"; };
 		290EA9B82926F1A700BBF2F2 /* Profile.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Profile.json; sourceTree = "<group>"; };
 		290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllView.swift; sourceTree = "<group>"; };
+		290EA9C0292C0ACF00BBF2F2 /* VoucherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherViewModel.swift; sourceTree = "<group>"; };
+		290EA9C2292C106500BBF2F2 /* VoucherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherModel.swift; sourceTree = "<group>"; };
+		290EA9C4292C4DA500BBF2F2 /* MyPromotionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPromotionDetailView.swift; sourceTree = "<group>"; };
 		291CC0AE28D1248D00C08572 /* ForceUserIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUserIdentifier.swift; sourceTree = "<group>"; };
 		291CC0B028D1410500C08572 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		291CC0B328D39D4A00C08572 /* LoyaltyAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyAPIManager.swift; sourceTree = "<group>"; };
@@ -233,7 +239,7 @@
 		29BAF6D828F1642000A3F9EB /* RedeemPointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemPointsView.swift; sourceTree = "<group>"; };
 		29BAF6DC28F3AE8B00A3F9EB /* String+StringWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+StringWidth.swift"; sourceTree = "<group>"; };
 		29BAF6DE28F3ECA600A3F9EB /* TopTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabBar.swift; sourceTree = "<group>"; };
-		29BAF6E028F3EEA000A3F9EB /* MyOffersCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOffersCardView.swift; sourceTree = "<group>"; };
+		29BAF6E028F3EEA000A3F9EB /* MyPromotionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPromotionCardView.swift; sourceTree = "<group>"; };
 		29BAF6E228F4824B00A3F9EB /* VoucherCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherCardView.swift; sourceTree = "<group>"; };
 		29BAF6E428F485DA00A3F9EB /* VouchersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VouchersView.swift; sourceTree = "<group>"; };
 		29BAF6E628F4BE5A00A3F9EB /* AllVouchersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllVouchersView.swift; sourceTree = "<group>"; };
@@ -273,6 +279,7 @@
 				298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */,
 				29B427D529109E60009CC587 /* PromotionViewModel.swift */,
 				29B427D329109095009CC587 /* TransactionViewModel.swift */,
+				290EA9C0292C0ACF00BBF2F2 /* VoucherViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -350,7 +357,8 @@
 				29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */,
 				218A36AF28B85D9200FCEE39 /* RedeemView.swift */,
 				218A36AD28B85D6000FCEE39 /* FavoriteView.swift */,
-				29BAF6E028F3EEA000A3F9EB /* MyOffersCardView.swift */,
+				29BAF6E028F3EEA000A3F9EB /* MyPromotionCardView.swift */,
+				290EA9C4292C4DA500BBF2F2 /* MyPromotionDetailView.swift */,
 				218A36AB28B85D5500FCEE39 /* MyPromotionsView.swift */,
 				298613A528C7D3B400BDC744 /* MoreView.swift */,
 				29BAF6D428F14E4400A3F9EB /* PromotionCardView.swift */,
@@ -439,6 +447,7 @@
 				2906B1EA2901DD21006EAB2D /* TransactionModel.swift */,
 				2906B1EC2901DE3F006EAB2D /* PromotionModel.swift */,
 				290EA9B62923178C00BBF2F2 /* LoyaltyOutputModel.swift */,
+				290EA9C2292C106500BBF2F2 /* VoucherModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -649,6 +658,7 @@
 				299B38D828E796BC00E45D97 /* FullSheet.swift in Sources */,
 				29E6601A2915C5A20056CF9D /* Expiry.swift in Sources */,
 				2938C60228CE84B900F495AF /* Keychain.swift in Sources */,
+				290EA9C3292C106500BBF2F2 /* VoucherModel.swift in Sources */,
 				291CC0B628D4EEF300C08572 /* QueryResult.swift in Sources */,
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
 				29BAF70228F78FA400A3F9EB /* AllTransactionsView.swift in Sources */,
@@ -658,6 +668,7 @@
 				216F219528B6188600DAA66D /* AppRootView.swift in Sources */,
 				290EA9B72923178C00BBF2F2 /* LoyaltyOutputModel.swift in Sources */,
 				298613A228C174FE00BDC744 /* ForceRequest.swift in Sources */,
+				290EA9C5292C4DA500BBF2F2 /* MyPromotionDetailView.swift in Sources */,
 				298613A628C7D3B400BDC744 /* MoreView.swift in Sources */,
 				2986139F28C1730000BDC744 /* ForceConfig.swift in Sources */,
 				216F217F28B6141E00DAA66D /* LoyaltyStarterApp.swift in Sources */,
@@ -682,7 +693,7 @@
 				296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */,
 				29BAF6DD28F3AE8B00A3F9EB /* String+StringWidth.swift in Sources */,
 				2993A8442903328D00EC3C0D /* PreviewProvider.swift in Sources */,
-				29BAF6E128F3EEA000A3F9EB /* MyOffersCardView.swift in Sources */,
+				29BAF6E128F3EEA000A3F9EB /* MyPromotionCardView.swift in Sources */,
 				2938C60428CE852D00F495AF /* ForceAuthStore.swift in Sources */,
 				29BAF6EB28F4D24500A3F9EB /* TransactionsView.swift in Sources */,
 				299B38DC28EB7F7000E45D97 /* CheckYourEmailView.swift in Sources */,
@@ -696,6 +707,7 @@
 				291CC0B428D39D4A00C08572 /* LoyaltyAPIManager.swift in Sources */,
 				29E6601C2915C5F80056CF9D /* Date+Extensions.swift in Sources */,
 				29E6601E2915C6260056CF9D /* Entry.swift in Sources */,
+				290EA9C1292C0ACF00BBF2F2 /* VoucherViewModel.swift in Sources */,
 				296D393E28DE1EFF0078C88E /* ButtonStyles.swift in Sources */,
 				296D393128DBCB530078C88E /* OnboardingModel.swift in Sources */,
 				29BAF6D928F1642000A3F9EB /* RedeemPointsView.swift in Sources */,

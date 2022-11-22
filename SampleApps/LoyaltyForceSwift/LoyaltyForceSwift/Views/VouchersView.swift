@@ -9,6 +9,8 @@ import SwiftUI
 
 struct VouchersView: View {
     
+    @State var showVoucherDetailView = false
+    
     var body: some View {
         
         ViewAllView(title: "My Vouchers") {
@@ -17,6 +19,12 @@ struct VouchersView: View {
             HStack {
                 Spacer()
                 VoucherCardView()
+                    .onTapGesture {
+                        showVoucherDetailView.toggle()
+                    }
+                    .sheet(isPresented: $showVoucherDetailView) {
+                        VoucherDetailView()
+                    }
                 Spacer()
                 VoucherCardView2()
                 Spacer()
