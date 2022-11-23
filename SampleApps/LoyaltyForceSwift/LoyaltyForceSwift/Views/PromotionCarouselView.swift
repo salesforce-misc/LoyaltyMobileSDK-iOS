@@ -57,7 +57,7 @@ struct PromotionCarouselView: View {
             }
             .padding(.top, -25)
         }
-        .frame(height: 490)
+        .frame(height: 450)
         .background(Color.white)
         .task {
             do {

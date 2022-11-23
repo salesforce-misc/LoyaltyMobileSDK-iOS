@@ -23,7 +23,7 @@ struct PromotionDetailView: View {
             Color.white
             
             VStack(alignment: .leading) {
-                Image(promotion.imageName ?? "offers")
+                Image(promotion.imageName ?? "img-placeholder")
                     .resizable()
                     .scaledToFill()
                     .frame(height: 220)

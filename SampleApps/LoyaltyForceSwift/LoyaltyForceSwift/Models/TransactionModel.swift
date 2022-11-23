@@ -9,37 +9,37 @@ import Foundation
 
 // MARK: - TransactionModel
 struct TransactionModel: Codable {
-    let message: String?
-    let status: Bool
-    let totalCount: Int
-    let transactionJournals: [TransactionJournal]
+    let status, programName, membershipNumber: String
+    let recordCount: Int
+    let transactionHistory: [TransactionHistory]
 }
 
-// MARK: - TransactionJournal
-struct TransactionJournal: Codable {
-    let status, lastModifiedDate: String
-    let isDeleted: Bool
-    let journalTypeID, journalDate, activityDate, usageType: String
-    let name, systemModstamp, memberID, journalSubTypeID: String
-    let createdByID, createdDate, id, lastModifiedByID: String
-    let loyaltyProgramID: String
-
-    enum CodingKeys: String, CodingKey {
-        case status = "Status"
-        case lastModifiedDate = "LastModifiedDate"
-        case isDeleted = "IsDeleted"
-        case journalTypeID = "JournalTypeId"
-        case journalDate = "JournalDate"
-        case activityDate = "ActivityDate"
-        case usageType = "UsageType"
-        case name = "Name"
-        case systemModstamp = "SystemModstamp"
-        case memberID = "MemberId"
-        case journalSubTypeID = "JournalSubTypeId"
-        case createdByID = "CreatedById"
-        case createdDate = "CreatedDate"
-        case id = "Id"
-        case lastModifiedByID = "LastModifiedById"
-        case loyaltyProgramID = "LoyaltyProgramId"
+// MARK: - TransactionHistory
+struct TransactionHistory: Codable, Identifiable {
+    var id: String = UUID().uuidString
+    let transactionAmount: Int?
+    let productDetails: ProductDetails?
+    let memberCurrency: [TransactionCurrency]
+    let activityDate, activity: String
+    
+    func getCurrencyPoints(currencyName: String) -> Int {
+        for currency in memberCurrency {
+            if currency.name.capitalized == currencyName.capitalized {
+                return Int(currency.value)
+            }
+        }
+        return 0
     }
+}
+
+// MARK: - MemberCurrency
+struct TransactionCurrency: Codable {
+    let value: Double
+    let name: String
+}
+
+// MARK: - ProductDetails
+struct ProductDetails: Codable {
+    let productCategory, product: String?
+    let partner: String?
 }

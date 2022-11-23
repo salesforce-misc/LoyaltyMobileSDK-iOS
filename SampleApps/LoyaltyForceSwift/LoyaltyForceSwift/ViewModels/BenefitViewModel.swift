@@ -64,7 +64,7 @@ class BenefitViewModel: ObservableObject {
     private func fetchBenefits(memberId: String, reloadDescription: Bool) async throws {
         
         do {
-            let results: [BenefitModel] = try await LoyaltyAPIManager.shared.getMemberBenefits(for: memberId, devMode: true)
+            let results: [BenefitModel] = try await LoyaltyAPIManager.shared.getMemberBenefits(for: memberId)
             // update benefit description for each benefit
             let ids = results.map { $0.id }
             try await updateBenefitDescs(benefitIds: ids, reload: reloadDescription)

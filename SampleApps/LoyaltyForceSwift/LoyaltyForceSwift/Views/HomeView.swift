@@ -59,7 +59,7 @@ struct HomeView: View {
                     // Offers & Promotions
                     PromotionCarouselView(selectedTab: $selectedTab)
                         .frame(height: 400)
-                        .padding(.top, 60)
+                        .padding(.top, 40)
                         .padding(.bottom, 40)
 
                     /* Post MVP
@@ -82,7 +82,7 @@ struct HomeView: View {
                 .refreshable {
                     print("Reloading home...")
                     do {
-                        try await profileVM.getProfileData(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "", reload: true)
+                        try await profileVM.fetchProfile(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
                     } catch {
                         print("Reload profile Error: \(error)")
                     }

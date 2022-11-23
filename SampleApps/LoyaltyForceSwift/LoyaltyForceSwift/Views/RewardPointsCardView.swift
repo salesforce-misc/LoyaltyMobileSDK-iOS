@@ -10,14 +10,6 @@ import UIKit
 
 struct RewardPointsCardView: View {
     
-//    let status: String = "GOLD"
-//    let points: String = "17850"
-//    let membershipNumber: String = "24345671"
-//    let expiringPoint: String = "100"
-//    let expiringDate: String = "Oct 20 2022"
-//    let currentTierPoints: Int = 4000
-//    let currentTierLimit: Int = 6000
-    
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var profileVM: ProfileViewModel
     
@@ -94,12 +86,12 @@ struct RewardPointsCardView: View {
                             Text(String(profileVM.profile?.getCurrencyPoints(currencyName: AppConstants.Config.rewardCurrencyName) ?? 0))
                                 .font(.cardPointsText)
                             
-                            // Need confirmation
-                            if let expiringDate = profileVM.profile?.memberTiers[0].tierExpirationDate,
-                               let expiringPoints = profileVM.profile?.getCurrencyPoints(currencyName: AppConstants.Config.tierCurrencyName) {
-                                Text("\(expiringPoints) points expiring on \(expiringDate)")
-                                    .font(.cardExpiringPointsText)
-                            }
+                            // Incorrect, a new API will be provided
+//                            if let expiringDate = profileVM.profile?.memberTiers[0].tierExpirationDate,
+//                               let expiringPoints = profileVM.profile?.getCurrencyPoints(currencyName: AppConstants.Config.tierCurrencyName) {
+//                                Text("\(expiringPoints) points expiring on \(expiringDate)")
+//                                    .font(.cardExpiringPointsText)
+//                            }
                             
                         }
                         .foregroundColor(.white)
@@ -172,5 +164,6 @@ struct RewardPointsCardView_Previews: PreviewProvider {
         RewardPointsCardView()
             .environmentObject(dev.rootVM)
             .environmentObject(dev.profileVM)
+            .previewLayout(.sizeThatFits)
     }
 }

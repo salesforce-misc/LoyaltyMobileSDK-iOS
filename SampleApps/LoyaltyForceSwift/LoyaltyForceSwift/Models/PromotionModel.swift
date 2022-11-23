@@ -46,7 +46,7 @@ public struct PromotionResult: Codable, Identifiable {
         case id = "promotionId"
         case startDate, endDate
         case description, promEnrollmentStartDate, promotionEnrollmentEndDate
-        case imageName
+        case imageName = "Image__c"
     }
 }
 

@@ -38,7 +38,7 @@ struct ViewAllView<Destination: View, Content: View>: View {
             .padding()
             
             content
-            
+            Spacer()
         }
     }
 }

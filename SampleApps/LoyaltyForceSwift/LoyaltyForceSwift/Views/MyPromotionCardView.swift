@@ -17,7 +17,7 @@ struct MyPromotionCardView: View {
     var body: some View {
         HStack {
             if loadImage {
-                Image(promotion.imageName ?? "offers")
+                Image(promotion.imageName ?? "img-placeholder")
                     .resizable()
                     .scaledToFill()
                     .frame(width: 133, height: 166)

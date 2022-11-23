@@ -9,7 +9,7 @@ import Foundation
 
 public struct ForceConfig {
     
-    static let defaultVersion = "55.0" // Summer '22
+    static let defaultVersion = "56.0" // latest version
     static let defaultAuthURL = "https://login.salesforce.com/services/oauth2/authorize"
     static let defaultTokenURL = "https://login.salesforce.com/services/oauth2/token"
     static let defaultRevokeURL = "https://login.salesforce.com/services/oauth2/revoke"

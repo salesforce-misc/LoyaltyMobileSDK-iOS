@@ -13,7 +13,7 @@ struct PromotionCardView: View {
     
     var body: some View {
         VStack {
-            Image(promotion.imageName ?? "offers")
+            Image(promotion.imageName ?? "img-placeholder")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 289, height: 154)
@@ -50,7 +50,7 @@ struct PromotionCardView: View {
 //            }
             Spacer()
         }
-        .frame(width: 320, height: 384)
+        .frame(width: 320, height: 340)
         .foregroundColor(.black)
         .background(
             Rectangle()

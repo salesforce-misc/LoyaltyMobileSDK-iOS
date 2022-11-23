@@ -48,7 +48,7 @@ class ProfileViewModel: ObservableObject {
         do {
             
             //let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId)
-            let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId, devMode: true)
+            let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId)
             
             profile = result
             // Save to local disk

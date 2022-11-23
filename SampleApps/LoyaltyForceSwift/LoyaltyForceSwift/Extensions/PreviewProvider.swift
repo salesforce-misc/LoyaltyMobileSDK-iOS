@@ -94,6 +94,22 @@ class DeveloperPreview {
                                     promEnrollmentStartDate: "2022-11-01",
                                     promotionEnrollmentEndDate: "2022-11-30",
                                     imageName: "promotion1")
+    
+    //let currency = TransactionCurrency(value: 100, name: "Reward Points")
+    let transactions = [
+        TransactionHistory(transactionAmount: 500,
+                             productDetails: nil,
+                             memberCurrency: [TransactionCurrency(value: 500, name: "Reward Points")],
+                             activityDate: "20 November 2022",
+                             activity: "Purchase"),
+        
+        TransactionHistory(transactionAmount: -100,
+                             productDetails: nil,
+                             memberCurrency: [TransactionCurrency(value: -100, name: "Reward Points")],
+                             activityDate: "10 November 2022",
+                             activity: "Redemption")
+    ]
+    
     let rootVM = AppRootViewModel()
     let benefitVM = BenefitViewModel()
     let promotionVM = PromotionViewModel()

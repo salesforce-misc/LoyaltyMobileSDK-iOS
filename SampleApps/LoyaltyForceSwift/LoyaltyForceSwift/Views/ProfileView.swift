@@ -11,6 +11,7 @@ struct ProfileView: View {
 
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var profileVM: ProfileViewModel
+    @EnvironmentObject private var transactionVM: TransactionViewModel
     
     @State var loadRewardPointCardView: Bool = false
 
@@ -37,6 +38,7 @@ struct ProfileView: View {
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .padding(.bottom, 50)
+                        .padding(.top, 20)
                     }
                     
                 }
@@ -120,7 +122,7 @@ struct ProfileView: View {
                 loadRewardPointCardView = true
             }
         }
-        .frame(height: 360)
+        .frame(height: 340)
         .background(.white)
 
     }

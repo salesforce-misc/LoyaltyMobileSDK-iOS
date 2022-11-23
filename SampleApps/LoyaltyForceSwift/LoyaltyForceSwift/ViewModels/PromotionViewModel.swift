@@ -24,7 +24,7 @@ class PromotionViewModel: ObservableObject {
             } else {
                 do {
                     do {
-                        let result = try await LoyaltyAPIManager.shared.getPromotions(membershipNumber: membershipNumber, devMode: true)
+                        let result = try await LoyaltyAPIManager.shared.getPromotions(membershipNumber: membershipNumber)
                         let allEligible = result.outputParameters.outputParameters.results.filter { result in
                             return result.memberEligibilityCategory != "Ineligible"
                         }
@@ -47,7 +47,7 @@ class PromotionViewModel: ObservableObject {
     
     private func fetchPromotions(membershipNumber: String) async throws -> [PromotionResult] {
         do {
-            let result = try await LoyaltyAPIManager.shared.getPromotions(membershipNumber: membershipNumber, devMode: true)
+            let result = try await LoyaltyAPIManager.shared.getPromotions(membershipNumber: membershipNumber)
             return result.outputParameters.outputParameters.results
         } catch {
             throw error
@@ -98,7 +98,7 @@ class PromotionViewModel: ObservableObject {
         do {
             let promotions = try await fetchPromotions(membershipNumber: membershipNumber)
             let active = promotions.filter { result in
-                return (result.memberEligibilityCategory != "Eligible" || result.promotionEnrollmentRqr == false)
+                return (result.memberEligibilityCategory == "Eligible" || result.promotionEnrollmentRqr == false)
             }
             
             await MainActor.run {
@@ -173,7 +173,7 @@ class PromotionViewModel: ObservableObject {
     func enroll(membershipNumber: String, promotionName: String) async throws {
         do {
             try await LoyaltyAPIManager.shared.enrollIn(promotion: promotionName, for: membershipNumber)
-            try await getPromotions(membershipNumber: membershipNumber)
+            //try await getPromotions(membershipNumber: membershipNumber)
         } catch {
             throw error
         }
@@ -182,7 +182,7 @@ class PromotionViewModel: ObservableObject {
     func unenroll(membershipNumber: String, promotionName: String) async throws {
         do {
             try await LoyaltyAPIManager.shared.unenrollIn(promotion: promotionName, for: membershipNumber)
-            try await getPromotions(membershipNumber: membershipNumber)
+            //try await getPromotions(membershipNumber: membershipNumber)
         } catch {
             throw error
         }

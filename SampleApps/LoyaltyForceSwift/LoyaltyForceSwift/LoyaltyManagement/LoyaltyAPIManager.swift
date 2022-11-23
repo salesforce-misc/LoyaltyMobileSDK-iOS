@@ -174,8 +174,10 @@ public class LoyaltyAPIManager {
     public func enrollIn(promotion promotionName: String, for membershipNumber: String) async throws {
         let body = [
             "processParameters": [
-                "MembershipNumber": membershipNumber,
-                "PromotionName": promotionName
+                [
+                    "MembershipNumber": membershipNumber,
+                    "PromotionName": promotionName
+                ]
             ]
         ]
         
@@ -191,11 +193,9 @@ public class LoyaltyAPIManager {
     
     public func unenrollIn(promotion promotionName: String, for membershipNumber: String) async throws {
         let body = [
-            "processParameters": [
-                "programName": loyaltyProgramName,
-                "membershipNumber": membershipNumber,
-                "PromotionName": promotionName
-            ]
+            "programName": loyaltyProgramName,
+            "membershipNumber": membershipNumber,
+            "PromotionName": promotionName
         ]
         
         do {
@@ -208,20 +208,19 @@ public class LoyaltyAPIManager {
         }
     }
     
-    
     public func getPromotions(memberId: String, devMode: Bool = false) async throws -> PromotionModel {
-        let body = [
+        let body: [String: Any] = [
             "processParameters": [
-                "MemberId": memberId
+                ["MemberId": memberId]
             ]
         ]
         return try await getPromotions(requsetBody: body, devMode: devMode)
     }
     
     public func getPromotions(membershipNumber: String, devMode: Bool = false) async throws -> PromotionModel {
-        let body = [
+        let body: [String: Any] = [
             "processParameters": [
-                "MembershipNumber": membershipNumber
+                ["MembershipNumber": membershipNumber]
             ]
         ]
         return try await getPromotions(requsetBody: body, devMode: devMode)
@@ -244,10 +243,25 @@ public class LoyaltyAPIManager {
         }
     }
     
-    func getTransactions(for memberId: String) async throws -> TransactionModel {
+    func getTransactions(for membershipNumber: String, recordsLimit: Int? = nil, devMode: Bool = false) async throws -> [TransactionHistory] {
+        var body: [String: Any] = [
+            "programName": loyaltyProgramName,
+            "membershipNumber": membershipNumber
+        ]
+        if let recordsLimit = recordsLimit {
+            body["recordsLimit"] = recordsLimit
+        }
+        
         do {
-            let result = try ForceClient.shared.fetchLocalJson(type: TransactionModel.self, file: "Transactions")
-            return result
+            if devMode {
+                let result = try ForceClient.shared.fetchLocalJson(type: TransactionModel.self, file: "Transactions")
+                return result.transactionHistory
+            }
+            let path = getPath(for: .getTransactionHistory)
+            let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
+            let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
+            let result = try await ForceClient.shared.fetch(type: TransactionModel.self, with: request)
+            return result.transactionHistory
         } catch {
             throw error
         }

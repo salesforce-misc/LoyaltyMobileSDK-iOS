@@ -9,6 +9,9 @@ import SwiftUI
 
 struct AllTransactionsView: View {
     
+    @EnvironmentObject private var rootVM: AppRootViewModel
+    @EnvironmentObject private var transactionVM: TransactionViewModel
+    
     var body: some View {
         ZStack {
             Color.theme.background
@@ -23,10 +26,15 @@ struct AllTransactionsView: View {
                 }
                 .padding()
                 
-                VStack {
-                    TransactionCardView()
-                    TransactionCardView()
-                    TransactionCardView()
+                VStack(spacing: 15) {
+                    if transactionVM.recentTransactions.isEmpty {
+                        Text("No recent transactions")
+                            .font(.transactionPeriod)
+                            .foregroundColor(Color.theme.lightBlackText)
+                    }
+                    ForEach(transactionVM.recentTransactions) { transaction in
+                        TransactionCardView(transaction: transaction)
+                    }
                 }
                 HStack {
                     Text("One month ago")
@@ -36,14 +44,31 @@ struct AllTransactionsView: View {
                 }
                 .padding()
                 LazyVStack(spacing: 15) {
-                    
-                    ForEach(1...100, id: \.self) { _ in
-                        TransactionCardView()
+                    if transactionVM.olderTransactions.isEmpty {
+                        Text("No more transactions")
+                            .font(.transactionPeriod)
+                            .foregroundColor(Color.theme.lightBlackText)
                     }
-                    
+                    ForEach(transactionVM.olderTransactions) { transaction in
+                        TransactionCardView(transaction: transaction)
+                    }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
+            }
+            .task {
+                do {
+                    try await transactionVM.loadAllTransactions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                } catch {
+                    print("Load All Transactions Error: \(error)")
+                }
+            }
+            .refreshable {
+                do {
+                    try await transactionVM.reloadAllTransactions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                } catch {
+                    print("Reload All Transactions Error: \(error)")
+                }
             }
             
         }

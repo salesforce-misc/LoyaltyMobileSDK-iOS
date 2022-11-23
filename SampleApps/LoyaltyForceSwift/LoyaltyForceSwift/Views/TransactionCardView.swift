@@ -8,21 +8,27 @@
 import SwiftUI
 
 struct TransactionCardView: View {
+    
+    let transaction: TransactionHistory
+    
     var body: some View {
         
+        let points = transaction.getCurrencyPoints(currencyName: AppConstants.Config.rewardCurrencyName)
+        let pointsString = points > 0 ? "+\(points) \(AppConstants.Config.rewardCurrencyNameShort)" : "\(points) \(AppConstants.Config.rewardCurrencyNameShort)"
+        
         HStack(spacing: 0) {
-            Assets.getTransactionsLogo(for: "Enrollment")
+            Assets.getTransactionsLogo(for: transaction.activity)
                 .renderingMode(.template)
                 .foregroundColor(Color.theme.textInactive)
                 .frame(width: 63)
             VStack(spacing: 8) {
                 HStack{
-                    Text("Promotion Enrollment")
+                    Text(transaction.activity)
                         .font(.transactionText)
                     Spacer()
                 }
                 HStack {
-                    Text("30 Jul 2022")
+                    Text(transaction.activityDate)
                         .font(.transactionDate)
                         .foregroundColor(Color.theme.textInactive)
                     Spacer()
@@ -31,9 +37,9 @@ struct TransactionCardView: View {
                 
             }
             .frame(width: 180)
-            Text("+1500 Pts")
+            Text(pointsString)
                 .font(.transactionPoints)
-                .foregroundColor(Color.theme.points)
+                .foregroundColor(points < 0 ? Color.theme.negativePoints : Color.theme.points)
                 .frame(width: 100)
 
         }
@@ -54,6 +60,7 @@ struct TransactionCardView: View {
     }
 }
 
+/*
 struct TransactionCardView2: View {
     var body: some View {
         
@@ -147,9 +154,14 @@ struct TransactionCardView3: View {
         )
     }
 }
+*/
 
 struct TransactionCardView_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionCardView2()
+        VStack {
+            TransactionCardView(transaction: dev.transactions[0])
+            TransactionCardView(transaction: dev.transactions[1])
+        }
+        
     }
 }
