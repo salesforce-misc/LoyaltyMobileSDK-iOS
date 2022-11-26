@@ -52,7 +52,7 @@ struct PromotionCarouselView: View {
         .background(Color.white)
         .task {
             do {
-                try await promotionVM.getPromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                try await promotionVM.loadPromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
             } catch {
                 print("Fetch Promotions Error: \(error)")
             }

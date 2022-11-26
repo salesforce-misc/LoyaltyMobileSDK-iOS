@@ -15,27 +15,23 @@ class PromotionViewModel: ObservableObject {
     @Published var activePromotions: [PromotionResult] = []
     
     @MainActor
-    func getPromotions(membershipNumber: String) async throws {
+    func loadPromotions(membershipNumber: String) async throws {
         
         if promotions.isEmpty {
             // load from local cache
-            if let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "PromotionsCarousel") {
+            if let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
                 promotions = Array(cached.prefix(5))
             } else {
                 do {
-                    do {
-                        let result = try await LoyaltyAPIManager.shared.getPromotions(membershipNumber: membershipNumber)
-                        let allEligible = result.outputParameters.outputParameters.results.filter { result in
-                            return result.memberEligibilityCategory != "Ineligible"
-                        }
-                        // get max of 5 promotions for home page carousel
-                        promotions = Array(allEligible.prefix(5))
-                        
-                        // save to local
-                        LocalFileManager.instance.saveData(item: allEligible, id: membershipNumber, folderName: "PromotionsCarousel")
-                    } catch {
-                        throw error
+                    let result = try await LoyaltyAPIManager.shared.getPromotions(membershipNumber: membershipNumber)
+                    let allEligible = result.outputParameters.outputParameters.results.filter { result in
+                        return result.memberEligibilityCategory != "Ineligible"
                     }
+                    // get max of 5 promotions for home page carousel
+                    promotions = Array(allEligible.prefix(5))
+                    
+                    // save to local
+                    LocalFileManager.instance.saveData(item: allEligible, id: membershipNumber, folderName: "Promotions")
                 } catch {
                     throw error
                 }
@@ -67,7 +63,7 @@ class PromotionViewModel: ObservableObject {
             }
             
             // save to local
-            LocalFileManager.instance.saveData(item: allEligible, id: membershipNumber, folderName: "AllPromotions")
+            LocalFileManager.instance.saveData(item: allEligible, id: membershipNumber, folderName: "Promotions")
             
         } catch {
             throw error
@@ -78,7 +74,7 @@ class PromotionViewModel: ObservableObject {
 
         if allEligiblePromotions.isEmpty {
             // load from local cache
-            if let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "AllPromotions") {
+            if let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
                 await MainActor.run {
                     allEligiblePromotions = cached
                 }
@@ -106,7 +102,7 @@ class PromotionViewModel: ObservableObject {
             }
             
             // save to local
-            LocalFileManager.instance.saveData(item: active, id: membershipNumber, folderName: "ActivePromotions")
+            LocalFileManager.instance.saveData(item: promotions, id: membershipNumber, folderName: "Promotions")
             
         } catch {
             throw error
@@ -117,9 +113,12 @@ class PromotionViewModel: ObservableObject {
         
         if activePromotions.isEmpty {
             // load from local cache
-            if let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "ActivePromotions") {
+            if let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
+                let active = cached.filter { result in
+                    return (result.memberEligibilityCategory == "Eligible" || result.promotionEnrollmentRqr == false)
+                }
                 await MainActor.run {
-                    activePromotions = cached
+                    activePromotions = active
                 }
             } else {
                 do {
@@ -144,7 +143,7 @@ class PromotionViewModel: ObservableObject {
             }
             
             // save to local
-            LocalFileManager.instance.saveData(item: unenrolled, id: membershipNumber, folderName: "UnenrolledPromotions")
+            LocalFileManager.instance.saveData(item: promotions, id: membershipNumber, folderName: "Promotions")
             
         } catch {
             throw error
@@ -155,9 +154,12 @@ class PromotionViewModel: ObservableObject {
         
         if unenrolledPromotions.isEmpty {
             // load from local cache
-            if let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "UnenrolledPromotions") {
+            if let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
+                let unenrolled = cached.filter { result in
+                    return (result.memberEligibilityCategory == "EligibleButNotEnrolled" && result.promotionEnrollmentRqr == true)
+                }
                 await MainActor.run {
-                    unenrolledPromotions = cached
+                    unenrolledPromotions = unenrolled
                 }
             } else {
                 do {

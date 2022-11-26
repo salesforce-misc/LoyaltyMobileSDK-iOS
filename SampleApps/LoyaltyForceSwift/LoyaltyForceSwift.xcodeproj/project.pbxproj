@@ -51,6 +51,7 @@
 		291CC0B828D5260A00C08572 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0B728D5260A00C08572 /* Record.swift */; };
 		291CC0BB28D526A600C08572 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0BA28D526A600C08572 /* Address.swift */; };
 		291CC0BD28D53A0000C08572 /* LoyaltyQueryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291CC0BC28D53A0000C08572 /* LoyaltyQueryModels.swift */; };
+		29367606293209CB00E09A6D /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29367605293209CB00E09A6D /* CachedAsyncImage.swift */; };
 		2938C60228CE84B900F495AF /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938C60128CE84B900F495AF /* Keychain.swift */; };
 		2938C60428CE852D00F495AF /* ForceAuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938C60328CE852D00F495AF /* ForceAuthStore.swift */; };
 		2938C60628CFCBB200F495AF /* WebAuthenticationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938C60528CFCBB200F495AF /* WebAuthenticationSession.swift */; };
@@ -176,6 +177,7 @@
 		291CC0B728D5260A00C08572 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		291CC0BA28D526A600C08572 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		291CC0BC28D53A0000C08572 /* LoyaltyQueryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyQueryModels.swift; sourceTree = "<group>"; };
+		29367605293209CB00E09A6D /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		2938C60128CE84B900F495AF /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		2938C60328CE852D00F495AF /* ForceAuthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceAuthStore.swift; sourceTree = "<group>"; };
 		2938C60528CFCBB200F495AF /* WebAuthenticationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSession.swift; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 				2906B1DA28FF7348006EAB2D /* CheckboxStyle.swift */,
 				29053F7C2907452800F84561 /* Assets.swift */,
 				290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */,
+				29367605293209CB00E09A6D /* CachedAsyncImage.swift */,
 				29D7497B2931D10100BC81AD /* AsyncImageView.swift */,
 			);
 			path = UICompnents;
@@ -639,6 +642,7 @@
 				299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */,
 				29BAF6F628F5DEC100A3F9EB /* LoyaltyUtilities.swift in Sources */,
 				299B38D228E510DD00E45D97 /* DateFormatter.swift in Sources */,
+				29367606293209CB00E09A6D /* CachedAsyncImage.swift in Sources */,
 				29AC2F0928F8B724003F56F6 /* AllBadgesView.swift in Sources */,
 				29BAF6E728F4BE5A00A3F9EB /* AllVouchersView.swift in Sources */,
 				218A36AA28B85CA500FCEE39 /* BottomNavTabsView.swift in Sources */,

@@ -33,9 +33,9 @@ struct AsyncImageView: View {
                         }
                     }
                 default:
-                    Image("img-placeholder")
-                        .resizable()
-                        .scaledToFill()
+                    ZStack {
+                        ProgressView()
+                    }
                         
             }
         }
