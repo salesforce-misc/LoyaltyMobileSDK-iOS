@@ -38,7 +38,6 @@
 		2906B1F32901E218006EAB2D /* Promotions.json in Resources */ = {isa = PBXBuildFile; fileRef = 2906B1F22901E218006EAB2D /* Promotions.json */; };
 		2906B1F52901E308006EAB2D /* Transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = 2906B1F42901E308006EAB2D /* Transactions.json */; };
 		2906B1F72901E3EB006EAB2D /* Benefits.json in Resources */ = {isa = PBXBuildFile; fileRef = 2906B1F62901E3EA006EAB2D /* Benefits.json */; };
-		290EA9B5291F3B5200BBF2F2 /* PromotionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9B4291F3B5200BBF2F2 /* PromotionDetailView.swift */; };
 		290EA9B72923178C00BBF2F2 /* LoyaltyOutputModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9B62923178C00BBF2F2 /* LoyaltyOutputModel.swift */; };
 		290EA9B92926F1A700BBF2F2 /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 290EA9B82926F1A700BBF2F2 /* Profile.json */; };
 		290EA9BD2928ADB700BBF2F2 /* ViewAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */; };
@@ -128,6 +127,7 @@
 		29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */; };
 		29BAF70228F78FA400A3F9EB /* AllTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */; };
 		29D74978292E960B00BC81AD /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D74977292E960B00BC81AD /* String+Date.swift */; };
+		29D7497C2931D10100BC81AD /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D7497B2931D10100BC81AD /* AsyncImageView.swift */; };
 		29E6601A2915C5A20056CF9D /* Expiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E660192915C5A20056CF9D /* Expiry.swift */; };
 		29E6601C2915C5F80056CF9D /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E6601B2915C5F80056CF9D /* Date+Extensions.swift */; };
 		29E6601E2915C6260056CF9D /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E6601D2915C6260056CF9D /* Entry.swift */; };
@@ -163,7 +163,6 @@
 		2906B1F22901E218006EAB2D /* Promotions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Promotions.json; sourceTree = "<group>"; };
 		2906B1F42901E308006EAB2D /* Transactions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Transactions.json; sourceTree = "<group>"; };
 		2906B1F62901E3EA006EAB2D /* Benefits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Benefits.json; sourceTree = "<group>"; };
-		290EA9B4291F3B5200BBF2F2 /* PromotionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionDetailView.swift; sourceTree = "<group>"; };
 		290EA9B62923178C00BBF2F2 /* LoyaltyOutputModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyOutputModel.swift; sourceTree = "<group>"; };
 		290EA9B82926F1A700BBF2F2 /* Profile.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Profile.json; sourceTree = "<group>"; };
 		290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllView.swift; sourceTree = "<group>"; };
@@ -254,6 +253,7 @@
 		29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsView.swift; sourceTree = "<group>"; };
 		29D74977292E960B00BC81AD /* String+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Date.swift"; sourceTree = "<group>"; };
+		29D7497B2931D10100BC81AD /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		29E660192915C5A20056CF9D /* Expiry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expiry.swift; sourceTree = "<group>"; };
 		29E6601B2915C5F80056CF9D /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		29E6601D2915C6260056CF9D /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
@@ -366,7 +366,6 @@
 				29BAF6D428F14E4400A3F9EB /* PromotionCardView.swift */,
 				29BAF6CA28F0DB9200A3F9EB /* OffersCarouselView.swift */,
 				29BAF6D228F103B500A3F9EB /* PromotionCarouselView.swift */,
-				290EA9B4291F3B5200BBF2F2 /* PromotionDetailView.swift */,
 				29BAF6D628F15CF300A3F9EB /* RedeemCardView.swift */,
 				29BAF6D828F1642000A3F9EB /* RedeemPointsView.swift */,
 				29AC2F0428F8B6E6003F56F6 /* AllRedeemPointsView.swift */,
@@ -471,6 +470,7 @@
 				2906B1DA28FF7348006EAB2D /* CheckboxStyle.swift */,
 				29053F7C2907452800F84561 /* Assets.swift */,
 				290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */,
+				29D7497B2931D10100BC81AD /* AsyncImageView.swift */,
 			);
 			path = UICompnents;
 			sourceTree = "<group>";
@@ -681,7 +681,6 @@
 				2906B1EB2901DD21006EAB2D /* TransactionModel.swift in Sources */,
 				298613D428CC085D00BDC744 /* ForceAuthManager.swift in Sources */,
 				218A36AE28B85D6000FCEE39 /* FavoriteView.swift in Sources */,
-				290EA9B5291F3B5200BBF2F2 /* PromotionDetailView.swift in Sources */,
 				298613CE28CBC10300BDC744 /* ProfileModel.swift in Sources */,
 				2986139A28C14C0100BDC744 /* ForceClient.swift in Sources */,
 				299B38E428EE040900E45D97 /* UIApplication+DismissKeyboard.swift in Sources */,
@@ -723,6 +722,7 @@
 				29053F7D2907452800F84561 /* Assets.swift in Sources */,
 				29AC2F0728F8B70D003F56F6 /* AllBenefitsView.swift in Sources */,
 				296D393A28DD022A0078C88E /* ForceClient+SOSL.swift in Sources */,
+				29D7497C2931D10100BC81AD /* AsyncImageView.swift in Sources */,
 				218A36AC28B85D5500FCEE39 /* MyPromotionsView.swift in Sources */,
 				29BAF6FE28F63A5800A3F9EB /* RewardPointsCardView.swift in Sources */,
 				2986139D28C15E9500BDC744 /* ForceError.swift in Sources */,

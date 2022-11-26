@@ -10,14 +10,16 @@ import SwiftUI
 struct VoucherDetailView: View {
     
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var voucherVM: VoucherViewModel
+    let voucher: VoucherModel
+    
     var body: some View {
         ZStack {
             Color.white
             
             VStack(alignment: .leading) {
-                Image("voucher2")
-                    .resizable()
-                    .scaledToFill()
+                
+                AsyncImageView(imageUrl: voucher.image)
                     .frame(height: 220)
                     .clipped()
                     .overlay(alignment: .topTrailing) {
@@ -29,18 +31,21 @@ struct VoucherDetailView: View {
                     }
                 
                 VStack(alignment: .leading, spacing: 20) {
-                    Text("$50 Off at Nike")
+                    Text(voucher.name)
                         .font(.voucherTitle)
 
                     VStack(alignment: .leading, spacing: 5) {
-                        Text("Type: **Online stores**")
-                        Text("Value: **$11**")
-                        Text("Expiring on **05 Jan 2023**")
+//                        Text("Type: **Online stores**")
+//                        Text("Value: **$11**")
+                        if let voucherValue = voucher.getVoucherValue() {
+                            voucherValue
+                        }
+                        Text("Expiring on **\(voucher.expirationDate)**")
                         Text("Voucher Code:")
                     }
                     .font(.voucherText)
                     
-                    let QRCodeImageData = LoyaltyUtilities.getQRCodeData(text: "84KFFFS") ?? Data.init()
+                    let QRCodeImageData = LoyaltyUtilities.getQRCodeData(text: voucher.code) ?? Data.init()
                     let QRCodeImage = UIImage(data: QRCodeImageData) ?? UIImage(systemName: "xmark.octagon.fill") ?? UIImage()
                     
                     HStack {
@@ -53,7 +58,7 @@ struct VoucherDetailView: View {
 
                     HStack {
                         Spacer()
-                        Text("84KFFFS")
+                        Text(voucher.code)
                             .font(.profileSubtitle)
                             .foregroundColor(Color.theme.voucherCode)
                             .frame(width: 145.8, height: 32)
@@ -96,6 +101,7 @@ struct VoucherDetailView: View {
 
 struct VoucherDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        VoucherDetailView()
+        VoucherDetailView(voucher: dev.voucher1)
+            .environmentObject(dev.voucherVM)
     }
 }

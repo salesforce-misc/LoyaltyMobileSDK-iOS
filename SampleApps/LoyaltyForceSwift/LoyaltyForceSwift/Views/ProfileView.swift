@@ -30,7 +30,7 @@ struct ProfileView: View {
                             TransactionsView()
                             VouchersView()
                             BenefitView()
-                            BadgesView()
+                            //BadgesView()
                             Rectangle()
                                 .frame(height: 400)
                                 .foregroundColor(Color.theme.background)

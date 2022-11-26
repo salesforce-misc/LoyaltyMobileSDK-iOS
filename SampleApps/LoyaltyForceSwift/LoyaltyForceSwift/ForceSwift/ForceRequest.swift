@@ -60,6 +60,8 @@ public struct ForceRequest {
         return request
     }
     
+    // create a URLRequest with URL
+    // if secured, it will attach an accesstoken for salseforce request, the default is false
     static func create(
         url: URL,
         method: String? = nil,
@@ -67,7 +69,8 @@ public struct ForceRequest {
         headers: [String: String]? = nil,
         body: Data? = nil,
         cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
-        timeoutInterval: TimeInterval = 60.0
+        timeoutInterval: TimeInterval = 60.0,
+        secured: Bool = false
     ) throws -> URLRequest {
         
         var requestURL = url
@@ -75,7 +78,13 @@ public struct ForceRequest {
             requestURL = try transform(from: url, add: queryItems)
         }
         
-        return createRequest(from: requestURL, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
+        var request = createRequest(from: requestURL, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
+        
+        if secured {
+            request.setValue("Bearer \(ForceAuthManager.shared.getAuth()?.accessToken ?? "")", forHTTPHeaderField: "Authorization")
+        }
+        
+        return request
     }
     
     static func transform(from url: URL, add queryItems: [String: String]) throws -> URL {

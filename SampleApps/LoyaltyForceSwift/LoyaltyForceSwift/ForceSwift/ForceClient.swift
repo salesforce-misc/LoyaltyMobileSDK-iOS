@@ -6,7 +6,8 @@
 //
 
 import Foundation
-import Combine
+//import Combine
+import UIKit
   
 public class ForceClient {
     
@@ -91,6 +92,31 @@ public class ForceClient {
         } catch {
             throw error
         }
+    }
+    
+    public func fetchImage(url: String) async throws -> UIImage? {
+        do {
+            guard let imageUrl = URL(string: url) else {
+                throw URLError(.badURL)
+            }
+            let request = try ForceRequest.create(url: imageUrl, method: "GET", secured: true)
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            return handleImageResponse(data: data, response: response)
+        } catch {
+            throw error
+        }
+    }
+    
+    private func handleImageResponse(data: Data?, response: URLResponse?) -> UIImage? {
+        guard
+            let data = data,
+            let image = UIImage(data: data),
+            let response = response as? HTTPURLResponse,
+            response.statusCode >= 200 && response.statusCode < 300 else {
+                return nil
+            }
+        return image
     }
 
 }

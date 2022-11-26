@@ -19,8 +19,6 @@ struct MyPromotionDetailView: View {
     
     var body: some View {
         
-        //let promotion = promotionVM.promotions[currentIndex]
-        
         ZStack {
             Color.white
             

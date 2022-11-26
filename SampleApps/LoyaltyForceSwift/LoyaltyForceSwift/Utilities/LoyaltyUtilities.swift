@@ -46,6 +46,34 @@ struct LoyaltyUtilities {
         }
         return nil
     }
+    
+    /*
+     Input:
+     <p><img src=\"https://internalmobileteam-dev-ed.develop.file.force.com/servlet/rtaImage?eid=0kD4x000000wr6E&amp;feoid=00N4x00000YBPaQ&amp;refid=0EM4x00000443bE\" alt=\"Birthday.jpeg\"></img></p>
+     
+     Output:
+     https://internalmobileteam-dev-ed.develop.file.force.com/servlet/rtaImage?eid=0kD4x000000wr6E&feoid=00N4x00000YBPaQ&refid=0EM4x00000443bE
+     */
+    static func getImageUrl(image: String?) -> String {
+        
+        guard let image = image else {
+            return ""
+        }
+        
+        let filteredArray = image.split(separator: " ").filter { item in
+            item.contains("src")
+        }
+        
+        if filteredArray.isEmpty {
+            return ""
+        } else {
+            let srcString = filteredArray[0]
+            let start = srcString.firstIndex(of: "h")!
+            let imageUrl = String(srcString[start...])
+            return String(imageUrl.dropLast()).replacingOccurrences(of: "&amp;", with: "&")
+        }
+        
+    }
 
 }
 

@@ -13,8 +13,6 @@ struct PromotionCarouselView: View {
     @EnvironmentObject private var promotionVM: PromotionViewModel
     
     @Binding var selectedTab: Tab
-    @State var showPromotionDetailView = false
-
     @State var currentIndex: Int = 0
         
     var body: some View {
@@ -36,13 +34,6 @@ struct PromotionCarouselView: View {
             
             Carousel(index: $currentIndex, items: promotionVM.promotions) { promotion in
                 PromotionCardView(promotion: promotion)
-                    .onTapGesture {
-                        showPromotionDetailView.toggle()
-                    }
-                    .sheet(isPresented: $showPromotionDetailView) {
-                        PromotionDetailView(currentIndex: $currentIndex)
-                            .environmentObject(promotionVM)
-                    }
             }
 
             HStack(spacing: 8){

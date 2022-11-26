@@ -17,6 +17,7 @@ struct LoyaltyStarterApp: App {
     @StateObject var profileVM = ProfileViewModel()
     @StateObject var promotionVM = PromotionViewModel()
     @StateObject var transactionVM = TransactionViewModel()
+    @StateObject var voucherVM = VoucherViewModel()
 
     init(){
         FirebaseApp.configure()
@@ -30,6 +31,7 @@ struct LoyaltyStarterApp: App {
                 .environmentObject(profileVM)
                 .environmentObject(promotionVM)
                 .environmentObject(transactionVM)
+                .environmentObject(voucherVM)
         }
     }
 }

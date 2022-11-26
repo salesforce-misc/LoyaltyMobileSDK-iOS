@@ -110,10 +110,33 @@ class DeveloperPreview {
                              activity: "Redemption")
     ]
     
+    let voucher1 = VoucherModel(id: "000001",
+                           name: "Birthday Discount Voucher",
+                           description: nil,
+                           type: "DiscountPercentage",
+                           faceValue: nil,
+                           discountPercent: 20,
+                           code: "84KFFFS",
+                           expirationDate: "05 Jan 2023",
+                           image: "https://picsum.photos/800",
+                           status: "Issued")
+    
+    let voucher2 = VoucherModel(id: "000002",
+                           name: "Christmas Discount Voucher",
+                           description: nil,
+                           type: "FixedValue",
+                           faceValue: 100,
+                           discountPercent: nil,
+                           code: "XMAS2022",
+                           expirationDate: "31 Dec 2023",
+                           image: "https://picsum.photos/800",
+                           status: "Issued")
+    
     let rootVM = AppRootViewModel()
     let benefitVM = BenefitViewModel()
     let promotionVM = PromotionViewModel()
     let profileVM = ProfileViewModel()
+    let voucherVM = VoucherViewModel()
     
     private init() {
         setMember(member: member)

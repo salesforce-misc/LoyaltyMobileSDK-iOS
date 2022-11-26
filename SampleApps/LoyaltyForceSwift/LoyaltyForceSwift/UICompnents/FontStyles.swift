@@ -127,6 +127,10 @@ extension Font {
         return Font.custom("SFPro-Regular", size: 14)
     }
     
+    static var voucherButtonText: Font {
+        return Font.custom("SFPro-Bold", size: 14)
+    }
+    
     /// Redeem Card
     static var redeemTitle: Font {
         return Font.custom("SFPro-Medium", size: 14)

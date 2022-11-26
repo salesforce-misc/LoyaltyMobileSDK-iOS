@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PromotionCardView: View {
 
+    @State var showPromotionDetailView = false
     let promotion: PromotionResult
     
     var body: some View {
@@ -63,9 +64,14 @@ struct PromotionCardView: View {
                     y: 0
                  )
         )
+        .onTapGesture {
+            showPromotionDetailView.toggle()
+        }
+        .sheet(isPresented: $showPromotionDetailView) {
+            MyPromotionDetailView(promotion: promotion)
+        }
         .padding()
             
-        
     }
 }
 

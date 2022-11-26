@@ -7,6 +7,7 @@
 // https://salesforce.quip.com/3NUAATucFfLU#temp:C:aJadb5bff3175a74eba9461c7d9a
 
 import Foundation
+import UIKit
 
 public class LoyaltyAPIManager {
     
@@ -268,10 +269,14 @@ public class LoyaltyAPIManager {
     }
     
     /// Use public func SOQL(for query: String) async throws -> QueryResult<Record>
-    public func getVoucherRecords(membershipNumber: String) async throws -> [Record] {
+    public func getVoucherRecords(membershipNumber: String, devMode: Bool = false) async throws -> [LoyaltyQueryModels.Voucher] {
         do {
-            let query = "SELECT VoucherDefinition.Name, Voucher.Image__c, VoucherDefinition.Description, VoucherCode, ExpirationDate, VoucherNumber, Status from Voucher where LoyaltyProgramMember.MembershipNumber = '\(membershipNumber)'"
-            let queryResult = try await ForceClient.shared.SOQL(for: query)
+            if devMode {
+                let result = try ForceClient.shared.fetchLocalJson(type: LoyaltyQueryModels.VoucherRecode.self, file: "Vouchers")
+                return result.records
+            }
+            let query = "SELECT VoucherDefinition.Name, Voucher.Image__c, VoucherDefinition.Description, VoucherDefinition.Type, VoucherDefinition.FaceValue, VoucherDefinition.DiscountPercent, VoucherCode, ExpirationDate, Id, Status FROM Voucher WHERE LoyaltyProgramMember.MembershipNumber = '\(membershipNumber)'"
+            let queryResult = try await ForceClient.shared.SOQL(type: LoyaltyQueryModels.Voucher.self, for: query)
             return queryResult.records
         } catch {
             throw error

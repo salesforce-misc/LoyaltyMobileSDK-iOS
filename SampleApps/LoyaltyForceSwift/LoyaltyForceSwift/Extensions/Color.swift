@@ -68,6 +68,10 @@ struct ColorTheme {
     let progressBarBackground = Color("ProgressBarBackgroundColor")
     let tierPoints = Color("TierPointsColor")
     let lightBlackText = Color("TextLightBlackColor") // #231F20
+    let redeemedButtonText = Color("TextRedeemButtonColor") // #8C4B02
+    let redeemedButtonBackground = Color("RedeemedBackgroundColor") // #FBF3E0
+    let expiredButtonText = Color("TextExpiredButtonColor") // #5C5C5C
+    let expiredBackgroundText = Color("ExpiredBackgroundColor") // #E5E5E5
     
 }
 

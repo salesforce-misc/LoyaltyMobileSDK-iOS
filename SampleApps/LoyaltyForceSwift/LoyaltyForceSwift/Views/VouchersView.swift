@@ -9,25 +9,26 @@ import SwiftUI
 
 struct VouchersView: View {
     
-    @State var showVoucherDetailView = false
+    @EnvironmentObject private var rootVM: AppRootViewModel
+    @EnvironmentObject private var voucherVM: VoucherViewModel
     
     var body: some View {
         
         ViewAllView(title: "My Vouchers") {
             AllVouchersView()
         } content: {
-            HStack {
-                Spacer()
-                VoucherCardView()
-                    .onTapGesture {
-                        showVoucherDetailView.toggle()
-                    }
-                    .sheet(isPresented: $showVoucherDetailView) {
-                        VoucherDetailView()
-                    }
-                Spacer()
-                VoucherCardView2()
-                Spacer()
+            HStack(spacing: 15) {
+                ForEach(voucherVM.vouchers) { voucher in
+                    VoucherCardView(voucher: voucher)
+                }
+                
+            }
+            .task {
+                do {
+                    try await voucherVM.loadVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                } catch {
+                    print("Load Vouchers Error: \(error)")
+                }
             }
         }
         .frame(height: 320)
@@ -38,5 +39,7 @@ struct VouchersView: View {
 struct VouchersView_Previews: PreviewProvider {
     static var previews: some View {
         VouchersView()
+            .environmentObject(dev.rootVM)
+            .environmentObject(dev.voucherVM)
     }
 }
