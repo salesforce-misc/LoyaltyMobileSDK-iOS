@@ -10,8 +10,7 @@ import SwiftUI
 struct BenefitView: View {
     
     @EnvironmentObject private var rootVM: AppRootViewModel
-    @StateObject private var benefitVM = BenefitViewModel()
-    //private let memberId: String = "0lM4x000000LECA"
+    @EnvironmentObject private var benefitVM: BenefitViewModel
     
     var body: some View {
         
@@ -21,7 +20,6 @@ struct BenefitView: View {
             
             ViewAllView(title: "My Benefits") {
                 AllBenefitsView()
-                    .environmentObject(benefitVM)
             } content: {
                 ForEach(benefits) { benefit in
                     HStack {

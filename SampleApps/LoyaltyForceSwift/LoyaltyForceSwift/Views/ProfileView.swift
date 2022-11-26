@@ -12,6 +12,8 @@ struct ProfileView: View {
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var profileVM: ProfileViewModel
     @EnvironmentObject private var transactionVM: TransactionViewModel
+    @EnvironmentObject private var voucherVM: VoucherViewModel
+    @EnvironmentObject private var benefitVM: BenefitViewModel
     
     @State var loadRewardPointCardView: Bool = false
 
@@ -43,12 +45,39 @@ struct ProfileView: View {
                     
                 }
                 .refreshable {
-                    print("Refresh content...")
-                    do {
-                        try await profileVM.fetchProfile(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
-                    } catch {
-                        print("Reload profile Error: \(error)")
+                    print("Refresh profile view...")
+                    Task {
+                        do {
+                            try await profileVM.fetchProfile(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
+                        } catch {
+                            print("Reload Profile Error: \(error)")
+                        }
                     }
+                    
+                    Task {
+                        do {
+                            try await transactionVM.reloadTransactions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                        } catch {
+                            print("Reload Transactions Error: \(error)")
+                        }
+                    }
+                    
+                    Task {
+                        do {
+                            try await voucherVM.reloadVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                        } catch {
+                            print("Reload Vouchers Error: \(error)")
+                        }
+                    }
+                    
+                    Task {
+                        do {
+                            try await benefitVM.getBenefits(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "", reload: true)
+                        } catch {
+                            print("Reload Benefits Error: \(error)")
+                        }
+                    }
+                    
                     
                 }
                 .offset(y: 40)

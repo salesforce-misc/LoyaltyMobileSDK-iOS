@@ -14,56 +14,64 @@ class PromotionViewModel: ObservableObject {
     @Published var unenrolledPromotions: [PromotionResult] = []
     @Published var activePromotions: [PromotionResult] = []
     
-    @MainActor
-    func loadPromotions(membershipNumber: String) async throws {
-        
-        if promotions.isEmpty {
-            // load from local cache
-            if let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
-                promotions = Array(cached.prefix(5))
-            } else {
-                do {
-                    let result = try await LoyaltyAPIManager.shared.getPromotions(membershipNumber: membershipNumber)
-                    let allEligible = result.outputParameters.outputParameters.results.filter { result in
-                        return result.memberEligibilityCategory != "Ineligible"
-                    }
-                    // get max of 5 promotions for home page carousel
-                    promotions = Array(allEligible.prefix(5))
-                    
-                    // save to local
-                    LocalFileManager.instance.saveData(item: allEligible, id: membershipNumber, folderName: "Promotions")
-                } catch {
-                    throw error
-                }
-                
-            }
-        }
-        
-    }
     
-    private func fetchPromotions(membershipNumber: String) async throws -> [PromotionResult] {
+    // Network call to fetch all eligible promotions
+    private func fetchEligiblePromotions(membershipNumber: String) async throws -> [PromotionResult] {
         do {
             let result = try await LoyaltyAPIManager.shared.getPromotions(membershipNumber: membershipNumber)
-            return result.outputParameters.outputParameters.results
+            let eligible = result.outputParameters.outputParameters.results.filter { result in
+                return result.memberEligibilityCategory != "Ineligible"
+            }
+            // save to local
+            LocalFileManager.instance.saveData(item: eligible, id: membershipNumber, folderName: "Promotions")
+            
+            return eligible
         } catch {
             throw error
         }
     }
     
+    func fetchCarouselPromotions(membershipNumber: String) async throws {
+        do {
+            let eligible = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
+            
+            await MainActor.run {
+                // get max of 5 promotions for home page carousel
+                promotions = Array(eligible.prefix(5))
+            }
+        } catch {
+            throw error
+        }
+    }
+    
+    func loadCarouselPromotions(membershipNumber: String) async throws {
+        
+        if promotions.isEmpty {
+            // load from local cache
+            if let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
+                await MainActor.run {
+                    promotions = Array(cached.prefix(5))
+                }
+                
+            } else {
+                do {
+                    try await fetchCarouselPromotions(membershipNumber: membershipNumber)
+                } catch {
+                    throw error
+                }
+            }
+        }
+        
+    }
+    
     // fetch all promotions from salesforce
     func fetchAllPromotions(membershipNumber: String) async throws {
         do {
-            let promotions = try await fetchPromotions(membershipNumber: membershipNumber)
-            let allEligible = promotions.filter { result in
-                return result.memberEligibilityCategory != "Ineligible"
-            }
+            let allEligible = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
             
             await MainActor.run {
                 allEligiblePromotions = allEligible
             }
-            
-            // save to local
-            LocalFileManager.instance.saveData(item: allEligible, id: membershipNumber, folderName: "Promotions")
             
         } catch {
             throw error
@@ -92,7 +100,7 @@ class PromotionViewModel: ObservableObject {
     // fetch active promotions from salesforce
     func fetchActivePromotions(membershipNumber: String) async throws {
         do {
-            let promotions = try await fetchPromotions(membershipNumber: membershipNumber)
+            let promotions = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
             let active = promotions.filter { result in
                 return (result.memberEligibilityCategory == "Eligible" || result.promotionEnrollmentRqr == false)
             }
@@ -100,9 +108,6 @@ class PromotionViewModel: ObservableObject {
             await MainActor.run {
                 activePromotions = active
             }
-            
-            // save to local
-            LocalFileManager.instance.saveData(item: promotions, id: membershipNumber, folderName: "Promotions")
             
         } catch {
             throw error
@@ -133,7 +138,7 @@ class PromotionViewModel: ObservableObject {
     
     func fetchUnenrolledPromotions(membershipNumber: String) async throws {
         do {
-            let promotions = try await fetchPromotions(membershipNumber: membershipNumber)
+            let promotions = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
             let unenrolled = promotions.filter { result in
                 return (result.memberEligibilityCategory == "EligibleButNotEnrolled" && result.promotionEnrollmentRqr == true)
             }
@@ -141,9 +146,6 @@ class PromotionViewModel: ObservableObject {
             await MainActor.run {
                 unenrolledPromotions = unenrolled
             }
-            
-            // save to local
-            LocalFileManager.instance.saveData(item: promotions, id: membershipNumber, folderName: "Promotions")
             
         } catch {
             throw error

@@ -14,6 +14,7 @@ struct LoyaltyStarterApp: App {
 
     @StateObject var appViewRouter = AppViewRouter()
     @StateObject var appRootVM = AppRootViewModel()
+    @StateObject var benefitVM = BenefitViewModel()
     @StateObject var profileVM = ProfileViewModel()
     @StateObject var promotionVM = PromotionViewModel()
     @StateObject var transactionVM = TransactionViewModel()
@@ -28,6 +29,7 @@ struct LoyaltyStarterApp: App {
             AppRootView()
                 .environmentObject(appViewRouter)
                 .environmentObject(appRootVM)
+                .environmentObject(benefitVM)
                 .environmentObject(profileVM)
                 .environmentObject(promotionVM)
                 .environmentObject(transactionVM)

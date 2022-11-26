@@ -11,6 +11,8 @@ struct HomeView: View {
     
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var profileVM: ProfileViewModel
+    @EnvironmentObject private var promotionVM: PromotionViewModel
+    @EnvironmentObject private var voucherVM: VoucherViewModel
     @Binding var selectedTab: Tab
     
     var body: some View {
@@ -81,11 +83,30 @@ struct HomeView: View {
                 }
                 .refreshable {
                     print("Reloading home...")
-                    do {
-                        try await profileVM.fetchProfile(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
-                    } catch {
-                        print("Reload profile Error: \(error)")
+                    Task {
+                        do {
+                            try await profileVM.fetchProfile(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
+                        } catch {
+                            print("Reload Profile Error: \(error)")
+                        }
                     }
+                    
+                    Task {
+                        do {
+                            try await promotionVM.fetchCarouselPromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                        } catch {
+                            print("Reload Promotions Error: \(error)")
+                        }
+                    }
+                    
+                    Task {
+                        do {
+                            try await voucherVM.reloadVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                        } catch {
+                            print("Reload Vouchers Error: \(error)")
+                        }
+                    }
+                    
                 }
                 
             }
