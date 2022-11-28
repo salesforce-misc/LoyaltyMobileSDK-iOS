@@ -17,7 +17,7 @@ struct VouchersView: View {
         ViewAllView(title: "My Vouchers") {
             AllVouchersView()
         } content: {
-            HStack(spacing: 15) {
+            HStack(spacing: 20) {
                 ForEach(voucherVM.vouchers) { voucher in
                     VoucherCardView(voucher: voucher)
                 }

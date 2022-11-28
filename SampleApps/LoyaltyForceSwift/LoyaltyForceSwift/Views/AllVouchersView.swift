@@ -14,8 +14,8 @@ struct AllVouchersView: View {
     @State var tabSelected: Int = 0
     let barItems = ["Available", "Redeemed", "Expired"]
     let columns = [
-        GridItem(.fixed(175)),
-        GridItem(.fixed(175))
+        GridItem(.fixed(180)),
+        GridItem(.fixed(180))
     ]
     
     var body: some View {

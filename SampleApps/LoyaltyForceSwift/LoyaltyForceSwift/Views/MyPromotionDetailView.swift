@@ -12,18 +12,19 @@ struct MyPromotionDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
-    //@Binding var currentIndex: Int
     @State private var processing = false
     
     let promotion: PromotionResult
     
     var body: some View {
         
+        let currentPromotion: PromotionResult = promotionVM.promotionList[promotion.id] ?? promotion
+        
         ZStack {
             Color.white
             
             VStack(alignment: .leading) {
-                Image(promotion.imageName ?? "img-placeholder")
+                Image(currentPromotion.imageName ?? "img-placeholder")
                     .resizable()
                     .scaledToFill()
                     .frame(height: 220)
@@ -37,17 +38,17 @@ struct MyPromotionDetailView: View {
                     }
                 
                 VStack(alignment: .leading, spacing: 20) {
-                    Text(promotion.promotionName)
+                    Text(currentPromotion.promotionName)
                         .font(.voucherTitle)
 
-                    if let desc = promotion.description {
+                    if let desc = currentPromotion.description {
                         Text("**Details**\n\(desc)")
                             .font(.voucherText)
                             .foregroundColor(Color.theme.superLightText)
                             .lineSpacing(5)
                     }
                     
-                    if let endDate = promotion.endDate {
+                    if let endDate = currentPromotion.endDate {
                         Text("Expiring on **\(endDate)**")
                             .font(.voucherText)
                             .foregroundColor(Color.theme.superLightText)
@@ -58,7 +59,7 @@ struct MyPromotionDetailView: View {
 //                        .foregroundColor(Color.theme.superLightText)
 //                        .lineSpacing(5)
                     Spacer()
-                    if promotion.memberEligibilityCategory == "EligibleButNotEnrolled" {
+                    if currentPromotion.memberEligibilityCategory == "EligibleButNotEnrolled" {
                         HStack {
                             Spacer()
                             Button("Enroll") {
@@ -67,7 +68,7 @@ struct MyPromotionDetailView: View {
                                 Task {
                                     do {
                                         try await promotionVM.enroll(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "",
-                                                           promotionName: promotion.promotionName)
+                                                           promotionName: currentPromotion.promotionName)
                                         processing = false
                                     } catch {
                                         print("Enroll in Promotion Error: \(error)")
@@ -82,7 +83,7 @@ struct MyPromotionDetailView: View {
                             
                             Spacer()
                         }
-                    } else if promotion.memberEligibilityCategory == "Eligible" && promotion.promotionEnrollmentRqr == true {
+                    } else if currentPromotion.memberEligibilityCategory == "Eligible" && currentPromotion.promotionEnrollmentRqr == true {
                         HStack {
                             Spacer()
                             Button("Unenroll") {
@@ -91,7 +92,7 @@ struct MyPromotionDetailView: View {
                                 Task {
                                     do {
                                         try await promotionVM.unenroll(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "",
-                                                           promotionName: promotion.promotionName)
+                                                           promotionName: currentPromotion.promotionName)
                                         processing = false
                                     } catch {
                                         print("Unenroll in Promotion Error: \(error)")

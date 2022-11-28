@@ -13,7 +13,7 @@ class PromotionViewModel: ObservableObject {
     @Published var promotions: [PromotionResult] = []
     @Published var unenrolledPromotions: [PromotionResult] = []
     @Published var activePromotions: [PromotionResult] = []
-    
+    @Published var promotionList: [String: PromotionResult] = [:]
     
     // Network call to fetch all eligible promotions
     private func fetchEligiblePromotions(membershipNumber: String) async throws -> [PromotionResult] {
@@ -25,6 +25,11 @@ class PromotionViewModel: ObservableObject {
             // save to local
             LocalFileManager.instance.saveData(item: eligible, id: membershipNumber, folderName: "Promotions")
             
+            await MainActor.run {
+                // update promotion list
+                promotionList = Dictionary(uniqueKeysWithValues: eligible.map{ ($0.id, $0) })
+            }
+
             return eligible
         } catch {
             throw error
@@ -177,7 +182,15 @@ class PromotionViewModel: ObservableObject {
     func enroll(membershipNumber: String, promotionName: String) async throws {
         do {
             try await LoyaltyAPIManager.shared.enrollIn(promotion: promotionName, for: membershipNumber)
-            //try await getPromotions(membershipNumber: membershipNumber)
+            // fetch all from network
+            let _ = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
+            // update unenrolled and active
+            await MainActor.run {
+                unenrolledPromotions = []
+                activePromotions = []
+            }
+            try await loadUnenrolledPromotions(membershipNumber: membershipNumber)
+            try await loadActivePromotions(membershipNumber: membershipNumber)
         } catch {
             throw error
         }
@@ -186,7 +199,14 @@ class PromotionViewModel: ObservableObject {
     func unenroll(membershipNumber: String, promotionName: String) async throws {
         do {
             try await LoyaltyAPIManager.shared.unenrollIn(promotion: promotionName, for: membershipNumber)
-            //try await getPromotions(membershipNumber: membershipNumber)
+            let _ = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
+            // update active and unenrolled
+            await MainActor.run {
+                activePromotions = []
+                unenrolledPromotions = []
+            }
+            try await loadActivePromotions(membershipNumber: membershipNumber)
+            try await loadUnenrolledPromotions(membershipNumber: membershipNumber)
         } catch {
             throw error
         }
