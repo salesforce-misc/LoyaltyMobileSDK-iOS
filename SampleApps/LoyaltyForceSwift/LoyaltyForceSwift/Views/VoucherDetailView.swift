@@ -35,48 +35,49 @@ struct VoucherDetailView: View {
                         .font(.voucherTitle)
 
                     VStack(alignment: .leading, spacing: 5) {
-//                        Text("Type: **Online stores**")
-//                        Text("Value: **$11**")
                         if let voucherValue = voucher.getVoucherValue() {
                             voucherValue
                         }
                         Text("Expiring on **\(voucher.expirationDate)**")
-                        Text("Voucher Code:")
                     }
                     .font(.voucherText)
                     
-                    let QRCodeImageData = LoyaltyUtilities.getQRCodeData(text: voucher.code) ?? Data.init()
-                    let QRCodeImage = UIImage(data: QRCodeImageData) ?? UIImage(systemName: "xmark.octagon.fill") ?? UIImage()
+                    if let voucherCode = voucher.code {
+                        let QRCodeImageData = LoyaltyUtilities.getQRCodeData(text: voucherCode) ?? Data.init()
+                        let QRCodeImage = UIImage(data: QRCodeImageData) ?? UIImage(systemName: "xmark.octagon.fill") ?? UIImage()
+                        
+                        HStack {
+                            Spacer()
+                            Image(uiImage: QRCodeImage)
+                                .resizable()
+                                .frame(width: 110, height: 110)
+                            Spacer()
+                        }
+
+                        HStack {
+                            Spacer()
+                            Text(voucherCode)
+                                .font(.profileSubtitle)
+                                .foregroundColor(Color.theme.voucherCode)
+                                .frame(width: 145.8, height: 32)
+                                .background(Color.theme.voucherBackground)
+                                .cornerRadius(10)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(style: StrokeStyle(lineWidth: 1, dash: [2.0]))
+                                        .foregroundColor(Color.theme.voucherBorder)
+                                )
+                                .padding(.top, 6)
+                            Spacer()
+                        }
+                    }
                     
-                    HStack {
-                        Spacer()
-                        Image(uiImage: QRCodeImage)
-                            .resizable()
-                            .frame(width: 110, height: 110)
-                        Spacer()
+                    if let details = voucher.description {
+                        Text("**Details**\n\(details)")
+                            .font(.voucherText)
+                            .foregroundColor(Color.theme.superLightText)
+                            .lineSpacing(5)
                     }
-
-                    HStack {
-                        Spacer()
-                        Text(voucher.code)
-                            .font(.profileSubtitle)
-                            .foregroundColor(Color.theme.voucherCode)
-                            .frame(width: 145.8, height: 32)
-                            .background(Color.theme.voucherBackground)
-                            .cornerRadius(10)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(style: StrokeStyle(lineWidth: 1, dash: [2.0]))
-                                    .foregroundColor(Color.theme.voucherBorder)
-                            )
-                            .padding(.top, 6)
-                        Spacer()
-                    }
-
-                    Text("**Details**\nDiscounts on a wide range of electronics and accessories from top brands like headphones, speakers, TVs, projectors, computers, cameras, small appliances and much more.")
-                        .font(.voucherText)
-                        .foregroundColor(Color.theme.superLightText)
-                        .lineSpacing(5)
                     
                     HStack {
                         Spacer()

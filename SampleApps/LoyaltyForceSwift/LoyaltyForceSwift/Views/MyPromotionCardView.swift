@@ -46,15 +46,15 @@ struct MyPromotionCardView: View {
                     .lineSpacing(5)
                 Spacer()
                 HStack {
-                    Text("Free")
-                        .font(.regularText)
                     Spacer()
-                    Text("Exp 03/08/23")
-                        .font(.labelText)
-                        .frame(width: 92, height: 19)
-                        .background(.black)
-                        .foregroundColor(.white)
-                        .cornerRadius(4)
+                    if let expDate = promotion.endDate {
+                        Text("Exp \(expDate)")
+                            .font(.labelText)
+                            .frame(width: 92, height: 19)
+                            .background(.black)
+                            .foregroundColor(.white)
+                            .cornerRadius(4)
+                    }
                 }
                 .padding(.bottom, 10)
             }

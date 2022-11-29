@@ -41,6 +41,6 @@ public struct EPSimulationDetails: Codable {
 
 // MARK: - UnenrollPromotionOutPutModel
 public struct UnenrollPromotionOutPutModel: Codable {
-    let status: Bool
+    let status: String
     let message: String?
 }

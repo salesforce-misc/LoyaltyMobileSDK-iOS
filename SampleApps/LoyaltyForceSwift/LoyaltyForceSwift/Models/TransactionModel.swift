@@ -16,11 +16,20 @@ struct TransactionModel: Codable {
 
 // MARK: - TransactionHistory
 struct TransactionHistory: Codable, Identifiable {
-    var id: String = UUID().uuidString
+    var id: String?
     let transactionAmount: Int?
     let productDetails: ProductDetails?
     let memberCurrency: [TransactionCurrency]
     let activityDate, activity: String
+    
+    init(transactionAmount: Int?, productDetails: ProductDetails?, memberCurrency: [TransactionCurrency], activityDate: String, activity: String) {
+        self.id = UUID().uuidString
+        self.transactionAmount = transactionAmount
+        self.productDetails = productDetails
+        self.memberCurrency = memberCurrency
+        self.activityDate = activityDate
+        self.activity = activity
+    }
     
     func getCurrencyPoints(currencyName: String) -> Int {
         for currency in memberCurrency {

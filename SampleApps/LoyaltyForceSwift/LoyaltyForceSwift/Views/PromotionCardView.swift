@@ -40,15 +40,6 @@ struct PromotionCardView: View {
                 Spacer()
             }
             .padding()
-            
-//            Spacer()
-//            if promotion.memberEligibilityCategory == "EligibleButNotEnrolled" {
-//                Button("Join") {
-//                    // enroll the promotion
-//                }
-//                .buttonStyle(LightShortButton())
-//                .padding(.bottom)
-//            }
             Spacer()
         }
         .frame(width: 320, height: 340)

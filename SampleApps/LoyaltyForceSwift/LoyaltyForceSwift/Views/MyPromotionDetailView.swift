@@ -54,15 +54,11 @@ struct MyPromotionDetailView: View {
                             .foregroundColor(Color.theme.superLightText)
                     }
                     
-//                    Text("**Terms and Conditions**\n\(offer.offerDescription)")
-//                        .font(.voucherText)
-//                        .foregroundColor(Color.theme.superLightText)
-//                        .lineSpacing(5)
                     Spacer()
                     if currentPromotion.memberEligibilityCategory == "EligibleButNotEnrolled" {
                         HStack {
                             Spacer()
-                            Button("Enroll") {
+                            Button("Join") {
                                 // enroll to the promotion
                                 processing = true
                                 Task {
@@ -86,7 +82,7 @@ struct MyPromotionDetailView: View {
                     } else if currentPromotion.memberEligibilityCategory == "Eligible" && currentPromotion.promotionEnrollmentRqr == true {
                         HStack {
                             Spacer()
-                            Button("Unenroll") {
+                            Button("Leave") {
                                 // unenroll to the promotion
                                 processing = true
                                 Task {

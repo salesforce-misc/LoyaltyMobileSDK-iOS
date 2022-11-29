@@ -54,18 +54,21 @@ struct VoucherCardView: View {
                         .padding(.top, 6)
                 }
                 if voucher.status == "Issued" {
-                    Text(voucher.code)
-                        .font(.profileSubtitle)
-                        .foregroundColor(Color.theme.voucherCode)
-                        .frame(width: 145, height: 32)
-                        .background(Color.theme.voucherBackground)
-                        .cornerRadius(10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(style: StrokeStyle(lineWidth: 1, dash: [2.0]))
-                                .foregroundColor(Color.theme.voucherBorder)
-                        )
-                        .padding(.top, 6)
+                    if let voucherCode = voucher.code {
+                        Text(voucherCode)
+                            .font(.profileSubtitle)
+                            .foregroundColor(Color.theme.voucherCode)
+                            .frame(width: 145, height: 32)
+                            .background(Color.theme.voucherBackground)
+                            .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(style: StrokeStyle(lineWidth: 1, dash: [2.0]))
+                                    .foregroundColor(Color.theme.voucherBorder)
+                            )
+                            .padding(.top, 6)
+                    }
+                    
                 }
                 
             }
