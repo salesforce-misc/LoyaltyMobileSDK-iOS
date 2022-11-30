@@ -42,23 +42,6 @@ struct MyPromotionsView: View {
                         .tag(1)
                     allView
                         .tag(2)
-//                    ForEach(0..<barItems.count, id: \.self) { index in
-//
-//                        switch barItems[index] {
-//                        case "Unenrolled":
-//                            unenrolledView
-//                                .tag(index)
-//                        case "Active":
-//                            activeView
-//                                .tag(index)
-//                        case "All":
-//                            allView
-//                                .tag(index)
-//                        default:
-//                            allView
-//                                .tag(index)
-//                        }
-//                    }
                     
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))

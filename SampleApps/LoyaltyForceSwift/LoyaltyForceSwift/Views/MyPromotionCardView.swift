@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MyPromotionCardView: View {
     
+    @EnvironmentObject private var rootVM: AppRootViewModel
+    @EnvironmentObject private var promotionVM: PromotionViewModel
     let promotion: PromotionResult
     
     @State var loadImage: Bool = false
@@ -17,9 +19,7 @@ struct MyPromotionCardView: View {
     var body: some View {
         HStack {
             if loadImage {
-                Image(promotion.imageName ?? "img-placeholder")
-                    .resizable()
-                    .scaledToFill()
+                AsyncImageView(imageUrl: promotion.imageUrl ?? "https://picsum.photos/400/600")
                     .frame(width: 133, height: 166)
                     .cornerRadius(5, corners: [.topLeft, .bottomLeft])
             } else {
@@ -83,7 +83,11 @@ struct MyPromotionCardView: View {
         .onTapGesture {
             showPromotionDetailView.toggle()
         }
-        .sheet(isPresented: $showPromotionDetailView) {
+        .sheet(isPresented: $showPromotionDetailView, onDismiss: {
+            Task {
+                await promotionVM.updatePromotionsFromCache(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+            }
+        }) {
             MyPromotionDetailView(promotion: promotion)
         }
     }

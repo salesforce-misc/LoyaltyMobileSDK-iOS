@@ -39,14 +39,14 @@ public struct PromotionResult: Codable, Identifiable {
     let endDate: String?
     let description: String?
     let promEnrollmentStartDate, promotionEnrollmentEndDate: String?
-    let imageName: String?
+    let imageUrl: String?
 
     enum CodingKeys: String, CodingKey {
         case loyaltyPromotionType, maximumPromotionRewardValue, totalPromotionRewardPointsVal, loyaltyProgramCurrency, memberEligibilityCategory, promotionEnrollmentRqr, fulfillmentAction, promotionName
         case id = "promotionId"
         case startDate, endDate
         case description, promEnrollmentStartDate, promotionEnrollmentEndDate
-        case imageName = "Image__c"
+        case imageUrl = "ImageUrl__c"
     }
 }
 

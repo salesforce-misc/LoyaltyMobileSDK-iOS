@@ -14,9 +14,8 @@ struct PromotionCardView: View {
     
     var body: some View {
         VStack {
-            Image(promotion.imageName ?? "img-placeholder")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
+            //Image(promotion.imageUrl ?? "img-placeholder")
+            AsyncImageView(imageUrl: promotion.imageUrl ?? "https://picsum.photos/400/600")
                 .frame(width: 289, height: 154)
                 .cornerRadius(5, corners: [.topLeft, .topRight])
                 .padding(.top)

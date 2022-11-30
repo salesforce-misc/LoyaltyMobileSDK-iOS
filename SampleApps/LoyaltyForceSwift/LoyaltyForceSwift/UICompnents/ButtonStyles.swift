@@ -56,3 +56,32 @@ struct DarkShortButton: ButtonStyle {
             .cornerRadius(24)
     }
 }
+
+struct DarkShortPromotionButton: ButtonStyle {
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.boldButtonText)
+            .foregroundColor(.white)
+            .frame(width: 152, height: 48)
+            .background(Color.theme.darkButton)
+            .cornerRadius(24)
+    }
+}
+
+struct LightShortPromotionButton: ButtonStyle {
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.boldButtonText)
+            .foregroundColor(Color.theme.accent)
+            .frame(width: 152, height: 48)
+            .background(Color.white)
+            .cornerRadius(24)
+            .overlay(
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(Color.theme.accent, lineWidth: 1)
+            )
+    }
+}
+

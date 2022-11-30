@@ -105,7 +105,6 @@
 		29AC2F0928F8B724003F56F6 /* AllBadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2F0828F8B724003F56F6 /* AllBadgesView.swift */; };
 		29B427D429109095009CC587 /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B427D329109095009CC587 /* TransactionViewModel.swift */; };
 		29B427D629109E60009CC587 /* PromotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B427D529109E60009CC587 /* PromotionViewModel.swift */; };
-		29BAF6CB28F0DB9200A3F9EB /* OffersCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6CA28F0DB9200A3F9EB /* OffersCarouselView.swift */; };
 		29BAF6CF28F0FC3A00A3F9EB /* CornerRadiusStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6CE28F0FC3A00A3F9EB /* CornerRadiusStyle.swift */; };
 		29BAF6D128F1032800A3F9EB /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6D028F1032800A3F9EB /* Carousel.swift */; };
 		29BAF6D328F103B600A3F9EB /* PromotionCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6D228F103B500A3F9EB /* PromotionCarouselView.swift */; };
@@ -232,7 +231,6 @@
 		29AC2F0828F8B724003F56F6 /* AllBadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBadgesView.swift; sourceTree = "<group>"; };
 		29B427D329109095009CC587 /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
 		29B427D529109E60009CC587 /* PromotionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewModel.swift; sourceTree = "<group>"; };
-		29BAF6CA28F0DB9200A3F9EB /* OffersCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCarouselView.swift; sourceTree = "<group>"; };
 		29BAF6CE28F0FC3A00A3F9EB /* CornerRadiusStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyle.swift; sourceTree = "<group>"; };
 		29BAF6D028F1032800A3F9EB /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
 		29BAF6D228F103B500A3F9EB /* PromotionCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionCarouselView.swift; sourceTree = "<group>"; };
@@ -366,7 +364,6 @@
 				218A36AB28B85D5500FCEE39 /* MyPromotionsView.swift */,
 				298613A528C7D3B400BDC744 /* MoreView.swift */,
 				29BAF6D428F14E4400A3F9EB /* PromotionCardView.swift */,
-				29BAF6CA28F0DB9200A3F9EB /* OffersCarouselView.swift */,
 				29BAF6D228F103B500A3F9EB /* PromotionCarouselView.swift */,
 				29BAF6D628F15CF300A3F9EB /* RedeemCardView.swift */,
 				29BAF6D828F1642000A3F9EB /* RedeemPointsView.swift */,
@@ -721,7 +718,6 @@
 				29BAF6E928F4CA1000A3F9EB /* TransactionCardView.swift in Sources */,
 				218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */,
 				29BAF6CF28F0FC3A00A3F9EB /* CornerRadiusStyle.swift in Sources */,
-				29BAF6CB28F0DB9200A3F9EB /* OffersCarouselView.swift in Sources */,
 				2906B1DB28FF7348006EAB2D /* CheckboxStyle.swift in Sources */,
 				29053F7D2907452800F84561 /* Assets.swift in Sources */,
 				29AC2F0728F8B70D003F56F6 /* AllBenefitsView.swift in Sources */,

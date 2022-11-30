@@ -23,11 +23,9 @@ struct MyPromotionDetailView: View {
         ZStack {
             Color.white
             
-            VStack(alignment: .leading) {
-                Image(currentPromotion.imageName ?? "img-placeholder")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 220)
+            VStack {
+                AsyncImageView(imageUrl: promotion.imageUrl ?? "https://picsum.photos/400/600")
+                    .frame(maxWidth: .infinity, maxHeight: 220)
                     .clipped()
                     .overlay(alignment: .topTrailing) {
                         Image("ic-dismiss")
@@ -71,7 +69,6 @@ struct MyPromotionDetailView: View {
                                         processing = false
                                     }
                                 }
-
                             }
                             .buttonStyle(DarkShortButton())
                             .disabled(processing)
@@ -81,6 +78,10 @@ struct MyPromotionDetailView: View {
                         }
                     } else if currentPromotion.memberEligibilityCategory == "Eligible" && currentPromotion.promotionEnrollmentRqr == true {
                         HStack {
+                            Button("Shop") {
+                                
+                            }
+                            .buttonStyle(DarkShortPromotionButton())
                             Spacer()
                             Button("Leave") {
                                 // unenroll to the promotion
@@ -95,9 +96,8 @@ struct MyPromotionDetailView: View {
                                         processing = false
                                     }
                                 }
-
                             }
-                            .buttonStyle(DarkShortButton())
+                            .buttonStyle(LightShortPromotionButton())
                             .disabled(processing)
                             .opacity(processing ? 0.5 : 1)
                             

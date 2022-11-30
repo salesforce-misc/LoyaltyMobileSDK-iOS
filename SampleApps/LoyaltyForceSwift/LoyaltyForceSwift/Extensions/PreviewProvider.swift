@@ -93,7 +93,7 @@ class DeveloperPreview {
                                     description: "New Year Promotion Premium",
                                     promEnrollmentStartDate: "2022-11-01",
                                     promotionEnrollmentEndDate: "2022-11-30",
-                                    imageName: "promotion1")
+                                    imageUrl: "https://picsum.photos/800")
     
     //let currency = TransactionCurrency(value: 100, name: "Reward Points")
     let transactions = [

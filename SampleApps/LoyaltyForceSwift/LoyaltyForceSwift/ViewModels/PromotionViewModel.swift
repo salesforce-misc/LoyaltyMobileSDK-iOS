@@ -184,13 +184,6 @@ class PromotionViewModel: ObservableObject {
             try await LoyaltyAPIManager.shared.enrollIn(promotion: promotionName, for: membershipNumber)
             // fetch all from network
             let _ = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
-            // update unenrolled and active
-            await MainActor.run {
-                unenrolledPromotions = []
-                activePromotions = []
-            }
-            try await loadUnenrolledPromotions(membershipNumber: membershipNumber)
-            try await loadActivePromotions(membershipNumber: membershipNumber)
         } catch {
             throw error
         }
@@ -200,15 +193,27 @@ class PromotionViewModel: ObservableObject {
         do {
             try await LoyaltyAPIManager.shared.unenrollIn(promotion: promotionName, for: membershipNumber)
             let _ = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
-            // update active and unenrolled
-            await MainActor.run {
-                activePromotions = []
-                unenrolledPromotions = []
-            }
-            try await loadActivePromotions(membershipNumber: membershipNumber)
-            try await loadUnenrolledPromotions(membershipNumber: membershipNumber)
         } catch {
             throw error
         }
+    }
+    
+    func updatePromotionsFromCache(membershipNumber: String) async {
+
+        guard let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") else {
+            return
+        }
+        let active = cached.filter { result in
+            return (result.memberEligibilityCategory == "Eligible" || result.promotionEnrollmentRqr == false)
+        }
+        let unenrolled = cached.filter { result in
+            return (result.memberEligibilityCategory == "EligibleButNotEnrolled" && result.promotionEnrollmentRqr == true)
+        }
+        await MainActor.run {
+            allEligiblePromotions = cached
+            activePromotions = active
+            unenrolledPromotions = unenrolled
+        }
+
     }
 }

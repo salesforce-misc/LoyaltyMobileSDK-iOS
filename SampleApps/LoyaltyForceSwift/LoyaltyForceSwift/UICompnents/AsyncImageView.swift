@@ -33,10 +33,7 @@ struct AsyncImageView: View {
                         }
                     }
                 default:
-                    ZStack {
-                        ProgressView()
-                    }
-                        
+                    ProgressView()       
             }
         }
 

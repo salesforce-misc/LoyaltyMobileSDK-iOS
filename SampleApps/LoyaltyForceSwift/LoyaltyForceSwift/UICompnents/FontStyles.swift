@@ -22,6 +22,10 @@ extension Font {
         return Font.custom("SFPro-Semibold", size: 16)
     }
     
+    static var boldButtonText: Font {
+        return Font.custom("SFPro-Bold", size: 16)
+    }
+    
     static var smallButtonText: Font {
         return Font.custom("SFPro-bold", size: 13.39)
     }
