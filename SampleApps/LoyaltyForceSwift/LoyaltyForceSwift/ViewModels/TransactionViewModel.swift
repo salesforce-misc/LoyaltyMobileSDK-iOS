@@ -74,14 +74,14 @@ class TransactionViewModel: ObservableObject {
             if let cached = LocalFileManager.instance.getData(type: [TransactionHistory].self, id: membershipNumber, folderName: "TransactionHistory") {
                 // filter recent transactions - within a month
                 let recent = cached.filter { transaction in
-                    guard let date = transaction.activityDate.toDate(withFormat: "dd MMMM yyyy") else {
+                    guard let date = transaction.activityDate.toDate(withFormat: "yyyy-MM-dd") else {
                         return false
                     }
                     return date >= Date().monthBefore
                 }
                 // filter older transactions - a month ago
                 let older = cached.filter { transaction in
-                    guard let date = transaction.activityDate.toDate(withFormat: "dd MMMM yyyy") else {
+                    guard let date = transaction.activityDate.toDate(withFormat: "yyyy-MM-dd") else {
                         return false
                     }
                     return date < Date().monthBefore
@@ -93,13 +93,13 @@ class TransactionViewModel: ObservableObject {
                 do {
                     let result = try await fetchTransactions(membershipNumber: membershipNumber)
                     let recent = result.filter { transaction in
-                        guard let date = transaction.activityDate.toDate(withFormat: "dd MMMM yyyy") else {
+                        guard let date = transaction.activityDate.toDate(withFormat: "yyyy-MM-dd") else {
                             return false
                         }
                         return date >= Date().monthBefore
                     }
                     let older = result.filter { transaction in
-                        guard let date = transaction.activityDate.toDate(withFormat: "dd MMMM yyyy") else {
+                        guard let date = transaction.activityDate.toDate(withFormat: "yyyy-MM-dd") else {
                             return false
                         }
                         return date < Date().monthBefore
@@ -121,13 +121,13 @@ class TransactionViewModel: ObservableObject {
         do {
             let result = try await fetchTransactions(membershipNumber: membershipNumber)
             let recent = result.filter { transaction in
-                guard let date = transaction.activityDate.toDate(withFormat: "dd MMMM yyyy") else {
+                guard let date = transaction.activityDate.toDate(withFormat: "yyyy-MM-dd") else {
                     return false
                 }
                 return date >= Date().monthBefore
             }
             let older = result.filter { transaction in
-                guard let date = transaction.activityDate.toDate(withFormat: "dd MMMM yyyy") else {
+                guard let date = transaction.activityDate.toDate(withFormat: "yyyy-MM-dd") else {
                     return false
                 }
                 return date < Date().monthBefore

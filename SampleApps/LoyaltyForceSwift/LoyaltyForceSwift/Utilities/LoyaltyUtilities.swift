@@ -50,14 +50,18 @@ struct LoyaltyUtilities {
     /*
      Input:
      <p><img src=\"https://internalmobileteam-dev-ed.develop.file.force.com/servlet/rtaImage?eid=0kD4x000000wr6E&amp;feoid=00N4x00000YBPaQ&amp;refid=0EM4x00000443bE\" alt=\"Birthday.jpeg\"></img></p>
+     attributeUrl: "/services/data/v56.0/sobjects/Voucher/0kD4x000000wx4WEAQ"
+     fieldName: "Image__c"
      
-     Output:
-     https://internalmobileteam-dev-ed.develop.file.force.com/servlet/rtaImage?eid=0kD4x000000wr6E&feoid=00N4x00000YBPaQ&refid=0EM4x00000443bE
+     to: https://internalmobileteam-dev-ed.develop.file.force.com/servlet/rtaImage?eid=0kD4x000000wr6E&feoid=00N4x00000YBPaQ&refid=0EM4x00000443bE
+     
+     Output: https://internalmobileteam-dev-ed.develop.file.force.com/services/data/v56.0/sobjects/Voucher/0kD4x000000wx4WEAQ/richTextImageFields/Image__c/0EM4x00000443bE
+     
      */
-    static func getImageUrl(image: String?) -> String {
+    static func getImageUrl(image: String?, attributesUrl: String, fieldName: String) -> String?  {
         
         guard let image = image else {
-            return ""
+            return nil
         }
         
         let filteredArray = image.split(separator: " ").filter { item in
@@ -65,12 +69,26 @@ struct LoyaltyUtilities {
         }
         
         if filteredArray.isEmpty {
-            return ""
+            return nil
         } else {
             let srcString = filteredArray[0]
             let start = srcString.firstIndex(of: "h")!
-            let imageUrl = String(srcString[start...])
-            return String(imageUrl.dropLast()).replacingOccurrences(of: "&amp;", with: "&")
+            let urlString = String(srcString[start...].dropLast())
+            
+            let url = URL(string: urlString)
+            guard let url = url else {
+                return nil
+            }
+            guard let host = url.host else {
+                return nil
+            }
+            
+            let refStart = srcString.lastIndex(of: ";")!
+            let refidString = String(srcString[refStart...].dropLast())
+            let refid = refidString.split(separator: "=")[1]
+            
+            let imageUrl = "https://\(host)\(attributesUrl)/richTextImageFields/\(fieldName)/\(refid)"
+            return imageUrl
         }
         
     }

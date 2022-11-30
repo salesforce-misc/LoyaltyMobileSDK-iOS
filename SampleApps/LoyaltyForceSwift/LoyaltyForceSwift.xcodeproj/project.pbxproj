@@ -94,6 +94,7 @@
 		299B38DE28EB8D4900E45D97 /* CreateNewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38DD28EB8D4900E45D97 /* CreateNewPasswordView.swift */; };
 		299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38E128ED24B900E45D97 /* PasswordResetModel.swift */; };
 		299B38E428EE040900E45D97 /* UIApplication+DismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */; };
+		29A39BC12937C699005833C2 /* AsyncImageWithAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A39BC02937C699005833C2 /* AsyncImageWithAuth.swift */; };
 		29AB2E1C28E2763700D4B32C /* SheetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AB2E1B28E2763700D4B32C /* SheetHeader.swift */; };
 		29AC2EF928F8901A003F56F6 /* LoyaltyNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2EF828F8901A003F56F6 /* LoyaltyNavBarView.swift */; };
 		29AC2EFB28F8959E003F56F6 /* LoyaltyNavBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2EFA28F8959E003F56F6 /* LoyaltyNavBarContainerView.swift */; };
@@ -220,6 +221,7 @@
 		299B38DD28EB8D4900E45D97 /* CreateNewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPasswordView.swift; sourceTree = "<group>"; };
 		299B38E128ED24B900E45D97 /* PasswordResetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetModel.swift; sourceTree = "<group>"; };
 		299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DismissKeyboard.swift"; sourceTree = "<group>"; };
+		29A39BC02937C699005833C2 /* AsyncImageWithAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageWithAuth.swift; sourceTree = "<group>"; };
 		29AB2E1B28E2763700D4B32C /* SheetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeader.swift; sourceTree = "<group>"; };
 		29AC2EF828F8901A003F56F6 /* LoyaltyNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyNavBarView.swift; sourceTree = "<group>"; };
 		29AC2EFA28F8959E003F56F6 /* LoyaltyNavBarContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyNavBarContainerView.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 				290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */,
 				29367605293209CB00E09A6D /* CachedAsyncImage.swift */,
 				29D7497B2931D10100BC81AD /* AsyncImageView.swift */,
+				29A39BC02937C699005833C2 /* AsyncImageWithAuth.swift */,
 			);
 			path = UICompnents;
 			sourceTree = "<group>";
@@ -711,6 +714,7 @@
 				291CC0B428D39D4A00C08572 /* LoyaltyAPIManager.swift in Sources */,
 				29E6601C2915C5F80056CF9D /* Date+Extensions.swift in Sources */,
 				29E6601E2915C6260056CF9D /* Entry.swift in Sources */,
+				29A39BC12937C699005833C2 /* AsyncImageWithAuth.swift in Sources */,
 				290EA9C1292C0ACF00BBF2F2 /* VoucherViewModel.swift in Sources */,
 				296D393E28DE1EFF0078C88E /* ButtonStyles.swift in Sources */,
 				296D393128DBCB530078C88E /* OnboardingModel.swift in Sources */,

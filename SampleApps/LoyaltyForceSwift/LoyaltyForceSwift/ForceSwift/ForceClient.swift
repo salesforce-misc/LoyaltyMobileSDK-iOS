@@ -6,7 +6,6 @@
 //
 
 import Foundation
-//import Combine
 import UIKit
   
 public class ForceClient {
@@ -94,25 +93,38 @@ public class ForceClient {
         }
     }
     
-    public func fetchImage(url: String) async throws -> UIImage? {
+    public func fetchImage(url: String?) async -> UIImage? {
+        
+        guard let url = url,
+              let imageUrl = URL(string: url) else {
+            return nil
+        }
+
         do {
-            guard let imageUrl = URL(string: url) else {
-                throw URLError(.badURL)
-            }
             let request = try ForceRequest.create(url: imageUrl, method: "GET", secured: true)
-            let (data, response) = try await URLSession.shared.data(for: request)
+            let output = try await URLSession.shared.data(for: request)
+            try handleUnauthResponse(output: output)
+            return handleImageResponse(output: output)
+        } catch ForceError.authenticationNeeded {
+            do {
+                let request = try ForceRequest.create(url: imageUrl, method: "GET", secured: true)
+                let newRequet = try await getNewRequest(for: request)
+                let output = try await URLSession.shared.data(for: newRequet)
+                try handleUnauthResponse(output: output)
+                return handleImageResponse(output: output)
+            } catch {
+                return nil
+            }
             
-            return handleImageResponse(data: data, response: response)
         } catch {
-            throw error
+            return nil
         }
     }
     
-    private func handleImageResponse(data: Data?, response: URLResponse?) -> UIImage? {
+    private func handleImageResponse(output: URLSession.DataTaskPublisher.Output) -> UIImage? {
         guard
-            let data = data,
-            let image = UIImage(data: data),
-            let response = response as? HTTPURLResponse,
+            let image = UIImage(data: output.data),
+            let response = output.response as? HTTPURLResponse,
             response.statusCode >= 200 && response.statusCode < 300 else {
                 return nil
             }

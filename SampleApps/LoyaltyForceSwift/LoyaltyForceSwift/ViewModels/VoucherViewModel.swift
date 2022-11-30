@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 @MainActor
 class VoucherViewModel: ObservableObject {
@@ -14,6 +15,7 @@ class VoucherViewModel: ObservableObject {
     @Published var availableVochers: [VoucherModel] = []
     @Published var redeemedVochers: [VoucherModel] = []
     @Published var expiredVochers: [VoucherModel] = []
+    @Published var voucherImages: [String: UIImage?] = [:]
     
     enum statusFilter: String {
         case Issued
@@ -69,9 +71,16 @@ class VoucherViewModel: ObservableObject {
         var fetchedVouchers: [VoucherModel] = []
         
         do {
-            let results = try await LoyaltyAPIManager.shared.getVoucherRecords(membershipNumber: membershipNumber, devMode: true)
+            let results = try await LoyaltyAPIManager.shared.getVoucherRecords(membershipNumber: membershipNumber)
             for result in results {
-                let imageUrl = LoyaltyUtilities.getImageUrl(image: result.image)
+                let imageUrl = LoyaltyUtilities.getImageUrl(image: result.image, attributesUrl: result.attributes.url, fieldName: "Image__c")
+                
+//                if let url = imageUrl {
+//                    let voucherImage = await ForceClient.shared.fetchImage(url: url)
+//                    voucherImages[result.id] = voucherImage
+//                } else {
+//                    voucherImages[result.id] = nil
+//                }
                 
                 let voucher = VoucherModel(id: result.id,
                                        name: result.voucherDefinition.name,

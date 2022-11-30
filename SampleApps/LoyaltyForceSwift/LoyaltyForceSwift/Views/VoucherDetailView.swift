@@ -19,16 +19,23 @@ struct VoucherDetailView: View {
             
             VStack(alignment: .leading) {
                 
-                AsyncImageView(imageUrl: voucher.image)
-                    .frame(height: 220)
-                    .clipped()
-                    .overlay(alignment: .topTrailing) {
-                        Image("ic-dismiss")
-                            .padding()
-                            .onTapGesture {
-                                dismiss()
-                            }
-                    }
+                //AsyncImageView(imageUrl: voucher.image)
+                AsyncImageWithAuth(url: voucher.image, content: { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                }, placeholder: {
+                    ProgressView()
+                })
+                .frame(maxWidth: .infinity, maxHeight: 220)
+                .clipped()
+                .overlay(alignment: .topTrailing) {
+                    Image("ic-dismiss")
+                        .padding()
+                        .onTapGesture {
+                            dismiss()
+                        }
+                }
                 
                 VStack(alignment: .leading, spacing: 20) {
                     Text(voucher.name)

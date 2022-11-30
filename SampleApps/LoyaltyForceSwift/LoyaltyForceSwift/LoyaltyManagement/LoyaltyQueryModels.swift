@@ -42,7 +42,8 @@ public struct LoyaltyQueryModels {
     public struct Voucher: Codable {
         let attributes: Attributes
         let voucherDefinition: VoucherDefinition
-        let image, voucherCode, expirationDate, id: String
+        let image: String?
+        let voucherCode, expirationDate, id: String
         let status: String
 
         enum CodingKeys: String, CodingKey {

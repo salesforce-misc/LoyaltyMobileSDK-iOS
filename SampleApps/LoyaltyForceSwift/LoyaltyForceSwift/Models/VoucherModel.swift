@@ -17,7 +17,7 @@ struct VoucherModel: Codable, Identifiable {
     let discountPercent: Int?
     let code: String?
     let expirationDate: String
-    let image: String
+    let image: String?
     let status: String
     
     func getVoucherValue() -> Text? {

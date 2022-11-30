@@ -17,17 +17,22 @@ struct VoucherCardView: View {
     var body: some View {
         
         VStack {
-            AsyncImageView(imageUrl: voucher.image)
-                .frame(width: 165, height: 92)
-                .cornerRadius(5, corners: [.topLeft, .topRight])
+            //AsyncImageView(imageUrl: voucher.image)
+            AsyncImageWithAuth(url: voucher.image, content: { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+            }, placeholder: {
+                ProgressView()
+            })
+            .frame(width: 165, height: 92)
+            .cornerRadius(5, corners: [.topLeft, .topRight])
             
             VStack(alignment: .leading, spacing: 10) {
                 Text(voucher.name)
                     .font(.redeemTitle)
                 
                 VStack(alignment: .leading, spacing: 4) {
-//                    Text("Online stores")
-//                    Text("Value: **$11**")
                     if let voucherValue = voucher.getVoucherValue() {
                         voucherValue
                     }
