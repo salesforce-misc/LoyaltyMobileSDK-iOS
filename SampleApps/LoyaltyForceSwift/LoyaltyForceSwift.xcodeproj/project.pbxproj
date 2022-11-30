@@ -95,6 +95,7 @@
 		299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38E128ED24B900E45D97 /* PasswordResetModel.swift */; };
 		299B38E428EE040900E45D97 /* UIApplication+DismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */; };
 		29A39BC12937C699005833C2 /* AsyncImageWithAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A39BC02937C699005833C2 /* AsyncImageWithAuth.swift */; };
+		29A39BC32937F46D005833C2 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A39BC22937F46D005833C2 /* String+MD5.swift */; };
 		29AB2E1C28E2763700D4B32C /* SheetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AB2E1B28E2763700D4B32C /* SheetHeader.swift */; };
 		29AC2EF928F8901A003F56F6 /* LoyaltyNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2EF828F8901A003F56F6 /* LoyaltyNavBarView.swift */; };
 		29AC2EFB28F8959E003F56F6 /* LoyaltyNavBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2EFA28F8959E003F56F6 /* LoyaltyNavBarContainerView.swift */; };
@@ -222,6 +223,7 @@
 		299B38E128ED24B900E45D97 /* PasswordResetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetModel.swift; sourceTree = "<group>"; };
 		299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DismissKeyboard.swift"; sourceTree = "<group>"; };
 		29A39BC02937C699005833C2 /* AsyncImageWithAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageWithAuth.swift; sourceTree = "<group>"; };
+		29A39BC22937F46D005833C2 /* String+MD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
 		29AB2E1B28E2763700D4B32C /* SheetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeader.swift; sourceTree = "<group>"; };
 		29AC2EF828F8901A003F56F6 /* LoyaltyNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyNavBarView.swift; sourceTree = "<group>"; };
 		29AC2EFA28F8959E003F56F6 /* LoyaltyNavBarContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyNavBarContainerView.swift; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 				299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */,
 				29BAF6DC28F3AE8B00A3F9EB /* String+StringWidth.swift */,
 				2993A8432903328D00EC3C0D /* PreviewProvider.swift */,
+				29A39BC22937F46D005833C2 /* String+MD5.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				218A36AE28B85D6000FCEE39 /* FavoriteView.swift in Sources */,
 				298613CE28CBC10300BDC744 /* ProfileModel.swift in Sources */,
 				2986139A28C14C0100BDC744 /* ForceClient.swift in Sources */,
+				29A39BC32937F46D005833C2 /* String+MD5.swift in Sources */,
 				299B38E428EE040900E45D97 /* UIApplication+DismissKeyboard.swift in Sources */,
 				298613AE28C9652300BDC744 /* FontStyles.swift in Sources */,
 				299B38CA28E365AD00E45D97 /* HalfSheet.swift in Sources */,

@@ -24,16 +24,37 @@ struct AsyncImageWithAuth<Content: View, Placeholder: View>: View {
     }
     
     var body: some View {
-        if let uiImage = uiImage {
-            content(Image(uiImage: uiImage))
+        
+        if let url = url {
+            if let uiImage = uiImage {
+                content(Image(uiImage: uiImage))
+            } else {
+                placeholder()
+                    .task {
+                        // use it for file name
+                        let urlHash = url.MD5
+                        // try to get from cache first
+                        if let image = LocalFileManager.instance.getImage(imageName: urlHash) {
+                            self.uiImage = image
+                        } else {
+                            let fetchedImage = await ForceClient.shared.fetchImage(url: url)
+                            self.uiImage = fetchedImage
+                            // save to local cache
+                            if let image = fetchedImage {
+                                LocalFileManager.instance.saveImage(image: image, imageName: urlHash)
+                            }
+                        }
+                    }
+            }
         } else {
-            placeholder()
-                .task {
-                    self.uiImage = await ForceClient.shared.fetchImage(url: url)
-                }
+            Image("img-placeholder")
         }
+        
+        
     }
 }
+
+
 
 struct AsyncImageWithAuth_Previews: PreviewProvider {
     static var previews: some View {

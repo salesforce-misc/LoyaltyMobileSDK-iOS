@@ -151,6 +151,6 @@ public class LocalFileManager {
         guard let folderURL = getURLForFolder(folderName: folderName) else {
             return nil
         }
-        return folderURL.appendingPathComponent("\(id).json")
+        return folderURL.appendingPathComponent(id)
     }
 }
