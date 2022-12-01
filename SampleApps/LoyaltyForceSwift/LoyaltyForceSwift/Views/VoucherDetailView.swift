@@ -86,6 +86,7 @@ struct VoucherDetailView: View {
                             .lineSpacing(5)
                     }
                     
+                    Spacer()
                     HStack {
                         Spacer()
                         Button("Close") {
@@ -94,6 +95,7 @@ struct VoucherDetailView: View {
                         .buttonStyle(DarkShortButton())
                         Spacer()
                     }
+                    Spacer()
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 30)
