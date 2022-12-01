@@ -14,7 +14,7 @@ struct AsyncImageView: View {
     var body: some View {
         
         if let imageUrl = imageUrl {
-            AsyncImage(url: URL(string: imageUrl)) { phase in
+            CachedAsyncImage(url: URL(string: imageUrl)) { phase in
                 switch phase {
                     case .success(let image):
                         image

@@ -24,7 +24,7 @@ struct MyPromotionDetailView: View {
             Color.white
             
             VStack {
-                AsyncImageView(imageUrl: promotion.imageUrl ?? "https://picsum.photos/400/600")
+                AsyncImageView(imageUrl: promotion.promoImages[promotion.id])
                     .frame(maxWidth: .infinity, maxHeight: 220)
                     .clipped()
                     .overlay(alignment: .topTrailing) {

@@ -15,7 +15,7 @@ struct PromotionCardView: View {
     var body: some View {
         VStack {
             //Image(promotion.imageUrl ?? "img-placeholder")
-            AsyncImageView(imageUrl: promotion.imageUrl ?? "https://picsum.photos/400/600")
+            AsyncImageView(imageUrl: promotion.promoImages[promotion.id])
                 .frame(width: 289, height: 154)
                 .cornerRadius(5, corners: [.topLeft, .topRight])
                 .padding(.top)
