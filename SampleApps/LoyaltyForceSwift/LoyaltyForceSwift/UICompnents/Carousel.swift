@@ -35,7 +35,7 @@ struct Carousel<Content: View, T: Identifiable>: View {
             GeometryReader { proxy in
                 
                 let trailingSpace = proxy.size.width - contentWidth
-                let spacing = proxy.size.width > 400 ? trailingSpace * 0.25 : trailingSpace * 0.2
+                let spacing = trailingSpace * 0.2
                 let width = proxy.size.width - (trailingSpace - spacing)
                 let adjustmentWidth = (trailingSpace / 2) - spacing
                 
@@ -47,7 +47,7 @@ struct Carousel<Content: View, T: Identifiable>: View {
                         }
                     }
                     .padding(.horizontal, spacing)
-                    .offset(x: (CGFloat(currentIndex) * -width) + adjustmentWidth + offset)
+                    .offset(x: currentIndex == 0 ? (0 + offset) : ((CGFloat(currentIndex) * -width) + adjustmentWidth + offset))
                     .gesture(
                         DragGesture()
                             .updating($offset, body: { value, out, _ in
