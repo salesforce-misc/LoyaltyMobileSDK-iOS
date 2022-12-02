@@ -39,6 +39,9 @@ struct Carousel<Content: View, T: Identifiable>: View {
                 let width = proxy.size.width - (trailingSpace - spacing)
                 let adjustmentWidth = (trailingSpace / 2) - spacing
                 
+                let commonOffset = CGFloat(currentIndex) * -width + adjustmentWidth + offset
+                let contentOffset = currentIndex == (items.count - 1) ? (commonOffset + adjustmentWidth) : commonOffset
+                
                 VStack {
                     HStack(spacing: spacing) {
                         ForEach(items) { item in
@@ -47,7 +50,7 @@ struct Carousel<Content: View, T: Identifiable>: View {
                         }
                     }
                     .padding(.horizontal, spacing)
-                    .offset(x: currentIndex == 0 ? (0 + offset) : ((CGFloat(currentIndex) * -width) + adjustmentWidth + offset))
+                    .offset(x: currentIndex == 0 ? offset : contentOffset)
                     .gesture(
                         DragGesture()
                             .updating($offset, body: { value, out, _ in
