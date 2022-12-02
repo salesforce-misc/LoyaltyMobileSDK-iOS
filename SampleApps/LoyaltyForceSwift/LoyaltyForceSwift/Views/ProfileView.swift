@@ -137,10 +137,9 @@ struct ProfileView: View {
                         RoundedRectangle(cornerRadius: 10)
                             .frame(height: 220)
                             .padding(.horizontal)
-                            .foregroundColor(Color.theme.accent)
+                            .foregroundColor(Color.theme.background)
                     }
                     ProgressView()
-                        .tint(.white)
                 }
             }
 
