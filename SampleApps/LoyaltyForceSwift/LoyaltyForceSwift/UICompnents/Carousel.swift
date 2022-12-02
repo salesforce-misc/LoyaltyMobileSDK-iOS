@@ -58,14 +58,14 @@ struct Carousel<Content: View, T: Identifiable>: View {
                             })
                             .onEnded({ value in
                                 let offsetX = value.translation.width
-                                let progress = -offsetX / width
+                                let progress = -offsetX / (width * 0.5)
                                 let roundIndex = progress.rounded()
                                 currentIndex = max(min(currentIndex + Int(roundIndex), items.count - 1), 0)
                                 currentIndex = index
                             })
                             .onChanged({ value in
                                 let offsetX = value.translation.width
-                                let progress = -offsetX / width
+                                let progress = -offsetX / (width * 0.5)
                                 let roundIndex = progress.rounded()
                                 index = max(min(currentIndex + Int(roundIndex), items.count - 1), 0)
                             })
