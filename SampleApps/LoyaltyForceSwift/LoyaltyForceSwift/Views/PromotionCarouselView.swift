@@ -32,21 +32,29 @@ struct PromotionCarouselView: View {
             }
             .padding([.top, .leading, .trailing])
             
-            Carousel(index: $currentIndex, items: promotionVM.promotions) { promotion in
-                PromotionCardView(promotion: promotion)
+            if promotionVM.promotions.isEmpty {
+                Spacer()
+                EmptyStateView(title: "No Promotions, yet.",
+                               subTitle: "You do not have any eligibile promotions to enroll. Please come back later.")
+                Spacer()
+            } else {
+                Carousel(index: $currentIndex, items: promotionVM.promotions) { promotion in
+                    PromotionCardView(promotion: promotion)
+                }
+
+                HStack(spacing: 8){
+
+                    ForEach(promotionVM.promotions.indices, id: \.self) { index in
+                        Circle()
+                            .fill(Color.theme.accent.opacity(currentIndex == index ? 1 : 0.1))
+                            .frame(width: 8, height: 8)
+                            //.animation(.spring(), value: currentIndex == index)
+                            .animation(.easeInOut, value: currentIndex == index)
+                    }
+                }
+                .padding(.top, -25)
             }
 
-            HStack(spacing: 8){
-                
-                ForEach(promotionVM.promotions.indices, id: \.self) { index in
-                    Circle()
-                        .fill(Color.theme.accent.opacity(currentIndex == index ? 1 : 0.1))
-                        .frame(width: 8, height: 8)
-                        //.animation(.spring(), value: currentIndex == index)
-                        .animation(.easeInOut, value: currentIndex == index)
-                }
-            }
-            .padding(.top, -25)
         }
         .frame(height: 450)
         .background(Color.white)

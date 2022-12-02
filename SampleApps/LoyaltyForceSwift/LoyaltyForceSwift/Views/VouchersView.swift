@@ -18,6 +18,9 @@ struct VouchersView: View {
             AllVouchersView()
         } content: {
             HStack(spacing: 20) {
+                if voucherVM.vouchers.isEmpty {
+                    EmptyStateView(title: "You have no Vouchers Available")
+                }
                 ForEach(voucherVM.vouchers) { voucher in
                     VoucherCardView(voucher: voucher)
                 }

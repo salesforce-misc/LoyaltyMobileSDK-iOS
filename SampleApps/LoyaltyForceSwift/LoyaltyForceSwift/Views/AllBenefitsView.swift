@@ -16,6 +16,13 @@ struct AllBenefitsView: View {
         
         let memberId = rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? ""
         
+        if benefitVM.benefits.isEmpty {
+            EmptyStateView(title: "You have no Benefits")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.theme.background)
+                .loytaltyNavigationTitle("My Benefits")
+        }
+        
         if #available(iOS 16, *) {
             List {
                 VStack {

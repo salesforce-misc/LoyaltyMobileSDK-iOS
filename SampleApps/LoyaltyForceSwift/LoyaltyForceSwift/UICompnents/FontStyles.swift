@@ -222,4 +222,13 @@ extension Font {
     static var tabTitle: Font {
         return Font.custom("SFPro-Regular", size: 12)
     }
+    
+    // empty state view
+    static var emptyStateTitle: Font {
+        return Font.custom("SFPro-Bold", size: 16)
+    }
+    
+    static var emptyStateSubTitle: Font {
+        return Font.custom("SFPro-Regular", size: 12)
+    }
 }

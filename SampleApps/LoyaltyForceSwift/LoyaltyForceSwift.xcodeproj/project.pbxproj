@@ -96,6 +96,7 @@
 		299B38E428EE040900E45D97 /* UIApplication+DismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */; };
 		29A39BC12937C699005833C2 /* AsyncImageWithAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A39BC02937C699005833C2 /* AsyncImageWithAuth.swift */; };
 		29A39BC32937F46D005833C2 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A39BC22937F46D005833C2 /* String+MD5.swift */; };
+		29A39BC529397B98005833C2 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A39BC429397B98005833C2 /* EmptyStateView.swift */; };
 		29AB2E1C28E2763700D4B32C /* SheetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AB2E1B28E2763700D4B32C /* SheetHeader.swift */; };
 		29AC2EF928F8901A003F56F6 /* LoyaltyNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2EF828F8901A003F56F6 /* LoyaltyNavBarView.swift */; };
 		29AC2EFB28F8959E003F56F6 /* LoyaltyNavBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2EFA28F8959E003F56F6 /* LoyaltyNavBarContainerView.swift */; };
@@ -224,6 +225,7 @@
 		299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DismissKeyboard.swift"; sourceTree = "<group>"; };
 		29A39BC02937C699005833C2 /* AsyncImageWithAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageWithAuth.swift; sourceTree = "<group>"; };
 		29A39BC22937F46D005833C2 /* String+MD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
+		29A39BC429397B98005833C2 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		29AB2E1B28E2763700D4B32C /* SheetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeader.swift; sourceTree = "<group>"; };
 		29AC2EF828F8901A003F56F6 /* LoyaltyNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyNavBarView.swift; sourceTree = "<group>"; };
 		29AC2EFA28F8959E003F56F6 /* LoyaltyNavBarContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyNavBarContainerView.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				29367605293209CB00E09A6D /* CachedAsyncImage.swift */,
 				29D7497B2931D10100BC81AD /* AsyncImageView.swift */,
 				29A39BC02937C699005833C2 /* AsyncImageWithAuth.swift */,
+				29A39BC429397B98005833C2 /* EmptyStateView.swift */,
 			);
 			path = UICompnents;
 			sourceTree = "<group>";
@@ -711,6 +714,7 @@
 				29BAF6EF28F4E27400A3F9EB /* BadgesView.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
 				29BAF6ED28F4DE1C00A3F9EB /* BadgeCardView.swift in Sources */,
+				29A39BC529397B98005833C2 /* EmptyStateView.swift in Sources */,
 				29BAF6D328F103B600A3F9EB /* PromotionCarouselView.swift in Sources */,
 				29BAF6DF28F3ECA600A3F9EB /* TopTabBar.swift in Sources */,
 				299B38CE28E3CF9900E45D97 /* EnrollmentOutputModel.swift in Sources */,

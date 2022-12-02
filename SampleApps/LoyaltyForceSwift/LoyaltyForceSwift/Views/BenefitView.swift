@@ -21,6 +21,9 @@ struct BenefitView: View {
             ViewAllView(title: "My Benefits") {
                 AllBenefitsView()
             } content: {
+                if benefits.isEmpty {
+                    EmptyStateView(title: "You have no Benefits")
+                }
                 ForEach(benefits) { benefit in
                     HStack {
                         Circle()

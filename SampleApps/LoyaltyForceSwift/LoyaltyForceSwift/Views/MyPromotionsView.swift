@@ -55,6 +55,10 @@ struct MyPromotionsView: View {
         
         ScrollView {
             LazyVStack(spacing: 15) {
+                if promotionVM.unenrolledPromotions.isEmpty {
+                    EmptyStateView(title: "No Promotions, yet.",
+                                   subTitle: "You do not have any eligibile promotions to enroll. Please come back later.")
+                }
                 ForEach(promotionVM.unenrolledPromotions) { promotion in
                     MyPromotionCardView(promotion: promotion)
                 }
@@ -83,6 +87,10 @@ struct MyPromotionsView: View {
         
         ScrollView {
             LazyVStack(spacing: 15) {
+                if promotionVM.activePromotions.isEmpty {
+                    EmptyStateView(title: "No Promotions, yet.",
+                                   subTitle: "You do not have any active promotions. Please come back later.")
+                }
                 ForEach(promotionVM.activePromotions) { promotion in
                     MyPromotionCardView(promotion: promotion)
                 }
@@ -113,6 +121,10 @@ struct MyPromotionsView: View {
         
         ScrollView {
             LazyVStack(spacing: 15) {
+                if promotionVM.allEligiblePromotions.isEmpty {
+                    EmptyStateView(title: "No Promotions, yet.",
+                                   subTitle: "You do not have any eligibile promotions. Please come back later.")
+                }
                 ForEach(promotionVM.allEligiblePromotions) { promotion in
                     MyPromotionCardView(promotion: promotion)
                 }

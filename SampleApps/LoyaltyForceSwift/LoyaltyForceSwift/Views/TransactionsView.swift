@@ -19,11 +19,7 @@ struct TransactionsView: View {
         } content: {
             VStack(spacing: 15) {
                 if transactionVM.transactions.isEmpty {
-                    Spacer()
-                    Text("No transactions")
-                        .font(.transactionPeriod)
-                        .foregroundColor(Color.theme.lightBlackText)
-                    Spacer()
+                    EmptyStateView(title: "You have no Transactions")
                 }
                 ForEach(transactionVM.transactions) { transaction in
                     TransactionCardView(transaction: transaction)
