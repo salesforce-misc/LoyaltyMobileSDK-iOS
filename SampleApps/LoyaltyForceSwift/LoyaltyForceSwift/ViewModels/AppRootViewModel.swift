@@ -183,8 +183,8 @@ class AppRootViewModel: ObservableObject {
             isInProgress = false
             member = nil
             
-            // test delete all cached data
-            // LocalFileManager.instance.removeAllAppData()
+            // delete all cached data
+            LocalFileManager.instance.removeAllAppData()
         } catch {
             print("<Firebase> - Error signing out: \(error.localizedDescription)")
             isInProgress = false
