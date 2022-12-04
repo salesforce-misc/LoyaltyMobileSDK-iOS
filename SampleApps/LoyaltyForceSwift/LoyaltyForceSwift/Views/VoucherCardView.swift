@@ -17,7 +17,6 @@ struct VoucherCardView: View {
     var body: some View {
         
         VStack {
-            //AsyncImageView(imageUrl: voucher.image)
             AsyncImageWithAuth(url: voucher.image, content: { image in
                 image
                     .resizable()

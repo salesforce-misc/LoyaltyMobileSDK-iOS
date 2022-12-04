@@ -19,7 +19,6 @@ struct VoucherDetailView: View {
             
             VStack(alignment: .leading) {
                 
-                //AsyncImageView(imageUrl: voucher.image)
                 AsyncImageWithAuth(url: voucher.image, content: { image in
                     image
                         .resizable()
