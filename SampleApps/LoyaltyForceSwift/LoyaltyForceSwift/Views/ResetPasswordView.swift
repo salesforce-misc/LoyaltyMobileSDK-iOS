@@ -42,11 +42,13 @@ struct ResetPasswordView: View {
                         
                     } label: {
                         Image("ic-backarrow")
+                            .padding()
+                        
                     }
+                    .offset(x: -16)
                     Spacer()
                 }
                 .padding(.top, 60)
-                .padding(.bottom, 20)
                 
                 HStack {
                     Text("Forgot Your Password?")
