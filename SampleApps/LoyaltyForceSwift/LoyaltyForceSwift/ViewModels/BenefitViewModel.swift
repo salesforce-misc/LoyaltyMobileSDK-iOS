@@ -119,6 +119,11 @@ class BenefitViewModel: ObservableObject {
          
     }
     
-
+    // clear memory
+    func clear() {
+        benefits = []
+        benefitsPreview = []
+        benefitDescs = [:]
+    }
     
 }

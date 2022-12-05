@@ -177,4 +177,12 @@ class VoucherViewModel: ObservableObject {
             }
         }
     }
+    
+    @MainActor
+    func clear() {
+        vouchers = []
+        availableVochers = []
+        redeemedVochers = []
+        expiredVochers = []
+    }
 }

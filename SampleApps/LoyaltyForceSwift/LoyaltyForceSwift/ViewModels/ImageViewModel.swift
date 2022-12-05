@@ -31,4 +31,9 @@ class ImageViewModel: ObservableObject {
             }
         }
     }
+    
+    @MainActor
+    func clear() {
+        images = [:]
+    }
 }

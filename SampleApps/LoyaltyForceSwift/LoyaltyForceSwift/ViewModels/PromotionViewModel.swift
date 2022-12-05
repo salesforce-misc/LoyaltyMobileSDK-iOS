@@ -216,4 +216,13 @@ class PromotionViewModel: ObservableObject {
         }
 
     }
+    
+    @MainActor
+    func clear() {
+        allEligiblePromotions = []
+        promotions = []
+        unenrolledPromotions = []
+        activePromotions = []
+        promotionList = [:]
+    }
 }

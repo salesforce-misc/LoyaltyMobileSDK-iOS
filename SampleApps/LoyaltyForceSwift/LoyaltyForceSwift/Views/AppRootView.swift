@@ -11,7 +11,13 @@ import Firebase
 struct AppRootView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
-    @EnvironmentObject private var viewModel: AppRootViewModel
+    @EnvironmentObject private var rootVM: AppRootViewModel
+    @EnvironmentObject private var benefitVM: BenefitViewModel
+    @EnvironmentObject private var profileVM: ProfileViewModel
+    @EnvironmentObject private var promotionVM: PromotionViewModel
+    @EnvironmentObject private var transactionVM: TransactionViewModel
+    @EnvironmentObject private var voucherVM: VoucherViewModel
+    @EnvironmentObject private var imageVM: ImageViewModel
     
     var body: some View {
                
@@ -44,14 +50,25 @@ struct AppRootView: View {
         }
         .onAppear() {
             appViewRouter.signedIn = appViewRouter.isSignedIn
-            if appViewRouter.isSignedIn && viewModel.member == nil {
-                viewModel.member = LocalFileManager.instance.getData(type: MemberModel.self, id: viewModel.email)
+            if appViewRouter.isSignedIn && rootVM.member == nil {
+                rootVM.member = LocalFileManager.instance.getData(type: MemberModel.self, id: rootVM.email)
+            }
+        }
+        .onReceive(appViewRouter.$signedIn) { signedIn in
+            if !signedIn {
+                benefitVM.clear()
+                profileVM.clear()
+                promotionVM.clear()
+                transactionVM.clear()
+                voucherVM.clear()
+                imageVM.clear()
             }
         }
         .onOpenURL { url in
             print(url)
             redirectDeeplink(url: url)
         }
+        
     }
 
     /// Sample reset password email link:
@@ -77,13 +94,13 @@ struct AppRootView: View {
                 appViewRouter.currentPage = defaultPage
                 return
             }
-            viewModel.oobCode = oobCode
+            rootVM.oobCode = oobCode
             
             guard let apiKey = items["apiKey"] else {
                 appViewRouter.currentPage = defaultPage
                 return
             }
-            viewModel.apiKey = apiKey
+            rootVM.apiKey = apiKey
             
             appViewRouter.currentPage = .createNewPasswordPage
         default:

@@ -144,5 +144,12 @@ class TransactionViewModel: ObservableObject {
             throw error
         }
     }
+    
+    @MainActor
+    func clear() {
+        transactions = []
+        recentTransactions = []
+        olderTransactions = []
+    }
 
 }

@@ -7,12 +7,12 @@
 
 import Foundation
 
+@MainActor
 class ProfileViewModel: ObservableObject {
     
     @Published var profile: ProfileModel?
     @Published var isLoading = false
     
-    @MainActor
     func getProfileData(memberId: String, reload: Bool = false) async throws {
         
         isLoading = true
@@ -43,7 +43,6 @@ class ProfileViewModel: ObservableObject {
     }
     
     // Fetch profile from Salesforce
-    @MainActor
     func fetchProfile(memberId: String) async throws {
         do {
             
@@ -57,6 +56,10 @@ class ProfileViewModel: ObservableObject {
         } catch {
             throw error
         }
+    }
+    
+    func clear() {
+        profile = nil
     }
 
 }
