@@ -31,8 +31,11 @@ struct MyPromotionDetailView: View {
                         Image("ic-dismiss")
                             .padding()
                             .onTapGesture {
-                                dismiss()
+                                if !processing {
+                                    dismiss()
+                                }
                             }
+                            .opacity(processing ? 0.5 : 1)
                     }
                 
                 VStack(alignment: .leading, spacing: 20) {
@@ -126,6 +129,7 @@ struct MyPromotionDetailView: View {
                 ProgressView()
             }
         }
+        .interactiveDismissDisabled(processing)
         .zIndex(3.0)
         
     }
