@@ -12,9 +12,9 @@ struct MyPromotionDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
-    @State private var processing = false
     
     let promotion: PromotionResult
+    @Binding var processing: Bool
     
     var body: some View {
         
@@ -31,11 +31,8 @@ struct MyPromotionDetailView: View {
                         Image("ic-dismiss")
                             .padding()
                             .onTapGesture {
-                                if !processing {
-                                    dismiss()
-                                }
+                                dismiss()
                             }
-                            .opacity(processing ? 0.5 : 1)
                     }
                 
                 VStack(alignment: .leading, spacing: 20) {
@@ -129,7 +126,6 @@ struct MyPromotionDetailView: View {
                 ProgressView()
             }
         }
-        .interactiveDismissDisabled(processing)
         .zIndex(3.0)
         
     }
@@ -137,7 +133,7 @@ struct MyPromotionDetailView: View {
 
 struct MyPromotionDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MyPromotionDetailView(promotion: dev.promotion)
+        MyPromotionDetailView(promotion: dev.promotion, processing: .constant(false))
             .environmentObject(dev.rootVM)
             .environmentObject(dev.promotionVM)
     }

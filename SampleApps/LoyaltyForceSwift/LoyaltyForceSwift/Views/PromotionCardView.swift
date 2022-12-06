@@ -10,11 +10,11 @@ import SwiftUI
 struct PromotionCardView: View {
 
     @State var showPromotionDetailView = false
+    @State var processing = false
     let promotion: PromotionResult
     
     var body: some View {
         VStack {
-            //Image(promotion.imageUrl ?? "img-placeholder")
             AsyncImageView(imageUrl: promotion.promoImages[promotion.id])
                 .frame(width: 289, height: 154)
                 .cornerRadius(5, corners: [.topLeft, .topRight])
@@ -58,7 +58,7 @@ struct PromotionCardView: View {
             showPromotionDetailView.toggle()
         }
         .sheet(isPresented: $showPromotionDetailView) {
-            MyPromotionDetailView(promotion: promotion)
+            MyPromotionDetailView(promotion: promotion, processing: $processing)
         }
         .padding()
             
