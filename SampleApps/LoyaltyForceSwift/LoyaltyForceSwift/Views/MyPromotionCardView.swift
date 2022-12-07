@@ -15,7 +15,6 @@ struct MyPromotionCardView: View {
     
     @State var loadImage: Bool = false
     @State var showPromotionDetailView = false
-    @State var processing = false
 
     var body: some View {
         HStack {
@@ -85,13 +84,9 @@ struct MyPromotionCardView: View {
             showPromotionDetailView.toggle()
         }
         .sheet(isPresented: $showPromotionDetailView, onDismiss: {
-            Task {
-                while !processing {
-                    await promotionVM.updatePromotionsFromCache(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
-                }
-            }
+            promotionVM.refreshAndDismissed.1 = true
         }) {
-            MyPromotionDetailView(promotion: promotion, processing: $processing)
+            MyPromotionDetailView(promotion: promotion)
         }
     }
 }

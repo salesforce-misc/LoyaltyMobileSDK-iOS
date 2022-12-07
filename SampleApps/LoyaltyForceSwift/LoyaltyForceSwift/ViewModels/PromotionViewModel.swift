@@ -14,6 +14,7 @@ class PromotionViewModel: ObservableObject {
     @Published var unenrolledPromotions: [PromotionResult] = []
     @Published var activePromotions: [PromotionResult] = []
     @Published var promotionList: [String: PromotionResult] = [:]
+    @Published var refreshAndDismissed: (Bool, Bool) = (false, false) // Refresh Needed after enroll/unenroll and modal dismissed => UI Refresh Needed
     
     // Network call to fetch all eligible promotions
     private func fetchEligiblePromotions(membershipNumber: String) async throws -> [PromotionResult] {
@@ -184,6 +185,9 @@ class PromotionViewModel: ObservableObject {
             try await LoyaltyAPIManager.shared.enrollIn(promotion: promotionName, for: membershipNumber)
             // fetch all from network
             let _ = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
+            await MainActor.run {
+                refreshAndDismissed.0 = true
+            }
         } catch {
             throw error
         }
@@ -193,6 +197,9 @@ class PromotionViewModel: ObservableObject {
         do {
             try await LoyaltyAPIManager.shared.unenrollIn(promotion: promotionName, for: membershipNumber)
             let _ = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
+            await MainActor.run {
+                refreshAndDismissed.0 = true
+            }
         } catch {
             throw error
         }
@@ -213,6 +220,7 @@ class PromotionViewModel: ObservableObject {
             allEligiblePromotions = cached
             activePromotions = active
             unenrolledPromotions = unenrolled
+            refreshAndDismissed = (false, false)
         }
 
     }

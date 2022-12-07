@@ -58,7 +58,7 @@ struct PromotionCardView: View {
             showPromotionDetailView.toggle()
         }
         .sheet(isPresented: $showPromotionDetailView) {
-            MyPromotionDetailView(promotion: promotion, processing: $processing)
+            MyPromotionDetailView(promotion: promotion)
         }
         .padding()
             
