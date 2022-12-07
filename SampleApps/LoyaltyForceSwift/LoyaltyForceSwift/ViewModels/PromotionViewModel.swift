@@ -217,7 +217,6 @@ class PromotionViewModel: ObservableObject {
             return (result.memberEligibilityCategory == "EligibleButNotEnrolled" && result.promotionEnrollmentRqr == true)
         }
         await MainActor.run {
-            allEligiblePromotions = cached
             activePromotions = active
             unenrolledPromotions = unenrolled
             refreshAndDismissed = (false, false)

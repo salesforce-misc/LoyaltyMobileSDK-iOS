@@ -11,10 +11,10 @@ struct MyPromotionCardView: View {
     
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
-    let promotion: PromotionResult
-    
     @State var loadImage: Bool = false
     @State var showPromotionDetailView = false
+    @State var processing = false
+    let promotion: PromotionResult
 
     var body: some View {
         HStack {
@@ -86,8 +86,10 @@ struct MyPromotionCardView: View {
         .sheet(isPresented: $showPromotionDetailView, onDismiss: {
             promotionVM.refreshAndDismissed.1 = true
         }) {
-            MyPromotionDetailView(promotion: promotion)
+            MyPromotionDetailView(promotion: promotion, processing: $processing)
         }
+        .allowsHitTesting(!processing)
+        .opacity(processing ? 0.5 : 1)
     }
 }
 

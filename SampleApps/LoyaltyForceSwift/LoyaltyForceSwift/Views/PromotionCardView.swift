@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PromotionCardView: View {
 
+    @EnvironmentObject private var promotionVM: PromotionViewModel
     @State var showPromotionDetailView = false
     @State var processing = false
     let promotion: PromotionResult
@@ -57,8 +58,10 @@ struct PromotionCardView: View {
         .onTapGesture {
             showPromotionDetailView.toggle()
         }
-        .sheet(isPresented: $showPromotionDetailView) {
-            MyPromotionDetailView(promotion: promotion)
+        .sheet(isPresented: $showPromotionDetailView, onDismiss: {
+            promotionVM.refreshAndDismissed.1 = true
+        }) {
+            MyPromotionDetailView(promotion: promotion, processing: $processing)
         }
         .padding()
             

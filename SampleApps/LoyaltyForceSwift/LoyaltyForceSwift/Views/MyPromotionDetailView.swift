@@ -12,9 +12,9 @@ struct MyPromotionDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
-    @State private var processing: Bool = false
     
     let promotion: PromotionResult
+    @Binding var processing: Bool
     
     var body: some View {
         
@@ -133,7 +133,7 @@ struct MyPromotionDetailView: View {
 
 struct MyPromotionDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MyPromotionDetailView(promotion: dev.promotion)
+        MyPromotionDetailView(promotion: dev.promotion, processing: .constant(false))
             .environmentObject(dev.rootVM)
             .environmentObject(dev.promotionVM)
     }
