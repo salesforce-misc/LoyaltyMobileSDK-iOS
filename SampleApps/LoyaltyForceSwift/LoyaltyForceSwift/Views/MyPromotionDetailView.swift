@@ -62,7 +62,7 @@ struct MyPromotionDetailView: View {
                                 Task {
                                     do {
                                         try await promotionVM.enroll(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "",
-                                                           promotionName: currentPromotion.promotionName)
+                                                                     promotionName: currentPromotion.promotionName, promotionId: promotion.id)
                                         processing = false
                                     } catch {
                                         print("Enroll in Promotion Error: \(error)")
@@ -78,6 +78,7 @@ struct MyPromotionDetailView: View {
                         }
                     } else if currentPromotion.memberEligibilityCategory == "Eligible" && currentPromotion.promotionEnrollmentRqr == true {
                         HStack {
+                            Spacer()
                             Button("Shop") {
                                 
                             }
@@ -89,7 +90,7 @@ struct MyPromotionDetailView: View {
                                 Task {
                                     do {
                                         try await promotionVM.unenroll(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "",
-                                                           promotionName: currentPromotion.promotionName)
+                                                                       promotionName: currentPromotion.promotionName, promotionId: promotion.id)
                                         processing = false
                                     } catch {
                                         print("Unenroll in Promotion Error: \(error)")
@@ -100,7 +101,6 @@ struct MyPromotionDetailView: View {
                             .buttonStyle(LightShortPromotionButton())
                             .disabled(processing)
                             .opacity(processing ? 0.5 : 1)
-                            
                             Spacer()
                         }
                     } else {

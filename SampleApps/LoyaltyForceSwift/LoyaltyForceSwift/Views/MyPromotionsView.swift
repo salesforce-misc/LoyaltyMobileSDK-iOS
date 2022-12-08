@@ -47,13 +47,6 @@ struct MyPromotionsView: View {
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
             }
-            .onReceive(promotionVM.$refreshAndDismissed) { refresh in
-                if (refresh == (true, true)) {
-                    Task {
-                        await promotionVM.updatePromotionsFromCache(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
-                    }
-                }
-            }
         }
         
     }

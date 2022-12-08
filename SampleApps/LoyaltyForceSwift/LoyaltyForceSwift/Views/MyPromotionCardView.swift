@@ -84,12 +84,24 @@ struct MyPromotionCardView: View {
             showPromotionDetailView.toggle()
         }
         .sheet(isPresented: $showPromotionDetailView, onDismiss: {
-            promotionVM.refreshAndDismissed.1 = true
+            if promotionVM.actionTaskList[promotion.id] != nil {
+                promotionVM.actionTaskList[promotion.id]!.1 = true
+            } else {
+                promotionVM.actionTaskList[promotion.id] = (false, true)
+            }
         }) {
             MyPromotionDetailView(promotion: promotion, processing: $processing)
         }
+        .onReceive(promotionVM.$actionTaskList) { action in
+            if let currentAction = action[promotion.id], currentAction == (true, true) {
+                Task {
+                    await promotionVM.updatePromotionsFromCache(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "", promotionId: promotion.id)
+                }
+            }
+        }
         .allowsHitTesting(!processing)
         .opacity(processing ? 0.5 : 1)
+        
     }
 }
 

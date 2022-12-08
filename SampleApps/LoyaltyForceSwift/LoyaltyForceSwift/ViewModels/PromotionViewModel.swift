@@ -14,7 +14,11 @@ class PromotionViewModel: ObservableObject {
     @Published var unenrolledPromotions: [PromotionResult] = []
     @Published var activePromotions: [PromotionResult] = []
     @Published var promotionList: [String: PromotionResult] = [:]
-    @Published var refreshAndDismissed: (Bool, Bool) = (false, false) // Refresh Needed after enroll/unenroll and modal dismissed => UI Refresh Needed
+    // To record action(enroll/unenroll) status on enrollable promotions
+    // The tuple represents(isActionDone: Bool, isModalDismissed: Bool)
+    // actionTaskList => [promotionId: (isActionDone, isModalDismissed)]
+    @Published var actionTaskList: [String: (Bool, Bool)] = [:]
+    
     
     // Network call to fetch all eligible promotions
     private func fetchEligiblePromotions(membershipNumber: String) async throws -> [PromotionResult] {
@@ -180,32 +184,41 @@ class PromotionViewModel: ObservableObject {
         }
     }
     
-    func enroll(membershipNumber: String, promotionName: String) async throws {
+    func enroll(membershipNumber: String, promotionName: String, promotionId: String) async throws {
         do {
             try await LoyaltyAPIManager.shared.enrollIn(promotion: promotionName, for: membershipNumber)
             // fetch all from network
             let _ = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
             await MainActor.run {
-                refreshAndDismissed.0 = true
+                if actionTaskList[promotionId] != nil {
+                    actionTaskList[promotionId]!.0 = true
+                } else {
+                    actionTaskList[promotionId] = (true, false)
+                }
+                
             }
         } catch {
             throw error
         }
     }
     
-    func unenroll(membershipNumber: String, promotionName: String) async throws {
+    func unenroll(membershipNumber: String, promotionName: String, promotionId: String) async throws {
         do {
             try await LoyaltyAPIManager.shared.unenrollIn(promotion: promotionName, for: membershipNumber)
             let _ = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
             await MainActor.run {
-                refreshAndDismissed.0 = true
+                if actionTaskList[promotionId] != nil {
+                    actionTaskList[promotionId]!.0 = true
+                } else {
+                    actionTaskList[promotionId] = (true, false)
+                }
             }
         } catch {
             throw error
         }
     }
     
-    func updatePromotionsFromCache(membershipNumber: String) async {
+    func updatePromotionsFromCache(membershipNumber: String, promotionId: String) async {
 
         guard let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") else {
             return
@@ -219,7 +232,7 @@ class PromotionViewModel: ObservableObject {
         await MainActor.run {
             activePromotions = active
             unenrolledPromotions = unenrolled
-            refreshAndDismissed = (false, false)
+            actionTaskList.removeValue(forKey: promotionId)
         }
 
     }

@@ -59,7 +59,11 @@ struct PromotionCardView: View {
             showPromotionDetailView.toggle()
         }
         .sheet(isPresented: $showPromotionDetailView, onDismiss: {
-            promotionVM.refreshAndDismissed.1 = true
+            if promotionVM.actionTaskList[promotion.id] != nil {
+                promotionVM.actionTaskList[promotion.id]!.1 = true
+            } else {
+                promotionVM.actionTaskList[promotion.id] = (false, true)
+            }
         }) {
             MyPromotionDetailView(promotion: promotion, processing: $processing)
         }
