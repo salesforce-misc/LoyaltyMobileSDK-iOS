@@ -82,7 +82,7 @@ struct Carousel<Content: View, T: Identifiable>: View {
 
 struct Carousel_Previews: PreviewProvider {
     static var previews: some View {
-        PromotionCarouselView(selectedTab: .constant(.home))
+        PromotionCarouselView(selectedTab: .constant(Tab.home.rawValue))
             .environmentObject(dev.rootVM)
             .environmentObject(dev.promotionVM)
     }

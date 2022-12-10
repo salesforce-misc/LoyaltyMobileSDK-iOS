@@ -12,28 +12,22 @@ struct AppRootView: View {
     
     @EnvironmentObject private var appViewRouter: AppViewRouter
     @EnvironmentObject private var rootVM: AppRootViewModel
-    @EnvironmentObject private var benefitVM: BenefitViewModel
-    @EnvironmentObject private var profileVM: ProfileViewModel
-    @EnvironmentObject private var promotionVM: PromotionViewModel
-    @EnvironmentObject private var transactionVM: TransactionViewModel
-    @EnvironmentObject private var voucherVM: VoucherViewModel
-    @EnvironmentObject private var imageVM: ImageViewModel
     
     var body: some View {
                
         Group {
             if appViewRouter.signedIn {
                 switch appViewRouter.currentPage {
-                case .navTabsPage(selectedTab: .home):
+                case .navTabsPage(selectedTab: Tab.home.rawValue):
                     BottomNavTabsView()
-                case .navTabsPage(selectedTab: .offers):
-                    BottomNavTabsView(selectedTab: .offers)
-                case .navTabsPage(selectedTab: .profile):
-                    BottomNavTabsView(selectedTab: .profile)
-                case .navTabsPage(selectedTab: .redeem):
-                    BottomNavTabsView(selectedTab: .redeem)
-                case .navTabsPage(selectedTab: .more):
-                    BottomNavTabsView(selectedTab: .more)
+                case .navTabsPage(selectedTab: Tab.offers.rawValue):
+                    BottomNavTabsView(selectedTab: Tab.offers.rawValue)
+                case .navTabsPage(selectedTab: Tab.profile.rawValue):
+                    BottomNavTabsView(selectedTab: Tab.profile.rawValue)
+                case .navTabsPage(selectedTab: Tab.redeem.rawValue):
+                    BottomNavTabsView(selectedTab: Tab.redeem.rawValue)
+                case .navTabsPage(selectedTab: Tab.more.rawValue):
+                    BottomNavTabsView(selectedTab: Tab.more.rawValue)
                 default:
                     BottomNavTabsView()
                 }
@@ -52,16 +46,6 @@ struct AppRootView: View {
             appViewRouter.signedIn = appViewRouter.isSignedIn
             if appViewRouter.isSignedIn && rootVM.member == nil {
                 rootVM.member = LocalFileManager.instance.getData(type: MemberModel.self, id: rootVM.email)
-            }
-        }
-        .onReceive(appViewRouter.$signedIn) { signedIn in
-            if !signedIn {
-                benefitVM.clear()
-                profileVM.clear()
-                promotionVM.clear()
-                transactionVM.clear()
-                voucherVM.clear()
-                imageVM.clear()
             }
         }
         .onOpenURL { url in

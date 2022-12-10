@@ -108,7 +108,7 @@ struct CreateNewPasswordView: View {
                     if state == UserState.signedIn  {
                         viewModel.isInProgress = false
                         appViewRouter.signedIn = true
-                        appViewRouter.currentPage = .navTabsPage(selectedTab: .home)
+                        appViewRouter.currentPage = .navTabsPage(selectedTab: Tab.home.rawValue)
                     }
                 }
                 

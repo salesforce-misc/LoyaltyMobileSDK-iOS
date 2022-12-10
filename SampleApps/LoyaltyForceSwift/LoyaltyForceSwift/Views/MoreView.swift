@@ -16,8 +16,15 @@ struct MenuItem: Identifiable {
 
 struct MoreView: View {
     
-    @EnvironmentObject var appViewRouter: AppViewRouter
-    @EnvironmentObject var viewModel: AppRootViewModel
+    @EnvironmentObject private var appViewRouter: AppViewRouter
+    @EnvironmentObject private var rootVM: AppRootViewModel
+    @EnvironmentObject private var benefitVM: BenefitViewModel
+    @EnvironmentObject private var profileVM: ProfileViewModel
+    @EnvironmentObject private var promotionVM: PromotionViewModel
+    @EnvironmentObject private var transactionVM: TransactionViewModel
+    @EnvironmentObject private var voucherVM: VoucherViewModel
+    @EnvironmentObject private var imageVM: ImageViewModel
+
     
     let menuItems: [MenuItem] = [
         MenuItem(icon: "ic-person", title: "Account"),
@@ -36,7 +43,7 @@ struct MoreView: View {
                     Spacer()
                 }
                 
-                Text("\(viewModel.member?.firstName.capitalized ?? "") \(viewModel.member?.lastName.capitalized ?? "")")
+                Text("\(rootVM.member?.firstName.capitalized ?? "") \(rootVM.member?.lastName.capitalized ?? "")")
                     .font(.nameText)
             }
             .frame(height: 85)
@@ -57,7 +64,7 @@ struct MoreView: View {
                     }
 
                     Button {
-                        viewModel.signOutUser()
+                        rootVM.signOutUser()
                     } label: {
                         Label("Log Out", image: "ic-logout")
                             .font(.menuText)
@@ -66,10 +73,17 @@ struct MoreView: View {
                     .buttonStyle(.plain)
                     .listRowSeparator(.hidden, edges: .bottom)
                     .frame(height: 72)
-                    .onReceive(viewModel.$userState) { state in
+                    .onReceive(rootVM.$userState) { state in
                         if state == UserState.signedOut {
                             appViewRouter.signedIn = false
                             appViewRouter.currentPage = .onboardingPage
+                            
+                            benefitVM.clear()
+                            profileVM.clear()
+                            promotionVM.clear()
+                            transactionVM.clear()
+                            voucherVM.clear()
+                            imageVM.clear()
                         }
                     }
                 }
@@ -79,7 +93,7 @@ struct MoreView: View {
             }
             .navigationViewStyle(.stack)
             
-            if viewModel.isInProgress {
+            if rootVM.isInProgress {
                 ProgressView()
             }
         }

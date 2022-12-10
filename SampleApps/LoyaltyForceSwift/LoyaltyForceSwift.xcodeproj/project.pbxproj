@@ -135,6 +135,7 @@
 		29E6601A2915C5A20056CF9D /* Expiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E660192915C5A20056CF9D /* Expiry.swift */; };
 		29E6601C2915C5F80056CF9D /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E6601B2915C5F80056CF9D /* Date+Extensions.swift */; };
 		29E6601E2915C6260056CF9D /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E6601D2915C6260056CF9D /* Entry.swift */; };
+		29FEDDF2294293BF0014BEBA /* UITabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FEDDF1294293BF0014BEBA /* UITabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -265,6 +266,7 @@
 		29E660192915C5A20056CF9D /* Expiry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expiry.swift; sourceTree = "<group>"; };
 		29E6601B2915C5F80056CF9D /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		29E6601D2915C6260056CF9D /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		29FEDDF1294293BF0014BEBA /* UITabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -483,6 +485,7 @@
 				29D7497B2931D10100BC81AD /* AsyncImageView.swift */,
 				29A39BC02937C699005833C2 /* AsyncImageWithAuth.swift */,
 				29A39BC429397B98005833C2 /* EmptyStateView.swift */,
+				29FEDDF1294293BF0014BEBA /* UITabView.swift */,
 			);
 			path = UICompnents;
 			sourceTree = "<group>";
@@ -707,6 +710,7 @@
 				2906B1E42900CD43006EAB2D /* LocalFileManager.swift in Sources */,
 				291CC0BB28D526A600C08572 /* Address.swift in Sources */,
 				291CC0B128D1410500C08572 /* UserDefaults.swift in Sources */,
+				29FEDDF2294293BF0014BEBA /* UITabView.swift in Sources */,
 				2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */,
 				296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */,
 				29BAF6DD28F3AE8B00A3F9EB /* String+StringWidth.swift in Sources */,

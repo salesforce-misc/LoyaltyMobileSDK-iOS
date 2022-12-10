@@ -9,53 +9,28 @@ import SwiftUI
 
 struct BottomNavTabsView: View {
 
-    @State var selectedTab: Tab = .home
+    @State var selectedTab: Int = Tab.home.rawValue
     
     var body: some View {
         
         ZStack(alignment: .bottomLeading) {
-            TabView(selection: $selectedTab) {
+            UITabView(selection: $selectedTab) {
                 HomeView(selectedTab: $selectedTab)
-                    .tabItem {
-                        Image("ic-home")
-                            .renderingMode(.template)
-                        Text("Home")
-                    }
-                    .tag(Tab.home)
+                    .tabItem("Home", image: UIImage(named: "ic-home"))
                 
                 MyPromotionsView()
-                    .tabItem {
-                        Image("ic-rewards")
-                            .renderingMode(.template)
-                        Text("My Promotions")
-                    }
-                    .tag(Tab.offers)
+                    .tabItem("My Promotions", image: UIImage(named: "ic-rewards"))
                 
                 ProfileView()
-                    .tabItem {
-                        Image("ic-profile")
-                            .renderingMode(.template)
-                        Text("My Profile")
-                    }
-                    .tag(Tab.profile)
+                    .tabItem("My Profile", image: UIImage(named: "ic-profile"))
                 
                 /* Post MVP
                 RedeemView()
-                    .tabItem {
-                        Image("ic-book")
-                            .renderingMode(.template)
-                        Text("Redeem")
-                    }
-                    .tag(Tab.redeem)
+                    .tabItem("Redeem", image: UIImage(named: "ic-book"))
                 */
-                MoreView()
-                    .tabItem {
-                        Image("ic-more")
-                            .renderingMode(.template)
-                        Text("More")
-                    }
-                    .tag(Tab.more)
                 
+                MoreView()
+                    .tabItem("More", image: UIImage(named: "ic-more"))
             }
             .onAppear {
                 // correct the transparency bug for Tab bars

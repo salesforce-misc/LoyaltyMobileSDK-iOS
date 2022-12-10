@@ -13,7 +13,7 @@ struct HomeView: View {
     @EnvironmentObject private var profileVM: ProfileViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
     @EnvironmentObject private var voucherVM: VoucherViewModel
-    @Binding var selectedTab: Tab
+    @Binding var selectedTab: Int
     
     var body: some View {
         NavigationView {
@@ -118,7 +118,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(selectedTab: .constant(.home))
+        HomeView(selectedTab: .constant(Tab.home.rawValue))
             .environmentObject(dev.rootVM)
             .environmentObject(dev.profileVM)
     }

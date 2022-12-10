@@ -12,7 +12,7 @@ struct PromotionCarouselView: View {
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
     
-    @Binding var selectedTab: Tab
+    @Binding var selectedTab: Int
     @State var currentIndex: Int = 0
         
     var body: some View {
@@ -27,7 +27,7 @@ struct PromotionCarouselView: View {
                     .font(.offerViewAll)
                     .onTapGesture {
                         // redirect to My Promotions Tab
-                        selectedTab = .offers
+                        selectedTab = Tab.offers.rawValue
                     }
             }
             .padding([.top, .leading, .trailing])
@@ -70,7 +70,7 @@ struct PromotionCarouselView: View {
 
 struct PromotionCarouselView_Previews: PreviewProvider {
     static var previews: some View {
-        PromotionCarouselView(selectedTab: .constant(Tab.home))
+        PromotionCarouselView(selectedTab: .constant(Tab.home.rawValue))
             .environmentObject(dev.rootVM)
             .environmentObject(dev.promotionVM)
             .previewLayout(.sizeThatFits)
