@@ -132,7 +132,7 @@ struct OnboardingView: View {
                     .onReceive(viewModel.$userState) { state in
                         if state == UserState.signedIn {
                             appViewRouter.signedIn = true
-                            appViewRouter.currentPage = .navTabsPage(selectedTab: Tab.home.rawValue)
+                            appViewRouter.currentPage = .navTabsPage()
                         }
                     }
                 }

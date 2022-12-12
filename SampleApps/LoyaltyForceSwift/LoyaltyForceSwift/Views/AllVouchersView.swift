@@ -35,6 +35,27 @@ struct AllVouchersView: View {
         }
         .loytaltyNavigationTitle("Vouchers")
         .loyaltyNavBarTabBar(TopTabBar(barItems: barItems, tabIndex: $tabSelected))
+        .task {
+            do {
+                try await voucherVM.loadAvailableVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+            } catch {
+                print("Load Available Vouchers Error: \(error)")
+            }
+        }
+        .task {
+            do {
+                try await voucherVM.loadRedeemedVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+            } catch {
+                print("Load Redeemed Vouchers Error: \(error)")
+            }
+        }
+        .task {
+            do {
+                try await voucherVM.loadExpiredVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+            } catch {
+                print("Load Expired Vouchers Error: \(error)")
+            }
+        }
 
     }
     
@@ -51,13 +72,6 @@ struct AllVouchersView: View {
             }
             .frame(maxWidth: .infinity)
             .padding(.top, 20)
-        }
-        .task {
-            do {
-                try await voucherVM.loadAvailableVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
-            } catch {
-                print("Load Available Vouchers Error: \(error)")
-            }
         }
         .refreshable {
             print("Reloading available vouchers...")
@@ -83,13 +97,6 @@ struct AllVouchersView: View {
             .frame(maxWidth: .infinity)
             .padding(.top, 20)
         }
-        .task {
-            do {
-                try await voucherVM.loadRedeemedVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
-            } catch {
-                print("Load Redeemed Vouchers Error: \(error)")
-            }
-        }
         .refreshable {
             print("Reloading redeemed vouchers...")
             do {
@@ -113,13 +120,6 @@ struct AllVouchersView: View {
             }
             .frame(maxWidth: .infinity)
             .padding(.top, 20)
-        }
-        .task {
-            do {
-                try await voucherVM.loadExpiredVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
-            } catch {
-                print("Load Expired Vouchers Error: \(error)")
-            }
         }
         .refreshable {
             print("Reloading expired vouchers...")

@@ -37,20 +37,19 @@ struct MoreView: View {
     ]
     var body: some View {
         VStack {
-            VStack(alignment: .leading) {
-                HStack {
-                    Image("img-profile")
-                    Spacer()
-                }
-                
-                Text("\(rootVM.member?.firstName.capitalized ?? "") \(rootVM.member?.lastName.capitalized ?? "")")
-                    .font(.nameText)
-            }
-            .frame(height: 85)
-            .padding(.horizontal)
-
             NavigationView {
                 List {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Image("img-profile")
+                            Spacer()
+                        }
+
+                        Text("\(rootVM.member?.firstName.capitalized ?? "") \(rootVM.member?.lastName.capitalized ?? "")")
+                            .font(.nameText)
+                    }
+                    .frame(height: 85)
+                    
                     ForEach(menuItems) { menu in
                         NavigationLink {
                             // TODO: Links to each view

@@ -52,7 +52,7 @@ class AppViewRouter: ObservableObject {
 enum Page: Hashable {
     case onboardingPage
     case createNewPasswordPage
-    case navTabsPage(selectedTab: Int)
+    case navTabsPage(selectedTab: Int = 0)
 }
 
 enum Tab: Int {

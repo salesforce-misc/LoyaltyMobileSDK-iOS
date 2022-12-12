@@ -53,7 +53,7 @@ struct CongratsView: View {
             Button(action: {
                 dismiss()
                 appViewRouter.signedIn = true
-                appViewRouter.currentPage = .navTabsPage(selectedTab: Tab.home.rawValue)
+                appViewRouter.currentPage = .navTabsPage()
             }) {
                 Text("Shop Now")
             }

@@ -19,7 +19,7 @@ struct AppRootView: View {
             if appViewRouter.signedIn {
                 switch appViewRouter.currentPage {
                 case .navTabsPage(selectedTab: Tab.home.rawValue):
-                    BottomNavTabsView()
+                    BottomNavTabsView(selectedTab: Tab.home.rawValue)
                 case .navTabsPage(selectedTab: Tab.offers.rawValue):
                     BottomNavTabsView(selectedTab: Tab.offers.rawValue)
                 case .navTabsPage(selectedTab: Tab.profile.rawValue):

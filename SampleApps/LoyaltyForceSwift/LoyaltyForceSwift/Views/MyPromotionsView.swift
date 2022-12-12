@@ -47,6 +47,27 @@ struct MyPromotionsView: View {
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
             }
+            .task {
+                do {
+                    try await promotionVM.loadUnenrolledPromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                } catch {
+                    print("Load Unenrolled Promotions Error: \(error)")
+                }
+            }
+            .task {
+                do {
+                    try await promotionVM.loadActivePromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                } catch {
+                    print("Reload Active Promotions Error: \(error)")
+                }
+            }
+            .task {
+                do {
+                    try await promotionVM.loadAllPromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                } catch {
+                    print("Load All Promotions Error: \(error)")
+                }
+            }
         }
         
     }
@@ -65,13 +86,6 @@ struct MyPromotionsView: View {
             }
             .frame(maxWidth: .infinity)
             .padding(.top, 20)
-        }
-        .task {
-            do {
-                try await promotionVM.loadUnenrolledPromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
-            } catch {
-                print("Load Unenrolled Promotions Error: \(error)")
-            }
         }
         .refreshable {
             print("Reloading unenrolled...")
@@ -99,13 +113,6 @@ struct MyPromotionsView: View {
             .padding(.top, 20)
             
         }
-        .task {
-            do {
-                try await promotionVM.loadActivePromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
-            } catch {
-                print("Reload Active Promotions Error: \(error)")
-            }
-        }
         .refreshable {
             print("Reloading active...")
             do {
@@ -132,13 +139,6 @@ struct MyPromotionsView: View {
             .frame(maxWidth: .infinity)
             .padding(.top, 20)
             
-        }
-        .task {
-            do {
-                try await promotionVM.loadAllPromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
-            } catch {
-                print("Load All Promotions Error: \(error)")
-            }
         }
         .refreshable {
             print("Reloading all...")
