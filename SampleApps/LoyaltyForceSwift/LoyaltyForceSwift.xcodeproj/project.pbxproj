@@ -324,6 +324,7 @@
 				291CC0B228D39D1600C08572 /* LoyaltyManagement */,
 				29BAF6F228F5DE6000A3F9EB /* Utilities */,
 				2944F87F28B98C2C0098ED1B /* Extensions */,
+				290FBB41294A8C460038D47A /* Misc */,
 				2944F88228B98D420098ED1B /* Models */,
 				216A9CBF28BDD8A1007881FE /* ViewModels */,
 				296D393828DCE9890078C88E /* UICompnents */,
@@ -412,6 +413,15 @@
 			path = JSONFiles;
 			sourceTree = "<group>";
 		};
+		290FBB41294A8C460038D47A /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				2993A8432903328D00EC3C0D /* PreviewProvider.swift */,
+				2906B1D528FF5E88006EAB2D /* FirestoreManager.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 		291CC0B228D39D1600C08572 /* LoyaltyManagement */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,7 +451,6 @@
 				29D74977292E960B00BC81AD /* String+Date.swift */,
 				299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */,
 				29BAF6DC28F3AE8B00A3F9EB /* String+StringWidth.swift */,
-				2993A8432903328D00EC3C0D /* PreviewProvider.swift */,
 				29A39BC22937F46D005833C2 /* String+MD5.swift */,
 			);
 			path = Extensions;
@@ -535,7 +544,6 @@
 			isa = PBXGroup;
 			children = (
 				29BAF6F528F5DEC100A3F9EB /* LoyaltyUtilities.swift */,
-				2906B1D528FF5E88006EAB2D /* FirestoreManager.swift */,
 				29E660182915C57A0056CF9D /* FileManager */,
 				29053F80290C9A0600F84561 /* Cache.swift */,
 			);
