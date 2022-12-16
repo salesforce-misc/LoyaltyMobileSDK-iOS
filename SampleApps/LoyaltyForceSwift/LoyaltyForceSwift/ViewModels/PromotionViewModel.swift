@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import LoyaltyMobileSDK
 
 class PromotionViewModel: ObservableObject {
 

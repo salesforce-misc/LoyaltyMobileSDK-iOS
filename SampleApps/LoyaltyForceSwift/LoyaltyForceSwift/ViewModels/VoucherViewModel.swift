@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import LoyaltyMobileSDK
 
 @MainActor
 class VoucherViewModel: ObservableObject {

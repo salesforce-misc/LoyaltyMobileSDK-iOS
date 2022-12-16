@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import SwiftUI
+import LoyaltyMobileSDK
 
 enum ErrorType: Hashable {
     case signUp

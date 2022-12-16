@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Firebase
+import LoyaltyMobileSDK
 
 struct AppRootView: View {
     
