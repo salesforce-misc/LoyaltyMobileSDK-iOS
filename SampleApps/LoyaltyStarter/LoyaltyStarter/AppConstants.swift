@@ -11,7 +11,7 @@ struct AppConstants {
    
     struct Config {
         
-        static let apiVersion = "54.0"
+        static let apiVersion = "55.0"
     }
 }
 

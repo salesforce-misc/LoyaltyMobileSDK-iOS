@@ -18,7 +18,9 @@ class BenefitViewModel: ObservableObject {
     
     
     func fetchBenefits(memberId: String) {
-        
+        // clear the data and load again.
+        isLoaded = false
+        benefits = []
         let request = RestRequest(
             method: .GET,
             serviceHostType: .instance,

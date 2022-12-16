@@ -10,7 +10,7 @@ import SwiftUI
 struct BenefitView: View {
     
     @StateObject private var viewModel = BenefitViewModel()
-    private let memberId: String = "0lM5i00000000KfEAI"
+    private let memberId: String = "0lM4x000000LECA"
     
     var body: some View {
         VStack {
@@ -49,10 +49,10 @@ struct BenefitView: View {
                 .padding(.horizontal)
                 .padding(.bottom)
                 
-                
             }
             
         }
+        .padding()
         .task {
             do {
                 try await viewModel.fetchBenefits(memberId: memberId)
@@ -69,5 +69,6 @@ struct BenefitView: View {
 struct BenefitView_Previews: PreviewProvider {
     static var previews: some View {
         BenefitView()
+            .previewLayout(.sizeThatFits)
     }
 }
