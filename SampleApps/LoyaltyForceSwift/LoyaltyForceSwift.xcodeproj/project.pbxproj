@@ -38,12 +38,12 @@
 		290EA9BD2928ADB700BBF2F2 /* ViewAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */; };
 		290EA9C1292C0ACF00BBF2F2 /* VoucherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9C0292C0ACF00BBF2F2 /* VoucherViewModel.swift */; };
 		290EA9C5292C4DA500BBF2F2 /* MyPromotionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9C4292C4DA500BBF2F2 /* MyPromotionDetailView.swift */; };
+		2920609529523C9C006B20C1 /* LoyaltyMobileSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2920609429523C9C006B20C1 /* LoyaltyMobileSDK */; };
 		292ADC6E294BFD7700753541 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC6D294BFD7700753541 /* PreviewProvider.swift */; };
 		292ADC70294C03D900753541 /* PromotionModel+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC6F294C03D900753541 /* PromotionModel+Image.swift */; };
 		292ADC72294C04AB00753541 /* VocherModel+VoucherValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */; };
 		292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */; };
 		292ADC76294C064600753541 /* ProfileModel+CurrencyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC75294C064600753541 /* ProfileModel+CurrencyPoints.swift */; };
-		292ADC78294C3E4E00753541 /* LoyaltyMobileSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 292ADC77294C3E4E00753541 /* LoyaltyMobileSDK */; };
 		29367606293209CB00E09A6D /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29367605293209CB00E09A6D /* CachedAsyncImage.swift */; };
 		2941A23F28BE803F005026CF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A23E28BE803F005026CF /* Color.swift */; };
 		2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppConstants.swift */; };
@@ -139,7 +139,7 @@
 		290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllView.swift; sourceTree = "<group>"; };
 		290EA9C0292C0ACF00BBF2F2 /* VoucherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherViewModel.swift; sourceTree = "<group>"; };
 		290EA9C4292C4DA500BBF2F2 /* MyPromotionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPromotionDetailView.swift; sourceTree = "<group>"; };
-		292ADC6C294BD94A00753541 /* LoyaltyMobileSDK-iOS */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "LoyaltyMobileSDK-iOS"; path = ../..; sourceTree = "<group>"; };
+		2920609329523C0B006B20C1 /* LoyaltyMobileSDK-iOS */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "LoyaltyMobileSDK-iOS"; path = ../..; sourceTree = "<group>"; };
 		292ADC6D294BFD7700753541 /* PreviewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		292ADC6F294C03D900753541 /* PromotionModel+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PromotionModel+Image.swift"; sourceTree = "<group>"; };
 		292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VocherModel+VoucherValue.swift"; sourceTree = "<group>"; };
@@ -216,7 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				292ADC78294C3E4E00753541 /* LoyaltyMobileSDK in Frameworks */,
+				2920609529523C9C006B20C1 /* LoyaltyMobileSDK in Frameworks */,
 				2906B1E22900BA8A006EAB2D /* FirebaseAuth in Frameworks */,
 				2906B1E6290127F5006EAB2D /* FirebaseFirestore in Frameworks */,
 				2906B1E8290127FD006EAB2D /* FirebaseFirestoreSwift in Frameworks */,
@@ -243,7 +243,7 @@
 		216F217228B6141E00DAA66D = {
 			isa = PBXGroup;
 			children = (
-				292ADC63294AAAAD00753541 /* Packages */,
+				2920609229523C0B006B20C1 /* Packages */,
 				216F218C28B6145200DAA66D /* GoogleService-Info.plist */,
 				216F217D28B6141E00DAA66D /* LoyaltyForceSwift */,
 				216F217C28B6141E00DAA66D /* Products */,
@@ -363,10 +363,10 @@
 			path = Misc;
 			sourceTree = "<group>";
 		};
-		292ADC63294AAAAD00753541 /* Packages */ = {
+		2920609229523C0B006B20C1 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				292ADC6C294BD94A00753541 /* LoyaltyMobileSDK-iOS */,
+				2920609329523C0B006B20C1 /* LoyaltyMobileSDK-iOS */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -463,7 +463,7 @@
 				2906B1E12900BA8A006EAB2D /* FirebaseAuth */,
 				2906B1E5290127F5006EAB2D /* FirebaseFirestore */,
 				2906B1E7290127FD006EAB2D /* FirebaseFirestoreSwift */,
-				292ADC77294C3E4E00753541 /* LoyaltyMobileSDK */,
+				2920609429523C9C006B20C1 /* LoyaltyMobileSDK */,
 			);
 			productName = LoyaltyStarter;
 			productReference = 216F217B28B6141E00DAA66D /* LoyaltyForceSwift.app */;
@@ -866,7 +866,7 @@
 			package = 2906B1E02900B1DA006EAB2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
 		};
-		292ADC77294C3E4E00753541 /* LoyaltyMobileSDK */ = {
+		2920609429523C9C006B20C1 /* LoyaltyMobileSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LoyaltyMobileSDK;
 		};
