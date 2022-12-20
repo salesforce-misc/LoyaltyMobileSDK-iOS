@@ -48,6 +48,7 @@ struct MoreView: View {
                         Text("\(rootVM.member?.firstName.capitalized ?? "") \(rootVM.member?.lastName.capitalized ?? "")")
                             .font(.nameText)
                     }
+                    .listRowSeparator(.hidden, edges: .top)
                     .frame(height: 85)
                     
                     ForEach(menuItems) { menu in
