@@ -38,26 +38,32 @@ public struct ForceRequest {
         timeoutInterval: TimeInterval = 60.0
     ) throws -> URLRequest {
         
-        // URL
-        var comps = URLComponents()
-        comps.scheme = "https"
-        
-        comps.host = URL(string: ForceAuthManager.shared.auth?.instanceURL ?? ForceConfig.defaultInstanceURL)?.host ?? ""
-        comps.path = path.starts(with: "/") ? path : "/\(path)"
-        if let queryItems = queryItems {
-            comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
-                URLQueryItem(name: key, value: value)
-            })
+        do {
+            let config = try ForceConfig.config()
+            // URL
+            var comps = URLComponents()
+            comps.scheme = "https"
+            
+            comps.host = URL(string: ForceAuthManager.shared.auth?.instanceURL ?? config.consumerKey)?.host ?? ""
+            comps.path = path.starts(with: "/") ? path : "/\(path)"
+            if let queryItems = queryItems {
+                comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
+                    URLQueryItem(name: key, value: value)
+                })
+            }
+            guard let url = comps.url else {
+                throw URLError(.badURL)
+            }
+            
+            var request = createRequest(from: url, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
+            
+            request.setValue("Bearer \(ForceAuthManager.shared.getAuth()?.accessToken ?? "")", forHTTPHeaderField: "Authorization")
+            
+            return request
+        } catch {
+            throw error
         }
-        guard let url = comps.url else {
-            throw URLError(.badURL)
-        }
         
-        var request = createRequest(from: url, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
-        
-        request.setValue("Bearer \(ForceAuthManager.shared.getAuth()?.accessToken ?? "")", forHTTPHeaderField: "Authorization")
-        
-        return request
     }
     
     // create a URLRequest with URL

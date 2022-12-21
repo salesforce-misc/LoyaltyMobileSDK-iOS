@@ -9,16 +9,16 @@ import Foundation
 
 struct ForceAuthStore {
     
-    static let consumerKey: String = ForceConfig.defaultConsumerKey
+    static let serviceId: String = ForceConfig.defaultServiceIdentifier
     
     static func save(auth: ForceAuth) throws {
         let data = try JSONEncoder().encode(auth)
-        try Keychain.write(data: data, service: consumerKey, account: auth.identityURL)
+        try Keychain.write(data: data, service: serviceId, account: auth.identityURL)
     }
     
     static func retrieve(for identityURL: String) throws -> ForceAuth? {
         do {
-            let data = try Keychain.read(service: consumerKey, account: identityURL)
+            let data = try Keychain.read(service: serviceId, account: identityURL)
             return try JSONDecoder().decode(ForceAuth.self, from: data)
         }
         catch {
@@ -33,7 +33,7 @@ struct ForceAuthStore {
     
     static func delete(for identityURL: String) throws -> () {
         do {
-            try Keychain.delete(service: consumerKey, account: identityURL)
+            try Keychain.delete(service: serviceId, account: identityURL)
         }
         catch {
             if case Keychain.KeychainError.itemNotFound = error {

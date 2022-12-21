@@ -13,8 +13,7 @@ public struct ForceConfig {
     public static let defaultAuthURL = "https://login.salesforce.com/services/oauth2/authorize"
     public static let defaultTokenURL = "https://login.salesforce.com/services/oauth2/token"
     public static let defaultRevokeURL = "https://login.salesforce.com/services/oauth2/revoke"
-    public static let defaultConsumerKey = "3MVG9kBt168mda_.AhACC.RZAxIT77sS1y2_ltn1YMi4tG98ZA1nMiP2w6m51xen0Of_0TWZ8RTvPy05bK5p9"
-    public static let defaultInstanceURL = "https://internalmobileteam-dev-ed.develop.my.salesforce.com"
+    public static let defaultServiceIdentifier = "com.salesforce.industries.mobile"
     
     public static func path(for api: String, version: String = defaultVersion) -> String {
         "/services/data/v\(version)/\(api)"

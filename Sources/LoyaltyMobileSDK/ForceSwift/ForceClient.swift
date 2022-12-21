@@ -75,11 +75,11 @@ public class ForceClient {
         
         do {
             let auth = try ForceAuthManager.shared.retrieveAuth()
+            let config = try ForceConfig.config()
             if let refreshToken = auth.refreshToken {
-                let newAuth = try await ForceAuthManager.shared.refresh(consumerKey: ForceConfig.defaultConsumerKey, refreshToken: refreshToken)
+                let newAuth = try await ForceAuthManager.shared.refresh(consumerKey: config.consumerKey, refreshToken: refreshToken)
                 return ForceRequest.updateRequest(from: request, with: newAuth)
             } else {
-                let config = try ForceConfig.config()
                 let newAuth = try await ForceAuthManager.shared.grantAuth(
                     url: config.authURL,
                     username: config.username,

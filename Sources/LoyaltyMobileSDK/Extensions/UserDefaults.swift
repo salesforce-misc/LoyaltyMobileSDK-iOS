@@ -9,7 +9,7 @@ import Foundation
 
 extension UserDefaults {
     static var shared: UserDefaults {
-        return UserDefaults(suiteName: "com.salesforce.loyalty.mobile")!
+        return UserDefaults(suiteName: "com.salesforce.industries.mobile")!
     }
     
     var userIdentifier: ForceUserIdentifier? {
