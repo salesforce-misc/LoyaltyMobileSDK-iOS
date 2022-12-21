@@ -1,6 +1,6 @@
 //
 //  Expiry.swift
-//  LoyaltyForceSwift
+//  MyNTORewards
 //
 //  Created by Leon Qi on 11/4/22.
 //

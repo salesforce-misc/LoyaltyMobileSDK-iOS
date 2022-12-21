@@ -1,6 +1,6 @@
 //
 //  String+Date.swift
-//  LoyaltyForceSwift
+//  MyNTORewards
 //
 //  Created by Leon Qi on 11/23/22.
 //

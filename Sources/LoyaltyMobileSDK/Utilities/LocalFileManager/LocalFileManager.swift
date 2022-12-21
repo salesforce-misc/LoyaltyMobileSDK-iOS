@@ -1,6 +1,6 @@
 //
 //  LocalFileManager.swift
-//  LoyaltyForceSwift
+//  MyNTORewards
 //
 //  Created by Leon Qi on 10/19/22.
 //

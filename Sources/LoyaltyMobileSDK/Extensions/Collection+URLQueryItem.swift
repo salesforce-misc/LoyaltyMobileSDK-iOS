@@ -1,6 +1,6 @@
 //
 //  Collection+URLQueryItem.swift
-//  LoyaltyForceSwift
+//  MyNTORewards
 //
 //  Created by Leon Qi on 9/12/22.
 //

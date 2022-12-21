@@ -1,6 +1,6 @@
 //
 //  LoyaltyUtilities.swift
-//  LoyaltyForceSwift
+//  MyNTORewards
 //
 //  Created by Leon Qi on 10/11/22.
 //
