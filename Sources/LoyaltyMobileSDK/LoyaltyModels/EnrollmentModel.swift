@@ -1,6 +1,6 @@
 //
 //  EnrollmentModel.swift
-//  MyNTORewards
+//  LoyaltyMobileSDK
 //
 //  Created by Leon Qi on 9/27/22.
 //

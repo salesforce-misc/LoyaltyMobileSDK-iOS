@@ -1,6 +1,6 @@
 //
-//  APIError.swift
-//  LoyaltyStarter
+//  ForceError.swift
+//  LoyaltyMobileSDK
 //
 //  Created by Leon Qi on 9/1/22.
 //

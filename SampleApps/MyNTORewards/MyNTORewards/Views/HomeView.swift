@@ -1,6 +1,6 @@
 //
 //  HomeView.swift
-//  LoyaltyStarter
+//  MyNTORewards
 //
 //  Created by Frank Wang on 8/24/22.
 //

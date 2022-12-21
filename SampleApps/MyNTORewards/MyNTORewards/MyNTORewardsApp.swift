@@ -1,6 +1,6 @@
 //
-//  LoyaltyStarterApp.swift
-//  LoyaltyStarter
+//  MyNTORewardsApp.swift
+//  MyNTORewards
 //
 //  Created by Frank Wang on 8/24/22.
 //
@@ -10,7 +10,7 @@ import Firebase
 
 
 @main
-struct LoyaltyStarterApp: App {
+struct MyNTORewardsApp: App {
 
     @StateObject var appViewRouter = AppViewRouter()
     @StateObject var appRootVM = AppRootViewModel()

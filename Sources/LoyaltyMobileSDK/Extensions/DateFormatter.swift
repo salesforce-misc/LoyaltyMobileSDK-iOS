@@ -1,6 +1,6 @@
 //
 //  DateFormatter.swift
-//  MyNTORewards
+//  LoyaltyMobileSDK
 //
 //  Created by Leon Qi on 9/28/22.
 //

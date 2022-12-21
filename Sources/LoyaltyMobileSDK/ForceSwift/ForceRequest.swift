@@ -1,6 +1,6 @@
 //
-//  Request.swift
-//  LoyaltyStarter
+//  ForceRequest.swift
+//  LoyaltyMobileSDK
 //
 //  Created by Leon Qi on 9/1/22.
 //

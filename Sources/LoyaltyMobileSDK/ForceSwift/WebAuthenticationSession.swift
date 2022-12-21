@@ -1,6 +1,6 @@
 //
 //  WebAuthenticationSession.swift
-//  MyNTORewards
+//  LoyaltyMobileSDK
 //
 //  Created by Leon Qi on 9/12/22.
 //

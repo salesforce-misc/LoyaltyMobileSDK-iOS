@@ -1,6 +1,6 @@
 //
 //  ProfileView.swift
-//  LoyaltyMobile
+//  MyNTORewards
 //
 //  Created by Leon Qi on 8/22/22.
 //

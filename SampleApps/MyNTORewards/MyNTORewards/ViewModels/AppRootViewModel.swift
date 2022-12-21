@@ -1,5 +1,5 @@
 //
-//  EnrollmentViewModel.swift
+//  AppRootViewModel.swift
 //  MyNTORewards
 //
 //  Created by Leon Qi on 9/27/22.

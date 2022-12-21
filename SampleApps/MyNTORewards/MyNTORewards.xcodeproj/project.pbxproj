@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A9CC028BDD958007881FE /* BenefitViewModel.swift */; };
-		216F217F28B6141E00DAA66D /* LoyaltyStarterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */; };
+		216F217F28B6141E00DAA66D /* MyNTORewardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F217E28B6141E00DAA66D /* MyNTORewardsApp.swift */; };
 		216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 216F218528B6141F00DAA66D /* Preview Assets.xcassets */; };
 		216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 216F218C28B6145200DAA66D /* GoogleService-Info.plist */; };
 		216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216F218E28B6148800DAA66D /* AppViewRouter.swift */; };
@@ -112,7 +112,7 @@
 /* Begin PBXFileReference section */
 		216A9CC028BDD958007881FE /* BenefitViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitViewModel.swift; sourceTree = "<group>"; };
 		216F217B28B6141E00DAA66D /* MyNTORewards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyNTORewards.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyStarterApp.swift; sourceTree = "<group>"; };
+		216F217E28B6141E00DAA66D /* MyNTORewardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsApp.swift; sourceTree = "<group>"; };
 		216F218528B6141F00DAA66D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		216F218C28B6145200DAA66D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		216F218E28B6148800DAA66D /* AppViewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewRouter.swift; sourceTree = "<group>"; };
@@ -271,7 +271,7 @@
 				216F219328B6186400DAA66D /* Views */,
 				2906B1E92901D97E006EAB2D /* JSONFiles */,
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
-				216F217E28B6141E00DAA66D /* LoyaltyStarterApp.swift */,
+				216F217E28B6141E00DAA66D /* MyNTORewardsApp.swift */,
 				2944F88928B9A7220098ED1B /* AppConstants.swift */,
 				218A36A728B85B7900FCEE39 /* Assets.xcassets */,
 				298613A928C9638400BDC744 /* Fonts */,
@@ -572,7 +572,7 @@
 				292ADC76294C064600753541 /* ProfileModel+CurrencyPoints.swift in Sources */,
 				290EA9C5292C4DA500BBF2F2 /* MyPromotionDetailView.swift in Sources */,
 				298613A628C7D3B400BDC744 /* MoreView.swift in Sources */,
-				216F217F28B6141E00DAA66D /* LoyaltyStarterApp.swift in Sources */,
+				216F217F28B6141E00DAA66D /* MyNTORewardsApp.swift in Sources */,
 				29AC2F0528F8B6E6003F56F6 /* AllRedeemPointsView.swift in Sources */,
 				29AC2F0128F89EBE003F56F6 /* LoyaltyNavLink.swift in Sources */,
 				218A36AE28B85D6000FCEE39 /* FavoriteView.swift in Sources */,

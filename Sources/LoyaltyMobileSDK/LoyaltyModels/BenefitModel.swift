@@ -1,6 +1,6 @@
 //
-//  MemberBenefitModel.swift
-//  LoyaltyStarter
+//  BenefitModel.swift
+//  LoyaltyMobileSDK
 //
 //  Created by Leon Qi on 8/26/22.
 //

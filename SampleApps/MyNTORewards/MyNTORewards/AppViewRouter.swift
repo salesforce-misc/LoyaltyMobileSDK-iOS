@@ -1,6 +1,6 @@
 //
-//  ViewRouter.swift
-//  LoyaltyStarter
+//  AppViewRouter.swift
+//  MyNTORewards
 //
 //  Created by Frank Wang on 8/24/22.
 //

@@ -1,6 +1,6 @@
 //
 //  String+Date.swift
-//  MyNTORewards
+//  LoyaltyMobileSDK
 //
 //  Created by Leon Qi on 11/23/22.
 //

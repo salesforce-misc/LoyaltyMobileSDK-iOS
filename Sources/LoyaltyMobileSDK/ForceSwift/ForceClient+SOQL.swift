@@ -1,6 +1,6 @@
 //
 //  ForceClient+SOQL.swift
-//  MyNTORewards
+//  LoyaltyMobileSDK
 //
 //  Created by Leon Qi on 9/22/22.
 //

@@ -1,6 +1,6 @@
 //
 //  BenefitViewModel.swift
-//  LoyaltyStarter
+//  MyNTORewards
 //
 //  Created by Leon Qi on 8/26/22.
 //

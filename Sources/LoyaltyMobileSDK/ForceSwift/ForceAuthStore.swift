@@ -1,6 +1,6 @@
 //
-//  ForceAuthSafe.swift
-//  MyNTORewards
+//  ForceAuthStore.swift
+//  LoyaltyMobileSDK
 //
 //  Created by Leon Qi on 9/11/22.
 //

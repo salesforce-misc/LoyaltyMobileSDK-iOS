@@ -1,6 +1,6 @@
 //
-//  ContentView.swift
-//  LoyaltyMobile
+//  BottomNavTabsView.swift
+//  MyNTORewards
 //
 //  Created by Leon Qi on 8/22/22.
 //

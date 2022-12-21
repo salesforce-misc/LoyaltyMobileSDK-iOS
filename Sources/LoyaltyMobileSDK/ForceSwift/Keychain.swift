@@ -1,6 +1,6 @@
 //
 //  Keychain.swift
-//  MyNTORewards
+//  LoyaltyMobileSDK
 //
 //  Created by Leon Qi on 9/11/22.
 //

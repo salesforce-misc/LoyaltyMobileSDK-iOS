@@ -1,6 +1,6 @@
 //
-//  Auth.swift
-//  LoyaltyStarter
+//  ForceAuth.swift
+//  LoyaltyMobileSDK
 //
 //  Created by Leon Qi on 9/1/22.
 //
