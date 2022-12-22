@@ -55,6 +55,11 @@
 		296D393E28DE1EFF0078C88E /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393D28DE1EFF0078C88E /* ButtonStyles.swift */; };
 		296D394028DE59240078C88E /* TextFieldStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393F28DE59240078C88E /* TextFieldStyles.swift */; };
 		296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D394128DE76A40078C88E /* RevealableSecureField.swift */; };
+		2984C9442954F091009669EF /* LoyaltyUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984C93E2954F091009669EF /* LoyaltyUtilities.swift */; };
+		2984C9452954F091009669EF /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984C9402954F091009669EF /* LocalFileManager.swift */; };
+		2984C9462954F091009669EF /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984C9412954F091009669EF /* Entry.swift */; };
+		2984C9472954F091009669EF /* Expiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984C9422954F091009669EF /* Expiry.swift */; };
+		2984C9482954F091009669EF /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984C9432954F091009669EF /* Date+Extensions.swift */; };
 		298613A628C7D3B400BDC744 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613A528C7D3B400BDC744 /* MoreView.swift */; };
 		298613AE28C9652300BDC744 /* FontStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613AD28C9652300BDC744 /* FontStyles.swift */; };
 		298613B028C9698D00BDC744 /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613AF28C9698D00BDC744 /* SF-Pro.ttf */; };
@@ -156,6 +161,11 @@
 		296D393D28DE1EFF0078C88E /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		296D393F28DE59240078C88E /* TextFieldStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyles.swift; sourceTree = "<group>"; };
 		296D394128DE76A40078C88E /* RevealableSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealableSecureField.swift; sourceTree = "<group>"; };
+		2984C93E2954F091009669EF /* LoyaltyUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyaltyUtilities.swift; sourceTree = "<group>"; };
+		2984C9402954F091009669EF /* LocalFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
+		2984C9412954F091009669EF /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		2984C9422954F091009669EF /* Expiry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expiry.swift; sourceTree = "<group>"; };
+		2984C9432954F091009669EF /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		298613A528C7D3B400BDC744 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		298613AC28C964D900BDC744 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		298613AD28C9652300BDC744 /* FontStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyles.swift; sourceTree = "<group>"; };
@@ -264,6 +274,7 @@
 			children = (
 				298613AC28C964D900BDC744 /* Info.plist */,
 				2944F87F28B98C2C0098ED1B /* Extensions */,
+				2984C93D2954F091009669EF /* Utilities */,
 				290FBB41294A8C460038D47A /* Misc */,
 				2944F88228B98D420098ED1B /* Models */,
 				216A9CBF28BDD8A1007881FE /* ViewModels */,
@@ -421,6 +432,26 @@
 			path = UICompnents;
 			sourceTree = "<group>";
 		};
+		2984C93D2954F091009669EF /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2984C93F2954F091009669EF /* LocalFileManager */,
+				2984C93E2954F091009669EF /* LoyaltyUtilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		2984C93F2954F091009669EF /* LocalFileManager */ = {
+			isa = PBXGroup;
+			children = (
+				2984C9402954F091009669EF /* LocalFileManager.swift */,
+				2984C9412954F091009669EF /* Entry.swift */,
+				2984C9422954F091009669EF /* Expiry.swift */,
+				2984C9432954F091009669EF /* Date+Extensions.swift */,
+			);
+			path = LocalFileManager;
+			sourceTree = "<group>";
+		};
 		298613A928C9638400BDC744 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -534,6 +565,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29AC2EF928F8901A003F56F6 /* LoyaltyNavBarView.swift in Sources */,
+				2984C9482954F091009669EF /* Date+Extensions.swift in Sources */,
 				299B38DE28EB8D4900E45D97 /* CreateNewPasswordView.swift in Sources */,
 				29B427D629109E60009CC587 /* PromotionViewModel.swift in Sources */,
 				29AC2EFB28F8959E003F56F6 /* LoyaltyNavBarContainerView.swift in Sources */,
@@ -552,6 +584,7 @@
 				218A36AA28B85CA500FCEE39 /* BottomNavTabsView.swift in Sources */,
 				216F219B28B618C700DAA66D /* HomeView.swift in Sources */,
 				298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */,
+				2984C9442954F091009669EF /* LoyaltyUtilities.swift in Sources */,
 				29BAF6F128F5D6D600A3F9EB /* VoucherDetailView.swift in Sources */,
 				29BAF6D528F14E4400A3F9EB /* PromotionCardView.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
@@ -588,6 +621,7 @@
 				29BAF6DD28F3AE8B00A3F9EB /* String+StringWidth.swift in Sources */,
 				29BAF6E128F3EEA000A3F9EB /* MyPromotionCardView.swift in Sources */,
 				29BAF6EB28F4D24500A3F9EB /* TransactionsView.swift in Sources */,
+				2984C9472954F091009669EF /* Expiry.swift in Sources */,
 				299B38DC28EB7F7000E45D97 /* CheckYourEmailView.swift in Sources */,
 				29BAF6EF28F4E27400A3F9EB /* BadgesView.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
@@ -598,12 +632,14 @@
 				29A39BC12937C699005833C2 /* AsyncImageWithAuth.swift in Sources */,
 				290EA9C1292C0ACF00BBF2F2 /* VoucherViewModel.swift in Sources */,
 				296D393E28DE1EFF0078C88E /* ButtonStyles.swift in Sources */,
+				2984C9462954F091009669EF /* Entry.swift in Sources */,
 				296D393128DBCB530078C88E /* OnboardingModel.swift in Sources */,
 				29BAF6D928F1642000A3F9EB /* RedeemPointsView.swift in Sources */,
 				29BAF6E928F4CA1000A3F9EB /* TransactionCardView.swift in Sources */,
 				218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */,
 				29BAF6CF28F0FC3A00A3F9EB /* CornerRadiusStyle.swift in Sources */,
 				2906B1DB28FF7348006EAB2D /* CheckboxStyle.swift in Sources */,
+				2984C9452954F091009669EF /* LocalFileManager.swift in Sources */,
 				29053F7D2907452800F84561 /* Assets.swift in Sources */,
 				29AC2F0728F8B70D003F56F6 /* AllBenefitsView.swift in Sources */,
 				29D7497C2931D10100BC81AD /* AsyncImageView.swift in Sources */,

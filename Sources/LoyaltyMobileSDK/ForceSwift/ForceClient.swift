@@ -14,12 +14,12 @@ public class ForceClient {
     
     private init() {}
     
-    func handleDataAndResponse(output: URLSession.DataTaskPublisher.Output) -> Data {
+    private func handleDataAndResponse(output: URLSession.DataTaskPublisher.Output) -> Data {
         handleResponse(response: output.response)
         return output.data
     }
     
-    func handleResponse(response: URLResponse) {
+    private func handleResponse(response: URLResponse) {
         guard let httpResponse = response as? HTTPURLResponse else {
             print(ForceError.requestFailed(description: "<ForceError> - Invalid response").customDescription)
             return
@@ -31,7 +31,7 @@ public class ForceClient {
         }
     }
     
-    func handleUnauthResponse(output: URLSession.DataTaskPublisher.Output) throws {
+    private func handleUnauthResponse(output: URLSession.DataTaskPublisher.Output) throws {
         guard let response = output.response as? HTTPURLResponse,
               response.statusCode != 401 else {
             throw ForceError.authenticationNeeded
@@ -71,7 +71,7 @@ public class ForceClient {
         return try JSONDecoder().decode(T.self, from: try Data(contentsOf: fileURL))
     }
     
-    func getNewRequest(for request: URLRequest) async throws -> URLRequest {
+    private func getNewRequest(for request: URLRequest) async throws -> URLRequest {
         
         do {
             let auth = try ForceAuthManager.shared.retrieveAuth()

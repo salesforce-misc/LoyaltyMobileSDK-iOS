@@ -107,8 +107,8 @@ struct MyPromotionDetailView: View {
                     } else {
                         HStack {
                             Spacer()
-                            Button("Close") {
-                                dismiss()
+                            Button("Shop") {
+                                // link to e-commerce
                             }
                             .buttonStyle(DarkShortButton())
                             Spacer()

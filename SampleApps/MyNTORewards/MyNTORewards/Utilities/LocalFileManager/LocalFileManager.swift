@@ -1,6 +1,6 @@
 //
 //  LocalFileManager.swift
-//  LoyaltyMobileSDK
+//  MyNTORewards
 //
 //  Created by Leon Qi on 10/19/22.
 //
