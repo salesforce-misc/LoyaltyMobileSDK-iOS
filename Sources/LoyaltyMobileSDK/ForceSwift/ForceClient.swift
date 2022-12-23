@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
   
 public class ForceClient {
     
@@ -14,12 +13,12 @@ public class ForceClient {
     
     private init() {}
     
-    private func handleDataAndResponse(output: URLSession.DataTaskPublisher.Output) -> Data {
+    internal func handleDataAndResponse(output: URLSession.DataTaskPublisher.Output) -> Data {
         handleResponse(response: output.response)
         return output.data
     }
     
-    private func handleResponse(response: URLResponse) {
+    internal func handleResponse(response: URLResponse) {
         guard let httpResponse = response as? HTTPURLResponse else {
             print(ForceError.requestFailed(description: "<ForceError> - Invalid response").customDescription)
             return
@@ -31,10 +30,32 @@ public class ForceClient {
         }
     }
     
-    private func handleUnauthResponse(output: URLSession.DataTaskPublisher.Output) throws {
+    internal func handleUnauthResponse(output: URLSession.DataTaskPublisher.Output) throws {
         guard let response = output.response as? HTTPURLResponse,
               response.statusCode != 401 else {
             throw ForceError.authenticationNeeded
+        }
+    }
+    
+    internal func getNewRequest(for request: URLRequest) async throws -> URLRequest {
+        
+        do {
+            let auth = try ForceAuthManager.shared.retrieveAuth()
+            let config = try ForceConfig.config()
+            if let refreshToken = auth.refreshToken {
+                let newAuth = try await ForceAuthManager.shared.refresh(consumerKey: config.consumerKey, refreshToken: refreshToken)
+                return ForceRequest.updateRequest(from: request, with: newAuth)
+            } else {
+                let newAuth = try await ForceAuthManager.shared.grantAuth(
+                    url: config.authURL,
+                    username: config.username,
+                    password: config.password,
+                    consumerKey: config.consumerKey,
+                    consumerSecret: config.consumerSecret)
+                return ForceRequest.updateRequest(from: request, with: newAuth)
+            }
+        } catch {
+            throw error
         }
     }
 
@@ -71,64 +92,4 @@ public class ForceClient {
         return try JSONDecoder().decode(T.self, from: try Data(contentsOf: fileURL))
     }
     
-    private func getNewRequest(for request: URLRequest) async throws -> URLRequest {
-        
-        do {
-            let auth = try ForceAuthManager.shared.retrieveAuth()
-            let config = try ForceConfig.config()
-            if let refreshToken = auth.refreshToken {
-                let newAuth = try await ForceAuthManager.shared.refresh(consumerKey: config.consumerKey, refreshToken: refreshToken)
-                return ForceRequest.updateRequest(from: request, with: newAuth)
-            } else {
-                let newAuth = try await ForceAuthManager.shared.grantAuth(
-                    url: config.authURL,
-                    username: config.username,
-                    password: config.password,
-                    consumerKey: config.consumerKey,
-                    consumerSecret: config.consumerSecret)
-                return ForceRequest.updateRequest(from: request, with: newAuth)
-            }
-        } catch {
-            throw error
-        }
-    }
-    
-    public func fetchImage(url: String?) async -> UIImage? {
-        
-        guard let url = url,
-              let imageUrl = URL(string: url) else {
-            return nil
-        }
-
-        do {
-            let request = try ForceRequest.create(url: imageUrl, method: "GET", secured: true)
-            let output = try await URLSession.shared.data(for: request)
-            try handleUnauthResponse(output: output)
-            return handleImageResponse(output: output)
-        } catch ForceError.authenticationNeeded {
-            do {
-                let request = try ForceRequest.create(url: imageUrl, method: "GET", secured: true)
-                let newRequet = try await getNewRequest(for: request)
-                let output = try await URLSession.shared.data(for: newRequet)
-                try handleUnauthResponse(output: output)
-                return handleImageResponse(output: output)
-            } catch {
-                return nil
-            }
-            
-        } catch {
-            return nil
-        }
-    }
-    
-    private func handleImageResponse(output: URLSession.DataTaskPublisher.Output) -> UIImage? {
-        guard
-            let image = UIImage(data: output.data),
-            let response = output.response as? HTTPURLResponse,
-            response.statusCode >= 200 && response.statusCode < 300 else {
-                return nil
-            }
-        return image
-    }
-
 }
