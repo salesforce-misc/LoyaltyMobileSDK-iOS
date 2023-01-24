@@ -82,7 +82,7 @@ struct VoucherDetailView: View {
                                     isCodeCopiedAlertPresent = true
                                 }
                                 .alert(isPresented: $isCodeCopiedAlertPresent) {
-                                    Alert(title: Text("Code Successfully Copied!!!"))
+                                    Alert(title: Text(AppConstants.Vouchers.codeSuccessfullyCopied))
                                 }
                             Spacer()
                         }
