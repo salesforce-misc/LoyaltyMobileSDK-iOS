@@ -67,6 +67,7 @@
 		298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613C928CBBFA200BDC744 /* Archivo-Bold.ttf */; };
 		298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */; };
 		298613D628CC275500BDC744 /* Salesforce.json in Resources */ = {isa = PBXBuildFile; fileRef = 298613D528CC275500BDC744 /* Salesforce.json */; };
+		298C664A2980743B00C613D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298C66492980743B00C613D8 /* AppDelegate.swift */; };
 		299B38CA28E365AD00E45D97 /* HalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38C928E365AD00E45D97 /* HalfSheet.swift */; };
 		299B38D028E3DECE00E45D97 /* AppRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38CF28E3DECE00E45D97 /* AppRootViewModel.swift */; };
 		299B38D428E5F78400E45D97 /* CongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D328E5F78400E45D97 /* CongratsView.swift */; };
@@ -174,6 +175,7 @@
 		298613C928CBBFA200BDC744 /* Archivo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archivo-Bold.ttf"; sourceTree = "<group>"; };
 		298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		298613D528CC275500BDC744 /* Salesforce.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Salesforce.json; sourceTree = "<group>"; };
+		298C66492980743B00C613D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		299B38C928E365AD00E45D97 /* HalfSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSheet.swift; sourceTree = "<group>"; };
 		299B38CF28E3DECE00E45D97 /* AppRootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootViewModel.swift; sourceTree = "<group>"; };
 		299B38D328E5F78400E45D97 /* CongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsView.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				2906B1E92901D97E006EAB2D /* JSONFiles */,
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
 				216F217E28B6141E00DAA66D /* MyNTORewardsApp.swift */,
+				298C66492980743B00C613D8 /* AppDelegate.swift */,
 				2944F88928B9A7220098ED1B /* AppConstants.swift */,
 				218A36A728B85B7900FCEE39 /* Assets.xcassets */,
 				298613A928C9638400BDC744 /* Fonts */,
@@ -594,6 +597,7 @@
 				2906B1D628FF5E88006EAB2D /* FirestoreManager.swift in Sources */,
 				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
 				290EA9BD2928ADB700BBF2F2 /* ViewAllView.swift in Sources */,
+				298C664A2980743B00C613D8 /* AppDelegate.swift in Sources */,
 				29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */,
 				299B38D828E796BC00E45D97 /* FullSheet.swift in Sources */,
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
