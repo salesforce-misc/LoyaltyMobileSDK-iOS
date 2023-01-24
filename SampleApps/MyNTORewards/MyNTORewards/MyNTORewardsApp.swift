@@ -11,6 +11,9 @@ import Firebase
 
 @main
 struct MyNTORewardsApp: App {
+    
+    // register app delegate for Firebase setup
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
     @StateObject var appViewRouter = AppViewRouter()
     @StateObject var appRootVM = AppRootViewModel()
@@ -20,10 +23,6 @@ struct MyNTORewardsApp: App {
     @StateObject var transactionVM = TransactionViewModel()
     @StateObject var voucherVM = VoucherViewModel()
     @StateObject var imageVM = ImageViewModel()
-
-    init(){
-        FirebaseApp.configure()
-    }
 
     var body: some Scene {
         WindowGroup {
