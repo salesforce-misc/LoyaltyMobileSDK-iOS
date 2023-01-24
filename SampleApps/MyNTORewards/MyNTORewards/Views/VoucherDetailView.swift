@@ -12,6 +12,7 @@ struct VoucherDetailView: View {
     
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var voucherVM: VoucherViewModel
+    @State var isCodeCopiedAlertPresent = false
     let voucher: VoucherModel
     
     var body: some View {
@@ -75,6 +76,14 @@ struct VoucherDetailView: View {
                                         .foregroundColor(Color.theme.voucherBorder)
                                 )
                                 .padding(.top, 6)
+                                .onTapGesture {
+                                    let pasteboard = UIPasteboard.general
+                                    pasteboard.string = voucherCode
+                                    isCodeCopiedAlertPresent = true
+                                }
+                                .alert(isPresented: $isCodeCopiedAlertPresent) {
+                                    Alert(title: Text("Code Successfully Copied!!!"))
+                                }
                             Spacer()
                         }
                     }
