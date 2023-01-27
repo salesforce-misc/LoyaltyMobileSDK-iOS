@@ -129,19 +129,13 @@ struct SignUpCredentialFields: View {
     
     var body: some View {
         Group {
-            TextField("First name", text: $firstName)
-                .textFieldStyle(RegularTextFieldStyle())
-            TextField("Last name", text: $lastName)
-                .textFieldStyle(RegularTextFieldStyle())
-            TextField("Mobile number", text: $mobileNumber)
-                .textFieldStyle(RegularTextFieldStyle())
-                .keyboardType(.phonePad)
-            TextField("Email address", text: $email)
-                .textFieldStyle(RegularTextFieldStyle())
-                .keyboardType(.emailAddress)
+            LoyaltyTextField(textFieldType: .firstName, inputText: $firstName)
+            LoyaltyTextField(textFieldType: .lastName, inputText: $lastName)
+            LoyaltyTextField(textFieldType: .phoneNumber, inputText: $mobileNumber)
+            LoyaltyTextField(textFieldType: .email, inputText: $email)
             RevealableSecureField("Password", text: $password)
             RevealableSecureField("Confirm password", text: $passwordConfirmation)
-                //.focused($passwordConfirmationIsFocused)
+            //.focused($passwordConfirmationIsFocused)
                 .overlay(RoundedRectangle(cornerRadius: 8)
                     .stroke(Color.red, lineWidth: passwordConfirmation != password ? 2 : 0)
                     .padding(.horizontal)
@@ -168,7 +162,7 @@ struct SignUpCredentialFields: View {
             }
             .toggleStyle(CheckboxStyle())
             .padding(.horizontal)
-
+            
         }
     }
 }
