@@ -52,15 +52,10 @@ struct MoreView: View {
                     .frame(height: 85)
                     
                     ForEach(menuItems) { menu in
-                        NavigationLink {
-                            // TODO: Links to each view
-                        } label: {
-                            Label(menu.title, image: menu.icon)
-                                .font(.menuText)
-                                .frame(height: 65)
-                        }
-                        .listRowSeparatorTint(Color.theme.listSeparatorPink)
-                        
+						Label(menu.title, image: menu.icon)
+							.font(.menuText)
+							.frame(height: 65)
+							.listRowSeparatorTint(Color.theme.listSeparatorPink)
                     }
 
                     Button {
