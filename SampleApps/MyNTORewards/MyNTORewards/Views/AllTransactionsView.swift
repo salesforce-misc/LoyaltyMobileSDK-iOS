@@ -28,7 +28,7 @@ struct AllTransactionsView: View {
                 
                 VStack(spacing: 15) {
                     if transactionVM.recentTransactions.isEmpty {
-                        EmptyStateView(title: "You have no Recent Transactions")
+						EmptyStateView(title: "No recent transactions", subTitle: "After you complete a transaction, you’ll see it here for the next 30 days.")
                     }
                     ForEach(transactionVM.recentTransactions) { transaction in
                         TransactionCardView(transaction: transaction)
@@ -43,7 +43,7 @@ struct AllTransactionsView: View {
                 .padding()
                 LazyVStack(spacing: 15) {
                     if transactionVM.olderTransactions.isEmpty {
-                        EmptyStateView(title: "You have no Earlier Transactions")
+                        EmptyStateView(title: "Nothing to report", subTitle: "When you complete your first transaction, you’ll find it here.")
                     }
                     ForEach(transactionVM.olderTransactions) { transaction in
                         TransactionCardView(transaction: transaction)
