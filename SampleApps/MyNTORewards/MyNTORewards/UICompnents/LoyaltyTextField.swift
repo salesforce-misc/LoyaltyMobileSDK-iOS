@@ -52,7 +52,7 @@ enum SignUpTextFieldType {
         case .email:
             return "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         case .phoneNumber:
-            return "^[0-9+]{0,1}+[0-9]{5,16}$"
+            return "[0-9]{10}$"
         case .password:
             return "^.{6,15}$"
         case .confirmPassword:
