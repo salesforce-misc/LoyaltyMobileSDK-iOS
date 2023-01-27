@@ -33,7 +33,7 @@ struct AllVouchersView: View {
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
 
         }
-        .loytaltyNavigationTitle("Vouchers")
+        .loytaltyNavigationTitle("My Vouchers")
         .loyaltyNavBarTabBar(TopTabBar(barItems: barItems, tabIndex: $tabSelected))
         .task {
             do {
