@@ -68,7 +68,7 @@ struct AllTransactionsView: View {
             }
             
         }
-        .loytaltyNavigationTitle("Transactions")
+        .loytaltyNavigationTitle("My Transactions")
     }
 
 }
