@@ -101,6 +101,7 @@ struct LoyaltyTextField: View {
                     isValid = textFieldType.validate(text: inputText)
                 }
             }
+            .disableAutocorrection(true)
             .textFieldStyle(RegularTextFieldStyle())
             .keyboardType(textFieldType.keyboardType)
             .overlay(RoundedRectangle(cornerRadius: 8)
