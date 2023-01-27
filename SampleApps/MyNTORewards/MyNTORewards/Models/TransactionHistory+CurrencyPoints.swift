@@ -10,10 +10,10 @@ import LoyaltyMobileSDK
 
 extension TransactionHistory {
     
-    func getCurrencyPoints(currencyName: String) -> Int {
+    func getCurrencyPoints(currencyName: String) -> Double {
         for currency in memberCurrency {
             if currency.name.capitalized == currencyName.capitalized {
-                return Int(currency.value)
+                return currency.value
             }
         }
         return 0

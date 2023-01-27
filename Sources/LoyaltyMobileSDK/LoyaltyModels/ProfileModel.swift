@@ -183,15 +183,15 @@ public struct AssociatedContact: Codable {
 // MARK: - MemberCurrency
 public struct MemberCurrency: Codable {
     public let additionalLoyaltyMemberCurrencyFields: AdditionalLoyaltyMemberFields
-    public let escrowPointsBalance, expirablePoints: Int
+    public let escrowPointsBalance, expirablePoints: Double
     public let lastAccrualProcessedDate, lastEscrowProcessedDate, lastExpirationProcessRunDate, lastPointsAggregationDate: String?
     public let lastPointsResetDate: String?
     public let loyaltyMemberCurrencyName, loyaltyProgramCurrencyID: String
     public let loyaltyProgramCurrencyName: String?
     public let memberCurrencyID: String
     public let nextQualifyingPointsResetDate: String?
-    public let pointsBalance, qualifyingPointsBalanceBeforeReset, totalEscrowPointsAccrued, totalEscrowRolloverPoints: Int
-    public let totalPointsAccrued, totalPointsExpired, totalPointsRedeemed: Int
+    public let pointsBalance, qualifyingPointsBalanceBeforeReset, totalEscrowPointsAccrued, totalEscrowRolloverPoints: Double
+    public let totalPointsAccrued, totalPointsExpired, totalPointsRedeemed: Double
 
     enum CodingKeys: String, CodingKey {
         case additionalLoyaltyMemberCurrencyFields, escrowPointsBalance, expirablePoints, lastAccrualProcessedDate, lastEscrowProcessedDate, lastExpirationProcessRunDate, lastPointsAggregationDate, lastPointsResetDate, loyaltyMemberCurrencyName
