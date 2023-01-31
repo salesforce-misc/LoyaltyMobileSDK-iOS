@@ -12,6 +12,7 @@ struct VoucherDetailView: View {
     
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var voucherVM: VoucherViewModel
+    @State var isCodeCopiedAlertPresent = false
     let voucher: VoucherModel
     
     var body: some View {
@@ -61,22 +62,38 @@ struct VoucherDetailView: View {
                             Spacer()
                         }
 
-                        HStack {
-                            Spacer()
-                            Text(voucherCode)
-                                .font(.profileSubtitle)
-                                .foregroundColor(Color.theme.voucherCode)
-                                .frame(width: 145.8, height: 32)
-                                .background(Color.theme.voucherBackground)
-                                .cornerRadius(10)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(style: StrokeStyle(lineWidth: 1, dash: [2.0]))
-                                        .foregroundColor(Color.theme.voucherBorder)
-                                )
-                                .padding(.top, 6)
-                            Spacer()
-                        }
+						HStack {
+							Spacer()
+							HStack {
+								Text(voucherCode)
+									.font(.profileSubtitle)
+									.foregroundColor(Color.theme.voucherCode)
+									.padding(.leading, 8)
+								Spacer()
+								Image("ic-copy")
+									.resizable()
+									.frame(width: 15, height: 15)
+									.padding(.trailing, 8)
+							}
+							.frame(width: 145.8, height: 32)
+							.background(Color.theme.voucherBackground)
+							.cornerRadius(10)
+							.overlay(
+								RoundedRectangle(cornerRadius: 10)
+									.stroke(style: StrokeStyle(lineWidth: 1, dash: [2.0]))
+									.foregroundColor(Color.theme.voucherBorder)
+							)
+							.padding(.top, 6)
+							.onTapGesture {
+								let pasteboard = UIPasteboard.general
+								pasteboard.string = voucherCode
+								isCodeCopiedAlertPresent = true
+							}
+							.alert(isPresented: $isCodeCopiedAlertPresent) {
+								Alert(title: Text(AppConstants.Vouchers.codeSuccessfullyCopied))
+							}
+							Spacer()
+						}
                     }
                     
                     if let details = voucher.description {

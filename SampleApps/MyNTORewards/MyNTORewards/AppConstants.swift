@@ -17,6 +17,10 @@ struct AppConstants {
         static let rewardCurrencyNameShort = "Pts"
         static let tierCurrencyName = "Tier Points"
     }
+    
+    struct Vouchers {
+        static let codeSuccessfullyCopied = "Code Successfully Copied!!!"
+    }
 }
 
 
