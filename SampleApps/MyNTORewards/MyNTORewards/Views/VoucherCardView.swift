@@ -61,10 +61,18 @@ struct VoucherCardView: View {
                 }
                 if voucher.status == "Issued" {
                     if let voucherCode = voucher.code {
-                        Text(voucherCode)
-                            .font(.profileSubtitle)
-                            .foregroundColor(Color.theme.voucherCode)
-                            .frame(width: 145, height: 32)
+						HStack {
+							Text(voucherCode)
+								.font(.profileSubtitle)
+								.foregroundColor(Color.theme.voucherCode)
+								.padding(.leading, 8)
+							Spacer()
+							Image("ic-copy")
+								.resizable()
+								.frame(width: 15, height: 15)
+								.padding(.trailing, 8)
+						}
+							.frame(width: 145, height: 32)
                             .background(Color.theme.voucherBackground)
                             .cornerRadius(10)
                             .overlay(
