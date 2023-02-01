@@ -144,7 +144,9 @@ struct SignUpCredentialFields: View {
             if !SignUpTextFieldType.password.validate(text: password) && passwordIsFocused {
                 Text(SignUpTextFieldType.password.errorMessage)
                     .font(.labelText)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(Color.red)
+                    .padding(.leading)
             }
             
             RevealableSecureField("Confirm password", text: $passwordConfirmation)
@@ -156,7 +158,10 @@ struct SignUpCredentialFields: View {
             if passwordConfirmation != password && (passwordConfirmationIsFocused || passwordConfirmation.count > 0) {
                 Text(SignUpTextFieldType.confirmPassword.errorMessage)
                     .font(.labelText)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(Color.red)
+                    .padding(.leading)
+                
             }
             
             Toggle(isOn: $acceptTerms) {
