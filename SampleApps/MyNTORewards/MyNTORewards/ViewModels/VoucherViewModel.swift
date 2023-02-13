@@ -70,20 +70,33 @@ class VoucherViewModel: ObservableObject {
         var fetchedVouchers: [VoucherModel] = []
         
         do {
-            let results = try await LoyaltyAPIManager.shared.getVoucherRecords(membershipNumber: membershipNumber)
+			let queryItems = [URLQueryItem(name: "voucherStatus", value: "xx, yy, zz")]
+            let results = try await LoyaltyAPIManager.shared.getVouchers(membershipNumber: membershipNumber, queryItems: queryItems)
             for result in results {
-                let imageUrl = LoyaltyUtilities.getImageUrl(image: result.image, attributesUrl: result.attributes.url, fieldName: "Image__c")
+                let imageUrl = LoyaltyUtilities.getImageUrl(image: result.voucherImageUrl, attributesUrl: "", fieldName: "")
                 
-                let voucher = VoucherModel(id: result.id,
-                                       name: result.voucherDefinition.name,
-                                       description: result.voucherDefinition.description,
-                                       type: result.voucherDefinition.type,
-                                       faceValue: result.voucherDefinition.faceValue,
-                                       discountPercent: result.voucherDefinition.discountPercent,
-                                       code: result.voucherCode,
-                                       expirationDate: result.expirationDate,
-                                       image: imageUrl,
-                                       status: result.status)
+				let voucher = VoucherModel(id: result.id ?? "",
+										   name: result.voucherDefinition ?? "",
+										   description: result.description,
+										   type: result.type ?? "",
+										   faceValue: result.faceValue,
+										   discountPercent: result.discountPercent,
+										   code: result.code,
+										   expirationDate: result.expirationDate ?? "",
+										   image: result.voucherImageUrl,
+										   status: result.status ?? "",
+										   partnerAccount: result.partnerAccount,
+										   product: result.product, productCategory: result.productCategory,
+										   voucherNumber: result.voucherNumber,
+										   effectiveDate: result.effectiveDate,
+										   redeemedValue: result.redeemedValue,
+										   remainingValue: result.remainingValue, currencyIsoCode: result.currencyIsoCode,
+										   isVoucherDefinitionActive: result.isVoucherDefinitionActive ?? false,
+										   isVoucherPartiallyRedeemable: result.isVoucherPartiallyRedeemable ?? false,
+										   productId: result.productId, productCategoryId: result.productCategoryId,
+										   useDate: result.useDate,
+										   promotionName: result.promotionName,
+										   promotionId: result.promotionId)
                 fetchedVouchers.append(voucher)
             }
             return fetchedVouchers

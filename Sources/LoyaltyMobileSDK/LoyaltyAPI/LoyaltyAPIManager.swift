@@ -27,6 +27,7 @@ public class LoyaltyAPIManager {
         case redeemPoints(programName: String, programProcessName: String)
         case enrollInPromotion(programName: String)
         case unenrollInPromotion
+		case getVouchers(programName: String, membershipNumber: String)
     }
     
     public func getPath(for resource: Resource) -> String {
@@ -48,6 +49,8 @@ public class LoyaltyAPIManager {
             return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/EnrollInPromotion")
         case .unenrollInPromotion:
             return "/services/apexrest/UnenrollInPromotion/"
+		case .getVouchers(let programName, let membershipNumber):
+				return "/services/data/v56.0/loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers"
         }
     
     }
@@ -282,4 +285,24 @@ public class LoyaltyAPIManager {
             throw error
         }
     }
+	
+	public func getVouchers(
+		membershipNumber: String,
+		devMode: Bool = false,
+		queryItems: [URLQueryItem]? = nil
+	) async throws -> [VoucherModel] {
+		do {
+			if devMode {
+				let result = try ForceClient.shared.fetchLocalJson(type: VouchersResponse.self, file: "Vouchers")
+				return result.vouchers ?? []
+			}
+			let path = getPath(for: .getVouchers(programName: loyaltyProgramName, membershipNumber: membershipNumber))
+			let request = try ForceRequest.create(method: "GET", path: path)
+			let result = try await ForceClient.shared.fetch(type: VouchersResponse.self, with: request)
+			return result.vouchers ?? []
+		} catch {
+			print(error.localizedDescription)
+			throw error
+		}
+	}
 }
