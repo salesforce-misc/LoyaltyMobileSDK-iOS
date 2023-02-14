@@ -132,8 +132,8 @@ struct SignUpCredentialFields: View {
         Group {
             LoyaltyTextField(textFieldType: .firstName, inputText: $firstName)
             LoyaltyTextField(textFieldType: .lastName, inputText: $lastName)
-            LoyaltyTextField(textFieldType: .email, inputText: $mobileNumber)
-            LoyaltyTextField(textFieldType: .phoneNumber, inputText: $email)
+            LoyaltyTextField(textFieldType: .email, inputText: $email)
+            LoyaltyTextField(textFieldType: .phoneNumber, inputText: $mobileNumber)
             
             RevealableSecureField("Password", text: $password)
             .focused($passwordIsFocused)
