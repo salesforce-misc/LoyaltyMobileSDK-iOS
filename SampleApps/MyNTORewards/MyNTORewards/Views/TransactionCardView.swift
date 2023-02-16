@@ -17,11 +17,13 @@ struct TransactionCardView: View {
         let points = transaction.getCurrencyPoints(currencyName: AppConstants.Config.rewardCurrencyName)
         let pointsString = points > 0 ? "+\(points) \(AppConstants.Config.rewardCurrencyNameShort)" : "\(points) \(AppConstants.Config.rewardCurrencyNameShort)"
         
-        HStack(spacing: 0) {
+        HStack(spacing: 10) {
+            Spacer()
+            
             Assets.getTransactionsLogo(for: transaction.activity)
                 .renderingMode(.template)
                 .foregroundColor(Color.theme.textInactive)
-                .frame(width: 63)
+            
             VStack(spacing: 8) {
                 HStack{
                     Text(transaction.activity)
@@ -37,11 +39,12 @@ struct TransactionCardView: View {
                 
                 
             }
-            .frame(width: 180)
+
             Text(pointsString)
                 .font(.transactionPoints)
                 .foregroundColor(points < 0 ? Color.theme.negativePoints : Color.theme.points)
-                .frame(width: 100)
+            
+            Spacer()
 
         }
         .frame(width: 343, height: 66)
