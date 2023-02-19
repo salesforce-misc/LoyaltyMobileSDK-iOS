@@ -125,21 +125,45 @@ struct SignUpCredentialFields: View {
     @Binding var joinEmailList: Bool
     @Binding var showTermsPopover: Bool
     
-    //@FocusState private var passwordConfirmationIsFocused: Bool
+    @FocusState private var passwordConfirmationIsFocused: Bool
+    @FocusState private var passwordIsFocused: Bool
     
     var body: some View {
         Group {
             LoyaltyTextField(textFieldType: .firstName, inputText: $firstName)
             LoyaltyTextField(textFieldType: .lastName, inputText: $lastName)
-            LoyaltyTextField(textFieldType: .phoneNumber, inputText: $mobileNumber)
             LoyaltyTextField(textFieldType: .email, inputText: $email)
+            LoyaltyTextField(textFieldType: .phoneNumber, inputText: $mobileNumber)
+            
             RevealableSecureField("Password", text: $password)
-            RevealableSecureField("Confirm password", text: $passwordConfirmation)
-            //.focused($passwordConfirmationIsFocused)
+            .focused($passwordIsFocused)
                 .overlay(RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.red, lineWidth: passwordConfirmation != password ? 2 : 0)
+                    .stroke(Color.red, lineWidth: (!SignUpTextFieldType.password.validate(text: password) && passwordIsFocused) ? 2 : 0)
                     .padding(.horizontal)
                 )
+            if !SignUpTextFieldType.password.validate(text: password) && passwordIsFocused {
+                Text(SignUpTextFieldType.password.errorMessage)
+                    .font(.labelText)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(Color.red)
+                    .padding(.leading)
+            }
+            
+            RevealableSecureField("Confirm password", text: $passwordConfirmation)
+            .focused($passwordConfirmationIsFocused)
+                .overlay(RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.red, lineWidth: (passwordConfirmation != password && (passwordConfirmationIsFocused || passwordConfirmation.count > 0)) ? 2 : 0)
+                    .padding(.horizontal)
+                )
+            if passwordConfirmation != password && (passwordConfirmationIsFocused || passwordConfirmation.count > 0) {
+                Text(SignUpTextFieldType.confirmPassword.errorMessage)
+                    .font(.labelText)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundColor(Color.red)
+                    .padding(.leading)
+                
+            }
+            
             Toggle(isOn: $acceptTerms) {
                 HStack(spacing: 0) {
                     Text("I agree to the ")
