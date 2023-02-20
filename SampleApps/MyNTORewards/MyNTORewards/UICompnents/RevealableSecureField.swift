@@ -23,6 +23,7 @@ struct RevealableSecureField: View {
         Group {
             if isSecured {
                 SecureField(title, text: $text)
+                    .disableAutocorrection(true)
                     .textFieldStyle(RegularTextFieldStyle())
                     .overlay(
                         HStack {
@@ -39,6 +40,7 @@ struct RevealableSecureField: View {
                     )
             } else {
                 TextField(title, text: $text)
+                    .disableAutocorrection(true)
                     .textFieldStyle(RegularTextFieldStyle())
                     .overlay(
                         HStack {
