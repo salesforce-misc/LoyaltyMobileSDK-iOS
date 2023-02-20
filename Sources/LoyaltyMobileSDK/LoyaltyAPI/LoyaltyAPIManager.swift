@@ -26,7 +26,6 @@ public class LoyaltyAPIManager {
         case getPromotions(programName: String)
         case redeemPoints(programName: String, programProcessName: String)
         case enrollInPromotion(programName: String)
-//        case unenrollInPromotion
 		case unenrollPromotion(programName: String, programProcessName: String)
     }
     
@@ -47,8 +46,6 @@ public class LoyaltyAPIManager {
             return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/\(programProcessName)")
         case .enrollInPromotion(let programName):
             return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/EnrollInPromotion")
-//        case .unenrollInPromotion:
-//            return "/services/apexrest/UnenrollInPromotion/"
 		case .unenrollPromotion(let programName, let programProcessName):
 			return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/\(programProcessName)")
         }
@@ -195,33 +192,26 @@ public class LoyaltyAPIManager {
         }
     }
     
-//    public func unenrollIn(promotion promotionName: String, for membershipNumber: String) async throws {
-//        let body = [
-//            "programName": loyaltyProgramName,
-//            "membershipNumber": membershipNumber,
-//            "PromotionName": promotionName
-//        ]
-//
-//        do {
-//            let path = getPath(for: .unenrollInPromotion)
-//            let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
-//            let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
-//            let _ = try await ForceClient.shared.fetch(type: UnenrollPromotionOutPutModel.self, with: request)
-//        } catch {
-//            throw error
-//        }
-//    }
-    
 	public func unenroll(promotion promotionId: String, for membershipNumber: String) async throws {
 		let body = [
-			"membershipNumber": membershipNumber,
-			"PromotionId": promotionId
+			"processParameters": [
+				"membershipNumber": membershipNumber,
+				"PromotionId": promotionId
+			]
 		]
+		
+		/// Uncomment below lines to test with local json file
+//		do {
+//			let response = try ForceClient.shared.fetchLocalJson(type: UnenrollPromotionResponseModel.self, file: "UnenrollPromotion")
+//			print(response)
+//		} catch {
+//			throw error
+//		}
 		
 		do {
 			let path = getPath(for: .unenrollPromotion(programName: loyaltyProgramName, programProcessName: ""))
 			let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
-			let request = try ForceRequest.create(method: "POST", path: path, body: nil)
+			let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
 			let _ = try await ForceClient.shared.fetch(type: UnenrollPromotionResponseModel.self, with: request)
 		} catch {
 			throw error

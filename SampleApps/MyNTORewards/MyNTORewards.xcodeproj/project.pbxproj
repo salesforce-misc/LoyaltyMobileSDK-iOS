@@ -113,6 +113,7 @@
 		29BAF70228F78FA400A3F9EB /* AllTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */; };
 		29D7497C2931D10100BC81AD /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D7497B2931D10100BC81AD /* AsyncImageView.swift */; };
 		29FEDDF2294293BF0014BEBA /* UITabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FEDDF1294293BF0014BEBA /* UITabView.swift */; };
+		3FFE1C9B29A29FF900F43253 /* UnenrollPromotion.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE1C9A29A29FF900F43253 /* UnenrollPromotion.json */; };
 		AF27C5AC2981118D008C7D79 /* LoyaltyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -222,6 +223,7 @@
 		29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsView.swift; sourceTree = "<group>"; };
 		29D7497B2931D10100BC81AD /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		29FEDDF1294293BF0014BEBA /* UITabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabView.swift; sourceTree = "<group>"; };
+		3FFE1C9A29A29FF900F43253 /* UnenrollPromotion.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UnenrollPromotion.json; sourceTree = "<group>"; };
 		AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyaltyTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -360,6 +362,7 @@
 		2906B1E92901D97E006EAB2D /* JSONFiles */ = {
 			isa = PBXGroup;
 			children = (
+				3FFE1C9A29A29FF900F43253 /* UnenrollPromotion.json */,
 				2906B1F02901E1A4006EAB2D /* Vouchers.json */,
 				2906B1F22901E218006EAB2D /* Promotions.json */,
 				2906B1F42901E308006EAB2D /* Transactions.json */,
@@ -549,6 +552,7 @@
 			files = (
 				298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */,
 				290EA9B92926F1A700BBF2F2 /* Profile.json in Resources */,
+				3FFE1C9B29A29FF900F43253 /* UnenrollPromotion.json in Resources */,
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
 				29AC2F0328F8B2D7003F56F6 /* Roboto-Regular.ttf in Resources */,
 				2906B1F12901E1A4006EAB2D /* Vouchers.json in Resources */,
