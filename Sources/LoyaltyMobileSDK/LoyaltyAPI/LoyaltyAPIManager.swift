@@ -293,7 +293,7 @@ public class LoyaltyAPIManager {
 	) async throws -> [VoucherModel] {
 		do {
 			if devMode {
-				let result = try ForceClient.shared.fetchLocalJson(type: VouchersResponse.self, file: "Vouchers")
+				let result = try ForceClient.shared.fetchLocalJson(type: VouchersResponse.self, file: "GetVouchers")
 				return result.vouchers ?? []
 			}
 			let path = getPath(for: .getVouchers(programName: loyaltyProgramName, membershipNumber: membershipNumber))

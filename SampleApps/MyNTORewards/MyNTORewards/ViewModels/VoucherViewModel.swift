@@ -60,30 +60,25 @@ class VoucherViewModel: ObservableObject {
         }
     }
     
-    /*
-    SELECT VoucherDefinition.Name, Voucher.Image__c, VoucherDefinition.Description, VoucherDefinition.Type, VoucherDefinition.FaceValue, VoucherDefinition.DiscountPercent, VoucherCode, ExpirationDate, Id, Status
-    FROM Voucher
-    WHERE LoyaltyProgramMember.MembershipNumber = '\(membershipNumber)'
-     */
     func fetchVouchers(membershipNumber: String) async throws -> [VoucherModel] {
         
         var fetchedVouchers: [VoucherModel] = []
         
         do {
 			let queryItems = [URLQueryItem(name: "voucherStatus", value: "xx, yy, zz")]
-            let results = try await LoyaltyAPIManager.shared.getVouchers(membershipNumber: membershipNumber, queryItems: queryItems)
+            let results = try await LoyaltyAPIManager.shared.getVouchers(membershipNumber: membershipNumber, devMode: true, queryItems: queryItems)
             for result in results {
-                let imageUrl = LoyaltyUtilities.getImageUrl(image: result.voucherImageUrl, attributesUrl: "", fieldName: "")
+				let imageUrl = LoyaltyUtilities.getImageUrl(image: result.voucherImageUrl, attributesUrl: result.attributesUrl, fieldName: "Image__c")
                 
-				let voucher = VoucherModel(id: result.id ?? "",
+				let voucher = VoucherModel(id: result.voucherId ?? "",
 										   name: result.voucherDefinition ?? "",
 										   description: result.description,
 										   type: result.type ?? "",
-										   faceValue: result.faceValue,
-										   discountPercent: result.discountPercent,
-										   code: result.code,
+										   faceValue: "\(result.faceValue ?? 0)",
+										   discountPercent: "\(result.discountPercent ?? 0)",
+										   code: result.voucherCode,
 										   expirationDate: result.expirationDate ?? "",
-										   image: result.voucherImageUrl,
+										   image: imageUrl,
 										   status: result.status ?? "",
 										   partnerAccount: result.partnerAccount,
 										   product: result.product, productCategory: result.productCategory,

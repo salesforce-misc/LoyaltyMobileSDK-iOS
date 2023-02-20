@@ -10,16 +10,17 @@ public struct VouchersResponse: Codable {
 }
 
 // MARK: - Voucher Model
-public struct VoucherModel: Codable, Identifiable {
-	public let id: String?
+public struct VoucherModel: Codable {
+	public let voucherId: String?
 	public let voucherDefinition: String?
 	public let description: String?
 	public let type: String?
-	public let faceValue: String?
-	public let discountPercent: String?
-	public let code: String?
+	public let faceValue: Int?
+	public let discountPercent: Int?
+	public let voucherCode: String?
 	public let expirationDate: String?
 	public let voucherImageUrl: String?
+	public let attributesUrl: String
 	public let status: String?
 	public let partnerAccount: String?
 	public let product: String?
