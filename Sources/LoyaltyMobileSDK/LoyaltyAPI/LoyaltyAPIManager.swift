@@ -192,7 +192,7 @@ public class LoyaltyAPIManager {
         }
     }
     
-	public func unenroll(promotion promotionId: String, for membershipNumber: String) async throws {
+	public func unenroll(promotion promotionId: String, for membershipNumber: String, devMode: Bool = false) async throws {
 		let body = [
 			"processParameters": [
 				"membershipNumber": membershipNumber,
@@ -200,13 +200,10 @@ public class LoyaltyAPIManager {
 			]
 		]
 		
-		/// Uncomment below lines to test with local json file
-//		do {
-//			let response = try ForceClient.shared.fetchLocalJson(type: UnenrollPromotionResponseModel.self, file: "UnenrollPromotion")
-//			print(response)
-//		} catch {
-//			throw error
-//		}
+		if devMode {
+			let _ = try ForceClient.shared.fetchLocalJson(type: UnenrollPromotionResponseModel.self, file: "UnenrollPromotion")
+			return
+		}
 		
 		do {
 			let path = getPath(for: .unenrollPromotion(programName: loyaltyProgramName, programProcessName: ""))
