@@ -19,7 +19,7 @@ struct VoucherCardView: View {
     var body: some View {
         
         VStack {
-            AsyncImageWithAuth(url: voucher.image, content: { image in
+            AsyncImageWithAuth(url: voucher.voucherImageUrl, content: { image in
                 image
                     .resizable()
                     .scaledToFill()
@@ -30,7 +30,7 @@ struct VoucherCardView: View {
             .cornerRadius(5, corners: [.topLeft, .topRight])
             
             VStack(alignment: .leading, spacing: 10) {
-                Text(voucher.name)
+                Text(voucher.voucherDefinition)
                     .font(.redeemTitle)
                 
                 VStack(alignment: .leading, spacing: 4) {
@@ -60,7 +60,7 @@ struct VoucherCardView: View {
                         .padding(.top, 6)
                 }
                 if voucher.status == "Issued" {
-                    if let voucherCode = voucher.code {
+                    if let voucherCode = voucher.voucherCode {
 						HStack {
 							Text(voucherCode)
 								.font(.profileSubtitle)

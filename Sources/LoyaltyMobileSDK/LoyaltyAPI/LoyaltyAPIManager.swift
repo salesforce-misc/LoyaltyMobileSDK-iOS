@@ -50,7 +50,7 @@ public class LoyaltyAPIManager {
         case .unenrollInPromotion:
             return "/services/apexrest/UnenrollInPromotion/"
 		case .getVouchers(let programName, let membershipNumber):
-				return "/services/data/v56.0/loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers"
+				return ForceConfig.path(for: "loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers")
         }
     
     }
