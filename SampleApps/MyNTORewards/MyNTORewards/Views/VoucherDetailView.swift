@@ -130,5 +130,6 @@ struct VoucherDetailView_Previews: PreviewProvider {
     static var previews: some View {
         VoucherDetailView(voucher: dev.voucher1)
             .environmentObject(dev.voucherVM)
+			.environmentObject(dev.imageVM)
     }
 }

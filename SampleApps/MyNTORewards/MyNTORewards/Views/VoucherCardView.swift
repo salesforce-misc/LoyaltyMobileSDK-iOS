@@ -127,8 +127,10 @@ struct VoucherCardView_Previews: PreviewProvider {
         HStack(spacing: 15) {
             VoucherCardView(voucher: dev.voucher1)
                 .environmentObject(dev.voucherVM)
+				.environmentObject(dev.imageVM)
             VoucherCardView(voucher: dev.voucher2)
                 .environmentObject(dev.voucherVM)
+				.environmentObject(dev.imageVM)
         }
         
     }

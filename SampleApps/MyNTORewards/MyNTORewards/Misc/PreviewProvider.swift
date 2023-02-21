@@ -172,6 +172,7 @@ class DeveloperPreview {
     let promotionVM = PromotionViewModel()
     let profileVM = ProfileViewModel()
     let voucherVM = VoucherViewModel()
+	let imageVM = ImageViewModel()
     
     private init() {
         setMember(member: member)
