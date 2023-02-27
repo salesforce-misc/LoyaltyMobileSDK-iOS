@@ -195,8 +195,8 @@ public class LoyaltyAPIManager {
 	public func unenroll(promotion promotionId: String, for membershipNumber: String, devMode: Bool = false) async throws {
 		let body = [
 			"processParameters": [
-				"membershipNumber": membershipNumber,
-				"PromotionId": promotionId
+				["MembershipNumber": membershipNumber],
+				["PromotionId": promotionId]
 			]
 		]
 		
