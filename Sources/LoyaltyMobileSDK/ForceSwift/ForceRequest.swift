@@ -45,7 +45,7 @@ public struct ForceRequest {
             var comps = URLComponents()
             comps.scheme = "https"
             
-            comps.host = URL(string: ForceAuthManager.shared.auth?.instanceURL ?? config.consumerKey)?.host ?? ""
+            comps.host = URL(string: ForceAuthManager.shared.auth?.instanceURL ?? config.instanceURL)?.host ?? ""
             comps.path = path.starts(with: "/") ? path : "/\(path)"
             if let queryItems = queryItems {
                 comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
