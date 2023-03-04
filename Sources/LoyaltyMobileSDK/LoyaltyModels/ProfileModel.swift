@@ -148,7 +148,7 @@ public struct AdditionalLoyaltyProgramMemberFields: Codable {
     public let cityC: String?
     public let ageC, anniversaryC, referredMemberPromotionC, dateOfBirthC: String?
     public let hobbiesC, genderC: String?
-    public let seedDataC: Bool
+    public let seedDataC: Bool?
     public let incomeC, stateC, b2CRetailMostRecentSurveyEmailDateC: String?
 
     enum CodingKeys: String, CodingKey {
