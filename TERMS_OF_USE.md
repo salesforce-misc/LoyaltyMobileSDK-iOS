@@ -22,6 +22,6 @@ WITHOUT LIMITING THE GENERALITY OF THE FOREGOING, THE SDK IS NOT SUPPORTED, AND 
  
 These Terms of Use shall be governed exclusively by the internal laws of the State of California, without regard to its conflicts of laws rules. Each party hereby consents to the exclusive jurisdiction of the state and federal courts located in San Francisco County, California to adjudicate any dispute arising out of or relating to these Terms of Use. Except as expressly stated in these Terms of Use, these Terms of Use constitute the entire agreement between the parties, and supersede all prior and contemporaneous agreements, proposals or representations, written or oral, concerning their subject matter. No modification, amendment, or waiver of any provision of these Terms of Use shall be effective unless it is by an update to these Terms of Use that SFDC makes available on this website, or is in writing and signed by the party against whom the modification, amendment or waiver is to be asserted.
 
-**<u>Data Privacy:</u>**
+### **Data Privacy:**
 SFDC may collect, process and store device, system, and other information related to Your use of the SDK. This includes, but is not limited to, IP address, user metrics, and other data (“**Usage Data**”). SFDC may use Usage Data for analytics, product development and marketing purposes. You acknowledge that files generated in conjunction with the SDK may contain sensitive or confidential data, and You are solely responsible for anonymizing and protecting such data.
 
