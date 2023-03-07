@@ -86,7 +86,7 @@ struct AllVouchersView: View {
     var redeemedView: some View {
         
         ScrollView {
-            if voucherVM.availableVochers.isEmpty {
+            if voucherVM.redeemedVochers.isEmpty {
                 EmptyStateView(title: "Nothing to report", subTitle: "After you redeem a voucher, you’ll find it here.")
             }
             LazyVGrid(columns: columns, spacing: 15) {
@@ -110,7 +110,7 @@ struct AllVouchersView: View {
     var expiredView: some View {
         
         ScrollView {
-            if voucherVM.availableVochers.isEmpty {
+            if voucherVM.expiredVochers.isEmpty {
                 EmptyStateView(title: "You have no Expired Vouchers")
             }
             LazyVGrid(columns: columns, spacing: 15) {

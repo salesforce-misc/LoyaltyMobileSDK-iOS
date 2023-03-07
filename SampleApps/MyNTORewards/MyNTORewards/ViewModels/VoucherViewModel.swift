@@ -61,44 +61,9 @@ class VoucherViewModel: ObservableObject {
     }
     
     func fetchVouchers(membershipNumber: String) async throws -> [VoucherModel] {
-        
-        var fetchedVouchers: [VoucherModel] = []
-        
         do {
 			let queryItems = [URLQueryItem(name: "voucherStatus", value: "xx, yy, zz")]
-            let results = try await LoyaltyAPIManager.shared.getVouchers(membershipNumber: membershipNumber, devMode: true, queryItems: queryItems)
-            for result in results {
-				let imageUrl = LoyaltyUtilities.getImageUrl(image: result.voucherImageUrl, attributesUrl: result.attributesUrl, fieldName: "Image__c")
-				let voucher = VoucherModel(id: result.id,
-										   voucherDefinition: result.voucherDefinition,
-										   voucherCode: result.voucherCode,
-										   voucherImageUrl: imageUrl,
-										   voucherNumber: result.voucherNumber,
-										   description: result.description,
-										   type: result.type,
-										   discountPercent: result.discountPercent,
-										   expirationDate: result.expirationDate,
-										   effectiveDate: result.effectiveDate,
-										   useDate: result.useDate,
-										   attributesUrl: result.attributesUrl,
-										   status: result.status,
-										   partnerAccount: result.partnerAccount,
-										   faceValue: result.faceValue,
-										   redeemedValue: result.redeemedValue,
-										   remainingValue: result.remainingValue,
-										   currencyIsoCode: result.currencyIsoCode,
-										   isVoucherDefinitionActive: result.isVoucherDefinitionActive,
-										   isVoucherPartiallyRedeemable: result.isVoucherPartiallyRedeemable,
-										   product: result.product,
-										   productId: result.productId,
-										   productCategoryId: result.productCategoryId,
-										   productCategory: result.productCategory,
-										   promotionName: result.promotionName,
-										   promotionId: result.promotionId)
-				fetchedVouchers.append(voucher)
-            }
-            return fetchedVouchers
-            
+            return try await LoyaltyAPIManager.shared.getVouchers(membershipNumber: membershipNumber, devMode: false, queryItems: queryItems)
         } catch {
             throw error
         }

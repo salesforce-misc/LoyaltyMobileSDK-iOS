@@ -15,19 +15,19 @@ public struct VoucherModel: Codable, Identifiable {
 	public let description: String?
 	public let type: String?
 	public let discountPercent: Int?
-	public let expirationDate, effectiveDate, useDate: String
+	public let expirationDate, effectiveDate: String
+	public let useDate: String?
 	public let voucherImageUrl: String?
-	public let attributesUrl: String
+	public let attributesUrl: String?
 	public let status: String?
 	public let partnerAccount: String?
-	public let faceValue: Double?
-	public let redeemedValue, remainingValue: String?
+	public let faceValue, redeemedValue, remainingValue: Double?
 	public let currencyIsoCode: String?
 	public let isVoucherDefinitionActive, isVoucherPartiallyRedeemable: Bool?
 	public let product, productId, productCategoryId, productCategory: String?
 	public let promotionName, promotionId: String?
 	
-	public init(id: String, voucherDefinition: String, voucherCode: String, voucherImageUrl: String?, voucherNumber: String, description: String?, type: String?, discountPercent: Int?, expirationDate: String, effectiveDate: String, useDate: String, attributesUrl: String, status: String?, partnerAccount: String?, faceValue: Double?, redeemedValue: String?, remainingValue: String?, currencyIsoCode: String?, isVoucherDefinitionActive: Bool?, isVoucherPartiallyRedeemable: Bool?, product: String?, productId: String?, productCategoryId: String?, productCategory: String?, promotionName: String?, promotionId: String?) {
+	public init(id: String, voucherDefinition: String, voucherCode: String, voucherImageUrl: String?, voucherNumber: String, description: String?, type: String?, discountPercent: Int?, expirationDate: String, effectiveDate: String, useDate: String?, attributesUrl: String?, status: String?, partnerAccount: String?, faceValue: Double?, redeemedValue: Double?, remainingValue: Double?, currencyIsoCode: String?, isVoucherDefinitionActive: Bool?, isVoucherPartiallyRedeemable: Bool?, product: String?, productId: String?, productCategoryId: String?, productCategory: String?, promotionName: String?, promotionId: String?) {
 		self.id = id
 		self.voucherDefinition = voucherDefinition
 		self.voucherCode = voucherCode
@@ -62,20 +62,20 @@ public struct VoucherModel: Codable, Identifiable {
 		
 		self.voucherDefinition = try container.decode(String.self, forKey: .voucherDefinition)
 		self.voucherCode = try container.decode(String.self, forKey: .voucherCode)
-		self.voucherImageUrl = try container.decode(String.self, forKey: .voucherImageUrl)
+		self.voucherImageUrl = try container.decodeIfPresent(String.self, forKey: .voucherImageUrl)
 		self.voucherNumber = try container.decode(String.self, forKey: .voucherNumber)
 		self.description = try container.decodeIfPresent(String.self, forKey: .description)
 		self.type = try container.decodeIfPresent(String.self, forKey: .type)
 		self.discountPercent = try container.decodeIfPresent(Int.self, forKey: .discountPercent)
 		self.expirationDate = try container.decode(String.self, forKey: .expirationDate)
 		self.effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
-		self.useDate = try container.decode(String.self, forKey: .useDate)
-		self.attributesUrl = try container.decode(String.self, forKey: .attributesUrl)
+		self.useDate = try container.decodeIfPresent(String.self, forKey: .useDate)
+		self.attributesUrl = try container.decodeIfPresent(String.self, forKey: .attributesUrl)
 		self.status = try container.decodeIfPresent(String.self, forKey: .status)
 		self.partnerAccount = try container.decodeIfPresent(String.self, forKey: .partnerAccount)
 		self.faceValue = try container.decodeIfPresent(Double.self, forKey: .faceValue)
-		self.redeemedValue = try container.decodeIfPresent(String.self, forKey: .redeemedValue)
-		self.remainingValue = try container.decodeIfPresent(String.self, forKey: .remainingValue)
+		self.redeemedValue = try container.decodeIfPresent(Double.self, forKey: .redeemedValue)
+		self.remainingValue = try container.decodeIfPresent(Double.self, forKey: .remainingValue)
 		self.currencyIsoCode = try container.decodeIfPresent(String.self, forKey: .currencyIsoCode)
 		self.isVoucherDefinitionActive = try container.decodeIfPresent(Bool.self, forKey: .isVoucherDefinitionActive)
 		self.isVoucherPartiallyRedeemable = try container.decodeIfPresent(Bool.self, forKey: .isVoucherPartiallyRedeemable)
