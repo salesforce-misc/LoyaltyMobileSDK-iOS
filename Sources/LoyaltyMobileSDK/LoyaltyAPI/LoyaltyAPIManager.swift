@@ -128,9 +128,9 @@ public class LoyaltyAPIManager {
         let currentDate = Date()
         let membershipNumber = randomString(of: 8)
         let attributesContact = ["Phone": phone]
+        //let attributesContact = ["Phone": phone, "HasOptedOutOfEmail": String(!emailNotification)]
         let additionalContactValues = AdditionalFieldValues(attributes: attributesContact)
-        let attributesMember = ["Email_Notifications__c": String(emailNotification)]
-        let additionalMemberValues = AdditionalFieldValues(attributes: attributesMember)
+        let additionalMemberValues = AdditionalFieldValues(attributes: [:])
         let contactDetails = AssociatedContactDetails(
             firstName: firstName,
             lastName: lastName,
