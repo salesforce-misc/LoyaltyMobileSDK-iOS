@@ -1,18 +1,18 @@
-//
-//  ForceConfig.swift
-//  LoyaltyMobileSDK
-//
-//  Created by Leon Qi on 9/1/22.
-//
+/*
+ * Copyright (c) 2023, Salesforce, Inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
 
 import Foundation
 
 public struct ForceConfig {
     
-    public static let defaultVersion = "56.0" // latest version
-    public static let defaultAuthURL = "https://login.salesforce.com/services/oauth2/authorize"
-    public static let defaultTokenURL = "https://login.salesforce.com/services/oauth2/token"
-    public static let defaultRevokeURL = "https://login.salesforce.com/services/oauth2/revoke"
+    public static let defaultVersion = "57.0" // latest version
+    public static let defaultAuthPath = "/services/oauth2/authorize"
+    public static let defaultTokenPath = "/services/oauth2/token"
+    public static let defaultRevokePath = "/services/oauth2/revoke"
     public static let defaultServiceIdentifier = "com.salesforce.industries.mobile"
     
     public static func path(for api: String, version: String = defaultVersion) -> String {
@@ -52,7 +52,7 @@ extension ForceConfig {
         public let consumerKey: String
         public let consumerSecret: String
         public let callbackURL: String
-        public let authURL: String
+        public let baseURL: String
         public let instanceURL: String
         public let username: String
         public let password: String

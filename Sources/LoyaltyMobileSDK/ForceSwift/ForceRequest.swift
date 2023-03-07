@@ -1,9 +1,9 @@
-//
-//  ForceRequest.swift
-//  LoyaltyMobileSDK
-//
-//  Created by Leon Qi on 9/1/22.
-//
+/*
+ * Copyright (c) 2023, Salesforce, Inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
 
 import Foundation
 
@@ -45,7 +45,7 @@ public struct ForceRequest {
             var comps = URLComponents()
             comps.scheme = "https"
             
-            comps.host = URL(string: ForceAuthManager.shared.auth?.instanceURL ?? config.consumerKey)?.host ?? ""
+            comps.host = URL(string: ForceAuthManager.shared.auth?.instanceURL ?? config.instanceURL)?.host ?? ""
             comps.path = path.starts(with: "/") ? path : "/\(path)"
             if let queryItems = queryItems {
                 comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in

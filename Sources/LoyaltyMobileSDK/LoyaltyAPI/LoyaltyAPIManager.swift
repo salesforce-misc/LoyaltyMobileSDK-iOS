@@ -1,10 +1,9 @@
-//
-//  LoyaltyAPIManager.swift
-//  LoyaltyMobileSDK
-//
-//  Created by Leon Qi on 9/15/22.
-//
-// https://salesforce.quip.com/3NUAATucFfLU#temp:C:aJadb5bff3175a74eba9461c7d9a
+/*
+ * Copyright (c) 2023, Salesforce, Inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
 
 import Foundation
 import UIKit
@@ -132,9 +131,9 @@ public class LoyaltyAPIManager {
         let currentDate = Date()
         let membershipNumber = randomString(of: 8)
         let attributesContact = ["Phone": phone]
+        //let attributesContact = ["Phone": phone, "HasOptedOutOfEmail": String(!emailNotification)]
         let additionalContactValues = AdditionalFieldValues(attributes: attributesContact)
-        let attributesMember = ["Email_Notifications__c": String(emailNotification)]
-        let additionalMemberValues = AdditionalFieldValues(attributes: attributesMember)
+        let additionalMemberValues = AdditionalFieldValues(attributes: [:])
         let contactDetails = AssociatedContactDetails(
             firstName: firstName,
             lastName: lastName,

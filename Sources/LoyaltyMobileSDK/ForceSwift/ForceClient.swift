@@ -1,9 +1,9 @@
-//
-//  ForceClient.swift
-//  LoyaltyMobileSDK
-//
-//  Created by Leon Qi on 9/1/22.
-//
+/*
+ * Copyright (c) 2023, Salesforce, Inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
 
 import Foundation
   
@@ -26,6 +26,7 @@ public class ForceClient {
             
         guard httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
             print(ForceError.responseUnsuccessful(description: "<ForceError> - HTTP response status code \(httpResponse.statusCode)").customDescription)
+            print(httpResponse.description)
             return
         }
     }
@@ -42,12 +43,13 @@ public class ForceClient {
         do {
             let auth = try ForceAuthManager.shared.retrieveAuth()
             let config = try ForceConfig.config()
+            let tokenURL = config.baseURL + ForceConfig.defaultTokenPath
             if let refreshToken = auth.refreshToken {
-                let newAuth = try await ForceAuthManager.shared.refresh(consumerKey: config.consumerKey, refreshToken: refreshToken)
+                let newAuth = try await ForceAuthManager.shared.refresh(url: tokenURL, consumerKey: config.consumerKey, refreshToken: refreshToken)
                 return ForceRequest.updateRequest(from: request, with: newAuth)
             } else {
                 let newAuth = try await ForceAuthManager.shared.grantAuth(
-                    url: config.authURL,
+                    url: tokenURL,
                     username: config.username,
                     password: config.password,
                     consumerKey: config.consumerKey,

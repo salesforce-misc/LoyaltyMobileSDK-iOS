@@ -1,9 +1,9 @@
-//
-//  ForceAuthManager.swift
-//  LoyaltyMobileSDK
-//
-//  Created by Leon Qi on 9/9/22.
-//
+/*
+ * Copyright (c) 2023, Salesforce, Inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
 
 import Foundation
 
@@ -46,7 +46,9 @@ public class ForceAuthManager {
         }
         Task {
             do {
-                try await self.revoke(token: auth.accessToken)
+                let config = try ForceConfig.config()
+                let revokeURL = config.baseURL + ForceConfig.defaultRevokePath
+                try await self.revoke(url: revokeURL, token: auth.accessToken)
             } catch {
                 print("Failed to revolk token")
             }
@@ -59,17 +61,19 @@ public class ForceAuthManager {
         
         do {
             let config = try ForceConfig.config()
+            let tokenURL = config.baseURL + ForceConfig.defaultTokenPath
+            let authURL = config.baseURL + ForceConfig.defaultAuthPath
             
             switch oauthFlow {
             case .UsernamePassword:
                 self.auth = try await self.grantAuth(
-                    url: config.authURL,
+                    url: tokenURL,
                     username: config.username,
                     password: config.password,
                     consumerKey: config.consumerKey,
                     consumerSecret: config.consumerSecret)
             case .UserAgent:
-                self.auth = try await self.authenticate(consumerKey: config.consumerKey, callbackURL: config.callbackURL)
+                self.auth = try await self.authenticate(url: authURL, consumerKey: config.consumerKey, callbackURL: config.callbackURL)
             }
         } catch {
             throw error
@@ -107,7 +111,7 @@ public class ForceAuthManager {
     
     /// OAuth 2.0 User-Agent Flow - This will bring up Salesforce Login Page. After sucessfully login, will get an accessToken and a refreshToken
     /// https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_user_agent_flow.htm&type=5
-    public func authenticate(url: String = ForceConfig.defaultAuthURL, consumerKey: String, callbackURL: String, state: String? = nil, loginHint: String? = nil) async throws -> ForceAuth {
+    public func authenticate(url: String, consumerKey: String, callbackURL: String, state: String? = nil, loginHint: String? = nil) async throws -> ForceAuth {
         
         guard let url = URL(string: url),
             let callbackURL = URL(string: callbackURL) else {
@@ -143,10 +147,10 @@ public class ForceAuthManager {
         
     }
     
-    /// OAuth 2.0 Rrefresh Token Flow - use refresh token to get a new accessToken
+    /// OAuth 2.0 Refresh Token Flow - use refresh token to get a new accessToken
     /// https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_refresh_token_flow.htm&type=5
     /// If consumerSecret is not used, then be sure that "Require Secret for Refresh Token Flow" is not checked in Connected App settings. If "Require Secret for Refresh Token Flow" is checked, consumerSecret must be provided.
-    public func refresh(url: String = ForceConfig.defaultTokenURL, consumerKey: String, consumerSecret: String? = nil, refreshToken: String) async throws -> ForceAuth {
+    public func refresh(url: String, consumerKey: String, consumerSecret: String? = nil, refreshToken: String) async throws -> ForceAuth {
         
         guard let url = URL(string: url) else {
             throw URLError(.badURL)
@@ -173,7 +177,7 @@ public class ForceAuthManager {
     
     /// Revoke OAuth token (access token or refresh token)
     /// https://help.salesforce.com/s/articleView?id=sf.remoteaccess_revoke_token.htm&type=5
-    public func revoke(url: String = ForceConfig.defaultRevokeURL, token: String) async throws -> Void {
+    public func revoke(url: String, token: String) async throws -> Void {
         
         guard let url = URL(string: url) else {
             throw URLError(.badURL)
