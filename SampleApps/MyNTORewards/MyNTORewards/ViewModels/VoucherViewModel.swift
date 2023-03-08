@@ -60,10 +60,18 @@ class VoucherViewModel: ObservableObject {
         }
     }
     
-    func fetchVouchers(membershipNumber: String) async throws -> [VoucherModel] {
+	func fetchVouchers(membershipNumber: String,
+					   voucherStatus: [LoyaltyAPIManager.VoucherStatus]? = nil,
+					   pageNumber: Int? = nil,
+					   productId: [String]? = nil,
+					   productCategoryId: [String]? = nil,
+					   productName: [String]? = nil,
+					   productCategoryName: [String]? = nil,
+					   sortBy: LoyaltyAPIManager.SortBy? = nil,
+					   sortOrder: LoyaltyAPIManager.SortOrder? = nil
+	) async throws -> [VoucherModel] {
         do {
-			let queryItems = [URLQueryItem(name: "voucherStatus", value: "xx, yy, zz")]
-            return try await LoyaltyAPIManager.shared.getVouchers(membershipNumber: membershipNumber, devMode: false, queryItems: queryItems)
+			return try await LoyaltyAPIManager.shared.getVouchers(membershipNumber: membershipNumber, devMode: false)
         } catch {
             throw error
         }
