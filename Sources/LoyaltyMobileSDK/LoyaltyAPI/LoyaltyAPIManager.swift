@@ -195,8 +195,10 @@ public class LoyaltyAPIManager {
 	public func unenroll(promotion promotionId: String, for membershipNumber: String, devMode: Bool = false) async throws {
 		let body = [
 			"processParameters": [
-				["MembershipNumber": membershipNumber],
-				["PromotionId": promotionId]
+				[
+					"MembershipNumber": membershipNumber,
+					"PromotionId": promotionId
+				]
 			]
 		]
 		
@@ -209,7 +211,10 @@ public class LoyaltyAPIManager {
 			let path = getPath(for: .unenrollPromotion(programName: loyaltyProgramName, programProcessName: ""))
 			let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
 			let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
-			let _ = try await ForceClient.shared.fetch(type: UnenrollPromotionResponseModel.self, with: request)
+			let response = try await ForceClient.shared.fetch(type: UnenrollPromotionResponseModel.self, with: request)
+			if !response.status {
+				throw ForceError.requestFailed(description: response.message ?? "Unknown")
+			}
 		} catch {
 			throw error
 		}
