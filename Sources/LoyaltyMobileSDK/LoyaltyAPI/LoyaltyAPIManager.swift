@@ -252,15 +252,19 @@ public class LoyaltyAPIManager {
        ///  - periodStartDate: Retrieve transaction journals until this date.
        ///  - periodEndDate: Retrieve transaction journals until this date.
        /// - Returns: An ``TransactionModel`` instance
-       public func getTransactions(for membershipNumber: String, pageNumber: Int = 1, journelType: String? = nil, journalSubType: String? = nil, periodStartDate: String? = nil, periodEndDate: String? = nil,  devMode: Bool = false) async throws -> [TransactionJournal] {
-           var queryItems = ["page": "\(pageNumber)"]
-
-           if let type = journelType {
-               queryItems.updateValue(type, forKey: "journalType")
+       public func getTransactions(for membershipNumber: String, pageNumber: Int? = nil, journalTypeName: String? = nil, journalSubTypeName: String? = nil, periodStartDate: String? = nil, periodEndDate: String? = nil,  devMode: Bool = false) async throws -> [TransactionJournal] {
+           var queryItems: [String: String] = [:]
+           
+           if let pageNumber = pageNumber {
+               queryItems.updateValue("\(pageNumber)", forKey: "pageNumber")
+           }
+           
+           if let type = journalTypeName {
+               queryItems.updateValue(type, forKey: "journalTypeName")
            }
 
-           if let subtype = journalSubType {
-               queryItems.updateValue(subtype, forKey: "journalSubType")
+           if let subtype = journalSubTypeName {
+               queryItems.updateValue(subtype, forKey: "journalSubTypeName")
            }
 
            if let startDate = periodStartDate {
