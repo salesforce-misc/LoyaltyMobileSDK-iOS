@@ -21,7 +21,7 @@ struct VoucherDetailView: View {
             
             VStack(alignment: .leading) {
                 
-                AsyncImageWithAuth(url: voucher.image, content: { image in
+                AsyncImageWithAuth(url: voucher.voucherImageUrl, content: { image in
                     image
                         .resizable()
                         .scaledToFill()
@@ -39,7 +39,7 @@ struct VoucherDetailView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 20) {
-                    Text(voucher.name)
+                    Text(voucher.voucherDefinition)
                         .font(.voucherTitle)
 
                     VStack(alignment: .leading, spacing: 5) {
@@ -50,7 +50,7 @@ struct VoucherDetailView: View {
                     }
                     .font(.voucherText)
                     
-                    if let voucherCode = voucher.code {
+                    if let voucherCode = voucher.voucherCode {
                         let QRCodeImageData = LoyaltyUtilities.getQRCodeData(text: voucherCode) ?? Data.init()
                         let QRCodeImage = UIImage(data: QRCodeImageData) ?? UIImage(systemName: "xmark.octagon.fill") ?? UIImage()
                         
@@ -130,5 +130,6 @@ struct VoucherDetailView_Previews: PreviewProvider {
     static var previews: some View {
         VoucherDetailView(voucher: dev.voucher1)
             .environmentObject(dev.voucherVM)
+			.environmentObject(dev.imageVM)
     }
 }
