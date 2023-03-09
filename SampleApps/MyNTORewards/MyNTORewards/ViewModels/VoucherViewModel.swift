@@ -71,7 +71,16 @@ class VoucherViewModel: ObservableObject {
 					   sortOrder: LoyaltyAPIManager.SortOrder? = nil
 	) async throws -> [VoucherModel] {
         do {
-			return try await LoyaltyAPIManager.shared.getVouchers(membershipNumber: membershipNumber, devMode: false)
+			return try await LoyaltyAPIManager.shared.getVouchers(membershipNumber: membershipNumber,
+																  devMode: false,
+																  voucherStatus: voucherStatus,
+																  pageNumber: pageNumber,
+																  productId: productId,
+																  productCategoryId: productCategoryId,
+																  productName: productName,
+																  productCategoryName: productCategoryName,
+																  sortBy: sortBy,
+																  sortOrder: sortOrder)
         } catch {
             throw error
         }
