@@ -1,131 +1,59 @@
 {
-    "status": "success",
-    "programName": "NTO Insider",
-    "membershipNumber": "24345671",
-    "recordCount": 7,
-    "transactionHistory": [
+    "message": null,
+    "status": true,
+    "transactionJournalCount": 5,
+    "transactionJournals": [
         {
-            "id": "001",
-            "transactionAmount": null,
-            "productDetails": {
-                "productCategory": null,
-                "product": null,
-                "partner": null
-            },
-            "memberCurrency": [
+            "activityDate": "2023-03-08T04:59:40.000Z",
+            "additionalTransactionJournalAttributes": [],
+            "journalTypeName": "Manual Points Adjustment",
+            "pointsChange": [
                 {
-                    "value": 100.0,
-                    "name": "Tier Points"
+                    "changeInPoints": 100.0,
+                    "loyaltyMemberCurrency": "Reward Points"
                 }
             ],
-            "activityDate": "20 November 2022",
-            "activity": "Manual Points Adjustment"
+            "transactionJournalId": "0lVRO00000002og2AA",
+            "transactionJournalNumber": "00000035"
         },
         {
-            "id": "002",
-            "transactionAmount": null,
-            "productDetails": {
-                "productCategory": null,
-                "product": null,
-                "partner": null
-            },
-            "memberCurrency": [
+            "activityDate": "2023-03-08T04:58:07.000Z",
+            "additionalTransactionJournalAttributes": [],
+            "journalTypeName": "Manual Points Adjustment",
+            "pointsChange": [
                 {
-                    "value": 100.0,
-                    "name": "Reward Points"
+                    "changeInPoints": 300.0,
+                    "loyaltyMemberCurrency": "Reward Points"
                 }
             ],
-            "activityDate": "04 March 2021",
-            "activity": "Engagement Activity"
+            "transactionJournalId": "0lVRO00000002ob2AA",
+            "transactionJournalNumber": "00000034"
         },
         {
-            "id": "003",
-            "transactionAmount": null,
-            "productDetails": {
-                "productCategory": null,
-                "product": null,
-                "partner": null
-            },
-            "memberCurrency": [
+            "activityDate": "2023-03-08T04:56:38.000Z",
+            "additionalTransactionJournalAttributes": [],
+            "journalTypeName": "Manual Points Adjustment",
+            "pointsChange": [
                 {
-                    "value": 50.0,
-                    "name": "Reward Points"
+                    "changeInPoints": -100.0,
+                    "loyaltyMemberCurrency": "Reward Points"
                 }
             ],
-            "activityDate": "05 November 2020",
-            "activity": "Engagement Activity"
+            "transactionJournalId": "0lVRO00000002oW2AQ",
+            "transactionJournalNumber": "00000033"
         },
         {
-            "id": "004",
-            "transactionAmount": 99.00,
-            "productDetails": {
-                "productCategory": null,
-                "product": "Men's Glacier Alpine Jacket",
-                "partner": null
-            },
-            "memberCurrency": [
+            "activityDate": "2023-03-08T04:53:19.000Z",
+            "additionalTransactionJournalAttributes": [],
+            "journalTypeName": "Manual Points Adjustment",
+            "pointsChange": [
                 {
-                    "value": 99.0,
-                    "name": "Tier Points"
+                    "changeInPoints": 100.0,
+                    "loyaltyMemberCurrency": "Reward Points"
                 }
             ],
-            "activityDate": "01 November 2020",
-            "activity": "Purchase"
-        },
-        {
-            "id": "005",
-            "transactionAmount": 99.00,
-            "productDetails": {
-                "productCategory": null,
-                "product": "Men's Mountain Sweatshirt 2.0",
-                "partner": null
-            },
-            "memberCurrency": [
-                {
-                    "value": 99.0,
-                    "name": "Tier Points"
-                }
-            ],
-            "activityDate": "23 October 2020",
-            "activity": "Purchase"
-        },
-        {
-            "id": "006",
-            "transactionAmount": 25.00,
-            "productDetails": {
-                "productCategory": "KIDS-Big Kids",
-                "product": "Youth Mudder Trucker Hat",
-                "partner": null
-            },
-            "memberCurrency": [
-                {
-                    "value": 50.0,
-                    "name": "Reward Points"
-                },
-                {
-                    "value": 25.0,
-                    "name": "Tier Points"
-                }
-            ],
-            "activityDate": "23 October 2020",
-            "activity": "Purchase"
-        },
-        {
-            "id": "007",
-            "transactionAmount": null,
-            "productDetails": {
-                "productCategory": null,
-                "product": null,
-                "partner": null
-            },
-            "memberCurrency": [
-                {
-                    "value": 50.0,
-                    "name": "Reward Points"
-                }
-            ],
-            "activityDate": "09 April 2020",
-            "activity": "Engagement Activity"
+            "transactionJournalId": "0lVRO00000002oR2AQ",
+            "transactionJournalNumber": "00000032"
         }
     ]
 }

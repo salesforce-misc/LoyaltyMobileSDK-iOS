@@ -16,6 +16,7 @@ struct AppConstants {
         static let rewardCurrencyName = "Reward Points"
         static let rewardCurrencyNameShort = "Points"
         static let tierCurrencyName = "Tier Points"
+        static let apiDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     }
     
     struct Vouchers {

@@ -98,19 +98,8 @@ class DeveloperPreview {
     
     //let currency = TransactionCurrency(value: 100, name: "Reward Points")
     let transactions = [
-        TransactionHistory(id: "0000435",
-                           transactionAmount: 500,
-                           productDetails: nil,
-                           memberCurrency: [TransactionCurrency(value: 500, name: "Reward Points")],
-                           activityDate: "20 November 2022",
-                           activity: "Purchase"),
-        
-        TransactionHistory(id: "0000436",
-                           transactionAmount: -100,
-                           productDetails: nil,
-                           memberCurrency: [TransactionCurrency(value: -100, name: "Reward Points")],
-                           activityDate: "10 November 2022",
-                           activity: "Redemption")
+        TransactionJournal(activityDate: "10 November 2022", additionalTransactionJournalAttributes: [], journalSubTypeName: "subtype", journalTypeName: "Acceral", pointsChange: [PointsChange(changeInPoints: 100.0, loyaltyMemberCurrency: "Reward Points")], id: "0001", transactionJournalNumber: "", productCategoryName: "", productName: "", transactionAmount: ""),
+        TransactionJournal(activityDate: "12 November 2022", additionalTransactionJournalAttributes: [], journalSubTypeName: "subtype", journalTypeName: "Manual Points Adjustment", pointsChange: [PointsChange(changeInPoints: 300.0, loyaltyMemberCurrency: "Reward Points")], id: "0001",transactionJournalNumber: "", productCategoryName: "", productName: "", transactionAmount: "")
     ]
     
     let voucher1 = VoucherModel(id: "000001",
