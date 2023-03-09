@@ -1,10 +1,9 @@
-//
-//  LoyaltyAPIManager.swift
-//  LoyaltyMobileSDK
-//
-//  Created by Leon Qi on 9/15/22.
-//
-// https://salesforce.quip.com/3NUAATucFfLU#temp:C:aJadb5bff3175a74eba9461c7d9a
+/*
+ * Copyright (c) 2023, Salesforce, Inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
 
 import Foundation
 import UIKit
@@ -22,7 +21,7 @@ public class LoyaltyAPIManager {
         case individualEnrollment(programName: String)
         case getMemberBenefits(memberId: String)
         case getMemberProfile(programName: String)
-        case getTransactionHistory
+        case getTransactionHistory(programName: String, memberId: String)
         case getPromotions(programName: String)
         case redeemPoints(programName: String, programProcessName: String)
         case enrollInPromotion(programName: String)
@@ -38,8 +37,8 @@ public class LoyaltyAPIManager {
             return ForceConfig.path(for: "connect/loyalty/member/\(memberId)/memberbenefits")
         case .getMemberProfile(let programName):
             return ForceConfig.path(for: "loyalty-programs/\(programName)/members")
-        case .getTransactionHistory:
-            return "/services/apexrest/TransactionHistory/"
+        case .getTransactionHistory(let programName, let memberId):
+            return ForceConfig.path(for: "loyalty/programs/\(programName)/members/\(memberId)/transaction-ledger-summary")
         case .getPromotions(let programName):
             return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/GetMemberPromotions")
         case .redeemPoints(let programName, let programProcessName):
@@ -129,9 +128,9 @@ public class LoyaltyAPIManager {
         let currentDate = Date()
         let membershipNumber = randomString(of: 8)
         let attributesContact = ["Phone": phone]
+        //let attributesContact = ["Phone": phone, "HasOptedOutOfEmail": String(!emailNotification)]
         let additionalContactValues = AdditionalFieldValues(attributes: attributesContact)
-        let attributesMember = ["Email_Notifications__c": String(emailNotification)]
-        let additionalMemberValues = AdditionalFieldValues(attributes: attributesMember)
+        let additionalMemberValues = AdditionalFieldValues(attributes: [:])
         let contactDetails = AssociatedContactDetails(
             firstName: firstName,
             lastName: lastName,
@@ -255,25 +254,32 @@ public class LoyaltyAPIManager {
         }
     }
     
-    public func getTransactions(for membershipNumber: String, recordsLimit: Int? = nil, devMode: Bool = false) async throws -> [TransactionHistory] {
-        var body: [String: Any] = [
-            "programName": loyaltyProgramName,
-            "membershipNumber": membershipNumber
-        ]
-        if let recordsLimit = recordsLimit {
-            body["recordsLimit"] = recordsLimit
-        }
+    /// Get Transactions - Makes an asynchronous request for transactions data from the Salesforce
+    /// - Parameters:
+    ///   - for membershipNumber: The membership number of the loyalty program member whose transaction journals are retrieved.
+    ///   - pageNumber: Number of the page you want returned. If you don’t specify a value, the first page is returned. Each page contains 200 transaction journals and the transaction journals are sorted based on the date on which the Transaction Journal record was created.
+    ///  - journelType: The journal type of transaction journals that are retrieved.
+    ///  - journalSubType: The journal subtype of transaction journals that are retrieved.
+    ///  - periodStartDate: Retrieve transaction journals until this date.
+    ///  - periodEndDate: Retrieve transaction journals until this date.
+    /// - Returns: An ``TransactionModel`` instance
+    public func getTransactions(for membershipNumber: String, pageNumber: Int? = nil, journalTypeName: String? = nil, journalSubTypeName: String? = nil, periodStartDate: String? = nil, periodEndDate: String? = nil,  devMode: Bool = false) async throws -> [TransactionJournal] {
+        let pageNumberString = pageNumber == nil ? nil : String(describing: pageNumber)
+        let queryItems = ["pageNumber": pageNumberString,
+                          "journalTypeName": journalTypeName,
+                          "journalSubTypeName": journalSubTypeName,
+                          "periodStartDate": periodStartDate,
+                          "periodEndDate": periodEndDate ].compactMapValues { $0 }
         
         do {
             if devMode {
                 let result = try ForceClient.shared.fetchLocalJson(type: TransactionModel.self, file: "Transactions")
-                return result.transactionHistory
+                return result.transactionJournals
             }
-            let path = getPath(for: .getTransactionHistory)
-            let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
-            let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
+            let path = getPath(for: .getTransactionHistory(programName: loyaltyProgramName, memberId: membershipNumber))
+            let request = try ForceRequest.create(method: "GET", path: path, queryItems: queryItems)
             let result = try await ForceClient.shared.fetch(type: TransactionModel.self, with: request)
-            return result.transactionHistory
+            return result.transactionJournals
         } catch {
             throw error
         }

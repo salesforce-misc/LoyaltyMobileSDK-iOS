@@ -8,12 +8,12 @@
 import Foundation
 import LoyaltyMobileSDK
 
-extension TransactionHistory {
+extension TransactionJournal {
     
     func getCurrencyPoints(currencyName: String) -> Double {
-        for currency in memberCurrency {
-            if currency.name.capitalized == currencyName.capitalized {
-                return currency.value
+        for currency in pointsChange ?? [] {
+            if currency.loyaltyMemberCurrency.capitalized == currencyName.capitalized {
+                return currency.changeInPoints
             }
         }
         return 0
