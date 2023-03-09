@@ -10,7 +10,7 @@ import LoyaltyMobileSDK
 
 struct TransactionCardView: View {
     
-    let transaction: TransactionHistory
+    let transaction: TransactionJournal
     
     var body: some View {
         
@@ -20,18 +20,18 @@ struct TransactionCardView: View {
         HStack(spacing: 10) {
             Spacer()
             
-            Assets.getTransactionsLogo(for: transaction.activity)
+            Assets.getTransactionsLogo(for: transaction.journalTypeName)
                 .renderingMode(.template)
                 .foregroundColor(Color.theme.textInactive)
             
             VStack(spacing: 8) {
                 HStack{
-                    Text(transaction.activity)
+                    Text(transaction.journalTypeName)
                         .font(.transactionText)
                     Spacer()
                 }
                 HStack {
-                    Text(transaction.activityDate.toDate()?.toString() ?? transaction.activityDate)
+                    Text(transaction.activityDate.toDate(withFormat: AppConstants.Config.apiDateFormat)?.toString() ?? transaction.activityDate)
                         .font(.transactionDate)
                         .foregroundColor(Color.theme.textInactive)
                     Spacer()
