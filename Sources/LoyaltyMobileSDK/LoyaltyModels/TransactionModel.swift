@@ -30,7 +30,7 @@ public struct TransactionJournal: Codable, Identifiable {
     public let additionalTransactionJournalAttributes: [additionalTransactionJournalAttribute]
     public let journalTypeName: String
     public let journalSubTypeName: String?
-    public let pointsChange: [PointsChange]?
+    public let pointsChange: [PointsChange]
     public let id: String
     public let transactionJournalNumber: String?
     public let productCategoryName, productName, transactionAmount: String?
@@ -41,7 +41,7 @@ public struct TransactionJournal: Codable, Identifiable {
         case productCategoryName, productName, transactionAmount
     }
     
-    public init(activityDate: String, additionalTransactionJournalAttributes: [additionalTransactionJournalAttribute], journalSubTypeName: String?, journalTypeName: String, pointsChange: [PointsChange]?, id: String, transactionJournalNumber: String?, productCategoryName: String?, productName: String?, transactionAmount: String?) {
+    public init(activityDate: String, additionalTransactionJournalAttributes: [additionalTransactionJournalAttribute], journalSubTypeName: String?, journalTypeName: String, pointsChange: [PointsChange], id: String, transactionJournalNumber: String?, productCategoryName: String?, productName: String?, transactionAmount: String?) {
         self.activityDate = activityDate
         self.additionalTransactionJournalAttributes = additionalTransactionJournalAttributes
         self.journalSubTypeName = journalSubTypeName

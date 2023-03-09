@@ -244,37 +244,21 @@ public class LoyaltyAPIManager {
     }
     
     /// Get Transactions - Makes an asynchronous request for transactions data from the Salesforce
-       /// - Parameters:
-       ///   - for membershipNumber: The membership number of the loyalty program member whose transaction journals are retrieved.
-       ///   - pageNumber: Number of the page you want returned. If you don’t specify a value, the first page is returned. Each page contains 200 transaction journals and the transaction journals are sorted based on the date on which the Transaction Journal record was created.
-       ///  - journelType: The journal type of transaction journals that are retrieved.
-       ///  - journalSubType: The journal subtype of transaction journals that are retrieved.
-       ///  - periodStartDate: Retrieve transaction journals until this date.
-       ///  - periodEndDate: Retrieve transaction journals until this date.
-       /// - Returns: An ``TransactionModel`` instance
-       public func getTransactions(for membershipNumber: String, pageNumber: Int? = nil, journalTypeName: String? = nil, journalSubTypeName: String? = nil, periodStartDate: String? = nil, periodEndDate: String? = nil,  devMode: Bool = false) async throws -> [TransactionJournal] {
-           var queryItems: [String: String] = [:]
-           
-           if let pageNumber = pageNumber {
-               queryItems.updateValue("\(pageNumber)", forKey: "pageNumber")
-           }
-           
-           if let type = journalTypeName {
-               queryItems.updateValue(type, forKey: "journalTypeName")
-           }
-
-           if let subtype = journalSubTypeName {
-               queryItems.updateValue(subtype, forKey: "journalSubTypeName")
-           }
-
-           if let startDate = periodStartDate {
-               queryItems.updateValue(startDate, forKey: "periodStartDate")
-           }
-
-           if let endDate = periodEndDate {
-               queryItems.updateValue(endDate, forKey: "periodEndDate")
-           }
-
+    /// - Parameters:
+    ///   - for membershipNumber: The membership number of the loyalty program member whose transaction journals are retrieved.
+    ///   - pageNumber: Number of the page you want returned. If you don’t specify a value, the first page is returned. Each page contains 200 transaction journals and the transaction journals are sorted based on the date on which the Transaction Journal record was created.
+    ///  - journelType: The journal type of transaction journals that are retrieved.
+    ///  - journalSubType: The journal subtype of transaction journals that are retrieved.
+    ///  - periodStartDate: Retrieve transaction journals until this date.
+    ///  - periodEndDate: Retrieve transaction journals until this date.
+    /// - Returns: An ``TransactionModel`` instance
+    public func getTransactions(for membershipNumber: String, pageNumber: Int? = nil, journalTypeName: String? = nil, journalSubTypeName: String? = nil, periodStartDate: String? = nil, periodEndDate: String? = nil,  devMode: Bool = false) async throws -> [TransactionJournal] {
+        let pageNumberString = pageNumber == nil ? nil : String(describing: pageNumber)
+        let queryItems = ["pageNumber": pageNumberString,
+                          "journalTypeName": journalTypeName,
+                          "journalSubTypeName": journalSubTypeName,
+                          "periodStartDate": periodStartDate,
+                          "periodEndDate": periodEndDate ].compactMapValues { $0 }
         
         do {
             if devMode {

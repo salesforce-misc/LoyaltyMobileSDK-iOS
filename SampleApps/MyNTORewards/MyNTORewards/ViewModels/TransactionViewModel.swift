@@ -42,12 +42,9 @@ class TransactionViewModel: ObservableObject {
     
     func fetchTransactions(membershipNumber: String) async throws -> [TransactionJournal] {
         do {
-            //TODO: Need to remove devmode once the api is ready
             let result = try await LoyaltyAPIManager.shared.getTransactions(for: membershipNumber)
             let filtered = result.filter { transaction in
-                guard let pointsChange = transaction.pointsChange else { return false }
-                
-                return pointsChange.contains { currency in
+                transaction.pointsChange.contains { currency in
                     currency.loyaltyMemberCurrency == AppConstants.Config.rewardCurrencyName
                 }
             }
