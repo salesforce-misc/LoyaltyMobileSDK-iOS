@@ -60,34 +60,27 @@ class VoucherViewModel: ObservableObject {
         }
     }
     
-    /*
-    SELECT VoucherDefinition.Name, Voucher.Image__c, VoucherDefinition.Description, VoucherDefinition.Type, VoucherDefinition.FaceValue, VoucherDefinition.DiscountPercent, VoucherCode, ExpirationDate, Id, Status
-    FROM Voucher
-    WHERE LoyaltyProgramMember.MembershipNumber = '\(membershipNumber)'
-     */
-    func fetchVouchers(membershipNumber: String) async throws -> [VoucherModel] {
-        
-        var fetchedVouchers: [VoucherModel] = []
-        
+	func fetchVouchers(membershipNumber: String,
+					   voucherStatus: [LoyaltyAPIManager.VoucherStatus]? = nil,
+					   pageNumber: Int? = nil,
+					   productId: [String]? = nil,
+					   productCategoryId: [String]? = nil,
+					   productName: [String]? = nil,
+					   productCategoryName: [String]? = nil,
+					   sortBy: LoyaltyAPIManager.SortBy? = nil,
+					   sortOrder: LoyaltyAPIManager.SortOrder? = nil
+	) async throws -> [VoucherModel] {
         do {
-            let results = try await LoyaltyAPIManager.shared.getVoucherRecords(membershipNumber: membershipNumber)
-            for result in results {
-                let imageUrl = LoyaltyUtilities.getImageUrl(image: result.image, attributesUrl: result.attributes.url, fieldName: "Image__c")
-                
-                let voucher = VoucherModel(id: result.id,
-                                       name: result.voucherDefinition.name,
-                                       description: result.voucherDefinition.description,
-                                       type: result.voucherDefinition.type,
-                                       faceValue: result.voucherDefinition.faceValue,
-                                       discountPercent: result.voucherDefinition.discountPercent,
-                                       code: result.voucherCode,
-                                       expirationDate: result.expirationDate,
-                                       image: imageUrl,
-                                       status: result.status)
-                fetchedVouchers.append(voucher)
-            }
-            return fetchedVouchers
-            
+			return try await LoyaltyAPIManager.shared.getVouchers(membershipNumber: membershipNumber,
+																  devMode: false,
+																  voucherStatus: voucherStatus,
+																  pageNumber: pageNumber,
+																  productId: productId,
+																  productCategoryId: productCategoryId,
+																  productName: productName,
+																  productCategoryName: productCategoryName,
+																  sortBy: sortBy,
+																  sortOrder: sortOrder)
         } catch {
             throw error
         }

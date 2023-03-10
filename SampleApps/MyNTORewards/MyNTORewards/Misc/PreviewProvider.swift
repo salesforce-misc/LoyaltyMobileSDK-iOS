@@ -102,33 +102,66 @@ class DeveloperPreview {
         TransactionJournal(activityDate: "12 November 2022", additionalTransactionJournalAttributes: [], journalSubTypeName: "subtype", journalTypeName: "Manual Points Adjustment", pointsChange: [PointsChange(changeInPoints: 300.0, loyaltyMemberCurrency: "Reward Points")], id: "0001",transactionJournalNumber: "", productCategoryName: "", productName: "", transactionAmount: "")
     ]
     
-    let voucher1 = VoucherModel(id: "000001",
-                           name: "Birthday Discount Voucher",
-                           description: nil,
-                           type: "DiscountPercentage",
-                           faceValue: nil,
-                           discountPercent: 20,
-                           code: "84KFFFS",
-                           expirationDate: "05 Jan 2023",
-                           image: "https://picsum.photos/800",
-                           status: "Issued")
-    
-    let voucher2 = VoucherModel(id: "000002",
-                           name: "Christmas Discount Voucher",
-                           description: nil,
-                           type: "FixedValue",
-                           faceValue: 100,
-                           discountPercent: nil,
-                           code: "XMAS2022",
-                           expirationDate: "31 Dec 2023",
-                           image: "https://picsum.photos/800",
-                           status: "Issued")
+	let voucher1 = VoucherModel(id: "000001",
+								voucherDefinition: "Birthday Discount Voucher",
+								voucherCode: "84KFFFS",
+								voucherImageUrl: "https://picsum.photos/800",
+								voucherNumber: "",
+								description: "",
+								type: "DiscountPercentage",
+								discountPercent: 20,
+								expirationDate: "05 Jan 2023",
+								effectiveDate: "",
+								useDate: "",
+								attributesUrl: "",
+								status: "Issued",
+								partnerAccount: "",
+								faceValue: nil,
+								redeemedValue: 0.0,
+								remainingValue: 0.0,
+								currencyIsoCode: "",
+								isVoucherDefinitionActive: false,
+								isVoucherPartiallyRedeemable: false,
+								product: "",
+								productId: "",
+								productCategoryId: "",
+								productCategory: "",
+								promotionName: "",
+								promotionId: "")
+	
+	let voucher2 = VoucherModel(id: "000002",
+								voucherDefinition: "Christmas Discount Voucher",
+								voucherCode: "XMAS2022",
+								voucherImageUrl: "https://picsum.photos/800",
+								voucherNumber: "",
+								description: "",
+								type: "FixedValue",
+								discountPercent: 20,
+								expirationDate: "31 Dec 2023",
+								effectiveDate: "",
+								useDate: "",
+								attributesUrl: "",
+								status: "Issued",
+								partnerAccount: "",
+								faceValue: nil,
+								redeemedValue: 0.0,
+								remainingValue: 0.0,
+								currencyIsoCode: "",
+								isVoucherDefinitionActive: false,
+								isVoucherPartiallyRedeemable: false,
+								product: "",
+								productId: "",
+								productCategoryId: "",
+								productCategory: "",
+								promotionName: "",
+								promotionId: "")
     
     let rootVM = AppRootViewModel()
     let benefitVM = BenefitViewModel()
     let promotionVM = PromotionViewModel()
     let profileVM = ProfileViewModel()
     let voucherVM = VoucherViewModel()
+	let imageVM = ImageViewModel()
     
     private init() {
         setMember(member: member)

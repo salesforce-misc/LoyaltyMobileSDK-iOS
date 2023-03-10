@@ -9,6 +9,23 @@ import Foundation
 import UIKit
 
 public class LoyaltyAPIManager {
+	
+	public enum SortBy: String {
+		case ExpirationDate
+		case EffectiveDate
+		case CreatedDate
+	}
+	
+	public enum SortOrder: String {
+		case Ascending
+		case Descending
+	}
+	
+	public enum VoucherStatus: String {
+		case Issued
+		case Cancelled
+		case Expired
+	}
     
     public static let shared = LoyaltyAPIManager()
     
@@ -26,6 +43,7 @@ public class LoyaltyAPIManager {
         case redeemPoints(programName: String, programProcessName: String)
         case enrollInPromotion(programName: String)
 		case unenrollPromotion(programName: String, programProcessName: String)
+		case getVouchers(programName: String, membershipNumber: String)
     }
     
     public func getPath(for resource: Resource) -> String {
@@ -47,6 +65,8 @@ public class LoyaltyAPIManager {
             return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/EnrollInPromotion")
 		case .unenrollPromotion(let programName, let programProcessName):
 			return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/\(programProcessName)")
+		case .getVouchers(let programName, let membershipNumber):
+				return ForceConfig.path(for: "loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers")
         }
     
     }
@@ -314,4 +334,58 @@ public class LoyaltyAPIManager {
             throw error
         }
     }
+	
+	public func getVouchers(
+		membershipNumber: String,
+		devMode: Bool = false,
+		voucherStatus: [VoucherStatus]? = nil,
+		pageNumber: Int? = nil,
+		productId: [String]? = nil,
+		productCategoryId: [String]? = nil,
+		productName: [String]? = nil,
+		productCategoryName: [String]? = nil,
+		sortBy: SortBy? = nil,
+		sortOrder: SortOrder? = nil
+	) async throws -> [VoucherModel] {
+		do {
+			if devMode {
+				let result = try ForceClient.shared.fetchLocalJson(type: VouchersResponse.self, file: "GetVouchers")
+				return result.vouchers ?? []
+			}
+			let queries = [
+				"voucherStatus": getString(from: voucherStatus?.map {$0.rawValue}),
+				"pageNumber": getString(from: pageNumber),
+				"productId": getString(from: productId),
+				"productCategoryId": getString(from: productCategoryId),
+				"productName": getString(from: productName),
+				"productCategoryName": getString(from: productCategoryName),
+				"sortBy": getString(from: sortBy),
+				"sortOrder": getString(from: sortOrder)
+			].compactMapValues { $0 }
+			let path = getPath(for: .getVouchers(programName: loyaltyProgramName, membershipNumber: membershipNumber))
+			let request = try ForceRequest.create(method: "GET", path: path, queryItems: queries)
+			let result = try await ForceClient.shared.fetch(type: VouchersResponse.self, with: request)
+			return result.vouchers ?? []
+		} catch {
+			print(error.localizedDescription)
+			throw error
+		}
+	}
+	
+	private final func getString(from query: Any?) -> String? {
+		guard let query = query else { return nil }
+		
+		switch query {
+			case let query as [String]:
+				return query.joined(separator: ",")
+			case let query as Int:
+				return String(query)
+			case let query as SortBy:
+				return query.rawValue
+			case let query as SortOrder:
+				return query.rawValue
+			default:
+				return nil
+		}
+	}
 }
