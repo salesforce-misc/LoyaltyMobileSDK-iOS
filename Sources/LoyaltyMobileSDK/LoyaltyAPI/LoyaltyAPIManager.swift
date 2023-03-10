@@ -190,8 +190,8 @@ public class LoyaltyAPIManager {
             throw error
         }
     }
-    
-	public func unenroll(promotion promotionId: String, for membershipNumber: String, devMode: Bool = false) async throws {
+	
+	public final func unenroll(promotionId: String, for membershipNumber: String, devMode: Bool = false) async throws {
 		let body = [
 			"processParameters": [
 				[
@@ -200,15 +200,30 @@ public class LoyaltyAPIManager {
 				]
 			]
 		]
-		
+		try await unenroll(requestBody: body, devMode: devMode)
+	}
+	
+	public final func unenroll(promotionName: String, for membershipNumber: String, devMode: Bool = false) async throws {
+		let body = [
+			"processParameters": [
+				[
+					"MembershipNumber": membershipNumber,
+					"PromotionName": promotionName
+				]
+			]
+		]
+		try await unenroll(requestBody: body, devMode: devMode)
+	}
+    
+	private func unenroll(requestBody: [String: Any], devMode: Bool = false) async throws {
 		if devMode {
 			let _ = try ForceClient.shared.fetchLocalJson(type: UnenrollPromotionResponseModel.self, file: "UnenrollPromotion")
 			return
 		}
 		
 		do {
-			let path = getPath(for: .unenrollPromotion(programName: loyaltyProgramName, programProcessName: ""))
-			let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
+			let path = getPath(for: .unenrollPromotion(programName: loyaltyProgramName, programProcessName: ForceConfig.optOutPromotionProcessName))
+			let bodyJsonData = try JSONSerialization.data(withJSONObject: requestBody)
 			let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
 			let response = try await ForceClient.shared.fetch(type: UnenrollPromotionResponseModel.self, with: request)
 			if !response.status {

@@ -14,6 +14,7 @@ public struct ForceConfig {
     public static let defaultTokenPath = "/services/oauth2/token"
     public static let defaultRevokePath = "/services/oauth2/revoke"
     public static let defaultServiceIdentifier = "com.salesforce.industries.mobile"
+	public static let optOutPromotionProcessName = "OptOutOfPromotion"
     
     public static func path(for api: String, version: String = defaultVersion) -> String {
         "/services/data/v\(version)/\(api)"
