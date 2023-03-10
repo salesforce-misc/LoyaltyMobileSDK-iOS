@@ -40,9 +40,8 @@ public class LoyaltyAPIManager {
         case getMemberProfile(programName: String)
         case getTransactionHistory(programName: String, memberId: String)
         case getPromotions(programName: String)
-        case redeemPoints(programName: String, programProcessName: String)
         case enrollInPromotion(programName: String)
-		case unenrollPromotion(programName: String, programProcessName: String)
+		case unenrollPromotion(programName: String)
 		case getVouchers(programName: String, membershipNumber: String)
     }
     
@@ -59,12 +58,10 @@ public class LoyaltyAPIManager {
             return ForceConfig.path(for: "loyalty/programs/\(programName)/members/\(memberId)/transaction-ledger-summary")
         case .getPromotions(let programName):
             return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/GetMemberPromotions")
-        case .redeemPoints(let programName, let programProcessName):
-            return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/\(programProcessName)")
         case .enrollInPromotion(let programName):
             return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/EnrollInPromotion")
-		case .unenrollPromotion(let programName, let programProcessName):
-			return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/\(programProcessName)")
+		case .unenrollPromotion(let programName):
+			return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/OptOutPromotion")
 		case .getVouchers(let programName, let membershipNumber):
 				return ForceConfig.path(for: "loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers")
         }
@@ -242,7 +239,7 @@ public class LoyaltyAPIManager {
 		}
 		
 		do {
-			let path = getPath(for: .unenrollPromotion(programName: loyaltyProgramName, programProcessName: ForceConfig.optOutPromotionProcessName))
+			let path = getPath(for: .unenrollPromotion(programName: loyaltyProgramName))
 			let bodyJsonData = try JSONSerialization.data(withJSONObject: requestBody)
 			let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
 			let response = try await ForceClient.shared.fetch(type: UnenrollPromotionResponseModel.self, with: request)
