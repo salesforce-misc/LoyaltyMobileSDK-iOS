@@ -44,3 +44,22 @@ public struct UnenrollPromotionOutPutModel: Codable {
     public let status: String
     public let message: String?
 }
+
+public struct UnenrollPromotionResponseModel: Codable {
+	public let outputParameters: OutputParameterMain?
+	public let status: Bool
+	public let message: String?
+	public let simulationDetails: SimulationDetails?
+}
+
+public struct OutputParameterSub: Codable {
+	public let results: [UnenrollPromotionResult]?
+}
+
+public struct OutputParameterMain: Codable {
+	public let outputParameters: OutputParameterSub?
+}
+
+public struct UnenrollPromotionResult: Codable {
+	public let LoyaltyProgramMbrPromotionId: String?
+}

@@ -205,7 +205,7 @@ class PromotionViewModel: ObservableObject {
     
     func unenroll(membershipNumber: String, promotionName: String, promotionId: String) async throws {
         do {
-            try await LoyaltyAPIManager.shared.unenrollIn(promotion: promotionName, for: membershipNumber)
+			try await LoyaltyAPIManager.shared.unenroll(promotionId: promotionId, for: membershipNumber)
             let _ = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
             await MainActor.run {
                 if actionTaskList[promotionId] != nil {

@@ -40,9 +40,8 @@ public class LoyaltyAPIManager {
         case getMemberProfile(programName: String)
         case getTransactionHistory(programName: String, memberId: String)
         case getPromotions(programName: String)
-        case redeemPoints(programName: String, programProcessName: String)
         case enrollInPromotion(programName: String)
-        case unenrollInPromotion
+		case unenrollPromotion(programName: String)
 		case getVouchers(programName: String, membershipNumber: String)
     }
     
@@ -59,12 +58,10 @@ public class LoyaltyAPIManager {
             return ForceConfig.path(for: "loyalty/programs/\(programName)/members/\(memberId)/transaction-ledger-summary")
         case .getPromotions(let programName):
             return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/GetMemberPromotions")
-        case .redeemPoints(let programName, let programProcessName):
-            return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/\(programProcessName)")
         case .enrollInPromotion(let programName):
             return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/EnrollInPromotion")
-        case .unenrollInPromotion:
-            return "/services/apexrest/UnenrollInPromotion/"
+		case .unenrollPromotion(let programName):
+			return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/OptOutPromotion")
 		case .getVouchers(let programName, let membershipNumber):
 				return ForceConfig.path(for: "loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers")
         }
@@ -210,24 +207,50 @@ public class LoyaltyAPIManager {
             throw error
         }
     }
+	
+	public final func unenroll(promotionId: String, for membershipNumber: String, devMode: Bool = false) async throws {
+		let body = [
+			"processParameters": [
+				[
+					"MembershipNumber": membershipNumber,
+					"PromotionId": promotionId
+				]
+			]
+		]
+		try await unenroll(requestBody: body, devMode: devMode)
+	}
+	
+	public final func unenroll(promotionName: String, for membershipNumber: String, devMode: Bool = false) async throws {
+		let body = [
+			"processParameters": [
+				[
+					"MembershipNumber": membershipNumber,
+					"PromotionName": promotionName
+				]
+			]
+		]
+		try await unenroll(requestBody: body, devMode: devMode)
+	}
     
-    public func unenrollIn(promotion promotionName: String, for membershipNumber: String) async throws {
-        let body = [
-            "programName": loyaltyProgramName,
-            "membershipNumber": membershipNumber,
-            "PromotionName": promotionName
-        ]
-        
-        do {
-            let path = getPath(for: .unenrollInPromotion)
-            let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
-            let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
-            let _ = try await ForceClient.shared.fetch(type: UnenrollPromotionOutPutModel.self, with: request)
-        } catch {
-            throw error
-        }
-    }
-    
+	private func unenroll(requestBody: [String: Any], devMode: Bool = false) async throws {
+		if devMode {
+			let _ = try ForceClient.shared.fetchLocalJson(type: UnenrollPromotionResponseModel.self, file: "UnenrollPromotion")
+			return
+		}
+		
+		do {
+			let path = getPath(for: .unenrollPromotion(programName: loyaltyProgramName))
+			let bodyJsonData = try JSONSerialization.data(withJSONObject: requestBody)
+			let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
+			let response = try await ForceClient.shared.fetch(type: UnenrollPromotionResponseModel.self, with: request)
+			if !response.status {
+				throw ForceError.requestFailed(description: response.message ?? "Unknown")
+			}
+		} catch {
+			throw error
+		}
+	}
+	
     public func getPromotions(memberId: String, devMode: Bool = false) async throws -> PromotionModel {
         let body: [String: Any] = [
             "processParameters": [
