@@ -61,7 +61,7 @@ public class LoyaltyAPIManager {
         case .enrollInPromotion(let programName):
             return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/EnrollInPromotion")
 		case .unenrollPromotion(let programName):
-			return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/OptOutPromotion")
+			return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/OptOutOfPromotion")
 		case .getVouchers(let programName, let membershipNumber):
 				return ForceConfig.path(for: "loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers")
         }
