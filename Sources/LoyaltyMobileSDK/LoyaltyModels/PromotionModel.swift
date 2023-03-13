@@ -10,34 +10,19 @@ import Foundation
 // MARK: - PromotionModel
 public struct PromotionModel: Codable {
     public let message: String?
-    public let outputParameters: PromotionOutputParameters
+    public let outputParameters: PromotionModelOutputParameters
     public let simulationDetails: SimulationDetails
     public let status: Bool
-    
-    init(message: String?, outputParameters: PromotionOutputParameters, simulationDetails: SimulationDetails, status: Bool) {
-        self.message = message
-        self.outputParameters = outputParameters
-        self.simulationDetails = simulationDetails
-        self.status = status
-    }
 }
 
 // MARK: - WelcomeOutputParameters
-public struct PromotionOutputParameters: Codable {
-    public let outputParameters: outputParameters
-    
-    init(promotionResults: outputParameters) {
-        self.outputParameters = promotionResults
-    }
+public struct PromotionModelOutputParameters: Codable {
+    public let outputParameters: PromotionOutputsOutputParameters
 }
 
 // MARK: - OutputParametersOutputParameters
-public struct outputParameters: Codable {
+public struct PromotionOutputsOutputParameters: Codable {
     public let results: [PromotionResult]
-    
-    init(results: [PromotionResult]) {
-        self.results = results
-    }
 }
 
 // MARK: - Result
