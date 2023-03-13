@@ -17,7 +17,7 @@ struct PromotionCardView: View {
     
     var body: some View {
         VStack {
-            AsyncImageView(imageUrl: promotion.promoImages[promotion.id])
+            AsyncImageView(imageUrl: promotion.promotionImageURL)
                 .frame(width: 289, height: 154)
                 .cornerRadius(5, corners: [.topLeft, .topRight])
                 .padding(.top)

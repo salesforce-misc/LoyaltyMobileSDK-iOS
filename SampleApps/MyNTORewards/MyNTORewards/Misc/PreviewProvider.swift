@@ -80,21 +80,20 @@ class DeveloperPreview {
          }
      ]
      */
-    let promotion = PromotionResult(id: "0c84x000000CtzRAAS",
+    let promotion = PromotionResult(fulfillmentAction: "CREDIT_POINTS",
+                                    promotionEnrollmentRqr: false,
+                                    memberEligibilityCategory: "Eligible",
+                                    promotionImageURL: "https://unsplash.com/photos/sTa-fO_VM4k/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjc4NzI2MDcx&force=true&w=640",
                                     loyaltyPromotionType: "STANDARD",
-                                    maximumPromotionRewardValue: 0,
-                                    totalPromotionRewardPointsVal: 0,
-                                    loyaltyProgramCurrency: nil,
-                                    memberEligibilityCategory: "EligibleButNotEnrolled",
-                                    promotionEnrollmentRqr: true,
-                                    fulfillmentAction: nil,
-                                    promotionName: "New Year Promotion",
-                                    startDate: "2022-11-01",
-                                    endDate: "2023-01-31",
-                                    description: "New Year Promotion Premium",
-                                    promEnrollmentStartDate: "2022-11-01",
-                                    promotionEnrollmentEndDate: "2022-11-30",
-                                    imageUrl: "https://picsum.photos/800")
+                                    totalPromotionRewardPointsVal: 250,
+                                    promotionName: "Mountain Biking Bonanza",
+                                    id: "0c8RO0000000QbRYAU",
+                                    startDate: "2023-01-01",
+                                    endDate: "2023-12-31",
+                                    loyaltyProgramCurrency: "0lcRO00000000BVYA",
+                                    description: "Promote sustainable travel alternatives and earn rewards by joining us in the Mountain Biking Bonanza event",
+                                    promotionEnrollmentEndDate: "end",
+                                    promEnrollmentStartDate: "start")
     
     //let currency = TransactionCurrency(value: 100, name: "Reward Points")
     let transactions = [
