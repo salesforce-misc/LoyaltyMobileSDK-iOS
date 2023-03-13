@@ -80,7 +80,20 @@ class DeveloperPreview {
          }
      ]
      */
-    let promotion = PromotionResult(fulfillmentAction: "CREDIT_POINTS", promotionEnrollmentRqr: false, memberEligibilityCategory: "ELIGIBLE", promotionImageURL: "https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fwww.california.com%2Fbest-mountain-biking-trails-california%2F&amp;psig=AOvVaw3YBYsf24517EqRxItBauhh&amp;ust=1678785542447000&amp;source=images&amp;cd=vfe&amp;ved=0CA0QjRxqFwoTCLjgoNbJ2P0CFQAAAAAdAAAAABAD", loyaltyPromotionType: "STANDARD", totalPromotionRewardPointsVal: 250, promotionName: "Mountain Biking Bonanza", id: "0c8RO0000000QbRYAU", startDate: "2023-01-01", endDate: "2023-12-31", loyaltyProgramCurrency: "0lcRO00000000BVYA", description: "Promote sustainable travel alternatives and earn rewards by joining us in the Mountain Biking Bonanza event", promotionEnrollmentEndDate: "end", promEnrollmentStartDate: "start")
+    let promotion = PromotionResult(fulfillmentAction: "CREDIT_POINTS",
+                                    promotionEnrollmentRqr: false,
+                                    memberEligibilityCategory: "Eligible",
+                                    promotionImageURL: "https://unsplash.com/photos/sTa-fO_VM4k/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjc4NzI2MDcx&force=true&w=640",
+                                    loyaltyPromotionType: "STANDARD",
+                                    totalPromotionRewardPointsVal: 250,
+                                    promotionName: "Mountain Biking Bonanza",
+                                    id: "0c8RO0000000QbRYAU",
+                                    startDate: "2023-01-01",
+                                    endDate: "2023-12-31",
+                                    loyaltyProgramCurrency: "0lcRO00000000BVYA",
+                                    description: "Promote sustainable travel alternatives and earn rewards by joining us in the Mountain Biking Bonanza event",
+                                    promotionEnrollmentEndDate: "end",
+                                    promEnrollmentStartDate: "start")
     
     //let currency = TransactionCurrency(value: 100, name: "Reward Points")
     let transactions = [
