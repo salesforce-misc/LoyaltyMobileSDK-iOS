@@ -41,7 +41,7 @@ struct MoreView: View {
                 List {
                     VStack(alignment: .leading) {
                         HStack {
-                            Image("img-profile")
+                            Image("img-profile-adam")
                             Spacer()
                         }
 

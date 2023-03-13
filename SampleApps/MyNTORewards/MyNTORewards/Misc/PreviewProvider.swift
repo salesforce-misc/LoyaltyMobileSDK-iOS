@@ -161,6 +161,7 @@ class DeveloperPreview {
     let profileVM = ProfileViewModel()
     let voucherVM = VoucherViewModel()
 	let imageVM = ImageViewModel()
+    let transactionVM = TransactionViewModel()
     
     private init() {
         setMember(member: member)
