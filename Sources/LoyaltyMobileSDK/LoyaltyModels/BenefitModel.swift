@@ -21,17 +21,29 @@ public struct BenefitModel: Identifiable, Codable {
     public let id: String
     public let benefitName, benefitTypeID, benefitTypeName: String
     public let createdRecordID, createdRecordName: String?
+    public let description: String?
     public let endDate: String?
     public let isActive: Bool
     public let memberBenefitStatus, startDate: String?
     
-    public init(id: String, benefitName: String, benefitTypeID: String, benefitTypeName: String, createdRecordID: String?, createdRecordName: String?, endDate: String?, isActive: Bool, memberBenefitStatus: String?, startDate: String?) {
+    public init(id: String,
+                benefitName: String,
+                benefitTypeID: String,
+                benefitTypeName: String,
+                createdRecordID: String?,
+                createdRecordName: String?,
+                description: String?,
+                endDate: String?,
+                isActive: Bool,
+                memberBenefitStatus: String?,
+                startDate: String?) {
         self.id = id
         self.benefitName = benefitName
         self.benefitTypeID = benefitTypeID
         self.benefitTypeName = benefitTypeName
         self.createdRecordID = createdRecordID
         self.createdRecordName = createdRecordName
+        self.description = description
         self.endDate = endDate
         self.isActive = isActive
         self.memberBenefitStatus = memberBenefitStatus
@@ -46,6 +58,7 @@ public struct BenefitModel: Identifiable, Codable {
         self.benefitTypeName = try container.decode(String.self, forKey: .benefitTypeName)
         self.createdRecordID = try container.decodeIfPresent(String.self, forKey: .createdRecordID)
         self.createdRecordName = try container.decodeIfPresent(String.self, forKey: .createdRecordName)
+        self.description = try container.decodeIfPresent(String.self, forKey: .description)
         self.endDate = try container.decodeIfPresent(String.self, forKey: .endDate)
         self.isActive = try container.decode(Bool.self, forKey: .isActive)
         self.memberBenefitStatus = try container.decodeIfPresent(String.self, forKey: .memberBenefitStatus)
@@ -58,6 +71,6 @@ public struct BenefitModel: Identifiable, Codable {
         case benefitTypeID = "benefitTypeId"
         case benefitTypeName
         case createdRecordID = "createdRecordId"
-        case createdRecordName, endDate, isActive, memberBenefitStatus, startDate
+        case createdRecordName, description, endDate, isActive, memberBenefitStatus, startDate
     }
 }

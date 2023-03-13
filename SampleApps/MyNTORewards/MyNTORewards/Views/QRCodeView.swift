@@ -37,7 +37,7 @@ struct QRCodeView: View {
                     .cornerRadius(12)
                     .overlay(
                         VStack(spacing: 12) {
-                            Image("img-profile-larger")
+                            Image("img-profile-adam")
                             Text(name)
                                 .font(.qrcodeTitle)
                             Text("QR Code")

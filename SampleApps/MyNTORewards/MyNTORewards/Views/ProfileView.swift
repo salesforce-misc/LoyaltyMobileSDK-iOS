@@ -105,7 +105,7 @@ struct ProfileView: View {
     var profileHeader: some View {
         VStack {
             HStack {
-                Image("img-profile-larger")
+                Image("img-profile-adam")
                 .clipShape(Circle())
                 
                 VStack {
@@ -162,6 +162,9 @@ struct ProfileView_Previews: PreviewProvider {
         ProfileView()
             .environmentObject(dev.rootVM)
             .environmentObject(dev.profileVM)
+            .environmentObject(dev.voucherVM)
+            .environmentObject(dev.benefitVM)
+            .environmentObject(dev.transactionVM)
     }
 }
 
