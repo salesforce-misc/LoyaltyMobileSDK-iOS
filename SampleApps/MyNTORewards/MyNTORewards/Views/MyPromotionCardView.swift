@@ -20,7 +20,7 @@ struct MyPromotionCardView: View {
     var body: some View {
         HStack {
             if loadImage {
-                AsyncImageView(imageUrl: promotion.promoImages[promotion.id])
+                AsyncImageView(imageUrl: promotion.promotionImageURL)
                     .frame(width: 133, height: 166)
                     .cornerRadius(5, corners: [.topLeft, .bottomLeft])
             } else {
