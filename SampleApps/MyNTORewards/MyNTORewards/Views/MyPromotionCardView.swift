@@ -111,6 +111,8 @@ struct MyPromotionCardView_Previews: PreviewProvider {
         ZStack {
             Color.theme.background
             MyPromotionCardView(promotion: dev.promotion)
+				.environmentObject(dev.rootVM)
+				.environmentObject(dev.promotionVM)
         }
         
     }

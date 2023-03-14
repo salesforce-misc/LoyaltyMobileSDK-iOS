@@ -231,4 +231,48 @@ extension Font {
     static var emptyStateSubTitle: Font {
         return Font.custom("SFPro-Regular", size: 12)
     }
+	
+	static var smallHeaderText: Font {
+		return Font.custom("Archivo-Bold", size: 14)
+	}
+	
+	static var mediumHeaderText: Font {
+		return Font.custom("Archivo-Bold", size: 15)
+	}
+	
+	static var lightBodyText: Font {
+		return Font.custom("Archivo", size: 15)
+	}
+	
+	static var smallSubtitleText: Font {
+		return Font.custom("Archivo-Medium", size: 12)
+	}
+	
+	static var selectionTitleText: Font {
+		return Font.custom("Archivo-SemiBold", size: 13)
+	}
+	
+	static var productDetailSubtitleText: Font {
+		return Font.custom("Roboto-Regular", size: 16)
+	}
+	
+	static var productDetailTitleText: Font {
+		return Font.custom("Archivo-Bold", size: 22)
+	}
+	
+	static var orderDetailTitleText: Font {
+		return Font.custom("Archivo-Bold", size: 24)
+	}
+	
+	static var productQuantityText: Font {
+		return Font.custom("Archivo-Medium", size: 16)
+	}
+	
+	static var totalAmountText: Font {
+		return Font.custom("Archivo-Bold", size: 20)
+	}
+	
+	static var productShippingText: Font {
+		return Font.custom("Archivo", size: 10)
+	}
 }
