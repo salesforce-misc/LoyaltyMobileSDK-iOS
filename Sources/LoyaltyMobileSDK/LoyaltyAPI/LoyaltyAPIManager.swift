@@ -87,30 +87,6 @@ public class LoyaltyAPIManager {
         }
     }
     
-    /// Use public func SOQL<T: Decodable>(type: T.Type, for query: String) async throws -> QueryResult<T>
-    public func getBenefit(by benefitIds: [String]) async throws -> [LoyaltyQueryModels.Benefit] {
-        do {
-            let ids = benefitIds.map { "'" + $0 + "'" }.joined(separator: ",")
-            let query = "SELECT Id, Description FROM Benefit WHERE Id in ('\(ids)')"
-            let queryResult = try await ForceClient.shared.SOQL(type: LoyaltyQueryModels.Benefit.self, for: query)
-            return queryResult.records
-        } catch {
-            throw error
-        }
-    }
-
-    /// Use public func SOQL(for query: String) async throws -> QueryResult<Record>
-    public func getBenefitRecord(by benefitIds: [String]) async throws -> [Record] {
-        do {
-            let ids = benefitIds.map { "'" + $0 + "'" }.joined(separator: ",")
-            let query = "SELECT Id, Description FROM Benefit WHERE Id in (\(ids))"
-            let queryResult = try await ForceClient.shared.SOQL(for: query)
-            return queryResult.records
-        } catch {
-            throw error
-        }
-    }
-    
     /// Get Member Profile - Makes an asynchronous request for data from the Salesforce
     /// - Parameters:
     ///   - for memberId: The member who has these benefits
@@ -312,21 +288,6 @@ public class LoyaltyAPIManager {
             let request = try ForceRequest.create(method: "GET", path: path, queryItems: queryItems)
             let result = try await ForceClient.shared.fetch(type: TransactionModel.self, with: request)
             return result.transactionJournals
-        } catch {
-            throw error
-        }
-    }
-    
-    /// Use public func SOQL(for query: String) async throws -> QueryResult<Record>
-    public func getVoucherRecords(membershipNumber: String, devMode: Bool = false) async throws -> [LoyaltyQueryModels.Voucher] {
-        do {
-            if devMode {
-                let result = try ForceClient.shared.fetchLocalJson(type: LoyaltyQueryModels.VoucherRecode.self, file: "Vouchers")
-                return result.records
-            }
-            let query = "SELECT VoucherDefinition.Name, Voucher.Image__c, VoucherDefinition.Description, VoucherDefinition.Type, VoucherDefinition.FaceValue, VoucherDefinition.DiscountPercent, VoucherCode, ExpirationDate, Id, Status FROM Voucher WHERE LoyaltyProgramMember.MembershipNumber = '\(membershipNumber)'"
-            let queryResult = try await ForceClient.shared.SOQL(type: LoyaltyQueryModels.Voucher.self, for: query)
-            return queryResult.records
         } catch {
             throw error
         }
