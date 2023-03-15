@@ -20,7 +20,7 @@ struct MyPromotionCardView: View {
     var body: some View {
         HStack {
             if loadImage {
-                AsyncImageView(imageUrl: promotion.promoImages[promotion.id])
+                AsyncImageView(imageUrl: promotion.promotionImageURL)
                     .frame(width: 133, height: 166)
                     .cornerRadius(5, corners: [.topLeft, .bottomLeft])
             } else {
@@ -111,8 +111,8 @@ struct MyPromotionCardView_Previews: PreviewProvider {
         ZStack {
             Color.theme.background
             MyPromotionCardView(promotion: dev.promotion)
-				.environmentObject(dev.rootVM)
-				.environmentObject(dev.promotionVM)
+                .environmentObject(dev.rootVM)
+                .environmentObject(dev.promotionVM)
         }
         
     }

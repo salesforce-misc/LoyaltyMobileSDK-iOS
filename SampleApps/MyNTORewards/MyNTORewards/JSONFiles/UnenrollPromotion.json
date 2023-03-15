@@ -1,0 +1,12 @@
+{
+	"message" : null,
+	"outputParameters" : {
+		"outputParameters" : {
+			"results" : [ {
+				"LoyaltyProgramMbrPromotionId" : "1lpT100000000h4IAA"
+			} ]
+		}
+	},
+	"simulationDetails" : { },
+	"status" : true
+}

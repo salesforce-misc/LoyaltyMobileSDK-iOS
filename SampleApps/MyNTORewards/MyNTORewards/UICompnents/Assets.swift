@@ -14,9 +14,11 @@ struct Assets {
         
         switch type {
         case "Free Shipping":
-            return Image("ic-benefit-free-shipping")
-        case "Extended Return":
-            return Image("ic-benefit-extended-return")
+            //return Image("ic-benefit-free-shipping")
+            return Image("Free Shipping")
+        case "Extended Returns":
+            //return Image("ic-benefit-extended-return")
+            return Image("Extended Return")
         case "Free Sample":
             return Image("ic-benefit-free-sample")
         case "Free Subscription":
@@ -27,6 +29,12 @@ struct Assets {
             return Image("ic-benefit-support")
         case "Complimentary Vouchers":
             return Image("ic-benefit-complimentary-vouchers")
+        case "Charity Donations":
+            return Image("Donate to Charity")
+        case "Sustainability Benefits":
+            return Image("Eco Friendly")
+        case "Customer Support":
+            return Image("Priority Support")
         default:
             return Image("ic-benefit-default")
         }

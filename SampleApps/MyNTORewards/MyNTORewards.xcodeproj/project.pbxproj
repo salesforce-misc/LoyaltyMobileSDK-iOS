@@ -48,6 +48,11 @@
 		2941A23F28BE803F005026CF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A23E28BE803F005026CF /* Color.swift */; };
 		2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppConstants.swift */; };
 		294E341E293C39E6001F7F48 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E341D293C39E6001F7F48 /* ImageViewModel.swift */; };
+		2963770E29C10D2400D45AB6 /* ForceClient+SOSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2963770C29C10D2400D45AB6 /* ForceClient+SOSL.swift */; };
+		2963770F29C10D2400D45AB6 /* ForceClient+SOQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2963770D29C10D2400D45AB6 /* ForceClient+SOQL.swift */; };
+		2963771429C10D6200D45AB6 /* QueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2963771129C10D6200D45AB6 /* QueryResult.swift */; };
+		2963771529C10D6200D45AB6 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2963771229C10D6200D45AB6 /* Address.swift */; };
+		2963771629C10D6200D45AB6 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2963771329C10D6200D45AB6 /* Record.swift */; };
 		296D393128DBCB530078C88E /* OnboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393028DBCB530078C88E /* OnboardingModel.swift */; };
 		296D393328DBCE050078C88E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393228DBCE050078C88E /* OnboardingView.swift */; };
 		296D393528DBCFFB0078C88E /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393428DBCFFB0078C88E /* OnboardingCardView.swift */; };
@@ -127,6 +132,7 @@
 		3FE7193F29BEFD3A0087A49F /* OrderPlacedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7193E29BEFD3A0087A49F /* OrderPlacedView.swift */; };
 		3FE7194429C09B9C0087A49F /* AvailableColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7192D29BAD8FB0087A49F /* AvailableColorsView.swift */; };
 		3FE7194629C09D5F0087A49F /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7194529C09D5F0087A49F /* NavigationBarView.swift */; };
+		3FFE1C9B29A29FF900F43253 /* UnenrollPromotion.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE1C9A29A29FF900F43253 /* UnenrollPromotion.json */; };
 		3FFE1C9D29A37D5300F43253 /* GetVouchers.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE1C9C29A37D5300F43253 /* GetVouchers.json */; };
 		AF27C5AC2981118D008C7D79 /* LoyaltyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */; };
 /* End PBXBuildFile section */
@@ -171,6 +177,11 @@
 		2941A23E28BE803F005026CF /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2944F88928B9A7220098ED1B /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		294E341D293C39E6001F7F48 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
+		2963770C29C10D2400D45AB6 /* ForceClient+SOSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ForceClient+SOSL.swift"; sourceTree = "<group>"; };
+		2963770D29C10D2400D45AB6 /* ForceClient+SOQL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ForceClient+SOQL.swift"; sourceTree = "<group>"; };
+		2963771129C10D6200D45AB6 /* QueryResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryResult.swift; sourceTree = "<group>"; };
+		2963771229C10D6200D45AB6 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		2963771329C10D6200D45AB6 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		296D393028DBCB530078C88E /* OnboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingModel.swift; sourceTree = "<group>"; };
 		296D393228DBCE050078C88E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		296D393428DBCFFB0078C88E /* OnboardingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
@@ -251,6 +262,7 @@
 		3FE7193C29BB90C30087A49F /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
 		3FE7193E29BEFD3A0087A49F /* OrderPlacedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPlacedView.swift; sourceTree = "<group>"; };
 		3FE7194529C09D5F0087A49F /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
+		3FFE1C9A29A29FF900F43253 /* UnenrollPromotion.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UnenrollPromotion.json; sourceTree = "<group>"; };
 		3FFE1C9C29A37D5300F43253 /* GetVouchers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GetVouchers.json; sourceTree = "<group>"; };
 		AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyaltyTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -307,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				298613AC28C964D900BDC744 /* Info.plist */,
+				2963770B29C10CFB00D45AB6 /* SOQL */,
 				2944F87F28B98C2C0098ED1B /* Extensions */,
 				2984C93D2954F091009669EF /* Utilities */,
 				290FBB41294A8C460038D47A /* Misc */,
@@ -391,6 +404,7 @@
 		2906B1E92901D97E006EAB2D /* JSONFiles */ = {
 			isa = PBXGroup;
 			children = (
+				3FFE1C9A29A29FF900F43253 /* UnenrollPromotion.json */,
 				3FFE1C9C29A37D5300F43253 /* GetVouchers.json */,
 				2906B1F02901E1A4006EAB2D /* Vouchers.json */,
 				2906B1F22901E218006EAB2D /* Promotions.json */,
@@ -441,6 +455,26 @@
 				292ADC75294C064600753541 /* ProfileModel+CurrencyPoints.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2963770B29C10CFB00D45AB6 /* SOQL */ = {
+			isa = PBXGroup;
+			children = (
+				2963771029C10D4000D45AB6 /* SOQLModels */,
+				2963770D29C10D2400D45AB6 /* ForceClient+SOQL.swift */,
+				2963770C29C10D2400D45AB6 /* ForceClient+SOSL.swift */,
+			);
+			path = SOQL;
+			sourceTree = "<group>";
+		};
+		2963771029C10D4000D45AB6 /* SOQLModels */ = {
+			isa = PBXGroup;
+			children = (
+				2963771229C10D6200D45AB6 /* Address.swift */,
+				2963771129C10D6200D45AB6 /* QueryResult.swift */,
+				2963771329C10D6200D45AB6 /* Record.swift */,
+			);
+			path = SOQLModels;
 			sourceTree = "<group>";
 		};
 		296D393828DCE9890078C88E /* UICompnents */ = {
@@ -626,6 +660,7 @@
 			files = (
 				298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */,
 				290EA9B92926F1A700BBF2F2 /* Profile.json in Resources */,
+				3FFE1C9B29A29FF900F43253 /* UnenrollPromotion.json in Resources */,
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
 				29AC2F0328F8B2D7003F56F6 /* Roboto-Regular.ttf in Resources */,
 				2906B1F12901E1A4006EAB2D /* Vouchers.json in Resources */,
@@ -653,6 +688,7 @@
 				299B38DE28EB8D4900E45D97 /* CreateNewPasswordView.swift in Sources */,
 				29B427D629109E60009CC587 /* PromotionViewModel.swift in Sources */,
 				29AC2EFB28F8959E003F56F6 /* LoyaltyNavBarContainerView.swift in Sources */,
+				2963771429C10D6200D45AB6 /* QueryResult.swift in Sources */,
 				216F219928B618BB00DAA66D /* SignInView.swift in Sources */,
 				3F718AD429BA244B0019B70F /* ProductImagesView.swift in Sources */,
 				299B38D428E5F78400E45D97 /* CongratsView.swift in Sources */,
@@ -693,6 +729,7 @@
 				292ADC76294C064600753541 /* ProfileModel+CurrencyPoints.swift in Sources */,
 				290EA9C5292C4DA500BBF2F2 /* MyPromotionDetailView.swift in Sources */,
 				298613A628C7D3B400BDC744 /* MoreView.swift in Sources */,
+				2963770F29C10D2400D45AB6 /* ForceClient+SOQL.swift in Sources */,
 				216F217F28B6141E00DAA66D /* MyNTORewardsApp.swift in Sources */,
 				29AC2F0528F8B6E6003F56F6 /* AllRedeemPointsView.swift in Sources */,
 				29AC2F0128F89EBE003F56F6 /* LoyaltyNavLink.swift in Sources */,
@@ -700,6 +737,7 @@
 				29A39BC32937F46D005833C2 /* String+MD5.swift in Sources */,
 				299B38E428EE040900E45D97 /* UIApplication+DismissKeyboard.swift in Sources */,
 				298613AE28C9652300BDC744 /* FontStyles.swift in Sources */,
+				2963771629C10D6200D45AB6 /* Record.swift in Sources */,
 				299B38CA28E365AD00E45D97 /* HalfSheet.swift in Sources */,
 				29BAF6E528F485DA00A3F9EB /* VouchersView.swift in Sources */,
 				216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */,
@@ -710,6 +748,7 @@
 				296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */,
 				29BAF6DD28F3AE8B00A3F9EB /* String+StringWidth.swift in Sources */,
 				3F466A3729B9DD3D000F328D /* SizeSelectorView.swift in Sources */,
+				2963771529C10D6200D45AB6 /* Address.swift in Sources */,
 				29BAF6E128F3EEA000A3F9EB /* MyPromotionCardView.swift in Sources */,
 				3FE7193729BB6E2F0087A49F /* ProductTermsAndConditionsView.swift in Sources */,
 				29BAF6EB28F4D24500A3F9EB /* TransactionsView.swift in Sources */,
@@ -724,6 +763,7 @@
 				29BAF6D328F103B600A3F9EB /* PromotionCarouselView.swift in Sources */,
 				29BAF6DF28F3ECA600A3F9EB /* TopTabBar.swift in Sources */,
 				29A39BC12937C699005833C2 /* AsyncImageWithAuth.swift in Sources */,
+				2963770E29C10D2400D45AB6 /* ForceClient+SOSL.swift in Sources */,
 				290EA9C1292C0ACF00BBF2F2 /* VoucherViewModel.swift in Sources */,
 				296D393E28DE1EFF0078C88E /* ButtonStyles.swift in Sources */,
 				3F1B162A29B6162B0093F75F /* StarRatingView.swift in Sources */,

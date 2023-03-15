@@ -45,7 +45,7 @@ struct BenefitView: View {
                             }
 
                             HStack {
-                                Text("\(benefitVM.benefitDescs[benefit.id] ?? "")")
+                                Text("\(benefit.description ?? "")")
                                     .font(.benefitDescription)
                                     .lineSpacing(3)
                                     .foregroundColor(Color.theme.superLightText)
