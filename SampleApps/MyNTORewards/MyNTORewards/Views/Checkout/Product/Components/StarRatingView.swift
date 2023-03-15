@@ -44,7 +44,7 @@ struct StarRatingView: View {
 	}
 	
 	private var fullStar: some View {
-		Image("star")
+		Image("star-fill")
 			.resizable()
 			.frame(width: 11, height: 12)
 	}
