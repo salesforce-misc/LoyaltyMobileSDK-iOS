@@ -275,4 +275,23 @@ extension Font {
 	static var productShippingText: Font {
 		return Font.custom("Archivo", size: 10)
 	}
+    
+    /// checkout confirm order
+    
+    static var dropDownText: Font {
+        return Font.custom("Archivo-Regular", size: 12)
+    }
+    
+    static var voucherHederText: Font {
+        return Font.custom("Archivo-Medium", size: 13)
+    }
+    
+    static var useMyPointsText: Font {
+        return Font.custom("Archivo-Semibold", size: 13)
+    }
+    
+    static var amountText: Font {
+        return Font.custom("Archivo-ExtraBold", size: 20)
+    }
+    
 }
