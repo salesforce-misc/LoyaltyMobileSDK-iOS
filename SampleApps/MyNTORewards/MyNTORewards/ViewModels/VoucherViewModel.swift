@@ -72,7 +72,6 @@ class VoucherViewModel: ObservableObject {
 	) async throws -> [VoucherModel] {
         do {
 			return try await LoyaltyAPIManager.shared.getVouchers(membershipNumber: membershipNumber,
-																  devMode: false,
 																  voucherStatus: voucherStatus,
 																  pageNumber: pageNumber,
 																  productId: productId,

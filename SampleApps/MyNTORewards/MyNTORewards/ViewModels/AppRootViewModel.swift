@@ -68,7 +68,9 @@ class AppRootViewModel: ObservableObject {
                 Task {
                     do {
                         try await ForceAuthManager.shared.grantAuth()
-                        let enrolledMember = try await LoyaltyAPIManager.shared.postEnrollment(firstName: firstName,
+                        let membershipNumber = LoyaltyUtilities.randomString(of: 8)
+                        let enrolledMember = try await LoyaltyAPIManager.shared.postEnrollment(membershipNumber: membershipNumber,
+                                                                                               firstName: firstName,
                                                                                                lastName: lastName,
                                                                                                email: userEmail,
                                                                                                phone: mobileNumber,
