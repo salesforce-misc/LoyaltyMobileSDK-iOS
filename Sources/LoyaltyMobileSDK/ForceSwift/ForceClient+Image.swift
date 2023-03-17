@@ -18,13 +18,13 @@ extension ForceClient {
         }
 
         do {
-            let request = try ForceRequest.create(url: imageUrl, method: "GET", secured: true)
+            let request = ForceRequest.createRequest(from: imageUrl, method: "GET")
             let output = try await URLSession.shared.data(for: request)
             try handleUnauthResponse(output: output)
             return handleImageResponse(output: output)
         } catch ForceError.authenticationNeeded {
             do {
-                let request = try ForceRequest.create(url: imageUrl, method: "GET", secured: true)
+                let request = ForceRequest.createRequest(from: imageUrl, method: "GET")
                 let newRequet = try await getNewRequest(for: request)
                 let output = try await URLSession.shared.data(for: newRequet)
                 try handleUnauthResponse(output: output)

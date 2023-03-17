@@ -28,9 +28,10 @@ public struct ForceRequest {
         static let contentType = "Content-Type"
     }
     
+    // create a URLRequest with path
     public static func create(
-        method: String? = nil,
         path: String,
+        method: String? = nil,
         queryItems: [String: String]? = nil,
         headers: [String: String]? = nil,
         body: Data? = nil,
@@ -67,7 +68,6 @@ public struct ForceRequest {
     }
     
     // create a URLRequest with URL
-    // if secured, it will attach an accesstoken for salseforce request, the default is false
     public static func create(
         url: URL,
         method: String? = nil,
@@ -76,7 +76,6 @@ public struct ForceRequest {
         body: Data? = nil,
         cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
         timeoutInterval: TimeInterval = 60.0,
-        secured: Bool = false,
         accessToken: String? = nil
     ) throws -> URLRequest {
         
@@ -87,11 +86,8 @@ public struct ForceRequest {
         
         let request = createRequest(from: requestURL, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
         
-        if secured {
-            return addAuth(accessToken: accessToken, to: request)
-        }
-        
-        return request
+        return addAuth(accessToken: accessToken, to: request)
+
     }
     
     public static func transform(from url: URL, add queryItems: [String: String]) throws -> URL {

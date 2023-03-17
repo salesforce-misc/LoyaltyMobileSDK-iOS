@@ -81,7 +81,7 @@ public class LoyaltyAPIManager {
                 return result.memberBenefits
             }
             let path = getPath(for: .getMemberBenefits(memberId: memberId, version: version))
-            let request = try ForceRequest.create(method: "GET", path: path)
+            let request = try ForceRequest.create(path: path, method: "GET")
             let result = try await ForceClient.shared.fetch(type: Benefits.self, with: request)
             return result.memberBenefits
         } catch {
@@ -104,7 +104,7 @@ public class LoyaltyAPIManager {
             }
             let path = getPath(for: .getMemberProfile(programName: loyaltyProgramName, version: version))
             let queryItems = ["memberId": "\(memberId)"]
-            let request = try ForceRequest.create(method: "GET", path: path, queryItems: queryItems)
+            let request = try ForceRequest.create(path: path, method: "GET", queryItems: queryItems)
             return try await ForceClient.shared.fetch(type: ProfileModel.self, with: request)
         } catch {
             throw error
@@ -154,7 +154,7 @@ public class LoyaltyAPIManager {
                 print(requestJson)
             }
             let path = getPath(for: .individualEnrollment(programName: loyaltyProgramName, version: version))
-            let request = try ForceRequest.create(method: "POST", path: path, body: requestBody)
+            let request = try ForceRequest.create(path: path, method: "POST", body: requestBody)
             return try await ForceClient.shared.fetch(type: EnrollmentOutputModel.self, with: request)
             
         } catch {
@@ -178,7 +178,7 @@ public class LoyaltyAPIManager {
         do {
             let path = getPath(for: .enrollInPromotion(programName: loyaltyProgramName, version: version))
             let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
-            let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
+            let request = try ForceRequest.create(path: path, method: "POST", body: bodyJsonData)
             let _ = try await ForceClient.shared.fetch(type: EnrollPromotionOutputModel.self, with: request)
         } catch {
             throw error
@@ -226,7 +226,7 @@ public class LoyaltyAPIManager {
 		do {
 			let path = getPath(for: .unenrollPromotion(programName: loyaltyProgramName, version: version))
 			let bodyJsonData = try JSONSerialization.data(withJSONObject: requestBody)
-			let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
+            let request = try ForceRequest.create(path: path, method: "POST", body: bodyJsonData)
 			let response = try await ForceClient.shared.fetch(type: UnenrollPromotionResponseModel.self, with: request)
 			if !response.status {
 				throw ForceError.requestFailed(description: response.message ?? "Unknown")
@@ -268,7 +268,7 @@ public class LoyaltyAPIManager {
             }
             let path = getPath(for: .getPromotions(programName: loyaltyProgramName, version: version))
             let bodyJsonData = try JSONSerialization.data(withJSONObject: requsetBody)
-            let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
+            let request = try ForceRequest.create(path: path, method: "POST", body: bodyJsonData)
             let result = try await ForceClient.shared.fetch(type: PromotionModel.self, with: request)
             return result
             
@@ -307,7 +307,7 @@ public class LoyaltyAPIManager {
                 return result.transactionJournals
             }
             let path = getPath(for: .getTransactionHistory(programName: loyaltyProgramName, memberId: membershipNumber, version: version))
-            let request = try ForceRequest.create(method: "GET", path: path, queryItems: queryItems)
+            let request = try ForceRequest.create(path: path, method: "GET", queryItems: queryItems)
             let result = try await ForceClient.shared.fetch(type: TransactionModel.self, with: request)
             return result.transactionJournals
         } catch {
@@ -343,7 +343,7 @@ public class LoyaltyAPIManager {
 				"sortOrder": getString(from: sortOrder)
 			].compactMapValues { $0 }
 			let path = getPath(for: .getVouchers(programName: loyaltyProgramName, membershipNumber: membershipNumber, version: version))
-			let request = try ForceRequest.create(method: "GET", path: path, queryItems: queries)
+            let request = try ForceRequest.create(path: path, method: "GET", queryItems: queries)
 			let result = try await ForceClient.shared.fetch(type: VouchersResponse.self, with: request)
 			return result.vouchers ?? []
 		} catch {
