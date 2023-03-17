@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct PaymentCardTextField: View {
+    @Binding var cardValue: String
     var body: some View {
-        TextField("", text: .constant("1234"))
+        TextField("", text: $cardValue)
             .disableAutocorrection(true)
             .keyboardType(.numberPad)
             .multilineTextAlignment(.center)
@@ -18,11 +19,12 @@ struct PaymentCardTextField: View {
             .foregroundColor(Color(hex: "#747B84"))
             .cornerRadius(8)
             .font(.dropDownText)
+            .disabled(true)
     }
 }
 
 struct PaymentCardTextField_Previews: PreviewProvider {
     static var previews: some View {
-        PaymentCardTextField()
+        PaymentCardTextField(cardValue: .constant("1234"))
     }
 }

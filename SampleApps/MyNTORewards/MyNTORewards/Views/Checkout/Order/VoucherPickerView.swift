@@ -32,9 +32,10 @@ struct VoucherPickerView: View {
                 .font(.dropDownText)
             Spacer()
             Text("⌵")
+                .font(.amountText)
                 .offset(y: -4)
                 .foregroundColor(.black)
-            Spacer()
+                .padding(.trailing, 16)
         }
         .foregroundColor(Color(hex: "#747474"))
         .frame(height: 44)

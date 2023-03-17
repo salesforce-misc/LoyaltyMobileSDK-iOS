@@ -23,7 +23,7 @@ struct AmountPayableView: View {
     var body: some View {
         VStack(spacing: 16) {
             HStack {
-                CheckBoxView(checked: .constant(true))
+                CheckBoxView(checked: .constant(false))
                 Text("use loyalty points")
                     .font(.useMyPointsText)
                     .foregroundColor(Color(hex: "#181818"))

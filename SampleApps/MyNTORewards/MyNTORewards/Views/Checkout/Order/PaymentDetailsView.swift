@@ -10,27 +10,20 @@ import SwiftUI
 struct PaymentDetailsView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 24) {
                 OrderVoucherView().cornerRadius(16, corners: .allCorners)
-            }
-            .padding(16)
-            
-            AmountPayableView()
-                .padding(16)
-            PaymentCardView()
-                .cornerRadius(16, corners: .allCorners)
-                .padding(16)
-            
-            PaymentCardView()
-                .cornerRadius(16, corners: .allCorners)
-                .padding(16)
-            
-            Button{} label: {
-                Text("Confirm Order")
-                    .font(.boldButtonText)
-            }
+                
+                AmountPayableView()
+                PaymentCardView()
+                    .cornerRadius(16, corners: .allCorners)
+                
+                Button{} label: {
+                    Text("Confirm Order")
+                        .font(.boldButtonText)
+                }
                 .buttonStyle(DarkFlexibleButton())
                 .padding()
+            }.padding()
         }
         .background(Color(hex: "#F1F3FB"))
     }

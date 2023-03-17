@@ -19,10 +19,10 @@ struct PaymentCardView: View {
                     .font(.voucherHederText)
                     .foregroundColor(Color(hex: "#181818"))
                 HStack(spacing: 10) {
-                    PaymentCardTextField()
-                    PaymentCardTextField()
-                    PaymentCardTextField()
-                    PaymentCardTextField()
+                    PaymentCardTextField(cardValue: .constant("0092"))
+                    PaymentCardTextField(cardValue: .constant("0230"))
+                    PaymentCardTextField(cardValue: .constant("0935"))
+                    PaymentCardTextField(cardValue: .constant("2800"))
                 }
             }
             VStack(alignment: .leading) {
@@ -32,9 +32,11 @@ struct PaymentCardView: View {
                 HStack(spacing: 10) {
                     VoucherPickerView(pickerViewInputValues: .constant(months), selectedValue: .constant(months[0]))
                         .frame(height: 16)
+                        .disabled(true)
                     VoucherPickerView(pickerViewInputValues: .constant(years), selectedValue: .constant(years[0]))
                         .frame(height: 16)
-                    PaymentCardTextField()
+                        .disabled(true)
+                    PaymentCardTextField(cardValue: .constant("298"))
                 }
             }
             .padding(.top)
