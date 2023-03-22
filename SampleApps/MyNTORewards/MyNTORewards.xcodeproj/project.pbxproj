@@ -134,6 +134,12 @@
 		3FE7194629C09D5F0087A49F /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE7194529C09D5F0087A49F /* NavigationBarView.swift */; };
 		3FFE1C9B29A29FF900F43253 /* UnenrollPromotion.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE1C9A29A29FF900F43253 /* UnenrollPromotion.json */; };
 		3FFE1C9D29A37D5300F43253 /* GetVouchers.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE1C9C29A37D5300F43253 /* GetVouchers.json */; };
+		AF11147429C2043E00CAF30D /* VoucherPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF11147329C2043E00CAF30D /* VoucherPickerView.swift */; };
+		AF11147629C20DAD00CAF30D /* PaymentDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF11147529C20DAD00CAF30D /* PaymentDetailsView.swift */; };
+		AF11147829C20EBB00CAF30D /* OrderVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF11147729C20EBB00CAF30D /* OrderVoucherView.swift */; };
+		AF11147A29C218F000CAF30D /* AmountPayableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF11147929C218F000CAF30D /* AmountPayableView.swift */; };
+		AF11147C29C21CB300CAF30D /* PaymentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF11147B29C21CB300CAF30D /* PaymentCardView.swift */; };
+		AF11147E29C2230800CAF30D /* PaymentCardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF11147D29C2230800CAF30D /* PaymentCardTextField.swift */; };
 		AF27C5AC2981118D008C7D79 /* LoyaltyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -264,6 +270,12 @@
 		3FE7194529C09D5F0087A49F /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		3FFE1C9A29A29FF900F43253 /* UnenrollPromotion.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UnenrollPromotion.json; sourceTree = "<group>"; };
 		3FFE1C9C29A37D5300F43253 /* GetVouchers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GetVouchers.json; sourceTree = "<group>"; };
+		AF11147329C2043E00CAF30D /* VoucherPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherPickerView.swift; sourceTree = "<group>"; };
+		AF11147529C20DAD00CAF30D /* PaymentDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailsView.swift; sourceTree = "<group>"; };
+		AF11147729C20EBB00CAF30D /* OrderVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderVoucherView.swift; sourceTree = "<group>"; };
+		AF11147929C218F000CAF30D /* AmountPayableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountPayableView.swift; sourceTree = "<group>"; };
+		AF11147B29C21CB300CAF30D /* PaymentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardView.swift; sourceTree = "<group>"; };
+		AF11147D29C2230800CAF30D /* PaymentCardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardTextField.swift; sourceTree = "<group>"; };
 		AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyaltyTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -584,7 +596,13 @@
 			isa = PBXGroup;
 			children = (
 				3FE7193829BB8C110087A49F /* OrderDetailsView.swift */,
+				AF11147D29C2230800CAF30D /* PaymentCardTextField.swift */,
+				AF11147529C20DAD00CAF30D /* PaymentDetailsView.swift */,
+				AF11147329C2043E00CAF30D /* VoucherPickerView.swift */,
+				AF11147B29C21CB300CAF30D /* PaymentCardView.swift */,
 				3FE7193A29BB8F4F0087A49F /* ShippingDetailsView.swift */,
+				AF11147729C20EBB00CAF30D /* OrderVoucherView.swift */,
+				AF11147929C218F000CAF30D /* AmountPayableView.swift */,
 				3FE7193C29BB90C30087A49F /* AddressView.swift */,
 				3FE7193E29BEFD3A0087A49F /* OrderPlacedView.swift */,
 			);
@@ -698,6 +716,8 @@
 				3FE7193529BB6E020087A49F /* ProductReviewView.swift in Sources */,
 				292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */,
 				292ADC72294C04AB00753541 /* VocherModel+VoucherValue.swift in Sources */,
+				AF11147829C20EBB00CAF30D /* OrderVoucherView.swift in Sources */,
+				AF11147429C2043E00CAF30D /* VoucherPickerView.swift in Sources */,
 				292ADC6E294BFD7700753541 /* PreviewProvider.swift in Sources */,
 				29367606293209CB00E09A6D /* CachedAsyncImage.swift in Sources */,
 				29AC2F0928F8B724003F56F6 /* AllBadgesView.swift in Sources */,
@@ -708,6 +728,7 @@
 				298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */,
 				2984C9442954F091009669EF /* LoyaltyUtilities.swift in Sources */,
 				29BAF6F128F5D6D600A3F9EB /* VoucherDetailView.swift in Sources */,
+				AF11147E29C2230800CAF30D /* PaymentCardTextField.swift in Sources */,
 				29BAF6D528F14E4400A3F9EB /* PromotionCardView.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
 				2941A23F28BE803F005026CF /* Color.swift in Sources */,
@@ -747,6 +768,7 @@
 				3FE7194629C09D5F0087A49F /* NavigationBarView.swift in Sources */,
 				296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */,
 				29BAF6DD28F3AE8B00A3F9EB /* String+StringWidth.swift in Sources */,
+				AF11147629C20DAD00CAF30D /* PaymentDetailsView.swift in Sources */,
 				3F466A3729B9DD3D000F328D /* SizeSelectorView.swift in Sources */,
 				2963771529C10D6200D45AB6 /* Address.swift in Sources */,
 				29BAF6E128F3EEA000A3F9EB /* MyPromotionCardView.swift in Sources */,
@@ -757,6 +779,7 @@
 				299B38DC28EB7F7000E45D97 /* CheckYourEmailView.swift in Sources */,
 				AF27C5AC2981118D008C7D79 /* LoyaltyTextField.swift in Sources */,
 				29BAF6EF28F4E27400A3F9EB /* BadgesView.swift in Sources */,
+				AF11147C29C21CB300CAF30D /* PaymentCardView.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
 				29BAF6ED28F4DE1C00A3F9EB /* BadgeCardView.swift in Sources */,
 				29A39BC529397B98005833C2 /* EmptyStateView.swift in Sources */,
@@ -776,6 +799,7 @@
 				2906B1DB28FF7348006EAB2D /* CheckboxStyle.swift in Sources */,
 				2984C9452954F091009669EF /* LocalFileManager.swift in Sources */,
 				3F718AD829BA35BD0019B70F /* ProductView.swift in Sources */,
+				AF11147A29C218F000CAF30D /* AmountPayableView.swift in Sources */,
 				29053F7D2907452800F84561 /* Assets.swift in Sources */,
 				29AC2F0728F8B70D003F56F6 /* AllBenefitsView.swift in Sources */,
 				3F718AD629BA2DFA0019B70F /* ProductHeaderView.swift in Sources */,
