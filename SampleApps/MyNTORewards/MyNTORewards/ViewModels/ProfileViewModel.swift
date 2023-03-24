@@ -14,6 +14,13 @@ class ProfileViewModel: ObservableObject {
     @Published var profile: ProfileModel?
     @Published var isLoading = false
     
+    private let authManager = ForceAuthManager.shared
+    private var loyaltyAPIManager: LoyaltyAPIManager
+    
+    init() {
+        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager, loyaltyProgramName: AppConstants.Config.loyaltyProgramName)
+    }
+    
     func getProfileData(memberId: String, reload: Bool = false) async throws {
         
         isLoading = true
@@ -47,8 +54,8 @@ class ProfileViewModel: ObservableObject {
     func fetchProfile(memberId: String) async throws {
         do {
             
-            //let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId)
-            let result = try await LoyaltyAPIManager.shared.getMemberProfile(for: memberId)
+            //let result = try await loyaltyAPIManager.getMemberProfile(for: memberId)
+            let result = try await loyaltyAPIManager.getMemberProfile(for: memberId)
             
             profile = result
             // Save to local disk

@@ -6,8 +6,22 @@
  */
 
 import Foundation
+import LoyaltyMobileSDK
 
-public class ForceAuthManager {
+public class ForceAuthManager: ForceAuthenticator {
+    public var accessToken: String?
+    
+    public func grantAccessToken() async throws -> String {
+        do {
+            try await grantAuth()
+            guard let auth = getAuth() else {
+                throw ForceError.authenticationFailed
+            }
+            return auth.accessToken
+        } catch {
+            throw error
+        }
+    }
     
     public var auth: ForceAuth? = nil
     private let defaults: UserDefaults
@@ -98,8 +112,8 @@ public class ForceAuthManager {
         ]
         
         do {
-            let request = try ForceRequest.create(url: url, method: ForceRequest.Method.post, queryItems: queryItems)
-            let auth = try await ForceClient.shared.fetch(type: ForceAuth.self, with: request)
+            let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
+            let auth = try await ForceNetworkManager.shared.fetch(type: ForceAuth.self, request: request)
             try saveAuth(for: auth)
             return auth
             
@@ -164,8 +178,8 @@ public class ForceAuthManager {
         consumerSecret.map { queryItems["client_secret"] = $0 }
         
         do {
-            let request = try ForceRequest.create(url: url, method: ForceRequest.Method.post, queryItems: queryItems)
-            let auth = try await ForceClient.shared.fetch(type: ForceAuth.self, with: request)
+            let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
+            let auth = try await ForceNetworkManager.shared.fetch(type: ForceAuth.self, request: request)
             try saveAuth(for: auth)
             return auth
             
@@ -186,7 +200,7 @@ public class ForceAuthManager {
         let queryItems = ["token": token]
         
         do {
-            let request = try ForceRequest.create(url: url, method: ForceRequest.Method.post, queryItems: queryItems)
+            let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
             let _ = try await URLSession.shared.data(for: request)
             try deleteAuth()
             print("Revoke successful")

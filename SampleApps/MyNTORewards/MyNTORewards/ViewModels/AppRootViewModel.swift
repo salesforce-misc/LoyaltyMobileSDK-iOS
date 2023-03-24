@@ -40,6 +40,13 @@ class AppRootViewModel: ObservableObject {
     var oobCode = ""
     var apiKey = ""
     
+    private let authManager = ForceAuthManager.shared
+    private var loyaltyAPIManager: LoyaltyAPIManager
+    
+    init() {
+        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager, loyaltyProgramName: AppConstants.Config.loyaltyProgramName)
+    }
+    
     func signUpUser(userEmail: String,
                     userPassword: String,
                     firstName: String,
@@ -67,16 +74,32 @@ class AppRootViewModel: ObservableObject {
                 
                 Task {
                     do {
-                        try await ForceAuthManager.shared.grantAuth()
-                        let enrolledMember = try await LoyaltyAPIManager.shared.postEnrollment(firstName: firstName,
+                        try await self?.authManager.grantAuth()
+                        let enrolledMember = try await self?.loyaltyAPIManager.postEnrollment(firstName: firstName,
                                                                                                lastName: lastName,
                                                                                                email: userEmail,
                                                                                                phone: mobileNumber,
                                                                                                emailNotification: joinEmailList)
+                        guard let enrolled = enrolledMember else {
+                            self?.userErrorMessage = ("Loyalty member enrollment failed.", .signUp)
+
+                            // Member Enrollment failed, then delete User from Firebase
+                            let user = Auth.auth().currentUser
+
+                            user?.delete { error in
+                              if let error = error {
+                                  print("<Firebase> - Could not delete current user. \(error)")
+                              } else {
+                                  print("<Firebase> - User was deleted.")
+                              }
+                            }
+                            self?.isInProgress = false
+                            return
+                        }
                         
-                        let enrollmentDetails = EnrollmentDetails(loyaltyProgramMemberId: enrolledMember.loyaltyProgramMemberId,
-                                                                  loyaltyProgramName: enrolledMember.loyaltyProgramName,
-                                                                  membershipNumber: enrolledMember.membershipNumber)
+                        let enrollmentDetails = EnrollmentDetails(loyaltyProgramMemberId: enrolled.loyaltyProgramMemberId,
+                                                                  loyaltyProgramName: enrolled.loyaltyProgramName,
+                                                                  membershipNumber: enrolled.membershipNumber)
                         
                         let member = MemberModel(firstName: firstName,
                                                  lastName: lastName,
@@ -227,7 +250,7 @@ class AppRootViewModel: ObservableObject {
         do {
             let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
             let request = ForceRequest.createRequest(from: url, method: "POST", body: bodyJsonData)
-            let result = try await ForceClient.shared.fetch(type: PasswordResetModel.self, with: request)
+            let result = try await ForceNetworkManager.shared.fetch(type: PasswordResetModel.self, request: request)
             email = result.email
             userState = .newPasswordSet
         } catch {

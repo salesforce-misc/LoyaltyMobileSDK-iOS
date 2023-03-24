@@ -12,6 +12,12 @@ import LoyaltyMobileSDK
 class ImageViewModel: ObservableObject {
 
     @Published var images: [String: UIImage] = [:]
+    private let authManager = ForceAuthManager.shared
+    private var forceClient: ForceClient
+    
+    init() {
+        forceClient = ForceClient(auth: authManager)
+    }
 
     @MainActor
     func getImage(url: String) async {
@@ -21,7 +27,7 @@ class ImageViewModel: ObservableObject {
             if let cached = LocalFileManager.instance.getImage(imageName: urlHash) {
                 images[urlHash] = cached
             } else {
-                let fetchedImage = await ForceClient.shared.fetchImage(url: url)
+                let fetchedImage = await forceClient.fetchImage(url: url)
                 // save to local cache
                 if let image = fetchedImage {
                     LocalFileManager.instance.saveImage(image: image, imageName: urlHash)

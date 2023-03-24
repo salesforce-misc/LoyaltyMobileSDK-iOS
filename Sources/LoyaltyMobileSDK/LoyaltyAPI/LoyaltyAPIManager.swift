@@ -9,6 +9,16 @@ import Foundation
 import UIKit
 
 public class LoyaltyAPIManager {
+    
+    public var auth: ForceAuthenticator
+    public var loyaltyProgramName: String
+    private var forceClient: ForceClient
+    
+    public init(auth: ForceAuthenticator, loyaltyProgramName: String) {
+        self.auth = auth
+        self.loyaltyProgramName = loyaltyProgramName
+        self.forceClient = ForceClient(auth: auth)
+    }
 	
 	public enum SortBy: String {
 		case ExpirationDate
@@ -26,13 +36,6 @@ public class LoyaltyAPIManager {
 		case Cancelled
 		case Expired
 	}
-    
-    public static let shared = LoyaltyAPIManager()
-    
-    // TODO: move to a app config or other places
-    private let loyaltyProgramName = "NTO Insider"
-    
-    private init() {}
     
     public enum Resource {
         case individualEnrollment(programName: String)
@@ -75,12 +78,12 @@ public class LoyaltyAPIManager {
     public func getMemberBenefits(for memberId: String, devMode: Bool = false) async throws -> [BenefitModel] {
         do {
             if devMode {
-                let result = try ForceClient.shared.fetchLocalJson(type: Benefits.self, file: "Benefits")
+                let result = try forceClient.fetchLocalJson(type: Benefits.self, file: "Benefits")
                 return result.memberBenefits
             }
             let path = getPath(for: .getMemberBenefits(memberId: memberId))
             let request = try ForceRequest.create(method: "GET", path: path)
-            let result = try await ForceClient.shared.fetch(type: Benefits.self, with: request)
+            let result = try await forceClient.fetch(type: Benefits.self, with: request)
             return result.memberBenefits
         } catch {
             throw error
@@ -95,13 +98,13 @@ public class LoyaltyAPIManager {
     public func getMemberProfile(for memberId: String, devMode: Bool = false) async throws -> ProfileModel {
         do {
             if devMode {
-                let result = try ForceClient.shared.fetchLocalJson(type: ProfileModel.self, file: "Profile")
+                let result = try forceClient.fetchLocalJson(type: ProfileModel.self, file: "Profile")
                 return result
             }
             let path = getPath(for: .getMemberProfile(programName: loyaltyProgramName))
             let queryItems = ["memberId": "\(memberId)"]
             let request = try ForceRequest.create(method: "GET", path: path, queryItems: queryItems)
-            return try await ForceClient.shared.fetch(type: ProfileModel.self, with: request)
+            return try await forceClient.fetch(type: ProfileModel.self, with: request)
         } catch {
             throw error
         }
@@ -156,7 +159,7 @@ public class LoyaltyAPIManager {
             }
             let path = getPath(for: .individualEnrollment(programName: loyaltyProgramName))
             let request = try ForceRequest.create(method: "POST", path: path, body: requestBody)
-            return try await ForceClient.shared.fetch(type: EnrollmentOutputModel.self, with: request)
+            return try await forceClient.fetch(type: EnrollmentOutputModel.self, with: request)
             
         } catch {
             throw error
@@ -178,7 +181,7 @@ public class LoyaltyAPIManager {
             let path = getPath(for: .enrollInPromotion(programName: loyaltyProgramName))
             let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
             let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
-            let _ = try await ForceClient.shared.fetch(type: EnrollPromotionOutputModel.self, with: request)
+            let _ = try await forceClient.fetch(type: EnrollPromotionOutputModel.self, with: request)
         } catch {
             throw error
         }
@@ -210,7 +213,7 @@ public class LoyaltyAPIManager {
     
 	private func unenroll(requestBody: [String: Any], devMode: Bool = false) async throws {
 		if devMode {
-			let _ = try ForceClient.shared.fetchLocalJson(type: UnenrollPromotionResponseModel.self, file: "UnenrollPromotion")
+			let _ = try forceClient.fetchLocalJson(type: UnenrollPromotionResponseModel.self, file: "UnenrollPromotion")
 			return
 		}
 		
@@ -218,7 +221,7 @@ public class LoyaltyAPIManager {
 			let path = getPath(for: .unenrollPromotion(programName: loyaltyProgramName))
 			let bodyJsonData = try JSONSerialization.data(withJSONObject: requestBody)
 			let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
-			let response = try await ForceClient.shared.fetch(type: UnenrollPromotionResponseModel.self, with: request)
+			let response = try await forceClient.fetch(type: UnenrollPromotionResponseModel.self, with: request)
 			if !response.status {
 				throw ForceError.requestFailed(description: response.message ?? "Unknown")
 			}
@@ -248,13 +251,13 @@ public class LoyaltyAPIManager {
     private func getPromotions(requsetBody: [String: Any], devMode: Bool = false) async throws -> PromotionModel {
         do {
             if devMode {
-                let result = try ForceClient.shared.fetchLocalJson(type: PromotionModel.self, file: "Promotions")
+                let result = try forceClient.fetchLocalJson(type: PromotionModel.self, file: "Promotions")
                 return result
             }
             let path = getPath(for: .getPromotions(programName: loyaltyProgramName))
             let bodyJsonData = try JSONSerialization.data(withJSONObject: requsetBody)
             let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
-            let result = try await ForceClient.shared.fetch(type: PromotionModel.self, with: request)
+            let result = try await forceClient.fetch(type: PromotionModel.self, with: request)
             return result
             
         } catch {
@@ -281,12 +284,12 @@ public class LoyaltyAPIManager {
         
         do {
             if devMode {
-                let result = try ForceClient.shared.fetchLocalJson(type: TransactionModel.self, file: "Transactions")
+                let result = try forceClient.fetchLocalJson(type: TransactionModel.self, file: "Transactions")
                 return result.transactionJournals
             }
             let path = getPath(for: .getTransactionHistory(programName: loyaltyProgramName, memberId: membershipNumber))
             let request = try ForceRequest.create(method: "GET", path: path, queryItems: queryItems)
-            let result = try await ForceClient.shared.fetch(type: TransactionModel.self, with: request)
+            let result = try await forceClient.fetch(type: TransactionModel.self, with: request)
             return result.transactionJournals
         } catch {
             throw error
@@ -307,7 +310,7 @@ public class LoyaltyAPIManager {
 	) async throws -> [VoucherModel] {
 		do {
 			if devMode {
-				let result = try ForceClient.shared.fetchLocalJson(type: VouchersResponse.self, file: "GetVouchers")
+				let result = try forceClient.fetchLocalJson(type: VouchersResponse.self, file: "GetVouchers")
 				return result.vouchers ?? []
 			}
 			let queries = [
@@ -322,7 +325,7 @@ public class LoyaltyAPIManager {
 			].compactMapValues { $0 }
 			let path = getPath(for: .getVouchers(programName: loyaltyProgramName, membershipNumber: membershipNumber))
 			let request = try ForceRequest.create(method: "GET", path: path, queryItems: queries)
-			let result = try await ForceClient.shared.fetch(type: VouchersResponse.self, with: request)
+			let result = try await forceClient.fetch(type: VouchersResponse.self, with: request)
 			return result.vouchers ?? []
 		} catch {
 			print(error.localizedDescription)

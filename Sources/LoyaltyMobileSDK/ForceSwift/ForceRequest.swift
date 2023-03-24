@@ -35,8 +35,7 @@ public struct ForceRequest {
         headers: [String: String]? = nil,
         body: Data? = nil,
         cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
-        timeoutInterval: TimeInterval = 60.0,
-        accessToken: String? = nil
+        timeoutInterval: TimeInterval = 60.0
     ) throws -> URLRequest {
         
         do {
@@ -45,7 +44,7 @@ public struct ForceRequest {
             var comps = URLComponents()
             comps.scheme = "https"
             
-            comps.host = URL(string: ForceAuthManager.shared.auth?.instanceURL ?? config.instanceURL)?.host ?? ""
+            comps.host = URL(string: config.instanceURL)?.host ?? ""
             comps.path = path.starts(with: "/") ? path : "/\(path)"
             if let queryItems = queryItems {
                 comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
@@ -56,10 +55,7 @@ public struct ForceRequest {
                 throw URLError(.badURL)
             }
             
-            let request = createRequest(from: url, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
-            let requestWithToken = addAuth(accessToken: accessToken, to: request)
-            
-            return requestWithToken
+            return createRequest(from: url, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
         } catch {
             throw error
         }
@@ -67,7 +63,6 @@ public struct ForceRequest {
     }
     
     // create a URLRequest with URL
-    // if secured, it will attach an accesstoken for salseforce request, the default is false
     public static func create(
         url: URL,
         method: String? = nil,
@@ -75,9 +70,7 @@ public struct ForceRequest {
         headers: [String: String]? = nil,
         body: Data? = nil,
         cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
-        timeoutInterval: TimeInterval = 60.0,
-        secured: Bool = false,
-        accessToken: String? = nil
+        timeoutInterval: TimeInterval = 60.0
     ) throws -> URLRequest {
         
         var requestURL = url
@@ -85,13 +78,7 @@ public struct ForceRequest {
             requestURL = try transform(from: url, add: queryItems)
         }
         
-        let request = createRequest(from: requestURL, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
-        
-        if secured {
-            return addAuth(accessToken: accessToken, to: request)
-        }
-        
-        return request
+        return createRequest(from: requestURL, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
     }
     
     public static func transform(from url: URL, add queryItems: [String: String]) throws -> URL {
@@ -140,32 +127,10 @@ public struct ForceRequest {
         return request
     }
     
-    public static func updateRequest(from request: URLRequest, with newAuth: ForceAuth) -> URLRequest {
+    public static func setAuthorization(request: URLRequest, accessToken: String) -> URLRequest {
         
         var newRequest = request
-        newRequest.setValue("Bearer \(newAuth.accessToken)", forHTTPHeaderField: "Authorization")
-        return newRequest
-    }
-    
-    public static func updateRequestWithSavedAuth(for request: URLRequest) throws -> URLRequest {
-
-        do {
-            let auth = try ForceAuthManager.shared.retrieveAuth()
-            return updateRequest(from: request, with: auth)
-        } catch {
-            throw error
-        }
-        
-    }
-    
-    private static func addAuth(accessToken: String? = nil, to request: URLRequest) -> URLRequest {
-        
-        var newRequest = request
-        if let token = accessToken {
-            newRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        } else {
-            newRequest.setValue("Bearer \(ForceAuthManager.shared.getAuth()?.accessToken ?? "")", forHTTPHeaderField: "Authorization")
-        }
+        newRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         return newRequest
     }
 }
