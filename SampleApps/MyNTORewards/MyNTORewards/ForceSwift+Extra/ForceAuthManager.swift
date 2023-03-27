@@ -10,6 +10,19 @@ import LoyaltyMobileSDK
 
 public class ForceAuthManager: ForceAuthenticator {
     public var accessToken: String?
+    public var auth: ForceAuth? = nil
+    private let defaults: UserDefaults
+    
+    public enum OauthFlow {
+        case UserAgent
+        case UsernamePassword
+    }
+    
+    public static let shared = ForceAuthManager()
+    
+    private init(defaults: UserDefaults = .shared) {
+        self.defaults = defaults
+    }
     
     public func grantAccessToken() async throws -> String {
         do {
@@ -23,16 +36,6 @@ public class ForceAuthManager: ForceAuthenticator {
         }
     }
     
-    public var auth: ForceAuth? = nil
-    private let defaults: UserDefaults
-    
-    public enum OauthFlow {
-        case UserAgent
-        case UsernamePassword
-    }
-    
-    public static let shared = ForceAuthManager()
-    
     /// Unique identifier for current Salesforce user.
     public var userIdentifier: ForceUserIdentifier? {
         get {
@@ -41,10 +44,6 @@ public class ForceAuthManager: ForceAuthenticator {
         set {
             self.defaults.userIdentifier = newValue
         }
-    }
-    
-    private init(defaults: UserDefaults = .shared) {
-        self.defaults = defaults
     }
     
     public func getAuth() -> ForceAuth? {

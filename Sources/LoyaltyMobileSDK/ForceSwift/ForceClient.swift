@@ -13,7 +13,7 @@ public class ForceClient {
     public init(auth: ForceAuthenticator) {
         self.auth = auth
     }
-
+    
     /// Use Async/Await to fetch all REST requests
     public func fetch<T: Decodable>(type: T.Type, with request: URLRequest) async throws -> T {
       
@@ -27,12 +27,6 @@ public class ForceClient {
             }
             return try await ForceNetworkManager.shared.fetch(type: type, request: newRequest)
         } catch ForceError.authenticationNeeded {
-//            var token: String
-//            if let refreshToken = auth.refreshToken {
-//                token = try await auth.grantNewAccessToken(refreshToken: refreshToken)
-//            } else {
-//                token = try await auth.grantAccessToken()
-//            }
             let token = try await auth.grantAccessToken()
             let updatedRequest = ForceRequest.setAuthorization(request: request, accessToken: token)
             return try await ForceNetworkManager.shared.fetch(type: type, request: updatedRequest)
