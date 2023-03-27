@@ -28,9 +28,10 @@ public struct ForceRequest {
         static let contentType = "Content-Type"
     }
     
+    // create a URLRequest with path
     public static func create(
-        method: String? = nil,
         path: String,
+        method: String? = nil,
         queryItems: [String: String]? = nil,
         headers: [String: String]? = nil,
         body: Data? = nil,
