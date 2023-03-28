@@ -75,11 +75,13 @@ class AppRootViewModel: ObservableObject {
                 Task {
                     do {
                         try await self?.authManager.grantAuth()
-                        let enrolledMember = try await self?.loyaltyAPIManager.postEnrollment(firstName: firstName,
-                                                                                               lastName: lastName,
-                                                                                               email: userEmail,
-                                                                                               phone: mobileNumber,
-                                                                                               emailNotification: joinEmailList)
+                        let membershipNumber = LoyaltyUtilities.randomString(of: 8)
+                        let enrolledMember = try await self?.loyaltyAPIManager.postEnrollment(membershipNumber: membershipNumber,
+                                                                                              firstName: firstName,
+                                                                                              lastName: lastName,
+                                                                                              email: userEmail,
+                                                                                              phone: mobileNumber,
+                                                                                              emailNotification: joinEmailList)
                         guard let enrolled = enrolledMember else {
                             self?.userErrorMessage = ("Loyalty member enrollment failed.", .signUp)
 

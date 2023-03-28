@@ -79,15 +79,14 @@ class VoucherViewModel: ObservableObject {
 	) async throws -> [VoucherModel] {
         do {
 			return try await loyaltyAPIManager.getVouchers(membershipNumber: membershipNumber,
-																  devMode: false,
-																  voucherStatus: voucherStatus,
-																  pageNumber: pageNumber,
-																  productId: productId,
-																  productCategoryId: productCategoryId,
-																  productName: productName,
-																  productCategoryName: productCategoryName,
-																  sortBy: sortBy,
-																  sortOrder: sortOrder)
+                                                           voucherStatus: voucherStatus,
+                                                           pageNumber: pageNumber,
+                                                           productId: productId,
+                                                           productCategoryId: productCategoryId,
+                                                           productName: productName,
+                                                           productCategoryName: productCategoryName,
+                                                           sortBy: sortBy,
+                                                           sortOrder: sortOrder)
         } catch {
             throw error
         }

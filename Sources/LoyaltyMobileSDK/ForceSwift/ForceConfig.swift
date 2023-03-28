@@ -27,7 +27,7 @@ public struct ForceConfig {
                  "consumerKey" : "YOUR_CONNECTED_APP_CONSUMER_KEY",
                  "consumerSecret": "YOUR_CONNECTED_APP_CONSUMER_SECRET",
                  "callbackURL" : "YOUR_CONNECTED_APP_CALLBACK_URL",
-                 "authURL": "https://login.salesforce.com/services/oauth2/token",
+                 "baseURL": "https://login.salesforce.com",
                  "instanceURL": "YOUR_ORG_INSTANCE_URL",
                  "username": "YOUR_LOGIN_USERNAME",
                  "password": "YOUR_LOGIN_PASSWORD"
