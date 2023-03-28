@@ -9,6 +9,16 @@ import Foundation
 import UIKit
 
 public class LoyaltyAPIManager {
+    
+    public var auth: ForceAuthenticator
+    public var loyaltyProgramName: String
+    private var forceClient: ForceClient
+    
+    public init(auth: ForceAuthenticator, loyaltyProgramName: String) {
+        self.auth = auth
+        self.loyaltyProgramName = loyaltyProgramName
+        self.forceClient = ForceClient(auth: auth)
+    }
 	
 	public enum SortBy: String {
 		case ExpirationDate
@@ -27,43 +37,36 @@ public class LoyaltyAPIManager {
 		case Expired
 	}
     
-    public static let shared = LoyaltyAPIManager()
-    
-    // TODO: move to a app config or other places
-    private let loyaltyProgramName = "NTO Insider"
-    
-    private init() {}
-    
     public enum Resource {
-        case individualEnrollment(programName: String)
-        case getMemberBenefits(memberId: String)
-        case getMemberProfile(programName: String)
-        case getTransactionHistory(programName: String, memberId: String)
-        case getPromotions(programName: String)
-        case enrollInPromotion(programName: String)
-		case unenrollPromotion(programName: String)
-		case getVouchers(programName: String, membershipNumber: String)
+        case individualEnrollment(programName: String, version: String)
+        case getMemberBenefits(memberId: String, version: String)
+        case getMemberProfile(programName: String, version: String)
+        case getTransactionHistory(programName: String, memberId: String, version: String)
+        case getPromotions(programName: String, version: String)
+        case enrollInPromotion(programName: String, version: String)
+		case unenrollPromotion(programName: String, version: String)
+		case getVouchers(programName: String, membershipNumber: String, version: String)
     }
     
     public func getPath(for resource: Resource) -> String {
         
         switch resource {
-        case .individualEnrollment(let programName):
-            return ForceConfig.path(for: "loyalty-programs/\(programName)/individual-member-enrollments")
-        case .getMemberBenefits(let memberId):
-            return ForceConfig.path(for: "connect/loyalty/member/\(memberId)/memberbenefits")
-        case .getMemberProfile(let programName):
-            return ForceConfig.path(for: "loyalty-programs/\(programName)/members")
-        case .getTransactionHistory(let programName, let memberId):
-            return ForceConfig.path(for: "loyalty/programs/\(programName)/members/\(memberId)/transaction-ledger-summary")
-        case .getPromotions(let programName):
-            return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/GetMemberPromotions")
-        case .enrollInPromotion(let programName):
-            return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/EnrollInPromotion")
-		case .unenrollPromotion(let programName):
-			return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/OptOutOfPromotion")
-		case .getVouchers(let programName, let membershipNumber):
-				return ForceConfig.path(for: "loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers")
+        case .individualEnrollment(let programName, let version):
+            return ForceConfig.path(for: "loyalty-programs/\(programName)/individual-member-enrollments", version: version)
+        case .getMemberBenefits(let memberId, let version):
+            return ForceConfig.path(for: "connect/loyalty/member/\(memberId)/memberbenefits", version: version)
+        case .getMemberProfile(let programName, let version):
+            return ForceConfig.path(for: "loyalty-programs/\(programName)/members", version: version)
+        case .getTransactionHistory(let programName, let memberId, let version):
+            return ForceConfig.path(for: "loyalty/programs/\(programName)/members/\(memberId)/transaction-ledger-summary", version: version)
+        case .getPromotions(let programName, let version):
+            return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/GetMemberPromotions", version: version)
+        case .enrollInPromotion(let programName, let version):
+            return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/EnrollInPromotion", version: version)
+		case .unenrollPromotion(let programName, let version):
+			return ForceConfig.path(for: "connect/loyalty/programs/\(programName)/program-processes/OptOutOfPromotion", version: version)
+		case .getVouchers(let programName, let membershipNumber, let version):
+				return ForceConfig.path(for: "loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers", version: version)
         }
     
     }
@@ -72,15 +75,17 @@ public class LoyaltyAPIManager {
     /// - Parameters:
     ///   - for memberId: The member who has these benefits
     /// - Returns: An ``BenefitModel`` array
-    public func getMemberBenefits(for memberId: String, devMode: Bool = false) async throws -> [BenefitModel] {
+    public func getMemberBenefits(for memberId: String,
+                                  version: String = ForceConfig.defaultVersion,
+                                  devMode: Bool = false) async throws -> [BenefitModel] {
         do {
             if devMode {
-                let result = try ForceClient.shared.fetchLocalJson(type: Benefits.self, file: "Benefits")
+                let result = try forceClient.fetchLocalJson(type: Benefits.self, file: "Benefits")
                 return result.memberBenefits
             }
-            let path = getPath(for: .getMemberBenefits(memberId: memberId))
-            let request = try ForceRequest.create(method: "GET", path: path)
-            let result = try await ForceClient.shared.fetch(type: Benefits.self, with: request)
+            let path = getPath(for: .getMemberBenefits(memberId: memberId, version: version))
+            let request = try ForceRequest.create(path: path, method: "GET")
+            let result = try await forceClient.fetch(type: Benefits.self, with: request)
             return result.memberBenefits
         } catch {
             throw error
@@ -92,34 +97,31 @@ public class LoyaltyAPIManager {
     ///   - for memberId: The member who has these benefits
     ///   - programName: The loytalty program name
     /// - Returns: An ``ProfileModel`` instance
-    public func getMemberProfile(for memberId: String, devMode: Bool = false) async throws -> ProfileModel {
+    public func getMemberProfile(for memberId: String,
+                                 version: String = ForceConfig.defaultVersion,
+                                 devMode: Bool = false) async throws -> ProfileModel {
         do {
             if devMode {
-                let result = try ForceClient.shared.fetchLocalJson(type: ProfileModel.self, file: "Profile")
+                let result = try forceClient.fetchLocalJson(type: ProfileModel.self, file: "Profile")
                 return result
             }
-            let path = getPath(for: .getMemberProfile(programName: loyaltyProgramName))
+            let path = getPath(for: .getMemberProfile(programName: loyaltyProgramName, version: version))
             let queryItems = ["memberId": "\(memberId)"]
-            let request = try ForceRequest.create(method: "GET", path: path, queryItems: queryItems)
-            return try await ForceClient.shared.fetch(type: ProfileModel.self, with: request)
+            let request = try ForceRequest.create(path: path, method: "GET", queryItems: queryItems)
+            return try await forceClient.fetch(type: ProfileModel.self, with: request)
         } catch {
             throw error
         }
     }
     
-    private func randomString(of length: Int) -> String {
-         let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-         var s = ""
-         for _ in 0 ..< length {
-             s.append(letters.randomElement()!)
-         }
-         return s
-    }
-    
-    public func postEnrollment(firstName: String, lastName: String, email: String, phone: String, emailNotification: Bool) async throws -> EnrollmentOutputModel {
+    public func postEnrollment(membershipNumber: String,
+                               firstName: String,
+                               lastName: String,
+                               email: String, phone: String,
+                               emailNotification: Bool,
+                               version: String = ForceConfig.defaultVersion) async throws -> EnrollmentOutputModel {
         
         let currentDate = Date()
-        let membershipNumber = randomString(of: 8)
         let attributesContact = ["Phone": phone]
         //let attributesContact = ["Phone": phone, "HasOptedOutOfEmail": String(!emailNotification)]
         let additionalContactValues = AdditionalFieldValues(attributes: attributesContact)
@@ -154,9 +156,9 @@ public class LoyaltyAPIManager {
             if let requestJson = String(data: requestBody, encoding: .utf8) {
                 print(requestJson)
             }
-            let path = getPath(for: .individualEnrollment(programName: loyaltyProgramName))
-            let request = try ForceRequest.create(method: "POST", path: path, body: requestBody)
-            return try await ForceClient.shared.fetch(type: EnrollmentOutputModel.self, with: request)
+            let path = getPath(for: .individualEnrollment(programName: loyaltyProgramName, version: version))
+            let request = try ForceRequest.create(path: path, method: "POST", body: requestBody)
+            return try await forceClient.fetch(type: EnrollmentOutputModel.self, with: request)
             
         } catch {
             throw error
@@ -164,7 +166,9 @@ public class LoyaltyAPIManager {
         
     }
     
-    public func enrollIn(promotion promotionName: String, for membershipNumber: String) async throws {
+    public func enrollIn(promotion promotionName: String,
+                         for membershipNumber: String,
+                         version: String = ForceConfig.defaultVersion) async throws {
         let body = [
             "processParameters": [
                 [
@@ -175,16 +179,19 @@ public class LoyaltyAPIManager {
         ]
         
         do {
-            let path = getPath(for: .enrollInPromotion(programName: loyaltyProgramName))
+            let path = getPath(for: .enrollInPromotion(programName: loyaltyProgramName, version: version))
             let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
-            let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
-            let _ = try await ForceClient.shared.fetch(type: EnrollPromotionOutputModel.self, with: request)
+            let request = try ForceRequest.create(path: path, method: "POST", body: bodyJsonData)
+            let _ = try await forceClient.fetch(type: EnrollPromotionOutputModel.self, with: request)
         } catch {
             throw error
         }
     }
 	
-	public final func unenroll(promotionId: String, for membershipNumber: String, devMode: Bool = false) async throws {
+	public final func unenroll(promotionId: String,
+                               for membershipNumber: String,
+                               version: String = ForceConfig.defaultVersion,
+                               devMode: Bool = false) async throws {
 		let body = [
 			"processParameters": [
 				[
@@ -193,10 +200,13 @@ public class LoyaltyAPIManager {
 				]
 			]
 		]
-		try await unenroll(requestBody: body, devMode: devMode)
+        try await unenroll(requestBody: body, version: version, devMode: devMode)
 	}
 	
-	public final func unenroll(promotionName: String, for membershipNumber: String, devMode: Bool = false) async throws {
+	public final func unenroll(promotionName: String,
+                               for membershipNumber: String,
+                               version: String = ForceConfig.defaultVersion,
+                               devMode: Bool = false) async throws {
 		let body = [
 			"processParameters": [
 				[
@@ -205,20 +215,22 @@ public class LoyaltyAPIManager {
 				]
 			]
 		]
-		try await unenroll(requestBody: body, devMode: devMode)
+		try await unenroll(requestBody: body, version: version, devMode: devMode)
 	}
     
-	private func unenroll(requestBody: [String: Any], devMode: Bool = false) async throws {
+	private func unenroll(requestBody: [String: Any],
+                          version: String = ForceConfig.defaultVersion,
+                          devMode: Bool = false) async throws {
 		if devMode {
-			let _ = try ForceClient.shared.fetchLocalJson(type: UnenrollPromotionResponseModel.self, file: "UnenrollPromotion")
+			let _ = try forceClient.fetchLocalJson(type: UnenrollPromotionResponseModel.self, file: "UnenrollPromotion")
 			return
 		}
 		
 		do {
-			let path = getPath(for: .unenrollPromotion(programName: loyaltyProgramName))
+			let path = getPath(for: .unenrollPromotion(programName: loyaltyProgramName, version: version))
 			let bodyJsonData = try JSONSerialization.data(withJSONObject: requestBody)
-			let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
-			let response = try await ForceClient.shared.fetch(type: UnenrollPromotionResponseModel.self, with: request)
+            let request = try ForceRequest.create(path: path, method: "POST", body: bodyJsonData)
+			let response = try await forceClient.fetch(type: UnenrollPromotionResponseModel.self, with: request)
 			if !response.status {
 				throw ForceError.requestFailed(description: response.message ?? "Unknown")
 			}
@@ -227,34 +239,40 @@ public class LoyaltyAPIManager {
 		}
 	}
 	
-    public func getPromotions(memberId: String, devMode: Bool = false) async throws -> PromotionModel {
+    public func getPromotions(memberId: String,
+                              version: String = ForceConfig.defaultVersion,
+                              devMode: Bool = false) async throws -> PromotionModel {
         let body: [String: Any] = [
             "processParameters": [
                 ["MemberId": memberId]
             ]
         ]
-        return try await getPromotions(requsetBody: body, devMode: devMode)
+        return try await getPromotions(requsetBody: body, version: version, devMode: devMode)
     }
     
-    public func getPromotions(membershipNumber: String, devMode: Bool = false) async throws -> PromotionModel {
+    public func getPromotions(membershipNumber: String,
+                              version: String = ForceConfig.defaultVersion,
+                              devMode: Bool = false) async throws -> PromotionModel {
         let body: [String: Any] = [
             "processParameters": [
                 ["MembershipNumber": membershipNumber]
             ]
         ]
-        return try await getPromotions(requsetBody: body, devMode: devMode)
+        return try await getPromotions(requsetBody: body, version:version, devMode: devMode)
     }
     
-    private func getPromotions(requsetBody: [String: Any], devMode: Bool = false) async throws -> PromotionModel {
+    private func getPromotions(requsetBody: [String: Any],
+                               version: String = ForceConfig.defaultVersion,
+                               devMode: Bool = false) async throws -> PromotionModel {
         do {
             if devMode {
-                let result = try ForceClient.shared.fetchLocalJson(type: PromotionModel.self, file: "Promotions")
+                let result = try forceClient.fetchLocalJson(type: PromotionModel.self, file: "Promotions")
                 return result
             }
-            let path = getPath(for: .getPromotions(programName: loyaltyProgramName))
+            let path = getPath(for: .getPromotions(programName: loyaltyProgramName, version: version))
             let bodyJsonData = try JSONSerialization.data(withJSONObject: requsetBody)
-            let request = try ForceRequest.create(method: "POST", path: path, body: bodyJsonData)
-            let result = try await ForceClient.shared.fetch(type: PromotionModel.self, with: request)
+            let request = try ForceRequest.create(path: path, method: "POST", body: bodyJsonData)
+            let result = try await forceClient.fetch(type: PromotionModel.self, with: request)
             return result
             
         } catch {
@@ -271,7 +289,14 @@ public class LoyaltyAPIManager {
     ///  - periodStartDate: Retrieve transaction journals until this date.
     ///  - periodEndDate: Retrieve transaction journals until this date.
     /// - Returns: An ``TransactionModel`` instance
-    public func getTransactions(for membershipNumber: String, pageNumber: Int? = nil, journalTypeName: String? = nil, journalSubTypeName: String? = nil, periodStartDate: String? = nil, periodEndDate: String? = nil,  devMode: Bool = false) async throws -> [TransactionJournal] {
+    public func getTransactions(for membershipNumber: String,
+                                pageNumber: Int? = nil,
+                                journalTypeName: String? = nil,
+                                journalSubTypeName: String? = nil,
+                                periodStartDate: String? = nil,
+                                periodEndDate: String? = nil,
+                                version: String = ForceConfig.defaultVersion,
+                                devMode: Bool = false) async throws -> [TransactionJournal] {
         let pageNumberString = pageNumber == nil ? nil : String(describing: pageNumber)
         let queryItems = ["pageNumber": pageNumberString,
                           "journalTypeName": journalTypeName,
@@ -281,12 +306,12 @@ public class LoyaltyAPIManager {
         
         do {
             if devMode {
-                let result = try ForceClient.shared.fetchLocalJson(type: TransactionModel.self, file: "Transactions")
+                let result = try forceClient.fetchLocalJson(type: TransactionModel.self, file: "Transactions")
                 return result.transactionJournals
             }
-            let path = getPath(for: .getTransactionHistory(programName: loyaltyProgramName, memberId: membershipNumber))
-            let request = try ForceRequest.create(method: "GET", path: path, queryItems: queryItems)
-            let result = try await ForceClient.shared.fetch(type: TransactionModel.self, with: request)
+            let path = getPath(for: .getTransactionHistory(programName: loyaltyProgramName, memberId: membershipNumber, version: version))
+            let request = try ForceRequest.create(path: path, method: "GET", queryItems: queryItems)
+            let result = try await forceClient.fetch(type: TransactionModel.self, with: request)
             return result.transactionJournals
         } catch {
             throw error
@@ -295,7 +320,6 @@ public class LoyaltyAPIManager {
 	
 	public func getVouchers(
 		membershipNumber: String,
-		devMode: Bool = false,
 		voucherStatus: [VoucherStatus]? = nil,
 		pageNumber: Int? = nil,
 		productId: [String]? = nil,
@@ -303,11 +327,12 @@ public class LoyaltyAPIManager {
 		productName: [String]? = nil,
 		productCategoryName: [String]? = nil,
 		sortBy: SortBy? = nil,
-		sortOrder: SortOrder? = nil
-	) async throws -> [VoucherModel] {
+		sortOrder: SortOrder? = nil,
+        version: String = ForceConfig.defaultVersion,
+        devMode: Bool = false) async throws -> [VoucherModel] {
 		do {
 			if devMode {
-				let result = try ForceClient.shared.fetchLocalJson(type: VouchersResponse.self, file: "GetVouchers")
+				let result = try forceClient.fetchLocalJson(type: VouchersResponse.self, file: "GetVouchers")
 				return result.vouchers ?? []
 			}
 			let queries = [
@@ -320,9 +345,10 @@ public class LoyaltyAPIManager {
 				"sortBy": getString(from: sortBy),
 				"sortOrder": getString(from: sortOrder)
 			].compactMapValues { $0 }
-			let path = getPath(for: .getVouchers(programName: loyaltyProgramName, membershipNumber: membershipNumber))
-			let request = try ForceRequest.create(method: "GET", path: path, queryItems: queries)
-			let result = try await ForceClient.shared.fetch(type: VouchersResponse.self, with: request)
+
+            let path = getPath(for: .getVouchers(programName: loyaltyProgramName, membershipNumber: membershipNumber, version: version))
+            let request = try ForceRequest.create(path: path, method: "GET", queryItems: queries)
+			let result = try await forceClient.fetch(type: VouchersResponse.self, with: request)
 			return result.vouchers ?? []
 		} catch {
 			print(error.localizedDescription)

@@ -92,6 +92,15 @@ public struct LoyaltyUtilities {
         }
         
     }
+    
+    public static func randomString(of length: Int) -> String {
+         let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+         var s = ""
+         for _ in 0 ..< length {
+             s.append(letters.randomElement()!)
+         }
+         return s
+    }
 
 }
 

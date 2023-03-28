@@ -24,6 +24,13 @@ class VoucherViewModel: ObservableObject {
         case None
     }
     
+    private let authManager = ForceAuthManager.shared
+    private var loyaltyAPIManager: LoyaltyAPIManager
+    
+    init() {
+        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager, loyaltyProgramName: AppConstants.Config.loyaltyProgramName)
+    }
+    
     func loadVouchers(membershipNumber: String) async throws {
         
         if vouchers.isEmpty {
@@ -71,16 +78,15 @@ class VoucherViewModel: ObservableObject {
 					   sortOrder: LoyaltyAPIManager.SortOrder? = nil
 	) async throws -> [VoucherModel] {
         do {
-			return try await LoyaltyAPIManager.shared.getVouchers(membershipNumber: membershipNumber,
-																  devMode: false,
-																  voucherStatus: voucherStatus,
-																  pageNumber: pageNumber,
-																  productId: productId,
-																  productCategoryId: productCategoryId,
-																  productName: productName,
-																  productCategoryName: productCategoryName,
-																  sortBy: sortBy,
-																  sortOrder: sortOrder)
+			return try await loyaltyAPIManager.getVouchers(membershipNumber: membershipNumber,
+                                                           voucherStatus: voucherStatus,
+                                                           pageNumber: pageNumber,
+                                                           productId: productId,
+                                                           productCategoryId: productCategoryId,
+                                                           productName: productName,
+                                                           productCategoryName: productCategoryName,
+                                                           sortBy: sortBy,
+                                                           sortOrder: sortOrder)
         } catch {
             throw error
         }

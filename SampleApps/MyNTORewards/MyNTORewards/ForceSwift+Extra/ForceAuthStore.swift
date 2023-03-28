@@ -6,6 +6,7 @@
  */
 
 import Foundation
+import LoyaltyMobileSDK
 
 struct ForceAuthStore {
     
