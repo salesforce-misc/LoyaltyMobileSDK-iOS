@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-extension ForceClient {
+public extension ForceClient {
     
-    public func fetchImage(url: String?) async -> UIImage? {
+    func fetchImage(url: String?, accessToken: String? = nil) async -> UIImage? {
         
         guard let url = url,
               let imageUrl = URL(string: url) else {
@@ -18,16 +18,16 @@ extension ForceClient {
         }
 
         do {
-            let request = try ForceRequest.create(url: imageUrl, method: "GET", secured: true)
+            let request = try ForceRequest.create(url: imageUrl, method: "GET")
             let output = try await URLSession.shared.data(for: request)
-            try handleUnauthResponse(output: output)
+            try ForceNetworkManager.shared.handleUnauthResponse(output: output)
             return handleImageResponse(output: output)
         } catch ForceError.authenticationNeeded {
             do {
-                let request = try ForceRequest.create(url: imageUrl, method: "GET", secured: true)
-                let newRequet = try await getNewRequest(for: request)
+                let request = try ForceRequest.create(url: imageUrl, method: "GET")
+                let token = try await auth.grantAccessToken()
+                let newRequet = ForceRequest.setAuthorization(request: request, accessToken: token)
                 let output = try await URLSession.shared.data(for: newRequet)
-                try handleUnauthResponse(output: output)
                 return handleImageResponse(output: output)
             } catch {
                 return nil

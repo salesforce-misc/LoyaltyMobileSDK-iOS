@@ -72,6 +72,14 @@
 		298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */; };
 		298613D628CC275500BDC744 /* Salesforce.json in Resources */ = {isa = PBXBuildFile; fileRef = 298613D528CC275500BDC744 /* Salesforce.json */; };
 		298C664A2980743B00C613D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298C66492980743B00C613D8 /* AppDelegate.swift */; };
+		298D5EEC29CCF5340062F16E /* ForceAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EE929CCF5340062F16E /* ForceAuthManager.swift */; };
+		298D5EED29CCF5340062F16E /* ForceAuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EEA29CCF5340062F16E /* ForceAuthStore.swift */; };
+		298D5EEE29CCF5340062F16E /* ForceAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EEB29CCF5340062F16E /* ForceAuth.swift */; };
+		298D5EF229CCF94D0062F16E /* WebAuthenticationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EF129CCF94D0062F16E /* WebAuthenticationSession.swift */; };
+		298D5EF329CCF94D0062F16E /* ForceUserIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EEF29CCF94D0062F16E /* ForceUserIdentifier.swift */; };
+		298D5EF429CCF94D0062F16E /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EF029CCF94D0062F16E /* Keychain.swift */; };
+		298D5EF629CCFCE60062F16E /* ForceRequest+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EF529CCFCE60062F16E /* ForceRequest+Auth.swift */; };
+		298D5EF829CCFFD00062F16E /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EF729CCFFD00062F16E /* UserDefaults.swift */; };
 		299B38CA28E365AD00E45D97 /* HalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38C928E365AD00E45D97 /* HalfSheet.swift */; };
 		299B38D028E3DECE00E45D97 /* AppRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38CF28E3DECE00E45D97 /* AppRootViewModel.swift */; };
 		299B38D428E5F78400E45D97 /* CongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D328E5F78400E45D97 /* CongratsView.swift */; };
@@ -208,6 +216,14 @@
 		298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		298613D528CC275500BDC744 /* Salesforce.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Salesforce.json; sourceTree = "<group>"; };
 		298C66492980743B00C613D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		298D5EE929CCF5340062F16E /* ForceAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceAuthManager.swift; sourceTree = "<group>"; };
+		298D5EEA29CCF5340062F16E /* ForceAuthStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceAuthStore.swift; sourceTree = "<group>"; };
+		298D5EEB29CCF5340062F16E /* ForceAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceAuth.swift; sourceTree = "<group>"; };
+		298D5EEF29CCF94D0062F16E /* ForceUserIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUserIdentifier.swift; sourceTree = "<group>"; };
+		298D5EF029CCF94D0062F16E /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		298D5EF129CCF94D0062F16E /* WebAuthenticationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSession.swift; sourceTree = "<group>"; };
+		298D5EF529CCFCE60062F16E /* ForceRequest+Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceRequest+Auth.swift"; sourceTree = "<group>"; };
+		298D5EF729CCFFD00062F16E /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		299B38C928E365AD00E45D97 /* HalfSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSheet.swift; sourceTree = "<group>"; };
 		299B38CF28E3DECE00E45D97 /* AppRootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootViewModel.swift; sourceTree = "<group>"; };
 		299B38D328E5F78400E45D97 /* CongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsView.swift; sourceTree = "<group>"; };
@@ -331,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				298613AC28C964D900BDC744 /* Info.plist */,
+				298D5EE829CCF4C20062F16E /* ForceSwift+Extra */,
 				2963770B29C10CFB00D45AB6 /* SOQL */,
 				2944F87F28B98C2C0098ED1B /* Extensions */,
 				2984C93D2954F091009669EF /* Utilities */,
@@ -448,6 +465,7 @@
 		2944F87F28B98C2C0098ED1B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				298D5EF729CCFFD00062F16E /* UserDefaults.swift */,
 				299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */,
 				29BAF6DC28F3AE8B00A3F9EB /* String+StringWidth.swift */,
 				29A39BC22937F46D005833C2 /* String+MD5.swift */,
@@ -544,6 +562,20 @@
 				29AC2F0228F8B2D7003F56F6 /* Roboto-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		298D5EE829CCF4C20062F16E /* ForceSwift+Extra */ = {
+			isa = PBXGroup;
+			children = (
+				298D5EEB29CCF5340062F16E /* ForceAuth.swift */,
+				298D5EE929CCF5340062F16E /* ForceAuthManager.swift */,
+				298D5EEA29CCF5340062F16E /* ForceAuthStore.swift */,
+				298D5EEF29CCF94D0062F16E /* ForceUserIdentifier.swift */,
+				298D5EF029CCF94D0062F16E /* Keychain.swift */,
+				298D5EF129CCF94D0062F16E /* WebAuthenticationSession.swift */,
+				298D5EF529CCFCE60062F16E /* ForceRequest+Auth.swift */,
+			);
+			path = "ForceSwift+Extra";
 			sourceTree = "<group>";
 		};
 		29AC2EF728F88FAB003F56F6 /* LoyaltyNavigationLink */ = {
@@ -712,6 +744,7 @@
 				299B38D428E5F78400E45D97 /* CongratsView.swift in Sources */,
 				29BAF6E328F4824B00A3F9EB /* VoucherCardView.swift in Sources */,
 				299B38DA28EB597700E45D97 /* ResetPasswordView.swift in Sources */,
+				298D5EF329CCF94D0062F16E /* ForceUserIdentifier.swift in Sources */,
 				299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */,
 				3FE7193529BB6E020087A49F /* ProductReviewView.swift in Sources */,
 				292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */,
@@ -724,6 +757,7 @@
 				294E341E293C39E6001F7F48 /* ImageViewModel.swift in Sources */,
 				29BAF6E728F4BE5A00A3F9EB /* AllVouchersView.swift in Sources */,
 				218A36AA28B85CA500FCEE39 /* BottomNavTabsView.swift in Sources */,
+				298D5EF629CCFCE60062F16E /* ForceRequest+Auth.swift in Sources */,
 				216F219B28B618C700DAA66D /* HomeView.swift in Sources */,
 				298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */,
 				2984C9442954F091009669EF /* LoyaltyUtilities.swift in Sources */,
@@ -735,8 +769,10 @@
 				296D393328DBCE050078C88E /* OnboardingView.swift in Sources */,
 				2906B1D628FF5E88006EAB2D /* FirestoreManager.swift in Sources */,
 				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
+				298D5EED29CCF5340062F16E /* ForceAuthStore.swift in Sources */,
 				290EA9BD2928ADB700BBF2F2 /* ViewAllView.swift in Sources */,
 				3FE7193229BB6A5D0087A49F /* ProductDetailsView.swift in Sources */,
+				298D5EEE29CCF5340062F16E /* ForceAuth.swift in Sources */,
 				298C664A2980743B00C613D8 /* AppDelegate.swift in Sources */,
 				29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */,
 				299B38D828E796BC00E45D97 /* FullSheet.swift in Sources */,
@@ -760,7 +796,9 @@
 				298613AE28C9652300BDC744 /* FontStyles.swift in Sources */,
 				2963771629C10D6200D45AB6 /* Record.swift in Sources */,
 				299B38CA28E365AD00E45D97 /* HalfSheet.swift in Sources */,
+				298D5EF829CCFFD00062F16E /* UserDefaults.swift in Sources */,
 				29BAF6E528F485DA00A3F9EB /* VouchersView.swift in Sources */,
+				298D5EF229CCF94D0062F16E /* WebAuthenticationSession.swift in Sources */,
 				216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */,
 				29FEDDF2294293BF0014BEBA /* UITabView.swift in Sources */,
 				3FE7193F29BEFD3A0087A49F /* OrderPlacedView.swift in Sources */,
@@ -780,6 +818,7 @@
 				AF27C5AC2981118D008C7D79 /* LoyaltyTextField.swift in Sources */,
 				29BAF6EF28F4E27400A3F9EB /* BadgesView.swift in Sources */,
 				AF11147C29C21CB300CAF30D /* PaymentCardView.swift in Sources */,
+				298D5EF429CCF94D0062F16E /* Keychain.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
 				29BAF6ED28F4DE1C00A3F9EB /* BadgeCardView.swift in Sources */,
 				29A39BC529397B98005833C2 /* EmptyStateView.swift in Sources */,
@@ -797,6 +836,7 @@
 				218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */,
 				29BAF6CF28F0FC3A00A3F9EB /* CornerRadiusStyle.swift in Sources */,
 				2906B1DB28FF7348006EAB2D /* CheckboxStyle.swift in Sources */,
+				298D5EEC29CCF5340062F16E /* ForceAuthManager.swift in Sources */,
 				2984C9452954F091009669EF /* LocalFileManager.swift in Sources */,
 				3F718AD829BA35BD0019B70F /* ProductView.swift in Sources */,
 				AF11147A29C218F000CAF30D /* AmountPayableView.swift in Sources */,

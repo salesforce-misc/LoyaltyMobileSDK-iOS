@@ -29,6 +29,8 @@ public enum ForceError: Error, Equatable {
     case userIdentityUnknown
     // 9
     case authNotFoundInKeychain
+    // 10
+    case authenticationFailed
 
     public var customDescription: String {
         switch self {
@@ -42,6 +44,7 @@ public enum ForceError: Error, Equatable {
         case .authenticationNeeded: return "Authentication is need."
         case .userIdentityUnknown: return "User Identity has not been set."
         case .authNotFoundInKeychain: return "Cannot find the auth from Keychain."
+        case .authenticationFailed: return "Authentication failed."
         }
     }
 }

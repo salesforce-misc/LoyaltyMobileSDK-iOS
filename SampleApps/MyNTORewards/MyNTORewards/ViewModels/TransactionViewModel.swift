@@ -14,6 +14,12 @@ class TransactionViewModel: ObservableObject {
     @Published var olderTransactions: [TransactionJournal] = []
     
     private let transactionFolderName = "TransactionJournal"
+    private let authManager = ForceAuthManager.shared
+    private var loyaltyAPIManager: LoyaltyAPIManager
+    
+    init() {
+        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager, loyaltyProgramName: AppConstants.Config.loyaltyProgramName)
+    }
     
     @MainActor
     func loadTransactions(membershipNumber: String) async throws {
@@ -42,7 +48,7 @@ class TransactionViewModel: ObservableObject {
     
     func fetchTransactions(membershipNumber: String) async throws -> [TransactionJournal] {
         do {
-            let result = try await LoyaltyAPIManager.shared.getTransactions(for: membershipNumber)
+            let result = try await loyaltyAPIManager.getTransactions(for: membershipNumber)
             let filtered = result.filter { transaction in
                 transaction.pointsChange.contains { currency in
                     currency.loyaltyMemberCurrency == AppConstants.Config.rewardCurrencyName
