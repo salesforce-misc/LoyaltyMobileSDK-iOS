@@ -10,7 +10,12 @@ import UIKit
 
 public extension ForceClient {
     
-    func fetchImage(url: String?, accessToken: String? = nil) async -> UIImage? {
+    
+    /// Fetch an image
+    /// - Parameters:
+    ///   - url: The URL of the image
+    /// - Returns: An ``UIImage`` if successful or ``nil`` otherwise
+    func fetchImage(url: String?) async -> UIImage? {
         
         guard let url = url,
               let imageUrl = URL(string: url) else {
