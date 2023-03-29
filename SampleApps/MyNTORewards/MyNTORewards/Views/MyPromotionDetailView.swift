@@ -16,6 +16,7 @@ struct MyPromotionDetailView: View {
     
     let promotion: PromotionResult
     @Binding var processing: Bool
+//	@Binding var shopTapped: Bool
     
     var body: some View {
         
@@ -81,7 +82,9 @@ struct MyPromotionDetailView: View {
                         HStack {
                             Spacer()
                             Button("Shop") {
-                                
+                                dismiss()
+//								shopTapped = true
+								promotionVM.shopPromotion()
                             }
                             .buttonStyle(DarkShortPromotionButton())
                             Spacer()
@@ -134,7 +137,7 @@ struct MyPromotionDetailView: View {
 
 struct MyPromotionDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MyPromotionDetailView(promotion: dev.promotion, processing: .constant(false))
+		MyPromotionDetailView(promotion: dev.promotion, processing: .constant(false))
             .environmentObject(dev.rootVM)
             .environmentObject(dev.promotionVM)
     }

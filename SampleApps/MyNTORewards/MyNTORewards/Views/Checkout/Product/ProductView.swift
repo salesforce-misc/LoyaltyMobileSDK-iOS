@@ -34,7 +34,7 @@ struct ProductView: View {
 			}
 			.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
 		}
-		.edgesIgnoringSafeArea(.bottom)
+//		.edgesIgnoringSafeArea(.bottom)
 	}
 }
 

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OrderPlacedView: View {
+	@EnvironmentObject var promotionVM: PromotionViewModel
     var body: some View {
 		VStack {
 			NavigationBarView()
@@ -23,13 +24,16 @@ struct OrderPlacedView: View {
 			}
 			.padding(75)
 			Spacer()
-			Button{} label: {
+			Button{
+				promotionVM.isCheckoutNavigationActive = false
+			} label: {
 				Text("Continue Shopping")
 					.font(.boldButtonText)
 			}
 				.buttonStyle(DarkFlexibleButton())
 				.frame(width: 220)
 		}
+		.navigationBarBackButtonHidden(true)
     }
 }
 

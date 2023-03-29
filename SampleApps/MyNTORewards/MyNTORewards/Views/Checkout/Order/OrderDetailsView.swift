@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct OrderDetailsView: View {
-	@State private var tabIndex = 0
+	@ObservedObject private var viewModel = OrderDetailsViewModel()
+	@State private var index = 0
 	let tabbarItems = ["1. Shipping", "2. Payment"]
     var body: some View {
 		VStack {
@@ -19,16 +20,17 @@ struct OrderDetailsView: View {
 					.padding()
 				Spacer()
 			}
-			TopTabBar(barItems: tabbarItems, tabIndex: $tabIndex)
-			TabView(selection: $tabIndex) {
+			TopTabBar(barItems: tabbarItems, tabIndex: $viewModel.selectedIndex)
+			TabView(selection: $viewModel.selectedIndex) {
 				ShippingDetailsView()
 					.tag(0)
-				Color.gray
+				PaymentDetailsView()
 					.tag(1)
 			}
 			.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
 		}
-		.edgesIgnoringSafeArea(.bottom)
+		.environmentObject(viewModel)
+//		.edgesIgnoringSafeArea(.bottom)
     }
 }
 

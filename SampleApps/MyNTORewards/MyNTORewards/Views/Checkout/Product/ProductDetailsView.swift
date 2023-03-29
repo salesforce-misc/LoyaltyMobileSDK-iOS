@@ -11,6 +11,7 @@ struct ProductDetailsView: View {
 	@State private var sizeSelected = -1
 	@State private var colorSelected = -1
 	@State private var quantitySelected: Int = 1
+	@State private var moveToOrderDetails = false
 	var body: some View {
 		ScrollView(showsIndicators: false) {
 			ZStack{
@@ -41,8 +42,15 @@ struct ProductDetailsView: View {
 					}
 					
 					VStack {
-						Button("Buy Now") {}
+						NavigationLink(isActive: $moveToOrderDetails) {
+							OrderDetailsView()
+						} label: {
+							Button("Buy Now") {
+								moveToOrderDetails.toggle()
+							}
 							.buttonStyle(DarkLongButton())
+						}
+
 						Button("Add to Cart") {}
 							.buttonStyle(LightLongPromotionButton())
 					}
@@ -50,7 +58,6 @@ struct ProductDetailsView: View {
 				}
 			}
 		}
-		.edgesIgnoringSafeArea(.all)
 	}
 }
 

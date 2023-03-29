@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PaymentDetailsView: View {
+	@EnvironmentObject private var orderDetailsVM: OrderDetailsViewModel
+	
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 24) {
@@ -16,13 +18,18 @@ struct PaymentDetailsView: View {
                 AmountPayableView()
                 PaymentCardView()
                     .cornerRadius(16, corners: .allCorners)
-                
-                Button{} label: {
-                    Text("Confirm Order")
-                        .font(.boldButtonText)
-                }
-                .buttonStyle(DarkFlexibleButton())
-                .padding()
+				NavigationLink(isActive: $orderDetailsVM.isOrderPlacedNavigationActive){
+					OrderPlacedView()
+				} label: {
+					Button{
+						orderDetailsVM.createOrder()
+					} label: {
+						Text("Confirm Order")
+							.font(.boldButtonText)
+					}
+					.buttonStyle(DarkFlexibleButton())
+					.padding()
+				}
             }.padding()
         }
         .background(Color(hex: "#F1F3FB"))

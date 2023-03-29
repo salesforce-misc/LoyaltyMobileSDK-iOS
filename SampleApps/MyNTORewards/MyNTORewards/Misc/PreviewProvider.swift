@@ -164,6 +164,7 @@ class DeveloperPreview {
     let voucherVM = VoucherViewModel()
 	let imageVM = ImageViewModel()
     let transactionVM = TransactionViewModel()
+	let orderDetailsVM = OrderDetailsViewModel()
     
     private init() {
         setMember(member: member)

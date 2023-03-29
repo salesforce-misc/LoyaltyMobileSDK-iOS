@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddressView: View {
+	@EnvironmentObject var orderDetailsViewModel: OrderDetailsViewModel
     var body: some View {
 		VStack(spacing: 0) {
 			HStack {
@@ -38,7 +39,11 @@ struct AddressView: View {
 			}
 			.padding(.horizontal)
 			.padding(.top)
-			Button("Deliver to This Address") {}
+			Button("Deliver to This Address") {
+				withAnimation {
+					orderDetailsViewModel.selectTabIndex(1)
+				}
+			}
 				.buttonStyle(DarkFlexibleButton())
 		}
 		.background(Color.white)
@@ -49,5 +54,6 @@ struct AddressView: View {
 struct AddressView_Previews: PreviewProvider {
     static var previews: some View {
         AddressView()
+			.environmentObject(dev.orderDetailsVM)
     }
 }

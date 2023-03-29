@@ -19,7 +19,11 @@ class PromotionViewModel: ObservableObject {
     // The tuple represents(isActionDone: Bool, isModalDismissed: Bool)
     // actionTaskList => [promotionId: (isActionDone, isModalDismissed)]
     @Published var actionTaskList: [String: (Bool, Bool)] = [:]
-    
+	@Published var isCheckoutNavigationActive = false
+	
+	final func shopPromotion() {
+		isCheckoutNavigationActive = true
+	}
     
     // Network call to fetch all eligible promotions
     private func fetchEligiblePromotions(membershipNumber: String) async throws -> [PromotionResult] {

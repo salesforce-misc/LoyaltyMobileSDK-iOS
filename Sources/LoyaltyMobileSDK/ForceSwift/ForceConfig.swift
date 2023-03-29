@@ -9,7 +9,7 @@ import Foundation
 
 public struct ForceConfig {
     
-    public static let defaultVersion = "58.0" // latest version
+    public static let defaultVersion = "56.0" // latest version
     public static let defaultAuthPath = "/services/oauth2/authorize"
     public static let defaultTokenPath = "/services/oauth2/token"
     public static let defaultRevokePath = "/services/oauth2/revoke"
