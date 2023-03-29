@@ -16,6 +16,13 @@ class BenefitViewModel: ObservableObject {
     @Published var benefitsPreview: [BenefitModel] = []
     @Published var isLoaded = false
     
+    private let authManager = ForceAuthManager.shared
+    private var loyaltyAPIManager: LoyaltyAPIManager
+    
+    init() {
+        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager, loyaltyProgramName: AppConstants.Config.loyaltyProgramName)
+    }
+    
     func getBenefits(memberId: String, reload: Bool = false) async throws {
 
         isLoaded = false
@@ -55,7 +62,7 @@ class BenefitViewModel: ObservableObject {
     private func fetchBenefits(memberId: String) async throws {
         
         do {
-            let results: [BenefitModel] = try await LoyaltyAPIManager.shared.getMemberBenefits(for: memberId)
+            let results: [BenefitModel] = try await loyaltyAPIManager.getMemberBenefits(for: memberId)
             
             benefits = results
             benefitsPreview = Array(benefits.prefix(5))

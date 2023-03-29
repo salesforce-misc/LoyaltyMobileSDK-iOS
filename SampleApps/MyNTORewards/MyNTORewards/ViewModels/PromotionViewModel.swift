@@ -25,10 +25,17 @@ class PromotionViewModel: ObservableObject {
 		isCheckoutNavigationActive = true
 	}
     
+    private let authManager = ForceAuthManager.shared
+    private var loyaltyAPIManager: LoyaltyAPIManager
+    
+    init() {
+        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager, loyaltyProgramName: AppConstants.Config.loyaltyProgramName)
+    }
+    
     // Network call to fetch all eligible promotions
     private func fetchEligiblePromotions(membershipNumber: String) async throws -> [PromotionResult] {
         do {
-            let result = try await LoyaltyAPIManager.shared.getPromotions(membershipNumber: membershipNumber)
+            let result = try await loyaltyAPIManager.getPromotions(membershipNumber: membershipNumber)
             let eligible = result.outputParameters.outputParameters.results.filter { result in
                 return result.memberEligibilityCategory != "Ineligible"
             }
@@ -156,7 +163,7 @@ class PromotionViewModel: ObservableObject {
             let promotions = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
             let unenrolled = promotions.filter { result in
                 return (result.memberEligibilityCategory == "EligibleButNotEnrolled" && result.promotionEnrollmentRqr == true)
-            }
+            } 
             
             await MainActor.run {
                 unenrolledPromotions = unenrolled
@@ -191,7 +198,7 @@ class PromotionViewModel: ObservableObject {
     
     func enroll(membershipNumber: String, promotionName: String, promotionId: String) async throws {
         do {
-            try await LoyaltyAPIManager.shared.enrollIn(promotion: promotionName, for: membershipNumber)
+            try await loyaltyAPIManager.enrollIn(promotion: promotionName, for: membershipNumber)
             // fetch all from network
             let _ = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
             await MainActor.run {
@@ -209,7 +216,7 @@ class PromotionViewModel: ObservableObject {
     
     func unenroll(membershipNumber: String, promotionName: String, promotionId: String) async throws {
         do {
-			try await LoyaltyAPIManager.shared.unenroll(promotionId: promotionId, for: membershipNumber)
+			try await loyaltyAPIManager.unenroll(promotionId: promotionId, for: membershipNumber)
             let _ = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
             await MainActor.run {
                 if actionTaskList[promotionId] != nil {
