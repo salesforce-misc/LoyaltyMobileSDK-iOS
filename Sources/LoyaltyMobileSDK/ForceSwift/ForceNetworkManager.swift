@@ -39,6 +39,10 @@ public class ForceNetworkManager {
     }
 
     /// Use Async/Await to fetch all REST requests
+    /// - Parameters:
+    ///   - type: A type(i.e. model) defined to be used by JSON decoder
+    ///   - request: A URLRequest to be executed by URLSession
+    /// - Returns: A decoded JSON response result
     public func fetch<T: Decodable>(type: T.Type, request: URLRequest) async throws -> T {
       
         do {

@@ -28,7 +28,16 @@ public struct ForceRequest {
         static let contentType = "Content-Type"
     }
     
-    // create a URLRequest with path
+    /// create a URLRequest with path
+    /// - Parameters:
+    ///   - path: The path of the request
+    ///   - method: The HTTP Method, for example ``GET``, ``POST`` and etc
+    ///   - queryItems: The request queryItems
+    ///   - headers: The request headers
+    ///   - body: The request body
+    ///   - cachePolicy: The request ``CachePolicy``
+    ///   - timeoutInterval: The request ``TimeInterval``
+    /// - Returns: A ``URLRequest``
     public static func create(
         path: String,
         method: String? = nil,
@@ -63,7 +72,17 @@ public struct ForceRequest {
         
     }
     
-    // create a URLRequest with URL
+    
+    /// create a URLRequest with URL
+    /// - Parameters:
+    ///   - url: The request ``URL``
+    ///   - method: The HTTP Method, for example ``GET``, ``POST`` and etc
+    ///   - queryItems: The request queryItems
+    ///   - headers: The request headers
+    ///   - body: The request body
+    ///   - cachePolicy: The request ``CachePolicy``
+    ///   - timeoutInterval: The request ``TimeInterval``
+    /// - Returns: A ``URLRequest``
     public static func create(
         url: URL,
         method: String? = nil,
@@ -82,23 +101,16 @@ public struct ForceRequest {
         return createRequest(from: requestURL, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
     }
     
-    public static func transform(from url: URL, add queryItems: [String: String]) throws -> URL {
-
-        var comps = URLComponents()
-        comps.scheme = url.scheme
-        comps.host = url.host
-        comps.path = url.path
-        comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
-            URLQueryItem(name: key, value: value)
-        })
-        guard let newURL = comps.url else {
-            throw URLError(.badURL)
-        }
-        
-        return newURL
-    }
-    
-    public static func createRequest(from url: URL,
+    /// create a URLRequest with URL
+    /// - Parameters:
+    ///   - url: The request ``URL``
+    ///   - method: The HTTP Method, for example ``GET``, ``POST`` and etc
+    ///   - headers: The request headers
+    ///   - body: The request body
+    ///   - cachePolicy: The request ``CachePolicy``
+    ///   - timeoutInterval: The request ``TimeInterval``
+    /// - Returns: A ``URLRequest``
+    private static func createRequest(from url: URL,
                        method: String? = nil,
                        headers: [String: String]? = nil,
                        body: Data? = nil,
@@ -128,6 +140,34 @@ public struct ForceRequest {
         return request
     }
     
+    
+    /// Transform a URL with queryItems added
+    /// - Parameters:
+    ///   - url: The URL to be transformed
+    ///   - queryItems: QueryItems to be added
+    /// - Returns: A new URL with queryItems added
+    public static func transform(from url: URL, add queryItems: [String: String]) throws -> URL {
+
+        var comps = URLComponents()
+        comps.scheme = url.scheme
+        comps.host = url.host
+        comps.path = url.path
+        comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
+            URLQueryItem(name: key, value: value)
+        })
+        guard let newURL = comps.url else {
+            throw URLError(.badURL)
+        }
+        
+        return newURL
+    }
+    
+    
+    /// Attach an accessToken to the request
+    /// - Parameters:
+    ///   - request: A request to be updated
+    ///   - accessToken: An accessToken for an API service
+    /// - Returns: A new ``URLRequest`` with authorization added
     public static func setAuthorization(request: URLRequest, accessToken: String) -> URLRequest {
         
         var newRequest = request

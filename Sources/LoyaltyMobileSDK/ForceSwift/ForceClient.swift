@@ -10,11 +10,18 @@ import Foundation
 public class ForceClient {
     public var auth: ForceAuthenticator
     
+    
+    /// Create a new instance from a given ``ForceAuthenticator``
+    /// - Parameter auth: A ``ForceAuthenticator``
     public init(auth: ForceAuthenticator) {
         self.auth = auth
     }
     
-    /// Use Async/Await to fetch all REST requests
+    /// Use Async/Await to fetch all REST requests with authentication 
+    /// - Parameters:
+    ///   - type: A type(i.e. model) defined to be used by JSON decoder
+    ///   - request: A URLRequest to be executed by URLSession
+    /// - Returns: A decoded JSON response result
     public func fetch<T: Decodable>(type: T.Type, with request: URLRequest) async throws -> T {
       
         do {
@@ -35,9 +42,12 @@ public class ForceClient {
         }
     }
     
-    public func fetchLocalJson<T: Decodable>(
-        type: T.Type,
-        file: String) throws -> T {
+    /// Fetch from a local JSON file
+    /// - Parameters:
+    ///   - type: A type(i.e. model) defined to be used by JSON decoder
+    ///   - file: Filename of a local JSON file
+    /// - Returns: A decoded JSON response result
+    public func fetchLocalJson<T: Decodable>(type: T.Type, file: String) throws -> T {
             
         guard let fileURL = Bundle.main.url(forResource: file, withExtension: "json") else {
             throw URLError(.badURL, userInfo: [NSURLErrorFailingURLStringErrorKey : "\(file).json"])

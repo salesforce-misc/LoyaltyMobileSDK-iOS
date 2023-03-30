@@ -15,6 +15,12 @@ public struct ForceConfig {
     public static let defaultRevokePath = "/services/oauth2/revoke"
     public static let defaultServiceIdentifier = "com.salesforce.industries.mobile"
     
+    
+    /// Get API path
+    /// - Parameters:
+    ///   - api: The API name
+    ///   - version: The API version number
+    /// - Returns: The HTTP path can be extended to host
     public static func path(for api: String, version: String = defaultVersion) -> String {
         "/services/data/v\(version)/\(api)"
     }
