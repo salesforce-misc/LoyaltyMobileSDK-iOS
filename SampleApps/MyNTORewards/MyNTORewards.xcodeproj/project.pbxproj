@@ -150,6 +150,8 @@
 		AF11147C29C21CB300CAF30D /* PaymentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF11147B29C21CB300CAF30D /* PaymentCardView.swift */; };
 		AF11147E29C2230800CAF30D /* PaymentCardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF11147D29C2230800CAF30D /* PaymentCardTextField.swift */; };
 		AF27C5AC2981118D008C7D79 /* LoyaltyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */; };
+		AFC75D3429D458DF003CC86A /* ShippingMethodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */; };
+		AFC75D3629D45D45003CC86A /* ShippingMethod.json in Resources */ = {isa = PBXBuildFile; fileRef = AFC75D3529D45D45003CC86A /* ShippingMethod.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -295,6 +297,8 @@
 		AF11147B29C21CB300CAF30D /* PaymentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardView.swift; sourceTree = "<group>"; };
 		AF11147D29C2230800CAF30D /* PaymentCardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardTextField.swift; sourceTree = "<group>"; };
 		AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyaltyTextField.swift; sourceTree = "<group>"; };
+		AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingMethodModel.swift; sourceTree = "<group>"; };
+		AFC75D3529D45D45003CC86A /* ShippingMethod.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ShippingMethod.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -436,6 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				3FFE1C9A29A29FF900F43253 /* UnenrollPromotion.json */,
+				AFC75D3529D45D45003CC86A /* ShippingMethod.json */,
 				3FFE1C9C29A37D5300F43253 /* GetVouchers.json */,
 				2906B1F02901E1A4006EAB2D /* Vouchers.json */,
 				2906B1F22901E218006EAB2D /* Promotions.json */,
@@ -481,6 +486,7 @@
 				296D393028DBCB530078C88E /* OnboardingModel.swift */,
 				299B38E128ED24B900E45D97 /* PasswordResetModel.swift */,
 				2906B1D328FF5031006EAB2D /* MemberModel.swift */,
+				AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */,
 				292ADC6F294C03D900753541 /* PromotionModel+Image.swift */,
 				292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */,
 				292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */,
@@ -714,6 +720,7 @@
 				298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */,
 				290EA9B92926F1A700BBF2F2 /* Profile.json in Resources */,
 				3FFE1C9B29A29FF900F43253 /* UnenrollPromotion.json in Resources */,
+				AFC75D3629D45D45003CC86A /* ShippingMethod.json in Resources */,
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
 				29AC2F0328F8B2D7003F56F6 /* Roboto-Regular.ttf in Resources */,
 				2906B1F12901E1A4006EAB2D /* Vouchers.json in Resources */,
@@ -751,6 +758,7 @@
 				299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */,
 				3FE7193529BB6E020087A49F /* ProductReviewView.swift in Sources */,
 				292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */,
+				AFC75D3429D458DF003CC86A /* ShippingMethodModel.swift in Sources */,
 				292ADC72294C04AB00753541 /* VocherModel+VoucherValue.swift in Sources */,
 				AF11147829C20EBB00CAF30D /* OrderVoucherView.swift in Sources */,
 				AF11147429C2043E00CAF30D /* VoucherPickerView.swift in Sources */,

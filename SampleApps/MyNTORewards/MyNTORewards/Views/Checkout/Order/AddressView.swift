@@ -47,7 +47,14 @@ struct AddressView: View {
 				.buttonStyle(DarkFlexibleButton())
 		}
 		.background(Color.white)
-		
+        .task {
+            do {
+                let shippingType = try await orderDetailsViewModel.getShippingType()
+                print(shippingType)
+            } catch {
+                print("Load Vouchers Error: \(error)")
+            }
+        }
     }
 }
 
