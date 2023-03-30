@@ -22,7 +22,9 @@ struct PaymentDetailsView: View {
 					OrderPlacedView()
 				} label: {
 					Button{
-						orderDetailsVM.createOrder()
+						Task {
+							await orderDetailsVM.createOrder()
+						}
 					} label: {
 						Text("Confirm Order")
 							.font(.boldButtonText)
