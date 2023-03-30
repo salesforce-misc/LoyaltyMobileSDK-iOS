@@ -80,6 +80,7 @@
 		298D5EF429CCF94D0062F16E /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EF029CCF94D0062F16E /* Keychain.swift */; };
 		298D5EF629CCFCE60062F16E /* ForceRequest+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EF529CCFCE60062F16E /* ForceRequest+Auth.swift */; };
 		298D5EF829CCFFD00062F16E /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EF729CCFFD00062F16E /* UserDefaults.swift */; };
+		298D5EFA29D4E5F00062F16E /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EF929D4E5F00062F16E /* String+Date.swift */; };
 		299B38CA28E365AD00E45D97 /* HalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38C928E365AD00E45D97 /* HalfSheet.swift */; };
 		299B38D028E3DECE00E45D97 /* AppRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38CF28E3DECE00E45D97 /* AppRootViewModel.swift */; };
 		299B38D428E5F78400E45D97 /* CongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D328E5F78400E45D97 /* CongratsView.swift */; };
@@ -224,6 +225,7 @@
 		298D5EF129CCF94D0062F16E /* WebAuthenticationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationSession.swift; sourceTree = "<group>"; };
 		298D5EF529CCFCE60062F16E /* ForceRequest+Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceRequest+Auth.swift"; sourceTree = "<group>"; };
 		298D5EF729CCFFD00062F16E /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		298D5EF929D4E5F00062F16E /* String+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Date.swift"; sourceTree = "<group>"; };
 		299B38C928E365AD00E45D97 /* HalfSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSheet.swift; sourceTree = "<group>"; };
 		299B38CF28E3DECE00E45D97 /* AppRootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootViewModel.swift; sourceTree = "<group>"; };
 		299B38D328E5F78400E45D97 /* CongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsView.swift; sourceTree = "<group>"; };
@@ -467,6 +469,7 @@
 			children = (
 				298D5EF729CCFFD00062F16E /* UserDefaults.swift */,
 				299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */,
+				298D5EF929D4E5F00062F16E /* String+Date.swift */,
 				29BAF6DC28F3AE8B00A3F9EB /* String+StringWidth.swift */,
 				29A39BC22937F46D005833C2 /* String+MD5.swift */,
 			);
@@ -747,6 +750,7 @@
 				298D5EF329CCF94D0062F16E /* ForceUserIdentifier.swift in Sources */,
 				299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */,
 				3FE7193529BB6E020087A49F /* ProductReviewView.swift in Sources */,
+				298D5EFA29D4E5F00062F16E /* String+Date.swift in Sources */,
 				292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */,
 				292ADC72294C04AB00753541 /* VocherModel+VoucherValue.swift in Sources */,
 				AF11147829C20EBB00CAF30D /* OrderVoucherView.swift in Sources */,

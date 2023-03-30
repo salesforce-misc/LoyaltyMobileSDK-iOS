@@ -48,6 +48,10 @@ public class LoyaltyAPIManager {
 		case getVouchers(programName: String, membershipNumber: String, version: String)
     }
     
+    
+    /// Get path for given API resource
+    /// - Parameter resource: A ``Resource``
+    /// - Returns: A string represents URL path of the resource
     public func getPath(for resource: Resource) -> String {
         
         switch resource {
@@ -74,7 +78,7 @@ public class LoyaltyAPIManager {
     /// Get Member Benefits - Makes an asynchronous request for data from the Salesforce
     /// - Parameters:
     ///   - for memberId: The member who has these benefits
-    /// - Returns: An ``BenefitModel`` array
+    /// - Returns: A ``BenefitModel`` array
     public func getMemberBenefits(for memberId: String,
                                   version: String = ForceConfig.defaultVersion,
                                   devMode: Bool = false) async throws -> [BenefitModel] {
@@ -96,7 +100,7 @@ public class LoyaltyAPIManager {
     /// - Parameters:
     ///   - for memberId: The member who has these benefits
     ///   - programName: The loytalty program name
-    /// - Returns: An ``ProfileModel`` instance
+    /// - Returns: A ``ProfileModel`` instance
     public func getMemberProfile(for memberId: String,
                                  version: String = ForceConfig.defaultVersion,
                                  devMode: Bool = false) async throws -> ProfileModel {
@@ -114,6 +118,17 @@ public class LoyaltyAPIManager {
         }
     }
     
+    
+    /// Enroll a member to a Loyalty Program
+    /// - Parameters:
+    ///   - membershipNumber: The memership number for the loyalty program
+    ///   - firstName: The first name
+    ///   - lastName: The last name
+    ///   - email: The email address
+    ///   - phone: The phone number
+    ///   - emailNotification: Whether subscribe to the mailinglist
+    ///   - version: The API version number
+    /// - Returns: A ``EnrollmentOutputModel`` instance
     public func postEnrollment(membershipNumber: String,
                                firstName: String,
                                lastName: String,
@@ -166,6 +181,12 @@ public class LoyaltyAPIManager {
         
     }
     
+    
+    /// Enroll into a promotion
+    /// - Parameters:
+    ///   - promotionName: The promotion name
+    ///   - membershipNumber: The membership number
+    ///   - version: The API version number
     public func enrollIn(promotion promotionName: String,
                          for membershipNumber: String,
                          version: String = ForceConfig.defaultVersion) async throws {
@@ -188,6 +209,13 @@ public class LoyaltyAPIManager {
         }
     }
 	
+    
+    /// Unroll from a promotion
+    /// - Parameters:
+    ///   - promotionId: The promotion ID
+    ///   - membershipNumber: The membership Number
+    ///   - version: The API version number
+    ///   - devMode: Whether it's in devMode
 	public final func unenroll(promotionId: String,
                                for membershipNumber: String,
                                version: String = ForceConfig.defaultVersion,
@@ -203,6 +231,13 @@ public class LoyaltyAPIManager {
         try await unenroll(requestBody: body, version: version, devMode: devMode)
 	}
 	
+    
+    /// Unroll from a promotion
+    /// - Parameters:
+    ///   - promotionName: The promotion name
+    ///   - membershipNumber: The membership Number
+    ///   - version: The API version number
+    ///   - devMode: Whether it's in devMode
 	public final func unenroll(promotionName: String,
                                for membershipNumber: String,
                                version: String = ForceConfig.defaultVersion,
@@ -239,6 +274,13 @@ public class LoyaltyAPIManager {
 		}
 	}
 	
+    
+    /// Get promotions for the loyalty member
+    /// - Parameters:
+    ///   - memberId: The member ID
+    ///   - version: The API version number
+    ///   - devMode: Whether it's in devMode
+    /// - Returns: A ``PromotionModel`` instance
     public func getPromotions(memberId: String,
                               version: String = ForceConfig.defaultVersion,
                               devMode: Bool = false) async throws -> PromotionModel {
@@ -250,6 +292,12 @@ public class LoyaltyAPIManager {
         return try await getPromotions(requsetBody: body, version: version, devMode: devMode)
     }
     
+    /// Get promotions for the loyalty member
+    /// - Parameters:
+    ///   - membershipNumber: The membership number
+    ///   - version: The API version number
+    ///   - devMode: Whether it's in devMode
+    /// - Returns: A ``PromotionModel`` instance
     public func getPromotions(membershipNumber: String,
                               version: String = ForceConfig.defaultVersion,
                               devMode: Bool = false) async throws -> PromotionModel {
@@ -288,7 +336,7 @@ public class LoyaltyAPIManager {
     ///  - journalSubType: The journal subtype of transaction journals that are retrieved.
     ///  - periodStartDate: Retrieve transaction journals until this date.
     ///  - periodEndDate: Retrieve transaction journals until this date.
-    /// - Returns: An ``TransactionModel`` instance
+    /// - Returns: A ``TransactionModel`` instance
     public func getTransactions(for membershipNumber: String,
                                 pageNumber: Int? = nil,
                                 journalTypeName: String? = nil,
@@ -318,6 +366,21 @@ public class LoyaltyAPIManager {
         }
     }
 	
+    
+    /// Get vouchers information for the loyalty member
+    /// - Parameters:
+    ///   - membershipNumber: The membership number of the loyalty program member whose issued vouchers are retrieved.
+    ///   - voucherStatus: The list of statuses for which you want to the get member's vouchers.
+    ///   - pageNumber: Number of the page you want returned. If you don’t specify a value, the first page is returned. Each page contains 200 vouchers and the vouchers are sorted based on the date on which the Voucher record was created.
+    ///   - productId: The ID of products that are related with the member vouchers you want to get. You can specify the ID of up to 20 products.
+    ///   - productCategoryId: The ID of product categories that are related with the member vouchers you want to get. You can specify the ID of up to 20 product categories.
+    ///   - productName: The product name
+    ///   - productCategoryName: The names of product categories that are related with the member vouchers you want to get. You can specify the ID of up to 20 product categories.
+    ///   - sortBy: Specifies the Voucher field that's used to sort the vouchers you want to get. The default value is ExpirationDate.
+    ///   - sortOrder: Specifies the sort order of the vouchers you want to get. The default value is Ascending.
+    ///   - version: The API version number
+    ///   - devMode: Whether it's in devMode
+    /// - Returns: A ``VoucherModel`` array
 	public func getVouchers(
 		membershipNumber: String,
 		voucherStatus: [VoucherStatus]? = nil,
