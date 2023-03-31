@@ -10,7 +10,7 @@ import LoyaltyMobileSDK
 
 struct ForceAuthStore {
     
-    static let serviceId: String = ForceConfig.defaultServiceIdentifier
+    static let serviceId: String = AppSettings.Defaults.serviceIdentifier
     
     static func save(auth: ForceAuth) throws {
         let data = try JSONEncoder().encode(auth)

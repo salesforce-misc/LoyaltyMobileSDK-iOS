@@ -45,8 +45,10 @@
 		292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */; };
 		292ADC76294C064600753541 /* ProfileModel+CurrencyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC75294C064600753541 /* ProfileModel+CurrencyPoints.swift */; };
 		29367606293209CB00E09A6D /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29367605293209CB00E09A6D /* CachedAsyncImage.swift */; };
+		293F642F29D64E48001AC795 /* CommunityMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F642E29D64E48001AC795 /* CommunityMemberModel.swift */; };
+		293F643129D6C5AD001AC795 /* ForceConnectedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */; };
 		2941A23F28BE803F005026CF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A23E28BE803F005026CF /* Color.swift */; };
-		2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppConstants.swift */; };
+		2944F88A28B9A7220098ED1B /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppSettings.swift */; };
 		294E341E293C39E6001F7F48 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E341D293C39E6001F7F48 /* ImageViewModel.swift */; };
 		2963770E29C10D2400D45AB6 /* ForceClient+SOSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2963770C29C10D2400D45AB6 /* ForceClient+SOSL.swift */; };
 		2963770F29C10D2400D45AB6 /* ForceClient+SOQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2963770D29C10D2400D45AB6 /* ForceClient+SOQL.swift */; };
@@ -70,7 +72,7 @@
 		298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613B128CA8A9600BDC744 /* Archivo-Regular.ttf */; };
 		298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613C928CBBFA200BDC744 /* Archivo-Bold.ttf */; };
 		298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */; };
-		298613D628CC275500BDC744 /* Salesforce.json in Resources */ = {isa = PBXBuildFile; fileRef = 298613D528CC275500BDC744 /* Salesforce.json */; };
+		298613D628CC275500BDC744 /* ConnectedApp.json in Resources */ = {isa = PBXBuildFile; fileRef = 298613D528CC275500BDC744 /* ConnectedApp.json */; };
 		298C664A2980743B00C613D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298C66492980743B00C613D8 /* AppDelegate.swift */; };
 		298D5EEC29CCF5340062F16E /* ForceAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EE929CCF5340062F16E /* ForceAuthManager.swift */; };
 		298D5EED29CCF5340062F16E /* ForceAuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EEA29CCF5340062F16E /* ForceAuthStore.swift */; };
@@ -168,8 +170,10 @@
 		292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionHistory+CurrencyPoints.swift"; sourceTree = "<group>"; };
 		292ADC75294C064600753541 /* ProfileModel+CurrencyPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileModel+CurrencyPoints.swift"; sourceTree = "<group>"; };
 		29367605293209CB00E09A6D /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
+		293F642E29D64E48001AC795 /* CommunityMemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMemberModel.swift; sourceTree = "<group>"; };
+		293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceConnectedApp.swift; sourceTree = "<group>"; };
 		2941A23E28BE803F005026CF /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		2944F88928B9A7220098ED1B /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		2944F88928B9A7220098ED1B /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		294E341D293C39E6001F7F48 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
 		2963770C29C10D2400D45AB6 /* ForceClient+SOSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ForceClient+SOSL.swift"; sourceTree = "<group>"; };
 		2963770D29C10D2400D45AB6 /* ForceClient+SOQL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ForceClient+SOQL.swift"; sourceTree = "<group>"; };
@@ -194,7 +198,7 @@
 		298613B128CA8A9600BDC744 /* Archivo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archivo-Regular.ttf"; sourceTree = "<group>"; };
 		298613C928CBBFA200BDC744 /* Archivo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archivo-Bold.ttf"; sourceTree = "<group>"; };
 		298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		298613D528CC275500BDC744 /* Salesforce.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Salesforce.json; sourceTree = "<group>"; };
+		298613D528CC275500BDC744 /* ConnectedApp.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ConnectedApp.json; sourceTree = "<group>"; };
 		298C66492980743B00C613D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		298D5EE929CCF5340062F16E /* ForceAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceAuthManager.swift; sourceTree = "<group>"; };
 		298D5EEA29CCF5340062F16E /* ForceAuthStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceAuthStore.swift; sourceTree = "<group>"; };
@@ -320,11 +324,11 @@
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
 				216F217E28B6141E00DAA66D /* MyNTORewardsApp.swift */,
 				298C66492980743B00C613D8 /* AppDelegate.swift */,
-				2944F88928B9A7220098ED1B /* AppConstants.swift */,
+				2944F88928B9A7220098ED1B /* AppSettings.swift */,
 				218A36A728B85B7900FCEE39 /* Assets.xcassets */,
 				298613A928C9638400BDC744 /* Fonts */,
 				216F218428B6141F00DAA66D /* Preview Content */,
-				298613D528CC275500BDC744 /* Salesforce.json */,
+				298613D528CC275500BDC744 /* ConnectedApp.json */,
 			);
 			path = MyNTORewards;
 			sourceTree = "<group>";
@@ -439,6 +443,7 @@
 				296D393028DBCB530078C88E /* OnboardingModel.swift */,
 				299B38E128ED24B900E45D97 /* PasswordResetModel.swift */,
 				2906B1D328FF5031006EAB2D /* MemberModel.swift */,
+				293F642E29D64E48001AC795 /* CommunityMemberModel.swift */,
 				292ADC6F294C03D900753541 /* PromotionModel+Image.swift */,
 				292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */,
 				292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */,
@@ -530,6 +535,7 @@
 				298D5EEB29CCF5340062F16E /* ForceAuth.swift */,
 				298D5EE929CCF5340062F16E /* ForceAuthManager.swift */,
 				298D5EEA29CCF5340062F16E /* ForceAuthStore.swift */,
+				293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */,
 				298D5EEF29CCF94D0062F16E /* ForceUserIdentifier.swift */,
 				298D5EF029CCF94D0062F16E /* Keychain.swift */,
 				298D5EF129CCF94D0062F16E /* WebAuthenticationSession.swift */,
@@ -628,7 +634,7 @@
 				216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */,
 				298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */,
 				298613B028C9698D00BDC744 /* SF-Pro.ttf in Resources */,
-				298613D628CC275500BDC744 /* Salesforce.json in Resources */,
+				298613D628CC275500BDC744 /* ConnectedApp.json in Resources */,
 				2906B1F52901E308006EAB2D /* Transactions.json in Resources */,
 				2906B1F32901E218006EAB2D /* Promotions.json in Resources */,
 			);
@@ -676,6 +682,7 @@
 				298D5EED29CCF5340062F16E /* ForceAuthStore.swift in Sources */,
 				290EA9BD2928ADB700BBF2F2 /* ViewAllView.swift in Sources */,
 				298D5EEE29CCF5340062F16E /* ForceAuth.swift in Sources */,
+				293F642F29D64E48001AC795 /* CommunityMemberModel.swift in Sources */,
 				298C664A2980743B00C613D8 /* AppDelegate.swift in Sources */,
 				29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */,
 				299B38D828E796BC00E45D97 /* FullSheet.swift in Sources */,
@@ -703,7 +710,7 @@
 				298D5EF229CCF94D0062F16E /* WebAuthenticationSession.swift in Sources */,
 				216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */,
 				29FEDDF2294293BF0014BEBA /* UITabView.swift in Sources */,
-				2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */,
+				2944F88A28B9A7220098ED1B /* AppSettings.swift in Sources */,
 				296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */,
 				29BAF6DD28F3AE8B00A3F9EB /* String+StringWidth.swift in Sources */,
 				2963771529C10D6200D45AB6 /* Address.swift in Sources */,
@@ -733,6 +740,7 @@
 				298D5EEC29CCF5340062F16E /* ForceAuthManager.swift in Sources */,
 				2984C9452954F091009669EF /* LocalFileManager.swift in Sources */,
 				29053F7D2907452800F84561 /* Assets.swift in Sources */,
+				293F643129D6C5AD001AC795 /* ForceConnectedApp.swift in Sources */,
 				29AC2F0728F8B70D003F56F6 /* AllBenefitsView.swift in Sources */,
 				29D7497C2931D10100BC81AD /* AsyncImageView.swift in Sources */,
 				218A36AC28B85D5500FCEE39 /* MyPromotionsView.swift in Sources */,

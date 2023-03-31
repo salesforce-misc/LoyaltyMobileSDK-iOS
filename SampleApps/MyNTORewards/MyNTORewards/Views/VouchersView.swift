@@ -28,7 +28,7 @@ struct VouchersView: View {
             }
             .task {
                 do {
-                    try await voucherVM.loadVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                    try await voucherVM.loadVouchers(membershipNumber: rootVM.member?.membershipNumber ?? "")
                 } catch {
                     print("Load Vouchers Error: \(error)")
                 }

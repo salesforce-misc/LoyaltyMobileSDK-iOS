@@ -14,7 +14,7 @@ struct AllBenefitsView: View {
     
     var body: some View {
         
-        let memberId = rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? ""
+        let memberId = rootVM.member?.loyaltyProgramMemberId ?? ""
         
         if benefitVM.benefits.isEmpty {
             EmptyStateView(title: "You have no Benefits")

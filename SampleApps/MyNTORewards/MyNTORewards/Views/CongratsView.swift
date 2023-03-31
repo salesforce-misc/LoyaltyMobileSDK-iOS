@@ -37,7 +37,7 @@ struct CongratsView: View {
                 .padding(.top, 40)
                 .padding()
             
-            Text("We're thrilled that you joined \(viewModel.member?.enrollmentDetails.loyaltyProgramName ?? "our loyalty program"). You're on your way to earning points and receiving exclusive rewards.")
+            Text("We're thrilled that you joined \(viewModel.member?.loyaltyProgramName ?? "our loyalty program"). You're on your way to earning points and receiving exclusive rewards.")
                 .font(.congratsText)
                 .lineSpacing(5)
                 .multilineTextAlignment(.center)

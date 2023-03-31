@@ -62,7 +62,7 @@ struct MyPromotionDetailView: View {
                                 processing = true
                                 Task {
                                     do {
-                                        try await promotionVM.enroll(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "",
+                                        try await promotionVM.enroll(membershipNumber: rootVM.member?.membershipNumber ?? "",
                                                                      promotionName: currentPromotion.promotionName, promotionId: promotion.id)
                                         processing = false
                                     } catch {
@@ -90,7 +90,7 @@ struct MyPromotionDetailView: View {
                                 processing = true
                                 Task {
                                     do {
-                                        try await promotionVM.unenroll(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "",
+                                        try await promotionVM.unenroll(membershipNumber: rootVM.member?.membershipNumber ?? "",
                                                                        promotionName: currentPromotion.promotionName, promotionId: promotion.id)
                                         processing = false
                                     } catch {

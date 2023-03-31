@@ -96,7 +96,7 @@ struct MyPromotionCardView: View {
         .onReceive(promotionVM.$actionTaskList) { action in
             if let currentAction = action[promotion.id], currentAction == (true, true) {
                 Task {
-                    await promotionVM.updatePromotionsFromCache(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "", promotionId: promotion.id)
+                    await promotionVM.updatePromotionsFromCache(membershipNumber: rootVM.member?.membershipNumber ?? "", promotionId: promotion.id)
                 }
             }
         }

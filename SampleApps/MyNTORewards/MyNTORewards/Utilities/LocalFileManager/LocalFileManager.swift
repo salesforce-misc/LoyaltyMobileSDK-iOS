@@ -29,7 +29,7 @@ public class LocalFileManager {
         // save data to path
         do {
             let data = try JSONEncoder().encode(entry)
-            try data.write(to: url, options: .atomic) // use `atomic`, will overwrite if already exists
+            try data.write(to: url, options: [.atomic, .completeFileProtection]) // use `atomic`, will overwrite if already exists
             print("Data saved at location: \(url.absoluteString)")
         } catch let error {
             print("Error saving member data. Member Id: \(id). \(error)")

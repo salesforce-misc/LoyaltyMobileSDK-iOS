@@ -54,14 +54,14 @@ struct AllTransactionsView: View {
             }
             .task {
                 do {
-                    try await transactionVM.loadAllTransactions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                    try await transactionVM.loadAllTransactions(membershipNumber: rootVM.member?.membershipNumber ?? "")
                 } catch {
                     print("Load All Transactions Error: \(error)")
                 }
             }
             .refreshable {
                 do {
-                    try await transactionVM.reloadAllTransactions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                    try await transactionVM.reloadAllTransactions(membershipNumber: rootVM.member?.membershipNumber ?? "")
                 } catch {
                     print("Reload All Transactions Error: \(error)")
                 }

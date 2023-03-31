@@ -172,7 +172,7 @@ public struct AssociatedAccount: Codable {
 
 // MARK: - AssociatedContact
 public struct AssociatedContact: Codable {
-    let contactID, email, firstName, lastName: String
+    public let contactID, email, firstName, lastName: String
 
     enum CodingKeys: String, CodingKey {
         case contactID = "contactId"
