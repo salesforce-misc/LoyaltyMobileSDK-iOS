@@ -47,6 +47,7 @@
 		29367606293209CB00E09A6D /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29367605293209CB00E09A6D /* CachedAsyncImage.swift */; };
 		293F642F29D64E48001AC795 /* CommunityMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F642E29D64E48001AC795 /* CommunityMemberModel.swift */; };
 		293F643129D6C5AD001AC795 /* ForceConnectedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */; };
+		293F643329DCDAF8001AC795 /* ForceClient+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F643229DCDAF8001AC795 /* ForceClient+Image.swift */; };
 		2941A23F28BE803F005026CF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A23E28BE803F005026CF /* Color.swift */; };
 		2944F88A28B9A7220098ED1B /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppSettings.swift */; };
 		294E341E293C39E6001F7F48 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E341D293C39E6001F7F48 /* ImageViewModel.swift */; };
@@ -172,6 +173,7 @@
 		29367605293209CB00E09A6D /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		293F642E29D64E48001AC795 /* CommunityMemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMemberModel.swift; sourceTree = "<group>"; };
 		293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceConnectedApp.swift; sourceTree = "<group>"; };
+		293F643229DCDAF8001AC795 /* ForceClient+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceClient+Image.swift"; sourceTree = "<group>"; };
 		2941A23E28BE803F005026CF /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2944F88928B9A7220098ED1B /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		294E341D293C39E6001F7F48 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
@@ -312,7 +314,7 @@
 			children = (
 				298613AC28C964D900BDC744 /* Info.plist */,
 				298D5EE829CCF4C20062F16E /* ForceSwift+Extra */,
-				2963770B29C10CFB00D45AB6 /* SOQL */,
+				2963770B29C10CFB00D45AB6 /* SOQL+SOSL */,
 				2944F87F28B98C2C0098ED1B /* Extensions */,
 				2984C93D2954F091009669EF /* Utilities */,
 				290FBB41294A8C460038D47A /* Misc */,
@@ -452,24 +454,24 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		2963770B29C10CFB00D45AB6 /* SOQL */ = {
+		2963770B29C10CFB00D45AB6 /* SOQL+SOSL */ = {
 			isa = PBXGroup;
 			children = (
-				2963771029C10D4000D45AB6 /* SOQLModels */,
+				2963771029C10D4000D45AB6 /* Models */,
 				2963770D29C10D2400D45AB6 /* ForceClient+SOQL.swift */,
 				2963770C29C10D2400D45AB6 /* ForceClient+SOSL.swift */,
 			);
-			path = SOQL;
+			path = "SOQL+SOSL";
 			sourceTree = "<group>";
 		};
-		2963771029C10D4000D45AB6 /* SOQLModels */ = {
+		2963771029C10D4000D45AB6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				2963771229C10D6200D45AB6 /* Address.swift */,
 				2963771129C10D6200D45AB6 /* QueryResult.swift */,
 				2963771329C10D6200D45AB6 /* Record.swift */,
 			);
-			path = SOQLModels;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		296D393828DCE9890078C88E /* UICompnents */ = {
@@ -535,6 +537,7 @@
 				298D5EEB29CCF5340062F16E /* ForceAuth.swift */,
 				298D5EE929CCF5340062F16E /* ForceAuthManager.swift */,
 				298D5EEA29CCF5340062F16E /* ForceAuthStore.swift */,
+				293F643229DCDAF8001AC795 /* ForceClient+Image.swift */,
 				293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */,
 				298D5EEF29CCF94D0062F16E /* ForceUserIdentifier.swift */,
 				298D5EF029CCF94D0062F16E /* Keychain.swift */,
@@ -721,6 +724,7 @@
 				AF27C5AC2981118D008C7D79 /* LoyaltyTextField.swift in Sources */,
 				29BAF6EF28F4E27400A3F9EB /* BadgesView.swift in Sources */,
 				298D5EF429CCF94D0062F16E /* Keychain.swift in Sources */,
+				293F643329DCDAF8001AC795 /* ForceClient+Image.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
 				29BAF6ED28F4DE1C00A3F9EB /* BadgeCardView.swift in Sources */,
 				29A39BC529397B98005833C2 /* EmptyStateView.swift in Sources */,
