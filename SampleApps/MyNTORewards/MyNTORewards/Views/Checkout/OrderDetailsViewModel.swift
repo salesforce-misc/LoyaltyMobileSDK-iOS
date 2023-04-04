@@ -9,10 +9,16 @@ import Foundation
 import LoyaltyMobileSDK
 
 @MainActor
-final class OrderDetailsViewModel: ObservableObject {
-	@Published var selectedIndex = 0
+class OrderDetailsViewModel: ObservableObject {
+	@Published var selectedIndex: Int
 	@Published var isOrderPlacedNavigationActive = false
 	var orderId = ""
+	
+	init(authManager: ForceAuthManager = .shared, forceClient: ForceClient? = nil, index: Int = 0) {
+		self.authManager = authManager
+		self.forceClient = forceClient ?? ForceClient(auth: authManager)
+		self.selectedIndex = index
+	}
 	
 	func createOrder() async {
 		do {
@@ -21,20 +27,10 @@ final class OrderDetailsViewModel: ObservableObject {
 		} catch {
 			print("Unable to place order")
 		}
-		
-	}
-	
-	func selectTabIndex(_ index: Int) {
-		selectedIndex = index
 	}
 	
 	private var authManager: ForceAuthManager
 	private var forceClient: ForceClient
-	
-	init(authManager: ForceAuthManager = .shared, forceClient: ForceClient? = nil) {
-		self.authManager = authManager
-		self.forceClient = forceClient ?? ForceClient(auth: authManager)
-	}
 	
 	private func placeOrder(productName: String = "Men's Rainier L4 Windproof Soft Shell Hoodie",
 							 redeemPoints: Double = 0,
@@ -68,17 +64,47 @@ final class OrderDetailsViewModel: ObservableObject {
 			throw error
 		}
 	}
+	
+	func getOrderDetails() async throws -> OrderDetails {
+		do {
+			let path = "services/apexrest/NTOOrderCheckOut/"
+			let queryItems = ["orderId": "\(orderId)"]
+			let request = try ForceRequest.create(path: path, method: "GET", queryItems: queryItems)
+			return try await forceClient.fetch(type: OrderDetails.self, with: request)
+		} catch {
+			throw error
+		}
+	}
 }
 
 struct Order: Codable {
-	let productName: String?
-	let redeemPoints: Double?
-	let productPrice: Double?
-	let orderTotal: Double?
-	let useNTOPoints: Bool?
-	let pointsBalance: Double?
-	let shippingStreet: String?
-	let billingStreet: String?
-	let voucherCode: String?
-	let membershipNumber: String?
+	let productName: String
+	let redeemPoints: Double
+	let productPrice: Double
+	let orderTotal: Double
+	let useNTOPoints: Bool
+	let pointsBalance: Double
+	let shippingStreet: String
+	let billingStreet: String
+	let voucherCode: String
+	let membershipNumber: String
+}
+
+struct OrderAttributes: Codable {
+	let type: String
+	let url: String
+}
+
+struct OrderDetails: Codable {
+	let attributes: OrderAttributes
+	let id: String
+	let orderNumber: String
+	let activatedDate: String
+	
+	enum CodingKeys: String, CodingKey {
+		case attributes
+		case id = "Id"
+		case orderNumber = "OrderNumber"
+		case activatedDate = "ActivatedDate"
+	}
 }

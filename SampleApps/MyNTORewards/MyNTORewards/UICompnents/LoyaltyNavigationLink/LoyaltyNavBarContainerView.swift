@@ -12,6 +12,7 @@ struct LoyaltyNavBarContainerView<Content: View>: View {
     let content: Content
     @State private var showSearchButton: Bool = true
     @State private var title: String = ""
+	@State private var subtitle: String = ""
     @State private var tabBar: TopTabBar? = nil
 
     init(@ViewBuilder content: () -> Content) {
@@ -20,13 +21,16 @@ struct LoyaltyNavBarContainerView<Content: View>: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            LoyaltyNavBarView(showSearchButton: showSearchButton, title: title, tabBar: tabBar)
+            LoyaltyNavBarView(showSearchButton: showSearchButton, title: title, subtitle: subtitle, tabBar: tabBar)
             content
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .onPreferenceChange(LoyaltyNavBarTitlePreferenceKey.self, perform: { value in
             self.title = value
         })
+		.onPreferenceChange(LoyaltyNavBarSubtitlePreferenceKey.self, perform: { value in
+			self.subtitle = value
+		})
         .onPreferenceChange(LoyaltyNavBarSearchButtonHiddenPreferenceKey.self, perform: { value in
             self.showSearchButton = !value
         })

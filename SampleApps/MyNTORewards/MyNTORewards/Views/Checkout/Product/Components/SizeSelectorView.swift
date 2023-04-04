@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SizeSelectorView: View {
-	@State private var selectedIndex = -1
+	@State private var selectedIndex = 0
 	@Binding var selection: Int
 	var sizes: [String]
     var body: some View {

@@ -20,6 +20,7 @@ struct PaymentDetailsView: View {
                     .cornerRadius(16, corners: .allCorners)
 				NavigationLink(isActive: $orderDetailsVM.isOrderPlacedNavigationActive){
 					OrderPlacedView()
+						.environmentObject(orderDetailsVM)
 				} label: {
 					Button{
 						Task {

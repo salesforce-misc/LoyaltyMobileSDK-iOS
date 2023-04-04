@@ -11,7 +11,6 @@ struct MyPromotionsView: View {
     
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
-    
     @State var offerTabSelected: Int = 0
     let barItems = ["Unenrolled", "Active", "All"]
     
@@ -70,17 +69,12 @@ struct MyPromotionsView: View {
 					}
 				}
 			}
-//			.background(LoyaltyConditionalNavLink(isActive: $promotionVM.isCheckoutNavigationActive)
-//						{
-//							ProductView()
-//						} label: {
-//							EmptyView()
-//						})
-			.background(NavigationLink(isActive: $promotionVM.isCheckoutNavigationActive, destination: {
+			.background(LoyaltyConditionalNavLink(isActive: $promotionVM.isCheckoutNavigationActive)
+						{
 				ProductView()
-			}, label: {
+			} label: {
 				EmptyView()
-			}))
+			})
 		}
         
     }

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ProductDetailsView: View {
-	@State private var sizeSelected = -1
-	@State private var colorSelected = -1
+	@State private var sizeSelected = 0
+	@State private var colorSelected = 0
 	@State private var quantitySelected: Int = 1
 	@State private var moveToOrderDetails = false
 	var body: some View {
@@ -28,7 +28,7 @@ struct ProductDetailsView: View {
 						])
 					}
 					SizeSelectorView(selection: $sizeSelected, sizes: ["S", "M", "L", "XL"])
-					AvailableColorsView(selection: $colorSelected, colors: [.red, .green, .orange, .purple])
+					AvailableColorsView(selection: $colorSelected, colors: [Color("VibrantRed"), Color("ProductGreen"), Color("ProductPeach"), Color("VibrantPurple")])
 					HStack(alignment: .bottom) {
 						QuantityView(quantitySelected: $quantitySelected, min: 1, max: 10)
 						Spacer()
@@ -42,7 +42,8 @@ struct ProductDetailsView: View {
 					}
 					
 					VStack {
-						NavigationLink(isActive: $moveToOrderDetails) {
+						LoyaltyConditionalNavLink(isActive: $moveToOrderDetails)
+						{
 							OrderDetailsView()
 						} label: {
 							Button("Buy Now") {
@@ -50,13 +51,13 @@ struct ProductDetailsView: View {
 							}
 							.buttonStyle(DarkLongButton())
 						}
-
 						Button("Add to Cart") {}
 							.buttonStyle(LightLongPromotionButton())
 					}
 					.padding(.bottom, 100)
 				}
 			}
+			.padding(.top, 16)
 		}
 	}
 }

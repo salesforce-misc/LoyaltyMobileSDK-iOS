@@ -14,6 +14,7 @@ struct ProductImagesView: View {
     var body: some View {
 		VStack {
 			AsyncImageView(imageUrl: selectedImageURL)
+				.cornerRadius(10, corners: .allCorners)
 				.scaledToFit()
 				.padding(16)
 				ScrollView(.horizontal, showsIndicators: false) {

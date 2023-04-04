@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ShippingDetailsView: View {
+	@Binding var selectedIndex: Int
     var body: some View {
 		ScrollView {
 			HStack {
@@ -20,7 +21,7 @@ struct ShippingDetailsView: View {
 				}
 			}
 			.padding(24)
-			AddressView()
+			AddressView(selectedIndex: $selectedIndex)
 				.cornerRadius(16, corners: .allCorners)
 				.padding(.horizontal, 24)
 		}
@@ -30,6 +31,6 @@ struct ShippingDetailsView: View {
 
 struct ShippingDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        ShippingDetailsView()
+		ShippingDetailsView(selectedIndex: .constant(0))
     }
 }
