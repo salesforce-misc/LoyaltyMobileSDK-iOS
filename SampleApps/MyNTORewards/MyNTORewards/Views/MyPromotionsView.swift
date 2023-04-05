@@ -69,12 +69,6 @@ struct MyPromotionsView: View {
 					}
 				}
 			}
-			.background(LoyaltyConditionalNavLink(isActive: $promotionVM.isCheckoutNavigationActive)
-						{
-				ProductView()
-			} label: {
-				EmptyView()
-			})
 		}
         
     }

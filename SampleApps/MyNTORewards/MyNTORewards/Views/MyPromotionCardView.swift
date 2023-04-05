@@ -15,6 +15,7 @@ struct MyPromotionCardView: View {
     @State var loadImage: Bool = false
     @State var showPromotionDetailView = false
     @State var processing = false
+	@State private var isCheckoutNavigationActive = false
     let promotion: PromotionResult
 
     var body: some View {
@@ -91,7 +92,7 @@ struct MyPromotionCardView: View {
                 promotionVM.actionTaskList[promotion.id] = (false, true)
             }
         }) {
-            MyPromotionDetailView(promotion: promotion, processing: $processing)
+			MyPromotionDetailView(isShopActionSuccess: $isCheckoutNavigationActive, promotion: promotion, processing: $processing)
         }
         .onReceive(promotionVM.$actionTaskList) { action in
             if let currentAction = action[promotion.id], currentAction == (true, true) {
@@ -102,6 +103,11 @@ struct MyPromotionCardView: View {
         }
         .allowsHitTesting(!processing)
         .opacity(processing ? 0.5 : 1)
+		.background(
+			LoyaltyConditionalNavLink(isActive: $isCheckoutNavigationActive, destination: {
+				ProductView()
+			}, label: { EmptyView() })
+		)
         
     }
 }

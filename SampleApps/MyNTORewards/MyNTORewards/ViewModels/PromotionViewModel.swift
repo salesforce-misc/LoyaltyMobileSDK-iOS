@@ -19,10 +19,11 @@ class PromotionViewModel: ObservableObject {
     // The tuple represents(isActionDone: Bool, isModalDismissed: Bool)
     // actionTaskList => [promotionId: (isActionDone, isModalDismissed)]
     @Published var actionTaskList: [String: (Bool, Bool)] = [:]
-	@Published var isCheckoutNavigationActive = false
+//	@Published var isCheckoutNavigationActive = false
 	
-	final func shopPromotion() {
-		isCheckoutNavigationActive = true
+	final func shopPromotion() -> Bool {
+//		isCheckoutNavigationActive = true
+		return true
 	}
     
     private let authManager = ForceAuthManager.shared
