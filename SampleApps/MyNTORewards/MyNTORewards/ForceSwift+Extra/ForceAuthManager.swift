@@ -125,7 +125,7 @@ public class ForceAuthManager: ForceAuthenticator {
         
         do {
             let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
-            let auth = try await ForceNetworkManager.shared.fetch(type: ForceAuth.self, request: request)
+            let auth = try await NetworkManager.shared.fetch(type: ForceAuth.self, request: request)
             try saveAuth(for: auth)
             return auth
             
@@ -191,7 +191,7 @@ public class ForceAuthManager: ForceAuthenticator {
         
         do {
             let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
-            let auth = try await ForceNetworkManager.shared.fetch(type: ForceAuth.self, request: request)
+            let auth = try await NetworkManager.shared.fetch(type: ForceAuth.self, request: request)
             try saveAuth(for: auth)
             return auth
             
@@ -305,7 +305,7 @@ public class ForceAuthManager: ForceAuthenticator {
 
         do {
             let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
-            let auth = try await ForceNetworkManager.shared.fetch(type: ForceAuth.self, request: request)
+            let auth = try await NetworkManager.shared.fetch(type: ForceAuth.self, request: request)
 
             print(auth)
             try saveAuth(for: auth)

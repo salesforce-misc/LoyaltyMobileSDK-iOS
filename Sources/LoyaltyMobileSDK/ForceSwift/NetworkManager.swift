@@ -7,9 +7,9 @@
 
 import Foundation
 
-public class ForceNetworkManager {
+public class NetworkManager {
     
-    public static let shared = ForceNetworkManager()
+    public static let shared = NetworkManager()
     
     private init() {}
     
@@ -20,13 +20,13 @@ public class ForceNetworkManager {
     
     internal func handleResponse(response: URLResponse) {
         guard let httpResponse = response as? HTTPURLResponse else {
-            print(ForceError.requestFailed(description: "<ForceError> - Invalid response").customDescription)
+            Logger.debug(ForceError.requestFailed(description: "<ForceError> - Invalid response").customDescription)
             return
         }
             
         guard httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
-            print(ForceError.responseUnsuccessful(description: "<ForceError> - HTTP response status code \(httpResponse.statusCode)").customDescription)
-            print(httpResponse.description)
+            Logger.debug(ForceError.responseUnsuccessful(description: "<ForceError> - HTTP response status code \(httpResponse.statusCode)").customDescription)
+            Logger.debug(httpResponse.description)
             return
         }
     }

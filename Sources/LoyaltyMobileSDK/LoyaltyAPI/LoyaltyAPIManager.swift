@@ -78,6 +78,7 @@ public class LoyaltyAPIManager {
     }
     
     /// Get Member Benefits - Makes an asynchronous request for data from the Salesforce
+    /// Reference: https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_member_benefits.htm
     /// - Parameters:
     ///   - for memberId: The member who has these benefits
     ///   - version: The API version number
@@ -101,6 +102,7 @@ public class LoyaltyAPIManager {
     }
     
     /// Get Member Profile - Makes an asynchronous request for data from the Salesforce
+    /// Reference: https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_member_profile.htm
     /// - Parameters:
     ///   - for memberId: The member who has these benefits
     ///   - version: The API version number
@@ -145,6 +147,7 @@ public class LoyaltyAPIManager {
     }
     
     /// Enroll a member to a Loyalty Program
+    /// Reference: https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_enroll_individual_member.htm
     /// - Parameters:
     ///   - membershipNumber: The memership number for the loyalty program
     ///   - firstName: The first name
@@ -194,7 +197,7 @@ public class LoyaltyAPIManager {
             encoder.dateEncodingStrategy = .formatted(.forceFormatter())
             let requestBody = try encoder.encode(enrollment)
             if let requestJson = String(data: requestBody, encoding: .utf8) {
-                print(requestJson)
+                Logger.debug(requestJson)
             }
             let path = getPath(for: .individualEnrollment(programName: loyaltyProgramName, version: version))
             let request = try ForceRequest.create(instanceURL: instanceURL, path: path, method: "POST", body: requestBody)
@@ -208,6 +211,7 @@ public class LoyaltyAPIManager {
     
     
     /// Enroll into a promotion
+    /// Reference: https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_enroll_ln_promotion.htm
     /// - Parameters:
     ///   - promotionName: The promotion name
     ///   - membershipNumber: The membership number
@@ -301,6 +305,7 @@ public class LoyaltyAPIManager {
 	
     
     /// Get promotions for the loyalty member
+    /// Reference: https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_enroll_ln_promotion.htm
     /// - Parameters:
     ///   - memberId: The member ID
     ///   - version: The API version number
@@ -318,6 +323,7 @@ public class LoyaltyAPIManager {
     }
     
     /// Get promotions for the loyalty member
+    /// Reference: https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_enroll_ln_promotion.htm
     /// - Parameters:
     ///   - membershipNumber: The membership number
     ///   - version: The API version number
@@ -439,7 +445,7 @@ public class LoyaltyAPIManager {
 			let result = try await forceClient.fetch(type: VouchersResponse.self, with: request)
 			return result.vouchers ?? []
 		} catch {
-			print(error.localizedDescription)
+            Logger.debug(error.localizedDescription)
 			throw error
 		}
 	}

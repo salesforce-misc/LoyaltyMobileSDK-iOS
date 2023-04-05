@@ -259,7 +259,7 @@ class AppRootViewModel: ObservableObject {
         do {
             let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
             let request = try ForceRequest.create(url: url, method: "POST", body: bodyJsonData)
-            let result = try await ForceNetworkManager.shared.fetch(type: PasswordResetModel.self, request: request)
+            let result = try await NetworkManager.shared.fetch(type: PasswordResetModel.self, request: request)
             email = result.email
             userState = .newPasswordSet
         } catch {
