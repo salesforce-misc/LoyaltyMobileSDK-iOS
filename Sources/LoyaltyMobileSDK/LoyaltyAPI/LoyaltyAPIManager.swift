@@ -296,7 +296,7 @@ public class LoyaltyAPIManager {
             let request = try ForceRequest.create(instanceURL: instanceURL, path: path, method: "POST", body: bodyJsonData)
 			let response = try await forceClient.fetch(type: UnenrollPromotionResponseModel.self, with: request)
 			if !response.status {
-				throw ForceError.requestFailed(description: response.message ?? "Unknown")
+				throw CommonError.requestFailed(message: response.message ?? "Unknown")
 			}
 		} catch {
 			throw error

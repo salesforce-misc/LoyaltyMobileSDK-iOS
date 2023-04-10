@@ -42,7 +42,7 @@ public class ForceAuthManager: ForceAuthenticator {
             }
             
             guard let auth = getAuth() else {
-                throw ForceError.authenticationFailed
+                throw CommonError.authenticationFailed
             }
             return auth.accessToken
         } catch {
@@ -244,7 +244,7 @@ public class ForceAuthManager: ForceAuthenticator {
 
         do {
             guard let code = try await requestAuthorizationCode(url: authURL, consumerKey: consumerKey, callbackURL: callbackURL, username: username, password: password) else {
-                throw ForceError.codeCredentials
+                throw CommonError.codeCredentials
             }
 
             return try await requestAccessToken(url: tokenURL, authCode: code, consumerKey: consumerKey, callbackURL: callbackURL)
@@ -278,11 +278,11 @@ public class ForceAuthManager: ForceAuthenticator {
             guard let response = output.1 as? HTTPURLResponse,
                   let url = response.url,
                   response.statusCode == 401 else {
-                throw ForceError.codeCredentials
+                throw CommonError.codeCredentials
             }
 
             guard let authCode = getAuthorizationCode(fromUrl: url) else {
-                throw ForceError.codeCredentials
+                throw CommonError.codeCredentials
             }
             Logger.debug(authCode)
             return authCode
@@ -355,10 +355,10 @@ public class ForceAuthManager: ForceAuthenticator {
     /// Retrieve Auth from ForceAuthStore
     public func retrieveAuth() throws -> ForceAuth {
         guard let id = ForceAuthManager.shared.userIdentifier else {
-            throw ForceError.userIdentityUnknown
+            throw CommonError.userIdentityUnknown
         }
         guard let auth = try ForceAuthStore.retrieve(for: id) else {
-            throw ForceError.authNotFoundInKeychain
+            throw CommonError.authNotFoundInKeychain
         }
         return auth
     }

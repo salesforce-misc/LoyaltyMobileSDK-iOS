@@ -33,7 +33,7 @@ public class ForceClient {
                 newRequest = ForceRequest.setAuthorization(request: request, accessToken: accessToken)
             }
             return try await NetworkManager.shared.fetch(type: type, request: newRequest)
-        } catch ForceError.authenticationNeeded {
+        } catch CommonError.authenticationNeeded {
             let token = try await auth.grantAccessToken()
             let updatedRequest = ForceRequest.setAuthorization(request: request, accessToken: token)
             return try await NetworkManager.shared.fetch(type: type, request: updatedRequest)

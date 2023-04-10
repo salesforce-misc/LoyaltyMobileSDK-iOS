@@ -7,42 +7,36 @@
 
 import Foundation
 
-public enum ForceError: Error, Equatable {
+public enum CommonError: Error, Equatable {
 
     // 0
-    case requestFailed(description: String)
+    case requestFailed(message: String)
     // 1
-    case jsonConversionFailure(description: String)
+    case jsonConversionFailure(message: String)
     // 2
     case invalidData
     // 3
-    case responseUnsuccessful(description: String)
+    case responseUnsuccessful(message: String)
     // 4
-    case jsonParsingFailure
-    // 5
-    case noInternet
-    // 6
-    case failedSerialization
-    // 7
     case authenticationNeeded
-    // 8
+    // 5
     case userIdentityUnknown
-    // 9
+    // 6
     case authNotFoundInKeychain
-    // 10
+    // 7
     case authenticationFailed
-    // 11
+    // 8
     case codeCredentials
+    
+}
 
-    public var customDescription: String {
+extension CommonError: CustomStringConvertible {
+    public var description: String {
         switch self {
-        case let .requestFailed(description): return "Request Failed Error -> \(description)"
+        case let .requestFailed(message): return "Request Failed Error -> \(message)"
         case .invalidData: return "Invalid Data Error"
-        case let .responseUnsuccessful(description): return "Response Unsuccessful Error -> \(description)"
-        case .jsonParsingFailure: return "JSON Parsing Failure Error"
-        case let .jsonConversionFailure(description): return "JSON Conversion Failure -> \(description)"
-        case .noInternet: return "No internet connection"
-        case .failedSerialization: return "Serialization print for debug failed."
+        case let .responseUnsuccessful(message): return "Response Unsuccessful Error -> \(message)"
+        case let .jsonConversionFailure(message): return "JSON Conversion Failure -> \(message)"
         case .authenticationNeeded: return "Authentication is need."
         case .userIdentityUnknown: return "User Identity has not been set."
         case .authNotFoundInKeychain: return "Cannot find the auth from Keychain."

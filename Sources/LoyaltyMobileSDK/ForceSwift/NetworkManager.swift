@@ -20,12 +20,12 @@ public class NetworkManager {
     
     internal func handleResponse(response: URLResponse) {
         guard let httpResponse = response as? HTTPURLResponse else {
-            Logger.error(ForceError.requestFailed(description: "<ForceError> - Invalid response").customDescription)
+            Logger.error(CommonError.requestFailed(message: "Invalid response").description)
             return
         }
             
         guard httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
-            Logger.error(ForceError.responseUnsuccessful(description: "<ForceError> - HTTP response status code \(httpResponse.statusCode)").customDescription)
+            Logger.error(CommonError.responseUnsuccessful(message: "HTTP response status code \(httpResponse.statusCode)").description)
             Logger.debug(httpResponse.description)
             return
         }
@@ -34,7 +34,7 @@ public class NetworkManager {
     internal func handleUnauthResponse(output: URLSession.DataTaskPublisher.Output) throws {
         guard let response = output.response as? HTTPURLResponse,
               response.statusCode != 401 else {
-            throw ForceError.authenticationNeeded
+            throw CommonError.authenticationNeeded
         }
     }
 
