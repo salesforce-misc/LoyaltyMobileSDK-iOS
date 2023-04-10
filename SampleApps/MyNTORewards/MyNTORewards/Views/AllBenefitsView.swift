@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct AllBenefitsView: View {
     
@@ -69,11 +70,11 @@ struct AllBenefitsView: View {
             .scrollContentBackground(.hidden)
             .listStyle(.plain)
             .refreshable {
-                print("Benefits refreshing...")
+                Logger.debug("Benefits refreshing...")
                 do {
                     try await benefitVM.getBenefits(memberId: memberId, reload: true)
                 } catch {
-                    print("Reload Benefits Error: \(error)")
+                    Logger.error("Reload Benefits Error: \(error)")
                 }
             }
             .loytaltyNavigationTitle("My Benefits")
@@ -123,11 +124,11 @@ struct AllBenefitsView: View {
             .background(Color.theme.background)
             .listStyle(.plain)
             .refreshable {
-                print("Benefits refreshing...")
+                Logger.debug("Benefits refreshing...")
                 do {
                     try await benefitVM.getBenefits(memberId: memberId, reload: true)
                 } catch {
-                    print("Reload Benefits Error: \(error)")
+                    Logger.error("Reload Benefits Error: \(error)")
                 }
             }
             .loytaltyNavigationTitle("My Benefits")

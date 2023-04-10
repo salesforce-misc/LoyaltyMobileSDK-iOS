@@ -76,7 +76,7 @@ public class ForceAuthManager: ForceAuthenticator {
                 let revokeURL = AppSettings.getConnectedApp().baseURL + AppSettings.Defaults.revokePath
                 try await self.revoke(url: revokeURL, token: auth.accessToken)
             } catch {
-                print("Failed to revolk token")
+                Logger.error("Failed to revolk token")
             }
             
         }
@@ -215,7 +215,7 @@ public class ForceAuthManager: ForceAuthenticator {
             let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
             let _ = try await URLSession.shared.data(for: request)
             try deleteAuth()
-            print("Revoke successful")
+            Logger.debug("Revoke successful")
         } catch {
             throw error
         }
@@ -284,7 +284,7 @@ public class ForceAuthManager: ForceAuthenticator {
             guard let authCode = getAuthorizationCode(fromUrl: url) else {
                 throw ForceError.codeCredentials
             }
-            print(authCode)
+            Logger.debug(authCode)
             return authCode
 
         } catch {
@@ -307,7 +307,7 @@ public class ForceAuthManager: ForceAuthenticator {
             let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
             let auth = try await NetworkManager.shared.fetch(type: ForceAuth.self, request: request)
 
-            print(auth)
+            Logger.debug("\(auth)")
             try saveAuth(for: auth)
             return auth
 

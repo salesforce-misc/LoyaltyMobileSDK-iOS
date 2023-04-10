@@ -36,7 +36,6 @@ struct OnboardingView: View {
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .onChange(of: selectedPage) { _ in
-                //debugPrint("[a]: new value \(newValue)")
                 opacityText = 0
                 withAnimation(.easeInOut(duration: 1), {
                     opacityText = 1

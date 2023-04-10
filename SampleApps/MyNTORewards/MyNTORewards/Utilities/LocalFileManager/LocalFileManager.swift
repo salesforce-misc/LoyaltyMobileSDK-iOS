@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import LoyaltyMobileSDK
 
 public class LocalFileManager {
     
@@ -30,9 +31,9 @@ public class LocalFileManager {
         do {
             let data = try JSONEncoder().encode(entry)
             try data.write(to: url, options: [.atomic, .completeFileProtection]) // use `atomic`, will overwrite if already exists
-            print("Data saved at location: \(url.absoluteString)")
+            Logger.debug("Data saved at location: \(url.absoluteString)")
         } catch let error {
-            print("Error saving member data. Member Id: \(id). \(error)")
+            Logger.error("Error saving member data. Member Id: \(id). \(error)")
         }
     }
     
@@ -46,7 +47,7 @@ public class LocalFileManager {
         }
         let data = FileManager.default.contents(atPath: url.path)
         guard let data = data else {
-            print("Error retrieving data. No data found for \(id)")
+            Logger.error("Error retrieving data. No data found for \(id)")
             return nil
         }
         do {
@@ -60,7 +61,7 @@ public class LocalFileManager {
             }
             return entry.object
         } catch let error {
-            print("Error retrieving data. Decoding error: \(error)")
+            Logger.error("Error retrieving data. Decoding error: \(error)")
             return nil
         }
         
@@ -82,7 +83,7 @@ public class LocalFileManager {
         guard
             let bundleID = Bundle.main.bundleIdentifier,
             let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
-            print("Error deleting all data - BundleID or URL error")
+            Logger.error("Error deleting all data - BundleID or URL error")
             return
         }
         let dataFolder = url.appendingPathComponent(bundleID)
@@ -94,7 +95,7 @@ public class LocalFileManager {
         let folderName = folderName ?? defaultImagesFolder
         
         guard let imageData = image.pngData() else {
-            print("Error saving image. The image format is incorrect.")
+            Logger.error("Error saving image. The image format is incorrect.")
             return
         }
         
@@ -120,7 +121,7 @@ public class LocalFileManager {
         do {
             try FileManager.default.removeItem(atPath: url.path)
         } catch let error {
-            print("Error deleting data. \(error)")
+            Logger.error("Error deleting data. \(error)")
         }
     }
     
@@ -131,7 +132,7 @@ public class LocalFileManager {
             do {
                 try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
             } catch let error {
-                print("Error creating directory. FolderName: \(folderName). \(error)")
+                Logger.error("Error creating directory. FolderName: \(folderName). \(error)")
             }
         }
     }

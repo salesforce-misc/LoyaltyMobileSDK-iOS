@@ -445,7 +445,7 @@ public class LoyaltyAPIManager {
 			let result = try await forceClient.fetch(type: VouchersResponse.self, with: request)
 			return result.vouchers ?? []
 		} catch {
-            Logger.debug(error.localizedDescription)
+            Logger.error(error.localizedDescription)
 			throw error
 		}
 	}

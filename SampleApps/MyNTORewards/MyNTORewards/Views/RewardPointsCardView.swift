@@ -132,7 +132,7 @@ struct RewardPointsCardView: View {
                 do {
                     try await profileVM.getProfileData(memberId: rootVM.member?.loyaltyProgramMemberId ?? "")
                 } catch {
-                    print("Fetch profile Error: \(error)")
+                    Logger.error("Fetch profile Error: \(error)")
                 }
             }
             

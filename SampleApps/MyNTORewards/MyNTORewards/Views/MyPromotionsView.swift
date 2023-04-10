@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct MyPromotionsView: View {
     
@@ -51,21 +52,21 @@ struct MyPromotionsView: View {
                 do {
                     try await promotionVM.loadUnenrolledPromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
                 } catch {
-                    print("Load Unenrolled Promotions Error: \(error)")
+                    Logger.error("Load Unenrolled Promotions Error: \(error)")
                 }
             }
             .task {
                 do {
                     try await promotionVM.loadActivePromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
                 } catch {
-                    print("Reload Active Promotions Error: \(error)")
+                    Logger.error("Reload Active Promotions Error: \(error)")
                 }
             }
             .task {
                 do {
                     try await promotionVM.loadAllPromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
                 } catch {
-                    print("Load All Promotions Error: \(error)")
+                    Logger.error("Load All Promotions Error: \(error)")
                 }
             }
         }
@@ -88,11 +89,11 @@ struct MyPromotionsView: View {
             .padding(.top, 20)
         }
         .refreshable {
-            print("Reloading unenrolled...")
+            Logger.debug("Reloading unenrolled...")
             do {
                 try await promotionVM.fetchUnenrolledPromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
             } catch {
-                print("Reload Unenrolled Promotions Error: \(error)")
+                Logger.error("Reload Unenrolled Promotions Error: \(error)")
             }
         }
     }
@@ -114,11 +115,11 @@ struct MyPromotionsView: View {
             
         }
         .refreshable {
-            print("Reloading active...")
+            Logger.debug("Reloading active...")
             do {
                 try await promotionVM.fetchActivePromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
             } catch {
-                print("Load Active Promotions Error: \(error)")
+                Logger.error("Load Active Promotions Error: \(error)")
             }
         }
         
@@ -141,11 +142,11 @@ struct MyPromotionsView: View {
             
         }
         .refreshable {
-            print("Reloading all...")
+            Logger.debug("Reloading all...")
             do {
                 try await promotionVM.fetchAllPromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
             } catch {
-                print("Reload All Promotions Error: \(error)")
+                Logger.error("Reload All Promotions Error: \(error)")
             }
         }
     }

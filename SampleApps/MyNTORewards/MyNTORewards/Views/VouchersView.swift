@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct VouchersView: View {
     
@@ -30,7 +31,7 @@ struct VouchersView: View {
                 do {
                     try await voucherVM.loadVouchers(membershipNumber: rootVM.member?.membershipNumber ?? "")
                 } catch {
-                    print("Load Vouchers Error: \(error)")
+                    Logger.error("Load Vouchers Error: \(error)")
                 }
             }
         }

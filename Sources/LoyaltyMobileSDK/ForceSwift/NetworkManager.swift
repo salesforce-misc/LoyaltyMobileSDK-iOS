@@ -20,12 +20,12 @@ public class NetworkManager {
     
     internal func handleResponse(response: URLResponse) {
         guard let httpResponse = response as? HTTPURLResponse else {
-            Logger.debug(ForceError.requestFailed(description: "<ForceError> - Invalid response").customDescription)
+            Logger.error(ForceError.requestFailed(description: "<ForceError> - Invalid response").customDescription)
             return
         }
             
         guard httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
-            Logger.debug(ForceError.responseUnsuccessful(description: "<ForceError> - HTTP response status code \(httpResponse.statusCode)").customDescription)
+            Logger.error(ForceError.responseUnsuccessful(description: "<ForceError> - HTTP response status code \(httpResponse.statusCode)").customDescription)
             Logger.debug(httpResponse.description)
             return
         }

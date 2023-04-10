@@ -69,10 +69,10 @@ class AppRootViewModel: ObservableObject {
 
             switch authResult {
             case .none:
-                print("<Firebase> - Could not create account.")
+                Logger.error("<Firebase> - Could not create account.")
                 self?.isInProgress = false
             case .some(_):
-                print("<Firebase> - User created on Firebase.")
+                Logger.debug("<Firebase> - User created on Firebase.")
                 
                 /*
                 Task {
@@ -93,9 +93,9 @@ class AppRootViewModel: ObservableObject {
 
                             user?.delete { error in
                               if let error = error {
-                                  print("<Firebase> - Could not delete current user. \(error)")
+                                  Logger.error("<Firebase> - Could not delete current user. \(error)")
                               } else {
-                                  print("<Firebase> - User was deleted.")
+                                  Logger.debug("<Firebase> - User was deleted.")
                               }
                             }
                             self?.isInProgress = false
@@ -121,7 +121,7 @@ class AppRootViewModel: ObservableObject {
                         // Also backup to a centralized local in case the user deletes the app
                         // then we can retrieve the member info linked to Salesforce
                         try FirestoreManager.addMemberData(member: member)
-                        print("<Firestore> - Member info saved.")
+                        Logger.debug("<Firestore> - Member info saved.")
                         
                         self?.userState = .signedUp
                         self?.isInProgress = false
@@ -133,9 +133,9 @@ class AppRootViewModel: ObservableObject {
 
                         user?.delete { error in
                           if let error = error {
-                              print("<Firebase> - Could not delete current user. \(error)")
+                              Logger.error("<Firebase> - Could not delete current user. \(error)")
                           } else {
-                              print("<Firebase> - User was deleted.")
+                              Logger.debug("<Firebase> - User was deleted.")
                           }
                         }
                         self?.isInProgress = false
@@ -167,7 +167,7 @@ class AppRootViewModel: ObservableObject {
                     password: userPassword)
                 ForceAuthManager.shared.auth = auth
                 ForceAuthManager.shared.accessToken = auth.accessToken
-                print("Successfully Granted Access Token. Allow user to login.")
+                Logger.debug("Successfully Granted Access Token. Allow user to login.")
                 
                 // Retrieve member data from local disk
                 let member = LocalFileManager.instance.getData(type: CommunityMemberModel.self, id: userEmail)
@@ -182,7 +182,7 @@ class AppRootViewModel: ObservableObject {
                                                               instanceURL: app.instanceURL)
                     let profile = try await loyaltyAPIManager.getCommunityMemberProfile()
                     
-                    //print(profile)
+                    Logger.debug("\(profile)")
                     
                     let member = CommunityMemberModel(firstName: profile.associatedContact.firstName,
                                                       lastName: profile.associatedContact.lastName,
@@ -219,7 +219,7 @@ class AppRootViewModel: ObservableObject {
             // delete all cached data
             LocalFileManager.instance.removeAllAppData()
         } catch {
-            print("<Firebase> - Error signing out: \(error.localizedDescription)")
+            Logger.error("<Firebase> - Error signing out: \(error.localizedDescription)")
             isInProgress = false
         }
     }

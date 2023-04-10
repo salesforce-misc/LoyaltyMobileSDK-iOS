@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import LoyaltyMobileSDK
 
 // recommend MainActor in ObservableObject class
 //https://www.hackingwithswift.com/quick-start/concurrency/how-to-use-mainactor-to-run-code-on-the-main-queue
@@ -33,7 +34,7 @@ class AppViewRouter: ObservableObject {
             do {
                 try Auth.auth().signOut()
             } catch {
-                print("<Firebase> - Error signing out: \(error)")
+                Logger.error("<Firebase> - Error signing out: \(error)")
             }
         }
     }

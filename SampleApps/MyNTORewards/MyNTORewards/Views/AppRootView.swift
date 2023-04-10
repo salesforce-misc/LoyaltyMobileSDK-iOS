@@ -49,7 +49,7 @@ struct AppRootView: View {
             }
         }
         .onOpenURL { url in
-            print(url)
+            Logger.debug(url.absoluteString)
             redirectDeeplink(url: url)
         }
         

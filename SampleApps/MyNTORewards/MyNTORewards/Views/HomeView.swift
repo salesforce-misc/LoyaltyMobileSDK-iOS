@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct HomeView: View {
     
@@ -78,16 +79,16 @@ struct HomeView: View {
                     do {
                         try await profileVM.getProfileData(memberId: rootVM.member?.loyaltyProgramMemberId ?? "")
                     } catch {
-                        print("Fetch profile Error: \(error)")
+                        Logger.error("Fetch profile Error: \(error)")
                     }
                 }
                 .refreshable {
-                    print("Reloading home...")
+                    Logger.debug("Reloading home...")
                     Task {
                         do {
                             try await profileVM.fetchProfile(memberId: rootVM.member?.loyaltyProgramMemberId ?? "")
                         } catch {
-                            print("Reload Profile Error: \(error)")
+                            Logger.error("Reload Profile Error: \(error)")
                         }
                     }
                     
@@ -95,7 +96,7 @@ struct HomeView: View {
                         do {
                             try await promotionVM.fetchCarouselPromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
                         } catch {
-                            print("Reload Promotions Error: \(error)")
+                            Logger.error("Reload Promotions Error: \(error)")
                         }
                     }
                     
@@ -103,7 +104,7 @@ struct HomeView: View {
                         do {
                             try await voucherVM.reloadVouchers(membershipNumber: rootVM.member?.membershipNumber ?? "")
                         } catch {
-                            print("Reload Vouchers Error: \(error)")
+                            Logger.error("Reload Vouchers Error: \(error)")
                         }
                     }
                     

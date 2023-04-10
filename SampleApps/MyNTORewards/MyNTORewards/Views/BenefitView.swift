@@ -67,7 +67,7 @@ struct BenefitView: View {
                 do {
                     try await benefitVM.getBenefits(memberId: rootVM.member?.loyaltyProgramMemberId ?? "")
                 } catch {
-                    print("Fetch Benefits Error: \(error)")
+                    Logger.error("Fetch Benefits Error: \(error)")
                 }
 
             }
