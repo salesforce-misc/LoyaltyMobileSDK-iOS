@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddressView: View {
+    @EnvironmentObject private var rootVM: AppRootViewModel
 	@EnvironmentObject var orderDetailsViewModel: OrderDetailsViewModel
     var body: some View {
 		VStack(spacing: 0) {
@@ -49,7 +50,7 @@ struct AddressView: View {
 		.background(Color.white)
         .task {
             do {
-                let shippingType = try await orderDetailsViewModel.getShippingType()
+                let shippingType = try await orderDetailsViewModel.getShippingAddress(membershipNumber: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
                 print(shippingType)
             } catch {
                 print("Load Vouchers Error: \(error)")

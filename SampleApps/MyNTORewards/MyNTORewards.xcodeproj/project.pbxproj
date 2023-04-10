@@ -152,6 +152,7 @@
 		AF27C5AC2981118D008C7D79 /* LoyaltyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */; };
 		AFC75D3429D458DF003CC86A /* ShippingMethodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */; };
 		AFC75D3629D45D45003CC86A /* ShippingMethod.json in Resources */ = {isa = PBXBuildFile; fileRef = AFC75D3529D45D45003CC86A /* ShippingMethod.json */; };
+		AFDC733D29DBD87E00A2C7F5 /* ShippingAddressRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC733C29DBD87E00A2C7F5 /* ShippingAddressRecord.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -299,6 +300,7 @@
 		AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyaltyTextField.swift; sourceTree = "<group>"; };
 		AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingMethodModel.swift; sourceTree = "<group>"; };
 		AFC75D3529D45D45003CC86A /* ShippingMethod.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ShippingMethod.json; sourceTree = "<group>"; };
+		AFDC733C29DBD87E00A2C7F5 /* ShippingAddressRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingAddressRecord.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -487,6 +489,7 @@
 				299B38E128ED24B900E45D97 /* PasswordResetModel.swift */,
 				2906B1D328FF5031006EAB2D /* MemberModel.swift */,
 				AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */,
+				AFDC733C29DBD87E00A2C7F5 /* ShippingAddressRecord.swift */,
 				292ADC6F294C03D900753541 /* PromotionModel+Image.swift */,
 				292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */,
 				292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */,
@@ -824,6 +827,7 @@
 				29BAF6E128F3EEA000A3F9EB /* MyPromotionCardView.swift in Sources */,
 				3FE7193729BB6E2F0087A49F /* ProductTermsAndConditionsView.swift in Sources */,
 				29BAF6EB28F4D24500A3F9EB /* TransactionsView.swift in Sources */,
+				AFDC733D29DBD87E00A2C7F5 /* ShippingAddressRecord.swift in Sources */,
 				2984C9472954F091009669EF /* Expiry.swift in Sources */,
 				3FE7193D29BB90C30087A49F /* AddressView.swift in Sources */,
 				299B38DC28EB7F7000E45D97 /* CheckYourEmailView.swift in Sources */,
