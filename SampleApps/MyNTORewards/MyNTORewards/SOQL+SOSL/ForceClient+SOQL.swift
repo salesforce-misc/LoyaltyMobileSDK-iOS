@@ -13,7 +13,7 @@ public extension ForceClient {
     func SOQL<T: Decodable>(type: T.Type, for query: String) async throws -> QueryResult<T> {
         
         do {
-            let path = ForceAPI.path(for: "query")
+            let path = ForceAPI.path(for: "query", version: LoyaltyAPIVersion.defaultVersion)
             let queryItems = ["q": query]
             let request = try ForceRequest.create(instanceURL: AppSettings.getConnectedApp().instanceURL, path: path, queryItems: queryItems)
             return try await fetch(type: QueryResult.self, with: request)

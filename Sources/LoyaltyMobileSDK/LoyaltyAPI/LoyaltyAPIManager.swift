@@ -85,7 +85,7 @@ public class LoyaltyAPIManager {
     ///   - devMode: Whether it's in devMode
     /// - Returns: A ``BenefitModel`` array
     public func getMemberBenefits(for memberId: String,
-                                  version: String = ForceAPI.defaultVersion,
+                                  version: String = LoyaltyAPIVersion.defaultVersion,
                                   devMode: Bool = false) async throws -> [BenefitModel] {
         do {
             if devMode {
@@ -109,7 +109,7 @@ public class LoyaltyAPIManager {
     ///   - devMode: Whether it's in devMode
     /// - Returns: A ``ProfileModel`` instance
     public func getMemberProfile(for memberId: String,
-                                 version: String = ForceAPI.defaultVersion,
+                                 version: String = LoyaltyAPIVersion.defaultVersion,
                                  devMode: Bool = false) async throws -> ProfileModel {
         do {
             if devMode {
@@ -131,7 +131,7 @@ public class LoyaltyAPIManager {
     ///   - version: The API version number
     ///   - devMode: Whether it's in devMode
     /// - Returns: A ``ProfileModel`` instance
-    public func getCommunityMemberProfile(version: String = ForceAPI.defaultVersion,
+    public func getCommunityMemberProfile(version: String = LoyaltyAPIVersion.defaultVersion,
                                           devMode: Bool = false) async throws -> ProfileModel {
         do {
             if devMode {
@@ -162,7 +162,7 @@ public class LoyaltyAPIManager {
                                lastName: String,
                                email: String, phone: String,
                                emailNotification: Bool,
-                               version: String = ForceAPI.defaultVersion) async throws -> EnrollmentOutputModel {
+                               version: String = LoyaltyAPIVersion.defaultVersion) async throws -> EnrollmentOutputModel {
         
         let currentDate = Date()
         let attributesContact = ["Phone": phone]
@@ -218,7 +218,7 @@ public class LoyaltyAPIManager {
     ///   - version: The API version number
     public func enrollIn(promotion promotionName: String,
                          for membershipNumber: String,
-                         version: String = ForceAPI.defaultVersion) async throws {
+                         version: String = LoyaltyAPIVersion.defaultVersion) async throws {
         let body = [
             "processParameters": [
                 [
@@ -247,7 +247,7 @@ public class LoyaltyAPIManager {
     ///   - devMode: Whether it's in devMode
 	public final func unenroll(promotionId: String,
                                for membershipNumber: String,
-                               version: String = ForceAPI.defaultVersion,
+                               version: String = LoyaltyAPIVersion.defaultVersion,
                                devMode: Bool = false) async throws {
 		let body = [
 			"processParameters": [
@@ -269,7 +269,7 @@ public class LoyaltyAPIManager {
     ///   - devMode: Whether it's in devMode
 	public final func unenroll(promotionName: String,
                                for membershipNumber: String,
-                               version: String = ForceAPI.defaultVersion,
+                               version: String = LoyaltyAPIVersion.defaultVersion,
                                devMode: Bool = false) async throws {
 		let body = [
 			"processParameters": [
@@ -283,7 +283,7 @@ public class LoyaltyAPIManager {
 	}
     
 	private func unenroll(requestBody: [String: Any],
-                          version: String = ForceAPI.defaultVersion,
+                          version: String = LoyaltyAPIVersion.defaultVersion,
                           devMode: Bool = false) async throws {
 		if devMode {
 			let _ = try forceClient.fetchLocalJson(type: UnenrollPromotionResponseModel.self, file: "UnenrollPromotion")
@@ -312,7 +312,7 @@ public class LoyaltyAPIManager {
     ///   - devMode: Whether it's in devMode
     /// - Returns: A ``PromotionModel`` instance
     public func getPromotions(memberId: String,
-                              version: String = ForceAPI.defaultVersion,
+                              version: String = LoyaltyAPIVersion.defaultVersion,
                               devMode: Bool = false) async throws -> PromotionModel {
         let body: [String: Any] = [
             "processParameters": [
@@ -330,7 +330,7 @@ public class LoyaltyAPIManager {
     ///   - devMode: Whether it's in devMode
     /// - Returns: A ``PromotionModel`` instance
     public func getPromotions(membershipNumber: String,
-                              version: String = ForceAPI.defaultVersion,
+                              version: String = LoyaltyAPIVersion.defaultVersion,
                               devMode: Bool = false) async throws -> PromotionModel {
         let body: [String: Any] = [
             "processParameters": [
@@ -341,7 +341,7 @@ public class LoyaltyAPIManager {
     }
     
     private func getPromotions(requsetBody: [String: Any],
-                               version: String = ForceAPI.defaultVersion,
+                               version: String = LoyaltyAPIVersion.defaultVersion,
                                devMode: Bool = false) async throws -> PromotionModel {
         do {
             if devMode {
@@ -374,7 +374,7 @@ public class LoyaltyAPIManager {
                                 journalSubTypeName: String? = nil,
                                 periodStartDate: String? = nil,
                                 periodEndDate: String? = nil,
-                                version: String = ForceAPI.defaultVersion,
+                                version: String = LoyaltyAPIVersion.defaultVersion,
                                 devMode: Bool = false) async throws -> [TransactionJournal] {
         let pageNumberString = pageNumber == nil ? nil : String(describing: pageNumber)
         let queryItems = ["pageNumber": pageNumberString,
@@ -422,7 +422,7 @@ public class LoyaltyAPIManager {
 		productCategoryName: [String]? = nil,
 		sortBy: SortBy? = nil,
 		sortOrder: SortOrder? = nil,
-        version: String = ForceAPI.defaultVersion,
+        version: String = LoyaltyAPIVersion.defaultVersion,
         devMode: Bool = false) async throws -> [VoucherModel] {
 		do {
 			if devMode {

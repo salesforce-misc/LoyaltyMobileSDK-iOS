@@ -9,14 +9,12 @@ import Foundation
 
 public struct ForceAPI {
     
-    public static let defaultVersion = "58.0" // latest version
-    
     /// Get API common path
     /// - Parameters:
     ///   - api: The API name
     ///   - version: The API version number
     /// - Returns: The HTTP path can be extended to host
-    public static func path(for api: String, version: String = defaultVersion) -> String {
+    public static func path(for api: String, version: String) -> String {
         "/services/data/v\(version)/\(api)"
     }
     
