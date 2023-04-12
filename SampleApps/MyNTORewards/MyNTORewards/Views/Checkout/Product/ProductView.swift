@@ -28,7 +28,7 @@ struct ProductView: View {
 		.loytaltyNavigationTitle("Outdoor Collection")
 		.loyaltyNavigationSubtitle("Double points on Outdoor Product Category")
 		.loyaltyNavBarSearchButtonHidden(true)
-		.loyaltyNavBarTabBar(TopTabBar(barItems: tabbarItems, tabIndex: $tabIndex))
+		.loyaltyNavBarTabBar(TopTabBar(barItems: tabbarItems, tabIndex: $tabIndex, tabAlignment: .center))
 	}
 }
 
