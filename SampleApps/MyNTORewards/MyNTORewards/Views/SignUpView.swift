@@ -28,6 +28,7 @@ struct SignUpView: View {
     var body: some View {
         VStack {
             SheetHeader(title: "Join")
+                .accessibilityIdentifier(AppAccessibilty.Signup.joinLabel)
             ScrollView {
                 ZStack {
                     VStack {
@@ -131,9 +132,13 @@ struct SignUpCredentialFields: View {
     var body: some View {
         Group {
             LoyaltyTextField(textFieldType: .firstName, inputText: $firstName)
+                .accessibility(identifier: AppAccessibilty.Signup.firstName)
             LoyaltyTextField(textFieldType: .lastName, inputText: $lastName)
+                .accessibility(identifier: AppAccessibilty.Signup.lastName)
             LoyaltyTextField(textFieldType: .email, inputText: $email)
+                .accessibility(identifier: AppAccessibilty.Signup.email)
             LoyaltyTextField(textFieldType: .phoneNumber, inputText: $mobileNumber)
+                .accessibility(identifier: AppAccessibilty.Signup.phone)
             
             RevealableSecureField("Password", text: $password)
             .focused($passwordIsFocused)
@@ -141,6 +146,7 @@ struct SignUpCredentialFields: View {
                     .stroke(Color.red, lineWidth: (!SignUpTextFieldType.password.validate(text: password) && passwordIsFocused) ? 2 : 0)
                     .padding(.horizontal)
                 )
+                .accessibility(identifier: AppAccessibilty.Signup.password)
             if !SignUpTextFieldType.password.validate(text: password) && passwordIsFocused {
                 Text(SignUpTextFieldType.password.errorMessage)
                     .font(.labelText)
@@ -155,6 +161,7 @@ struct SignUpCredentialFields: View {
                     .stroke(Color.red, lineWidth: (passwordConfirmation != password && (passwordConfirmationIsFocused || passwordConfirmation.count > 0)) ? 2 : 0)
                     .padding(.horizontal)
                 )
+                .accessibility(identifier: AppAccessibilty.Signup.confirmPassword)
             if passwordConfirmation != password && (passwordConfirmationIsFocused || passwordConfirmation.count > 0) {
                 Text(SignUpTextFieldType.confirmPassword.errorMessage)
                     .font(.labelText)
@@ -167,12 +174,14 @@ struct SignUpCredentialFields: View {
             Toggle(isOn: $acceptTerms) {
                 HStack(spacing: 0) {
                     Text("I agree to the ")
+                        .accessibility(identifier: AppAccessibilty.Signup.agreeLabel)
                     Button(action: {
                         showTermsPopover.toggle()
                     }, label: {
                         Text("terms and conditions")
                             .foregroundColor(Color.theme.accent)
                     })
+                    .accessibility(identifier: AppAccessibilty.Signup.agreeButton)
                     .popover(isPresented: $showTermsPopover) {
                         TermsAndConditions()
                     }
@@ -183,6 +192,7 @@ struct SignUpCredentialFields: View {
             .padding(.horizontal)
             Toggle(isOn: $joinEmailList) {
                 Text("Add me to the loyalty program's mailing list")
+                    .accessibility(identifier: AppAccessibilty.Signup.mailListLabel)
             }
             .toggleStyle(CheckboxStyle())
             .padding(.horizontal)
