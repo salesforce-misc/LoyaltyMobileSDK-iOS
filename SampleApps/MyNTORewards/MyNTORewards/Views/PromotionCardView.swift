@@ -13,7 +13,6 @@ struct PromotionCardView: View {
     @EnvironmentObject private var promotionVM: PromotionViewModel
     @State var showPromotionDetailView = false
     @State var processing = false
-	@State private var isCheckoutNavigationActive = false
     let promotion: PromotionResult
     
     var body: some View {
@@ -67,11 +66,11 @@ struct PromotionCardView: View {
                 promotionVM.actionTaskList[promotion.id] = (false, true)
             }
         }) {
-			MyPromotionDetailView(isShopActionSuccess: $isCheckoutNavigationActive, promotion: promotion, processing: $processing)
+			MyPromotionDetailView(isShopActionSuccess: $promotionVM.isCheckoutNavigationActiveFromHome, promotion: promotion, processing: $processing)
         }
         .padding()
 		.background(
-			LoyaltyConditionalNavLink(isActive: $isCheckoutNavigationActive, destination: {
+			LoyaltyConditionalNavLink(isActive: $promotionVM.isCheckoutNavigationActiveFromHome, destination: {
 				ProductView()
 			}, label: { EmptyView() })
 		)    
