@@ -19,13 +19,13 @@ struct ProductDetailsView: View {
 				VStack {
 					VStack {
 						ProductHeaderView(title: "STOP", subTitle: "Women Flight Jacket", rating: 4)
-						ProductImagesView(images: [
-							"https://picsum.photos/620",
-							"https://picsum.photos/532",
-							"https://picsum.photos/456",
-							"https://picsum.photos/879",
-							"https://picsum.photos/805",
-						])
+						ProductImagesView(mainImage: "img-product1",
+										  subImages: [
+											"img-product2",
+											"img-product3",
+											"img-product4",
+											"img-product5",
+										  ])
 					}
 					SizeSelectorView(selection: $sizeSelected, sizes: ["S", "M", "L", "XL"])
 					AvailableColorsView(selection: $colorSelected, colors: [Color("VibrantRed"), Color("ProductGreen"), Color("ProductPeach"), Color("VibrantPurple")])
