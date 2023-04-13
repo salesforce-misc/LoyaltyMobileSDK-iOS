@@ -12,11 +12,11 @@ final class OnBoardingViewUITests: XCTestCase {
 
     override func setUpWithError() throws {
         continueAfterFailure = false
+        app.launch()
     }
 
     func testAllUIElements() throws {
         // UI tests must launch the application that they test.
-        app.launch()
         
         XCTAssertTrue(app.buttons["login_button"].exists)
         XCTAssertTrue(app.buttons["join_button"].exists)
@@ -26,8 +26,6 @@ final class OnBoardingViewUITests: XCTestCase {
     }
     
     func testSwipe() throws {
-        app.launch()
-        
         XCTAssertTrue(app.staticTexts["Redeem your points for exciting vouchers!"].exists)
         
         app.swipeLeft()
@@ -40,17 +38,13 @@ final class OnBoardingViewUITests: XCTestCase {
     }
     
     func testSignupButtonTap() throws {
-        app.launch()
-        
         let signUpButton = app.buttons["join_button"]
         signUpButton.tap()
         
         XCTAssertTrue(app.staticTexts["join_Label"].exists)
     }
     
-    func testLoginButtonTap() throws {
-        app.launch()
-        
+    func testLoginButtonTap() throws {        
         let loginButton = app.buttons["login_button"]
         loginButton.tap()
         
