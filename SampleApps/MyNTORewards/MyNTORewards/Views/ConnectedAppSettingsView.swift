@@ -75,6 +75,7 @@ struct ConnectedAppSettingsView: View {
                             Text("Name")
                                 .frame(width: 80, alignment: .leading)
                             TextField("Connected App Name", text: $name)
+                                .foregroundColor(.secondary)
                                 .disabled(!isEditing && !isAddingNew)
                                 .focused($nameIsFocused)
                                 .overlay(
@@ -99,6 +100,7 @@ struct ConnectedAppSettingsView: View {
                             Text("Consumer Key")
                                 .frame(width: 80, alignment: .leading)
                             TextEditor(text: $consumerKey)
+                                .foregroundColor(.secondary)
                                 .frame(height: 60)
                                 .disabled(!isEditing && !isAddingNew)
                         }
@@ -106,6 +108,7 @@ struct ConnectedAppSettingsView: View {
                             Text("Consumer Secret")
                                 .frame(width: 80, alignment: .leading)
                             TextEditor(text: $consumerSecret)
+                                .foregroundColor(.secondary)
                                 .frame(height: 60)
                                 .disabled(!isEditing && !isAddingNew)
                         }
@@ -113,6 +116,7 @@ struct ConnectedAppSettingsView: View {
                             Text("Callback URL")
                                 .frame(width: 80, alignment: .leading)
                             TextEditor(text: $callbackURL)
+                                .foregroundColor(.secondary)
                                 .frame(height: 60)
                                 .disabled(!isEditing && !isAddingNew)
                         }
@@ -120,6 +124,7 @@ struct ConnectedAppSettingsView: View {
                             Text("Base URL")
                                 .frame(width: 80, alignment: .leading)
                             TextEditor(text: $baseURL)
+                                .foregroundColor(.secondary)
                                 .frame(height: 60)
                                 .disabled(!isEditing && !isAddingNew)
                         }
@@ -127,6 +132,7 @@ struct ConnectedAppSettingsView: View {
                             Text("Instance URL")
                                 .frame(width: 80, alignment: .leading)
                             TextEditor(text: $instanceURL)
+                                .foregroundColor(.secondary)
                                 .frame(height: 60)
                                 .disabled(!isEditing && !isAddingNew)
                         }
@@ -134,6 +140,7 @@ struct ConnectedAppSettingsView: View {
                             Text("Community URL")
                                 .frame(width: 80, alignment: .leading)
                             TextEditor(text: $communityURL)
+                                .foregroundColor(.secondary)
                                 .frame(height: 60)
                                 .disabled(!isEditing && !isAddingNew)
                         }
