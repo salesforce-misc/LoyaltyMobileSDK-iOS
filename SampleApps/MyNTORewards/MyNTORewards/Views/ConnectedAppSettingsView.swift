@@ -33,8 +33,6 @@ struct ConnectedAppSettingsView: View {
     @State var instanceURL: String
     @State var communityURL: String
     
-    private let focusPublisher = PassthroughSubject<Void, Never>()
-    
     var body: some View {
         
         VStack(spacing: 0) {
