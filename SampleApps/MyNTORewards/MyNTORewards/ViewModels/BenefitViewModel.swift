@@ -22,7 +22,7 @@ class BenefitViewModel: ObservableObject {
     init() {
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
                                               loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                              instanceURL: AppSettings.getConnectedApp().instanceURL)
+                                              instanceURL: AppSettings.getInstanceURL())
     }
     
     func getBenefits(memberId: String, reload: Bool = false) async throws {
