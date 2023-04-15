@@ -12,7 +12,7 @@ struct ConnectedAppsView: View {
     
     @EnvironmentObject private var connectedAppVM: ConnectedAppsViewModel
     
-    @State private var selectedApp: ForceConnectedApp = AppSettings.connectedApp
+    @State private var selectedApp: ForceConnectedApp = AppSettings.getConnectedApp()
     @State private var showAddOther: Bool = false
 
     var body: some View {
@@ -109,10 +109,17 @@ struct ConnectedAppsView: View {
             }
         }
         .onAppear {
-            selectedApp = connectedAppVM.retrieveApp(instance: connectedAppVM.selectedInstance) ?? AppSettings.connectedApp
+            selectedApp = connectedAppVM.retrieveApp(instance: connectedAppVM.selectedInstance) ?? AppSettings.getConnectedApp()
         }
         .sheet(isPresented: $showAddOther) {
-            ConnectedAppSettingsView(isAddingNew: true, name: "", consumerKey: "", consumerSecret: "", callbackURL: "", baseURL: "", instanceURL: "", communityURL: "")
+            ConnectedAppSettingsView(isAddingNew: true,
+                                     name: "",
+                                     consumerKey: "",
+                                     consumerSecret: "",
+                                     callbackURL: "",
+                                     baseURL: "",
+                                     instanceURL: "",
+                                     communityURL: "")
         }
 
     }
