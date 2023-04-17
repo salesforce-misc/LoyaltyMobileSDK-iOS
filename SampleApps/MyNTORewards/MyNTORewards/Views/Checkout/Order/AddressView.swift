@@ -39,12 +39,7 @@ struct AddressView: View {
 			}
 			.padding(.horizontal)
 			.padding(.top)
-			Button("Deliver to This Address") {
-				withAnimation {
-					selectedIndex = 1
-				}
-			}
-				.buttonStyle(DarkFlexibleButton())
+			.padding(.bottom)
 		}
 		.background(Color.white)
 		
