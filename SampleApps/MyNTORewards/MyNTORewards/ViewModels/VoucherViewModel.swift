@@ -30,7 +30,7 @@ class VoucherViewModel: ObservableObject {
     init() {
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
                                               loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                              instanceURL: AppSettings.getConnectedApp().instanceURL)
+                                              instanceURL: AppSettings.getInstanceURL())
     }
     
     func loadVouchers(membershipNumber: String) async throws {

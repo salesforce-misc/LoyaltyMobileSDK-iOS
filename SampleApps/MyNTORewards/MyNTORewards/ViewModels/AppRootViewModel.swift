@@ -46,7 +46,7 @@ class AppRootViewModel: ObservableObject {
     init() {
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
                                               loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                              instanceURL: AppSettings.getConnectedApp().instanceURL)
+                                              instanceURL: AppSettings.getInstanceURL())
     }
     
     func signUpUser(userEmail: String,

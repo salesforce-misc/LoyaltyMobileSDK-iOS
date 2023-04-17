@@ -7,13 +7,12 @@
 
 import Foundation
 
-public struct ForceConnectedApp: Codable {
+public struct ForceConnectedApp: Codable, Hashable {
+    public let connectedAppName: String
     public let consumerKey: String
     public let consumerSecret: String
     public let callbackURL: String
     public let baseURL: String
     public let instanceURL: String
     public let communityURL: String
-    public let username: String
-    public let password: String
 }

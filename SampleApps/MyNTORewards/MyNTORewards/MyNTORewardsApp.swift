@@ -23,6 +23,7 @@ struct MyNTORewardsApp: App {
     @StateObject var transactionVM = TransactionViewModel()
     @StateObject var voucherVM = VoucherViewModel()
     @StateObject var imageVM = ImageViewModel()
+    @StateObject var connectedAppVM = ConnectedAppsViewModel()
 
     var body: some Scene {
         WindowGroup {
@@ -35,6 +36,7 @@ struct MyNTORewardsApp: App {
                 .environmentObject(transactionVM)
                 .environmentObject(voucherVM)
                 .environmentObject(imageVM)
+                .environmentObject(connectedAppVM)
         }
     }
 }

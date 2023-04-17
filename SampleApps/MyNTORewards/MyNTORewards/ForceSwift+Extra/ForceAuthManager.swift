@@ -12,12 +12,7 @@ public class ForceAuthManager: ForceAuthenticator {
     public var accessToken: String?
     public var auth: ForceAuth? = nil
     private let defaults: UserDefaults
-    
-    public enum OauthFlow {
-        case UserAgent
-        case UsernamePassword
-    }
-    
+        
     public static let shared = ForceAuthManager()
     
     private init(defaults: UserDefaults = .shared) {
@@ -82,31 +77,7 @@ public class ForceAuthManager: ForceAuthenticator {
         }
         
     }
-    
-    public func grantAuth(oauthFlow: OauthFlow = .UsernamePassword) async throws {
         
-        do {
-            let app = AppSettings.getConnectedApp()
-            let tokenURL = app.baseURL + AppSettings.Defaults.tokenPath
-            let authURL = app.baseURL + AppSettings.Defaults.authPath
-            
-            switch oauthFlow {
-            case .UsernamePassword:
-                self.auth = try await self.grantAuth(
-                    url: tokenURL,
-                    username: app.username,
-                    password: app.password,
-                    consumerKey: app.consumerKey,
-                    consumerSecret: app.consumerSecret)
-            case .UserAgent:
-                self.auth = try await self.authenticate(url: authURL, consumerKey: app.consumerKey, callbackURL: app.callbackURL)
-            }
-        } catch {
-            throw error
-        }
-
-    }
-    
     /// OAuth 2.0 Username-Password Flow - Use username and password behind screen to obtain a valid accessToken
     /// https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_username_password_flow.htm&type=5
     public func grantAuth(url: String, username: String, password: String, consumerKey: String, consumerSecret: String) async throws -> ForceAuth {
@@ -183,9 +154,9 @@ public class ForceAuthManager: ForceAuthenticator {
         }
         
         var queryItems = [
-            "grant_type": "token",
+            "grant_type": "refresh_token",
             "client_id": consumerKey,
-            "fresh_token": refreshToken
+            "refresh_token": refreshToken
         ]
         consumerSecret.map { queryItems["client_secret"] = $0 }
         
@@ -338,7 +309,7 @@ public class ForceAuthManager: ForceAuthenticator {
     /// Save Auth to ForceAuthStore
     public func saveAuth(for auth: ForceAuth) throws {
         do {
-            try ForceAuthStore.save(auth: auth)
+            try ForceAuthKeychainManager.save(item: auth)
             defaults.userIdentifier = auth.identityURL
         } catch {
             throw error
@@ -348,7 +319,7 @@ public class ForceAuthManager: ForceAuthenticator {
     /// Delete Auth from ForceAuthStore
     public func deleteAuth() throws {
         if let id = self.userIdentifier {
-            try? ForceAuthStore.delete(for: id)
+            try? ForceAuthKeychainManager.delete(for: id)
         }
     }
     
@@ -357,7 +328,7 @@ public class ForceAuthManager: ForceAuthenticator {
         guard let id = ForceAuthManager.shared.userIdentifier else {
             throw CommonError.userIdentityUnknown
         }
-        guard let auth = try ForceAuthStore.retrieve(for: id) else {
+        guard let auth = try ForceAuthKeychainManager.retrieve(for: id) else {
             throw CommonError.authNotFoundInKeychain
         }
         return auth

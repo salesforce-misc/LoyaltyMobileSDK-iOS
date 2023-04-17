@@ -41,6 +41,32 @@ struct Keychain {
         }
     }
     
+    /// Returns the value of a generic password keychain items.
+    /// - Parameters:
+    ///   - service: The service name for the item.
+    /// - Returns: The value of the items
+    static func read(service: String) throws -> [Data] {
+        var copyResult: CFTypeRef?
+        let err = SecItemCopyMatching([
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: service,
+            kSecMatchLimit: kSecMatchLimitAll,
+            kSecReturnAttributes: true,
+            kSecReturnData: true
+            ] as NSDictionary, &copyResult)
+        
+        switch err {
+        case errSecSuccess:
+            if let items = copyResult as? [NSDictionary], !items.isEmpty {
+                return items.compactMap { $0[kSecValueData as String] as? Data }
+            } else {
+                return []
+            }
+        default:
+            throw KeychainError.readFailure(status: err)
+        }
+    }
+    
     /// Stores a value to a generic password keychain item.
     /// This method delegates the work to two helper routines depending on whether the item already
     /// exists in the keychain or not.

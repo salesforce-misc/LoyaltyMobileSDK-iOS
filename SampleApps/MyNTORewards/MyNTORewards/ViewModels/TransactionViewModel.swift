@@ -20,7 +20,7 @@ class TransactionViewModel: ObservableObject {
     init() {
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
                                               loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                              instanceURL: AppSettings.getConnectedApp().instanceURL)
+                                              instanceURL: AppSettings.getInstanceURL())
     }
     
     @MainActor
