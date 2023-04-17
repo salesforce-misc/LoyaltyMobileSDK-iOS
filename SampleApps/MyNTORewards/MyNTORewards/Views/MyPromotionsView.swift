@@ -15,7 +15,6 @@ struct MyPromotionsView: View {
     let barItems = ["Unenrolled", "Active", "All"]
     
     var body: some View {
-		NavigationView {
 			VStack(spacing: 0) {
 				VStack(spacing: 0) {
 					HStack {
@@ -68,7 +67,6 @@ struct MyPromotionsView: View {
 						print("Load All Promotions Error: \(error)")
 					}
 				}
-			}
 		}
         
     }

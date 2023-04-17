@@ -25,8 +25,7 @@ struct OrderPlacedView: View {
 			.padding(75)
 			Spacer()
 			Button{
-				promotionVM.isCheckoutNavigationActiveFromHome = false
-				promotionVM.isCheckoutNavigationActiveFromPromotions = false
+				promotionVM.isCheckoutNavigationActive = false
 			} label: {
 				Text("Continue Shopping")
 					.font(.boldButtonText)

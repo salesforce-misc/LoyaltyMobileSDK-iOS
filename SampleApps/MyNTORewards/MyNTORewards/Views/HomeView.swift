@@ -16,7 +16,6 @@ struct HomeView: View {
     @Binding var selectedTab: Int
     
     var body: some View {
-        NavigationView {
             VStack(spacing: 0) {
                 VStack(spacing: 0) {
                     HStack {
@@ -106,9 +105,6 @@ struct HomeView: View {
                             print("Reload Vouchers Error: \(error)")
                         }
                     }
-                    
-                }
-                
             }
             .navigationBarHidden(true)
         }

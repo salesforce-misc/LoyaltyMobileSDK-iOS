@@ -19,8 +19,7 @@ class PromotionViewModel: ObservableObject {
     // The tuple represents(isActionDone: Bool, isModalDismissed: Bool)
     // actionTaskList => [promotionId: (isActionDone, isModalDismissed)]
     @Published var actionTaskList: [String: (Bool, Bool)] = [:]
-	@Published var isCheckoutNavigationActiveFromHome = false
-	@Published var isCheckoutNavigationActiveFromPromotions = false
+	@Published var isCheckoutNavigationActive = false
 	
 	final func shopPromotion() -> Bool {
 		return true

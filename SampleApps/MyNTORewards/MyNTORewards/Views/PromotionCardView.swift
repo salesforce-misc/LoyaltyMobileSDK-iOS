@@ -66,14 +66,9 @@ struct PromotionCardView: View {
                 promotionVM.actionTaskList[promotion.id] = (false, true)
             }
         }) {
-			MyPromotionDetailView(isShopActionSuccess: $promotionVM.isCheckoutNavigationActiveFromHome, promotion: promotion, processing: $processing)
+			MyPromotionDetailView(isShopActionSuccess: $promotionVM.isCheckoutNavigationActive, promotion: promotion, processing: $processing)
         }
         .padding()
-		.background(
-			LoyaltyConditionalNavLink(isActive: $promotionVM.isCheckoutNavigationActiveFromHome, destination: {
-				ProductView()
-			}, label: { EmptyView() })
-		)    
     }
 }
 
