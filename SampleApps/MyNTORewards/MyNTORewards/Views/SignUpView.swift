@@ -28,7 +28,6 @@ struct SignUpView: View {
     var body: some View {
         VStack {
             SheetHeader(title: "Join")
-                .accessibilityIdentifier(AppAccessibilty.Signup.joinLabel)
             ScrollView {
                 ZStack {
                     VStack {
@@ -66,6 +65,7 @@ struct SignUpView: View {
                             
                             HStack {
                                 Text("Already a Member?")
+                                    .accessibilityIdentifier(AppAccessibilty.Signup.alreadyMemberLabel)
                                 Button(action: {
                                     signUpPresented = false
                                     signInPresented = true
@@ -74,6 +74,7 @@ struct SignUpView: View {
                                     Text("Log In")
                                         .font(.buttonText)
                                 }
+                                .accessibilityIdentifier(AppAccessibilty.Signup.loginButton)
                             }
                         }
                         .padding()
@@ -132,23 +133,20 @@ struct SignUpCredentialFields: View {
     var body: some View {
         Group {
             LoyaltyTextField(textFieldType: .firstName, inputText: $firstName)
-                .accessibility(identifier: AppAccessibilty.Signup.firstName)
             LoyaltyTextField(textFieldType: .lastName, inputText: $lastName)
-                .accessibility(identifier: AppAccessibilty.Signup.lastName)
             LoyaltyTextField(textFieldType: .email, inputText: $email)
-                .accessibility(identifier: AppAccessibilty.Signup.email)
             LoyaltyTextField(textFieldType: .phoneNumber, inputText: $mobileNumber)
-                .accessibility(identifier: AppAccessibilty.Signup.phone)
             
             RevealableSecureField("Password", text: $password)
+                .accessibility(identifier: AppAccessibilty.Signup.password)
             .focused($passwordIsFocused)
                 .overlay(RoundedRectangle(cornerRadius: 8)
                     .stroke(Color.red, lineWidth: (!SignUpTextFieldType.password.validate(text: password) && passwordIsFocused) ? 2 : 0)
                     .padding(.horizontal)
                 )
-                .accessibility(identifier: AppAccessibilty.Signup.password)
             if !SignUpTextFieldType.password.validate(text: password) && passwordIsFocused {
                 Text(SignUpTextFieldType.password.errorMessage)
+                    .accessibility(identifier: SignUpTextFieldType.password.accessibilityIdentifier + "error")
                     .font(.labelText)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(Color.red)
@@ -168,6 +166,7 @@ struct SignUpCredentialFields: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(Color.red)
                     .padding(.leading)
+                    .accessibility(identifier: SignUpTextFieldType.confirmPassword.accessibilityIdentifier + "error")
                 
             }
             
@@ -188,6 +187,7 @@ struct SignUpCredentialFields: View {
                     
                 }
             }
+            .accessibility(identifier: AppAccessibilty.Signup.agreeCheckbox)
             .toggleStyle(CheckboxStyle())
             .padding(.horizontal)
             Toggle(isOn: $joinEmailList) {
@@ -196,6 +196,7 @@ struct SignUpCredentialFields: View {
             }
             .toggleStyle(CheckboxStyle())
             .padding(.horizontal)
+            .accessibility(identifier: AppAccessibilty.Signup.mailListCheckbox)
             
         }
     }

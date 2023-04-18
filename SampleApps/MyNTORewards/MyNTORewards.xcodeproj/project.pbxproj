@@ -133,6 +133,10 @@
 		AFCDDAA429E53EA2006B00EB /* MyNTORewardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAA329E53EA2006B00EB /* MyNTORewardsUITests.swift */; };
 		AFCDDAA629E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */; };
 		AFCDDAAD29E54621006B00EB /* OnBoardingViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAAC29E54621006B00EB /* OnBoardingViewUITests.swift */; };
+		AFE960DD29EE47A700C888C0 /* OnBoardingViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE960DC29EE47A700C888C0 /* OnBoardingViewHelper.swift */; };
+		AFE960DF29EE489500C888C0 /* SignUpViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE960DE29EE489500C888C0 /* SignUpViewHelper.swift */; };
+		AFE960E129EE4B9D00C888C0 /* SignInViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE960E029EE4B9D00C888C0 /* SignInViewHelper.swift */; };
+		AFE960E329EE4D0800C888C0 /* MoreViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE960E229EE4D0800C888C0 /* MoreViewHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -272,6 +276,10 @@
 		AFCDDAA329E53EA2006B00EB /* MyNTORewardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsUITests.swift; sourceTree = "<group>"; };
 		AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AFCDDAAC29E54621006B00EB /* OnBoardingViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewUITests.swift; sourceTree = "<group>"; };
+		AFE960DC29EE47A700C888C0 /* OnBoardingViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewHelper.swift; sourceTree = "<group>"; };
+		AFE960DE29EE489500C888C0 /* SignUpViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewHelper.swift; sourceTree = "<group>"; };
+		AFE960E029EE4B9D00C888C0 /* SignInViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewHelper.swift; sourceTree = "<group>"; };
+		AFE960E229EE4D0800C888C0 /* MoreViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -583,6 +591,10 @@
 			children = (
 				AFCDDAA329E53EA2006B00EB /* MyNTORewardsUITests.swift */,
 				AFCDDAAC29E54621006B00EB /* OnBoardingViewUITests.swift */,
+				AFE960DC29EE47A700C888C0 /* OnBoardingViewHelper.swift */,
+				AFE960DE29EE489500C888C0 /* SignUpViewHelper.swift */,
+				AFE960E029EE4B9D00C888C0 /* SignInViewHelper.swift */,
+				AFE960E229EE4D0800C888C0 /* MoreViewHelper.swift */,
 				AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */,
 			);
 			path = MyNTORewardsUITests;
@@ -823,7 +835,11 @@
 			files = (
 				AFCDDAA429E53EA2006B00EB /* MyNTORewardsUITests.swift in Sources */,
 				AFCDDAAD29E54621006B00EB /* OnBoardingViewUITests.swift in Sources */,
+				AFE960E129EE4B9D00C888C0 /* SignInViewHelper.swift in Sources */,
 				AFCDDAA629E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift in Sources */,
+				AFE960DD29EE47A700C888C0 /* OnBoardingViewHelper.swift in Sources */,
+				AFE960E329EE4D0800C888C0 /* MoreViewHelper.swift in Sources */,
+				AFE960DF29EE489500C888C0 /* SignUpViewHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

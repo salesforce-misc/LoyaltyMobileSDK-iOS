@@ -15,42 +15,21 @@ final class OnBoardingViewUITests: XCTestCase {
         app.launch()
     }
 
-    func testAllUIElements() throws {
+    /// Flow Verification
+    /// 1. Verifying onboarding Elements
+    /// 2. Tap Join button and verify signup screen
+    /// 3. Tap login button and verify login screen
+    /// 4. Tap logout and verify logout
+    
+    func testOnBoardingFlow() throws {
         // UI tests must launch the application that they test.
         
-        XCTAssertTrue(app.buttons["login_button"].exists)
-        XCTAssertTrue(app.buttons["join_button"].exists)
-        XCTAssertTrue(app.staticTexts["already_member_label"].exists)
-        XCTAssertTrue(app.staticTexts["onboarding_description"].exists)
-        XCTAssertTrue(app.images["onboarding_image"].exists)
+        try OnBoardingViewHelper.testOnBoardingScreen()
+        try SignUpViewHelper.testSignUpPage()
+        try SignInViewHelper.testSignInScreen()
+        try MoreViewHelper.testMoreScreen()
     }
     
-    func testSwipe() throws {
-        XCTAssertTrue(app.staticTexts["Redeem your points for exciting vouchers!"].exists)
-        
-        app.swipeLeft()
-        XCTAssertTrue(app.staticTexts["Earn points to unlock new rewards!"].exists)
-        
-        app.swipeLeft()
-        XCTAssertTrue(app.staticTexts["Get personalized offers!"].exists)
-        
-        XCTAssertTrue(app.images["onboarding_image"].exists)
-    }
-    
-    func testSignupButtonTap() throws {
-        let signUpButton = app.buttons["join_button"]
-        signUpButton.tap()
-        
-        XCTAssertTrue(app.staticTexts["join_Label"].exists)
-    }
-    
-    func testLoginButtonTap() throws {        
-        let loginButton = app.buttons["login_button"]
-        loginButton.tap()
-        
-        XCTAssertTrue(app.staticTexts["login_header"].exists)
-    }
-
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
             // This measures how long it takes to launch your application.
