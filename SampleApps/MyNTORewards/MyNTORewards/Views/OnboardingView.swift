@@ -57,6 +57,7 @@ struct OnboardingView: View {
                         Text(onboardingData[selectedPage].description)
                             .foregroundColor(Color.white)
                             .font(.onboardingText)
+                            .accessibility(identifier: AppAccessibilty.Onboarding.pageDescription)
                         Spacer()
                     }
                     .opacity(opacityText)
@@ -92,6 +93,7 @@ struct OnboardingView: View {
                 }, label: {
                     Text("Join")
                 })
+                .accessibility(identifier: AppAccessibilty.Onboarding.joinButton)
                 .buttonStyle(LightLongButton())
                 .sheet(isPresented: $signUpPresented) {
                     FullSheet {
@@ -112,6 +114,7 @@ struct OnboardingView: View {
                         .foregroundColor(Color.white)
                         .padding()
                         .allowsHitTesting(false)
+                        .accessibility(identifier: AppAccessibilty.Onboarding.alreadyMemberLabel)
                     Button {
                         signInPresented.toggle()
                         viewModel.userErrorMessage = ("", ErrorType.noError)
@@ -119,6 +122,7 @@ struct OnboardingView: View {
                         Text("Log In")
                     }
                     .foregroundColor(.white)
+                    .accessibility(identifier: AppAccessibilty.Onboarding.loginButton)
                     .font(.buttonText)
                     .offset(x: -20)
                     .sheet(isPresented: $signInPresented) {

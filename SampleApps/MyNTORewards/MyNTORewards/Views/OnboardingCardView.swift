@@ -19,6 +19,7 @@ struct OnboardingCardView: View {
                 .offset(card.offset)
                 .frame(maxWidth: UIScreen.main.bounds.width,
                        maxHeight: UIScreen.main.bounds.height)
+                .accessibilityIdentifier(AppAccessibilty.Onboarding.image)
             VStack {
                 Spacer()
                 BottomLayer()

@@ -129,7 +129,25 @@
 		3FFE1C9B29A29FF900F43253 /* UnenrollPromotion.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE1C9A29A29FF900F43253 /* UnenrollPromotion.json */; };
 		3FFE1C9D29A37D5300F43253 /* GetVouchers.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE1C9C29A37D5300F43253 /* GetVouchers.json */; };
 		AF27C5AC2981118D008C7D79 /* LoyaltyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */; };
+		AF8AA4CD29E3ED54007E2F6F /* AppAccessibilityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8AA4CC29E3ED54007E2F6F /* AppAccessibilityConstants.swift */; };
+		AFCDDAA429E53EA2006B00EB /* MyNTORewardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAA329E53EA2006B00EB /* MyNTORewardsUITests.swift */; };
+		AFCDDAA629E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */; };
+		AFCDDAAD29E54621006B00EB /* OnBoardingViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAAC29E54621006B00EB /* OnBoardingViewUITests.swift */; };
+		AFE960DD29EE47A700C888C0 /* OnBoardingViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE960DC29EE47A700C888C0 /* OnBoardingViewHelper.swift */; };
+		AFE960DF29EE489500C888C0 /* SignUpViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE960DE29EE489500C888C0 /* SignUpViewHelper.swift */; };
+		AFE960E129EE4B9D00C888C0 /* SignInViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE960E029EE4B9D00C888C0 /* SignInViewHelper.swift */; };
+		AFE960E329EE4D0800C888C0 /* MoreViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE960E229EE4D0800C888C0 /* MoreViewHelper.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AFCDDAA729E53EA2006B00EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 216F217328B6141E00DAA66D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 216F217A28B6141E00DAA66D;
+			remoteInfo = MyNTORewards;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		216A9CC028BDD958007881FE /* BenefitViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitViewModel.swift; sourceTree = "<group>"; };
@@ -253,6 +271,15 @@
 		3FFE1C9A29A29FF900F43253 /* UnenrollPromotion.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UnenrollPromotion.json; sourceTree = "<group>"; };
 		3FFE1C9C29A37D5300F43253 /* GetVouchers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GetVouchers.json; sourceTree = "<group>"; };
 		AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyaltyTextField.swift; sourceTree = "<group>"; };
+		AF8AA4CC29E3ED54007E2F6F /* AppAccessibilityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAccessibilityConstants.swift; sourceTree = "<group>"; };
+		AFCDDAA129E53EA2006B00EB /* MyNTORewardsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyNTORewardsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFCDDAA329E53EA2006B00EB /* MyNTORewardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsUITests.swift; sourceTree = "<group>"; };
+		AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AFCDDAAC29E54621006B00EB /* OnBoardingViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewUITests.swift; sourceTree = "<group>"; };
+		AFE960DC29EE47A700C888C0 /* OnBoardingViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewHelper.swift; sourceTree = "<group>"; };
+		AFE960DE29EE489500C888C0 /* SignUpViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewHelper.swift; sourceTree = "<group>"; };
+		AFE960E029EE4B9D00C888C0 /* SignInViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewHelper.swift; sourceTree = "<group>"; };
+		AFE960E229EE4D0800C888C0 /* MoreViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +291,13 @@
 				2906B1E22900BA8A006EAB2D /* FirebaseAuth in Frameworks */,
 				2906B1E6290127F5006EAB2D /* FirebaseFirestore in Frameworks */,
 				2906B1E8290127FD006EAB2D /* FirebaseFirestoreSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFCDDA9E29E53EA2006B00EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +324,7 @@
 				2920609229523C0B006B20C1 /* Packages */,
 				216F218C28B6145200DAA66D /* GoogleService-Info.plist */,
 				216F217D28B6141E00DAA66D /* MyNTORewards */,
+				AFCDDAA229E53EA2006B00EB /* MyNTORewardsUITests */,
 				216F217C28B6141E00DAA66D /* Products */,
 				2906B1D728FF60A3006EAB2D /* Frameworks */,
 			);
@@ -299,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				216F217B28B6141E00DAA66D /* MyNTORewards.app */,
+				AFCDDAA129E53EA2006B00EB /* MyNTORewardsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -498,6 +534,7 @@
 			children = (
 				2984C93F2954F091009669EF /* LocalFileManager */,
 				2984C93E2954F091009669EF /* LoyaltyUtilities.swift */,
+				AF8AA4CC29E3ED54007E2F6F /* AppAccessibilityConstants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -549,6 +586,20 @@
 			path = LoyaltyNavigationLink;
 			sourceTree = "<group>";
 		};
+		AFCDDAA229E53EA2006B00EB /* MyNTORewardsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AFCDDAA329E53EA2006B00EB /* MyNTORewardsUITests.swift */,
+				AFCDDAAC29E54621006B00EB /* OnBoardingViewUITests.swift */,
+				AFE960DC29EE47A700C888C0 /* OnBoardingViewHelper.swift */,
+				AFE960DE29EE489500C888C0 /* SignUpViewHelper.swift */,
+				AFE960E029EE4B9D00C888C0 /* SignInViewHelper.swift */,
+				AFE960E229EE4D0800C888C0 /* MoreViewHelper.swift */,
+				AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */,
+			);
+			path = MyNTORewardsUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -575,6 +626,24 @@
 			productReference = 216F217B28B6141E00DAA66D /* MyNTORewards.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AFCDDAA029E53EA2006B00EB /* MyNTORewardsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFCDDAAB29E53EA2006B00EB /* Build configuration list for PBXNativeTarget "MyNTORewardsUITests" */;
+			buildPhases = (
+				AFCDDA9D29E53EA2006B00EB /* Sources */,
+				AFCDDA9E29E53EA2006B00EB /* Frameworks */,
+				AFCDDA9F29E53EA2006B00EB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AFCDDAA829E53EA2006B00EB /* PBXTargetDependency */,
+			);
+			name = MyNTORewardsUITests;
+			productName = MyNTORewardsUITests;
+			productReference = AFCDDAA129E53EA2006B00EB /* MyNTORewardsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -582,11 +651,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					216F217A28B6141E00DAA66D = {
 						CreatedOnToolsVersion = 13.4.1;
+					};
+					AFCDDAA029E53EA2006B00EB = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 216F217A28B6141E00DAA66D;
 					};
 				};
 			};
@@ -607,6 +680,7 @@
 			projectRoot = "";
 			targets = (
 				216F217A28B6141E00DAA66D /* MyNTORewards */,
+				AFCDDAA029E53EA2006B00EB /* MyNTORewardsUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -631,6 +705,13 @@
 				298613D628CC275500BDC744 /* Salesforce.json in Resources */,
 				2906B1F52901E308006EAB2D /* Transactions.json in Resources */,
 				2906B1F32901E218006EAB2D /* Promotions.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFCDDA9F29E53EA2006B00EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,6 +809,7 @@
 				29BAF6D928F1642000A3F9EB /* RedeemPointsView.swift in Sources */,
 				29BAF6E928F4CA1000A3F9EB /* TransactionCardView.swift in Sources */,
 				218A36B228B85DA400FCEE39 /* ProfileView.swift in Sources */,
+				AF8AA4CD29E3ED54007E2F6F /* AppAccessibilityConstants.swift in Sources */,
 				29BAF6CF28F0FC3A00A3F9EB /* CornerRadiusStyle.swift in Sources */,
 				2906B1DB28FF7348006EAB2D /* CheckboxStyle.swift in Sources */,
 				298D5EEC29CCF5340062F16E /* ForceAuthManager.swift in Sources */,
@@ -747,7 +829,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AFCDDA9D29E53EA2006B00EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFCDDAA429E53EA2006B00EB /* MyNTORewardsUITests.swift in Sources */,
+				AFCDDAAD29E54621006B00EB /* OnBoardingViewUITests.swift in Sources */,
+				AFE960E129EE4B9D00C888C0 /* SignInViewHelper.swift in Sources */,
+				AFCDDAA629E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift in Sources */,
+				AFE960DD29EE47A700C888C0 /* OnBoardingViewHelper.swift in Sources */,
+				AFE960E329EE4D0800C888C0 /* MoreViewHelper.swift in Sources */,
+				AFE960DF29EE489500C888C0 /* SignUpViewHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AFCDDAA829E53EA2006B00EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 216F217A28B6141E00DAA66D /* MyNTORewards */;
+			targetProxy = AFCDDAA729E53EA2006B00EB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		216F218728B6141F00DAA66D /* Debug */ = {
@@ -942,6 +1046,42 @@
 			};
 			name = Release;
 		};
+		AFCDDAA929E53EA2006B00EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyNTORewards;
+			};
+			name = Debug;
+		};
+		AFCDDAAA29E53EA2006B00EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyNTORewards;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -959,6 +1099,15 @@
 			buildConfigurations = (
 				216F218A28B6141F00DAA66D /* Debug */,
 				216F218B28B6141F00DAA66D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AFCDDAAB29E53EA2006B00EB /* Build configuration list for PBXNativeTarget "MyNTORewardsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFCDDAA929E53EA2006B00EB /* Debug */,
+				AFCDDAAA29E53EA2006B00EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

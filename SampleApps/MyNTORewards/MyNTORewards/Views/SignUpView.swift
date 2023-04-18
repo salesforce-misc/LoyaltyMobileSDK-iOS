@@ -65,6 +65,7 @@ struct SignUpView: View {
                             
                             HStack {
                                 Text("Already a Member?")
+                                    .accessibilityIdentifier(AppAccessibilty.Signup.alreadyMemberLabel)
                                 Button(action: {
                                     signUpPresented = false
                                     signInPresented = true
@@ -73,6 +74,7 @@ struct SignUpView: View {
                                     Text("Log In")
                                         .font(.buttonText)
                                 }
+                                .accessibilityIdentifier(AppAccessibilty.Signup.loginButton)
                             }
                         }
                         .padding()
@@ -136,6 +138,7 @@ struct SignUpCredentialFields: View {
             LoyaltyTextField(textFieldType: .phoneNumber, inputText: $mobileNumber)
             
             RevealableSecureField("Password", text: $password)
+                .accessibility(identifier: AppAccessibilty.Signup.password)
             .focused($passwordIsFocused)
                 .overlay(RoundedRectangle(cornerRadius: 8)
                     .stroke(Color.red, lineWidth: (!SignUpTextFieldType.password.validate(text: password) && passwordIsFocused) ? 2 : 0)
@@ -143,6 +146,7 @@ struct SignUpCredentialFields: View {
                 )
             if !SignUpTextFieldType.password.validate(text: password) && passwordIsFocused {
                 Text(SignUpTextFieldType.password.errorMessage)
+                    .accessibility(identifier: SignUpTextFieldType.password.accessibilityIdentifier + "error")
                     .font(.labelText)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(Color.red)
@@ -155,37 +159,44 @@ struct SignUpCredentialFields: View {
                     .stroke(Color.red, lineWidth: (passwordConfirmation != password && (passwordConfirmationIsFocused || passwordConfirmation.count > 0)) ? 2 : 0)
                     .padding(.horizontal)
                 )
+                .accessibility(identifier: AppAccessibilty.Signup.confirmPassword)
             if passwordConfirmation != password && (passwordConfirmationIsFocused || passwordConfirmation.count > 0) {
                 Text(SignUpTextFieldType.confirmPassword.errorMessage)
                     .font(.labelText)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(Color.red)
                     .padding(.leading)
+                    .accessibility(identifier: SignUpTextFieldType.confirmPassword.accessibilityIdentifier + "error")
                 
             }
             
             Toggle(isOn: $acceptTerms) {
                 HStack(spacing: 0) {
                     Text("I agree to the ")
+                        .accessibility(identifier: AppAccessibilty.Signup.agreeLabel)
                     Button(action: {
                         showTermsPopover.toggle()
                     }, label: {
                         Text("terms and conditions")
                             .foregroundColor(Color.theme.accent)
                     })
+                    .accessibility(identifier: AppAccessibilty.Signup.agreeButton)
                     .popover(isPresented: $showTermsPopover) {
                         TermsAndConditions()
                     }
                     
                 }
             }
+            .accessibility(identifier: AppAccessibilty.Signup.agreeCheckbox)
             .toggleStyle(CheckboxStyle())
             .padding(.horizontal)
             Toggle(isOn: $joinEmailList) {
                 Text("Add me to the loyalty program's mailing list")
+                    .accessibility(identifier: AppAccessibilty.Signup.mailListLabel)
             }
             .toggleStyle(CheckboxStyle())
             .padding(.horizontal)
+            .accessibility(identifier: AppAccessibilty.Signup.mailListCheckbox)
             
         }
     }
