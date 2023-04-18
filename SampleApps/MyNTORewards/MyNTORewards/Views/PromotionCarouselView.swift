@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct PromotionCarouselView: View {
     
@@ -60,9 +61,9 @@ struct PromotionCarouselView: View {
         .background(Color.white)
         .task {
             do {
-                try await promotionVM.loadCarouselPromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                try await promotionVM.loadCarouselPromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
             } catch {
-                print("Fetch Promotions Error: \(error)")
+                Logger.error("Fetch Promotions Error: \(error)")
             }
         }
     }

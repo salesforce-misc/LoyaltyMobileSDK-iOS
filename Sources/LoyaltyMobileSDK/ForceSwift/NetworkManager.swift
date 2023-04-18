@@ -7,9 +7,9 @@
 
 import Foundation
 
-public class ForceNetworkManager {
+public class NetworkManager {
     
-    public static let shared = ForceNetworkManager()
+    public static let shared = NetworkManager()
     
     private init() {}
     
@@ -20,13 +20,13 @@ public class ForceNetworkManager {
     
     internal func handleResponse(response: URLResponse) {
         guard let httpResponse = response as? HTTPURLResponse else {
-            print(ForceError.requestFailed(description: "<ForceError> - Invalid response").customDescription)
+            Logger.error(CommonError.requestFailed(message: "Invalid response").description)
             return
         }
             
         guard httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
-            print(ForceError.responseUnsuccessful(description: "<ForceError> - HTTP response status code \(httpResponse.statusCode)").customDescription)
-            print(httpResponse.description)
+            Logger.error(CommonError.responseUnsuccessful(message: "HTTP response status code \(httpResponse.statusCode)").description)
+            Logger.debug(httpResponse.description)
             return
         }
     }
@@ -34,7 +34,7 @@ public class ForceNetworkManager {
     internal func handleUnauthResponse(output: URLSession.DataTaskPublisher.Output) throws {
         guard let response = output.response as? HTTPURLResponse,
               response.statusCode != 401 else {
-            throw ForceError.authenticationNeeded
+            throw CommonError.authenticationNeeded
         }
     }
 

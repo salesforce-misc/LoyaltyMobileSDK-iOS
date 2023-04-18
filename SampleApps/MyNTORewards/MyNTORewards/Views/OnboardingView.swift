@@ -19,6 +19,9 @@ struct OnboardingView: View {
     @State private var congratsPresented: Bool = false
     @State private var showResetPassword: Bool = false
     @State var showCreateNewPassword: Bool = false
+    @State private var showAdminMenu: Bool = false
+    @State private var tapCount = 0
+    @State private var tapTimer: Timer? = nil
     
     private let onboardingData: [OnboardingModel] = [
         OnboardingModel(image: "img-preview0", description: "Redeem your points for exciting vouchers!", offset: CGSize(width: 0, height: 0)),
@@ -32,11 +35,28 @@ struct OnboardingView: View {
             TabView(selection: $selectedPage) {
                 ForEach(0..<pageCount, id: \.self) { index in
                     OnboardingCardView(card: onboardingData[index]).tag(index)
+                        .gesture(
+                            TapGesture()
+                                .onEnded {
+                                    tapCount += 1
+                                    
+                                    tapTimer?.invalidate() // Invalidate the previous timer
+                                    tapTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                                        tapCount = 0
+                                    }
+                                    
+                                    if tapCount == AppSettings.Defaults.adminMenuTapCountRequired {
+                                        showAdminMenu = true
+                                        tapCount = 0
+                                        tapTimer?.invalidate()
+                                        tapTimer = nil
+                                    }
+                                }
+                        )
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .onChange(of: selectedPage) { _ in
-                //debugPrint("[a]: new value \(newValue)")
                 opacityText = 0
                 withAnimation(.easeInOut(duration: 1), {
                     opacityText = 1
@@ -157,6 +177,11 @@ struct OnboardingView: View {
         .sheet(isPresented: $congratsPresented) {
             CongratsView(email: viewModel.email)
                 .interactiveDismissDisabled()
+        }
+        .sheet(isPresented: $showAdminMenu, onDismiss: {
+            showAdminMenu = false
+        }) {
+            AdminMenuView()
         }
 
     }

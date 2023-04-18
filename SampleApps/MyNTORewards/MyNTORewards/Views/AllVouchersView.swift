@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct AllVouchersView: View {
 
@@ -37,23 +38,23 @@ struct AllVouchersView: View {
         .loyaltyNavBarTabBar(TopTabBar(barItems: barItems, tabIndex: $tabSelected))
         .task {
             do {
-                try await voucherVM.loadAvailableVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                try await voucherVM.loadAvailableVouchers(membershipNumber: rootVM.member?.membershipNumber ?? "")
             } catch {
-                print("Load Available Vouchers Error: \(error)")
+                Logger.error("Load Available Vouchers Error: \(error)")
             }
         }
         .task {
             do {
-                try await voucherVM.loadRedeemedVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                try await voucherVM.loadRedeemedVouchers(membershipNumber: rootVM.member?.membershipNumber ?? "")
             } catch {
-                print("Load Redeemed Vouchers Error: \(error)")
+                Logger.error("Load Redeemed Vouchers Error: \(error)")
             }
         }
         .task {
             do {
-                try await voucherVM.loadExpiredVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                try await voucherVM.loadExpiredVouchers(membershipNumber: rootVM.member?.membershipNumber ?? "")
             } catch {
-                print("Load Expired Vouchers Error: \(error)")
+                Logger.error("Load Expired Vouchers Error: \(error)")
             }
         }
 
@@ -74,11 +75,11 @@ struct AllVouchersView: View {
             .padding(.top, 20)
         }
         .refreshable {
-            print("Reloading available vouchers...")
+            Logger.debug("Reloading available vouchers...")
             do {
-                try await voucherVM.loadAvailableVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "", reload: true)
+                try await voucherVM.loadAvailableVouchers(membershipNumber: rootVM.member?.membershipNumber ?? "", reload: true)
             } catch {
-                print("Reload Available Vouchers Error: \(error)")
+                Logger.error("Reload Available Vouchers Error: \(error)")
             }
         }
     }
@@ -98,11 +99,11 @@ struct AllVouchersView: View {
             .padding(.top, 20)
         }
         .refreshable {
-            print("Reloading redeemed vouchers...")
+            Logger.debug("Reloading redeemed vouchers...")
             do {
-                try await voucherVM.loadRedeemedVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "", reload: true)
+                try await voucherVM.loadRedeemedVouchers(membershipNumber: rootVM.member?.membershipNumber ?? "", reload: true)
             } catch {
-                print("Reload Redeemed Vouchers Error: \(error)")
+                Logger.error("Reload Redeemed Vouchers Error: \(error)")
             }
         }
     }
@@ -122,11 +123,11 @@ struct AllVouchersView: View {
             .padding(.top, 20)
         }
         .refreshable {
-            print("Reloading expired vouchers...")
+            Logger.debug("Reloading expired vouchers...")
             do {
-                try await voucherVM.loadExpiredVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "", reload: true)
+                try await voucherVM.loadExpiredVouchers(membershipNumber: rootVM.member?.membershipNumber ?? "", reload: true)
             } catch {
-                print("Reload Expired Vouchers Error: \(error)")
+                Logger.error("Reload Expired Vouchers Error: \(error)")
             }
         }
     }

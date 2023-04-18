@@ -30,6 +30,7 @@ public struct ForceRequest {
     
     /// create a URLRequest with path
     /// - Parameters:
+    ///   - instanceURL: The instanceURL of the org
     ///   - path: The path of the request
     ///   - method: The HTTP Method, for example ``GET``, ``POST`` and etc
     ///   - queryItems: The request queryItems
@@ -39,6 +40,7 @@ public struct ForceRequest {
     ///   - timeoutInterval: The request ``TimeInterval``
     /// - Returns: A ``URLRequest``
     public static func create(
+        instanceURL: String,
         path: String,
         method: String? = nil,
         queryItems: [String: String]? = nil,
@@ -49,23 +51,24 @@ public struct ForceRequest {
     ) throws -> URLRequest {
         
         do {
-            let config = try ForceConfig.config()
             // URL
             var comps = URLComponents()
             comps.scheme = "https"
-            
-            comps.host = URL(string: config.instanceURL)?.host ?? ""
+            guard let url = URL(string: instanceURL) else {
+                throw URLError(.badURL)
+            }
+            comps.host = url.host
             comps.path = path.starts(with: "/") ? path : "/\(path)"
             if let queryItems = queryItems {
                 comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
                     URLQueryItem(name: key, value: value)
                 })
             }
-            guard let url = comps.url else {
+            guard let requestURL = comps.url else {
                 throw URLError(.badURL)
             }
             
-            return createRequest(from: url, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
+            return createRequest(from: requestURL, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
         } catch {
             throw error
         }

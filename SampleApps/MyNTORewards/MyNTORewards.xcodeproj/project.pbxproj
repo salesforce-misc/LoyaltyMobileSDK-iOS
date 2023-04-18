@@ -45,9 +45,19 @@
 		292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */; };
 		292ADC76294C064600753541 /* ProfileModel+CurrencyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC75294C064600753541 /* ProfileModel+CurrencyPoints.swift */; };
 		29367606293209CB00E09A6D /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29367605293209CB00E09A6D /* CachedAsyncImage.swift */; };
+		293F642F29D64E48001AC795 /* CommunityMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F642E29D64E48001AC795 /* CommunityMemberModel.swift */; };
+		293F643129D6C5AD001AC795 /* ForceConnectedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */; };
+		293F643329DCDAF8001AC795 /* ForceClient+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F643229DCDAF8001AC795 /* ForceClient+Image.swift */; };
 		2941A23F28BE803F005026CF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A23E28BE803F005026CF /* Color.swift */; };
-		2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppConstants.swift */; };
+		2944F88A28B9A7220098ED1B /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppSettings.swift */; };
 		294E341E293C39E6001F7F48 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E341D293C39E6001F7F48 /* ImageViewModel.swift */; };
+		2955345B29E6215A00CFA391 /* AdminMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2955345A29E6215A00CFA391 /* AdminMenuView.swift */; };
+		2955345D29E621AC00CFA391 /* ConnectedAppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2955345C29E621AC00CFA391 /* ConnectedAppSettingsView.swift */; };
+		2955345F29E63BF500CFA391 /* ConnectedAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2955345E29E63BF500CFA391 /* ConnectedAppsView.swift */; };
+		2955346329E7809400CFA391 /* KeychainManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2955346229E7809400CFA391 /* KeychainManagerProtocol.swift */; };
+		2955346529E788C100CFA391 /* ForceConnectedAppKeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2955346429E788C100CFA391 /* ForceConnectedAppKeychainManager.swift */; };
+		2955346729E88BC500CFA391 /* ConnectedAppsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2955346629E88BC500CFA391 /* ConnectedAppsViewModel.swift */; };
+		2955346B29E93EF800CFA391 /* InfoNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2955346A29E93EF800CFA391 /* InfoNavigationLink.swift */; };
 		2963770E29C10D2400D45AB6 /* ForceClient+SOSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2963770C29C10D2400D45AB6 /* ForceClient+SOSL.swift */; };
 		2963770F29C10D2400D45AB6 /* ForceClient+SOQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2963770D29C10D2400D45AB6 /* ForceClient+SOQL.swift */; };
 		2963771429C10D6200D45AB6 /* QueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2963771129C10D6200D45AB6 /* QueryResult.swift */; };
@@ -70,10 +80,9 @@
 		298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613B128CA8A9600BDC744 /* Archivo-Regular.ttf */; };
 		298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613C928CBBFA200BDC744 /* Archivo-Bold.ttf */; };
 		298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */; };
-		298613D628CC275500BDC744 /* Salesforce.json in Resources */ = {isa = PBXBuildFile; fileRef = 298613D528CC275500BDC744 /* Salesforce.json */; };
 		298C664A2980743B00C613D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298C66492980743B00C613D8 /* AppDelegate.swift */; };
 		298D5EEC29CCF5340062F16E /* ForceAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EE929CCF5340062F16E /* ForceAuthManager.swift */; };
-		298D5EED29CCF5340062F16E /* ForceAuthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EEA29CCF5340062F16E /* ForceAuthStore.swift */; };
+		298D5EED29CCF5340062F16E /* ForceAuthKeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EEA29CCF5340062F16E /* ForceAuthKeychainManager.swift */; };
 		298D5EEE29CCF5340062F16E /* ForceAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EEB29CCF5340062F16E /* ForceAuth.swift */; };
 		298D5EF229CCF94D0062F16E /* WebAuthenticationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EF129CCF94D0062F16E /* WebAuthenticationSession.swift */; };
 		298D5EF329CCF94D0062F16E /* ForceUserIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EEF29CCF94D0062F16E /* ForceUserIdentifier.swift */; };
@@ -186,9 +195,19 @@
 		292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionHistory+CurrencyPoints.swift"; sourceTree = "<group>"; };
 		292ADC75294C064600753541 /* ProfileModel+CurrencyPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileModel+CurrencyPoints.swift"; sourceTree = "<group>"; };
 		29367605293209CB00E09A6D /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
+		293F642E29D64E48001AC795 /* CommunityMemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMemberModel.swift; sourceTree = "<group>"; };
+		293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceConnectedApp.swift; sourceTree = "<group>"; };
+		293F643229DCDAF8001AC795 /* ForceClient+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceClient+Image.swift"; sourceTree = "<group>"; };
 		2941A23E28BE803F005026CF /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		2944F88928B9A7220098ED1B /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		2944F88928B9A7220098ED1B /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		294E341D293C39E6001F7F48 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
+		2955345A29E6215A00CFA391 /* AdminMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMenuView.swift; sourceTree = "<group>"; };
+		2955345C29E621AC00CFA391 /* ConnectedAppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedAppSettingsView.swift; sourceTree = "<group>"; };
+		2955345E29E63BF500CFA391 /* ConnectedAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedAppsView.swift; sourceTree = "<group>"; };
+		2955346229E7809400CFA391 /* KeychainManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerProtocol.swift; sourceTree = "<group>"; };
+		2955346429E788C100CFA391 /* ForceConnectedAppKeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceConnectedAppKeychainManager.swift; sourceTree = "<group>"; };
+		2955346629E88BC500CFA391 /* ConnectedAppsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedAppsViewModel.swift; sourceTree = "<group>"; };
+		2955346A29E93EF800CFA391 /* InfoNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNavigationLink.swift; sourceTree = "<group>"; };
 		2963770C29C10D2400D45AB6 /* ForceClient+SOSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ForceClient+SOSL.swift"; sourceTree = "<group>"; };
 		2963770D29C10D2400D45AB6 /* ForceClient+SOQL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ForceClient+SOQL.swift"; sourceTree = "<group>"; };
 		2963771129C10D6200D45AB6 /* QueryResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryResult.swift; sourceTree = "<group>"; };
@@ -212,10 +231,9 @@
 		298613B128CA8A9600BDC744 /* Archivo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archivo-Regular.ttf"; sourceTree = "<group>"; };
 		298613C928CBBFA200BDC744 /* Archivo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archivo-Bold.ttf"; sourceTree = "<group>"; };
 		298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		298613D528CC275500BDC744 /* Salesforce.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Salesforce.json; sourceTree = "<group>"; };
 		298C66492980743B00C613D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		298D5EE929CCF5340062F16E /* ForceAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceAuthManager.swift; sourceTree = "<group>"; };
-		298D5EEA29CCF5340062F16E /* ForceAuthStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceAuthStore.swift; sourceTree = "<group>"; };
+		298D5EEA29CCF5340062F16E /* ForceAuthKeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceAuthKeychainManager.swift; sourceTree = "<group>"; };
 		298D5EEB29CCF5340062F16E /* ForceAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceAuth.swift; sourceTree = "<group>"; };
 		298D5EEF29CCF94D0062F16E /* ForceUserIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUserIdentifier.swift; sourceTree = "<group>"; };
 		298D5EF029CCF94D0062F16E /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
@@ -314,6 +332,7 @@
 				29B427D329109095009CC587 /* TransactionViewModel.swift */,
 				290EA9C0292C0ACF00BBF2F2 /* VoucherViewModel.swift */,
 				294E341D293C39E6001F7F48 /* ImageViewModel.swift */,
+				2955346629E88BC500CFA391 /* ConnectedAppsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -344,7 +363,7 @@
 			children = (
 				298613AC28C964D900BDC744 /* Info.plist */,
 				298D5EE829CCF4C20062F16E /* ForceSwift+Extra */,
-				2963770B29C10CFB00D45AB6 /* SOQL */,
+				2963770B29C10CFB00D45AB6 /* SOQL+SOSL */,
 				2944F87F28B98C2C0098ED1B /* Extensions */,
 				2984C93D2954F091009669EF /* Utilities */,
 				290FBB41294A8C460038D47A /* Misc */,
@@ -356,11 +375,10 @@
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
 				216F217E28B6141E00DAA66D /* MyNTORewardsApp.swift */,
 				298C66492980743B00C613D8 /* AppDelegate.swift */,
-				2944F88928B9A7220098ED1B /* AppConstants.swift */,
+				2944F88928B9A7220098ED1B /* AppSettings.swift */,
 				218A36A728B85B7900FCEE39 /* Assets.xcassets */,
 				298613A928C9638400BDC744 /* Fonts */,
 				216F218428B6141F00DAA66D /* Preview Content */,
-				298613D528CC275500BDC744 /* Salesforce.json */,
 			);
 			path = MyNTORewards;
 			sourceTree = "<group>";
@@ -414,6 +432,9 @@
 				29BAF6EC28F4DE1C00A3F9EB /* BadgeCardView.swift */,
 				29BAF6EE28F4E27400A3F9EB /* BadgesView.swift */,
 				29AC2F0828F8B724003F56F6 /* AllBadgesView.swift */,
+				2955345A29E6215A00CFA391 /* AdminMenuView.swift */,
+				2955345E29E63BF500CFA391 /* ConnectedAppsView.swift */,
+				2955345C29E621AC00CFA391 /* ConnectedAppSettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -475,6 +496,7 @@
 				296D393028DBCB530078C88E /* OnboardingModel.swift */,
 				299B38E128ED24B900E45D97 /* PasswordResetModel.swift */,
 				2906B1D328FF5031006EAB2D /* MemberModel.swift */,
+				293F642E29D64E48001AC795 /* CommunityMemberModel.swift */,
 				292ADC6F294C03D900753541 /* PromotionModel+Image.swift */,
 				292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */,
 				292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */,
@@ -483,24 +505,24 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		2963770B29C10CFB00D45AB6 /* SOQL */ = {
+		2963770B29C10CFB00D45AB6 /* SOQL+SOSL */ = {
 			isa = PBXGroup;
 			children = (
-				2963771029C10D4000D45AB6 /* SOQLModels */,
+				2963771029C10D4000D45AB6 /* Models */,
 				2963770D29C10D2400D45AB6 /* ForceClient+SOQL.swift */,
 				2963770C29C10D2400D45AB6 /* ForceClient+SOSL.swift */,
 			);
-			path = SOQL;
+			path = "SOQL+SOSL";
 			sourceTree = "<group>";
 		};
-		2963771029C10D4000D45AB6 /* SOQLModels */ = {
+		2963771029C10D4000D45AB6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				2963771229C10D6200D45AB6 /* Address.swift */,
 				2963771129C10D6200D45AB6 /* QueryResult.swift */,
 				2963771329C10D6200D45AB6 /* Record.swift */,
 			);
-			path = SOQLModels;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		296D393828DCE9890078C88E /* UICompnents */ = {
@@ -525,6 +547,7 @@
 				29A39BC02937C699005833C2 /* AsyncImageWithAuth.swift */,
 				29A39BC429397B98005833C2 /* EmptyStateView.swift */,
 				29FEDDF1294293BF0014BEBA /* UITabView.swift */,
+				2955346A29E93EF800CFA391 /* InfoNavigationLink.swift */,
 			);
 			path = UICompnents;
 			sourceTree = "<group>";
@@ -565,10 +588,14 @@
 			isa = PBXGroup;
 			children = (
 				298D5EEB29CCF5340062F16E /* ForceAuth.swift */,
+				293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */,
 				298D5EE929CCF5340062F16E /* ForceAuthManager.swift */,
-				298D5EEA29CCF5340062F16E /* ForceAuthStore.swift */,
+				298D5EEA29CCF5340062F16E /* ForceAuthKeychainManager.swift */,
+				2955346429E788C100CFA391 /* ForceConnectedAppKeychainManager.swift */,
+				293F643229DCDAF8001AC795 /* ForceClient+Image.swift */,
 				298D5EEF29CCF94D0062F16E /* ForceUserIdentifier.swift */,
 				298D5EF029CCF94D0062F16E /* Keychain.swift */,
+				2955346229E7809400CFA391 /* KeychainManagerProtocol.swift */,
 				298D5EF129CCF94D0062F16E /* WebAuthenticationSession.swift */,
 				298D5EF529CCFCE60062F16E /* ForceRequest+Auth.swift */,
 			);
@@ -702,7 +729,6 @@
 				216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */,
 				298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */,
 				298613B028C9698D00BDC744 /* SF-Pro.ttf in Resources */,
-				298613D628CC275500BDC744 /* Salesforce.json in Resources */,
 				2906B1F52901E308006EAB2D /* Transactions.json in Resources */,
 				2906B1F32901E218006EAB2D /* Promotions.json in Resources */,
 			);
@@ -750,13 +776,16 @@
 				29BAF6F128F5D6D600A3F9EB /* VoucherDetailView.swift in Sources */,
 				29BAF6D528F14E4400A3F9EB /* PromotionCardView.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
+				2955345F29E63BF500CFA391 /* ConnectedAppsView.swift in Sources */,
 				2941A23F28BE803F005026CF /* Color.swift in Sources */,
 				296D393328DBCE050078C88E /* OnboardingView.swift in Sources */,
 				2906B1D628FF5E88006EAB2D /* FirestoreManager.swift in Sources */,
+				2955345D29E621AC00CFA391 /* ConnectedAppSettingsView.swift in Sources */,
 				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
-				298D5EED29CCF5340062F16E /* ForceAuthStore.swift in Sources */,
+				298D5EED29CCF5340062F16E /* ForceAuthKeychainManager.swift in Sources */,
 				290EA9BD2928ADB700BBF2F2 /* ViewAllView.swift in Sources */,
 				298D5EEE29CCF5340062F16E /* ForceAuth.swift in Sources */,
+				293F642F29D64E48001AC795 /* CommunityMemberModel.swift in Sources */,
 				298C664A2980743B00C613D8 /* AppDelegate.swift in Sources */,
 				29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */,
 				299B38D828E796BC00E45D97 /* FullSheet.swift in Sources */,
@@ -784,18 +813,22 @@
 				298D5EF229CCF94D0062F16E /* WebAuthenticationSession.swift in Sources */,
 				216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */,
 				29FEDDF2294293BF0014BEBA /* UITabView.swift in Sources */,
-				2944F88A28B9A7220098ED1B /* AppConstants.swift in Sources */,
+				2944F88A28B9A7220098ED1B /* AppSettings.swift in Sources */,
 				296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */,
 				29BAF6DD28F3AE8B00A3F9EB /* String+StringWidth.swift in Sources */,
 				2963771529C10D6200D45AB6 /* Address.swift in Sources */,
 				29BAF6E128F3EEA000A3F9EB /* MyPromotionCardView.swift in Sources */,
 				29BAF6EB28F4D24500A3F9EB /* TransactionsView.swift in Sources */,
+				2955345B29E6215A00CFA391 /* AdminMenuView.swift in Sources */,
 				2984C9472954F091009669EF /* Expiry.swift in Sources */,
 				299B38DC28EB7F7000E45D97 /* CheckYourEmailView.swift in Sources */,
 				AF27C5AC2981118D008C7D79 /* LoyaltyTextField.swift in Sources */,
 				29BAF6EF28F4E27400A3F9EB /* BadgesView.swift in Sources */,
 				298D5EF429CCF94D0062F16E /* Keychain.swift in Sources */,
+				293F643329DCDAF8001AC795 /* ForceClient+Image.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
+				2955346329E7809400CFA391 /* KeychainManagerProtocol.swift in Sources */,
+				2955346529E788C100CFA391 /* ForceConnectedAppKeychainManager.swift in Sources */,
 				29BAF6ED28F4DE1C00A3F9EB /* BadgeCardView.swift in Sources */,
 				29A39BC529397B98005833C2 /* EmptyStateView.swift in Sources */,
 				29BAF6D328F103B600A3F9EB /* PromotionCarouselView.swift in Sources */,
@@ -815,12 +848,15 @@
 				298D5EEC29CCF5340062F16E /* ForceAuthManager.swift in Sources */,
 				2984C9452954F091009669EF /* LocalFileManager.swift in Sources */,
 				29053F7D2907452800F84561 /* Assets.swift in Sources */,
+				293F643129D6C5AD001AC795 /* ForceConnectedApp.swift in Sources */,
+				2955346B29E93EF800CFA391 /* InfoNavigationLink.swift in Sources */,
 				29AC2F0728F8B70D003F56F6 /* AllBenefitsView.swift in Sources */,
 				29D7497C2931D10100BC81AD /* AsyncImageView.swift in Sources */,
 				218A36AC28B85D5500FCEE39 /* MyPromotionsView.swift in Sources */,
 				29BAF6FE28F63A5800A3F9EB /* RewardPointsCardView.swift in Sources */,
 				299B38D028E3DECE00E45D97 /* AppRootViewModel.swift in Sources */,
 				29B427D429109095009CC587 /* TransactionViewModel.swift in Sources */,
+				2955346729E88BC500CFA391 /* ConnectedAppsViewModel.swift in Sources */,
 				29AC2EFF28F896C2003F56F6 /* LoyaltyNavBarPreferenceKeys.swift in Sources */,
 				29BAF6D128F1032800A3F9EB /* Carousel.swift in Sources */,
 				29AB2E1C28E2763700D4B32C /* SheetHeader.swift in Sources */,

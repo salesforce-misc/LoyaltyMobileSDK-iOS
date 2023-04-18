@@ -76,7 +76,7 @@ struct RewardPointsCardView: View {
                         }
                         .sheet(isPresented: $showQRCode) {
                             let name = "\(rootVM.member?.firstName ?? "") \(rootVM.member?.lastName ?? "")"
-                            let number = rootVM.member?.enrollmentDetails.membershipNumber ?? ""
+                            let number = rootVM.member?.membershipNumber ?? ""
                             QRCodeView(QRCodeImage: coloredImage,
                                        name: name,
                                        membershipNumber: number)
@@ -84,7 +84,7 @@ struct RewardPointsCardView: View {
                     }
                     .overlay(alignment: .leading) {
                         VStack(alignment: .leading) {
-                            Text(String(profileVM.profile?.getCurrencyPoints(currencyName: AppConstants.Config.rewardCurrencyName) ?? 0))
+                            Text(String(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0))
                                 .font(.cardPointsText)
                             
                             // Incorrect, a new API will be provided
@@ -130,9 +130,9 @@ struct RewardPointsCardView: View {
             }
             .task {
                 do {
-                    try await profileVM.getProfileData(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
+                    try await profileVM.getProfileData(memberId: rootVM.member?.loyaltyProgramMemberId ?? "")
                 } catch {
-                    print("Fetch profile Error: \(error)")
+                    Logger.error("Fetch profile Error: \(error)")
                 }
             }
             

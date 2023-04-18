@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct HomeView: View {
     
@@ -40,7 +41,7 @@ struct HomeView: View {
                         Text("Hello \(rootVM.member?.firstName.capitalized ?? ""),")
                             .padding(.leading, 15)
                         Spacer()
-                        Text("\(String(profileVM.profile?.getCurrencyPoints(currencyName: AppConstants.Config.rewardCurrencyName) ?? 0)) \(AppConstants.Config.rewardCurrencyName)")
+                        Text("\(String(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0)) \(AppSettings.Defaults.rewardCurrencyName)")
                             .padding(.trailing, 15)
                     }
                     .frame(height: 48)
@@ -76,34 +77,34 @@ struct HomeView: View {
                 .background(Color.theme.background)
                 .task {
                     do {
-                        try await profileVM.getProfileData(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
+                        try await profileVM.getProfileData(memberId: rootVM.member?.loyaltyProgramMemberId ?? "")
                     } catch {
-                        print("Fetch profile Error: \(error)")
+                        Logger.error("Fetch profile Error: \(error)")
                     }
                 }
                 .refreshable {
-                    print("Reloading home...")
+                    Logger.debug("Reloading home...")
                     Task {
                         do {
-                            try await profileVM.fetchProfile(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
+                            try await profileVM.fetchProfile(memberId: rootVM.member?.loyaltyProgramMemberId ?? "")
                         } catch {
-                            print("Reload Profile Error: \(error)")
+                            Logger.error("Reload Profile Error: \(error)")
                         }
                     }
                     
                     Task {
                         do {
-                            try await promotionVM.fetchCarouselPromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                            try await promotionVM.fetchCarouselPromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
                         } catch {
-                            print("Reload Promotions Error: \(error)")
+                            Logger.error("Reload Promotions Error: \(error)")
                         }
                     }
                     
                     Task {
                         do {
-                            try await voucherVM.reloadVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                            try await voucherVM.reloadVouchers(membershipNumber: rootVM.member?.membershipNumber ?? "")
                         } catch {
-                            print("Reload Vouchers Error: \(error)")
+                            Logger.error("Reload Vouchers Error: \(error)")
                         }
                     }
                     

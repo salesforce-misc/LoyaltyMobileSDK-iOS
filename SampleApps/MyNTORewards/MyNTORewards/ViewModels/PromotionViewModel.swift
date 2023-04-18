@@ -24,7 +24,9 @@ class PromotionViewModel: ObservableObject {
     private var loyaltyAPIManager: LoyaltyAPIManager
     
     init() {
-        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager, loyaltyProgramName: AppConstants.Config.loyaltyProgramName)
+        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
+                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+                                              instanceURL: AppSettings.getInstanceURL())
     }
     
     // Network call to fetch all eligible promotions

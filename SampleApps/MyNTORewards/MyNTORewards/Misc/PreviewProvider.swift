@@ -21,15 +21,21 @@ extension PreviewProvider {
 class DeveloperPreview {
     
     static let instance = DeveloperPreview()
-    let member = MemberModel(firstName: "Julia",
-                             lastName: "Green",
-                             email: "julia.green@gmail.com",
-                             mobileNumber: "5556781234",
-                             joinEmailList: true,
-                             dateCreated: Date(),
-                             enrollmentDetails: EnrollmentDetails(loyaltyProgramMemberId: "0lM4x000000LECA",
-                                                                  loyaltyProgramName: "NTO Insider",
-                                                                  membershipNumber: "24345671"))
+//    let member = MemberModel(firstName: "Julia",
+//                             lastName: "Green",
+//                             email: "julia.green@gmail.com",
+//                             mobileNumber: "5556781234",
+//                             joinEmailList: true,
+//                             dateCreated: Date(),
+//                             enrollmentDetails: EnrollmentDetails(loyaltyProgramMemberId: "0lM4x000000LECA",
+//                                                                  loyaltyProgramName: "NTO Insider",
+//                                                                  membershipNumber: "24345671"))
+    let member = CommunityMemberModel(firstName: "Julia",
+                                      lastName: "Green",
+                                      email: "julia.green@gmail.com",
+                                      loyaltyProgramMemberId: "0lM4x000000LECA",
+                                      loyaltyProgramName: "NTO Insider",
+                                      membershipNumber: "24345671")
     
     /*
      [
@@ -168,7 +174,7 @@ class DeveloperPreview {
         promotionVM.promotions = [promotion]
     }
     
-    func setMember(member: MemberModel) {
+    func setMember(member: CommunityMemberModel) {
         self.rootVM.member = member
     }
 }

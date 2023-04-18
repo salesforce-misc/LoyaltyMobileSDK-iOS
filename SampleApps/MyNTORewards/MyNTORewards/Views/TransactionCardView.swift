@@ -14,8 +14,8 @@ struct TransactionCardView: View {
     
     var body: some View {
         
-        let points = transaction.getCurrencyPoints(currencyName: AppConstants.Config.rewardCurrencyName)
-        let pointsString = points > 0 ? "+\(points) \(AppConstants.Config.rewardCurrencyNameShort)" : "\(points) \(AppConstants.Config.rewardCurrencyNameShort)"
+        let points = transaction.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName)
+        let pointsString = points > 0 ? "+\(points) \(AppSettings.Defaults.rewardCurrencyNameShort)" : "\(points) \(AppSettings.Defaults.rewardCurrencyNameShort)"
         
         HStack(spacing: 10) {
             Spacer()
@@ -31,7 +31,7 @@ struct TransactionCardView: View {
                     Spacer()
                 }
                 HStack {
-                    Text(transaction.activityDate.toDate(withFormat: AppConstants.Config.apiDateFormat)?.toString() ?? transaction.activityDate)
+                    Text(transaction.activityDate.toDate(withFormat: AppSettings.Defaults.apiDateFormat)?.toString() ?? transaction.activityDate)
                         .font(.transactionDate)
                         .foregroundColor(Color.theme.textInactive)
                     Spacer()

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct ProfileView: View {
 
@@ -45,36 +46,36 @@ struct ProfileView: View {
                     
                 }
                 .refreshable {
-                    print("Refresh profile view...")
+                    Logger.debug("Refresh profile view...")
                     Task {
                         do {
-                            try await profileVM.fetchProfile(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
+                            try await profileVM.fetchProfile(memberId: rootVM.member?.loyaltyProgramMemberId ?? "")
                         } catch {
-                            print("Reload Profile Error: \(error)")
+                            Logger.error("Reload Profile Error: \(error)")
                         }
                     }
                     
                     Task {
                         do {
-                            try await transactionVM.reloadTransactions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                            try await transactionVM.reloadTransactions(membershipNumber: rootVM.member?.membershipNumber ?? "")
                         } catch {
-                            print("Reload Transactions Error: \(error)")
+                            Logger.error("Reload Transactions Error: \(error)")
                         }
                     }
                     
                     Task {
                         do {
-                            try await voucherVM.reloadVouchers(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                            try await voucherVM.reloadVouchers(membershipNumber: rootVM.member?.membershipNumber ?? "")
                         } catch {
-                            print("Reload Vouchers Error: \(error)")
+                            Logger.error("Reload Vouchers Error: \(error)")
                         }
                     }
                     
                     Task {
                         do {
-                            try await benefitVM.getBenefits(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "", reload: true)
+                            try await benefitVM.getBenefits(memberId: rootVM.member?.loyaltyProgramMemberId ?? "", reload: true)
                         } catch {
-                            print("Reload Benefits Error: \(error)")
+                            Logger.error("Reload Benefits Error: \(error)")
                         }
                     }
                     
@@ -116,7 +117,7 @@ struct ProfileView: View {
 
                     }
                     HStack {
-                        Text("Membership Number: \(rootVM.member?.enrollmentDetails.membershipNumber ?? "")")
+                        Text("Membership Number: \(rootVM.member?.membershipNumber ?? "")")
                             .foregroundColor(Color.theme.textInactive)
                             .font(.profileSubtitle)
                         Spacer()

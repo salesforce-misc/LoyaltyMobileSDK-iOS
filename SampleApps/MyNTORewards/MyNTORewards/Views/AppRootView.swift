@@ -45,11 +45,11 @@ struct AppRootView: View {
         .onAppear() {
             appViewRouter.signedIn = appViewRouter.isSignedIn
             if appViewRouter.isSignedIn && rootVM.member == nil {
-                rootVM.member = LocalFileManager.instance.getData(type: MemberModel.self, id: rootVM.email)
+                rootVM.member = LocalFileManager.instance.getData(type: CommunityMemberModel.self, id: rootVM.email)
             }
         }
         .onOpenURL { url in
-            print(url)
+            Logger.debug(url.absoluteString)
             redirectDeeplink(url: url)
         }
         
@@ -61,7 +61,7 @@ struct AppRootView: View {
         
         let defaultPage: Page = appViewRouter.signedIn ? appViewRouter.currentPage : .onboardingPage
         
-        guard url.scheme == AppConstants.Config.deeplinkScheme,
+        guard url.scheme == AppSettings.Defaults.deeplinkScheme,
               let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
               let queryItems = components.queryItems else {
             appViewRouter.currentPage = defaultPage
