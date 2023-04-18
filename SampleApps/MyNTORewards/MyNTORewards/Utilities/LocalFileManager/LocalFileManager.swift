@@ -141,7 +141,7 @@ public class LocalFileManager {
         
         guard
             let bundleID = Bundle.main.bundleIdentifier,
-            let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
+            let url = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
             return nil
         }
         let folderPath = bundleID + "/" + folderName
