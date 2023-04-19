@@ -15,11 +15,11 @@ public class LoyaltyAPIManager {
     public var instanceURL: String
     private var forceClient: ForceClient
     
-    public init(auth: ForceAuthenticator, loyaltyProgramName: String, instanceURL: String) {
+    public init(auth: ForceAuthenticator, loyaltyProgramName: String, instanceURL: String, forceClient: ForceClient) {
         self.auth = auth
         self.loyaltyProgramName = loyaltyProgramName
         self.instanceURL = instanceURL
-        self.forceClient = ForceClient(auth: auth)
+        self.forceClient = forceClient
     }
 	
 	public enum SortBy: String {

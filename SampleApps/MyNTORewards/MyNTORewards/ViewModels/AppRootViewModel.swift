@@ -46,7 +46,7 @@ class AppRootViewModel: ObservableObject {
     init() {
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
                                               loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                              instanceURL: AppSettings.getInstanceURL())
+                                              instanceURL: AppSettings.getInstanceURL(), forceClient: ForceClient(auth: authManager))
     }
     
     func signUpUser(userEmail: String,
@@ -179,7 +179,7 @@ class AppRootViewModel: ObservableObject {
                     let authManager = ForceAuthManager.shared
                     let loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
                                                               loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                                              instanceURL: app.instanceURL)
+                                                              instanceURL: AppSettings.getInstanceURL(), forceClient: ForceClient(auth: authManager))
                     let profile = try await loyaltyAPIManager.getCommunityMemberProfile()
                     
                     Logger.debug("\(profile)")

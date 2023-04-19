@@ -5,9 +5,14 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import Foundation
+import UIKit
 
-public class NetworkManager {
+public protocol NetworkManagerProtocol {
+    func fetch<T: Decodable>(type: T.Type, request: URLRequest, urlSession: URLSession) async throws -> T
+    func handleUnauthResponse(output: URLSession.DataTaskPublisher.Output) throws
+}
+
+public class NetworkManager: NetworkManagerProtocol {
     
     public static let shared = NetworkManager()
     
@@ -31,7 +36,7 @@ public class NetworkManager {
         }
     }
     
-    internal func handleUnauthResponse(output: URLSession.DataTaskPublisher.Output) throws {
+    public func handleUnauthResponse(output: URLSession.DataTaskPublisher.Output) throws {
         guard let response = output.response as? HTTPURLResponse,
               response.statusCode != 401 else {
             throw CommonError.authenticationNeeded
@@ -43,10 +48,10 @@ public class NetworkManager {
     ///   - type: A type(i.e. model) defined to be used by JSON decoder
     ///   - request: A URLRequest to be executed by URLSession
     /// - Returns: A decoded JSON response result
-    public func fetch<T: Decodable>(type: T.Type, request: URLRequest) async throws -> T {
+    public func fetch<T: Decodable>(type: T.Type, request: URLRequest, urlSession: URLSession = URLSession.shared) async throws -> T {
       
         do {
-            let output = try await URLSession.shared.data(for: request)
+            let output = try await urlSession.data(for: request)
             try handleUnauthResponse(output: output)
             let data = handleDataAndResponse(output: output)
             return try JSONDecoder().decode(type, from: data)
