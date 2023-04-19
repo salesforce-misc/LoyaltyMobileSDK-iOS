@@ -11,7 +11,6 @@ import LoyaltyMobileSDK
 
 public extension ForceClient {
     
-    
     /// Fetch an image
     /// - Parameters:
     ///   - url: The URL of the image

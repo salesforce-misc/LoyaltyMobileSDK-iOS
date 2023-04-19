@@ -136,9 +136,14 @@ public struct ProfileModel: Codable {
     public let transactionJournalStatementMethod: String
 
     enum CodingKeys: String, CodingKey {
-        case additionalLoyaltyProgramMemberFields, associatedAccount, associatedContact, canReceivePartnerPromotions, canReceivePromotions, enrollmentChannel, enrollmentDate, groupCreatedByMember, groupName, lastActivityDate
+        case additionalLoyaltyProgramMemberFields, associatedAccount, associatedContact
+        case canReceivePartnerPromotions, canReceivePromotions, enrollmentChannel, enrollmentDate
+        case groupCreatedByMember, groupName, lastActivityDate
         case loyaltyProgramMemberID = "loyaltyProgramMemberId"
-        case loyaltyProgramName, memberCurrencies, memberStatus, memberTiers, memberType, membershipEndDate, membershipLastRenewalDate, membershipNumber, referredBy, relatedCorporateMembershipNumber, transactionJournalStatementFrequency, transactionJournalStatementLastGeneratedDate, transactionJournalStatementMethod
+        case loyaltyProgramName, memberCurrencies, memberStatus, memberTiers, memberType
+        case membershipEndDate, membershipLastRenewalDate, membershipNumber, referredBy
+        case relatedCorporateMembershipNumber, transactionJournalStatementFrequency
+        case transactionJournalStatementLastGeneratedDate, transactionJournalStatementMethod
     }
     
 }
@@ -194,11 +199,14 @@ public struct MemberCurrency: Codable {
     public let totalPointsAccrued, totalPointsExpired, totalPointsRedeemed: Double
 
     enum CodingKeys: String, CodingKey {
-        case additionalLoyaltyMemberCurrencyFields, escrowPointsBalance, expirablePoints, lastAccrualProcessedDate, lastEscrowProcessedDate, lastExpirationProcessRunDate, lastPointsAggregationDate, lastPointsResetDate, loyaltyMemberCurrencyName
+        case additionalLoyaltyMemberCurrencyFields, escrowPointsBalance, expirablePoints
+        case lastAccrualProcessedDate, lastEscrowProcessedDate, lastExpirationProcessRunDate
+        case lastPointsAggregationDate, lastPointsResetDate, loyaltyMemberCurrencyName
         case loyaltyProgramCurrencyID = "loyaltyProgramCurrencyId"
         case loyaltyProgramCurrencyName
         case memberCurrencyID = "memberCurrencyId"
-        case nextQualifyingPointsResetDate, pointsBalance, qualifyingPointsBalanceBeforeReset, totalEscrowPointsAccrued, totalEscrowRolloverPoints, totalPointsAccrued, totalPointsExpired, totalPointsRedeemed
+        case nextQualifyingPointsResetDate, pointsBalance, qualifyingPointsBalanceBeforeReset
+        case totalEscrowPointsAccrued, totalEscrowRolloverPoints, totalPointsAccrued, totalPointsExpired, totalPointsRedeemed
     }
 }
 

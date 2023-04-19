@@ -43,13 +43,13 @@ struct PromotionCarouselView: View {
                     PromotionCardView(promotion: promotion)
                 }
 
-                HStack(spacing: 8){
+                HStack(spacing: 8) {
 
                     ForEach(promotionVM.promotions.indices, id: \.self) { index in
                         Circle()
                             .fill(Color.theme.accent.opacity(currentIndex == index ? 1 : 0.1))
                             .frame(width: 8, height: 8)
-                            //.animation(.spring(), value: currentIndex == index)
+                            // .animation(.spring(), value: currentIndex == index)
                             .animation(.easeInOut, value: currentIndex == index)
                     }
                 }
@@ -77,4 +77,3 @@ struct PromotionCarouselView_Previews: PreviewProvider {
             .previewLayout(.sizeThatFits)
     }
 }
-

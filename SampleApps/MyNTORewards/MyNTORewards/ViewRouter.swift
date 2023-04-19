@@ -18,4 +18,3 @@ enum Page {
     case signInPage
     case homePage
 }
-

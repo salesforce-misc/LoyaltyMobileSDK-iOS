@@ -42,7 +42,7 @@ struct AppRootView: View {
                 }
             }
         }
-        .onAppear() {
+        .onAppear {
             appViewRouter.signedIn = appViewRouter.isSignedIn
             if appViewRouter.isSignedIn && rootVM.member == nil {
                 rootVM.member = LocalFileManager.instance.getData(type: CommunityMemberModel.self, id: rootVM.email)
@@ -69,7 +69,7 @@ struct AppRootView: View {
         }
         
         switch components.host {
-        case AppViewRouter.deeplinkHosts.resetPassword.rawValue:
+        case AppViewRouter.DeeplinkHosts.resetPassword.rawValue:
             let items = queryItems.reduce(into: [String: String]()) { (result, item) in
                 result[item.name] = item.value
             }

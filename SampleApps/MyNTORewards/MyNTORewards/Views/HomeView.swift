@@ -33,21 +33,18 @@ struct HomeView: View {
                 }
                 
                 ScrollView(showsIndicators: false) {
-//                        Rectangle()
-//                            .frame(height: 400)
-//                            .foregroundColor(Color.theme.accent)
-//                            .padding(.top, -400)
                     HStack {
                         Text("Hello \(rootVM.member?.firstName.capitalized ?? ""),")
                             .padding(.leading, 15)
                         Spacer()
+                        // swiftlint:disable line_length
                         Text("\(String(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0)) \(AppSettings.Defaults.rewardCurrencyName)")
                             .padding(.trailing, 15)
+                        // swiftlint:enable line_length
                     }
                     .frame(height: 48)
                     .frame(maxWidth: .infinity)
                     .background(Color.theme.backgroundPink)
-                    //.padding(.top, -10)
                     .background(
                         Rectangle()
                             .fill(Color.white)
@@ -124,4 +121,3 @@ struct HomeView_Previews: PreviewProvider {
             .environmentObject(dev.profileVM)
     }
 }
-
