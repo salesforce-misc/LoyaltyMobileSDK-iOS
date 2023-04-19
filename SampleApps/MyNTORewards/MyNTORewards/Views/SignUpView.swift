@@ -221,7 +221,6 @@ struct TermsAndConditions: View {
                     
                     // swiftlint:disable line_length
                     Text("""
-                    
                     1. Introduction
                     
                     1.1. These Terms & Conditions ("Terms") govern the MyNTORewards Loyalty Program ("Program") offered by MyNTO Ltd. ("MyNTO," "we," "us," or "our"). By participating in the Program, you ("Member," "you," or "your") agree to be bound by these Terms, as well as our Privacy Policy, incorporated herein by reference.
@@ -279,7 +278,9 @@ struct TermsAndConditions: View {
                     8.1. These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which MyNTO is registered, without regard to its conflict of law provisions.
 
                     9. Contact Us
+                    
                     9.1. If you have any questions or concerns about the Program or these Terms, please contact us at support@mynstorewards.com.
+                    
                     
                     """)
                     .padding()
