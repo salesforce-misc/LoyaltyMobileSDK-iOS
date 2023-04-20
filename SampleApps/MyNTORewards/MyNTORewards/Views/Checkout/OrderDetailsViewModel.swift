@@ -14,6 +14,8 @@ final class OrderDetailsViewModel: ObservableObject {
 	@Published var isOrderPlacedNavigationActive = false
     @Published var shippingAddress: ShippingAddress?
     
+    private let checkout_shipping_method = "/services/apexrest/ShippingMethods/"
+    private let checkout_shipping_address_query = "SELECT shippingAddress,billingAddress from Account"
     private let authManager = ForceAuthManager.shared
     private var loyaltyAPIManager: LoyaltyAPIManager
     private var forceClient: ForceClient
@@ -38,7 +40,7 @@ final class OrderDetailsViewModel: ObservableObject {
                 return result
             }
             
-            let request = try ForceRequest.create(path: "/services/apexrest/ShippingMethods/", method: "GET")
+            let request = try ForceRequest.create(path: checkout_shipping_method, method: "GET")
             let result = try await forceClient.fetch(type: [ShippingMethod].self, with: request)
             return result
         } catch {
@@ -49,8 +51,7 @@ final class OrderDetailsViewModel: ObservableObject {
     
     func getShippingAddress(membershipNumber: String) async throws {
         do {
-            let query = "SELECT shippingAddress,billingAddress from Account"
-            let queryResult = try await forceClient.SOQL(type: ShippingAddressRecord.self, for: query)
+            let queryResult = try await forceClient.SOQL(type: ShippingAddressRecord.self, for: checkout_shipping_address_query)
             shippingAddress = queryResult.records.compactMap { $0.shippingAddress }.first
         } catch {
             print(error.localizedDescription)
