@@ -75,7 +75,6 @@ public struct ForceRequest {
         
     }
     
-    
     /// create a URLRequest with URL
     /// - Parameters:
     ///   - url: The request ``URL``
@@ -113,12 +112,13 @@ public struct ForceRequest {
     ///   - cachePolicy: The request ``CachePolicy``
     ///   - timeoutInterval: The request ``TimeInterval``
     /// - Returns: A ``URLRequest``
-    private static func createRequest(from url: URL,
-                       method: String? = nil,
-                       headers: [String: String]? = nil,
-                       body: Data? = nil,
-                       cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
-                       timeoutInterval: TimeInterval = 60.0 ) -> URLRequest {
+    private static func createRequest(
+        from url: URL,
+        method: String? = nil,
+        headers: [String: String]? = nil,
+        body: Data? = nil,
+        cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
+        timeoutInterval: TimeInterval = 60.0 ) -> URLRequest {
         
         // URLRequest
         var request = URLRequest(url: url, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
@@ -134,15 +134,14 @@ public struct ForceRequest {
                 return MIMEType.json
             }
         }()
-        let defaultHeaders: [String:String] = [
-            Header.accept : MIMEType.json,
-            Header.contentType : contentType
+        let defaultHeaders: [String: String] = [
+            Header.accept: MIMEType.json,
+            Header.contentType: contentType
         ].reduce(into: [:]) { $0[$1.0] = $1.1 }
         request.allHTTPHeaderFields = defaultHeaders.merging(headers ?? [:]) { (_, new) in new }
         
         return request
     }
-    
     
     /// Transform a URL with queryItems added
     /// - Parameters:
@@ -165,7 +164,6 @@ public struct ForceRequest {
         return newURL
     }
     
-    
     /// Attach an accessToken to the request
     /// - Parameters:
     ///   - request: A request to be updated
@@ -178,4 +176,3 @@ public struct ForceRequest {
         return newRequest
     }
 }
-

@@ -15,7 +15,9 @@ struct TransactionCardView: View {
     var body: some View {
         
         let points = transaction.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName)
+        // swiftlint:disable line_length
         let pointsString = points > 0 ? "+\(points) \(AppSettings.Defaults.rewardCurrencyNameShort)" : "\(points) \(AppSettings.Defaults.rewardCurrencyNameShort)"
+        // swiftlint:enable line_length
         
         HStack(spacing: 10) {
             Spacer()
@@ -25,7 +27,7 @@ struct TransactionCardView: View {
                 .foregroundColor(Color.theme.textInactive)
             
             VStack(spacing: 8) {
-                HStack{
+                HStack {
                     Text(transaction.journalTypeName)
                         .font(.transactionText)
                     Spacer()
@@ -36,7 +38,6 @@ struct TransactionCardView: View {
                         .foregroundColor(Color.theme.textInactive)
                     Spacer()
                 }
-                
                 
             }
 

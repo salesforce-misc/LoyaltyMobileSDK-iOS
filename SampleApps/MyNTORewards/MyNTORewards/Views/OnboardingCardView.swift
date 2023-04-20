@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OnboardingCardView: View {
     
-    let card : OnboardingModel
+    let card: OnboardingModel
     
     var body: some View {
         ZStack {
@@ -35,7 +35,6 @@ struct OnboardingCardView_Previews: PreviewProvider {
         OnboardingCardView(card: testData[0])
     }
 }
-
 
 struct BottomLayer: View {
     

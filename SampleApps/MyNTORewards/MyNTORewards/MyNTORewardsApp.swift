@@ -8,7 +8,6 @@
 import SwiftUI
 import Firebase
 
-
 @main
 struct MyNTORewardsApp: App {
     

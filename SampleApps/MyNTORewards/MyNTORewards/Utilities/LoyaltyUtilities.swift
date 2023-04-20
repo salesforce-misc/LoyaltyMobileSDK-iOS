@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-public struct LoyaltyUtilities {
+struct LoyaltyUtilities {
 
-    public static func getQRCodeData(text: String) -> Data? {
+    static func getQRCodeData(text: String) -> Data? {
         guard let filter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
         let data = text.data(using: .ascii, allowLossyConversion: false)
         filter.setValue(data, forKey: "inputMessage")
@@ -21,7 +21,7 @@ public struct LoyaltyUtilities {
         return uiimage.pngData()!
     }
     
-    public static func generateQRCode(from string: String, color: UIColor = .black) -> Data? {
+    static func generateQRCode(from string: String, color: UIColor = .black) -> Data? {
         
         let data = string.data(using: String.Encoding.utf8)
         
@@ -38,7 +38,6 @@ public struct LoyaltyUtilities {
             colorFilter.setValue(CIColor(color: color), forKey: "inputColor0") // Foreground or the barcode color
 
             let transform = CGAffineTransform(scaleX: 10, y: 10)
-
 
             if let output = colorFilter.outputImage?.transformed(by: transform) {
                 return UIImage(ciImage: output).pngData()!
@@ -58,7 +57,7 @@ public struct LoyaltyUtilities {
      Output: https://internalmobileteam-dev-ed.develop.file.force.com/services/data/v56.0/sobjects/Voucher/0kD4x000000wx4WEAQ/richTextImageFields/Image__c/0EM4x00000443bE
      
      */
-    public static func getImageUrl(image: String?, attributesUrl: String, fieldName: String) -> String?  {
+    static func getImageUrl(image: String?, attributesUrl: String, fieldName: String) -> String? {
         
         guard let image = image else {
             return nil
@@ -93,7 +92,7 @@ public struct LoyaltyUtilities {
         
     }
     
-    public static func randomString(of length: Int) -> String {
+    static func randomString(of length: Int) -> String {
          let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
          var s = ""
          for _ in 0 ..< length {
@@ -103,5 +102,3 @@ public struct LoyaltyUtilities {
     }
 
 }
-
-

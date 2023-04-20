@@ -44,6 +44,7 @@ struct AsyncImageWithAuth<Content: View, Placeholder: View>: View {
 
 struct AsyncImageWithAuth_Previews: PreviewProvider {
     static var previews: some View {
+        // swiftlint:disable line_length
         AsyncImageWithAuth(url: "https://internalmobileteam-dev-ed.develop.file.force.com/services/data/v56.0/sobjects/Voucher/0kD4x000000wr6EEAQ/richTextImageFields/Image__c/0EM4x00000443bE") { image in
             image
                 .resizable()
@@ -52,6 +53,7 @@ struct AsyncImageWithAuth_Previews: PreviewProvider {
         } placeholder: {
             ProgressView()
         }
+        // swiftlint:enable line_length
 
     }
 }

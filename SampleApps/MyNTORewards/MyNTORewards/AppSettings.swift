@@ -29,7 +29,8 @@ struct AppSettings {
         static let keychainAuthServiceId = "LoyaltyMobileSDK.Auth"
         static let keychainConnectedAppServiceId = "LoyaltyMobileSDK.ConnectedApp"
         static let deeplinkScheme = "loyaltyapp" // Should match URL Scheme from Info.plist
-        static let customActionUrlForPasswordResetEmail = "loyaltyapp://resetpassword" // orginal is "https://loyalty-management-sandbox.firebaseapp.com/__/auth/action"
+        // Orginal is "https://loyalty-management-sandbox.firebaseapp.com/__/auth/action"
+        static let customActionUrlForPasswordResetEmail = "loyaltyapp://resetpassword"
         static let rewardCurrencyName = "Reward Points"
         static let rewardCurrencyNameShort = "Points"
         static let tierCurrencyName = "Tier Points"
@@ -48,7 +49,7 @@ struct AppSettings {
         
         guard let url = Bundle.main.url(forResource: "ConnectedApp", withExtension: "json")
                 ?? Bundle.main.url(forResource: "connectedApp", withExtension: "json") else {
-                throw URLError(.badURL, userInfo: [NSURLErrorFailingURLStringErrorKey : "ConnectedApp.json"])
+                throw URLError(.badURL, userInfo: [NSURLErrorFailingURLStringErrorKey: "ConnectedApp.json"])
         }
         return try JSONDecoder().decode(ForceConnectedApp.self, from: try Data(contentsOf: url))
     }

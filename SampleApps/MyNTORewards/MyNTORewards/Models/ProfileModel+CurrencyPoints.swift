@@ -11,10 +11,8 @@ import LoyaltyMobileSDK
 extension ProfileModel {
     
     func getCurrencyPoints(currencyName: String) -> Double {
-        for currency in memberCurrencies {
-            if currency.loyaltyMemberCurrencyName.capitalized == currencyName.capitalized {
-                return currency.pointsBalance
-            }
+        for currency in memberCurrencies where currency.loyaltyMemberCurrencyName.capitalized == currencyName.capitalized {
+            return currency.pointsBalance
         }
         return 0
     }

@@ -37,11 +37,13 @@ struct CongratsView: View {
                 .padding(.top, 40)
                 .padding()
             
+            // swiftlint:disable line_length
             Text("We're thrilled that you joined \(viewModel.member?.loyaltyProgramName ?? "our loyalty program"). You're on your way to earning points and receiving exclusive rewards.")
                 .font(.congratsText)
                 .lineSpacing(5)
                 .multilineTextAlignment(.center)
                 .padding([.leading, .trailing], 40)
+            // swiftlint:enable line_length
             
             Text("We've sent an email to **\(email)** with more details.")
                 .font(.congratsText)
