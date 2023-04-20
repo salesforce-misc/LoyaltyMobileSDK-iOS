@@ -14,26 +14,29 @@ class ProfileViewModel: ObservableObject {
     @Published var profile: ProfileModel?
     @Published var isLoading = false
     
-    private let authManager = ForceAuthManager.shared
+    private let authManager: ForceAuthenticator
+    private let localFileManager: FileManagerProtocol
     private var loyaltyAPIManager: LoyaltyAPIManager
     
-    init() {
+    init(authManager: ForceAuthenticator = ForceAuthManager.shared, localFileManager: FileManagerProtocol = LocalFileManager.instance) {
+        self.authManager = authManager
+        self.localFileManager = localFileManager
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
                                               loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
                                               instanceURL: AppSettings.getInstanceURL())
     }
     
-    func getProfileData(memberId: String, reload: Bool = false) async throws {
+    func getProfileData(memberId: String, reload: Bool = false, devMode: Bool = false) async throws {
         
         isLoading = true
         
         if !reload {
             if profile == nil {
-                if let cached = LocalFileManager.instance.getData(type: ProfileModel.self, id: memberId) {
+                if let cached = localFileManager.getData(type: ProfileModel.self, id: memberId, folderName: nil) {
                     profile = cached
                 } else {
                     do {
-                        try await fetchProfile(memberId: memberId)
+                        try await fetchProfile(memberId: memberId, devMode: devMode)
                         isLoading = false
                     } catch {
                         throw error
@@ -42,7 +45,7 @@ class ProfileViewModel: ObservableObject {
             }
         } else {
             do {
-                try await fetchProfile(memberId: memberId)
+                try await fetchProfile(memberId: memberId, devMode: devMode)
                 isLoading = false
             } catch {
                 throw error
@@ -53,16 +56,15 @@ class ProfileViewModel: ObservableObject {
     }
     
     // Fetch profile from Salesforce
-    func fetchProfile(memberId: String) async throws {
+    func fetchProfile(memberId: String, devMode: Bool = false) async throws {
         do {
             
             //let result = try await loyaltyAPIManager.getMemberProfile(for: memberId)
-            let result = try await loyaltyAPIManager.getMemberProfile(for: memberId)
+            let result = try await loyaltyAPIManager.getMemberProfile(for: memberId, devMode: devMode)
             
             profile = result
             // Save to local disk
-            LocalFileManager.instance.saveData(item: result, id: memberId)
-            
+            localFileManager.saveData(item: result, id: memberId, folderName: nil, expiry: .never)
         } catch {
             throw error
         }

@@ -40,6 +40,17 @@
                ReferencedContainer = "container:MyNTORewards.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AFB345BF29F0DD5300F40502"
+               BuildableName = "MyNTORewardsTests.xctest"
+               BlueprintName = "MyNTORewardsTests"
+               ReferencedContainer = "container:MyNTORewards.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
