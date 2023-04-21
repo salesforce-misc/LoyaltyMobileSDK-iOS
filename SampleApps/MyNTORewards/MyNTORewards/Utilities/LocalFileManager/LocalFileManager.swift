@@ -12,6 +12,7 @@ import LoyaltyMobileSDK
 public class LocalFileManager {
     
     public static let instance = LocalFileManager()
+    private let cachedAppDataFolder = "AppData"
     private let defaultImagesFolder = "Images"
     private init() {}
     
@@ -82,11 +83,11 @@ public class LocalFileManager {
     public func removeAllAppData() {
         guard
             let bundleID = Bundle.main.bundleIdentifier,
-            let url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
+            let url = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
             Logger.error("Error deleting all data - BundleID or URL error")
             return
         }
-        let dataFolder = url.appendingPathComponent(bundleID)
+        let dataFolder = url.appendingPathComponent(bundleID + "/" + cachedAppDataFolder)
         deleteData(url: dataFolder)
     }
     
@@ -144,7 +145,7 @@ public class LocalFileManager {
             let url = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
             return nil
         }
-        let folderPath = bundleID + "/" + folderName
+        let folderPath = bundleID + "/" + cachedAppDataFolder + "/" + folderName
         return url.appendingPathComponent(folderPath)
     }
     

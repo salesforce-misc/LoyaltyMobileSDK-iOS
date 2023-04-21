@@ -9,41 +9,54 @@ import Foundation
 import LoyaltyMobileSDK
 
 public class ForceAuthManager: ForceAuthenticator {
-    public var accessToken: String?
+    
     public var auth: ForceAuth?
     private let defaults: UserDefaults
-        
+    
     public static let shared = ForceAuthManager()
     
     private init(defaults: UserDefaults = .shared) {
         self.defaults = defaults
     }
     
-    public func grantAccessToken() async throws -> String {
-        do {
-            // accessToken may be invalid, then refresh
-            if self.auth != nil {
-                if let refreshToken = self.auth?.refreshToken {
-                    let app = AppSettings.getConnectedApp()
-                    let url = app.baseURL + AppSettings.Defaults.tokenPath
-                    do {
-                        let newAuth = try await refresh(url: url,
-                                                        consumerKey: app.consumerKey,
-                                                        refreshToken: refreshToken)
-                        self.auth = newAuth
-                        return newAuth.accessToken
-                    } catch {
-                        throw error
-                    }
-                }
-            }
-            
-            guard let auth = getAuth() else {
-                throw CommonError.authenticationFailed
-            }
+    public func getAccessToken() -> String? {
+        if let auth = getAuth() {
             return auth.accessToken
-        } catch {
-            throw error
+        } else {
+            return nil
+        }
+    }
+    
+    public func grantAccessToken() async throws -> String {
+        let app = AppSettings.getConnectedApp()
+        let url = app.baseURL + AppSettings.Defaults.tokenPath
+        
+        if let refreshToken = self.auth?.refreshToken {
+            do {
+                let newAuth = try await refresh(url: url,
+                                                consumerKey: app.consumerKey,
+                                                refreshToken: refreshToken)
+                self.auth = newAuth
+                return newAuth.accessToken
+            } catch {
+                throw error
+            }
+        } else {
+            do {
+                let savedAuth = try retrieveAuth()
+                self.auth = savedAuth
+                guard let savedRefreshToken = savedAuth.refreshToken else {
+                    throw CommonError.authenticationFailed
+                }
+                let newAuth = try await refresh(url: url,
+                                                consumerKey: app.consumerKey,
+                                                refreshToken: savedRefreshToken)
+                self.auth = newAuth
+                return newAuth.accessToken
+                
+            } catch {
+                throw error
+            }
         }
     }
     
@@ -58,7 +71,18 @@ public class ForceAuthManager: ForceAuthenticator {
     }
     
     public func getAuth() -> ForceAuth? {
-        return self.auth
+        if let auth = self.auth {
+            return auth
+        } else {
+            do {
+                let savedAuth = try retrieveAuth()
+                self.auth = savedAuth
+                return savedAuth
+            } catch {
+                Logger.debug("No auth found. Please login.")
+            }
+        }
+        return nil
     }
     
     public func clearAuth() {
@@ -70,7 +94,7 @@ public class ForceAuthManager: ForceAuthenticator {
         }
         Task {
             do {
-                let revokeURL = AppSettings.getConnectedApp().baseURL + AppSettings.Defaults.revokePath
+                let revokeURL = AppSettings.getConnectedApp().instanceURL + AppSettings.Defaults.revokePath
                 try await self.revoke(url: revokeURL, token: auth.accessToken)
             } catch {
                 Logger.error("Failed to revolk token")
@@ -175,8 +199,18 @@ public class ForceAuthManager: ForceAuthenticator {
         do {
             let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
             let auth = try await NetworkManager.shared.fetch(type: ForceAuth.self, request: request)
-            try saveAuth(for: auth)
-            return auth
+            Logger.debug("Refreshed the access token: \(auth)")
+            
+            /// Add back the refreshToken
+            let newAuth = ForceAuth(accessToken: auth.accessToken,
+                                    instanceURL: auth.instanceURL,
+                                    identityURL: auth.identityURL,
+                                    tokenType: auth.tokenType,
+                                    timestamp: auth.timestamp,
+                                    signature: auth.signature,
+                                    refreshToken: refreshToken)
+            try saveAuth(for: newAuth)
+            return newAuth
             
         } catch {
             throw error
@@ -200,6 +234,7 @@ public class ForceAuthManager: ForceAuthenticator {
             try deleteAuth()
             Logger.debug("Revoke successful")
         } catch {
+            Logger.error("Revoke failed. \(error.localizedDescription)")
             throw error
         }
 
@@ -336,7 +371,7 @@ public class ForceAuthManager: ForceAuthenticator {
 
     }
     
-    /// Save Auth to ForceAuthStore
+    /// Save Auth to Keychain
     public func saveAuth(for auth: ForceAuth) throws {
         do {
             try ForceAuthKeychainManager.save(item: auth)
@@ -346,14 +381,14 @@ public class ForceAuthManager: ForceAuthenticator {
         }
     }
     
-    /// Delete Auth from ForceAuthStore
+    /// Delete Auth from Keychain
     public func deleteAuth() throws {
         if let id = self.userIdentifier {
             try? ForceAuthKeychainManager.delete(for: id)
         }
     }
     
-    /// Retrieve Auth from ForceAuthStore
+    /// Retrieve Auth from Keychain
     public func retrieveAuth() throws -> ForceAuth {
         guard let id = ForceAuthManager.shared.userIdentifier else {
             throw CommonError.userIdentityUnknown

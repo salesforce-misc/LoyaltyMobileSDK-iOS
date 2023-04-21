@@ -166,7 +166,6 @@ class AppRootViewModel: ObservableObject {
                     username: userEmail,
                     password: userPassword)
                 ForceAuthManager.shared.auth = auth
-                ForceAuthManager.shared.accessToken = auth.accessToken
                 Logger.debug("Successfully Granted Access Token. Allow user to login.")
                 
                 // Retrieve member data from local disk
