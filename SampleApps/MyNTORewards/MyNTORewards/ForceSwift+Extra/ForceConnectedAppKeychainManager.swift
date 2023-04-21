@@ -21,12 +21,10 @@ struct ForceConnectedAppKeychainManager: KeychainManagerProtocol {
         do {
             let data = try Keychain.read(service: serviceId, account: instanceURL)
             return try JSONDecoder().decode(ForceConnectedApp.self, from: data)
-        }
-        catch {
+        } catch {
             if case Keychain.KeychainError.itemNotFound = error {
                 return nil
-            }
-            else {
+            } else {
                 throw error
             }
         }
@@ -48,8 +46,7 @@ struct ForceConnectedAppKeychainManager: KeychainManagerProtocol {
                 }
             }
             return appArray
-        }
-        catch {
+        } catch {
             throw error
         }
     }
@@ -57,12 +54,10 @@ struct ForceConnectedAppKeychainManager: KeychainManagerProtocol {
     static func delete(for instanceURL: String) throws {
         do {
             try Keychain.delete(service: serviceId, account: instanceURL)
-        }
-        catch {
+        } catch {
             if case Keychain.KeychainError.itemNotFound = error {
                 return
-            }
-            else {
+            } else {
                 throw error
             }
         }

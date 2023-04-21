@@ -23,20 +23,20 @@ public class LoyaltyAPIManager {
     }
 	
 	public enum SortBy: String {
-		case ExpirationDate
-		case EffectiveDate
-		case CreatedDate
+		case expirationDate
+		case effectiveDate
+		case createdDate
 	}
 	
 	public enum SortOrder: String {
-		case Ascending
-		case Descending
+		case ascending
+		case descending
 	}
 	
 	public enum VoucherStatus: String {
-		case Issued
-		case Cancelled
-		case Expired
+		case issued
+		case cancelled
+		case expired
 	}
     
     public enum Resource {
@@ -49,7 +49,6 @@ public class LoyaltyAPIManager {
 		case unenrollPromotion(programName: String, version: String)
 		case getVouchers(programName: String, membershipNumber: String, version: String)
     }
-    
     
     /// Get path for given API resource
     /// - Parameter resource: A ``Resource``
@@ -69,9 +68,9 @@ public class LoyaltyAPIManager {
             return ForceAPI.path(for: "connect/loyalty/programs/\(programName)/program-processes/GetMemberPromotions", version: version)
         case .enrollInPromotion(let programName, let version):
             return ForceAPI.path(for: "connect/loyalty/programs/\(programName)/program-processes/EnrollInPromotion", version: version)
-		case .unenrollPromotion(let programName, let version):
+        case .unenrollPromotion(let programName, let version):
 			return ForceAPI.path(for: "connect/loyalty/programs/\(programName)/program-processes/OptOutOfPromotion", version: version)
-		case .getVouchers(let programName, let membershipNumber, let version):
+        case .getVouchers(let programName, let membershipNumber, let version):
             return ForceAPI.path(for: "loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers", version: version)
         }
     
@@ -84,9 +83,10 @@ public class LoyaltyAPIManager {
     ///   - version: The API version number
     ///   - devMode: Whether it's in devMode
     /// - Returns: A ``BenefitModel`` array
-    public func getMemberBenefits(for memberId: String,
-                                  version: String = LoyaltyAPIVersion.defaultVersion,
-                                  devMode: Bool = false) async throws -> [BenefitModel] {
+    public func getMemberBenefits(
+        for memberId: String,
+        version: String = LoyaltyAPIVersion.defaultVersion,
+        devMode: Bool = false) async throws -> [BenefitModel] {
         do {
             if devMode {
                 let result = try forceClient.fetchLocalJson(type: Benefits.self, file: "Benefits")
@@ -108,9 +108,10 @@ public class LoyaltyAPIManager {
     ///   - version: The API version number
     ///   - devMode: Whether it's in devMode
     /// - Returns: A ``ProfileModel`` instance
-    public func getMemberProfile(for memberId: String,
-                                 version: String = LoyaltyAPIVersion.defaultVersion,
-                                 devMode: Bool = false) async throws -> ProfileModel {
+    public func getMemberProfile(
+        for memberId: String,
+        version: String = LoyaltyAPIVersion.defaultVersion,
+        devMode: Bool = false) async throws -> ProfileModel {
         do {
             if devMode {
                 let result = try forceClient.fetchLocalJson(type: ProfileModel.self, file: "Profile")
@@ -125,14 +126,14 @@ public class LoyaltyAPIManager {
         }
     }
     
-    
     /// Get Community Member Profile - Makes an asynchronous request for data from the Salesforce
     /// - Parameters:
     ///   - version: The API version number
     ///   - devMode: Whether it's in devMode
     /// - Returns: A ``ProfileModel`` instance
-    public func getCommunityMemberProfile(version: String = LoyaltyAPIVersion.defaultVersion,
-                                          devMode: Bool = false) async throws -> ProfileModel {
+    public func getCommunityMemberProfile(
+        version: String = LoyaltyAPIVersion.defaultVersion,
+        devMode: Bool = false) async throws -> ProfileModel {
         do {
             if devMode {
                 let result = try forceClient.fetchLocalJson(type: ProfileModel.self, file: "Profile")
@@ -157,16 +158,17 @@ public class LoyaltyAPIManager {
     ///   - emailNotification: Whether subscribe to the mailinglist
     ///   - version: The API version number
     /// - Returns: A ``EnrollmentOutputModel`` instance
-    public func postEnrollment(membershipNumber: String,
-                               firstName: String,
-                               lastName: String,
-                               email: String, phone: String,
-                               emailNotification: Bool,
-                               version: String = LoyaltyAPIVersion.defaultVersion) async throws -> EnrollmentOutputModel {
+    public func postEnrollment(
+        membershipNumber: String,
+        firstName: String,
+        lastName: String,
+        email: String, phone: String,
+        emailNotification: Bool,
+        version: String = LoyaltyAPIVersion.defaultVersion) async throws -> EnrollmentOutputModel {
         
         let currentDate = Date()
         let attributesContact = ["Phone": phone]
-        //let attributesContact = ["Phone": phone, "HasOptedOutOfEmail": String(!emailNotification)]
+        // let attributesContact = ["Phone": phone, "HasOptedOutOfEmail": String(!emailNotification)]
         let additionalContactValues = AdditionalFieldValues(attributes: attributesContact)
         let additionalMemberValues = AdditionalFieldValues(attributes: [:])
         let contactDetails = AssociatedContactDetails(
@@ -209,16 +211,16 @@ public class LoyaltyAPIManager {
         
     }
     
-    
     /// Enroll into a promotion
     /// Reference: https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_enroll_ln_promotion.htm
     /// - Parameters:
     ///   - promotionName: The promotion name
     ///   - membershipNumber: The membership number
     ///   - version: The API version number
-    public func enrollIn(promotion promotionName: String,
-                         for membershipNumber: String,
-                         version: String = LoyaltyAPIVersion.defaultVersion) async throws {
+    public func enrollIn(
+        promotion promotionName: String,
+        for membershipNumber: String,
+        version: String = LoyaltyAPIVersion.defaultVersion) async throws {
         let body = [
             "processParameters": [
                 [
@@ -232,12 +234,11 @@ public class LoyaltyAPIManager {
             let path = getPath(for: .enrollInPromotion(programName: loyaltyProgramName, version: version))
             let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
             let request = try ForceRequest.create(instanceURL: instanceURL, path: path, method: "POST", body: bodyJsonData)
-            let _ = try await forceClient.fetch(type: EnrollPromotionOutputModel.self, with: request)
+            _ = try await forceClient.fetch(type: EnrollPromotionOutputModel.self, with: request)
         } catch {
             throw error
         }
     }
-	
     
     /// Unroll from a promotion
     /// - Parameters:
@@ -245,10 +246,11 @@ public class LoyaltyAPIManager {
     ///   - membershipNumber: The membership Number
     ///   - version: The API version number
     ///   - devMode: Whether it's in devMode
-	public final func unenroll(promotionId: String,
-                               for membershipNumber: String,
-                               version: String = LoyaltyAPIVersion.defaultVersion,
-                               devMode: Bool = false) async throws {
+	public final func unenroll(
+        promotionId: String,
+        for membershipNumber: String,
+        version: String = LoyaltyAPIVersion.defaultVersion,
+        devMode: Bool = false) async throws {
 		let body = [
 			"processParameters": [
 				[
@@ -259,7 +261,6 @@ public class LoyaltyAPIManager {
 		]
         try await unenroll(requestBody: body, version: version, devMode: devMode)
 	}
-	
     
     /// Unroll from a promotion
     /// - Parameters:
@@ -267,10 +268,11 @@ public class LoyaltyAPIManager {
     ///   - membershipNumber: The membership Number
     ///   - version: The API version number
     ///   - devMode: Whether it's in devMode
-	public final func unenroll(promotionName: String,
-                               for membershipNumber: String,
-                               version: String = LoyaltyAPIVersion.defaultVersion,
-                               devMode: Bool = false) async throws {
+	public final func unenroll(
+        promotionName: String,
+        for membershipNumber: String,
+        version: String = LoyaltyAPIVersion.defaultVersion,
+        devMode: Bool = false) async throws {
 		let body = [
 			"processParameters": [
 				[
@@ -282,11 +284,12 @@ public class LoyaltyAPIManager {
 		try await unenroll(requestBody: body, version: version, devMode: devMode)
 	}
     
-	private func unenroll(requestBody: [String: Any],
-                          version: String = LoyaltyAPIVersion.defaultVersion,
-                          devMode: Bool = false) async throws {
+	private func unenroll(
+        requestBody: [String: Any],
+        version: String = LoyaltyAPIVersion.defaultVersion,
+        devMode: Bool = false) async throws {
 		if devMode {
-			let _ = try forceClient.fetchLocalJson(type: UnenrollPromotionResponseModel.self, file: "UnenrollPromotion")
+			_ = try forceClient.fetchLocalJson(type: UnenrollPromotionResponseModel.self, file: "UnenrollPromotion")
 			return
 		}
 		
@@ -302,7 +305,6 @@ public class LoyaltyAPIManager {
 			throw error
 		}
 	}
-	
     
     /// Get promotions for the loyalty member
     /// Reference: https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_enroll_ln_promotion.htm
@@ -311,9 +313,10 @@ public class LoyaltyAPIManager {
     ///   - version: The API version number
     ///   - devMode: Whether it's in devMode
     /// - Returns: A ``PromotionModel`` instance
-    public func getPromotions(memberId: String,
-                              version: String = LoyaltyAPIVersion.defaultVersion,
-                              devMode: Bool = false) async throws -> PromotionModel {
+    public func getPromotions(
+        memberId: String,
+        version: String = LoyaltyAPIVersion.defaultVersion,
+        devMode: Bool = false) async throws -> PromotionModel {
         let body: [String: Any] = [
             "processParameters": [
                 ["MemberId": memberId]
@@ -329,15 +332,16 @@ public class LoyaltyAPIManager {
     ///   - version: The API version number
     ///   - devMode: Whether it's in devMode
     /// - Returns: A ``PromotionModel`` instance
-    public func getPromotions(membershipNumber: String,
-                              version: String = LoyaltyAPIVersion.defaultVersion,
-                              devMode: Bool = false) async throws -> PromotionModel {
+    public func getPromotions(
+        membershipNumber: String,
+        version: String = LoyaltyAPIVersion.defaultVersion,
+        devMode: Bool = false) async throws -> PromotionModel {
         let body: [String: Any] = [
             "processParameters": [
                 ["MembershipNumber": membershipNumber]
             ]
         ]
-        return try await getPromotions(requsetBody: body, version:version, devMode: devMode)
+        return try await getPromotions(requsetBody: body, version: version, devMode: devMode)
     }
     
     private func getPromotions(requsetBody: [String: Any],
@@ -368,14 +372,15 @@ public class LoyaltyAPIManager {
     ///  - periodStartDate: Retrieve transaction journals until this date.
     ///  - periodEndDate: Retrieve transaction journals until this date.
     /// - Returns: A ``TransactionModel`` instance
-    public func getTransactions(for membershipNumber: String,
-                                pageNumber: Int? = nil,
-                                journalTypeName: String? = nil,
-                                journalSubTypeName: String? = nil,
-                                periodStartDate: String? = nil,
-                                periodEndDate: String? = nil,
-                                version: String = LoyaltyAPIVersion.defaultVersion,
-                                devMode: Bool = false) async throws -> [TransactionJournal] {
+    public func getTransactions(
+        for membershipNumber: String,
+        pageNumber: Int? = nil,
+        journalTypeName: String? = nil,
+        journalSubTypeName: String? = nil,
+        periodStartDate: String? = nil,
+        periodEndDate: String? = nil,
+        version: String = LoyaltyAPIVersion.defaultVersion,
+        devMode: Bool = false) async throws -> [TransactionJournal] {
         let pageNumberString = pageNumber == nil ? nil : String(describing: pageNumber)
         let queryItems = ["pageNumber": pageNumberString,
                           "journalTypeName": journalTypeName,
@@ -396,7 +401,6 @@ public class LoyaltyAPIManager {
             throw error
         }
     }
-	
     
     /// Get vouchers information for the loyalty member
     /// - Parameters:
@@ -413,15 +417,15 @@ public class LoyaltyAPIManager {
     ///   - devMode: Whether it's in devMode
     /// - Returns: A ``VoucherModel`` array
 	public func getVouchers(
-		membershipNumber: String,
-		voucherStatus: [VoucherStatus]? = nil,
-		pageNumber: Int? = nil,
-		productId: [String]? = nil,
-		productCategoryId: [String]? = nil,
-		productName: [String]? = nil,
-		productCategoryName: [String]? = nil,
-		sortBy: SortBy? = nil,
-		sortOrder: SortOrder? = nil,
+        membershipNumber: String,
+        voucherStatus: [VoucherStatus]? = nil,
+        pageNumber: Int? = nil,
+        productId: [String]? = nil,
+        productCategoryId: [String]? = nil,
+        productName: [String]? = nil,
+        productCategoryName: [String]? = nil,
+        sortBy: SortBy? = nil,
+        sortOrder: SortOrder? = nil,
         version: String = LoyaltyAPIVersion.defaultVersion,
         devMode: Bool = false) async throws -> [VoucherModel] {
 		do {
@@ -450,20 +454,20 @@ public class LoyaltyAPIManager {
 		}
 	}
 	
-	private final func getString(from query: Any?) -> String? {
-		guard let query = query else { return nil }
-		
-		switch query {
-			case let query as [String]:
-				return query.joined(separator: ",")
-			case let query as Int:
-				return String(query)
-			case let query as SortBy:
-				return query.rawValue
-			case let query as SortOrder:
-				return query.rawValue
-			default:
-				return nil
-		}
-	}
+    private final func getString(from query: Any?) -> String? {
+        guard let query = query else { return nil }
+        
+        switch query {
+        case let query as [String]:
+            return query.joined(separator: ",")
+        case let query as Int:
+            return String(query)
+        case let query as SortBy:
+            return query.rawValue
+        case let query as SortOrder:
+            return query.rawValue
+        default:
+            return nil
+        }
+    }
 }

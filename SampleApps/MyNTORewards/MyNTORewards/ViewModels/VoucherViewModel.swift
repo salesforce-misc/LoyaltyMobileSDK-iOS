@@ -16,7 +16,7 @@ class VoucherViewModel: ObservableObject {
     @Published var redeemedVochers: [VoucherModel] = []
     @Published var expiredVochers: [VoucherModel] = []
     
-    enum statusFilter: String {
+    enum StatusFilter: String {
         case Issued
         case Expired
         case Redeemed
@@ -72,17 +72,17 @@ class VoucherViewModel: ObservableObject {
         }
     }
     
-    func fetchVouchers(membershipNumber: String,
-                       voucherStatus: [LoyaltyAPIManager.VoucherStatus]? = nil,
-                       pageNumber: Int? = nil,
-                       productId: [String]? = nil,
-                       productCategoryId: [String]? = nil,
-                       productName: [String]? = nil,
-                       productCategoryName: [String]? = nil,
-                       sortBy: LoyaltyAPIManager.SortBy? = nil,
-                       sortOrder: LoyaltyAPIManager.SortOrder? = nil,
-                       devMode: Bool = false
-    ) async throws -> [VoucherModel] {
+	func fetchVouchers(
+        membershipNumber: String,
+        voucherStatus: [LoyaltyAPIManager.VoucherStatus]? = nil,
+        pageNumber: Int? = nil,
+        productId: [String]? = nil,
+        productCategoryId: [String]? = nil,
+        productName: [String]? = nil,
+        productCategoryName: [String]? = nil,
+        sortBy: LoyaltyAPIManager.SortBy? = nil,
+        sortOrder: LoyaltyAPIManager.SortOrder? = nil,
+        devMode: Bool = false) async throws -> [VoucherModel] {
         do {
             return try await loyaltyAPIManager.getVouchers(membershipNumber: membershipNumber,
                                                            voucherStatus: voucherStatus,
@@ -99,7 +99,7 @@ class VoucherViewModel: ObservableObject {
         }
     }
     
-    func loadFilteredVouchers(membershipNumber: String, filter: statusFilter, devMode: Bool = false) async throws -> [VoucherModel] {
+    func loadFilteredVouchers(membershipNumber: String, filter: StatusFilter, devMode: Bool = false) async throws -> [VoucherModel] {
             
         // load from local cache
         if let cached = localFileManager.getData(type: [VoucherModel].self, id: membershipNumber, folderName: "Vouchers") {
@@ -127,7 +127,7 @@ class VoucherViewModel: ObservableObject {
         
     }
     
-    func reloadFilteredVouchers(membershipNumber: String, filter: statusFilter,  devMode: Bool = false) async throws -> [VoucherModel] {
+    func reloadFilteredVouchers(membershipNumber: String, filter: StatusFilter, devMode: Bool = false) async throws -> [VoucherModel] {
         do {
             let result = try await fetchVouchers(membershipNumber: membershipNumber, devMode: devMode)
             let filtered = result.filter { voucher in

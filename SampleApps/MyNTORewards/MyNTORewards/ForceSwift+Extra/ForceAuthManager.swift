@@ -10,7 +10,7 @@ import LoyaltyMobileSDK
 
 public class ForceAuthManager: ForceAuthenticator {
     public var accessToken: String?
-    public var auth: ForceAuth? = nil
+    public var auth: ForceAuth?
     private let defaults: UserDefaults
         
     public static let shared = ForceAuthManager()
@@ -27,7 +27,9 @@ public class ForceAuthManager: ForceAuthenticator {
                     let app = AppSettings.getConnectedApp()
                     let url = app.baseURL + AppSettings.Defaults.tokenPath
                     do {
-                        let newAuth = try await refresh(url: url, consumerKey: app.consumerKey, refreshToken: refreshToken)
+                        let newAuth = try await refresh(url: url,
+                                                        consumerKey: app.consumerKey,
+                                                        refreshToken: refreshToken)
                         self.auth = newAuth
                         return newAuth.accessToken
                     } catch {
@@ -80,7 +82,11 @@ public class ForceAuthManager: ForceAuthenticator {
         
     /// OAuth 2.0 Username-Password Flow - Use username and password behind screen to obtain a valid accessToken
     /// https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_username_password_flow.htm&type=5
-    public func grantAuth(url: String, username: String, password: String, consumerKey: String, consumerSecret: String) async throws -> ForceAuth {
+    public func grantAuth(url: String,
+                          username: String,
+                          password: String,
+                          consumerKey: String,
+                          consumerSecret: String) async throws -> ForceAuth {
         
         guard let url = URL(string: url) else {
             throw URLError(.badURL)
@@ -108,7 +114,11 @@ public class ForceAuthManager: ForceAuthenticator {
     
     /// OAuth 2.0 User-Agent Flow - This will bring up Salesforce Login Page. After sucessfully login, will get an accessToken and a refreshToken
     /// https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_user_agent_flow.htm&type=5
-    public func authenticate(url: String, consumerKey: String, callbackURL: String, state: String? = nil, loginHint: String? = nil) async throws -> ForceAuth {
+    public func authenticate(url: String,
+                             consumerKey: String,
+                             callbackURL: String,
+                             state: String? = nil,
+                             loginHint: String? = nil) async throws -> ForceAuth {
         
         guard let url = URL(string: url),
             let callbackURL = URL(string: callbackURL) else {
@@ -116,11 +126,11 @@ public class ForceAuthManager: ForceAuthenticator {
         }
         
         var queryItems = [
-            "response_type" : "token",
-            "client_id" : consumerKey,
-            "redirect_uri" : callbackURL.absoluteString,
-            "prompt" : "login consent",
-            "display" : "touch"
+            "response_type": "token",
+            "client_id": consumerKey,
+            "redirect_uri": callbackURL.absoluteString,
+            "prompt": "login consent",
+            "display": "touch"
         ]
         state.map { queryItems["state"] = $0 }
         loginHint.map { queryItems["login_hint"] = $0 }
@@ -141,13 +151,15 @@ public class ForceAuthManager: ForceAuthenticator {
             throw error
         }
         
-        
     }
     
     /// OAuth 2.0 Refresh Token Flow - use refresh token to get a new accessToken
     /// https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_refresh_token_flow.htm&type=5
     /// If consumerSecret is not used, then be sure that "Require Secret for Refresh Token Flow" is not checked in Connected App settings. If "Require Secret for Refresh Token Flow" is checked, consumerSecret must be provided.
-    public func refresh(url: String, consumerKey: String, consumerSecret: String? = nil, refreshToken: String) async throws -> ForceAuth {
+    public func refresh(url: String,
+                        consumerKey: String,
+                        consumerSecret: String? = nil,
+                        refreshToken: String) async throws -> ForceAuth {
         
         guard let url = URL(string: url) else {
             throw URLError(.badURL)
@@ -174,7 +186,7 @@ public class ForceAuthManager: ForceAuthenticator {
     
     /// Revoke OAuth token (access token or refresh token)
     /// https://help.salesforce.com/s/articleView?id=sf.remoteaccess_revoke_token.htm&type=5
-    public func revoke(url: String, token: String) async throws -> Void {
+    public func revoke(url: String, token: String) async throws {
         
         guard let url = URL(string: url) else {
             throw URLError(.badURL)
@@ -184,7 +196,7 @@ public class ForceAuthManager: ForceAuthenticator {
         
         do {
             let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
-            let _ = try await URLSession.shared.data(for: request)
+            _ = try await URLSession.shared.data(for: request)
             try deleteAuth()
             Logger.debug("Revoke successful")
         } catch {
@@ -195,7 +207,11 @@ public class ForceAuthManager: ForceAuthenticator {
     
     /// OAuth 2.0 Authorization Code and Credentials Flow
     /// https://help.salesforce.com/s/articleView?id=sf.remoteaccess_authorization_code_credentials_flow.htm&type=5
-    public func authenticate(communityURL: String, consumerKey: String, callbackURL: String, username: String, password: String) async throws -> ForceAuth {
+    public func authenticate(communityURL: String,
+                             consumerKey: String,
+                             callbackURL: String,
+                             username: String,
+                             password: String) async throws -> ForceAuth {
 
         guard let url = URL(string: communityURL),
             let callbackURL = URL(string: callbackURL) else {
@@ -214,11 +230,18 @@ public class ForceAuthManager: ForceAuthenticator {
         }
 
         do {
-            guard let code = try await requestAuthorizationCode(url: authURL, consumerKey: consumerKey, callbackURL: callbackURL, username: username, password: password) else {
+            guard let code = try await requestAuthorizationCode(url: authURL,
+                                                                consumerKey: consumerKey,
+                                                                callbackURL: callbackURL,
+                                                                username: username,
+                                                                password: password) else {
                 throw CommonError.codeCredentials
             }
 
-            return try await requestAccessToken(url: tokenURL, authCode: code, consumerKey: consumerKey, callbackURL: callbackURL)
+            return try await requestAccessToken(url: tokenURL,
+                                                authCode: code,
+                                                consumerKey: consumerKey,
+                                                callbackURL: callbackURL)
 
         } catch {
             throw error
@@ -226,7 +249,11 @@ public class ForceAuthManager: ForceAuthenticator {
     }
     
     /// Part 1 - Makes a Headless Request for an Authorization Code
-    private func requestAuthorizationCode(url: URL, consumerKey: String, callbackURL: URL, username: String, password: String) async throws -> String? {
+    private func requestAuthorizationCode(url: URL,
+                                          consumerKey: String,
+                                          callbackURL: URL,
+                                          username: String,
+                                          password: String) async throws -> String? {
 
         let queryItems = [
             "scope": "api refresh_token", // These scopes need to be selected from Connected App Settings
@@ -265,7 +292,10 @@ public class ForceAuthManager: ForceAuthenticator {
     }
 
     /// Part 2 - Requests an Access Token (and Refresh Token)
-    private func requestAccessToken(url: URL, authCode: String, consumerKey: String, callbackURL: URL) async throws -> ForceAuth {
+    private func requestAccessToken(url: URL,
+                                    authCode: String,
+                                    consumerKey: String,
+                                    callbackURL: URL) async throws -> ForceAuth {
 
         let queryItems = [
             "code": authCode,

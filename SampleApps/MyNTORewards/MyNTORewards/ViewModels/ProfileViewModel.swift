@@ -59,7 +59,7 @@ class ProfileViewModel: ObservableObject {
     func fetchProfile(memberId: String, devMode: Bool = false) async throws {
         do {
             
-            //let result = try await loyaltyAPIManager.getMemberProfile(for: memberId)
+            // let result = try await loyaltyAPIManager.getMemberProfile(for: memberId)
             let result = try await loyaltyAPIManager.getMemberProfile(for: memberId, devMode: devMode)
             
             profile = result

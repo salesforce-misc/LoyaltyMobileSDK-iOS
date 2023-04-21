@@ -32,9 +32,9 @@ struct RevealableSecureField: View {
                                 isSecured.toggle()
                             }) {
                                 Image("ic-preview")
-                                    .opacity(text.count == 0 ? 0 : 1)
+                                    .opacity(text.isEmpty ? 0 : 1)
                             }
-                            .disabled(text.count == 0)
+                            .disabled(text.isEmpty)
                         }
                         .padding(.trailing, 25)
                     )
@@ -49,9 +49,9 @@ struct RevealableSecureField: View {
                                 isSecured.toggle()
                             }) {
                                 Image("ic-hide")
-                                    .opacity(text.count == 0 ? 0 : 1)
+                                    .opacity(text.isEmpty ? 0 : 1)
                             }
-                            .disabled(text.count == 0)
+                            .disabled(text.isEmpty)
                         }
                         .padding(.trailing, 25)
                     )

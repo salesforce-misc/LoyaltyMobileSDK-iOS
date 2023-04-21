@@ -19,7 +19,7 @@ extension String {
     }
     
     func validateExpression(expression: String) -> Bool {
-        let predicate = NSPredicate(format:"SELF MATCHES %@", expression)
+        let predicate = NSPredicate(format: "SELF MATCHES %@", expression)
         return predicate.evaluate(with: self)
     }
     

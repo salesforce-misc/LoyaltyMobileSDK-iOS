@@ -51,7 +51,13 @@ struct ConnectedAppSettingsView: View {
                         Button("Save") {
                             save()
                         }
-                        .disabled(!isEditing && (consumerKey.isEmpty || consumerSecret.isEmpty || callbackURL.isEmpty || baseURL.isEmpty || instanceURL.isEmpty || communityURL.isEmpty))
+                        .disabled(!isEditing &&
+                                  (consumerKey.isEmpty ||
+                                   consumerSecret.isEmpty ||
+                                   callbackURL.isEmpty ||
+                                   baseURL.isEmpty ||
+                                   instanceURL.isEmpty ||
+                                   communityURL.isEmpty))
                         
                     }
                 }
@@ -157,7 +163,13 @@ struct ConnectedAppSettingsView: View {
                 }) {
                     Text(isEditing ? "Save" : "Edit")
                 }
-                .disabled(isEditing && (consumerKey.isEmpty || consumerSecret.isEmpty || callbackURL.isEmpty || baseURL.isEmpty || instanceURL.isEmpty || communityURL.isEmpty))
+                .disabled(isEditing &&
+                          (consumerKey.isEmpty ||
+                           consumerSecret.isEmpty ||
+                           callbackURL.isEmpty ||
+                           baseURL.isEmpty ||
+                           instanceURL.isEmpty ||
+                           communityURL.isEmpty))
             )
         }
             
@@ -187,8 +199,8 @@ struct ConnectedAppSettingsView: View {
     
 }
 
-//struct ConnectedAppSettingsModalView_Previews: PreviewProvider {
+// struct ConnectedAppSettingsModalView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        ConnectedAppSettingsView()
 //    }
-//}
+// }

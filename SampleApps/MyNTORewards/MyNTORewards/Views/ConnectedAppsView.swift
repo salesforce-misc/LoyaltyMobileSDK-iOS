@@ -96,11 +96,9 @@ struct ConnectedAppsView: View {
                     }
                 }
                 
-                
             } header: {
                 Text("My Connected Apps")
             }
-            
 
         }
         .toolbar {

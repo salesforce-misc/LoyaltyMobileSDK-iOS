@@ -38,7 +38,6 @@ public struct EPResult: Codable {
 public struct EPSimulationDetails: Codable {
 }
 
-
 // MARK: - UnenrollPromotionOutPutModel
 public struct UnenrollPromotionOutPutModel: Codable {
     public let status: String

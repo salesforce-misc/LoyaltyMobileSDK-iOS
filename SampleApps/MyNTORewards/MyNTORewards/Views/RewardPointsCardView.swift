@@ -146,7 +146,10 @@ struct RewardPointsCardView: View {
     
     var ellipseView: some View {
         Ellipse()
-            .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 0.93, green: 0.88, blue: 0.98), Color(red: 0.93, green: 0.88, blue: 0.98)]), startPoint: .top, endPoint: .bottom))
+            .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 0.93, green: 0.88, blue: 0.98),
+                                                             Color(red: 0.93, green: 0.88, blue: 0.98)]),
+                                 startPoint: .top,
+                                 endPoint: .bottom))
             .opacity(0.10)
             .frame(width: 421.27, height: 359.37)
     }

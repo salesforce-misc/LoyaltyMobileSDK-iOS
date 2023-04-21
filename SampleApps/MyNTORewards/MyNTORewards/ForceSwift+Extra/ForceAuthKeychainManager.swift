@@ -21,12 +21,10 @@ struct ForceAuthKeychainManager: KeychainManagerProtocol {
         do {
             let data = try Keychain.read(service: serviceId, account: identityURL)
             return try JSONDecoder().decode(ForceAuth.self, from: data)
-        }
-        catch {
+        } catch {
             if case Keychain.KeychainError.itemNotFound = error {
                 return nil
-            }
-            else {
+            } else {
                 throw error
             }
         }
@@ -48,8 +46,7 @@ struct ForceAuthKeychainManager: KeychainManagerProtocol {
                 }
             }
             return forceAuthArray
-        }
-        catch {
+        } catch {
             throw error
         }
     }
@@ -57,12 +54,10 @@ struct ForceAuthKeychainManager: KeychainManagerProtocol {
     static func delete(for identityURL: String) throws {
         do {
             try Keychain.delete(service: serviceId, account: identityURL)
-        }
-        catch {
+        } catch {
             if case Keychain.KeychainError.itemNotFound = error {
                 return
-            }
-            else {
+            } else {
                 throw error
             }
         }

@@ -11,10 +11,8 @@ import LoyaltyMobileSDK
 extension TransactionJournal {
     
     func getCurrencyPoints(currencyName: String) -> Double {
-        for currency in pointsChange {
-            if currency.loyaltyMemberCurrency.capitalized == currencyName.capitalized {
-                return currency.changeInPoints
-            }
+        for currency in pointsChange where currency.loyaltyMemberCurrency.capitalized == currencyName.capitalized {
+            return currency.changeInPoints
         }
         return 0
     }

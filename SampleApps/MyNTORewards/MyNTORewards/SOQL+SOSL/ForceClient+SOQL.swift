@@ -8,7 +8,7 @@
 import Foundation
 import LoyaltyMobileSDK
 
-public extension ForceClient {
+extension ForceClient {
     
     func SOQL<T: Decodable>(type: T.Type, for query: String) async throws -> QueryResult<T> {
         

@@ -40,7 +40,6 @@
 		290EA9C5292C4DA500BBF2F2 /* MyPromotionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9C4292C4DA500BBF2F2 /* MyPromotionDetailView.swift */; };
 		2920609529523C9C006B20C1 /* LoyaltyMobileSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2920609429523C9C006B20C1 /* LoyaltyMobileSDK */; };
 		292ADC6E294BFD7700753541 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC6D294BFD7700753541 /* PreviewProvider.swift */; };
-		292ADC70294C03D900753541 /* PromotionModel+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC6F294C03D900753541 /* PromotionModel+Image.swift */; };
 		292ADC72294C04AB00753541 /* VocherModel+VoucherValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */; };
 		292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */; };
 		292ADC76294C064600753541 /* ProfileModel+CurrencyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC75294C064600753541 /* ProfileModel+CurrencyPoints.swift */; };
@@ -204,7 +203,6 @@
 		290EA9C4292C4DA500BBF2F2 /* MyPromotionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPromotionDetailView.swift; sourceTree = "<group>"; };
 		2920609329523C0B006B20C1 /* LoyaltyMobileSDK-iOS */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "LoyaltyMobileSDK-iOS"; path = ../..; sourceTree = "<group>"; };
 		292ADC6D294BFD7700753541 /* PreviewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
-		292ADC6F294C03D900753541 /* PromotionModel+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PromotionModel+Image.swift"; sourceTree = "<group>"; };
 		292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VocherModel+VoucherValue.swift"; sourceTree = "<group>"; };
 		292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionHistory+CurrencyPoints.swift"; sourceTree = "<group>"; };
 		292ADC75294C064600753541 /* ProfileModel+CurrencyPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileModel+CurrencyPoints.swift"; sourceTree = "<group>"; };
@@ -528,7 +526,6 @@
 				299B38E128ED24B900E45D97 /* PasswordResetModel.swift */,
 				2906B1D328FF5031006EAB2D /* MemberModel.swift */,
 				293F642E29D64E48001AC795 /* CommunityMemberModel.swift */,
-				292ADC6F294C03D900753541 /* PromotionModel+Image.swift */,
 				292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */,
 				292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */,
 				292ADC75294C064600753541 /* ProfileModel+CurrencyPoints.swift */,
@@ -682,6 +679,7 @@
 				216F217728B6141E00DAA66D /* Sources */,
 				216F217828B6141E00DAA66D /* Frameworks */,
 				216F217928B6141E00DAA66D /* Resources */,
+				29FAD1C429F05FC900F1470D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -818,6 +816,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		29FAD1C429F05FC900F1470D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		216F217728B6141E00DAA66D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -868,7 +887,6 @@
 				29BAF70228F78FA400A3F9EB /* AllTransactionsView.swift in Sources */,
 				296D393528DBCFFB0078C88E /* OnboardingCardView.swift in Sources */,
 				29BAF6D728F15CF300A3F9EB /* RedeemCardView.swift in Sources */,
-				292ADC70294C03D900753541 /* PromotionModel+Image.swift in Sources */,
 				216F219528B6188600DAA66D /* AppRootView.swift in Sources */,
 				292ADC76294C064600753541 /* ProfileModel+CurrencyPoints.swift in Sources */,
 				290EA9C5292C4DA500BBF2F2 /* MyPromotionDetailView.swift in Sources */,

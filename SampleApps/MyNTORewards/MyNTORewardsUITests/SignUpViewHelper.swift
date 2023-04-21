@@ -65,9 +65,6 @@ final class SignUpViewHelper {
         let password = secureTextFields["password_textfield"]
         let confirmPassword = secureTextFields["confirm_textfield"]
         
-        let agreeSwitch = app.switches["agree_checkbox"]
-        let mailSwitch = app.switches["maillist_checkbox"]
-        
         firstName.tap()
         firstName.typeText("1234")
         
@@ -105,7 +102,6 @@ final class SignUpViewHelper {
         let password = secureTextFields["password_textfield"]
         let confirmPassword = secureTextFields["confirm_textfield"]
         
-        let agreeSwitch = app.switches["agree_checkbox"]
         let mailSwitch = app.switches["maillist_checkbox"]
         
         firstName.tap()
@@ -139,7 +135,7 @@ final class SignUpViewHelper {
         
         app.buttons["Terms and Conditions_dismiss"].tap()
         
-      //  agreeSwitch.tap()
+        // agreeSwitch.tap()
         mailSwitch.tap()
     
         XCTAssertFalse(app.staticTexts["first_name_textfield_error"].exists)
