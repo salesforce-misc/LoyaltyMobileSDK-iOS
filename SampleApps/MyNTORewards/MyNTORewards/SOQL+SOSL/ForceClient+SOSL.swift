@@ -8,7 +8,7 @@
 import Foundation
 import LoyaltyMobileSDK
 
-public extension ForceClient {
+extension ForceClient {
     
     struct SearchResult: Decodable {
         let searchRecords: [Record]

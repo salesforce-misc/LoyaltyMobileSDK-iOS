@@ -49,7 +49,6 @@ struct CheckYourEmailView: View {
                 
                 Spacer()
                 Spacer()
-        
                 
                 Text("Didn't receive the email? Check your Spam folder or \(Text("enter another email address.").foregroundColor(Color.theme.accent))")
                 .multilineTextAlignment(.center)

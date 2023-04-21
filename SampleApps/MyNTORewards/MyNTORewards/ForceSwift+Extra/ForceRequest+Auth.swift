@@ -10,7 +10,7 @@ import LoyaltyMobileSDK
 
 extension ForceRequest {
     
-    public static func updateRequestWithSavedAuth(for request: URLRequest) throws -> URLRequest {
+    static func updateRequestWithSavedAuth(for request: URLRequest) throws -> URLRequest {
 
         do {
             let auth = try ForceAuthManager.shared.retrieveAuth()

@@ -46,7 +46,21 @@ public struct PromotionResult: Codable, Identifiable {
         case startDate, endDate, loyaltyProgramCurrency, description, promotionEnrollmentEndDate, promEnrollmentStartDate
     }
     
-    public init(fulfillmentAction: String?, promotionEnrollmentRqr: Bool, memberEligibilityCategory: String, promotionImageURL: String?, loyaltyPromotionType: String?, totalPromotionRewardPointsVal: Double?, promotionName: String, id: String, startDate: String, endDate: String?, loyaltyProgramCurrency: String?, description: String?, promotionEnrollmentEndDate: String?, promEnrollmentStartDate: String?) {
+    public init(
+        fulfillmentAction: String?,
+        promotionEnrollmentRqr: Bool,
+        memberEligibilityCategory: String,
+        promotionImageURL: String?,
+        loyaltyPromotionType: String?,
+        totalPromotionRewardPointsVal: Double?,
+        promotionName: String,
+        id: String,
+        startDate: String,
+        endDate: String?,
+        loyaltyProgramCurrency: String?,
+        description: String?,
+        promotionEnrollmentEndDate: String?,
+        promEnrollmentStartDate: String?) {
         self.fulfillmentAction = fulfillmentAction
         self.promotionEnrollmentRqr = promotionEnrollmentRqr
         self.memberEligibilityCategory = memberEligibilityCategory

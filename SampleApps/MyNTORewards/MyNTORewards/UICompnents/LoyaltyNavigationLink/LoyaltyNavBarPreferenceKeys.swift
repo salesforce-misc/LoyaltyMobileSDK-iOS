@@ -29,7 +29,7 @@ struct LoyaltyNavBarTitlePreferenceKey: PreferenceKey {
 
 struct LoyaltyNavBarTabBarPreferenceKey: PreferenceKey {
     
-    static var defaultValue: TopTabBar? = nil
+    static var defaultValue: TopTabBar?
     
     static func reduce(value: inout TopTabBar?, nextValue: () -> TopTabBar?) {
         value = nextValue()

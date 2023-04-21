@@ -28,7 +28,7 @@ struct MyPromotionCardView: View {
                     .foregroundColor(.white)
                     .frame(width: 133, height: 166)
                     .cornerRadius(5, corners: [.topLeft, .bottomLeft])
-                    .overlay(){
+                    .overlay {
                         ProgressView()
                     }
             }
@@ -38,7 +38,7 @@ struct MyPromotionCardView: View {
                         .font(.redeemTitle)
                         .lineSpacing(5)
                     Spacer()
-                    //Image("ic-heart")
+                    // Image("ic-heart")
                 }
                 .padding(.top, 10)
                 Text(promotion.description ?? "")

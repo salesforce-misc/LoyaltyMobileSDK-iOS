@@ -142,7 +142,6 @@ struct AllBenefitsView: View {
             })
         }
         
-        
     }
 }
 

@@ -67,7 +67,6 @@ internal extension ForceAuth {
         let signature: String? = queryItems["signature"] ?? ""
         let refreshToken: String? = queryItems["refresh_token"] ?? ""
         
-        
         self.init(
             accessToken: accessToken,
             instanceURL: instanceURL,

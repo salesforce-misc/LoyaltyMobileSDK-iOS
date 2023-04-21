@@ -48,8 +48,6 @@ struct AllBadgesView: View {
                 }
                 .padding()
                 
-                
-                
             }
             
         }

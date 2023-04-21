@@ -9,8 +9,8 @@ import Foundation
 
 struct OnboardingModel: Identifiable {
     let id  = UUID()
-    let image : String
-    let description : String
+    let image: String
+    let description: String
     let offset: CGSize
 }
 

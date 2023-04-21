@@ -65,9 +65,6 @@ final class SignUpViewHelper {
         let password = secureTextFields["password_textfield"]
         let confirmPassword = secureTextFields["confirm_textfield"]
         
-        let agreeSwitch = app.switches["agree_checkbox"]
-        let mailSwitch = app.switches["maillist_checkbox"]
-        
         firstName.tap()
         firstName.typeText("1234")
         
@@ -105,7 +102,6 @@ final class SignUpViewHelper {
         let password = secureTextFields["password_textfield"]
         let confirmPassword = secureTextFields["confirm_textfield"]
         
-        let agreeSwitch = app.switches["agree_checkbox"]
         let mailSwitch = app.switches["maillist_checkbox"]
         
         firstName.tap()

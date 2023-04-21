@@ -71,7 +71,7 @@ class AppRootViewModel: ObservableObject {
             case .none:
                 Logger.error("<Firebase> - Could not create account.")
                 self?.isInProgress = false
-            case .some(_):
+            case .some:
                 Logger.debug("<Firebase> - User created on Firebase.")
                 
                 /*

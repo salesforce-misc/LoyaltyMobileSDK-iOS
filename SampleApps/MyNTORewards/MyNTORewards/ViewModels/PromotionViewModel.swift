@@ -41,7 +41,7 @@ class PromotionViewModel: ObservableObject {
             
             await MainActor.run {
                 // update promotion list
-                promotionList = Dictionary(uniqueKeysWithValues: eligible.map{ ($0.id, $0) })
+                promotionList = Dictionary(uniqueKeysWithValues: eligible.map { ($0.id, $0) })
             }
 
             return eligible
@@ -197,7 +197,7 @@ class PromotionViewModel: ObservableObject {
         do {
             try await loyaltyAPIManager.enrollIn(promotion: promotionName, for: membershipNumber)
             // fetch all from network
-            let _ = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
+            _ = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
             await MainActor.run {
                 if actionTaskList[promotionId] != nil {
                     actionTaskList[promotionId]!.0 = true
@@ -214,7 +214,7 @@ class PromotionViewModel: ObservableObject {
     func unenroll(membershipNumber: String, promotionName: String, promotionId: String) async throws {
         do {
 			try await loyaltyAPIManager.unenroll(promotionId: promotionId, for: membershipNumber)
-            let _ = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
+            _ = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
             await MainActor.run {
                 if actionTaskList[promotionId] != nil {
                     actionTaskList[promotionId]!.0 = true

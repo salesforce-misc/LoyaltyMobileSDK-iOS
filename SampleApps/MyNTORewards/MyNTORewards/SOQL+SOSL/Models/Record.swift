@@ -34,8 +34,7 @@ public struct Record: Identifiable, Decodable {
         // Parse record ID
         if self.type.caseInsensitiveCompare("AggregateResult") == ComparisonResult.orderedSame {
             self.id = ""
-        }
-        else {
+        } else {
             guard let recordID = attrs.url?.components(separatedBy: "/").last, recordID.count == 15 || recordID.count == 18 else {
                 throw DecodingError.dataCorruptedError(forKey: key, in: container, debugDescription: "Failed to decode record ID from url attribute.")
             }
@@ -107,7 +106,7 @@ extension Record {
     
     struct RecordCodingKey: CodingKey {
         var stringValue: String
-        var intValue: Int? = nil
+        var intValue: Int?
         init?(stringValue: String) { self.stringValue = stringValue }
         init?(intValue: Int) { return nil }
     }

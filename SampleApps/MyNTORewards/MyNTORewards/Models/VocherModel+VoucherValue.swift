@@ -13,7 +13,7 @@ extension VoucherModel {
     
     func getVoucherValue() -> Text? {
         
-        switch(type) {
+        switch type {
         case "FixedValue":
             if let faceValue = faceValue {
                 return Text("Value: **$\(String(format: "%.0f", faceValue))**")
@@ -26,11 +26,10 @@ extension VoucherModel {
             } else {
                 return nil
             }
-        case "ProductOrService": //Not sure what to do
+        case "ProductOrService": // Not sure what to do
             return nil
         default:
             return nil
         }
     }
 }
-

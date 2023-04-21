@@ -70,7 +70,7 @@ class BenefitViewModel: ObservableObject {
             benefitsPreview = Array(benefits.prefix(5))
             // save to local cache
             let benefitsData = Benefits(memberBenefits: results)
-            //LocalFileManager.instance.saveData(item: benefitsData, id: memberId, expiry: .date(Date().addingTimeInterval(60*60)))
+            // LocalFileManager.instance.saveData(item: benefitsData, id: memberId, expiry: .date(Date().addingTimeInterval(60*60)))
             LocalFileManager.instance.saveData(item: benefitsData, id: memberId)
         } catch {
             throw error
