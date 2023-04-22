@@ -181,6 +181,8 @@ class AppRootViewModel: ObservableObject {
                                                               instanceURL: app.instanceURL)
                     let profile = try await loyaltyAPIManager.getCommunityMemberProfile()
                     
+                    // TODO: need to handle profile cannot be found(not registered) case
+                    
                     Logger.debug("\(profile)")
                     
                     let member = CommunityMemberModel(firstName: profile.associatedContact.firstName,
@@ -198,6 +200,10 @@ class AppRootViewModel: ObservableObject {
                 self.userState = .signedIn
 
             } catch {
+                
+                // clear auth
+                authManager.clearAuth()
+                
                 self.isInProgress = false
                 self.userErrorMessage = (error.localizedDescription, .signIn)
             }

@@ -13,29 +13,29 @@ public class NetworkManager {
     
     private init() {}
     
-    internal func handleDataAndResponse(output: URLSession.DataTaskPublisher.Output) -> Data {
-        handleResponse(response: output.response)
-        return output.data
-    }
-    
-    internal func handleResponse(response: URLResponse) {
-        guard let httpResponse = response as? HTTPURLResponse else {
+    internal func handleDataAndResponse(output: URLSession.DataTaskPublisher.Output) throws -> Data {
+        guard let httpResponse = output.response as? HTTPURLResponse else {
             Logger.error(CommonError.requestFailed(message: "Invalid response").description)
-            return
+            throw CommonError.requestFailed(message: "Invalid response")
         }
-            
-        guard httpResponse.statusCode >= 200 && httpResponse.statusCode < 300 else {
-            Logger.error(CommonError.responseUnsuccessful(message: "HTTP response status code \(httpResponse.statusCode)").description)
-            Logger.debug(httpResponse.description)
-            return
-        }
-    }
-    
-    internal func handleUnauthResponse(output: URLSession.DataTaskPublisher.Output) throws {
-        guard let response = output.response as? HTTPURLResponse,
-              response.statusCode != 401 else {
+
+        switch httpResponse.statusCode {
+        case 200..<300:
+            break
+        case 401:
+            Logger.error(CommonError.authenticationNeeded.description)
             throw CommonError.authenticationNeeded
+        case 403:
+            Logger.error(CommonError.functionalityNotEnabled.description)
+            throw CommonError.functionalityNotEnabled
+        default:
+            let errorMessage = "HTTP response status code \(httpResponse.statusCode)"
+            Logger.error(CommonError.responseUnsuccessful(message: errorMessage).description)
+            Logger.debug(httpResponse.description)
+            throw CommonError.responseUnsuccessful(message: errorMessage)
         }
+
+        return output.data
     }
 
     /// Use Async/Await to fetch all REST requests
@@ -47,8 +47,7 @@ public class NetworkManager {
       
         do {
             let output = try await URLSession.shared.data(for: request)
-            try handleUnauthResponse(output: output)
-            let data = handleDataAndResponse(output: output)
+            let data = try handleDataAndResponse(output: output)
             return try JSONDecoder().decode(type, from: data)
         } catch {
             throw error
