@@ -182,6 +182,8 @@ class DeveloperPreview {
 								promotionName: "",
 								promotionId: "")
     
+    let checkoutVouchersCode = ["Trendy wear 25 off", "Trendy wear 50 off", "Trendy wear 15 off", "Trendy wear 75 off", "Trendy wear 100 off"]
+    
     let rootVM = AppRootViewModel()
     let benefitVM = BenefitViewModel()
     let promotionVM = PromotionViewModel()
