@@ -43,7 +43,7 @@ struct ProductImagesView_Previews: PreviewProvider {
 			"https://picsum.photos/187",
 			"https://picsum.photos/190",
 			"https://picsum.photos/130",
-			"https://picsum.photos/215",
+			"https://picsum.photos/215"
 		])
     }
 }

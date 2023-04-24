@@ -13,9 +13,9 @@ struct ProductView: View {
 	var tabbarItems: [String] = ["Details", "Reviews", "T&C"]
 	
 	var body: some View {
-		VStack (alignment: .leading) {
+		VStack(alignment: .leading) {
 			NavigationBarView()
-			VStack(alignment: .leading, spacing: 8){
+			VStack(alignment: .leading, spacing: 8) {
 				Text("Outdoor Collection")
 					.font(.productDetailTitleText)
 				Text("Double points on Outdoor Product Category")

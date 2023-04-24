@@ -23,12 +23,12 @@ struct OrderPlacedView: View {
 			}
 			.padding(75)
 			Spacer()
-			Button{} label: {
+			Button {} label: {
 				Text("Continue Shopping")
 					.font(.boldButtonText)
 			}
-				.buttonStyle(DarkFlexibleButton())
-				.frame(width: 220)
+            .buttonStyle(DarkFlexibleButton())
+            .frame(width: 220)
 		}
     }
 }

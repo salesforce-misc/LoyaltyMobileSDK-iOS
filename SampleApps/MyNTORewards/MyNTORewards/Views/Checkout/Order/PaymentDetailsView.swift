@@ -17,7 +17,7 @@ struct PaymentDetailsView: View {
                 PaymentCardView()
                     .cornerRadius(16, corners: .allCorners)
                 
-                Button{} label: {
+                Button {} label: {
                     Text("Confirm Order")
                         .font(.boldButtonText)
                 }
