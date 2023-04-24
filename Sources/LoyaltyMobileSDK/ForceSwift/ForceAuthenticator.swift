@@ -8,10 +8,12 @@
 import Foundation
 
 public protocol ForceAuthenticator {
-
-    /// A valid accessToken
-    var accessToken: String? { get set }
-    /// Grant an accessToken which can be used to access Salesforce APIs
-    /// - Returns: A valid accessToken
+    
+    /// Get a valid accessToken
+    /// - Returns: An accessToken or ``Nil``
+    func getAccessToken() -> String?
+    
+    /// Greant(or refresh) accessToken
+    /// - Returns: An accessToken
     func grantAccessToken() async throws -> String
 }
