@@ -18,7 +18,9 @@ class TransactionViewModel: ObservableObject {
     private var loyaltyAPIManager: LoyaltyAPIManager
     
     init() {
-        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager, loyaltyProgramName: AppConstants.Config.loyaltyProgramName)
+        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
+                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+                                              instanceURL: AppSettings.getInstanceURL())
     }
     
     @MainActor
@@ -51,7 +53,7 @@ class TransactionViewModel: ObservableObject {
             let result = try await loyaltyAPIManager.getTransactions(for: membershipNumber)
             let filtered = result.filter { transaction in
                 transaction.pointsChange.contains { currency in
-                    currency.loyaltyMemberCurrency == AppConstants.Config.rewardCurrencyName
+                    currency.loyaltyMemberCurrency == AppSettings.Defaults.rewardCurrencyName
                 }
             }
             return filtered
@@ -82,14 +84,14 @@ class TransactionViewModel: ObservableObject {
             if let cached = LocalFileManager.instance.getData(type: [TransactionJournal].self, id: membershipNumber, folderName: transactionFolderName) {
                 // filter recent transactions - within a month
                 let recent = cached.filter { transaction in
-                    guard let date = transaction.activityDate.toDate(withFormat: AppConstants.Config.apiDateFormat) else {
+                    guard let date = transaction.activityDate.toDate(withFormat: AppSettings.Defaults.apiDateFormat) else {
                         return false
                     }
                     return date >= Date().monthBefore
                 }
                 // filter older transactions - a month ago
                 let older = cached.filter { transaction in
-                    guard let date = transaction.activityDate.toDate(withFormat: AppConstants.Config.apiDateFormat) else {
+                    guard let date = transaction.activityDate.toDate(withFormat: AppSettings.Defaults.apiDateFormat) else {
                         return false
                     }
                     return date < Date().monthBefore
@@ -101,13 +103,13 @@ class TransactionViewModel: ObservableObject {
                 do {
                     let result = try await fetchTransactions(membershipNumber: membershipNumber)
                     let recent = result.filter { transaction in
-                        guard let date = transaction.activityDate.toDate(withFormat: AppConstants.Config.apiDateFormat) else {
+                        guard let date = transaction.activityDate.toDate(withFormat: AppSettings.Defaults.apiDateFormat) else {
                             return false
                         }
                         return date >= Date().monthBefore
                     }
                     let older = result.filter { transaction in
-                        guard let date = transaction.activityDate.toDate(withFormat: AppConstants.Config.apiDateFormat) else {
+                        guard let date = transaction.activityDate.toDate(withFormat: AppSettings.Defaults.apiDateFormat) else {
                             return false
                         }
                         return date < Date().monthBefore
@@ -129,13 +131,13 @@ class TransactionViewModel: ObservableObject {
         do {
             let result = try await fetchTransactions(membershipNumber: membershipNumber)
             let recent = result.filter { transaction in
-                guard let date = transaction.activityDate.toDate(withFormat: AppConstants.Config.apiDateFormat) else {
+                guard let date = transaction.activityDate.toDate(withFormat: AppSettings.Defaults.apiDateFormat) else {
                     return false
                 }
                 return date >= Date().monthBefore
             }
             let older = result.filter { transaction in
-                guard let date = transaction.activityDate.toDate(withFormat: AppConstants.Config.apiDateFormat) else {
+                guard let date = transaction.activityDate.toDate(withFormat: AppSettings.Defaults.apiDateFormat) else {
                     return false
                 }
                 return date < Date().monthBefore

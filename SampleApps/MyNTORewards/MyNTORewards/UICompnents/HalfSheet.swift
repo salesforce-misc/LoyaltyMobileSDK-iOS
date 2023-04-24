@@ -7,21 +7,21 @@
 
 import SwiftUI
 
-class HalfSheetController<Content>: UIHostingController<Content> where Content : View {
+class HalfSheetController<Content>: UIHostingController<Content> where Content: View {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if let presentation = sheetPresentationController {
             presentation.detents = [.medium()]
-            //presentation.prefersGrabberVisible = true
-            //presentation.largestUndimmedDetentIdentifier = .medium // This will cause TabView losing accent color of selected tab
+            // presentation.prefersGrabberVisible = true
+            // presentation.largestUndimmedDetentIdentifier = .medium // This will cause TabView losing accent color of selected tab
             presentation.preferredCornerRadius = 20.0
             presentation.selectedDetentIdentifier = .medium
         }
     }
 }
 
-struct HalfSheet<Content>: UIViewControllerRepresentable where Content : View {
+struct HalfSheet<Content>: UIViewControllerRepresentable where Content: View {
 
     private let content: Content
     

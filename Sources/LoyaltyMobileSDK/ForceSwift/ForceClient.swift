@@ -10,7 +10,6 @@ import Foundation
 public class ForceClient {
     public var auth: ForceAuthenticator
     
-    
     /// Create a new instance from a given ``ForceAuthenticator``
     /// - Parameter auth: A ``ForceAuthenticator``
     public init(auth: ForceAuthenticator) {
@@ -32,11 +31,11 @@ public class ForceClient {
                 let accessToken = try await auth.grantAccessToken()
                 newRequest = ForceRequest.setAuthorization(request: request, accessToken: accessToken)
             }
-            return try await ForceNetworkManager.shared.fetch(type: type, request: newRequest)
-        } catch ForceError.authenticationNeeded {
+            return try await NetworkManager.shared.fetch(type: type, request: newRequest)
+        } catch CommonError.authenticationNeeded {
             let token = try await auth.grantAccessToken()
             let updatedRequest = ForceRequest.setAuthorization(request: request, accessToken: token)
-            return try await ForceNetworkManager.shared.fetch(type: type, request: updatedRequest)
+            return try await NetworkManager.shared.fetch(type: type, request: updatedRequest)
         } catch {
             throw error
         }
@@ -47,10 +46,10 @@ public class ForceClient {
     ///   - type: A type(i.e. model) defined to be used by JSON decoder
     ///   - file: Filename of a local JSON file
     /// - Returns: A decoded JSON response result
-    public func fetchLocalJson<T: Decodable>(type: T.Type, file: String) throws -> T {
+    func fetchLocalJson<T: Decodable>(type: T.Type, file: String) throws -> T {
             
         guard let fileURL = Bundle.main.url(forResource: file, withExtension: "json") else {
-            throw URLError(.badURL, userInfo: [NSURLErrorFailingURLStringErrorKey : "\(file).json"])
+            throw URLError(.badURL, userInfo: [NSURLErrorFailingURLStringErrorKey: "\(file).json"])
         }
       
         return try JSONDecoder().decode(T.self, from: try Data(contentsOf: fileURL))

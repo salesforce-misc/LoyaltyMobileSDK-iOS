@@ -17,8 +17,8 @@ struct TopTabBar: View, Equatable {
         HStack(spacing: 30) {
             ForEach(0..<barItems.count, id: \.self) { index in
                 let lableText = barItems[index]
-                ZStack(alignment: .bottom){
-                    if(tabIndex == index) {
+                ZStack(alignment: .bottom) {
+                    if tabIndex == index {
                         Capsule()
                             .fill(Color.theme.accent)
                             .matchedGeometryEffect(id: "offer_underscore", in: namespace, properties: .frame)

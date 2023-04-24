@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct AllTransactionsView: View {
     
@@ -28,7 +29,8 @@ struct AllTransactionsView: View {
                 
                 VStack(spacing: 15) {
                     if transactionVM.recentTransactions.isEmpty {
-						EmptyStateView(title: "No recent transactions", subTitle: "After you complete a transaction, you’ll see it here for the next 30 days.")
+						EmptyStateView(title: "No recent transactions",
+                                       subTitle: "After you complete a transaction, you’ll see it here for the next 30 days.")
                     }
                     ForEach(transactionVM.recentTransactions) { transaction in
                         TransactionCardView(transaction: transaction)
@@ -43,7 +45,8 @@ struct AllTransactionsView: View {
                 .padding()
                 LazyVStack(spacing: 15) {
                     if transactionVM.olderTransactions.isEmpty {
-                        EmptyStateView(title: "Nothing to report", subTitle: "When you complete your first transaction, you’ll find it here.")
+                        EmptyStateView(title: "Nothing to report",
+                                       subTitle: "When you complete your first transaction, you’ll find it here.")
                     }
                     ForEach(transactionVM.olderTransactions) { transaction in
                         TransactionCardView(transaction: transaction)
@@ -54,16 +57,16 @@ struct AllTransactionsView: View {
             }
             .task {
                 do {
-                    try await transactionVM.loadAllTransactions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                    try await transactionVM.loadAllTransactions(membershipNumber: rootVM.member?.membershipNumber ?? "")
                 } catch {
-                    print("Load All Transactions Error: \(error)")
+                    Logger.error("Load All Transactions Error: \(error)")
                 }
             }
             .refreshable {
                 do {
-                    try await transactionVM.reloadAllTransactions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                    try await transactionVM.reloadAllTransactions(membershipNumber: rootVM.member?.membershipNumber ?? "")
                 } catch {
-                    print("Reload All Transactions Error: \(error)")
+                    Logger.error("Reload All Transactions Error: \(error)")
                 }
             }
             

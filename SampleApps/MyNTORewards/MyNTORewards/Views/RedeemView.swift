@@ -54,7 +54,6 @@ struct RedeemView: View {
                 .frame(maxWidth: .infinity)
                 .background(Color.white)
                 
-                
                 Spacer()
             }
             

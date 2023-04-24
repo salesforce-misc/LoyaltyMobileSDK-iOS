@@ -7,9 +7,9 @@
 
 import Foundation
 import UIKit
+import LoyaltyMobileSDK
 
 public extension ForceClient {
-    
     
     /// Fetch an image
     /// - Parameters:
@@ -24,20 +24,10 @@ public extension ForceClient {
 
         do {
             let request = try ForceRequest.create(url: imageUrl, method: "GET")
-            let output = try await URLSession.shared.data(for: request)
-            try ForceNetworkManager.shared.handleUnauthResponse(output: output)
+            let token = try await auth.grantAccessToken()
+            let newRequet = ForceRequest.setAuthorization(request: request, accessToken: token)
+            let output = try await URLSession.shared.data(for: newRequet)
             return handleImageResponse(output: output)
-        } catch ForceError.authenticationNeeded {
-            do {
-                let request = try ForceRequest.create(url: imageUrl, method: "GET")
-                let token = try await auth.grantAccessToken()
-                let newRequet = ForceRequest.setAuthorization(request: request, accessToken: token)
-                let output = try await URLSession.shared.data(for: newRequet)
-                return handleImageResponse(output: output)
-            } catch {
-                return nil
-            }
-            
         } catch {
             return nil
         }

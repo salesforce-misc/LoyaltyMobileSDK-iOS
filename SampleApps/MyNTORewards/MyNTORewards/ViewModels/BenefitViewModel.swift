@@ -20,7 +20,9 @@ class BenefitViewModel: ObservableObject {
     private var loyaltyAPIManager: LoyaltyAPIManager
     
     init() {
-        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager, loyaltyProgramName: AppConstants.Config.loyaltyProgramName)
+        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
+                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+                                              instanceURL: AppSettings.getInstanceURL())
     }
     
     func getBenefits(memberId: String, reload: Bool = false) async throws {
@@ -68,7 +70,7 @@ class BenefitViewModel: ObservableObject {
             benefitsPreview = Array(benefits.prefix(5))
             // save to local cache
             let benefitsData = Benefits(memberBenefits: results)
-            //LocalFileManager.instance.saveData(item: benefitsData, id: memberId, expiry: .date(Date().addingTimeInterval(60*60)))
+            // LocalFileManager.instance.saveData(item: benefitsData, id: memberId, expiry: .date(Date().addingTimeInterval(60*60)))
             LocalFileManager.instance.saveData(item: benefitsData, id: memberId)
         } catch {
             throw error

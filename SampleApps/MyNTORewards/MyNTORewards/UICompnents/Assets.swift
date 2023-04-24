@@ -14,10 +14,10 @@ struct Assets {
         
         switch type {
         case "Free Shipping":
-            //return Image("ic-benefit-free-shipping")
+            // return Image("ic-benefit-free-shipping")
             return Image("Free Shipping")
         case "Extended Returns":
-            //return Image("ic-benefit-extended-return")
+            // return Image("ic-benefit-extended-return")
             return Image("Extended Return")
         case "Free Sample":
             return Image("ic-benefit-free-sample")

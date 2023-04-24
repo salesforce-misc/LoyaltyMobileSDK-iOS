@@ -18,7 +18,9 @@ class ProfileViewModel: ObservableObject {
     private var loyaltyAPIManager: LoyaltyAPIManager
     
     init() {
-        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager, loyaltyProgramName: AppConstants.Config.loyaltyProgramName)
+        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
+                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+                                              instanceURL: AppSettings.getInstanceURL())
     }
     
     func getProfileData(memberId: String, reload: Bool = false) async throws {
@@ -54,7 +56,7 @@ class ProfileViewModel: ObservableObject {
     func fetchProfile(memberId: String) async throws {
         do {
             
-            //let result = try await loyaltyAPIManager.getMemberProfile(for: memberId)
+            // let result = try await loyaltyAPIManager.getMemberProfile(for: memberId)
             let result = try await loyaltyAPIManager.getMemberProfile(for: memberId)
             
             profile = result
