@@ -63,5 +63,46 @@ enum AppAccessibilty {
         static let logout = "logout_button"
     }
     
+    enum Promotion {
+        static let header = "promotion_header"
+        static let searchImage = "search_image"
+        static let viewAll = "viewAll"
+    }
+    
+    enum Home {
+        static let userName = "username_label"
+        static let rewardPoints = "reward_points_label"
+        static let homePromotion = "home_promotion"
+        
+    }
+    
+    enum Voucher {
+        static let header = "voucher_header"
+        static let viewAll = "view_all_button"
+    }
+    
+    enum Profile {
+        static let image = "profile_image"
+        static let userName = "user_name_label"
+        static let userId = "userid_label"
+        static let tierName = "tier_name_label"
+        static let rewardPoints = "reward_points"
+        static let rewardPointsText = "reward_points_label"
+        static let qrCode = "qrcode"
+        static let header = "profile_header"
+    }
+    
+    enum QRCode {
+        static let title =  "qr_title"
+        static let closeImage = "close_image"
+        static let profileImage = "profile_image"
+        static let userName = "user_name"
+        static let membershipNumber = "membership_number"
+        static let qrImage = "qr_image"
+        static let qrCodeText = "qr_code_label"
+        static let closeButton = "close_button"
+        static let qrDescription = "qr_description"
+    }
+    
 }
 

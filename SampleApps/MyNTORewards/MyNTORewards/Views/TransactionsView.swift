@@ -25,7 +25,6 @@ struct TransactionsView: View {
                     TransactionCardView(transaction: transaction)
                 }
             }
-            
         }
         .frame(height: 320)
         .task {

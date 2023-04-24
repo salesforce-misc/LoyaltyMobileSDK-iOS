@@ -21,8 +21,10 @@ struct PromotionCarouselView: View {
                 Text("Promotions")
                     .font(.offerTitle)
                     .foregroundColor(.black)
+                    .accessibilityIdentifier(AppAccessibilty.Promotion.header)
                 Spacer()
                 Text("View All")
+                    .accessibilityIdentifier(AppAccessibilty.Promotion.viewAll)
                     .foregroundColor(Color.theme.accent)
                     .font(.offerViewAll)
                     .onTapGesture {

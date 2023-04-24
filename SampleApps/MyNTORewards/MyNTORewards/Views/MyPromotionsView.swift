@@ -22,9 +22,11 @@ struct MyPromotionsView: View {
                     Text("My Promotions")
                         .font(.congratsTitle)
                         .padding(.leading, 15)
+                        .accessibilityIdentifier(AppAccessibilty.Promotion.header)
                     Spacer()
                     Image("ic-search")
                         .padding(.trailing, 15)
+                        .accessibilityIdentifier(AppAccessibilty.Promotion.searchImage)
                 }
                 .frame(height: 44)
                 .frame(maxWidth: .infinity)

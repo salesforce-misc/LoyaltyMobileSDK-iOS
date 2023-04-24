@@ -39,9 +39,11 @@ struct HomeView: View {
                     HStack {
                         Text("Hello \(rootVM.member?.firstName.capitalized ?? ""),")
                             .padding(.leading, 15)
+                            .accessibilityIdentifier(AppAccessibilty.Home.userName)
                         Spacer()
                         Text("\(String(profileVM.profile?.getCurrencyPoints(currencyName: AppConstants.Config.rewardCurrencyName) ?? 0)) \(AppConstants.Config.rewardCurrencyName)")
                             .padding(.trailing, 15)
+                            .accessibilityIdentifier(AppAccessibilty.Home.rewardPoints)
                     }
                     .frame(height: 48)
                     .frame(maxWidth: .infinity)

@@ -30,6 +30,30 @@ final class OnBoardingViewUITests: XCTestCase {
         try MoreViewHelper.testMoreScreen()
     }
     
+    func testEmptyView() throws {
+        let loginButton = app.buttons["login_button"]
+        loginButton.tap()
+        
+        try SignInViewHelper.testLogin()
+        app.tabBars.buttons["Home"].tap()
+        HomeViewHelper.testEmptyViewElements()
+        app.tabBars.buttons["My Promotions"].tap()
+        PromotionViewHelper.testEmptyViewElements()
+        app.tabBars.buttons["My Profile"].tap()
+        try MyProfileViewHelper.testEmptyViewElements()
+        try MoreViewHelper.testMoreScreen()
+    }
+    
+    func testProfileScreen() throws {
+        let loginButton = app.buttons["login_button"]
+        loginButton.tap()
+        try SignInViewHelper.testLogin()
+        app.tabBars.buttons["My Profile"].tap()
+        try MyProfileViewHelper.testEmptyViewElements()
+        try MyProfileViewHelper.testQRScreen()
+        try MoreViewHelper.testMoreScreen()
+    }
+    
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
             // This measures how long it takes to launch your application.
