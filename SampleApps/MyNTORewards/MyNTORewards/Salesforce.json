@@ -1,9 +1,0 @@
-{
-    "consumerKey" : "3MVG9sA57VMGPDff5IP2PZ3gePzAE087y65OQNiwULLemkJnFilih4d4Ttixw0abfb8XH__8miW3Xn9yStqlg",
-    "consumerSecret": "4C64F15ECE02FFF0002BA74DFDE835A94FE05C7DC1DA3096604E634701E844AA",
-    "callbackURL" : "testsfdc:///loyaltymobileapp/oauth/success",
-    "baseURL": "https://na45.test1.pc-rnd.salesforce.com",
-    "instanceURL": "https://dro000000kef12ao.test1.my.pc-rnd.salesforce.com",
-    "username": "archit.sharma@salesforce.com",
-    "password": "test@321"
-}
