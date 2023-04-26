@@ -16,20 +16,11 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Install dependencies
       run: |
         sudo xcode-select --switch /Applications/Xcode_13.app
 
-    - name: Generate Xcode project
-      run: |
-        swift package generate-xcodeproj
-
     - name: Run Unit Tests
-      run: |
-        xcodebuild \
-          -project LoyaltyMobileSDK-iOS.xcodeproj \
-          -scheme LoyaltyMobileSDK-iOS-Package \
-          -destination 'platform=iOS Simulator,name=iPhone 13,OS=latest' \
-          test
+      run: ./run_tests.sh
