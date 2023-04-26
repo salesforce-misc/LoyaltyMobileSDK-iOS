@@ -22,13 +22,17 @@ final class OnBoardingViewUITests: XCTestCase {
     /// 4. Tap logout and verify logout
     
     func testOnBoardingFlow() throws {
-        // UI tests must launch the application that they test.
-        
         try OnBoardingViewHelper.testOnBoardingScreen()
         try SignUpViewHelper.testSignUpPage()
         try SignInViewHelper.testSignInScreen()
         try MoreViewHelper.testMoreScreen()
     }
+    
+    /// Flow Verification
+    /// 1. Tap login button and verify login
+    /// 2. Tap Home, My promotions, My profile , More button
+    /// 3. Verify all the empty screen without promotions and vouchers
+    /// 4. Tap logout and verify logout
     
     func testEmptyView() throws {
         let loginButton = app.buttons["login_button"]
@@ -36,14 +40,22 @@ final class OnBoardingViewUITests: XCTestCase {
         
         try SignInViewHelper.testLogin()
         app.tabBars.buttons["Home"].tap()
-        HomeViewHelper.testEmptyViewElements()
+        try HomeViewHelper.testEmptyViewElements()
         app.tabBars.buttons["My Promotions"].tap()
-        PromotionViewHelper.testEmptyViewElements()
+        try PromotionViewHelper.testEmptyViewElements()
         app.tabBars.buttons["My Profile"].tap()
         try MyProfileViewHelper.testEmptyViewElements()
         try MoreViewHelper.testMoreScreen()
     }
     
+    /// Flow Verification
+    /// 1. Tap login button and verify login
+    /// 2. Tap My profile verify all the elements are present
+    /// 3. Verify QR screen
+    /// 4. Verify transactions empty screen
+    /// 5. Verify Vouchers empty screen
+    /// 6. Verify Benefits empty screen
+    /// 7. Tap logout and verify logout
     func testProfileScreen() throws {
         let loginButton = app.buttons["login_button"]
         loginButton.tap()
@@ -51,6 +63,68 @@ final class OnBoardingViewUITests: XCTestCase {
         app.tabBars.buttons["My Profile"].tap()
         try MyProfileViewHelper.testEmptyViewElements()
         try MyProfileViewHelper.testQRScreen()
+        try MyProfileViewHelper.testTransactionsScreen()
+        try MyProfileViewHelper.testVoucherScreen()
+        try MyProfileViewHelper.testBenefitsScreen()
+        try MoreViewHelper.testMoreScreen()
+    }
+
+    /// Flow Verification Home
+    /// 1. Tap login button and verify login
+    /// 2. Tap Home verify all the elements are present
+    /// 3. Verify Promotions empty screen
+    /// 4. Verify Vouchers empty screen
+    /// 5. Tap logout and verify logout
+    func testHomeEmptyScreen() throws {
+        let loginButton = app.buttons["login_button"]
+        loginButton.tap()
+        try SignInViewHelper.testLogin()
+        app.tabBars.buttons["Home"].tap()
+        try HomeViewHelper.testEmptyViewElements()
+        try HomeViewHelper.testPromotionViewElements()
+        try HomeViewHelper.testVoucherViewElements()
+        try MoreViewHelper.testMoreScreen()
+    }
+    
+    /// Flow Verification Home
+    /// 1. Tap login button and verify login
+    /// 2. Tap Home verify all the elements are present
+    /// 3. Verify Promotions carousel
+    /// 4. Tap logout and verify logout
+    func testPromotionCarousel() throws {
+        let loginButton = app.buttons["login_button"]
+        loginButton.tap()
+        try SignInViewHelper.testLoginWithPromotions()
+        app.tabBars.buttons["Home"].tap()
+        try PromotionViewHelper.testPromotionCarousalView()
+        try MoreViewHelper.testMoreScreen()
+    }
+    
+    /// Flow Verification My Promotions
+    /// 1. Tap login button and verify login
+    /// 2. Tap promotions verify all the elements are present
+    /// 3. Verify Promotions empty screen
+    /// 4. Tap logout and verify logout
+    func testPromotionsEmptyScreen() throws {
+        let loginButton = app.buttons["login_button"]
+        loginButton.tap()
+        try SignInViewHelper.testLogin()
+        app.tabBars.buttons["My Promotions"].tap()
+        try PromotionViewHelper.testEmptyViewElements()
+        try MoreViewHelper.testMoreScreen()
+    }
+    
+    /// Flow Verification My Promotions
+    /// 1. Tap login button and verify login
+    /// 2. Tap promotions verify all the elements are present
+    /// 3. Verify Promotions on Active, Eligible and All
+    /// 4. Tap logout and verify logout
+    func testPromotionScreen() throws {
+        let loginButton = app.buttons["login_button"]
+        loginButton.tap()
+        try SignInViewHelper.testLoginWithPromotions()
+        app.tabBars.buttons["My Promotions"].tap()
+        try PromotionViewHelper.testPromotionView()
         try MoreViewHelper.testMoreScreen()
     }
     

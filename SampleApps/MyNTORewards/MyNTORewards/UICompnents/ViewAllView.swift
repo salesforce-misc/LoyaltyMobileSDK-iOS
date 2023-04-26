@@ -34,7 +34,7 @@ struct ViewAllView<Destination: View, Content: View>: View {
                     Text("View All")
                         .foregroundColor(Color.theme.accent)
                         .font(.offerViewAll)
-                        .accessibilityIdentifier("View All")
+                        .accessibilityIdentifier(title + " View All")
                 })
             }
             .padding()

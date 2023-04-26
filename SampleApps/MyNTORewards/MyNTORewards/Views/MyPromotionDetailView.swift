@@ -13,7 +13,6 @@ struct MyPromotionDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
-    
     let promotion: PromotionResult
     @Binding var processing: Bool
     
@@ -26,10 +25,12 @@ struct MyPromotionDetailView: View {
             
             VStack {
                 AsyncImageView(imageUrl: promotion.promotionImageURL)
+                    .accessibilityIdentifier(AppAccessibilty.Promotion.image)
                     .frame(maxWidth: .infinity, maxHeight: 220)
                     .clipped()
                     .overlay(alignment: .topTrailing) {
                         Image("ic-dismiss")
+                            .accessibilityIdentifier(AppAccessibilty.Promotion.dismissButton)
                             .padding()
                             .onTapGesture {
                                 dismiss()
@@ -39,18 +40,21 @@ struct MyPromotionDetailView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     Text(currentPromotion.promotionName)
                         .font(.voucherTitle)
+                        .accessibilityIdentifier(AppAccessibilty.Promotion.name)
 
                     if let desc = currentPromotion.description {
                         Text("**Details**\n\(desc)")
                             .font(.voucherText)
                             .foregroundColor(Color.theme.superLightText)
                             .lineSpacing(5)
+                            .accessibilityIdentifier(AppAccessibilty.Promotion.description)
                     }
                     
                     if let endDate = currentPromotion.endDate {
                         Text("Expiring on **\(endDate)**")
                             .font(.voucherText)
                             .foregroundColor(Color.theme.superLightText)
+                            .accessibilityIdentifier(AppAccessibilty.Promotion.endDate)
                     }
                     
                     Spacer()
@@ -71,6 +75,7 @@ struct MyPromotionDetailView: View {
                                     }
                                 }
                             }
+                            .accessibilityIdentifier(AppAccessibilty.Promotion.joinButton)
                             .buttonStyle(DarkShortButton())
                             .disabled(processing)
                             .opacity(processing ? 0.5 : 1)
@@ -83,6 +88,7 @@ struct MyPromotionDetailView: View {
                             Button("Shop") {
                                 
                             }
+                            .accessibilityIdentifier(AppAccessibilty.Promotion.shopButton)
                             .buttonStyle(DarkShortPromotionButton())
                             Spacer()
                             Button("Leave") {
@@ -99,6 +105,7 @@ struct MyPromotionDetailView: View {
                                     }
                                 }
                             }
+                            .accessibilityIdentifier(AppAccessibilty.Promotion.leaveButton)
                             .buttonStyle(LightShortPromotionButton())
                             .disabled(processing)
                             .opacity(processing ? 0.5 : 1)
@@ -110,6 +117,7 @@ struct MyPromotionDetailView: View {
                             Button("Shop") {
                                 // link to e-commerce
                             }
+                            .accessibilityIdentifier(AppAccessibilty.Promotion.shopButton)
                             .buttonStyle(DarkShortButton())
                             Spacer()
                         }

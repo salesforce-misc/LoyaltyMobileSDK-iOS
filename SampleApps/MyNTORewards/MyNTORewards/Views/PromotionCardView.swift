@@ -13,6 +13,7 @@ struct PromotionCardView: View {
     @EnvironmentObject private var promotionVM: PromotionViewModel
     @State var showPromotionDetailView = false
     @State var processing = false
+    let accessibilityID: String
     let promotion: PromotionResult
     
     var body: some View {
@@ -21,20 +22,24 @@ struct PromotionCardView: View {
                 .frame(width: 289, height: 154)
                 .cornerRadius(5, corners: [.topLeft, .topRight])
                 .padding(.top)
+                .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.image)
             
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(promotion.promotionName)
                         .font(.offerTitle)
+                        .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.name)
                     if let desc = promotion.description {
                         Text(desc)
                             .font(.offerText)
                             .lineSpacing(3)
+                            .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.description)
                     }
                     if let endDate = promotion.endDate {
                         Text("Expiring on **\(endDate)**")
                             .font(.offerText)
                             .padding(.top)
+                            .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.endDate)
                     }
                     
                 }
@@ -75,7 +80,7 @@ struct PromotionCardView: View {
 
 struct PromotionCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PromotionCardView(promotion: dev.promotion)
+        PromotionCardView(accessibilityID: "id", promotion: dev.promotion)
             .previewLayout(.sizeThatFits)
     }
 }

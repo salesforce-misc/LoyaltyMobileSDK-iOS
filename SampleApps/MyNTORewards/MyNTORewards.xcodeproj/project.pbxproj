@@ -133,6 +133,9 @@
 		AF468B5729EEFB28003C1344 /* MyProfileViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF468B5629EEFB28003C1344 /* MyProfileViewHelper.swift */; };
 		AF468B5929EEFB60003C1344 /* HomeViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF468B5829EEFB60003C1344 /* HomeViewHelper.swift */; };
 		AF8AA4CD29E3ED54007E2F6F /* AppAccessibilityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8AA4CC29E3ED54007E2F6F /* AppAccessibilityConstants.swift */; };
+		AFAF523F29F63C6F00478F67 /* VoucherViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAF523E29F63C6F00478F67 /* VoucherViewHelper.swift */; };
+		AFAF524129F63D8E00478F67 /* BenefitsViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAF524029F63D8E00478F67 /* BenefitsViewHelper.swift */; };
+		AFAF524329F63E2900478F67 /* TransactionsViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAF524229F63E2900478F67 /* TransactionsViewHelper.swift */; };
 		AFCDDAA429E53EA2006B00EB /* MyNTORewardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAA329E53EA2006B00EB /* MyNTORewardsUITests.swift */; };
 		AFCDDAA629E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */; };
 		AFCDDAAD29E54621006B00EB /* OnBoardingViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAAC29E54621006B00EB /* OnBoardingViewUITests.swift */; };
@@ -278,6 +281,9 @@
 		AF468B5629EEFB28003C1344 /* MyProfileViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewHelper.swift; sourceTree = "<group>"; };
 		AF468B5829EEFB60003C1344 /* HomeViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewHelper.swift; sourceTree = "<group>"; };
 		AF8AA4CC29E3ED54007E2F6F /* AppAccessibilityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAccessibilityConstants.swift; sourceTree = "<group>"; };
+		AFAF523E29F63C6F00478F67 /* VoucherViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherViewHelper.swift; sourceTree = "<group>"; };
+		AFAF524029F63D8E00478F67 /* BenefitsViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitsViewHelper.swift; sourceTree = "<group>"; };
+		AFAF524229F63E2900478F67 /* TransactionsViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewHelper.swift; sourceTree = "<group>"; };
 		AFCDDAA129E53EA2006B00EB /* MyNTORewardsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyNTORewardsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFCDDAA329E53EA2006B00EB /* MyNTORewardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsUITests.swift; sourceTree = "<group>"; };
 		AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -601,6 +607,9 @@
 				AFE960DE29EE489500C888C0 /* SignUpViewHelper.swift */,
 				AFE960E029EE4B9D00C888C0 /* SignInViewHelper.swift */,
 				AFE960E229EE4D0800C888C0 /* MoreViewHelper.swift */,
+				AFAF523E29F63C6F00478F67 /* VoucherViewHelper.swift */,
+				AFAF524029F63D8E00478F67 /* BenefitsViewHelper.swift */,
+				AFAF524229F63E2900478F67 /* TransactionsViewHelper.swift */,
 				AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */,
 				AF468B5629EEFB28003C1344 /* MyProfileViewHelper.swift */,
 				AF468B5829EEFB60003C1344 /* HomeViewHelper.swift */,
@@ -843,12 +852,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFCDDAA429E53EA2006B00EB /* MyNTORewardsUITests.swift in Sources */,
+				AFAF523F29F63C6F00478F67 /* VoucherViewHelper.swift in Sources */,
+				AFAF524129F63D8E00478F67 /* BenefitsViewHelper.swift in Sources */,
 				AF468B5729EEFB28003C1344 /* MyProfileViewHelper.swift in Sources */,
 				AFCDDAAD29E54621006B00EB /* OnBoardingViewUITests.swift in Sources */,
 				AFE960E129EE4B9D00C888C0 /* SignInViewHelper.swift in Sources */,
 				AFCDDAA629E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift in Sources */,
 				AFE960DD29EE47A700C888C0 /* OnBoardingViewHelper.swift in Sources */,
 				AFE960E329EE4D0800C888C0 /* MoreViewHelper.swift in Sources */,
+				AFAF524329F63E2900478F67 /* TransactionsViewHelper.swift in Sources */,
 				AF468B5929EEFB60003C1344 /* HomeViewHelper.swift in Sources */,
 				AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */,
 				AFE960DF29EE489500C888C0 /* SignUpViewHelper.swift in Sources */,

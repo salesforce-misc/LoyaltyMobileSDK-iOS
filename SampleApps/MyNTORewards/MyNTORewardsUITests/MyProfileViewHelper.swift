@@ -52,4 +52,26 @@ final class MyProfileViewHelper: XCTestCase {
         XCTAssertTrue(app.images["qr_image"].exists)
         XCTAssertTrue(app.buttons["close_button"].exists)
     }
+    
+    static func testVoucherScreen() throws {
+        app.swipeUp()
+        app.buttons["My Vouchers View All"].tap()
+        try VoucherViewHelper.testEmptyViewElements()
+        app.buttons["back_button"].tap()
+        try  testEmptyViewElements()
+    }
+    
+    static func testBenefitsScreen() throws {
+        app.buttons["My Benefits View All"].tap()
+        try BenefitsViewHelper.testEmptyViewElements()
+        app.buttons["back_button"].tap()
+        try testEmptyViewElements()
+    }
+    
+    static func testTransactionsScreen() throws {
+        app.buttons["My Transactions View All"].tap()
+        try TransactionsViewHelper.testEmptyViewElements()
+        app.buttons["back_button"].tap()
+        try testEmptyViewElements()
+    }
 }

@@ -47,4 +47,20 @@ final class SignInViewHelper {
         XCTAssertTrue(app.tabBars.buttons["More"].exists)
     }
     
+    static func testLoginWithPromotions() throws {
+        app.buttons["signIn_login_button"].tap()
+        app.textFields["username_textfield"].tap()
+        app.textFields["username_textfield"].typeText("test@ar.com")
+        
+        app.secureTextFields["password_textfield"].tap()
+        app.secureTextFields["password_textfield"].typeText("test@123")
+        
+        app.buttons["signIn_login_button"].tap()
+        
+        XCTAssertTrue(app.tabBars.buttons["Home"].waitForExistence(timeout: 15))
+        XCTAssertTrue(app.tabBars.buttons["My Promotions"].exists)
+        XCTAssertTrue(app.tabBars.buttons["My Profile"].exists)
+        XCTAssertTrue(app.tabBars.buttons["More"].exists)
+    }
+    
 }

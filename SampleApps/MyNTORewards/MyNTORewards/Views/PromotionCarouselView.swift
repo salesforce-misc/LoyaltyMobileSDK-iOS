@@ -40,8 +40,8 @@ struct PromotionCarouselView: View {
                                subTitle: "You do not have any eligibile promotions to enroll. Please come back later.")
                 Spacer()
             } else {
-                Carousel(index: $currentIndex, items: promotionVM.promotions) { promotion in
-                    PromotionCardView(promotion: promotion)
+                Carousel(index: $currentIndex, items: promotionVM.promotions) { id, promotion in
+                    PromotionCardView(accessibilityID: id, promotion: promotion)
                 }
 
                 HStack(spacing: 8){
