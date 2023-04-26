@@ -34,7 +34,7 @@ final class ForceClientTests: XCTestCase {
     }
     
     func testFetchLocalJson() async throws {
-        let result = try forceClient.fetchLocalJson(type: PromotionModel.self, file: "Promotions")
+        let result = try forceClient.fetchLocalJson(type: PromotionModel.self, file: "Promotions", bundle: Bundle.module)
         XCTAssertEqual(result.status, true)
         XCTAssertEqual(result.outputParameters.outputParameters.results.count, 8)
         XCTAssertNil(result.message)
