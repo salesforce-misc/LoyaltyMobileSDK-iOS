@@ -1,0 +1,39 @@
+name: LoyaltyMobileSDK-iOS Unit Tests
+
+on:
+  push:
+    branches:
+      - master
+      - release-242.patch
+      - release-244.0.0
+      - 'feature/*'
+  pull_request:
+    branches:
+      - master
+      - release-242.patch
+      - release-244.0.0
+      - 'feature/*'
+
+jobs:
+  test:
+    runs-on: macOS-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo xcode-select --switch /Applications/Xcode_13.app
+
+    - name: Generate Xcode project
+      run: |
+        swift package generate-xcodeproj
+
+    - name: Run Unit Tests
+      run: |
+        xcodebuild \
+          -project LoyaltyMobileSDK-iOS.xcodeproj \
+          -scheme LoyaltyMobileSDK-iOS-Package \
+          -destination 'platform=iOS Simulator,name=iPhone 13,OS=latest' \
+          test
