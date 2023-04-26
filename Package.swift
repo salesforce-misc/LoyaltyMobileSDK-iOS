@@ -26,6 +26,16 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "LoyaltyMobileSDKTests",
-            dependencies: ["LoyaltyMobileSDK"])
+            dependencies: ["LoyaltyMobileSDK"],
+            resources: [
+                .process("JSONFiles/Profile.json"),
+                .process("JSONFiles/Benefits.json"),
+                .process("JSONFiles/Enrollment.json"),
+                .process("JSONFiles/EnrollmentPromotion.json"),
+                .process("JSONFiles/UnenrollmentPromotion.json"),
+                .process("JSONFiles/Promotions.json"),
+                .process("JSONFiles/Vouchers.json"),
+                .process("JSONFiles/Transactions.json")
+            ])
     ]
 )
