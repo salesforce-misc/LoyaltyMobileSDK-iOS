@@ -3,16 +3,12 @@ name: LoyaltyMobileSDK-iOS Unit Tests
 on:
   push:
     branches:
-      - master
-      - release-242.patch
-      - release-244.0.0
       - 'feature/*'
   pull_request:
     branches:
       - master
       - release-242.patch
       - release-244.0.0
-      - 'feature/*'
 
 jobs:
   test:
