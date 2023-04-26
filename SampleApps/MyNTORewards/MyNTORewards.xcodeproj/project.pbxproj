@@ -30,11 +30,6 @@
 		2906B1E22900BA8A006EAB2D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2906B1E12900BA8A006EAB2D /* FirebaseAuth */; };
 		2906B1E6290127F5006EAB2D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2906B1E5290127F5006EAB2D /* FirebaseFirestore */; };
 		2906B1E8290127FD006EAB2D /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2906B1E7290127FD006EAB2D /* FirebaseFirestoreSwift */; };
-		2906B1F12901E1A4006EAB2D /* Vouchers.json in Resources */ = {isa = PBXBuildFile; fileRef = 2906B1F02901E1A4006EAB2D /* Vouchers.json */; };
-		2906B1F32901E218006EAB2D /* Promotions.json in Resources */ = {isa = PBXBuildFile; fileRef = 2906B1F22901E218006EAB2D /* Promotions.json */; };
-		2906B1F52901E308006EAB2D /* Transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = 2906B1F42901E308006EAB2D /* Transactions.json */; };
-		2906B1F72901E3EB006EAB2D /* Benefits.json in Resources */ = {isa = PBXBuildFile; fileRef = 2906B1F62901E3EA006EAB2D /* Benefits.json */; };
-		290EA9B92926F1A700BBF2F2 /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 290EA9B82926F1A700BBF2F2 /* Profile.json */; };
 		290EA9BD2928ADB700BBF2F2 /* ViewAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */; };
 		290EA9C1292C0ACF00BBF2F2 /* VoucherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9C0292C0ACF00BBF2F2 /* VoucherViewModel.swift */; };
 		290EA9C5292C4DA500BBF2F2 /* MyPromotionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9C4292C4DA500BBF2F2 /* MyPromotionDetailView.swift */; };
@@ -200,11 +195,6 @@
 		2906B1D328FF5031006EAB2D /* MemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberModel.swift; sourceTree = "<group>"; };
 		2906B1D528FF5E88006EAB2D /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		2906B1DA28FF7348006EAB2D /* CheckboxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxStyle.swift; sourceTree = "<group>"; };
-		2906B1F02901E1A4006EAB2D /* Vouchers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Vouchers.json; sourceTree = "<group>"; };
-		2906B1F22901E218006EAB2D /* Promotions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Promotions.json; sourceTree = "<group>"; };
-		2906B1F42901E308006EAB2D /* Transactions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Transactions.json; sourceTree = "<group>"; };
-		2906B1F62901E3EA006EAB2D /* Benefits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Benefits.json; sourceTree = "<group>"; };
-		290EA9B82926F1A700BBF2F2 /* Profile.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Profile.json; sourceTree = "<group>"; };
 		290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllView.swift; sourceTree = "<group>"; };
 		290EA9C0292C0ACF00BBF2F2 /* VoucherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherViewModel.swift; sourceTree = "<group>"; };
 		290EA9C4292C4DA500BBF2F2 /* MyPromotionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPromotionDetailView.swift; sourceTree = "<group>"; };
@@ -411,7 +401,6 @@
 				216A9CBF28BDD8A1007881FE /* ViewModels */,
 				296D393828DCE9890078C88E /* UICompnents */,
 				216F219328B6186400DAA66D /* Views */,
-				2906B1E92901D97E006EAB2D /* JSONFiles */,
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
 				216F217E28B6141E00DAA66D /* MyNTORewardsApp.swift */,
 				298C66492980743B00C613D8 /* AppDelegate.swift */,
@@ -485,20 +474,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2906B1E92901D97E006EAB2D /* JSONFiles */ = {
-			isa = PBXGroup;
-			children = (
-				3FFE1C9A29A29FF900F43253 /* UnenrollPromotion.json */,
-				3FFE1C9C29A37D5300F43253 /* GetVouchers.json */,
-				2906B1F02901E1A4006EAB2D /* Vouchers.json */,
-				2906B1F22901E218006EAB2D /* Promotions.json */,
-				2906B1F42901E308006EAB2D /* Transactions.json */,
-				2906B1F62901E3EA006EAB2D /* Benefits.json */,
-				290EA9B82926F1A700BBF2F2 /* Profile.json */,
-			);
-			path = JSONFiles;
 			sourceTree = "<group>";
 		};
 		290FBB41294A8C460038D47A /* Misc */ = {
@@ -811,19 +786,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */,
-				290EA9B92926F1A700BBF2F2 /* Profile.json in Resources */,
-				3FFE1C9B29A29FF900F43253 /* UnenrollPromotion.json in Resources */,
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
 				29AC2F0328F8B2D7003F56F6 /* Roboto-Regular.ttf in Resources */,
-				2906B1F12901E1A4006EAB2D /* Vouchers.json in Resources */,
 				218A36A828B85B7900FCEE39 /* Assets.xcassets in Resources */,
-				2906B1F72901E3EB006EAB2D /* Benefits.json in Resources */,
-				3FFE1C9D29A37D5300F43253 /* GetVouchers.json in Resources */,
 				216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */,
 				298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */,
 				298613B028C9698D00BDC744 /* SF-Pro.ttf in Resources */,
-				2906B1F52901E308006EAB2D /* Transactions.json in Resources */,
-				2906B1F32901E218006EAB2D /* Promotions.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

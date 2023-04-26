@@ -28,14 +28,14 @@ let package = Package(
             name: "LoyaltyMobileSDKTests",
             dependencies: ["LoyaltyMobileSDK"],
             resources: [
-                .copy("JSONFiles/Profile.json"),
-                .copy("JSONFiles/Benefits.json"),
-                .copy("JSONFiles/Enrollment.json"),
-                .copy("JSONFiles/EnrollmentPromotion.json"),
-                .copy("JSONFiles/UnenrollmentPromotion.json"),
-                .copy("JSONFiles/Promotions.json"),
-                .copy("JSONFiles/Vouchers.json"),
-                .copy("JSONFiles/Transactions.json")
-            ]),
+                .process("JSONFiles/Profile.json"),
+                .process("JSONFiles/Benefits.json"),
+                .process("JSONFiles/Enrollment.json"),
+                .process("JSONFiles/EnrollmentPromotion.json"),
+                .process("JSONFiles/UnenrollmentPromotion.json"),
+                .process("JSONFiles/Promotions.json"),
+                .process("JSONFiles/Vouchers.json"),
+                .process("JSONFiles/Transactions.json")
+            ])
     ]
 )
