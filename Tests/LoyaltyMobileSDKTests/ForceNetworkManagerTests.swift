@@ -27,7 +27,7 @@ final class ForceNetworkManagerTests: XCTestCase {
         let data = try XCTestCase.load(resource: "Promotions")
         let mockSession = URLSession.mock(responseBody: data, statusCode: 200)
         let output = try await mockSession.data(for: getMockRequest())
-        let outputData = forceNetworkManager.handleDataAndResponse(output: output)
+        let outputData = try forceNetworkManager.handleDataAndResponse(output: output)
         let promotions = try JSONDecoder().decode(PromotionModel.self, from: outputData)
         XCTAssertEqual(promotions.status, true)
         XCTAssertEqual(promotions.outputParameters.outputParameters.results.count, 8)
@@ -38,7 +38,7 @@ final class ForceNetworkManagerTests: XCTestCase {
         let data = try XCTestCase.load(resource: "Promotions")
         let mockSession = URLSession.mock(responseBody: data, statusCode: 401)
         let output = try await mockSession.data(for: getMockRequest())
-        XCTAssertThrowsError(try forceNetworkManager.handleUnauthResponse(output: output)) { error in
+        XCTAssertThrowsError(try forceNetworkManager.handleDataAndResponse(output: output)) { error in
             XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
         }
     }

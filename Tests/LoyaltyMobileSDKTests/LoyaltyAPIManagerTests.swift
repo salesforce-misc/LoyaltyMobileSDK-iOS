@@ -9,9 +9,12 @@ import XCTest
 @testable import LoyaltyMobileSDK
 
 class MockAuthenticator: ForceAuthenticator {
-    var accessToken: String?
-    
     static let sharedMock = MockAuthenticator()
+
+    
+    func getAccessToken() -> String? {
+        return "AccessToken1234"
+    }
     
     func grantAccessToken() async throws -> String {
         return "AccessToken1234"
