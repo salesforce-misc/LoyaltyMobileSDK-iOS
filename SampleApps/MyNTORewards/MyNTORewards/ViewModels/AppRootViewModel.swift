@@ -30,7 +30,7 @@ enum UserState: Hashable {
 @MainActor
 class AppRootViewModel: ObservableObject {
     
-    @Published var member: MemberModel?
+    @Published var member: CommunityMemberModel?
     
     @Published var isInProgress = false
     @Published var userErrorMessage = ("", ErrorType.noError)
@@ -44,7 +44,9 @@ class AppRootViewModel: ObservableObject {
     private var loyaltyAPIManager: LoyaltyAPIManager
     
     init() {
-        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager, loyaltyProgramName: AppConstants.Config.loyaltyProgramName)
+        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
+                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+                                              instanceURL: AppSettings.getInstanceURL(), forceClient: ForceClient(auth: authManager))
     }
     
     func signUpUser(userEmail: String,
@@ -67,11 +69,12 @@ class AppRootViewModel: ObservableObject {
 
             switch authResult {
             case .none:
-                print("<Firebase> - Could not create account.")
+                Logger.error("<Firebase> - Could not create account.")
                 self?.isInProgress = false
-            case .some(_):
-                print("<Firebase> - User created on Firebase.")
+            case .some:
+                Logger.debug("<Firebase> - User created on Firebase.")
                 
+                /*
                 Task {
                     do {
                         try await self?.authManager.grantAuth()
@@ -90,9 +93,9 @@ class AppRootViewModel: ObservableObject {
 
                             user?.delete { error in
                               if let error = error {
-                                  print("<Firebase> - Could not delete current user. \(error)")
+                                  Logger.error("<Firebase> - Could not delete current user. \(error)")
                               } else {
-                                  print("<Firebase> - User was deleted.")
+                                  Logger.debug("<Firebase> - User was deleted.")
                               }
                             }
                             self?.isInProgress = false
@@ -118,7 +121,7 @@ class AppRootViewModel: ObservableObject {
                         // Also backup to a centralized local in case the user deletes the app
                         // then we can retrieve the member info linked to Salesforce
                         try FirestoreManager.addMemberData(member: member)
-                        print("<Firestore> - Member info saved.")
+                        Logger.debug("<Firestore> - Member info saved.")
                         
                         self?.userState = .signedUp
                         self?.isInProgress = false
@@ -130,9 +133,9 @@ class AppRootViewModel: ObservableObject {
 
                         user?.delete { error in
                           if let error = error {
-                              print("<Firebase> - Could not delete current user. \(error)")
+                              Logger.error("<Firebase> - Could not delete current user. \(error)")
                           } else {
-                              print("<Firebase> - User was deleted.")
+                              Logger.debug("<Firebase> - User was deleted.")
                           }
                         }
                         self?.isInProgress = false
@@ -140,6 +143,7 @@ class AppRootViewModel: ObservableObject {
                     }
 
                 }
+                 */
                 
             }
             
@@ -151,51 +155,59 @@ class AppRootViewModel: ObservableObject {
         isInProgress = true
         email = userEmail
         
-        Auth.auth().signIn(withEmail: userEmail, password: userPassword) { [weak self] authResult, error in
+        Task {
             
-            if let error = error {
-                self?.isInProgress = false
-                self?.userErrorMessage = (error.localizedDescription, .signIn)
-                return
-            }
-            
-            switch authResult {
-            case .none:
-                print("<Firebase> - Could not sign in user.")
-                self?.isInProgress = false
-            case .some(_):
-                print("<Firebase> - User signed in")
-                Task{
-                    do {
-                        try await ForceAuthManager.shared.grantAuth()                        
-                        
-                        // Retrieve member data from local disk
-                        let member = LocalFileManager.instance.getData(type: MemberModel.self, id: userEmail)
-                        
-                        if let member = member {
-                            self?.member = member
-                        } else {
-                            // Cannot get the member info from local, may have been deleted by the user
-                            // retrieve it from a centralized location, i.e. Firestore
-                            let memberReturned = try await FirestoreManager.getMemberData(by: userEmail)
-                            print("<Firestore> - Member info retrieved.")
-                            self?.member = memberReturned
-                            // Save member to local disk
-                            LocalFileManager.instance.saveData(item: memberReturned, id: memberReturned.email)
-                            
-                        }
-                        
-                        self?.isInProgress = false
-                        self?.userState = .signedIn
-                    } catch {
-                        self?.isInProgress = false
-                        self?.userErrorMessage = (error.localizedDescription, .signIn)
-                    }
+            do {
+                let app = AppSettings.getConnectedApp()
+                let auth = try await ForceAuthManager.shared.authenticate(
+                    communityURL: app.communityURL,
+                    consumerKey: app.consumerKey,
+                    callbackURL: app.callbackURL,
+                    username: userEmail,
+                    password: userPassword)
+                ForceAuthManager.shared.auth = auth
+                Logger.debug("Successfully Granted Access Token. Allow user to login.")
+                
+                // Retrieve member data from local disk
+                let member = LocalFileManager.instance.getData(type: CommunityMemberModel.self, id: userEmail)
+                
+                if let member = member {
+                    self.member = member
+                } else {
+                    // Cannot get the member info from local, then call getCommunityMemberProfile
+                    let authManager = ForceAuthManager.shared
+                    let loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
+                                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+                                                              instanceURL: AppSettings.getInstanceURL(), forceClient: ForceClient(auth: authManager))
+                    let profile = try await loyaltyAPIManager.getCommunityMemberProfile()
+                    
+                    // TODO: need to handle profile cannot be found(not registered) case
+                    
+                    Logger.debug("\(profile)")
+                    
+                    let member = CommunityMemberModel(firstName: profile.associatedContact.firstName,
+                                                      lastName: profile.associatedContact.lastName,
+                                                      email: profile.associatedContact.email,
+                                                      loyaltyProgramMemberId: profile.loyaltyProgramMemberID,
+                                                      loyaltyProgramName: profile.loyaltyProgramName,
+                                                      membershipNumber: profile.membershipNumber)
+                    self.member = member
+                    // Save member to local disk
+                    LocalFileManager.instance.saveData(item: member, id: member.email)
                 }
-            }
-            
-        }
+                
+                self.isInProgress = false
+                self.userState = .signedIn
 
+            } catch {
+                
+                // clear auth
+                authManager.clearAuth()
+                
+                self.isInProgress = false
+                self.userErrorMessage = (error.localizedDescription, .signIn)
+            }
+        }
     }
     
     func signOutUser() {
@@ -212,7 +224,7 @@ class AppRootViewModel: ObservableObject {
             // delete all cached data
             LocalFileManager.instance.removeAllAppData()
         } catch {
-            print("<Firebase> - Error signing out: \(error.localizedDescription)")
+            Logger.error("<Firebase> - Error signing out: \(error.localizedDescription)")
             isInProgress = false
         }
     }
@@ -251,8 +263,8 @@ class AppRootViewModel: ObservableObject {
         ]
         do {
             let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
-            let request = ForceRequest.createRequest(from: url, method: "POST", body: bodyJsonData)
-            let result = try await ForceNetworkManager.shared.fetch(type: PasswordResetModel.self, request: request)
+            let request = try ForceRequest.create(url: url, method: "POST", body: bodyJsonData)
+            let result = try await NetworkManager.shared.fetch(type: PasswordResetModel.self, request: request)
             email = result.email
             userState = .newPasswordSet
         } catch {

@@ -42,7 +42,6 @@ struct LoyaltyNavLink_Previews: PreviewProvider {
             } label: {
                 Text("Go to destination")
             }
-
             
         }
         

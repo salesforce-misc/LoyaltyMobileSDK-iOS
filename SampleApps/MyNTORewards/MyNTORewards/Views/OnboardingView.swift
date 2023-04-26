@@ -19,6 +19,9 @@ struct OnboardingView: View {
     @State private var congratsPresented: Bool = false
     @State private var showResetPassword: Bool = false
     @State var showCreateNewPassword: Bool = false
+    @State private var showAdminMenu: Bool = false
+    @State private var tapCount = 0
+    @State private var tapTimer: Timer?
     
     private let onboardingData: [OnboardingModel] = [
         OnboardingModel(image: "img-preview0", description: "Redeem your points for exciting vouchers!", offset: CGSize(width: 0, height: 0)),
@@ -32,11 +35,28 @@ struct OnboardingView: View {
             TabView(selection: $selectedPage) {
                 ForEach(0..<pageCount, id: \.self) { index in
                     OnboardingCardView(card: onboardingData[index]).tag(index)
+                        .gesture(
+                            TapGesture()
+                                .onEnded {
+                                    tapCount += 1
+                                    
+                                    tapTimer?.invalidate() // Invalidate the previous timer
+                                    tapTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                                        tapCount = 0
+                                    }
+                                    
+                                    if tapCount == AppSettings.Defaults.adminMenuTapCountRequired {
+                                        showAdminMenu = true
+                                        tapCount = 0
+                                        tapTimer?.invalidate()
+                                        tapTimer = nil
+                                    }
+                                }
+                        )
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .onChange(of: selectedPage) { _ in
-                //debugPrint("[a]: new value \(newValue)")
                 opacityText = 0
                 withAnimation(.easeInOut(duration: 1), {
                     opacityText = 1
@@ -57,6 +77,7 @@ struct OnboardingView: View {
                         Text(onboardingData[selectedPage].description)
                             .foregroundColor(Color.white)
                             .font(.onboardingText)
+                            .accessibility(identifier: AppAccessibilty.Onboarding.pageDescription)
                         Spacer()
                     }
                     .opacity(opacityText)
@@ -78,8 +99,7 @@ struct OnboardingView: View {
                         Capsule()
                             .fill(.white)
                             .frame(width: 16, height: 8)
-                            .offset(x: CGFloat(14 * selectedPage)) // 14 = 6 (spacing) + 8 (dot width)
-                        , alignment: .leading
+                            .offset(x: CGFloat(14 * selectedPage)), alignment: .leading
                     )
                     .padding(.leading, 25)
                     .padding([.top, .bottom])
@@ -92,6 +112,7 @@ struct OnboardingView: View {
                 }, label: {
                     Text("Join")
                 })
+                .accessibility(identifier: AppAccessibilty.Onboarding.joinButton)
                 .buttonStyle(LightLongButton())
                 .sheet(isPresented: $signUpPresented) {
                     FullSheet {
@@ -106,12 +127,12 @@ struct OnboardingView: View {
                     }
                 }
                 
-                
                 HStack {
                     Text("Already a Member?")
                         .foregroundColor(Color.white)
                         .padding()
                         .allowsHitTesting(false)
+                        .accessibility(identifier: AppAccessibilty.Onboarding.alreadyMemberLabel)
                     Button {
                         signInPresented.toggle()
                         viewModel.userErrorMessage = ("", ErrorType.noError)
@@ -119,6 +140,7 @@ struct OnboardingView: View {
                         Text("Log In")
                     }
                     .foregroundColor(.white)
+                    .accessibility(identifier: AppAccessibilty.Onboarding.loginButton)
                     .font(.buttonText)
                     .offset(x: -20)
                     .sheet(isPresented: $signInPresented) {
@@ -138,7 +160,6 @@ struct OnboardingView: View {
                 }
                 
             }
-            
 
             if showResetPassword {
                 ResetPasswordView(showResetPassword: $showResetPassword, signInPresented: $signInPresented)
@@ -153,6 +174,11 @@ struct OnboardingView: View {
         .sheet(isPresented: $congratsPresented) {
             CongratsView(email: viewModel.email)
                 .interactiveDismissDisabled()
+        }
+        .sheet(isPresented: $showAdminMenu, onDismiss: {
+            showAdminMenu = false
+        }) {
+            AdminMenuView()
         }
 
     }

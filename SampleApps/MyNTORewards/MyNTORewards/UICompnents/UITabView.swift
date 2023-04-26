@@ -49,6 +49,7 @@ extension UITabView {
             self.view = AnyView(content)
             self.barItem = UITabBarItem(title: title, image: image, selectedImage: selectedImage)
             self.badgeValue = badgeValue
+            self.barItem.accessibilityIdentifier = title
         }
     }
 

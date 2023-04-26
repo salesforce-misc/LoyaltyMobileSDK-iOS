@@ -15,7 +15,11 @@ public struct TransactionModel: Codable {
     public let externalTransactionNumber: String?
     public let transactionJournals: [TransactionJournal]
     
-    public init(message: String?, status: Bool, transactionJournalCount: Int, externalTransactionNumber: String, transactionJournals: [TransactionJournal]) {
+    public init(message: String?,
+                status: Bool,
+                transactionJournalCount: Int,
+                externalTransactionNumber: String,
+                transactionJournals: [TransactionJournal]) {
         self.message = message
         self.status = status
         self.transactionJournalCount = transactionJournalCount
@@ -27,7 +31,7 @@ public struct TransactionModel: Codable {
 // MARK: - TransactionJournal
 public struct TransactionJournal: Codable, Identifiable {
     public let activityDate: String
-    public let additionalTransactionJournalAttributes: [additionalTransactionJournalAttribute]
+    public let additionalTransactionJournalAttributes: [AdditionalTransactionJournalAttribute]
     public let journalTypeName: String
     public let journalSubTypeName: String?
     public let pointsChange: [PointsChange]
@@ -41,7 +45,16 @@ public struct TransactionJournal: Codable, Identifiable {
         case productCategoryName, productName, transactionAmount
     }
     
-    public init(activityDate: String, additionalTransactionJournalAttributes: [additionalTransactionJournalAttribute], journalSubTypeName: String?, journalTypeName: String, pointsChange: [PointsChange], id: String, transactionJournalNumber: String?, productCategoryName: String?, productName: String?, transactionAmount: String?) {
+    public init(activityDate: String,
+                additionalTransactionJournalAttributes: [AdditionalTransactionJournalAttribute],
+                journalSubTypeName: String?,
+                journalTypeName: String,
+                pointsChange: [PointsChange],
+                id: String,
+                transactionJournalNumber: String?,
+                productCategoryName: String?,
+                productName: String?,
+                transactionAmount: String?) {
         self.activityDate = activityDate
         self.additionalTransactionJournalAttributes = additionalTransactionJournalAttributes
         self.journalSubTypeName = journalSubTypeName
@@ -56,7 +69,7 @@ public struct TransactionJournal: Codable, Identifiable {
 }
 
 // MARK: - AdditionalAttribute
-public struct additionalTransactionJournalAttribute: Codable {
+public struct AdditionalTransactionJournalAttribute: Codable {
     public let fieldName, value: String
     
     public init(fieldName: String, value: String) {

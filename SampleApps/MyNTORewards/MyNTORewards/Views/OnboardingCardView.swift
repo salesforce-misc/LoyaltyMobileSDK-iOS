@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OnboardingCardView: View {
     
-    let card : OnboardingModel
+    let card: OnboardingModel
     
     var body: some View {
         ZStack {
@@ -19,6 +19,7 @@ struct OnboardingCardView: View {
                 .offset(card.offset)
                 .frame(maxWidth: UIScreen.main.bounds.width,
                        maxHeight: UIScreen.main.bounds.height)
+                .accessibilityIdentifier(AppAccessibilty.Onboarding.image)
             VStack {
                 Spacer()
                 BottomLayer()
@@ -34,7 +35,6 @@ struct OnboardingCardView_Previews: PreviewProvider {
         OnboardingCardView(card: testData[0])
     }
 }
-
 
 struct BottomLayer: View {
     

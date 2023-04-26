@@ -68,4 +68,3 @@ public struct AssociatedContactDetails: Codable {
     public let allowDuplicateRecords: Bool?
     public let additionalContactFieldValues: AdditionalFieldValues
 }
-

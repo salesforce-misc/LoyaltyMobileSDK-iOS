@@ -63,11 +63,11 @@ struct MyPromotionDetailView: View {
                                 processing = true
                                 Task {
                                     do {
-                                        try await promotionVM.enroll(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "",
+                                        try await promotionVM.enroll(membershipNumber: rootVM.member?.membershipNumber ?? "",
                                                                      promotionName: currentPromotion.promotionName, promotionId: promotion.id)
                                         processing = false
                                     } catch {
-                                        print("Enroll in Promotion Error: \(error)")
+                                        Logger.error("Enroll in Promotion Error: \(error)")
                                         processing = false
                                     }
                                 }
@@ -94,11 +94,11 @@ struct MyPromotionDetailView: View {
                                 processing = true
                                 Task {
                                     do {
-                                        try await promotionVM.unenroll(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "",
+                                        try await promotionVM.unenroll(membershipNumber: rootVM.member?.membershipNumber ?? "",
                                                                        promotionName: currentPromotion.promotionName, promotionId: promotion.id)
                                         processing = false
                                     } catch {
-                                        print("Unenroll in Promotion Error: \(error)")
+                                        Logger.error("Unenroll in Promotion Error: \(error)")
                                         processing = false
                                     }
                                 }

@@ -60,6 +60,23 @@ enum SignUpTextFieldType {
         }
     }
     
+    var accessibilityIdentifier: String {
+        switch self {
+        case .firstName:
+            return AppAccessibilty.Signup.firstName
+        case .lastName:
+            return AppAccessibilty.Signup.lastName
+        case .email:
+            return AppAccessibilty.Signup.email
+        case .phoneNumber:
+            return AppAccessibilty.Signup.phone
+        case .password:
+            return AppAccessibilty.Signup.password
+        case .confirmPassword:
+            return AppAccessibilty.Signup.confirmPassword
+        }
+    }
+    
     var errorMessage: String {
         switch self {
         case .firstName:
@@ -101,6 +118,7 @@ struct LoyaltyTextField: View {
                     isValid = textFieldType.validate(text: inputText)
                 }
             }
+            .accessibilityIdentifier(textFieldType.accessibilityIdentifier)
             .disableAutocorrection(true)
             .textFieldStyle(RegularTextFieldStyle())
             .keyboardType(textFieldType.keyboardType)
@@ -113,6 +131,7 @@ struct LoyaltyTextField: View {
                     .font(.labelText)
                     .foregroundColor(Color.red)
                     .padding(.leading)
+                    .accessibilityIdentifier(textFieldType.accessibilityIdentifier + "_error")
             }
         }
     }

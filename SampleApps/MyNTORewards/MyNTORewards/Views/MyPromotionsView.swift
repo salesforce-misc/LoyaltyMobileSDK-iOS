@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct MyPromotionsView: View {
     
@@ -15,59 +16,59 @@ struct MyPromotionsView: View {
     let barItems = ["Unenrolled", "Active", "All"]
     
     var body: some View {
-			VStack(spacing: 0) {
-				VStack(spacing: 0) {
-					HStack {
-						Text("My Promotions")
-							.font(.congratsTitle)
-							.padding(.leading, 15)
-						Spacer()
-						Image("ic-search")
-							.padding(.trailing, 15)
-					}
-					.frame(height: 44)
-					.frame(maxWidth: .infinity)
-					.background(Color.white)
-					TopTabBar(barItems: barItems, tabIndex: $offerTabSelected)
-				}
-				ZStack {
-					Color.theme.background
-					
-					TabView(selection: $offerTabSelected) {
-						
-						unenrolledView
-							.tag(0)
-						activeView
-							.tag(1)
-						allView
-							.tag(2)
-						
-					}
-					.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-					
-				}
-				.task {
-					do {
-						try await promotionVM.loadUnenrolledPromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
-					} catch {
-						print("Load Unenrolled Promotions Error: \(error)")
-					}
-				}
-				.task {
-					do {
-						try await promotionVM.loadActivePromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
-					} catch {
-						print("Reload Active Promotions Error: \(error)")
-					}
-				}
-				.task {
-					do {
-						try await promotionVM.loadAllPromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
-					} catch {
-						print("Load All Promotions Error: \(error)")
-					}
-				}
-		}
+        VStack(spacing: 0) {
+            VStack(spacing: 0) {
+                HStack {
+                    Text("My Promotions")
+                        .font(.congratsTitle)
+                        .padding(.leading, 15)
+                    Spacer()
+                    Image("ic-search")
+                        .padding(.trailing, 15)
+                }
+                .frame(height: 44)
+                .frame(maxWidth: .infinity)
+                .background(Color.white)
+                TopTabBar(barItems: barItems, tabIndex: $offerTabSelected)
+            }
+            ZStack {
+                Color.theme.background
+                
+                TabView(selection: $offerTabSelected) {
+                    
+                    unenrolledView
+                        .tag(0)
+                    activeView
+                        .tag(1)
+                    allView
+                        .tag(2)
+                    
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                
+            }
+            .task {
+                do {
+                    try await promotionVM.loadUnenrolledPromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
+                } catch {
+                    Logger.error("Load Unenrolled Promotions Error: \(error)")
+                }
+            }
+            .task {
+                do {
+                    try await promotionVM.loadActivePromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
+                } catch {
+                    Logger.error("Reload Active Promotions Error: \(error)")
+                }
+            }
+            .task {
+                do {
+                    try await promotionVM.loadAllPromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
+                } catch {
+                    Logger.error("Load All Promotions Error: \(error)")
+                }
+            }
+        }
         
     }
     
@@ -87,11 +88,11 @@ struct MyPromotionsView: View {
             .padding(.top, 20)
         }
         .refreshable {
-            print("Reloading unenrolled...")
+            Logger.debug("Reloading unenrolled...")
             do {
-                try await promotionVM.fetchUnenrolledPromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                try await promotionVM.fetchUnenrolledPromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
             } catch {
-                print("Reload Unenrolled Promotions Error: \(error)")
+                Logger.error("Reload Unenrolled Promotions Error: \(error)")
             }
         }
     }
@@ -113,11 +114,11 @@ struct MyPromotionsView: View {
             
         }
         .refreshable {
-            print("Reloading active...")
+            Logger.debug("Reloading active...")
             do {
-                try await promotionVM.fetchActivePromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                try await promotionVM.fetchActivePromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
             } catch {
-                print("Load Active Promotions Error: \(error)")
+                Logger.error("Load Active Promotions Error: \(error)")
             }
         }
         
@@ -140,11 +141,11 @@ struct MyPromotionsView: View {
             
         }
         .refreshable {
-            print("Reloading all...")
+            Logger.debug("Reloading all...")
             do {
-                try await promotionVM.fetchAllPromotions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                try await promotionVM.fetchAllPromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
             } catch {
-                print("Reload All Promotions Error: \(error)")
+                Logger.error("Reload All Promotions Error: \(error)")
             }
         }
     }

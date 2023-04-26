@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct TransactionsView: View {
     
@@ -30,9 +31,9 @@ struct TransactionsView: View {
         .frame(height: 320)
         .task {
             do {
-                try await transactionVM.loadTransactions(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "")
+                try await transactionVM.loadTransactions(membershipNumber: rootVM.member?.membershipNumber ?? "")
             } catch {
-                print("Load Transactions Error: \(error)")
+                Logger.error("Load Transactions Error: \(error)")
             }
         }   
     }

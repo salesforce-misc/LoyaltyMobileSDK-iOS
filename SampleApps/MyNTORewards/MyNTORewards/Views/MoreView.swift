@@ -12,6 +12,7 @@ struct MenuItem: Identifiable {
     var id: UUID = UUID()
     var icon: String
     var title: String
+    var accessibilityIdentifier: String
 }
 
 struct MoreView: View {
@@ -24,16 +25,15 @@ struct MoreView: View {
     @EnvironmentObject private var transactionVM: TransactionViewModel
     @EnvironmentObject private var voucherVM: VoucherViewModel
     @EnvironmentObject private var imageVM: ImageViewModel
-
     
     let menuItems: [MenuItem] = [
-        MenuItem(icon: "ic-person", title: "Account"),
-        MenuItem(icon: "ic-address", title: "Addresses"),
-        MenuItem(icon: "ic-card", title: "Payment Methods"),
-        MenuItem(icon: "ic-orders", title: "Orders"),
-        //MenuItem(icon: "ic-benefits", title: "Benefits"),
-        MenuItem(icon: "ic-case", title: "Support"),
-        MenuItem(icon: "ic-heart", title: "Favorites")
+        MenuItem(icon: "ic-person", title: "Account", accessibilityIdentifier: AppAccessibilty.More.account),
+        MenuItem(icon: "ic-address", title: "Addresses", accessibilityIdentifier: AppAccessibilty.More.address),
+        MenuItem(icon: "ic-card", title: "Payment Methods", accessibilityIdentifier: AppAccessibilty.More.paymentMethod),
+        MenuItem(icon: "ic-orders", title: "Orders", accessibilityIdentifier: AppAccessibilty.More.orders),
+        // MenuItem(icon: "ic-benefits", title: "Benefits"),
+        MenuItem(icon: "ic-case", title: "Support", accessibilityIdentifier: AppAccessibilty.More.support),
+        MenuItem(icon: "ic-heart", title: "Favorites", accessibilityIdentifier: AppAccessibilty.More.favourites)
     ]
     var body: some View {
         VStack {
@@ -42,6 +42,7 @@ struct MoreView: View {
                     VStack(alignment: .leading) {
                         HStack {
                             Image("img-profile-adam")
+                                .accessibilityIdentifier(AppAccessibilty.More.profileImage)
                             Spacer()
                         }
 
@@ -56,6 +57,7 @@ struct MoreView: View {
 							.font(.menuText)
 							.frame(height: 65)
 							.listRowSeparatorTint(Color.theme.listSeparatorPink)
+                            .accessibilityIdentifier(menu.accessibilityIdentifier)
                     }
 
                     Button {
@@ -65,6 +67,7 @@ struct MoreView: View {
                             .font(.menuText)
                             .foregroundColor(Color.theme.accent)
                     }
+                    .accessibilityIdentifier(AppAccessibilty.More.logout)
                     .buttonStyle(.plain)
                     .listRowSeparator(.hidden, edges: .bottom)
                     .frame(height: 72)
