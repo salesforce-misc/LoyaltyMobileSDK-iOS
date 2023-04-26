@@ -905,7 +905,6 @@
 				216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */,
 				29FEDDF2294293BF0014BEBA /* UITabView.swift in Sources */,
 				2944F88A28B9A7220098ED1B /* AppSettings.swift in Sources */,
-				2944F88A28B9A7220098ED1B /* AppSettings.swift in Sources */,
 				296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */,
 				29BAF6DD28F3AE8B00A3F9EB /* String+StringWidth.swift in Sources */,
 				2963771529C10D6200D45AB6 /* Address.swift in Sources */,

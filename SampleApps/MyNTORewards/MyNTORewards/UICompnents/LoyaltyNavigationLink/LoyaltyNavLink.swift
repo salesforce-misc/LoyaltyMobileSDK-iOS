@@ -66,8 +66,8 @@ struct LoyaltyConditionalNavLink<Label: View, Destination: View>: View {
 				LoyaltyNavBarContainerView(content: {
 					destination
 				})
-				.navigationBarHidden(true)
-			,isActive: $isActive,
+				.navigationBarHidden(true),
+			isActive: $isActive,
 			label: {
 				label
 			})
@@ -85,7 +85,6 @@ struct LoyaltyConditionalNavLink_Previews: PreviewProvider {
 			} label: {
 				Text("Go to destination")
 			}
-			
 			
 		}
 		

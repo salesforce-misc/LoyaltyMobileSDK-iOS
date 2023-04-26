@@ -13,7 +13,7 @@ struct LoyaltyNavBarContainerView<Content: View>: View {
     @State private var showSearchButton: Bool = true
     @State private var title: String = ""
 	@State private var subtitle: String = ""
-    @State private var tabBar: TopTabBar? = nil
+    @State private var tabBar: TopTabBar?
 
     init(@ViewBuilder content: () -> Content) {
         self.content = content()

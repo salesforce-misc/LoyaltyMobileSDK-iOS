@@ -68,10 +68,10 @@ struct TopTabBar: View, Equatable {
 	
 	func getSpacing() -> CGFloat {
 		switch tabAlignment {
-			case .center:
-				return 16
-			case .left:
-				return 30
+		case .center:
+			return 16
+		case .left:
+			return 30
 		}
 	}
 }

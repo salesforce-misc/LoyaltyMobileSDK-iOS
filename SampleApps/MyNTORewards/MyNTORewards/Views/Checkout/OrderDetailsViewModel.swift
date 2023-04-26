@@ -32,16 +32,17 @@ class OrderDetailsViewModel: ObservableObject {
 	private var authManager: ForceAuthManager
 	private var forceClient: ForceClient
 	
-	private func placeOrder(productName: String = "Men's Rainier L4 Windproof Soft Shell Hoodie",
-							 redeemPoints: Double = 0,
-							 productPrice: Double = 0,
-							 orderTotal: Double = 0,
-							 useNTOPoints: Bool = false,
-							 pointsBalance: Double = 0,
-							 shippingStreet: String = "",
-							 billingStreet: String = "",
-							 voucherCode: String = "",
-							 membershipNumber: String = ""
+	private func placeOrder(
+		productName: String = "Men's Rainier L4 Windproof Soft Shell Hoodie",
+		redeemPoints: Double = 0,
+		productPrice: Double = 0,
+		orderTotal: Double = 0,
+		useNTOPoints: Bool = false,
+		pointsBalance: Double = 0,
+		shippingStreet: String = "",
+		billingStreet: String = "",
+		voucherCode: String = "",
+		membershipNumber: String = ""
 	) async throws -> String {
 		let order = Order(productName: productName,
 						  redeemPoints: redeemPoints,

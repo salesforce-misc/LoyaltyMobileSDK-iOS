@@ -18,7 +18,6 @@ struct BottomNavTabsView: View {
 				UITabView(selection: $selectedTab) {
 					HomeView(selectedTab: $selectedTab)
 						.tabItem("Home", image: UIImage(named: "ic-home"))
-						
 					
 					MyPromotionsView()
 						.tabItem("My Promotions", image: UIImage(named: "ic-rewards"))
