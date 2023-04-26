@@ -166,7 +166,6 @@ class AppRootViewModel: ObservableObject {
                     username: userEmail,
                     password: userPassword)
                 ForceAuthManager.shared.auth = auth
-                ForceAuthManager.shared.accessToken = auth.accessToken
                 Logger.debug("Successfully Granted Access Token. Allow user to login.")
                 
                 // Retrieve member data from local disk
@@ -181,6 +180,8 @@ class AppRootViewModel: ObservableObject {
                                                               loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
                                                               instanceURL: AppSettings.getInstanceURL(), forceClient: ForceClient(auth: authManager))
                     let profile = try await loyaltyAPIManager.getCommunityMemberProfile()
+                    
+                    // TODO: need to handle profile cannot be found(not registered) case
                     
                     Logger.debug("\(profile)")
                     
@@ -199,6 +200,10 @@ class AppRootViewModel: ObservableObject {
                 self.userState = .signedIn
 
             } catch {
+                
+                // clear auth
+                authManager.clearAuth()
+                
                 self.isInProgress = false
                 self.userErrorMessage = (error.localizedDescription, .signIn)
             }

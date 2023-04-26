@@ -24,10 +24,25 @@ public extension ForceClient {
 
         do {
             let request = try ForceRequest.create(url: imageUrl, method: "GET")
-            let token = try await auth.grantAccessToken()
-            let newRequet = ForceRequest.setAuthorization(request: request, accessToken: token)
-            let output = try await URLSession.shared.data(for: newRequet)
-            return handleImageResponse(output: output)
+            if let token = auth.getAccessToken() {
+                let newRequet = ForceRequest.setAuthorization(request: request, accessToken: token)
+                let output = try await URLSession.shared.data(for: newRequet)
+                return handleImageResponse(output: output)
+            } else {
+                let output = try await URLSession.shared.data(for: request)
+                return handleImageResponse(output: output)
+            }
+        } catch CommonError.authenticationNeeded {
+            do {
+                let request = try ForceRequest.create(url: imageUrl, method: "GET")
+                let token = try await auth.grantAccessToken()
+                let newRequet = ForceRequest.setAuthorization(request: request, accessToken: token)
+                let output = try await URLSession.shared.data(for: newRequet)
+                return handleImageResponse(output: output)
+            } catch {
+                return nil
+            }
+            
         } catch {
             return nil
         }

@@ -40,9 +40,9 @@ class AppViewRouter: ObservableObject {
     }
     
     // check if the user is signedin already when app starts.
-    private let auth = Auth.auth()
+    private let auth = ForceAuthManager.shared.getAuth()
     var isSignedIn: Bool {
-        return auth.currentUser != nil
+        return auth != nil
     }
     
     enum DeeplinkHosts: String {

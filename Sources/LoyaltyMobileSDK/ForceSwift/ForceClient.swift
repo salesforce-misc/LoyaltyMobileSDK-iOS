@@ -26,13 +26,11 @@ public class ForceClient {
     public func fetch<T: Decodable>(type: T.Type, with request: URLRequest, urlSession: URLSession = .shared) async throws -> T {
       
         do {
-            var newRequest: URLRequest
-            if let token = auth.accessToken {
-                newRequest = ForceRequest.setAuthorization(request: request, accessToken: token)
-            } else {
-                let accessToken = try await auth.grantAccessToken()
-                newRequest = ForceRequest.setAuthorization(request: request, accessToken: accessToken)
+            guard let token = auth.getAccessToken() else {
+                throw CommonError.authenticationNeeded
             }
+            
+            let newRequest = ForceRequest.setAuthorization(request: request, accessToken: token)
             return try await forceNetworkManager.fetch(type: type, request: newRequest, urlSession: .shared)
         } catch CommonError.authenticationNeeded {
             let token = try await auth.grantAccessToken()

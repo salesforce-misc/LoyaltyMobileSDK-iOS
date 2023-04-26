@@ -24,6 +24,7 @@ struct TopTabBar: View, Equatable {
                             .matchedGeometryEffect(id: "offer_underscore", in: namespace, properties: .frame)
                             .frame(width: 20 + lableText.stringWidth(), height: 4)
                             .offset(y: 20)
+							.animation(SwiftUI.Animation.easeIn, value: tabIndex)
                     }
                     Text(lableText)
                         .font(.offersTabSelected)
