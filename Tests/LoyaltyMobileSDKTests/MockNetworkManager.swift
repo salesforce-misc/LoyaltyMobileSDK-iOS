@@ -1,9 +1,9 @@
-//
-//  MockNetworkManager.swift
-//  
-//
-//  Created by Anandhakrishnan Kanagaraj on 30/03/23.
-//
+/*
+ * Copyright (c) 2023, Salesforce, Inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
 
 @testable import LoyaltyMobileSDK
 import XCTest
@@ -20,7 +20,7 @@ class MockNetworkManager: NetworkManagerProtocol {
     
     static let sharedMock = MockNetworkManager()
     
-    func fetch<T>(type: T.Type, request: URLRequest, urlSession: URLSession) async throws -> T where T : Decodable {
+    func fetch<T>(type: T.Type, request: URLRequest, urlSession: URLSession) async throws -> T where T: Decodable {
         let data = try await responseData(type: T.Type.self)
         let mockSession = URLSession.mock(responseBody: data, statusCode: statusCode)
         let output = try await mockSession.data(for: request)

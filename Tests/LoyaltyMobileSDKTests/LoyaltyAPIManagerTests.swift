@@ -1,9 +1,9 @@
-//
-//  LoyaltyAPIManagerTests.swift
-//  
-//
-//  Created by Anandhakrishnan Kanagaraj on 27/01/23.
-//
+/*
+ * Copyright (c) 2023, Salesforce, Inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
 
 import XCTest
 @testable import LoyaltyMobileSDK
@@ -35,7 +35,6 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         loayltyAPIManager = nil
         super.tearDown()
     }
-
         
     func testGetMemberProfile() async throws {
         let identity = try await loayltyAPIManager.getMemberProfile(for: "MRI706")
@@ -67,23 +66,19 @@ final class LoyaltyAPIManagerTests: XCTestCase {
     }
 
     func testEnrollIn() async throws {
-        do
-        {
+        do {
             let enrollPromotionModel: () = try await loayltyAPIManager.enrollIn(promotion: "health", for: "1234")
             XCTAssertNotNil(enrollPromotionModel)
-        }
-        catch {
+        } catch {
             XCTFail("Enroll promotion not complete successfully.")
         }
     }
 
     func testUnenrollIn() async throws {
-        do
-        {
+        do {
             let unenrollPromotionModel: () = try await loayltyAPIManager.unenroll(promotionName: "Health", for: "1234")
             XCTAssertNotNil(unenrollPromotionModel)
-        }
-        catch {
+        } catch {
             XCTFail("unEnroll promotion not complete successfully.")
         }
     }

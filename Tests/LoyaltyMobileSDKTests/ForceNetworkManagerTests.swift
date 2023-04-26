@@ -1,9 +1,9 @@
-//
-//  ForceNetworkManagerTests.swift
-//  
-//
-//  Created by Anandhakrishnan Kanagaraj on 03/04/23.
-//
+/*
+ * Copyright (c) 2023, Salesforce, Inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
 
 import XCTest
 @testable import LoyaltyMobileSDK
@@ -54,17 +54,16 @@ final class ForceNetworkManagerTests: XCTestCase {
         
         // Handle authentication failed scenrio
         do {
-            let _ = try await forceNetworkManager.fetch(type: PromotionModel.self, request: getMockRequest(), urlSession: mockSession1)
+            _ = try await forceNetworkManager.fetch(type: PromotionModel.self, request: getMockRequest(), urlSession: mockSession1)
             XCTAssertEqual(promotions.status, true)
         } catch {
             XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
         }
         
-        
         let mockSession2 = URLSession.mock(responseBody: data, statusCode: 201)
         // Handle authentication failed scenrio
         do {
-            let _ = try await forceNetworkManager.fetch(type: PromotionModel.self, request: getMockRequest(), urlSession: mockSession2)
+            _ = try await forceNetworkManager.fetch(type: PromotionModel.self, request: getMockRequest(), urlSession: mockSession2)
             XCTAssertEqual(promotions.status, true)
         } catch {
             XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
