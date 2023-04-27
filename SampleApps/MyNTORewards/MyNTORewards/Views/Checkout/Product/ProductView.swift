@@ -9,20 +9,12 @@ import SwiftUI
 
 struct ProductView: View {
 	@State private var tabIndex = 0
+	@State private var moveToOrderDetails = false
 	
 	var tabbarItems: [String] = ["Details", "Reviews", "T&C"]
 	
 	var body: some View {
-		VStack(alignment: .leading) {
-			NavigationBarView()
-			VStack(alignment: .leading, spacing: 8) {
-				Text("Outdoor Collection")
-					.font(.productDetailTitleText)
-				Text("Double points on Outdoor Product Category")
-					.font(.productDetailSubtitleText)
-			}
-			.padding()
-			TopTabBar(barItems: tabbarItems, tabIndex: $tabIndex)
+		VStack (alignment: .center) {
 			TabView(selection: $tabIndex) {
 				ProductDetailsView()
 					.tag(0)
@@ -33,8 +25,21 @@ struct ProductView: View {
 					.tag(2)
 			}
 			.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+			LoyaltyConditionalNavLink(isActive: $moveToOrderDetails)
+			{
+				OrderDetailsView()
+			} label: {
+				Button("Buy Now") {
+					moveToOrderDetails.toggle()
+				}
+				.buttonStyle(DarkLongButton())
+			}
 		}
-		.edgesIgnoringSafeArea(.bottom)
+		.loytaltyNavigationTitle("Outdoor Collection")
+		.loyaltyNavigationSubtitle("Double points on Outdoor Product Category")
+		.loyaltyNavBarSearchButtonHidden(true)
+		.loyaltyNavBarTabBar(TopTabBar(barItems: tabbarItems, tabIndex: $tabIndex, tabAlignment: .center))
+		.background(Color(hex: "#F1F3FB"))
 	}
 }
 

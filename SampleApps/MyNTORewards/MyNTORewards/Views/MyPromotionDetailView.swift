@@ -82,10 +82,7 @@ struct MyPromotionDetailView: View {
                         HStack {
                             Spacer()
                             Button("Shop") {
-								if promotionVM.shopPromotion() {
-									dismiss()
-									isShopActionSuccess = true
-								}
+								shopPromotion()
                             }
                             .buttonStyle(DarkShortPromotionButton())
                             Spacer()
@@ -113,6 +110,7 @@ struct MyPromotionDetailView: View {
                             Spacer()
                             Button("Shop") {
                                 // link to e-commerce
+								shopPromotion()
                             }
                             .buttonStyle(DarkShortButton())
                             Spacer()
@@ -134,6 +132,13 @@ struct MyPromotionDetailView: View {
         .zIndex(3.0)
         
     }
+	
+	private func shopPromotion() {
+		if promotionVM.shopPromotion() {
+			dismiss()
+			isShopActionSuccess = true
+		}
+	}
 }
 
 struct MyPromotionDetailView_Previews: PreviewProvider {
