@@ -24,7 +24,7 @@ struct OrderPlacedView: View {
 			}
 			.padding(75)
 			Spacer()
-			Button{
+			Button {
 				promotionVM.isCheckoutNavigationActive = false
 			} label: {
 				Text("Continue Shopping")
@@ -35,7 +35,7 @@ struct OrderPlacedView: View {
 		}
 		.task {
 			do {
-				let details = try await orderDetailsVM.getOrderDetails()
+				_ = try await orderDetailsVM.getOrderDetails()
 			} catch {
 				print("Error fetching order details..")
 			}

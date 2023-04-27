@@ -14,7 +14,7 @@ struct ProductView: View {
 	var tabbarItems: [String] = ["Details", "Reviews", "T&C"]
 	
 	var body: some View {
-		VStack (alignment: .center) {
+		VStack(alignment: .center) {
 			TabView(selection: $tabIndex) {
 				ProductDetailsView()
 					.tag(0)
@@ -25,8 +25,7 @@ struct ProductView: View {
 					.tag(2)
 			}
 			.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-			LoyaltyConditionalNavLink(isActive: $moveToOrderDetails)
-			{
+			LoyaltyConditionalNavLink(isActive: $moveToOrderDetails) {
 				OrderDetailsView()
 			} label: {
 				Button("Buy Now") {

@@ -61,7 +61,6 @@ struct ProductImagesView: View {
 	}
 }
 
-
 struct ProductImagesView_Previews: PreviewProvider {
     static var previews: some View {
 		ProductImagesView(mainImage: "img-product1",
@@ -69,7 +68,7 @@ struct ProductImagesView_Previews: PreviewProvider {
 							"img-product2",
 							"img-product3",
 							"img-product4",
-							"img-product5",
+							"img-product5"
 						  ])
     }
 }

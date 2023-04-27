@@ -62,4 +62,3 @@ struct StarRatingView_Previews: PreviewProvider {
 		StarRatingView(rating: 3)
 	}
 }
-

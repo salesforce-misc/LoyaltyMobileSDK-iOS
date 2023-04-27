@@ -13,7 +13,7 @@ struct ProductDetailsView: View {
 	@State private var quantitySelected: Int = 1
 	var body: some View {
 		ScrollView(showsIndicators: false) {
-			ZStack{
+			ZStack {
 				Color(hex: "#F1F3FB")
 				VStack {
 					VStack {
@@ -23,7 +23,7 @@ struct ProductDetailsView: View {
 											"img-product2",
 											"img-product3",
 											"img-product4",
-											"img-product5",
+											"img-product5"
 										  ])
 					}
 					SizeSelectorView(selection: $sizeSelected, sizes: ["S", "M", "L", "XL"])

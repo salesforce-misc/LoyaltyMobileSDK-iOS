@@ -25,14 +25,14 @@ struct PaymentDetailsView: View {
 					.padding()
 				}
 				.background {
-					NavigationLink(isActive: $orderDetailsVM.isOrderPlacedNavigationActive){
+					NavigationLink(isActive: $orderDetailsVM.isOrderPlacedNavigationActive) {
 						OrderPlacedView()
 							.environmentObject(orderDetailsVM)
 					} label: {
 						EmptyView()
 					}
 				}
-				Button{
+				Button {
 					Task {
 						isScreenLoading = true
 						await orderDetailsVM.createOrder()
