@@ -7,16 +7,34 @@
 
 import Foundation
 
+/// A protocol that defines the requirements for a network manager.
 public protocol NetworkManagerProtocol {
+    /// Fetch data from the network and decode it to the specified type.
+    ///
+    /// - Parameters:
+    ///   - type: The expected data type to decode the response into.
+    ///   - request: The URLRequest to be executed by URLSession.
+    ///   - urlSession: An instance of URLSession to execute the request. Defaults to URLSession.shared.
+    ///
+    /// - Returns: A decoded JSON response result.
     func fetch<T: Decodable>(type: T.Type, request: URLRequest, urlSession: URLSession) async throws -> T
 }
 
+/// A class that handles network requests and data processing.
 public class NetworkManager: NetworkManagerProtocol {
     
+    /// A shared instance of NetworkManager for convenience.
     public static let shared = NetworkManager()
     
+    /// Private initializer to prevent multiple instances.
     private init() {}
     
+    /// Handle data and response from a URLSession request.
+    ///
+    /// - Parameter output: A tuple containing the Data and URLResponse from the request.
+    ///
+    /// - Returns: Validated data from the request.
+    /// - Throws: A CommonError if there's an issue with the response or data.
     internal func handleDataAndResponse(output: (data: Data, response: URLResponse)) throws -> Data {
         guard let httpResponse = output.response as? HTTPURLResponse else {
             Logger.error(CommonError.requestFailed(message: "Invalid response").description)
@@ -42,11 +60,15 @@ public class NetworkManager: NetworkManagerProtocol {
         return output.data
     }
 
-    /// Use Async/Await to fetch all REST requests
+    /// Use Async/Await to fetch all REST requests.
+    ///
     /// - Parameters:
-    ///   - type: A type(i.e. model) defined to be used by JSON decoder
-    ///   - request: A URLRequest to be executed by URLSession
-    /// - Returns: A decoded JSON response result
+    ///   - type: A type (i.e., model) defined to be used by JSON decoder.
+    ///   - request: A URLRequest to be executed by URLSession.
+    ///   - urlSession: An instance of URLSession to execute the request. Defaults to URLSession.shared.
+    ///
+    /// - Returns: A decoded JSON response result.
+    /// - Throws: An error if the request or decoding fails.
     public func fetch<T: Decodable>(type: T.Type, request: URLRequest, urlSession: URLSession = URLSession.shared) async throws -> T {
       
         do {
