@@ -127,19 +127,19 @@
                 <a href="Structs/Benefits.html">Benefits</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/EPResult.html">EPResult</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Structs/EPResultsOutputParameters.html">EPResultsOutputParameters</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Structs.html#/s:16LoyaltyMobileSDK19EPSimulationDetailsV">EPSimulationDetails</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Structs/EnrollPromotionOutputModel.html">EnrollPromotionOutputModel</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/EnrollPromotionOutputModelOutputParameters.html">EnrollPromotionOutputModelOutputParameters</a>
+                <a href="Structs/EnrollPromotionOutputParameters.html">EnrollPromotionOutputParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/EnrollPromotionResult.html">EnrollPromotionResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/EnrollPromotionResultsOutputParameters.html">EnrollPromotionResultsOutputParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs.html#/s:16LoyaltyMobileSDK32EnrollPromotionSimulationDetailsV">EnrollPromotionSimulationDetails</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/EnrollmentModel.html">EnrollmentModel</a>
@@ -208,7 +208,7 @@
                 <a href="Structs/TransactionModel.html">TransactionModel</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/UnenrollPromotionOutPutModel.html">UnenrollPromotionOutPutModel</a>
+                <a href="Structs/UnenrollPromotionOutputModel.html">UnenrollPromotionOutputModel</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/UnenrollPromotionResponseModel.html">UnenrollPromotionResponseModel</a>
@@ -230,16 +230,179 @@
         <section>
           <section class="section">
             
-            <h1 id='loyaltymobilesdk-ios' class='heading'>LoyaltyMobileSDK-iOS</h1>
+            <h1 id='salesforce-loyalty-mobile-sdk-for-ios' class='heading'>Salesforce Loyalty Mobile SDK for iOS</h1>
 
-<p>Salesforce Loyalty Mobile SDK gives developers the tools to build custom mobile apps with unique user experiences. Mobile SDK allows our customers to produce standalone or integrate with existing Apps that they distribute through the App Store or Google Play Store. These apps can target customers, business and partners.</p>
+<p>Salesforce Loyalty Mobile SDK gives developers the tools to build custom mobile apps with unique user experiences. Mobile SDK allows our
+customers to produce standalone or integrate with existing Apps that they distribute through the App Store or Google Play Store. These apps
+can target customers, business and partners.</p>
 
-<p>Loyalty Mobile SDK Enable Programs to engage with members on mobile channels and deliver immersive experiences. As a Loyalty Program Member, I want a Mobile app to view my Membership details, avail Promotions and Vouchers, manage my loyalty rewards and engage with the brand.</p>
+<p>Loyalty Mobile SDK enables programs to engage with members on mobile channels and deliver immersive experiences. As a Loyalty Program
+Member, users can access a mobile app to view their membership details, avail promotions and vouchers, manage their loyalty rewards, and
+engage with the brand.</p>
+
+<p>LoyaltyMobileSDK-iOS is a Swift package that provides a convenient and easy-to-use interface for integrating loyalty program features into
+your iOS applications. The SDK currently supports iOS 15+.</p>
+<h2 id='features' class='heading'>Features</h2>
+
+<ul>
+<li>Profile information</li>
+<li>Benefit information</li>
+<li>Enrollment</li>
+<li>Enroll and unenroll in promotions</li>
+<li>Promotions management</li>
+<li>Vouchers management</li>
+<li>Transaction history</li>
+</ul>
+<h2 id='installation' class='heading'>Installation</h2>
+
+<p>To integrate LoyaltyMobileSDK-iOS into your Xcode project, add it as a package dependency:</p>
+
+<ol>
+<li>In Xcode, navigate to File &gt; Swift Packages &gt; Add Package Dependency.</li>
+<li>Enter the repository URL: <code>https://github.com/salesforce-misc/LoyaltyMobileSDK-iOS</code></li>
+<li>Specify the version you want to use.</li>
+</ol>
+<h2 id='usage' class='heading'>Usage</h2>
+
+<p>First, import the <code>LoyaltyMobileSDK</code> module into your Swift file:</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">LoyaltyMobileSDK</span>
+</code></pre>
+
+<p>Then, you can use the SDK&rsquo;s APIs to manage loyalty features in your application.</p>
+<h2 id='forceswift' class='heading'>ForceSwift</h2>
+
+<p>ForceSwift is a set of tools that allows developers to interact with Salesforce through a third-party app. The library provides several structs and classes
+to perform common Salesforce operations, such as authentication and making network requests.</p>
+<h3 id='key-components' class='heading'>Key Components</h3>
+
+<ol>
+<li><code><a href="Structs/ForceAPI.html">ForceAPI</a></code> - Provides a utility function to generate the path for API endpoints based on the API name and version.</li>
+<li><code><a href="Protocols/ForceAuthenticator.html">ForceAuthenticator</a></code> - A protocol defining the required methods for handling access tokens in Salesforce API.</li>
+<li><code><a href="Classes/ForceClient.html">ForceClient</a></code> - A class handling network requests with authentication using <code><a href="Protocols/ForceAuthenticator.html">ForceAuthenticator</a></code>. It provides methods for fetching data from Salesforce API or a local JSON file.</li>
+<li><code><a href="Structs/ForceRequest.html">ForceRequest</a></code> - A struct to help create and configure <code>URLRequest</code> instances. It provides utility functions for creating requests with a URL, adding query parameters, and setting authorization.</li>
+<li><code><a href="Protocols/NetworkManagerProtocol.html">NetworkManagerProtocol</a></code> - A protocol that defines the requirements for a network manager.</li>
+<li><code><a href="Classes/NetworkManager.html">NetworkManager</a></code> - A class that handles network requests and data processing. It conforms to the <code><a href="Protocols/NetworkManagerProtocol.html">NetworkManagerProtocol</a></code> and provides a method to fetch data and decode it into the specified type.</li>
+</ol>
+<h2 id='loyaltyapimanager' class='heading'>LoyaltyAPIManager</h2>
+
+<p>The <code><a href="Classes/LoyaltyAPIManager.html">LoyaltyAPIManager</a></code> class manages requests related to loyalty programs using the Force API. It provides an easy way to interact with the Salesforce
+Loyalty Management API and retrieve member benefits, member profiles, and other related data. It can be used in both development and production
+environments.</p>
+<h3 id='features' class='heading'>Features</h3>
+
+<ul>
+<li>Handles authentication using a <code><a href="Protocols/ForceAuthenticator.html">ForceAuthenticator</a></code> instance</li>
+<li>Provides methods for interacting with the Loyalty Management API, including:
+
+<ul>
+<li>Get Member Benefits</li>
+<li>Get Member Profile</li>
+<li>Get Community Member Profile</li>
+<li>Get Transaction History</li>
+<li>Get Promotions</li>
+<li>Enroll in Promotion</li>
+<li>Unenroll from Promotion</li>
+<li>Get Vouchers</li>
+</ul></li>
+<li>Supports both live API calls and local JSON file fetching for development mode</li>
+<li>Uses Swift async/await syntax for asynchronous requests</li>
+</ul>
+<h3 id='usage' class='heading'>Usage</h3>
+
+<ol>
+<li>Create an instance of <code><a href="Classes/LoyaltyAPIManager.html">LoyaltyAPIManager</a></code> with the necessary parameters:</li>
+</ol>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">loyaltyAPIManager</span> <span class="o">=</span> <span class="kt">LoyaltyAPIManager</span><span class="p">(</span><span class="nv">auth</span><span class="p">:</span> <span class="n">forceAuthenticator</span><span class="p">,</span> <span class="nv">loyaltyProgramName</span><span class="p">:</span> <span class="s">"YourLoyaltyProgramName"</span><span class="p">,</span> <span class="nv">instanceURL</span><span class="p">:</span> <span class="s">"YourInstanceURL"</span><span class="p">,</span> <span class="nv">forceClient</span><span class="p">:</span> <span class="n">forceClient</span><span class="p">)</span>
+</code></pre>
+
+<ol>
+<li>Call the appropriate methods to interact with the Loyalty Management API:</li>
+</ol>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">LoyaltyMobileSDK</span>
+
+<span class="k">let</span> <span class="nv">instanceURL</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://your_salesforce_instance_url"</span><span class="p">)</span><span class="o">!</span>
+<span class="k">let</span> <span class="nv">loyaltyProgramName</span> <span class="o">=</span> <span class="s">"YourLoyaltyProgramName"</span>
+<span class="k">let</span> <span class="nv">forceClient</span> <span class="o">=</span> <span class="kt">ForceClient</span><span class="p">(</span><span class="nv">clientId</span><span class="p">:</span> <span class="s">"your_client_id"</span><span class="p">,</span> <span class="nv">clientSecret</span><span class="p">:</span> <span class="s">"your_client_secret"</span><span class="p">,</span> <span class="nv">redirectURI</span><span class="p">:</span> <span class="s">"your_redirect_uri"</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="nv">loyaltyAPIManager</span> <span class="o">=</span> <span class="kt">LoyaltyAPIManager</span><span class="p">(</span><span class="nv">instanceURL</span><span class="p">:</span> <span class="n">instanceURL</span><span class="p">,</span> <span class="nv">loyaltyProgramName</span><span class="p">:</span> <span class="n">loyaltyProgramName</span><span class="p">,</span> <span class="nv">forceClient</span><span class="p">:</span> <span class="n">forceClient</span><span class="p">)</span>
+
+<span class="c1">// Enroll Members</span>
+<span class="k">let</span> <span class="nv">membershipNumber</span> <span class="o">=</span> <span class="s">"1234567890"</span>
+<span class="k">let</span> <span class="nv">firstName</span> <span class="o">=</span> <span class="s">"John"</span>
+<span class="k">let</span> <span class="nv">lastName</span> <span class="o">=</span> <span class="s">"Doe"</span>
+<span class="k">let</span> <span class="nv">email</span> <span class="o">=</span> <span class="s">"john.doe@example.com"</span>
+<span class="k">let</span> <span class="nv">phone</span> <span class="o">=</span> <span class="s">"4157891234"</span>
+<span class="k">let</span> <span class="nv">emailNotification</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="k">let</span> <span class="nv">enrollmentOutput</span> <span class="o">=</span> <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">postEnrollment</span><span class="p">(</span>
+    <span class="nv">membershipNumber</span><span class="p">:</span> <span class="n">membershipNumber</span><span class="p">,</span>
+    <span class="nv">firstName</span><span class="p">:</span> <span class="n">firstName</span><span class="p">,</span>
+    <span class="nv">lastName</span><span class="p">:</span> <span class="n">lastName</span><span class="p">,</span>
+    <span class="nv">email</span><span class="p">:</span> <span class="n">email</span><span class="p">,</span>
+    <span class="nv">phone</span><span class="p">:</span> <span class="n">phone</span><span class="p">,</span>
+    <span class="nv">emailNotification</span><span class="p">:</span> <span class="n">emailNotification</span>
+<span class="p">)</span>
+
+<span class="c1">// Get Member Benefits</span>
+<span class="k">let</span> <span class="nv">benefits</span> <span class="o">=</span> <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">getMemberBenefits</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="s">"memberId"</span><span class="p">)</span>
+
+<span class="c1">// Get Member Profile</span>
+<span class="k">let</span> <span class="nv">profile</span> <span class="o">=</span> <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">getMemberProfile</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="s">"memberId"</span><span class="p">)</span>
+
+<span class="c1">// Get Community Member Profile</span>
+<span class="k">let</span> <span class="nv">communityProfile</span> <span class="o">=</span> <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">getCommunityMemberProfile</span><span class="p">()</span>
+
+
+<span class="c1">// Enroll a member in a promotion</span>
+<span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">enrollIn</span><span class="p">(</span><span class="nv">promotion</span><span class="p">:</span> <span class="s">"PromotionName"</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">)</span>
+
+<span class="c1">// Unenroll a member from a promotion using promotion ID or using promotion name</span>
+<span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">unenroll</span><span class="p">(</span><span class="nv">promotionId</span><span class="p">:</span> <span class="s">"promotionId"</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">)</span>
+<span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">unenroll</span><span class="p">(</span><span class="nv">promotionName</span><span class="p">:</span> <span class="s">"PromotionName"</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">)</span>
+
+<span class="c1">// Get transactions for a loyalty member</span>
+<span class="k">let</span> <span class="nv">transactions</span> <span class="o">=</span> <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">getTransactions</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">)</span>
+
+<span class="c1">// Get promotions for a loyalty member</span>
+<span class="k">let</span> <span class="nv">promotions</span> <span class="o">=</span> <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">getPromotions</span><span class="p">(</span><span class="nv">membershipNumber</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">)</span>
+
+<span class="c1">// Get vouchers for a loyalty member</span>
+<span class="k">let</span> <span class="nv">vouchers</span> <span class="o">=</span> <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">getVouchers</span><span class="p">(</span><span class="nv">membershipNumber</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">)</span>
+
+</code></pre>
+
+<p>For a detailed understanding of each method and its parameters, please refer to the comments in the provided <code><a href="Classes/LoyaltyAPIManager.html">LoyaltyAPIManager</a></code> code.</p>
+<h2 id='contributing' class='heading'>Contributing</h2>
+
+<p>We welcome contributions to this project. To contribute, please follow these steps:</p>
+
+<ol>
+<li>Fork the repository.</li>
+<li>Create a new branch with a descriptive name.</li>
+<li>Implement your changes and ensure that tests are passing.</li>
+<li>Create a pull request and describe your changes.</li>
+</ol>
+<h2 id='license' class='heading'>License</h2>
+
+<p>LoyaltyMobileSDK-iOS is available under the BSD 3-Clause License.</p>
+
+<p>Copyright &copy; 2023, Salesforce Industries
+All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+
+<ol>
+<li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+<li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</li>
+<li>Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.</li>
+</ol>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &ldquo;AS IS&rdquo; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2023 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2023-04-28)</p>
+          <p>&copy; 2023 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2023-04-29)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
