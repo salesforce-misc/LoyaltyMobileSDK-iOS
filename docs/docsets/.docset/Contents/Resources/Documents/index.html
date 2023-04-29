@@ -352,11 +352,10 @@ environments.</p>
 <span class="c1">// Get Community Member Profile</span>
 <span class="k">let</span> <span class="nv">communityProfile</span> <span class="o">=</span> <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">getCommunityMemberProfile</span><span class="p">()</span>
 
-
 <span class="c1">// Enroll a member in a promotion</span>
 <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">enrollIn</span><span class="p">(</span><span class="nv">promotion</span><span class="p">:</span> <span class="s">"PromotionName"</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">)</span>
 
-<span class="c1">// Unenroll a member from a promotion using promotion ID or using promotion name</span>
+<span class="c1">// Unenroll a member from a promotion using promotion ID or promotion name</span>
 <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">unenroll</span><span class="p">(</span><span class="nv">promotionId</span><span class="p">:</span> <span class="s">"promotionId"</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">)</span>
 <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">unenroll</span><span class="p">(</span><span class="nv">promotionName</span><span class="p">:</span> <span class="s">"PromotionName"</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">)</span>
 

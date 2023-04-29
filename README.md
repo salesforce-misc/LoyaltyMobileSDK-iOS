@@ -119,11 +119,10 @@ let profile = try await loyaltyAPIManager.getMemberProfile(for: "memberId")
 // Get Community Member Profile
 let communityProfile = try await loyaltyAPIManager.getCommunityMemberProfile()
 
-
 // Enroll a member in a promotion
 try await loyaltyAPIManager.enrollIn(promotion: "PromotionName", for: "1234567890")
 
-// Unenroll a member from a promotion using promotion ID or using promotion name
+// Unenroll a member from a promotion using promotion ID or promotion name
 try await loyaltyAPIManager.unenroll(promotionId: "promotionId", for: "1234567890")
 try await loyaltyAPIManager.unenroll(promotionName: "PromotionName", for: "1234567890")
 
