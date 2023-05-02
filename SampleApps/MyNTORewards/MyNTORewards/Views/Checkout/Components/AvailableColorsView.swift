@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AvailableColorsView: View {
-	@State private var selectedIndex = -1
+	@State private var selectedIndex = 0
 	@Binding var selection: Int
 	var colors: [Color]
     var body: some View {
@@ -46,7 +46,7 @@ struct ColorView: View {
 		ZStack {
 			RoundedRectangle(cornerRadius: 10, style: .continuous)
 				.fill(color)
-				.overlay(isSelected ? RoundedRectangle(cornerRadius: 10, style: .continuous).stroke(.gray) : nil)
+				.overlay(isSelected ? RoundedRectangle(cornerRadius: 10, style: .continuous).stroke(.black, lineWidth: 1) : nil)
 		}
 	}
 }

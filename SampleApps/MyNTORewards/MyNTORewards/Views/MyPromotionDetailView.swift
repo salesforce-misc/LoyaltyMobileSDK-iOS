@@ -13,9 +13,10 @@ struct MyPromotionDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
-    
+	@Binding var isShopActionSuccess: Bool
     let promotion: PromotionResult
     @Binding var processing: Bool
+//	@Binding var shopTapped: Bool
     
     var body: some View {
         
@@ -81,7 +82,7 @@ struct MyPromotionDetailView: View {
                         HStack {
                             Spacer()
                             Button("Shop") {
-                                
+								shopPromotion()
                             }
                             .buttonStyle(DarkShortPromotionButton())
                             Spacer()
@@ -109,6 +110,7 @@ struct MyPromotionDetailView: View {
                             Spacer()
                             Button("Shop") {
                                 // link to e-commerce
+								shopPromotion()
                             }
                             .buttonStyle(DarkShortButton())
                             Spacer()
@@ -130,11 +132,18 @@ struct MyPromotionDetailView: View {
         .zIndex(3.0)
         
     }
+	
+	private func shopPromotion() {
+		if promotionVM.shopPromotion() {
+			dismiss()
+			isShopActionSuccess = true
+		}
+	}
 }
 
 struct MyPromotionDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MyPromotionDetailView(promotion: dev.promotion, processing: .constant(false))
+		MyPromotionDetailView(isShopActionSuccess: .constant(false), promotion: dev.promotion, processing: .constant(false))
             .environmentObject(dev.rootVM)
             .environmentObject(dev.promotionVM)
     }

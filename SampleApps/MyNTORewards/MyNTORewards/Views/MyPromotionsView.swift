@@ -12,7 +12,6 @@ struct MyPromotionsView: View {
     
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
-    
     @State var offerTabSelected: Int = 0
     let barItems = ["Unenrolled", "Active", "All"]
     

@@ -256,6 +256,10 @@ extension Font {
 		return Font.custom("Roboto-Regular", size: 16)
 	}
 	
+	static var loyaltyNavBarSubtitleText: Font {
+		return Font.custom("Roboto-Regular", size: 16)
+	}
+	
 	static var productDetailTitleText: Font {
 		return Font.custom("Archivo-Bold", size: 22)
 	}
