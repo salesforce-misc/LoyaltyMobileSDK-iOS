@@ -24,25 +24,21 @@ struct PaymentDetailsView: View {
 					}
 					.padding()
 				}
-				.background {
-					NavigationLink(isActive: $orderDetailsVM.isOrderPlacedNavigationActive) {
-						OrderPlacedView()
-							.environmentObject(orderDetailsVM)
-					} label: {
-						EmptyView()
-					}
-				}
-				Button {
-					Task {
-						isScreenLoading = true
-						await orderDetailsVM.createOrder()
-						isScreenLoading = false
-					}
+				
+				NavigationLink {
+					OrderPlacedView()
+						.environmentObject(orderDetailsVM)
 				} label: {
 					Text("Confirm Order")
-						.font(.boldButtonText)
+						.onTapGesture {
+							Task {
+								isScreenLoading = true
+								await orderDetailsVM.createOrder()
+								isScreenLoading = false
+							}
+						}
+						.longFlexibleButtonStyle()
 				}
-				.buttonStyle(DarkFlexibleButton())
 			}
 			.background(Color(hex: "#F1F3FB"))
 			if isScreenLoading {

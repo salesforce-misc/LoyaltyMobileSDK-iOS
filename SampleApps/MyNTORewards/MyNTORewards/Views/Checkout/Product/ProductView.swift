@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ProductView: View {
 	@State private var tabIndex = 0
-	@State private var moveToOrderDetails = false
 	
 	var tabbarItems: [String] = ["Details", "Reviews", "T&C"]
 	
@@ -25,13 +24,12 @@ struct ProductView: View {
 					.tag(2)
 			}
 			.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-			LoyaltyConditionalNavLink(isActive: $moveToOrderDetails) {
+			
+			LoyaltyNavLink {
 				OrderDetailsView()
 			} label: {
-				Button("Buy Now") {
-					moveToOrderDetails.toggle()
-				}
-				.buttonStyle(DarkLongButton())
+				Text("Buy Now")
+					.longFlexibleButtonStyle()
 			}
 		}
 		.loytaltyNavigationTitle("Outdoor Collection")
