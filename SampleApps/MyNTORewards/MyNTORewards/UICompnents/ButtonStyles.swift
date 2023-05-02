@@ -85,3 +85,32 @@ struct LightShortPromotionButton: ButtonStyle {
     }
 }
 
+struct LightLongPromotionButton: ButtonStyle {
+	
+	func makeBody(configuration: Configuration) -> some View {
+		configuration.label
+			.font(.boldButtonText)
+			.foregroundColor(Color.theme.accent)
+			.frame(width: 343, height: 48)
+			.background(Color.white)
+			.cornerRadius(24)
+			.overlay(
+				RoundedRectangle(cornerRadius: 24)
+					.stroke(Color.theme.accent, lineWidth: 1)
+			)
+	}
+}
+
+struct DarkFlexibleButton: ButtonStyle {
+	
+	func makeBody(configuration: Configuration) -> some View {
+		configuration.label
+			.font(.buttonText)
+			.foregroundColor(.white)
+			.frame(maxWidth: .infinity)
+			.frame(height: 48)
+			.background(Color.theme.darkButton)
+			.cornerRadius(24)
+			.padding()
+	}
+}

@@ -12,7 +12,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "LoyaltyMobileSDK",
-            targets: ["LoyaltyMobileSDK"]),
+            targets: ["LoyaltyMobileSDK"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -26,6 +26,16 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "LoyaltyMobileSDKTests",
-            dependencies: ["LoyaltyMobileSDK"]),
+            dependencies: ["LoyaltyMobileSDK"],
+            resources: [
+                .process("JSONFiles/Profile.json"),
+                .process("JSONFiles/Benefits.json"),
+                .process("JSONFiles/Enrollment.json"),
+                .process("JSONFiles/EnrollmentPromotion.json"),
+                .process("JSONFiles/UnenrollmentPromotion.json"),
+                .process("JSONFiles/Promotions.json"),
+                .process("JSONFiles/Vouchers.json"),
+                .process("JSONFiles/Transactions.json")
+            ])
     ]
 )

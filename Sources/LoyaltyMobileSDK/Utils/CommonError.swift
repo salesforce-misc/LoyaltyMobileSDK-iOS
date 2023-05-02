@@ -1,0 +1,73 @@
+/*
+ * Copyright (c) 2023, Salesforce, Inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+
+import Foundation
+
+public enum CommonError: Error, Equatable {
+    case requestFailed(message: String)
+    case jsonConversionFailure(message: String)
+    case invalidData
+    case responseUnsuccessful(message: String)
+    case authenticationNeeded
+    case userIdentityUnknown
+    case authNotFoundInKeychain
+    case authenticationFailed
+    case codeCredentials
+    case functionalityNotEnabled
+}
+
+extension CommonError: CustomStringConvertible, LocalizedError {
+    public var description: String {
+        switch self {
+        case let .requestFailed(message):
+            return "Request Failed Error -> \(message)"
+        case .invalidData:
+            return "Invalid Data Error"
+        case let .responseUnsuccessful(message):
+            return "Response Unsuccessful Error -> \(message)"
+        case let .jsonConversionFailure(message):
+            return "JSON Conversion Failure -> \(message)"
+        case .authenticationNeeded:
+            return "Authentication is need."
+        case .userIdentityUnknown:
+            return "User Identity has not been set."
+        case .authNotFoundInKeychain:
+            return "Cannot find the auth from Keychain."
+        case .authenticationFailed:
+            return "Authentication failed."
+        case .codeCredentials:
+            return "Authorization code and credentials flow failed."
+        case .functionalityNotEnabled:
+            return "Functionality is not enabled."
+        }
+    }
+    
+    public var errorDescription: String? {
+        switch self {
+        case let .requestFailed(message):
+            return NSLocalizedString("Request Failed Error -> \(message)", comment: "Request Failed Error")
+        case .invalidData:
+            return NSLocalizedString("Invalid Data Error", comment: "Invalid Data Error")
+        case let .responseUnsuccessful(message):
+            return NSLocalizedString("Response Unsuccessful Error -> \(message)", comment: "Response Unsuccessful Error")
+        case let .jsonConversionFailure(message):
+            return NSLocalizedString("JSON Conversion Failure -> \(message)", comment: "JSON Conversion Failure")
+        case .authenticationNeeded:
+            return NSLocalizedString("Authentication is need.", comment: "Authentication Needed Error")
+        case .userIdentityUnknown:
+            return NSLocalizedString("User Identity has not been set.", comment: "User Identity Unknown Error")
+        case .authNotFoundInKeychain:
+            return NSLocalizedString("Cannot find the auth from Keychain.", comment: "Auth Not Found In Keychain Error")
+        case .authenticationFailed:
+            return NSLocalizedString("Authentication failed.", comment: "Authentication Failed Error")
+        case .codeCredentials:
+            return NSLocalizedString("Authorization code and credentials flow failed.", comment: "Code Credentials Error")
+        case .functionalityNotEnabled:
+            return NSLocalizedString("Functionality is not enabled.", comment: "Functionality Not Enabled Error")
+        }
+    }
+}

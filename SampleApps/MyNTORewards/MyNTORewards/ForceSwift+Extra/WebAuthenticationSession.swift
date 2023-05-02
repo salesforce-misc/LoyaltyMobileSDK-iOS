@@ -32,8 +32,7 @@ struct WebAuthenticationSession {
             let session = ASWebAuthenticationSession(url: url, callbackURLScheme: callbackURLScheme) { (url, error) in
                 if let error = error {
                     continuation.resume(throwing: error)
-                }
-                else {
+                } else {
                     guard let url = url else {
                         return continuation.resume(throwing: StateError("Invalid state"))
                     }
@@ -49,10 +48,9 @@ struct WebAuthenticationSession {
     }
 }
 
-fileprivate class ContextProvider: NSObject, ASWebAuthenticationPresentationContextProviding {
+private class ContextProvider: NSObject, ASWebAuthenticationPresentationContextProviding {
     
     public func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         return ASPresentationAnchor()
     }
 }
-
