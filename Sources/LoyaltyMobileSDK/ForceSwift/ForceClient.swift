@@ -6,17 +6,20 @@
  */
 
 import Foundation
-  
+
+/// A class that handles making network requests with authentication using the ForceAuthenticator.
 public class ForceClient {
     public var auth: ForceAuthenticator
     public var forceNetworkManager: NetworkManagerProtocol
     
-    /// Create a new instance from a given ``ForceAuthenticator``
-    /// - Parameter auth: A ``ForceAuthenticator``
+    /// Create a new instance from a given `ForceAuthenticator`
+    /// - Parameters:
+    ///   - auth: A `ForceAuthenticator` instance
+    ///   - forceNetworkManager: A `NetworkManagerProtocol` instance (defaults to `NetworkManager.shared`)
     public init(auth: ForceAuthenticator, forceNetworkManager: NetworkManagerProtocol = NetworkManager.shared) {
-            self.auth = auth
-            self.forceNetworkManager = forceNetworkManager
-        }
+        self.auth = auth
+        self.forceNetworkManager = forceNetworkManager
+    }
     
     /// Use Async/Await to fetch all REST requests with authentication 
     /// - Parameters:

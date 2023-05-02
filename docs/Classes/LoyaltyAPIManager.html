@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>LoyaltyAPIManager Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/LoyaltyAPIManager" class="dashAnchor"></a>
+    <a title="LoyaltyAPIManager Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        LoyaltyAPIManager Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ForceClient.html">ForceClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Logger.html">Logger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoyaltyAPIManager.html">LoyaltyAPIManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoyaltyAPIManager/SortBy.html">– SortBy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoyaltyAPIManager/SortOrder.html">– SortOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoyaltyAPIManager/VoucherStatus.html">– VoucherStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoyaltyAPIManager/Resource.html">– Resource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NetworkManager.html">NetworkManager</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/CommonError.html">CommonError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Collection.html">Collection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/DateFormatter.html">DateFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/DateFormatter/Length.html">– Length</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/ForceAuthenticator.html">ForceAuthenticator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NetworkManagerProtocol.html">NetworkManagerProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/AdditionalFieldValues.html">AdditionalFieldValues</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:16LoyaltyMobileSDK010AdditionalA12MemberFieldsV">AdditionalLoyaltyMemberFields</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AdditionalLoyaltyProgramMemberFields.html">AdditionalLoyaltyProgramMemberFields</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AdditionalTransactionJournalAttribute.html">AdditionalTransactionJournalAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:16LoyaltyMobileSDK17AssociatedAccountV">AssociatedAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AssociatedContact.html">AssociatedContact</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AssociatedContactDetails.html">AssociatedContactDetails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BenefitModel.html">BenefitModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Benefits.html">Benefits</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollPromotionOutputModel.html">EnrollPromotionOutputModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollPromotionOutputParameters.html">EnrollPromotionOutputParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollPromotionResult.html">EnrollPromotionResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollPromotionResultsOutputParameters.html">EnrollPromotionResultsOutputParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:16LoyaltyMobileSDK32EnrollPromotionSimulationDetailsV">EnrollPromotionSimulationDetails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollmentModel.html">EnrollmentModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollmentOutputModel.html">EnrollmentOutputModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ForceAPI.html">ForceAPI</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ForceRequest.html">ForceRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ForceRequest.html#/s:16LoyaltyMobileSDK12ForceRequestV6MethodV">– Method</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ForceRequest.html#/s:16LoyaltyMobileSDK12ForceRequestV8MIMETypeV">– MIMEType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ForceRequest.html#/s:16LoyaltyMobileSDK12ForceRequestV6HeaderV">– Header</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LoyaltyAPIVersion.html">LoyaltyAPIVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MemberCurrency.html">MemberCurrency</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MemberTier.html">MemberTier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OutputParameterMain.html">OutputParameterMain</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OutputParameterSub.html">OutputParameterSub</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PointsChange.html">PointsChange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ProfileModel.html">ProfileModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PromotionModel.html">PromotionModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PromotionModelOutputParameters.html">PromotionModelOutputParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PromotionOutputsOutputParameters.html">PromotionOutputsOutputParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PromotionResult.html">PromotionResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:16LoyaltyMobileSDK17SimulationDetailsV">SimulationDetails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TransactionJournal.html">TransactionJournal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TransactionJournalOutput.html">TransactionJournalOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TransactionModel.html">TransactionModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/UnenrollPromotionOutputModel.html">UnenrollPromotionOutputModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/UnenrollPromotionResponseModel.html">UnenrollPromotionResponseModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/UnenrollPromotionResult.html">UnenrollPromotionResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VoucherModel.html">VoucherModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VouchersResponse.html">VouchersResponse</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>LoyaltyAPIManager</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">LoyaltyAPIManager</span></code></pre>
+
+                </div>
+              </div>
+            <p>A class for managing requests related to loyalty programs using the Force API.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC4authAA18ForceAuthenticator_pvp"></a>
+                    <a name="//apple_ref/swift/Property/auth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC4authAA18ForceAuthenticator_pvp">auth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An instance of <code><a href="../Protocols/ForceAuthenticator.html">ForceAuthenticator</a></code> for authentication</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">auth</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ForceAuthenticator.html">ForceAuthenticator</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC18loyaltyProgramNameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/loyaltyProgramName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC18loyaltyProgramNameSSvp">loyaltyProgramName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The name of the loyalty program</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">loyaltyProgramName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC11instanceURLSSvp"></a>
+                    <a name="//apple_ref/swift/Property/instanceURL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC11instanceURLSSvp">instanceURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The base URL of the loyalty program API</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">instanceURL</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC4auth18loyaltyProgramName11instanceURL11forceClientAcA18ForceAuthenticator_p_S2SAA0mL0Ctcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(auth:loyaltyProgramName:instanceURL:forceClient:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC4auth18loyaltyProgramName11instanceURL11forceClientAcA18ForceAuthenticator_p_S2SAA0mL0Ctcfc">init(auth:<wbr>loyaltyProgramName:<wbr>instanceURL:<wbr>forceClient:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes a <code>LoyaltyAPIManager</code> with the necessary parameters.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">auth</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ForceAuthenticator.html">ForceAuthenticator</a></span><span class="p">,</span> <span class="nv">loyaltyProgramName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">instanceURL</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">forceClient</span><span class="p">:</span> <span class="kt"><a href="../Classes/ForceClient.html">ForceClient</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC6SortByO"></a>
+                    <a name="//apple_ref/swift/Enum/SortBy" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC6SortByO">SortBy</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enumeration for sorting the results by a specific field.</p>
+
+                        <a href="../Classes/LoyaltyAPIManager/SortBy.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SortBy</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC9SortOrderO"></a>
+                    <a name="//apple_ref/swift/Enum/SortOrder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC9SortOrderO">SortOrder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enumeration for specifying the sort order of the results.</p>
+
+                        <a href="../Classes/LoyaltyAPIManager/SortOrder.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SortOrder</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC13VoucherStatusO"></a>
+                    <a name="//apple_ref/swift/Enum/VoucherStatus" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC13VoucherStatusO">VoucherStatus</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enumeration for the status of a voucher.</p>
+
+                        <a href="../Classes/LoyaltyAPIManager/VoucherStatus.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">VoucherStatus</span> <span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC8ResourceO"></a>
+                    <a name="//apple_ref/swift/Enum/Resource" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC8ResourceO">Resource</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enumeration for identifying the type of resource to request.</p>
+
+                        <a href="../Classes/LoyaltyAPIManager/Resource.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Resource</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC7getPath3forSSAC8ResourceO_tF"></a>
+                    <a name="//apple_ref/swift/Method/getPath(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC7getPath3forSSAC8ResourceO_tF">getPath(for:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get path for given API resource</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getPath</span><span class="p">(</span><span class="k">for</span> <span class="nv">resource</span><span class="p">:</span> <span class="kt"><a href="../Classes/LoyaltyAPIManager/Resource.html">Resource</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>resource</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code><a href="../Classes/LoyaltyAPIManager/Resource.html">Resource</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A string represents URL path of the resource</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC17getMemberBenefits3for7version7devModeSayAA12BenefitModelVGSS_SSSbtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/getMemberBenefits(for:version:devMode:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC17getMemberBenefits3for7version7devModeSayAA12BenefitModelVGSS_SSSbtYaKF">getMemberBenefits(for:<wbr>version:<wbr>devMode:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get Member Benefits - Makes an asynchronous request for data from the Salesforce
+Reference: <a href="https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_member_benefits.htm">https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_member_benefits.htm</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getMemberBenefits</span><span class="p">(</span>
+    <span class="k">for</span> <span class="nv">memberId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">version</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt"><a href="../Structs/LoyaltyAPIVersion.html">LoyaltyAPIVersion</a></span><span class="o">.</span><span class="n">defaultVersion</span><span class="p">,</span>
+    <span class="nv">devMode</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/BenefitModel.html">BenefitModel</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The API version number</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>devMode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether it&rsquo;s in devMode</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Structs/BenefitModel.html">BenefitModel</a></code> array</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC16getMemberProfile3for7version7devModeAA0G5ModelVSS_SSSbtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/getMemberProfile(for:version:devMode:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC16getMemberProfile3for7version7devModeAA0G5ModelVSS_SSSbtYaKF">getMemberProfile(for:<wbr>version:<wbr>devMode:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get Member Profile - Makes an asynchronous request for data from the Salesforce
+Reference: <a href="https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_member_profile.htm">https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_member_profile.htm</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getMemberProfile</span><span class="p">(</span>
+    <span class="k">for</span> <span class="nv">memberId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">version</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt"><a href="../Structs/LoyaltyAPIVersion.html">LoyaltyAPIVersion</a></span><span class="o">.</span><span class="n">defaultVersion</span><span class="p">,</span>
+    <span class="nv">devMode</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ProfileModel.html">ProfileModel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The API version number</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>devMode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether it&rsquo;s in devMode</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Structs/ProfileModel.html">ProfileModel</a></code> instance</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC25getCommunityMemberProfile7version7devModeAA0H5ModelVSS_SbtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/getCommunityMemberProfile(version:devMode:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC25getCommunityMemberProfile7version7devModeAA0H5ModelVSS_SbtYaKF">getCommunityMemberProfile(version:<wbr>devMode:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get Community Member Profile - Makes an asynchronous request for data from the Salesforce</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getCommunityMemberProfile</span><span class="p">(</span>
+    <span class="nv">version</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt"><a href="../Structs/LoyaltyAPIVersion.html">LoyaltyAPIVersion</a></span><span class="o">.</span><span class="n">defaultVersion</span><span class="p">,</span>
+    <span class="nv">devMode</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/ProfileModel.html">ProfileModel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The API version number</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>devMode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether it&rsquo;s in devMode</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Structs/ProfileModel.html">ProfileModel</a></code> instance</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC14postEnrollment16membershipNumber9firstName04lastJ05email5phone0L12Notification7versionAA0F11OutputModelVSS_S4SSbSStYaKF"></a>
+                    <a name="//apple_ref/swift/Method/postEnrollment(membershipNumber:firstName:lastName:email:phone:emailNotification:version:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC14postEnrollment16membershipNumber9firstName04lastJ05email5phone0L12Notification7versionAA0F11OutputModelVSS_S4SSbSStYaKF">postEnrollment(membershipNumber:<wbr>firstName:<wbr>lastName:<wbr>email:<wbr>phone:<wbr>emailNotification:<wbr>version:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enroll a member to a Loyalty Program
+Reference: <a href="https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_enroll_individual_member.htm">https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_enroll_individual_member.htm</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">postEnrollment</span><span class="p">(</span>
+    <span class="nv">membershipNumber</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">firstName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">lastName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">email</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">phone</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">emailNotification</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span>
+    <span class="nv">version</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt"><a href="../Structs/LoyaltyAPIVersion.html">LoyaltyAPIVersion</a></span><span class="o">.</span><span class="n">defaultVersion</span><span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/EnrollmentOutputModel.html">EnrollmentOutputModel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>membershipNumber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The memership number for the loyalty program</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>firstName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The first name</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lastName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The last name</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>email</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The email address</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>phone</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The phone number</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>emailNotification</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether subscribe to the mailinglist</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The API version number</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Structs/EnrollmentOutputModel.html">EnrollmentOutputModel</a></code> instance</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC8enrollIn9promotion3for7versionySS_S2StYaKF"></a>
+                    <a name="//apple_ref/swift/Method/enrollIn(promotion:for:version:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC8enrollIn9promotion3for7versionySS_S2StYaKF">enrollIn(promotion:<wbr>for:<wbr>version:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enroll into a promotion
+Reference: <a href="https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_enroll_ln_promotion.htm">https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_enroll_ln_promotion.htm</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">enrollIn</span><span class="p">(</span>
+    <span class="n">promotion</span> <span class="nv">promotionName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="k">for</span> <span class="nv">membershipNumber</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">version</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt"><a href="../Structs/LoyaltyAPIVersion.html">LoyaltyAPIVersion</a></span><span class="o">.</span><span class="n">defaultVersion</span><span class="p">)</span> <span class="n">async</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>promotionName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The promotion name</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>membershipNumber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The membership number</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The API version number</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC8unenroll11promotionId3for7version7devModeySS_S2SSbtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/unenroll(promotionId:for:version:devMode:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC8unenroll11promotionId3for7version7devModeySS_S2SSbtYaKF">unenroll(promotionId:<wbr>for:<wbr>version:<wbr>devMode:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Unroll from a promotion</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">func</span> <span class="nf">unenroll</span><span class="p">(</span>
+       <span class="nv">promotionId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+       <span class="k">for</span> <span class="nv">membershipNumber</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+       <span class="nv">version</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt"><a href="../Structs/LoyaltyAPIVersion.html">LoyaltyAPIVersion</a></span><span class="o">.</span><span class="n">defaultVersion</span><span class="p">,</span>
+       <span class="nv">devMode</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="n">async</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>promotionId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The promotion ID</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>membershipNumber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The membership Number</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The API version number</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>devMode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether it&rsquo;s in devMode</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC8unenroll13promotionName3for7version7devModeySS_S2SSbtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/unenroll(promotionName:for:version:devMode:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC8unenroll13promotionName3for7version7devModeySS_S2SSbtYaKF">unenroll(promotionName:<wbr>for:<wbr>version:<wbr>devMode:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Unroll from a promotion</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">func</span> <span class="nf">unenroll</span><span class="p">(</span>
+       <span class="nv">promotionName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+       <span class="k">for</span> <span class="nv">membershipNumber</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+       <span class="nv">version</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt"><a href="../Structs/LoyaltyAPIVersion.html">LoyaltyAPIVersion</a></span><span class="o">.</span><span class="n">defaultVersion</span><span class="p">,</span>
+       <span class="nv">devMode</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="n">async</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>promotionName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The promotion name</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>membershipNumber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The membership Number</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The API version number</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>devMode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether it&rsquo;s in devMode</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC13getPromotions8memberId7version7devModeAA14PromotionModelVSS_SSSbtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/getPromotions(memberId:version:devMode:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC13getPromotions8memberId7version7devModeAA14PromotionModelVSS_SSSbtYaKF">getPromotions(memberId:<wbr>version:<wbr>devMode:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get promotions for the loyalty member
+Reference: <a href="https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_enroll_ln_promotion.htm">https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_enroll_ln_promotion.htm</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getPromotions</span><span class="p">(</span>
+    <span class="nv">memberId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">version</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt"><a href="../Structs/LoyaltyAPIVersion.html">LoyaltyAPIVersion</a></span><span class="o">.</span><span class="n">defaultVersion</span><span class="p">,</span>
+    <span class="nv">devMode</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/PromotionModel.html">PromotionModel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>memberId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The member ID</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The API version number</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>devMode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether it&rsquo;s in devMode</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Structs/PromotionModel.html">PromotionModel</a></code> instance</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC13getPromotions16membershipNumber7version7devModeAA14PromotionModelVSS_SSSbtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/getPromotions(membershipNumber:version:devMode:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC13getPromotions16membershipNumber7version7devModeAA14PromotionModelVSS_SSSbtYaKF">getPromotions(membershipNumber:<wbr>version:<wbr>devMode:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get promotions for the loyalty member
+Reference: <a href="https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_enroll_ln_promotion.htm">https://developer.salesforce.com/docs/atlas.en-us.loyalty.meta/loyalty/connect_resources_enroll_ln_promotion.htm</a></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getPromotions</span><span class="p">(</span>
+    <span class="nv">membershipNumber</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">version</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt"><a href="../Structs/LoyaltyAPIVersion.html">LoyaltyAPIVersion</a></span><span class="o">.</span><span class="n">defaultVersion</span><span class="p">,</span>
+    <span class="nv">devMode</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/PromotionModel.html">PromotionModel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>membershipNumber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The membership number</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The API version number</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>devMode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether it&rsquo;s in devMode</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Structs/PromotionModel.html">PromotionModel</a></code> instance</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC15getTransactions3for10pageNumber15journalTypeName0j3SubkL015periodStartDate0n3EndP07version7devModeSayAA18TransactionJournalVGSS_SiSgSSSgA3QSSSbtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/getTransactions(for:pageNumber:journalTypeName:journalSubTypeName:periodStartDate:periodEndDate:version:devMode:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC15getTransactions3for10pageNumber15journalTypeName0j3SubkL015periodStartDate0n3EndP07version7devModeSayAA18TransactionJournalVGSS_SiSgSSSgA3QSSSbtYaKF">getTransactions(for:<wbr>pageNumber:<wbr>journalTypeName:<wbr>journalSubTypeName:<wbr>periodStartDate:<wbr>periodEndDate:<wbr>version:<wbr>devMode:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get Transactions - Makes an asynchronous request for transactions data from the Salesforce</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getTransactions</span><span class="p">(</span>
+    <span class="k">for</span> <span class="nv">membershipNumber</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">pageNumber</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">journalTypeName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">journalSubTypeName</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">periodStartDate</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">periodEndDate</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">version</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt"><a href="../Structs/LoyaltyAPIVersion.html">LoyaltyAPIVersion</a></span><span class="o">.</span><span class="n">defaultVersion</span><span class="p">,</span>
+    <span class="nv">devMode</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/TransactionJournal.html">TransactionJournal</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pageNumber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Number of the page you want returned. If you don’t specify a value, the first page is returned. Each page contains 200 transaction journals and the transaction journals are sorted based on the date on which the Transaction Journal record was created.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Structs/TransactionModel.html">TransactionModel</a></code> instance</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK0A10APIManagerC11getVouchers16membershipNumber13voucherStatus04pageH09productId0l8CategoryM00L4Name0lnO06sortBy0P5Order7version7devModeSayAA12VoucherModelVGSS_SayAC0vJ0OGSgSiSgSaySSGSgA3yC04SortQ0OSgAC0xR0OSgSSSbtYaKF"></a>
+                    <a name="//apple_ref/swift/Method/getVouchers(membershipNumber:voucherStatus:pageNumber:productId:productCategoryId:productName:productCategoryName:sortBy:sortOrder:version:devMode:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK0A10APIManagerC11getVouchers16membershipNumber13voucherStatus04pageH09productId0l8CategoryM00L4Name0lnO06sortBy0P5Order7version7devModeSayAA12VoucherModelVGSS_SayAC0vJ0OGSgSiSgSaySSGSgA3yC04SortQ0OSgAC0xR0OSgSSSbtYaKF">getVouchers(membershipNumber:<wbr>voucherStatus:<wbr>pageNumber:<wbr>productId:<wbr>productCategoryId:<wbr>productName:<wbr>productCategoryName:<wbr>sortBy:<wbr>sortOrder:<wbr>version:<wbr>devMode:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Asynchronous
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get vouchers information for the loyalty member</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getVouchers</span><span class="p">(</span>
+       <span class="nv">membershipNumber</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+       <span class="nv">voucherStatus</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/LoyaltyAPIManager/VoucherStatus.html">VoucherStatus</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+       <span class="nv">pageNumber</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+       <span class="nv">productId</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+       <span class="nv">productCategoryId</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+       <span class="nv">productName</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+       <span class="nv">productCategoryName</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+       <span class="nv">sortBy</span><span class="p">:</span> <span class="kt"><a href="../Classes/LoyaltyAPIManager/SortBy.html">SortBy</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+       <span class="nv">sortOrder</span><span class="p">:</span> <span class="kt"><a href="../Classes/LoyaltyAPIManager/SortOrder.html">SortOrder</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+       <span class="nv">version</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt"><a href="../Structs/LoyaltyAPIVersion.html">LoyaltyAPIVersion</a></span><span class="o">.</span><span class="n">defaultVersion</span><span class="p">,</span>
+       <span class="nv">devMode</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span> <span class="n">async</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/VoucherModel.html">VoucherModel</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>membershipNumber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The membership number of the loyalty program member whose issued vouchers are retrieved.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>voucherStatus</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The list of statuses for which you want to the get member&rsquo;s vouchers.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pageNumber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Number of the page you want returned. If you don’t specify a value, the first page is returned. Each page contains 200 vouchers and the vouchers are sorted based on the date on which the Voucher record was created.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>productId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The ID of products that are related with the member vouchers you want to get. You can specify the ID of up to 20 products.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>productCategoryId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The ID of product categories that are related with the member vouchers you want to get. You can specify the ID of up to 20 product categories.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>productName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The product name</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>productCategoryName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The names of product categories that are related with the member vouchers you want to get. You can specify the ID of up to 20 product categories.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sortBy</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Specifies the Voucher field that&rsquo;s used to sort the vouchers you want to get. The default value is ExpirationDate.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sortOrder</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Specifies the sort order of the vouchers you want to get. The default value is Ascending.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>version</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The API version number</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>devMode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether it&rsquo;s in devMode</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Structs/VoucherModel.html">VoucherModel</a></code> array</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2023 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2023-04-29)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>
