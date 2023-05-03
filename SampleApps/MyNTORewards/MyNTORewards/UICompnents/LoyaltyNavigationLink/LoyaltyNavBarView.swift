@@ -12,6 +12,7 @@ struct LoyaltyNavBarView: View {
     @Environment(\.dismiss) private var dismiss
     let showSearchButton: Bool
     let title: String
+	let subtitle: String
     let tabBar: TopTabBar?
     
     var body: some View {
@@ -40,6 +41,7 @@ struct LoyaltyNavBarView_Previews: PreviewProvider {
     static var previews: some View {
         LoyaltyNavBarView(showSearchButton: true,
                           title: "Vouchers",
+						  subtitle: "",
                           tabBar: TopTabBar(barItems: ["Available", "Redeemed", "Expired"], tabIndex: .constant(0)))
     }
 }
@@ -63,12 +65,23 @@ extension LoyaltyNavBarView {
     }
     
     private var titleSection: some View {
-        HStack {
-            Text(title)
-                .font(.nameText)
-            Spacer()
-        }
-        .padding(.horizontal)
+		VStack(spacing: 8) {
+			HStack {
+				Text(title)
+					.font(.nameText)
+				Spacer()
+			}
+			.padding(.horizontal)
+			if !subtitle.isEmpty {
+				HStack {
+					Text(subtitle)
+						.font(.loyaltyNavBarSubtitleText)
+					Spacer()
+				}
+				.padding(.horizontal)
+				.padding(.bottom, 8)
+			}
+		}
     }
     
 }

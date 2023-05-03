@@ -19,6 +19,11 @@ class PromotionViewModel: ObservableObject {
     // The tuple represents(isActionDone: Bool, isModalDismissed: Bool)
     // actionTaskList => [promotionId: (isActionDone, isModalDismissed)]
     @Published var actionTaskList: [String: (Bool, Bool)] = [:]
+	@Published var isCheckoutNavigationActive = false
+	
+	final func shopPromotion() -> Bool {
+		return true
+	}
     
     private let authManager: ForceAuthenticator
     private let localFileManager: FileManagerProtocol
@@ -29,7 +34,7 @@ class PromotionViewModel: ObservableObject {
         self.localFileManager = localFileManager
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
                                               loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                              instanceURL: AppSettings.getInstanceURL())
+                                              instanceURL: AppSettings.getInstanceURL(), forceClient: ForceClient(auth: authManager))
     }
     
     // Network call to fetch all eligible promotions
@@ -163,7 +168,7 @@ class PromotionViewModel: ObservableObject {
             let promotions = try await fetchEligiblePromotions(membershipNumber: membershipNumber, devMode: devMode)
             let unenrolled = promotions.filter { result in
                 return (result.memberEligibilityCategory == "EligibleButNotEnrolled" && result.promotionEnrollmentRqr == true)
-            }
+            } 
             
             await MainActor.run {
                 unenrolledPromotions = unenrolled

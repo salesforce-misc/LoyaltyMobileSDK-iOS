@@ -7,8 +7,10 @@
 
 import Foundation
 
+/// A struct to help create and configure URLRequest instances.
 public struct ForceRequest {
     
+    /// Constants for HTTP methods.
     public struct Method {
         static let get = "GET"
         static let delete = "DELETE"
@@ -18,11 +20,13 @@ public struct ForceRequest {
         static let put = "PUT"
     }
     
+    /// Constants for MIME types.
     public struct MIMEType {
         static let json = "application/json;charset=UTF-8"
         static let formUrlEncoded = "application/x-www-form-urlencoded;charset=utf-8"
     }
     
+    /// Constants for HTTP headers.
     public struct Header {
         static let accept = "Accept"
         static let contentType = "Content-Type"

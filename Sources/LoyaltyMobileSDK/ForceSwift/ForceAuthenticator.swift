@@ -7,11 +7,14 @@
 
 import Foundation
 
+/// A protocol that defines the necessary methods for handling access tokens in the Salesforce API.
 public protocol ForceAuthenticator {
-
-    /// A valid accessToken
-    var accessToken: String? { get set }
-    /// Grant an accessToken which can be used to access Salesforce APIs
-    /// - Returns: A valid accessToken
+    
+    /// Get a valid access token.
+    /// - Returns: A valid access token as a `String` if available, otherwise `nil`.
+    func getAccessToken() -> String?
+    
+    /// Grant (or refresh) an access token.
+    /// - Returns: A refreshed or newly granted access token as a `String`.
     func grantAccessToken() async throws -> String
 }

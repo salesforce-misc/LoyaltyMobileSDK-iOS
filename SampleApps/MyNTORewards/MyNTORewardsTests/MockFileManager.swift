@@ -10,15 +10,17 @@ import XCTest
 @testable import LoyaltyMobileSDK
 
 class MockAuthenticator: ForceAuthenticator {
+    func getAccessToken() -> String? {
+        return "Access1234"
+    }
+    
     var accessToken: String?
     
     func grantAccessToken() async throws -> String {
         return "Access1234"
     }
     
-    
     static let sharedMock = MockAuthenticator()
-    
 }
 
 class MockFileManager: FileManagerProtocol {
