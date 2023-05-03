@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class TransactionsViewHelper{
+final class TransactionsViewHelper {
     static let app = XCUIApplication()
     
     static func testEmptyViewElements() throws {
