@@ -93,7 +93,6 @@ struct RedeemCardView2: View {
     }
 }
 
-
 struct RedeemCardView_Previews: PreviewProvider {
     static var previews: some View {
         RedeemCardView2()

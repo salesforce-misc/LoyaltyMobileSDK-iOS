@@ -8,27 +8,26 @@
 import SwiftUI
 
 struct ProductDetailsView: View {
-	@State private var sizeSelected = -1
-	@State private var colorSelected = -1
+	@State private var sizeSelected = 0
+	@State private var colorSelected = 0
 	@State private var quantitySelected: Int = 1
-	@State private var moveToOrderDetails = false
 	var body: some View {
 		ScrollView(showsIndicators: false) {
-			ZStack{
+			ZStack {
 				Color(hex: "#F1F3FB")
 				VStack {
 					VStack {
 						ProductHeaderView(title: "STOP", subTitle: "Women Flight Jacket", rating: 4)
-						ProductImagesView(images: [
-							"https://picsum.photos/620",
-							"https://picsum.photos/532",
-							"https://picsum.photos/456",
-							"https://picsum.photos/879",
-							"https://picsum.photos/805",
-						])
+						ProductImagesView(mainImage: "img-product1",
+										  subImages: [
+											"img-product2",
+											"img-product3",
+											"img-product4",
+											"img-product5"
+										  ])
 					}
 					SizeSelectorView(selection: $sizeSelected, sizes: ["S", "M", "L", "XL"])
-					AvailableColorsView(selection: $colorSelected, colors: [.red, .green, .orange, .purple])
+					AvailableColorsView(selection: $colorSelected, colors: [Color("VibrantRed"), Color("ProductGreen"), Color("ProductPeach"), Color("VibrantPurple")])
 					HStack(alignment: .bottom) {
 						QuantityView(quantitySelected: $quantitySelected, min: 1, max: 10)
 						Spacer()
@@ -40,23 +39,9 @@ struct ProductDetailsView: View {
 						}
 						.padding()
 					}
-					
-					VStack {
-						NavigationLink(isActive: $moveToOrderDetails) {
-							OrderDetailsView()
-						} label: {
-							Button("Buy Now") {
-								moveToOrderDetails.toggle()
-							}
-							.buttonStyle(DarkLongButton())
-						}
-
-						Button("Add to Cart") {}
-							.buttonStyle(LightLongPromotionButton())
-					}
-					.padding(.bottom, 100)
 				}
 			}
+			.padding(.top, 16)
 		}
 	}
 }

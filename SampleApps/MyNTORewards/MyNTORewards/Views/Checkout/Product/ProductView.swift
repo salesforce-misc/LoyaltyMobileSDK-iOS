@@ -13,16 +13,7 @@ struct ProductView: View {
 	var tabbarItems: [String] = ["Details", "Reviews", "T&C"]
 	
 	var body: some View {
-		VStack (alignment: .leading) {
-			NavigationBarView()
-			VStack(alignment: .leading, spacing: 8){
-				Text("Outdoor Collection")
-					.font(.productDetailTitleText)
-				Text("Double points on Outdoor Product Category")
-					.font(.productDetailSubtitleText)
-			}
-			.padding()
-			TopTabBar(barItems: tabbarItems, tabIndex: $tabIndex)
+		VStack(alignment: .center) {
 			TabView(selection: $tabIndex) {
 				ProductDetailsView()
 					.tag(0)
@@ -33,8 +24,19 @@ struct ProductView: View {
 					.tag(2)
 			}
 			.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+			
+			LoyaltyNavLink {
+				OrderDetailsView()
+			} label: {
+				Text("Buy Now")
+					.longFlexibleButtonStyle()
+			}
 		}
-//		.edgesIgnoringSafeArea(.bottom)
+		.loytaltyNavigationTitle("Outdoor Collection")
+		.loyaltyNavigationSubtitle("Double points on Outdoor Product Category")
+		.loyaltyNavBarSearchButtonHidden(true)
+		.loyaltyNavBarTabBar(TopTabBar(barItems: tabbarItems, tabIndex: $tabIndex, tabAlignment: .center))
+		.background(Color(hex: "#F1F3FB"))
 	}
 }
 

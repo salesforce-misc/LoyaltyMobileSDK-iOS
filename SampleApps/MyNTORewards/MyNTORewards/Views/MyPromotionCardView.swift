@@ -28,7 +28,7 @@ struct MyPromotionCardView: View {
                     .foregroundColor(.white)
                     .frame(width: 133, height: 166)
                     .cornerRadius(5, corners: [.topLeft, .bottomLeft])
-                    .overlay(){
+                    .overlay {
                         ProgressView()
                     }
             }
@@ -38,7 +38,7 @@ struct MyPromotionCardView: View {
                         .font(.redeemTitle)
                         .lineSpacing(5)
                     Spacer()
-                    //Image("ic-heart")
+                    // Image("ic-heart")
                 }
                 .padding(.top, 10)
                 Text(promotion.description ?? "")
@@ -91,12 +91,12 @@ struct MyPromotionCardView: View {
                 promotionVM.actionTaskList[promotion.id] = (false, true)
             }
         }) {
-            MyPromotionDetailView(promotion: promotion, processing: $processing)
+			MyPromotionDetailView(isShopActionSuccess: $promotionVM.isCheckoutNavigationActive, promotion: promotion, processing: $processing)
         }
         .onReceive(promotionVM.$actionTaskList) { action in
             if let currentAction = action[promotion.id], currentAction == (true, true) {
                 Task {
-                    await promotionVM.updatePromotionsFromCache(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "", promotionId: promotion.id)
+                    await promotionVM.updatePromotionsFromCache(membershipNumber: rootVM.member?.membershipNumber ?? "", promotionId: promotion.id)
                 }
             }
         }

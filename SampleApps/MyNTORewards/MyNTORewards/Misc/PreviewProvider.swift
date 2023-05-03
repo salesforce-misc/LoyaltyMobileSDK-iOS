@@ -21,15 +21,21 @@ extension PreviewProvider {
 class DeveloperPreview {
     
     static let instance = DeveloperPreview()
-    let member = MemberModel(firstName: "Julia",
-                             lastName: "Green",
-                             email: "julia.green@gmail.com",
-                             mobileNumber: "5556781234",
-                             joinEmailList: true,
-                             dateCreated: Date(),
-                             enrollmentDetails: EnrollmentDetails(loyaltyProgramMemberId: "0lM4x000000LECA",
-                                                                  loyaltyProgramName: "NTO Insider",
-                                                                  membershipNumber: "24345671"))
+//    let member = MemberModel(firstName: "Julia",
+//                             lastName: "Green",
+//                             email: "julia.green@gmail.com",
+//                             mobileNumber: "5556781234",
+//                             joinEmailList: true,
+//                             dateCreated: Date(),
+//                             enrollmentDetails: EnrollmentDetails(loyaltyProgramMemberId: "0lM4x000000LECA",
+//                                                                  loyaltyProgramName: "NTO Insider",
+//                                                                  membershipNumber: "24345671"))
+    let member = CommunityMemberModel(firstName: "Julia",
+                                      lastName: "Green",
+                                      email: "julia.green@gmail.com",
+                                      loyaltyProgramMemberId: "0lM4x000000LECA",
+                                      loyaltyProgramName: "NTO Insider",
+                                      membershipNumber: "24345671")
     
     /*
      [
@@ -80,6 +86,8 @@ class DeveloperPreview {
          }
      ]
      */
+    
+    // swiftlint:disable line_length
     let promotion = PromotionResult(fulfillmentAction: "CREDIT_POINTS",
                                     promotionEnrollmentRqr: false,
                                     memberEligibilityCategory: "Eligible",
@@ -94,11 +102,30 @@ class DeveloperPreview {
                                     description: "Promote sustainable travel alternatives and earn rewards by joining us in the Mountain Biking Bonanza event",
                                     promotionEnrollmentEndDate: "end",
                                     promEnrollmentStartDate: "start")
+    // swiftlint:enable line_length
     
-    //let currency = TransactionCurrency(value: 100, name: "Reward Points")
+    // let currency = TransactionCurrency(value: 100, name: "Reward Points")
     let transactions = [
-        TransactionJournal(activityDate: "10 November 2022", additionalTransactionJournalAttributes: [], journalSubTypeName: "subtype", journalTypeName: "Acceral", pointsChange: [PointsChange(changeInPoints: 100.0, loyaltyMemberCurrency: "Reward Points")], id: "0001", transactionJournalNumber: "", productCategoryName: "", productName: "", transactionAmount: ""),
-        TransactionJournal(activityDate: "12 November 2022", additionalTransactionJournalAttributes: [], journalSubTypeName: "subtype", journalTypeName: "Manual Points Adjustment", pointsChange: [PointsChange(changeInPoints: 300.0, loyaltyMemberCurrency: "Reward Points")], id: "0001",transactionJournalNumber: "", productCategoryName: "", productName: "", transactionAmount: "")
+        TransactionJournal(activityDate: "10 November 2022",
+                           additionalTransactionJournalAttributes: [],
+                           journalSubTypeName: "subtype",
+                           journalTypeName: "Acceral",
+                           pointsChange: [PointsChange(changeInPoints: 100.0, loyaltyMemberCurrency: "Reward Points")],
+                           id: "0001",
+                           transactionJournalNumber: "",
+                           productCategoryName: "",
+                           productName: "",
+                           transactionAmount: ""),
+        TransactionJournal(activityDate: "12 November 2022",
+                           additionalTransactionJournalAttributes: [],
+                           journalSubTypeName: "subtype",
+                           journalTypeName: "Manual Points Adjustment",
+                           pointsChange: [PointsChange(changeInPoints: 300.0, loyaltyMemberCurrency: "Reward Points")],
+                           id: "0001",
+                           transactionJournalNumber: "",
+                           productCategoryName: "",
+                           productName: "",
+                           transactionAmount: "")
     ]
     
 	let voucher1 = VoucherModel(id: "000001",
@@ -171,7 +198,7 @@ class DeveloperPreview {
         promotionVM.promotions = [promotion]
     }
     
-    func setMember(member: MemberModel) {
+    func setMember(member: CommunityMemberModel) {
         self.rootVM.member = member
     }
 }

@@ -13,7 +13,7 @@ struct MyPromotionDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
-    
+	@Binding var isShopActionSuccess: Bool
     let promotion: PromotionResult
     @Binding var processing: Bool
 //	@Binding var shopTapped: Bool
@@ -63,11 +63,11 @@ struct MyPromotionDetailView: View {
                                 processing = true
                                 Task {
                                     do {
-                                        try await promotionVM.enroll(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "",
+                                        try await promotionVM.enroll(membershipNumber: rootVM.member?.membershipNumber ?? "",
                                                                      promotionName: currentPromotion.promotionName, promotionId: promotion.id)
                                         processing = false
                                     } catch {
-                                        print("Enroll in Promotion Error: \(error)")
+                                        Logger.error("Enroll in Promotion Error: \(error)")
                                         processing = false
                                     }
                                 }
@@ -82,9 +82,7 @@ struct MyPromotionDetailView: View {
                         HStack {
                             Spacer()
                             Button("Shop") {
-                                dismiss()
-//								shopTapped = true
-								promotionVM.shopPromotion()
+								shopPromotion()
                             }
                             .buttonStyle(DarkShortPromotionButton())
                             Spacer()
@@ -93,11 +91,11 @@ struct MyPromotionDetailView: View {
                                 processing = true
                                 Task {
                                     do {
-                                        try await promotionVM.unenroll(membershipNumber: rootVM.member?.enrollmentDetails.membershipNumber ?? "",
+                                        try await promotionVM.unenroll(membershipNumber: rootVM.member?.membershipNumber ?? "",
                                                                        promotionName: currentPromotion.promotionName, promotionId: promotion.id)
                                         processing = false
                                     } catch {
-                                        print("Unenroll in Promotion Error: \(error)")
+                                        Logger.error("Unenroll in Promotion Error: \(error)")
                                         processing = false
                                     }
                                 }
@@ -112,6 +110,7 @@ struct MyPromotionDetailView: View {
                             Spacer()
                             Button("Shop") {
                                 // link to e-commerce
+								shopPromotion()
                             }
                             .buttonStyle(DarkShortButton())
                             Spacer()
@@ -133,11 +132,18 @@ struct MyPromotionDetailView: View {
         .zIndex(3.0)
         
     }
+	
+	private func shopPromotion() {
+		if promotionVM.shopPromotion() {
+			dismiss()
+			isShopActionSuccess = true
+		}
+	}
 }
 
 struct MyPromotionDetailView_Previews: PreviewProvider {
     static var previews: some View {
-		MyPromotionDetailView(promotion: dev.promotion, processing: .constant(false))
+		MyPromotionDetailView(isShopActionSuccess: .constant(false), promotion: dev.promotion, processing: .constant(false))
             .environmentObject(dev.rootVM)
             .environmentObject(dev.promotionVM)
     }

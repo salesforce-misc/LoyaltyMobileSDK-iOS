@@ -19,12 +19,14 @@ struct SheetHeader: View {
                 Text(title)
                     .font(.boldedText)
                     .padding()
+                    .accessibilityIdentifier(title)
                 Spacer()
                 Button {
                     dismiss()
                 } label: {
                     Image("ic-close")
                 }
+                .accessibilityIdentifier(title + "_dismiss")
                 .padding()
 
             }

@@ -6,41 +6,53 @@
  */
 
 import Foundation
-  
+
+/// A class that handles making network requests with authentication using the ForceAuthenticator.
 public class ForceClient {
     public var auth: ForceAuthenticator
+    public var forceNetworkManager: NetworkManagerProtocol
     
-    public init(auth: ForceAuthenticator) {
+    /// Create a new instance from a given `ForceAuthenticator`
+    /// - Parameters:
+    ///   - auth: A `ForceAuthenticator` instance
+    ///   - forceNetworkManager: A `NetworkManagerProtocol` instance (defaults to `NetworkManager.shared`)
+    public init(auth: ForceAuthenticator, forceNetworkManager: NetworkManagerProtocol = NetworkManager.shared) {
         self.auth = auth
+        self.forceNetworkManager = forceNetworkManager
     }
     
-    /// Use Async/Await to fetch all REST requests
-    public func fetch<T: Decodable>(type: T.Type, with request: URLRequest) async throws -> T {
+    /// Use Async/Await to fetch all REST requests with authentication 
+    /// - Parameters:
+    ///   - type: A type(i.e. model) defined to be used by JSON decoder
+    ///   - request: A URLRequest to be executed by URLSession
+    /// - Returns: A decoded JSON response result
+    public func fetch<T: Decodable>(type: T.Type, with request: URLRequest, urlSession: URLSession = .shared) async throws -> T {
       
         do {
-            var newRequest: URLRequest
-            if let token = auth.accessToken {
-                newRequest = ForceRequest.setAuthorization(request: request, accessToken: token)
-            } else {
-                let accessToken = try await auth.grantAccessToken()
-                newRequest = ForceRequest.setAuthorization(request: request, accessToken: accessToken)
+            guard let token = auth.getAccessToken() else {
+                throw CommonError.authenticationNeeded
             }
-            return try await ForceNetworkManager.shared.fetch(type: type, request: newRequest)
-        } catch ForceError.authenticationNeeded {
+            
+            let newRequest = ForceRequest.setAuthorization(request: request, accessToken: token)
+            return try await forceNetworkManager.fetch(type: type, request: newRequest, urlSession: .shared)
+        } catch CommonError.authenticationNeeded {
             let token = try await auth.grantAccessToken()
             let updatedRequest = ForceRequest.setAuthorization(request: request, accessToken: token)
-            return try await ForceNetworkManager.shared.fetch(type: type, request: updatedRequest)
+            return try await forceNetworkManager.fetch(type: type, request: updatedRequest, urlSession: .shared)
         } catch {
             throw error
         }
     }
     
-    public func fetchLocalJson<T: Decodable>(
-        type: T.Type,
-        file: String) throws -> T {
+    /// Fetch from a local JSON file
+    /// - Parameters:
+    ///   - type: A type(i.e. model) defined to be used by JSON decoder
+    ///   - file: Filename of a local JSON file
+    /// - Returns: A decoded JSON response result
+    func fetchLocalJson<T: Decodable>(type: T.Type, file: String, bundle: Bundle = Bundle.main) throws -> T {
             
-        guard let fileURL = Bundle.main.url(forResource: file, withExtension: "json") else {
-            throw URLError(.badURL, userInfo: [NSURLErrorFailingURLStringErrorKey : "\(file).json"])
+        guard let fileURL = bundle.url(forResource: file, withExtension: "json") else {
+            throw URLError(.badURL, userInfo: [NSURLErrorFailingURLStringErrorKey: "\(file).json"])
         }
       
         return try JSONDecoder().decode(T.self, from: try Data(contentsOf: fileURL))

@@ -10,6 +10,8 @@ import SwiftUI
 struct AddressView: View {
     @EnvironmentObject private var rootVM: AppRootViewModel
 	@EnvironmentObject var orderDetailsViewModel: OrderDetailsViewModel
+	@Binding var selectedIndex: Int
+
     var body: some View {
 		VStack(spacing: 0) {
 			HStack {
@@ -40,12 +42,7 @@ struct AddressView: View {
 			}
 			.padding(.horizontal)
 			.padding(.top)
-			Button("Deliver to This Address") {
-				withAnimation {
-					orderDetailsViewModel.selectTabIndex(1)
-				}
-			}
-				.buttonStyle(DarkFlexibleButton())
+			.padding(.bottom)
 		}
 		.background(Color.white)
         .task {
@@ -61,7 +58,7 @@ struct AddressView: View {
 
 struct AddressView_Previews: PreviewProvider {
     static var previews: some View {
-        AddressView()
+		AddressView(selectedIndex: .constant(0))
 			.environmentObject(dev.orderDetailsVM)
     }
 }

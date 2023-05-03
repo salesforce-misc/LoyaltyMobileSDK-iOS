@@ -1,9 +1,9 @@
-//
-//  VoucherModel.swift
-//  LoyaltyMobileSDK
-//
-//  Created by Vasanthkumar Velusamy on 13/02/23.
-//
+/*
+ * Copyright (c) 2023, Salesforce, Inc.
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
 
 public struct VouchersResponse: Codable {
 	public let vouchers: [VoucherModel]?
@@ -27,7 +27,33 @@ public struct VoucherModel: Codable, Identifiable {
 	public let product, productId, productCategoryId, productCategory: String?
 	public let promotionName, promotionId: String?
 	
-	public init(id: String, voucherDefinition: String, voucherCode: String, voucherImageUrl: String?, voucherNumber: String, description: String?, type: String?, discountPercent: Int?, expirationDate: String, effectiveDate: String, useDate: String?, attributesUrl: String?, status: String?, partnerAccount: String?, faceValue: Double?, redeemedValue: Double?, remainingValue: Double?, currencyIsoCode: String?, isVoucherDefinitionActive: Bool?, isVoucherPartiallyRedeemable: Bool?, product: String?, productId: String?, productCategoryId: String?, productCategory: String?, promotionName: String?, promotionId: String?) {
+	public init(
+        id: String,
+        voucherDefinition: String,
+        voucherCode: String,
+        voucherImageUrl: String?,
+        voucherNumber: String,
+        description: String?,
+        type: String?,
+        discountPercent: Int?,
+        expirationDate: String,
+        effectiveDate: String,
+        useDate: String?,
+        attributesUrl: String?,
+        status: String?,
+        partnerAccount: String?,
+        faceValue: Double?,
+        redeemedValue: Double?,
+        remainingValue: Double?,
+        currencyIsoCode: String?,
+        isVoucherDefinitionActive: Bool?,
+        isVoucherPartiallyRedeemable: Bool?,
+        product: String?,
+        productId: String?,
+        productCategoryId: String?,
+        productCategory: String?,
+        promotionName: String?,
+        promotionId: String?) {
 		self.id = id
 		self.voucherDefinition = voucherDefinition
 		self.voucherCode = voucherCode

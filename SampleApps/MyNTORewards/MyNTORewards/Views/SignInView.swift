@@ -19,10 +19,10 @@ struct SignInView: View {
     @Binding var signUpPresented: Bool
     @Binding var showResetPassword: Bool
     
-    
     var body: some View {
         VStack {
             SheetHeader(title: "Log In")
+                .accessibilityIdentifier(AppAccessibilty.SignIn.loginHeader)
             ScrollView {
                 ZStack {
                     VStack {
@@ -39,6 +39,7 @@ struct SignInView: View {
                             // reset password
                             HStack {
                                 Text("Forgot Your Password?")
+                                    .accessibilityIdentifier(AppAccessibilty.SignIn.forgotPassword)
                                     .foregroundColor(Color.theme.accent)
                                     .font(.regularText)
                                     .onTapGesture {
@@ -60,12 +61,14 @@ struct SignInView: View {
                             }) {
                                 Text("Log In")
                             }
+                            .accessibilityIdentifier(AppAccessibilty.SignIn.loginButton)
                             .buttonStyle(DarkLongButton())
                             .disabled(disableForm)
                             .opacity(disableForm ? 0.5 : 1)
                             
                             HStack {
                                 Text("Not a Member?")
+                                    .accessibilityIdentifier(AppAccessibilty.SignIn.notAMember)
                                 Button(action: {
                                     signInPresented = false
                                     signUpPresented = true
@@ -74,7 +77,8 @@ struct SignInView: View {
                                     Text("Join Now")
                                         .font(.buttonText)
                                 }
-                                //.presentationDetents([.height(405)])
+                                .accessibilityIdentifier(AppAccessibilty.SignIn.joinNow)
+                                // .presentationDetents([.height(405)])
                             }
                         }
                         .padding()
@@ -89,7 +93,6 @@ struct SignInView: View {
             }
             
         }
-        
         
     }
     
@@ -122,8 +125,9 @@ struct SignInCredentialFields: View {
             TextField("Email address", text: $email)
                 .textFieldStyle(RegularTextFieldStyle())
                 .keyboardType(.emailAddress)
+                .accessibilityIdentifier(AppAccessibilty.SignIn.userName)
             RevealableSecureField("Password", text: $password)
+                .accessibilityIdentifier(AppAccessibilty.SignIn.password)
         }
     }
 }
-

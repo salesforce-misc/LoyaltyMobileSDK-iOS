@@ -65,6 +65,7 @@ struct SignUpView: View {
                             
                             HStack {
                                 Text("Already a Member?")
+                                    .accessibilityIdentifier(AppAccessibilty.Signup.alreadyMemberLabel)
                                 Button(action: {
                                     signUpPresented = false
                                     signInPresented = true
@@ -73,6 +74,7 @@ struct SignUpView: View {
                                     Text("Log In")
                                         .font(.buttonText)
                                 }
+                                .accessibilityIdentifier(AppAccessibilty.Signup.loginButton)
                             }
                         }
                         .padding()
@@ -84,8 +86,6 @@ struct SignUpView: View {
                 }
             }
         }
-        
-        
         
     }
     
@@ -136,13 +136,20 @@ struct SignUpCredentialFields: View {
             LoyaltyTextField(textFieldType: .phoneNumber, inputText: $mobileNumber)
             
             RevealableSecureField("Password", text: $password)
+                .accessibility(identifier: AppAccessibilty.Signup.password)
             .focused($passwordIsFocused)
                 .overlay(RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.red, lineWidth: (!SignUpTextFieldType.password.validate(text: password) && passwordIsFocused) ? 2 : 0)
+                    .stroke(
+                        Color.red,
+                        lineWidth: (
+                            !SignUpTextFieldType.password.validate(text: password) && passwordIsFocused
+                        ) ? 2 : 0
+                    )
                     .padding(.horizontal)
                 )
             if !SignUpTextFieldType.password.validate(text: password) && passwordIsFocused {
                 Text(SignUpTextFieldType.password.errorMessage)
+                    .accessibility(identifier: SignUpTextFieldType.password.accessibilityIdentifier + "error")
                     .font(.labelText)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(Color.red)
@@ -152,40 +159,52 @@ struct SignUpCredentialFields: View {
             RevealableSecureField("Confirm password", text: $passwordConfirmation)
             .focused($passwordConfirmationIsFocused)
                 .overlay(RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.red, lineWidth: (passwordConfirmation != password && (passwordConfirmationIsFocused || passwordConfirmation.count > 0)) ? 2 : 0)
+                    .stroke(
+                        Color.red,
+                        lineWidth: (
+                            passwordConfirmation != password &&
+                            (passwordConfirmationIsFocused || passwordConfirmation.isEmpty)
+                        ) ? 2 : 0)
                     .padding(.horizontal)
                 )
-            if passwordConfirmation != password && (passwordConfirmationIsFocused || passwordConfirmation.count > 0) {
+                .accessibility(identifier: AppAccessibilty.Signup.confirmPassword)
+            if passwordConfirmation != password && (passwordConfirmationIsFocused || passwordConfirmation.isEmpty) {
                 Text(SignUpTextFieldType.confirmPassword.errorMessage)
                     .font(.labelText)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(Color.red)
                     .padding(.leading)
+                    .accessibility(identifier: SignUpTextFieldType.confirmPassword.accessibilityIdentifier + "error")
                 
             }
             
             Toggle(isOn: $acceptTerms) {
                 HStack(spacing: 0) {
                     Text("I agree to the ")
+                        .accessibility(identifier: AppAccessibilty.Signup.agreeLabel)
                     Button(action: {
                         showTermsPopover.toggle()
                     }, label: {
                         Text("terms and conditions")
                             .foregroundColor(Color.theme.accent)
                     })
+                    .accessibility(identifier: AppAccessibilty.Signup.agreeButton)
                     .popover(isPresented: $showTermsPopover) {
                         TermsAndConditions()
                     }
                     
                 }
             }
+            .accessibility(identifier: AppAccessibilty.Signup.agreeCheckbox)
             .toggleStyle(CheckboxStyle())
             .padding(.horizontal)
             Toggle(isOn: $joinEmailList) {
                 Text("Add me to the loyalty program's mailing list")
+                    .accessibility(identifier: AppAccessibilty.Signup.mailListLabel)
             }
             .toggleStyle(CheckboxStyle())
             .padding(.horizontal)
+            .accessibility(identifier: AppAccessibilty.Signup.mailListCheckbox)
             
         }
     }
@@ -199,20 +218,73 @@ struct TermsAndConditions: View {
             SheetHeader(title: "Terms and Conditions")
             ScrollView {
                 VStack {
-                    Text("""
                     
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lorem dui, iaculis sit amet sodales sed, finibus mattis odio. Vivamus imperdiet venenatis sollicitudin. Duis aliquam dui nunc, nec interdum diam dapibus et. Praesent nec rutrum arcu. Cras vitae urna sed lectus auctor dapibus. Praesent nec velit a lacus euismod sagittis ac sit amet odio. Nulla posuere, lectus et egestas euismod, urna felis condimentum risus, ac dictum erat nisl ultrices turpis. Morbi ac maximus ligula, mattis pellentesque purus. Nullam dapibus sit amet est vel commodo. Curabitur non ex sit amet lectus auctor malesuada eu eu lacus. Phasellus volutpat, dui vitae consectetur volutpat, magna purus commodo nunc, quis faucibus libero justo auctor leo. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce interdum urna ut lectus ullamcorper egestas. Quisque at dolor euismod, elementum ligula eget, lobortis ex. Cras sollicitudin feugiat pulvinar.
+                    // swiftlint:disable line_length
+                    Text("""
+                    1. Introduction
+                    
+                    1.1. These Terms & Conditions ("Terms") govern the MyNTORewards Loyalty Program ("Program") offered by MyNTO Ltd. ("MyNTO," "we," "us," or "our"). By participating in the Program, you ("Member," "you," or "your") agree to be bound by these Terms, as well as our Privacy Policy, incorporated herein by reference.
 
-                    Vestibulum ultrices tortor sit amet erat aliquam cursus. Morbi convallis, dolor nec ullamcorper elementum, nisl elit fringilla tellus, vel sollicitudin orci quam ac felis. Praesent eget risus luctus, porttitor massa ut, consequat odio. Aliquam malesuada id est non efficitur. Nunc posuere ut lectus congue fermentum. Nam et purus in risus feugiat dignissim non eget ex. Fusce vitae dignissim metus, rhoncus rutrum ipsum. Mauris erat sapien, mattis eu leo eu, ullamcorper convallis ligula. Donec vel magna finibus lorem venenatis ullamcorper. Donec libero mauris, lobortis vitae mattis sit amet, feugiat quis nisi.
+                    1.2. We reserve the right, at our sole discretion, to modify or update these Terms at any time without prior notice. Your continued participation in the Program after any such changes constitutes your acceptance of the new Terms.
 
-                    Sed pharetra ante sit amet odio blandit, vel pulvinar massa commodo. Morbi sit amet scelerisque augue. Nunc pretium eros sapien, quis dictum nibh tincidunt ut. Mauris facilisis elementum mauris, sit amet ornare lectus dictum quis. Nam dignissim scelerisque elit, et aliquam lorem blandit a. Donec semper ac nisi sit amet interdum. Vestibulum eleifend nisl sed nulla pulvinar rhoncus. Nullam malesuada faucibus tempor. Integer luctus at nulla vel gravida.
+                    2. Membership Eligibility and Enrollment
+                    
+                    2.1. The Program is open to individuals who are 18 years of age or older and have a valid email address.
 
-                    Donec feugiat, sem et tincidunt rutrum, arcu lectus commodo neque, ac pulvinar ex dui in sem. Cras ut erat eros. Donec eu orci at purus pellentesque dapibus vitae ac dolor. Nulla sed volutpat risus. Integer euismod nibh ac ex egestas tincidunt. Donec arcu urna, accumsan sit amet fringilla tempus, varius non augue. Quisque eu vestibulum augue. Mauris eget congue augue. Proin scelerisque sem congue diam hendrerit, eu tincidunt quam pellentesque. Duis in elit vel elit viverra aliquet vel id mauris. Praesent lobortis tellus quis odio volutpat, sit amet sollicitudin urna venenatis. Nulla facilisi.
+                    2.2. To enroll in the Program, you must provide your full name, email address, and any other required information.
 
-                    Praesent tempus arcu ante, molestie vestibulum sem feugiat sit amet. Nullam quis commodo dui. Praesent imperdiet sem eget felis mattis, eu mattis est pharetra. Donec pharetra purus felis, eu dignissim ipsum lacinia ut. Sed commodo nisi non mollis euismod. Praesent pharetra pretium ultricies. Mauris viverra varius leo eu laoreet. Sed varius euismod est ac vulputate. Morbi eu faucibus leo. Suspendisse potenti. Sed pharetra pretium nisl, ac hendrerit libero sodales eget. Vivamus scelerisque pretium dui, non ultricies elit sodales non. Sed interdum interdum urna tincidunt ultricies. Etiam purus neque, pellentesque vel nisl vel, bibendum consequat lectus. Ut accumsan lorem at rhoncus volutpat. Aliquam nibh neque, ultricies lobortis leo in, accumsan tristique massa.
+                    2.3. There is no cost to join the Program.
+
+                    3. Earning MyNTORewards Points
+                    
+                    3.1. Members can earn MyNTORewards Points ("Points") by making qualifying purchases at participating MyNTO locations or through our website and mobile app.
+
+                    3.2. Points will be credited to your account within 24 hours of your qualifying purchase.
+
+                    3.3. The number of Points earned per qualifying purchase may vary and will be determined by us at our sole discretion.
+
+                    3.4. Points are non-transferable, have no cash value, and may not be combined with any other offers, discounts, or promotions.
+
+                    4. Redeeming Points
+                    
+                    4.1. Members can redeem Points for rewards ("Rewards") available through the Program.
+
+                    4.2. The number of Points required to redeem a Reward may vary and will be determined by us at our sole discretion.
+
+                    4.3. Rewards are subject to availability and may be substituted or discontinued at any time without prior notice.
+
+                    4.4. Rewards cannot be exchanged, returned, or refunded for Points, cash, or any other form of credit.
+
+                    5. Account Management
+                    
+                    5.1. You are responsible for maintaining the confidentiality of your account information, including your password.
+
+                    5.2. Any unauthorized use of your account or any other breach of security must be reported to us immediately.
+
+                    5.3. We reserve the right to suspend or terminate your account and participation in the Program if we determine, at our sole discretion, that you have violated these Terms.
+
+                    6. Expiration and Termination
+                    
+                    6.1. Points will expire 48 months from the date they were earned.
+
+                    6.2. We reserve the right to terminate the Program or your participation in the Program at any time, for any reason, without prior notice.
+
+                    7. Limitation of Liability
+                    
+                    7.1. We are not responsible for any damages or losses arising from your participation in the Program, including, but not limited to, any errors, delays, or failures in the issuance, redemption, or use of Points or Rewards.
+
+                    8. Governing Law
+                    
+                    8.1. These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which MyNTO is registered, without regard to its conflict of law provisions.
+
+                    9. Contact Us
+                    
+                    9.1. If you have any questions or concerns about the Program or these Terms, please contact us at support@mynstorewards.com.
+                    
                     
                     """)
                     .padding()
+                    // swiftlint:enable line_length
             }
             
             }
