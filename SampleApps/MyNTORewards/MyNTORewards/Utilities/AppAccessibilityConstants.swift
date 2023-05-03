@@ -66,7 +66,15 @@ enum AppAccessibilty {
     enum Promotion {
         static let header = "promotion_header"
         static let searchImage = "search_image"
-        static let viewAll = "viewAll"
+        static let viewAll = "view_all"
+        static let image = "image"
+        static let name = "name"
+        static let description = "description"
+        static let endDate = "end_date"
+        static let shopButton = "shop_button"
+        static let joinButton = "join_button"
+        static let dismissButton = "dismiss_button"
+        static let leaveButton = "leave_button"
     }
     
     enum Home {
@@ -79,6 +87,16 @@ enum AppAccessibilty {
     enum Voucher {
         static let header = "voucher_header"
         static let viewAll = "view_all_button"
+        static let image = "image"
+        static let name = "name"
+        static let discount = "discount"
+        static let status = "status"
+        static let description = "description"
+        static let dismissButton = "dismiss_button"
+        static let closeButton = "close_button"
+        static let qrCode = "qr_code"
+        static let endDate = "end_date"
+        static let voucherCode = "voucher_code"
     }
     
     enum Profile {
@@ -104,4 +122,16 @@ enum AppAccessibilty {
         static let qrDescription = "qr_description"
     }
     
+    enum Transaction {
+        static let logo = "logo"
+        static let name = "name"
+        static let date = "date"
+        static let points = "points"
+    }
+    
+    enum Benefits {
+        static let name = "name"
+        static let logo = "logo"
+        static let description = "description"
+    }
 }
