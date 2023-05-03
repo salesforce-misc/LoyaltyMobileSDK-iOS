@@ -18,8 +18,7 @@ class OrderDetailsViewModel: ObservableObject {
     
     private let checkout_shipping_method = "/services/apexrest/ShippingMethods/"
     private let checkout_shipping_address_query = "SELECT shippingAddress,billingAddress from Account"
-    private let authManager = ForceAuthManager.shared
-    private var loyaltyAPIManager: LoyaltyAPIManager
+    private let authManager: ForceAuthManager
     private var forceClient: ForceClient
 	
 	init(authManager: ForceAuthManager = .shared, forceClient: ForceClient? = nil, index: Int = 0) {
@@ -36,9 +35,6 @@ class OrderDetailsViewModel: ObservableObject {
 			print("Unable to place order")
 		}
 	}
-	
-	private var authManager: ForceAuthManager
-	private var forceClient: ForceClient
 	
 	private func placeOrder(
 		productName: String = "Men's Rainier L4 Windproof Soft Shell Hoodie",
@@ -92,7 +88,7 @@ class OrderDetailsViewModel: ObservableObject {
                 return result
             }
             
-            let request = try ForceRequest.create(path: checkout_shipping_method, method: "GET")
+            let request = try ForceRequest.create(instanceURL: AppSettings.getInstanceURL(), path: checkout_shipping_method, method: "GET")
             let result = try await forceClient.fetch(type: [ShippingMethod].self, with: request)
             return result
         } catch {

@@ -47,8 +47,7 @@ struct AddressView: View {
 		.background(Color.white)
         .task {
             do {
-                let shippingType = try await orderDetailsViewModel.getShippingAddress(membershipNumber: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
-                print(shippingType)
+                try await orderDetailsViewModel.getShippingAddress(membershipNumber: rootVM.member?.loyaltyProgramMemberId ?? "")
             } catch {
                 print("Load Vouchers Error: \(error)")
             }
