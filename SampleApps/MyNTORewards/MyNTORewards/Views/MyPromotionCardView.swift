@@ -18,7 +18,6 @@ struct MyPromotionCardView: View {
     let accessibilityID: String
     let promotion: PromotionResult
     
-
     var body: some View {
         HStack {
             if loadImage {

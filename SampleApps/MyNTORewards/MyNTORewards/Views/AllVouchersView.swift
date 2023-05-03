@@ -68,7 +68,7 @@ struct AllVouchersView: View {
             }
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(Array(voucherVM.availableVochers.enumerated()), id: \.offset) { index, voucher in
-                    VoucherCardView(accessibilityID: "voucher_\(index)",voucher: voucher)
+                    VoucherCardView(accessibilityID: "voucher_\(index)", voucher: voucher)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -92,7 +92,7 @@ struct AllVouchersView: View {
             }
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(Array(voucherVM.redeemedVochers.enumerated()), id: \.offset) { index, voucher in
-                    VoucherCardView(accessibilityID: "voucher_\(index)",voucher: voucher)
+                    VoucherCardView(accessibilityID: "voucher_\(index)", voucher: voucher)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -116,7 +116,7 @@ struct AllVouchersView: View {
             }
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(Array(voucherVM.expiredVochers.enumerated()), id: \.offset) { index, voucher in
-                    VoucherCardView(accessibilityID: "voucher_\(index)",voucher: voucher)
+                    VoucherCardView(accessibilityID: "voucher_\(index)", voucher: voucher)
                 }
             }
             .frame(maxWidth: .infinity)
