@@ -10,7 +10,6 @@ import XCTest
 
 class MockAuthenticator: ForceAuthenticator {
     static let sharedMock = MockAuthenticator()
-
     
     func getAccessToken() -> String? {
         return "AccessToken1234"

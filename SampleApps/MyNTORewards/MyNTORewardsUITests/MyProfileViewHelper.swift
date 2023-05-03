@@ -10,7 +10,7 @@ import XCTest
 final class MyProfileViewHelper: XCTestCase {
     static let app = XCUIApplication()
     
-    static func testEmptyViewElements() throws {
+    static func testProfileScreenElements() throws {
         XCTAssertTrue(app.staticTexts["profile_header"].exists)
         XCTAssertTrue(app.staticTexts["user_name_label"].exists)
         XCTAssertTrue(app.staticTexts["userid_label"].exists)
@@ -18,13 +18,18 @@ final class MyProfileViewHelper: XCTestCase {
         XCTAssertTrue(app.staticTexts["reward_points_label"].exists)
         XCTAssertTrue(app.staticTexts["reward_points"].exists)
         XCTAssertTrue(app.images["profile_image"].exists)
-        XCTAssertTrue(app.staticTexts["My Transactions"].exists)
-        XCTAssertTrue(app.staticTexts["You have no Transactions"].exists)
-        XCTAssertTrue(app.staticTexts["My Vouchers"].exists)
-        XCTAssertTrue(app.staticTexts["You have no Vouchers Available"].exists)
-        XCTAssertTrue(app.staticTexts["My Benefits"].exists)
-        XCTAssertTrue(app.staticTexts["You have no Benefits"].exists)
         XCTAssertTrue(app.buttons["qrcode"].exists)
+        XCTAssertTrue(app.staticTexts["My Transactions"].exists)
+        XCTAssertTrue(app.staticTexts["My Vouchers"].exists)
+        XCTAssertTrue(app.staticTexts["My Benefits"].exists)
+        XCTAssertTrue(app.staticTexts["My Vouchers"].exists)
+    }
+    
+    static func testEmptyViewElements() throws {
+        try testProfileScreenElements()
+        XCTAssertTrue(app.staticTexts["You have no Transactions"].exists)
+        XCTAssertTrue(app.staticTexts["You have no Vouchers Available"].exists)
+        XCTAssertTrue(app.staticTexts["You have no Benefits"].exists)
     }
     
     static func testQRScreen() throws {
@@ -32,13 +37,13 @@ final class MyProfileViewHelper: XCTestCase {
         try testQRScreenElements()
         
         app.images["close_image"].tap()
-        try testEmptyViewElements()
+        try testProfileScreenElements()
         
         app.buttons["qrcode"].tap()
         try testQRScreenElements()
         
         app.buttons["close_button"].tap()
-        try testEmptyViewElements()
+        try testProfileScreenElements()
     }
     
     static func testQRScreenElements() throws {
@@ -51,27 +56,5 @@ final class MyProfileViewHelper: XCTestCase {
         XCTAssertTrue(app.images["profile_image"].exists)
         XCTAssertTrue(app.images["qr_image"].exists)
         XCTAssertTrue(app.buttons["close_button"].exists)
-    }
-    
-    static func testVoucherScreen() throws {
-        app.swipeUp()
-        app.buttons["My Vouchers View All"].tap()
-        try VoucherViewHelper.testEmptyViewElements()
-        app.buttons["back_button"].tap()
-        try  testEmptyViewElements()
-    }
-    
-    static func testBenefitsScreen() throws {
-        app.buttons["My Benefits View All"].tap()
-        try BenefitsViewHelper.testEmptyViewElements()
-        app.buttons["back_button"].tap()
-        try testEmptyViewElements()
-    }
-    
-    static func testTransactionsScreen() throws {
-        app.buttons["My Transactions View All"].tap()
-        try TransactionsViewHelper.testEmptyViewElements()
-        app.buttons["back_button"].tap()
-        try testEmptyViewElements()
     }
 }

@@ -28,10 +28,12 @@ struct VoucherDetailView: View {
                 }, placeholder: {
                     ProgressView()
                 })
+                .accessibilityIdentifier(AppAccessibilty.Voucher.image)
                 .frame(maxWidth: .infinity, maxHeight: 220)
                 .clipped()
                 .overlay(alignment: .topTrailing) {
                     Image("ic-dismiss")
+                        .accessibilityIdentifier(AppAccessibilty.Voucher.dismissButton)
                         .padding()
                         .onTapGesture {
                             dismiss()
@@ -41,15 +43,16 @@ struct VoucherDetailView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     Text(voucher.voucherDefinition)
                         .font(.voucherTitle)
+                        .accessibilityIdentifier(AppAccessibilty.Voucher.name)
 
                     VStack(alignment: .leading, spacing: 5) {
                         if let voucherValue = voucher.getVoucherValue() {
                             voucherValue
                         }
                         Text("Expiring on **\(voucher.expirationDate)**")
+                            .accessibilityIdentifier(AppAccessibilty.Voucher.endDate)
                     }
                     .font(.voucherText)
-                    
                     let voucherCode = voucher.voucherCode
                     let QRCodeImageData = LoyaltyUtilities.getQRCodeData(text: voucherCode) ?? Data.init()
                     let QRCodeImage = UIImage(data: QRCodeImageData) ?? UIImage(systemName: "xmark.octagon.fill") ?? UIImage()
@@ -58,6 +61,7 @@ struct VoucherDetailView: View {
                         Spacer()
                         Image(uiImage: QRCodeImage)
                             .resizable()
+                            .accessibilityIdentifier(AppAccessibilty.Voucher.qrCode)
                             .frame(width: 110, height: 110)
                         Spacer()
                     }
@@ -66,6 +70,7 @@ struct VoucherDetailView: View {
                         Spacer()
                         HStack {
                             Text(voucherCode)
+                                .accessibilityIdentifier(AppAccessibilty.Voucher.voucherCode)
                                 .font(.profileSubtitle)
                                 .foregroundColor(Color.theme.voucherCode)
                                 .padding(.leading, 8)
@@ -97,6 +102,7 @@ struct VoucherDetailView: View {
                     
                     if let details = voucher.description {
                         Text("**Details**\n\(details)")
+                            .accessibilityIdentifier(AppAccessibilty.Voucher.description)
                             .font(.voucherText)
                             .foregroundColor(Color.theme.superLightText)
                             .lineSpacing(5)
@@ -108,6 +114,7 @@ struct VoucherDetailView: View {
                         Button("Close") {
                             dismiss()
                         }
+                        .accessibilityIdentifier(AppAccessibilty.Voucher.closeButton)
                         .buttonStyle(DarkShortButton())
                         Spacer()
                     }
