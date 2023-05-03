@@ -14,6 +14,7 @@ struct VoucherCardView: View {
     
     @State var showVoucherDetailView = false
     @State var isCodeCopiedAlertPresent = false
+    let accessibilityID: String
     let voucher: VoucherModel
     
     var body: some View {
@@ -26,23 +27,27 @@ struct VoucherCardView: View {
             }, placeholder: {
                 ProgressView()
             })
+            .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Voucher.image)
             .frame(width: 165, height: 92)
             .cornerRadius(5, corners: [.topLeft, .topRight])
             
             VStack(alignment: .leading, spacing: 10) {
                 Text(voucher.voucherDefinition)
                     .font(.redeemTitle)
+                    .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Voucher.name)
                 
                 VStack(alignment: .leading, spacing: 4) {
                     if let voucherValue = voucher.getVoucherValue() {
                         voucherValue
                     }
                     Text("Expiring on **\(voucher.expirationDate)**")
+                        .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Voucher.endDate)
                 }
                 .font(.offerText)
                 
                 if voucher.status == "Redeemed" {
                     Text("Redeemed")
+                        .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Voucher.status)
                         .font(.voucherButtonText)
                         .foregroundColor(Color.theme.redeemedButtonText)
                         .frame(width: 145, height: 32)
@@ -52,6 +57,7 @@ struct VoucherCardView: View {
                 }
                 if voucher.status == "Expired" {
                     Text("Expired")
+                        .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Voucher.status)
                         .font(.voucherButtonText)
                         .foregroundColor(Color.theme.expiredButtonText)
                         .frame(width: 145, height: 32)
@@ -63,6 +69,7 @@ struct VoucherCardView: View {
                     if let voucherCode = voucher.voucherCode {
 						HStack {
 							Text(voucherCode)
+                                .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Voucher.status)
 								.font(.profileSubtitle)
 								.foregroundColor(Color.theme.voucherCode)
 								.padding(.leading, 8)
@@ -125,10 +132,10 @@ struct VoucherCardView: View {
 struct VoucherCardView_Previews: PreviewProvider {
     static var previews: some View {
         HStack(spacing: 15) {
-            VoucherCardView(voucher: dev.voucher1)
+            VoucherCardView(accessibilityID: "id", voucher: dev.voucher1)
                 .environmentObject(dev.voucherVM)
 				.environmentObject(dev.imageVM)
-            VoucherCardView(voucher: dev.voucher2)
+            VoucherCardView(accessibilityID: "id", voucher: dev.voucher2)
                 .environmentObject(dev.voucherVM)
 				.environmentObject(dev.imageVM)
         }

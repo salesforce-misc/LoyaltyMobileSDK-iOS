@@ -66,8 +66,8 @@ struct AllVouchersView: View {
                 EmptyStateView(title: "You have no Available Vouchers")
             }
             LazyVGrid(columns: columns, spacing: 15) {
-                ForEach(voucherVM.availableVochers) { voucher in
-                    VoucherCardView(voucher: voucher)
+                ForEach(Array(voucherVM.availableVochers.enumerated()), id: \.offset) { index, voucher in
+                    VoucherCardView(accessibilityID: "voucher_\(index)",voucher: voucher)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -90,8 +90,8 @@ struct AllVouchersView: View {
                 EmptyStateView(title: "Nothing to report", subTitle: "After you redeem a voucher, you’ll find it here.")
             }
             LazyVGrid(columns: columns, spacing: 15) {
-                ForEach(voucherVM.redeemedVochers) { voucher in
-                    VoucherCardView(voucher: voucher)
+                ForEach(Array(voucherVM.redeemedVochers.enumerated()), id: \.offset) { index, voucher in
+                    VoucherCardView(accessibilityID: "voucher_\(index)",voucher: voucher)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -114,8 +114,8 @@ struct AllVouchersView: View {
                 EmptyStateView(title: "You have no Expired Vouchers")
             }
             LazyVGrid(columns: columns, spacing: 15) {
-                ForEach(voucherVM.expiredVochers) { voucher in
-                    VoucherCardView(voucher: voucher)
+                ForEach(Array(voucherVM.expiredVochers.enumerated()), id: \.offset) { index, voucher in
+                    VoucherCardView(accessibilityID: "voucher_\(index)",voucher: voucher)
                 }
             }
             .frame(maxWidth: .infinity)

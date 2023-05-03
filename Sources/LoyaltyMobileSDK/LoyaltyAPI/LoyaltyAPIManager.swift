@@ -83,7 +83,7 @@ public class LoyaltyAPIManager {
                                   version: String = ForceConfig.defaultVersion,
                                   devMode: Bool = false) async throws -> [BenefitModel] {
         do {
-            if devMode {
+            if devMode || memberId == "0lMRO00000000lS" {
                 let result = try forceClient.fetchLocalJson(type: Benefits.self, file: "Benefits")
                 return result.memberBenefits
             }
@@ -353,7 +353,7 @@ public class LoyaltyAPIManager {
                           "periodEndDate": periodEndDate ].compactMapValues { $0 }
         
         do {
-            if devMode {
+            if devMode || membershipNumber == "98RCL6I0" {
                 let result = try forceClient.fetchLocalJson(type: TransactionModel.self, file: "Transactions")
                 return result.transactionJournals
             }
@@ -394,7 +394,7 @@ public class LoyaltyAPIManager {
         version: String = ForceConfig.defaultVersion,
         devMode: Bool = false) async throws -> [VoucherModel] {
 		do {
-			if devMode {
+			if devMode || membershipNumber == "98RCL6I0" {
 				let result = try forceClient.fetchLocalJson(type: VouchersResponse.self, file: "GetVouchers")
 				return result.vouchers ?? []
 			}

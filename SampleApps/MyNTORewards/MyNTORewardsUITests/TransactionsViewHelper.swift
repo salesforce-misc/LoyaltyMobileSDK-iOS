@@ -18,4 +18,30 @@ final class TransactionsViewHelper{
         XCTAssertTrue(app.staticTexts["Nothing to report"].exists)
         XCTAssertTrue(app.staticTexts["When you complete your first transaction, you’ll find it here."].exists)
     }
+    
+    static func testTransactionCardView() throws {
+        for i in 0..<5 {
+            guard app.images["transaction_\(i)_logo"].waitForExistence(timeout: 2) else {
+                return
+            }
+            XCTAssertTrue(app.staticTexts["transaction_\(i)_name"].exists)
+            XCTAssertTrue(app.staticTexts["transaction_\(i)_date"].exists)
+            XCTAssertTrue(app.staticTexts["transaction_\(i)_points"].exists)
+        }
+    }
+    
+    static func testTransactionScreen() throws {
+        app.buttons["My Transactions View All"].tap()
+        XCTAssertTrue(app.staticTexts["My Transactions"].exists)
+        XCTAssertTrue(app.buttons["back_button"].exists)
+        try testTransactionCardView()
+        app.buttons["back_button"].tap()
+    }
+    
+    static func testTransactionsEmptyScreen() throws {
+        app.buttons["My Transactions View All"].tap()
+        try TransactionsViewHelper.testEmptyViewElements()
+        app.buttons["back_button"].tap()
+        try MyProfileViewHelper.testProfileScreenElements()
+    }
 }

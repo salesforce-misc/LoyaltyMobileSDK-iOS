@@ -26,7 +26,7 @@ struct AllBenefitsView: View {
         if #available(iOS 16, *) {
             List {
                 VStack {
-                    ForEach(benefitVM.benefits) { benefit in
+                    ForEach(Array(benefitVM.benefits.enumerated()), id: \.offset) { index, benefit in
                         HStack {
                             Circle()
                                 .frame(width: 32, height: 32)
@@ -35,11 +35,13 @@ struct AllBenefitsView: View {
                                     Assets.getBenefitsLogo(for: benefit.benefitTypeName)
                                         .renderingMode(.template)
                                         .foregroundColor(Color.theme.accent)
+                                        .accessibilityIdentifier("benefit_" + "\(index)_" + AppAccessibilty.Benefits.logo)
                                 )
                             
                             VStack(spacing: 8) {
                                 HStack {
                                     Text("\(benefit.benefitName)")
+                                        .accessibilityIdentifier("benefit_" + "\(index)_" + AppAccessibilty.Benefits.name)
                                         .font(.benefitText)
                                         .foregroundColor(Color.theme.accent)
                                     Spacer()
@@ -47,6 +49,7 @@ struct AllBenefitsView: View {
 
                                 HStack {
                                     Text("\(benefit.description ?? "")")
+                                        .accessibilityIdentifier("benefit_" + "\(index)_" +  AppAccessibilty.Benefits.description)
                                         .font(.benefitDescription)
                                         .lineSpacing(4)
                                         .foregroundColor(Color.theme.superLightText)

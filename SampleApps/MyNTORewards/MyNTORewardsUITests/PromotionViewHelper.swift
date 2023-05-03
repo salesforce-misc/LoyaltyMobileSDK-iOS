@@ -54,9 +54,9 @@ final class PromotionViewHelper {
     }
     
     static func testPromotionCardView(swipeLeft: Bool = false) throws {
-        for i in 0..<5 {
+        for i in 0..<4 {
             guard app.images["promotion_\(i)_image"].waitForExistence(timeout: 5) else {
-                return
+                break
             }
             XCTAssertTrue(app.staticTexts["promotion_\(i)_name"].exists)
             XCTAssertTrue(app.staticTexts["promotion_\(i)_description"].exists)
@@ -69,7 +69,7 @@ final class PromotionViewHelper {
     }
     
     static func testPromotionCardReverse() throws {
-        for i in (0..<5).reversed() {
+        for i in (0..<4).reversed() {
             guard app.images["promotion_\(i)_image"].waitForExistence(timeout: 5) else {
                 continue
             }

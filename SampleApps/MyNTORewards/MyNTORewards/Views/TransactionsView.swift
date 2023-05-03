@@ -21,8 +21,8 @@ struct TransactionsView: View {
                 if transactionVM.transactions.isEmpty {
                     EmptyStateView(title: "You have no Transactions")
                 }
-                ForEach(transactionVM.transactions) { transaction in
-                    TransactionCardView(transaction: transaction)
+                ForEach(Array(transactionVM.transactions.enumerated()), id: \.offset) { index, transaction in
+                    TransactionCardView(accessibilityID: "transaction_\(index)", transaction: transaction)
                 }
             }
         }

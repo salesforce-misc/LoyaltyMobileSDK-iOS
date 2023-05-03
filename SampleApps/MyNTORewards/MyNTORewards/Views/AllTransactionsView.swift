@@ -30,8 +30,8 @@ struct AllTransactionsView: View {
                     if transactionVM.recentTransactions.isEmpty {
 						EmptyStateView(title: "No recent transactions", subTitle: "After you complete a transaction, you’ll see it here for the next 30 days.")
                     }
-                    ForEach(transactionVM.recentTransactions) { transaction in
-                        TransactionCardView(transaction: transaction)
+                    ForEach(Array(transactionVM.recentTransactions.enumerated()), id: \.offset) { index, transaction in
+                        TransactionCardView(accessibilityID: "transaction_\(index)", transaction: transaction)
                     }
                 }
                 HStack {
@@ -45,8 +45,8 @@ struct AllTransactionsView: View {
                     if transactionVM.olderTransactions.isEmpty {
                         EmptyStateView(title: "Nothing to report", subTitle: "When you complete your first transaction, you’ll find it here.")
                     }
-                    ForEach(transactionVM.olderTransactions) { transaction in
-                        TransactionCardView(transaction: transaction)
+                    ForEach(Array(transactionVM.olderTransactions.enumerated()), id: \.offset) { index, transaction in
+                        TransactionCardView(accessibilityID: "transaction_\(index)", transaction: transaction)
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

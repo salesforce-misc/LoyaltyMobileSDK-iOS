@@ -21,10 +21,9 @@ struct VouchersView: View {
                 if voucherVM.vouchers.isEmpty {
                     EmptyStateView(title: "You have no Vouchers Available")
                 }
-                ForEach(voucherVM.vouchers) { voucher in
-                    VoucherCardView(voucher: voucher)
+                ForEach(Array(voucherVM.vouchers.enumerated()), id: \.offset) { index, voucher in
+                    VoucherCardView(accessibilityID: "voucher_\(index)",voucher: voucher)
                 }
-                
             }
             .task {
                 do {
