@@ -7,9 +7,10 @@
 
 import SwiftUI
 import Firebase
+import LoyaltyMobileSDK
 
 // recommend MainActor in ObservableObject class
-//https://www.hackingwithswift.com/quick-start/concurrency/how-to-use-mainactor-to-run-code-on-the-main-queue
+// https://www.hackingwithswift.com/quick-start/concurrency/how-to-use-mainactor-to-run-code-on-the-main-queue
 
 @MainActor
 class AppViewRouter: ObservableObject {
@@ -27,24 +28,24 @@ class AppViewRouter: ObservableObject {
         
         let userDefaults = UserDefaults.standard
         if userDefaults.value(forKey: "appFirstTimeLauched") == nil {
-            //if app is first time opened then it will be nil
+            // if app is first time opened then it will be nil
             userDefaults.setValue(true, forKey: "appFirstTimeLauched")
             // signOut from FIRAuth
             do {
                 try Auth.auth().signOut()
             } catch {
-                print("<Firebase> - Error signing out: \(error)")
+                Logger.error("<Firebase> - Error signing out: \(error)")
             }
         }
     }
     
     // check if the user is signedin already when app starts.
-    private let auth = Auth.auth()
+    private let auth = ForceAuthManager.shared.getAuth()
     var isSignedIn: Bool {
-        return auth.currentUser != nil
+        return auth != nil
     }
     
-    enum deeplinkHosts: String {
+    enum DeeplinkHosts: String {
         case resetPassword = "resetpassword"
     }
 }

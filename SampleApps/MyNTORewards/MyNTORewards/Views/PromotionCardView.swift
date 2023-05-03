@@ -71,10 +71,9 @@ struct PromotionCardView: View {
                 promotionVM.actionTaskList[promotion.id] = (false, true)
             }
         }) {
-            MyPromotionDetailView(promotion: promotion, processing: $processing)
+			MyPromotionDetailView(isShopActionSuccess: $promotionVM.isCheckoutNavigationActive, promotion: promotion, processing: $processing)
         }
         .padding()
-            
     }
 }
 

@@ -27,9 +27,19 @@ struct LoyaltyNavBarTitlePreferenceKey: PreferenceKey {
     
 }
 
+struct LoyaltyNavBarSubtitlePreferenceKey: PreferenceKey {
+	
+	static var defaultValue: String = ""
+	
+	static func reduce(value: inout String, nextValue: () -> String) {
+		value = nextValue()
+	}
+	
+}
+
 struct LoyaltyNavBarTabBarPreferenceKey: PreferenceKey {
     
-    static var defaultValue: TopTabBar? = nil
+    static var defaultValue: TopTabBar?
     
     static func reduce(value: inout TopTabBar?, nextValue: () -> TopTabBar?) {
         value = nextValue()
@@ -46,15 +56,19 @@ extension View {
     func loytaltyNavigationTitle(_ title: String) -> some View {
         preference(key: LoyaltyNavBarTitlePreferenceKey.self, value: title)
     }
+	func loyaltyNavigationSubtitle(_ subtitle: String) -> some View {
+		preference(key: LoyaltyNavBarSubtitlePreferenceKey.self, value: subtitle)
+	}
     
     func loyaltyNavBarTabBar(_ tabBar: TopTabBar?) -> some View {
         preference(key: LoyaltyNavBarTabBarPreferenceKey.self, value: tabBar)
     }
     
-    func loyaltyNavBarItems(searchButtonHidden: Bool = false, title: String = "", tabBar: TopTabBar? = nil) -> some View {
+	func loyaltyNavBarItems(searchButtonHidden: Bool = false, title: String = "", subtitle: String = "", tabBar: TopTabBar? = nil) -> some View {
         self
             .loyaltyNavBarSearchButtonHidden(searchButtonHidden)
             .loytaltyNavigationTitle(title)
+			.loyaltyNavigationSubtitle(title)
             .loyaltyNavBarTabBar(tabBar)
     }
     

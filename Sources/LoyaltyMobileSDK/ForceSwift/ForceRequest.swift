@@ -7,8 +7,10 @@
 
 import Foundation
 
+/// A struct to help create and configure URLRequest instances.
 public struct ForceRequest {
     
+    /// Constants for HTTP methods.
     public struct Method {
         static let get = "GET"
         static let delete = "DELETE"
@@ -18,11 +20,13 @@ public struct ForceRequest {
         static let put = "PUT"
     }
     
+    /// Constants for MIME types.
     public struct MIMEType {
         static let json = "application/json;charset=UTF-8"
         static let formUrlEncoded = "application/x-www-form-urlencoded;charset=utf-8"
     }
     
+    /// Constants for HTTP headers.
     public struct Header {
         static let accept = "Accept"
         static let contentType = "Content-Type"
@@ -30,6 +34,7 @@ public struct ForceRequest {
     
     /// create a URLRequest with path
     /// - Parameters:
+    ///   - instanceURL: The instanceURL of the org
     ///   - path: The path of the request
     ///   - method: The HTTP Method, for example ``GET``, ``POST`` and etc
     ///   - queryItems: The request queryItems
@@ -39,6 +44,7 @@ public struct ForceRequest {
     ///   - timeoutInterval: The request ``TimeInterval``
     /// - Returns: A ``URLRequest``
     public static func create(
+        instanceURL: String,
         path: String,
         method: String? = nil,
         queryItems: [String: String]? = nil,
@@ -49,29 +55,29 @@ public struct ForceRequest {
     ) throws -> URLRequest {
         
         do {
-            let config = try ForceConfig.config()
             // URL
             var comps = URLComponents()
             comps.scheme = "https"
-            
-            comps.host = URL(string: config.instanceURL)?.host ?? ""
+            guard let url = URL(string: instanceURL) else {
+                throw URLError(.badURL)
+            }
+            comps.host = url.host
             comps.path = path.starts(with: "/") ? path : "/\(path)"
             if let queryItems = queryItems {
                 comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
                     URLQueryItem(name: key, value: value)
                 })
             }
-            guard let url = comps.url else {
+            guard let requestURL = comps.url else {
                 throw URLError(.badURL)
             }
             
-            return createRequest(from: url, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
+            return createRequest(from: requestURL, method: method, headers: headers, body: body, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
         } catch {
             throw error
         }
         
     }
-    
     
     /// create a URLRequest with URL
     /// - Parameters:
@@ -110,12 +116,13 @@ public struct ForceRequest {
     ///   - cachePolicy: The request ``CachePolicy``
     ///   - timeoutInterval: The request ``TimeInterval``
     /// - Returns: A ``URLRequest``
-    private static func createRequest(from url: URL,
-                       method: String? = nil,
-                       headers: [String: String]? = nil,
-                       body: Data? = nil,
-                       cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
-                       timeoutInterval: TimeInterval = 60.0 ) -> URLRequest {
+    private static func createRequest(
+        from url: URL,
+        method: String? = nil,
+        headers: [String: String]? = nil,
+        body: Data? = nil,
+        cachePolicy: URLRequest.CachePolicy = .useProtocolCachePolicy,
+        timeoutInterval: TimeInterval = 60.0 ) -> URLRequest {
         
         // URLRequest
         var request = URLRequest(url: url, cachePolicy: cachePolicy, timeoutInterval: timeoutInterval)
@@ -131,15 +138,14 @@ public struct ForceRequest {
                 return MIMEType.json
             }
         }()
-        let defaultHeaders: [String:String] = [
-            Header.accept : MIMEType.json,
-            Header.contentType : contentType
+        let defaultHeaders: [String: String] = [
+            Header.accept: MIMEType.json,
+            Header.contentType: contentType
         ].reduce(into: [:]) { $0[$1.0] = $1.1 }
         request.allHTTPHeaderFields = defaultHeaders.merging(headers ?? [:]) { (_, new) in new }
         
         return request
     }
-    
     
     /// Transform a URL with queryItems added
     /// - Parameters:
@@ -162,7 +168,6 @@ public struct ForceRequest {
         return newURL
     }
     
-    
     /// Attach an accessToken to the request
     /// - Parameters:
     ///   - request: A request to be updated
@@ -175,4 +180,3 @@ public struct ForceRequest {
         return newRequest
     }
 }
-

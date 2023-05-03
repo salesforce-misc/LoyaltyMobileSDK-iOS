@@ -1,0 +1,26 @@
+included:
+  - Sources
+  - Tests
+
+excluded:
+  - Carthage
+  - Pods
+
+opt_in_rules:
+  - empty_count
+  - force_unwrapping
+
+disabled_rules:
+  - trailing_whitespace
+  - todo
+  - identifier_name
+  - file_length
+  - function_parameter_count
+  - cyclomatic_complexity
+  - type_name
+  - type_body_length
+
+line_length:
+  warning: 160
+  error: 220
+  ignores_comments: true

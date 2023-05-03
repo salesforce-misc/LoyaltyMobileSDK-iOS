@@ -24,7 +24,7 @@ struct Keychain {
     /// - Returns: The value of the item
     /// - Throws: Any error returned by the Security framework.
     static func read(service: String, account: String) throws -> Data {
-        var copyResult: CFTypeRef? = nil
+        var copyResult: CFTypeRef?
         let err = SecItemCopyMatching([
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
@@ -41,6 +41,32 @@ struct Keychain {
         }
     }
     
+    /// Returns the value of a generic password keychain items.
+    /// - Parameters:
+    ///   - service: The service name for the item.
+    /// - Returns: The value of the items
+    static func read(service: String) throws -> [Data] {
+        var copyResult: CFTypeRef?
+        let err = SecItemCopyMatching([
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: service,
+            kSecMatchLimit: kSecMatchLimitAll,
+            kSecReturnAttributes: true,
+            kSecReturnData: true
+            ] as NSDictionary, &copyResult)
+        
+        switch err {
+        case errSecSuccess:
+            if let items = copyResult as? [NSDictionary], !items.isEmpty {
+                return items.compactMap { $0[kSecValueData as String] as? Data }
+            } else {
+                return []
+            }
+        default:
+            throw KeychainError.readFailure(status: err)
+        }
+    }
+    
     /// Stores a value to a generic password keychain item.
     /// This method delegates the work to two helper routines depending on whether the item already
     /// exists in the keychain or not.
@@ -50,7 +76,7 @@ struct Keychain {
     ///   - data: The desired data.
     /// - Throws: Any error returned by the Security framework.
     static func write(data password: Data, service: String, account: String) throws {
-        var copyResult: CFTypeRef? = nil
+        var copyResult: CFTypeRef?
         let err = SecItemCopyMatching([
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
@@ -80,7 +106,7 @@ struct Keychain {
         let err = SecItemDelete([
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
-            kSecAttrAccount: account,
+            kSecAttrAccount: account
             ] as NSDictionary)
         
         // Throw an error if an unexpected status was returned
@@ -105,7 +131,7 @@ struct Keychain {
         let err = SecItemUpdate([
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
-            kSecAttrAccount: account,
+            kSecAttrAccount: account
             ] as NSDictionary, [
                 kSecValueData: password
                 ] as NSDictionary)
@@ -126,11 +152,10 @@ struct Keychain {
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
             kSecAttrAccount: account,
-            kSecValueData: password,
+            kSecValueData: password
             ] as NSDictionary, nil)
         guard err == errSecSuccess else {
             throw KeychainError.writeFailure(status: err)
         }
     }
 }
-

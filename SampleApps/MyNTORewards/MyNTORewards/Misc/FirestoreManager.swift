@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import LoyaltyMobileSDK
 
 class FirestoreManager {
     
@@ -18,7 +19,7 @@ class FirestoreManager {
         do {
             try db.collection("members").document(member.email).setData(from: member)
         } catch let error {
-            print("Error writing member info to Firestore: \(error)")
+            Logger.error("Error writing member info to Firestore: \(error)")
             throw error
         }
 

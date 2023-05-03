@@ -48,13 +48,12 @@ struct QRCodeView: View {
                                 .font(.qrcodeSubtitle)
                                 .foregroundColor(Color.theme.superLightText)
                                 .accessibilityIdentifier(AppAccessibilty.QRCode.qrCodeText)
-                            //Spacer()
                             Image(uiImage: QRCodeImage)
                                 .resizable()
                                 .frame(width: 120, height: 120)
                                 .padding(.vertical)
                                 .accessibilityIdentifier(AppAccessibilty.QRCode.qrImage)
-                            //Spacer()
+
                             Text("Membership Number: \(membershipNumber)")
                                 .font(.qrcodeNumber)
                                 .foregroundColor(Color.theme.superLightText)
@@ -63,8 +62,6 @@ struct QRCodeView: View {
                         .offset(y: -50)
                     )
                     .padding(.bottom)
-                //Spacer()
-                
                 
                 Text("Scan the QR code or enter your membership number at participating stores and online sites to earn and redeem points.")
                     .font(.qrcodeSubtitle)

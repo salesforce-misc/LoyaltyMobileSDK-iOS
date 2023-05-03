@@ -25,14 +25,13 @@ struct MoreView: View {
     @EnvironmentObject private var transactionVM: TransactionViewModel
     @EnvironmentObject private var voucherVM: VoucherViewModel
     @EnvironmentObject private var imageVM: ImageViewModel
-
     
     let menuItems: [MenuItem] = [
         MenuItem(icon: "ic-person", title: "Account", accessibilityIdentifier: AppAccessibilty.More.account),
         MenuItem(icon: "ic-address", title: "Addresses", accessibilityIdentifier: AppAccessibilty.More.address),
         MenuItem(icon: "ic-card", title: "Payment Methods", accessibilityIdentifier: AppAccessibilty.More.paymentMethod),
         MenuItem(icon: "ic-orders", title: "Orders", accessibilityIdentifier: AppAccessibilty.More.orders),
-        //MenuItem(icon: "ic-benefits", title: "Benefits"),
+        // MenuItem(icon: "ic-benefits", title: "Benefits"),
         MenuItem(icon: "ic-case", title: "Support", accessibilityIdentifier: AppAccessibilty.More.support),
         MenuItem(icon: "ic-heart", title: "Favorites", accessibilityIdentifier: AppAccessibilty.More.favourites)
     ]
