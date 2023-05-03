@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A custom error enumeration for handling common errors in the application.
 public enum CommonError: Error, Equatable {
     case requestFailed(message: String)
     case jsonConversionFailure(message: String)
@@ -21,7 +22,10 @@ public enum CommonError: Error, Equatable {
 }
 
 extension CommonError: CustomStringConvertible, LocalizedError {
+    
+    /// Provides a human-readable description of the error.
     public var description: String {
+        // Each case returns a custom error message
         switch self {
         case let .requestFailed(message):
             return "Request Failed Error -> \(message)"
@@ -46,7 +50,9 @@ extension CommonError: CustomStringConvertible, LocalizedError {
         }
     }
     
+    /// Provides a localized error description for the error.
     public var errorDescription: String? {
+        // Each case returns a custom localized error message
         switch self {
         case let .requestFailed(message):
             return NSLocalizedString("Request Failed Error -> \(message)", comment: "Request Failed Error")

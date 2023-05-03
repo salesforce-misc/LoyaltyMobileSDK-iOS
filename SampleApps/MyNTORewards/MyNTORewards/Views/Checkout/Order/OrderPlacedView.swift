@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct OrderPlacedView: View {
+	@EnvironmentObject private var promotionVM: PromotionViewModel
+	@EnvironmentObject private var orderDetailsVM: OrderDetailsViewModel
     var body: some View {
 		VStack {
-			NavigationBarView()
 			Spacer()
 			VStack(spacing: 16) {
 				Image("circle_checked")
@@ -23,13 +24,23 @@ struct OrderPlacedView: View {
 			}
 			.padding(75)
 			Spacer()
-			Button {} label: {
+			Button {
+				promotionVM.isCheckoutNavigationActive = false
+			} label: {
 				Text("Continue Shopping")
 					.font(.boldButtonText)
 			}
-            .buttonStyle(DarkFlexibleButton())
-            .frame(width: 220)
+				.buttonStyle(DarkFlexibleButton())
+				.frame(width: 220)
 		}
+		.task {
+			do {
+				_ = try await orderDetailsVM.getOrderDetails()
+			} catch {
+				print("Error fetching order details..")
+			}
+		}
+		.navigationBarBackButtonHidden(true)
     }
 }
 

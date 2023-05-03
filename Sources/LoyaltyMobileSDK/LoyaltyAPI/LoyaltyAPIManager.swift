@@ -6,39 +6,51 @@
  */
 
 import Foundation
-import UIKit
 
+/// A class for managing requests related to loyalty programs using the Force API.
 public class LoyaltyAPIManager {
     
+    /// An instance of `ForceAuthenticator` for authentication
     public var auth: ForceAuthenticator
+    
+    /// The name of the loyalty program
     public var loyaltyProgramName: String
+    
+    /// The base URL of the loyalty program API
     public var instanceURL: String
+    
+    /// An instance of `ForceClient` to handle API requests
     private var forceClient: ForceClient
     
+    /// Initializes a `LoyaltyAPIManager` with the necessary parameters.
     public init(auth: ForceAuthenticator, loyaltyProgramName: String, instanceURL: String, forceClient: ForceClient) {
         self.auth = auth
         self.loyaltyProgramName = loyaltyProgramName
         self.instanceURL = instanceURL
         self.forceClient = forceClient
     }
-	
-	public enum SortBy: String {
-		case expirationDate
-		case effectiveDate
-		case createdDate
-	}
-	
-	public enum SortOrder: String {
-		case ascending
-		case descending
-	}
-	
-	public enum VoucherStatus: String {
-		case issued
-		case cancelled
-		case expired
-	}
+
+    /// Enumeration for sorting the results by a specific field.
+    public enum SortBy: String {
+        case expirationDate
+        case effectiveDate
+        case createdDate
+    }
     
+    /// Enumeration for specifying the sort order of the results.
+    public enum SortOrder: String {
+        case ascending
+        case descending
+    }
+    
+    /// Enumeration for the status of a voucher.
+    public enum VoucherStatus: String {
+        case issued
+        case cancelled
+        case expired
+    }
+    
+    /// Enumeration for identifying the type of resource to request.
     public enum Resource {
         case individualEnrollment(programName: String, version: String)
         case getMemberBenefits(memberId: String, version: String)
@@ -46,8 +58,8 @@ public class LoyaltyAPIManager {
         case getTransactionHistory(programName: String, memberId: String, version: String)
         case getPromotions(programName: String, version: String)
         case enrollInPromotion(programName: String, version: String)
-		case unenrollPromotion(programName: String, version: String)
-		case getVouchers(programName: String, membershipNumber: String, version: String)
+        case unenrollPromotion(programName: String, version: String)
+        case getVouchers(programName: String, membershipNumber: String, version: String)
     }
     
     /// Get path for given API resource

@@ -91,7 +91,7 @@ struct MyPromotionCardView: View {
                 promotionVM.actionTaskList[promotion.id] = (false, true)
             }
         }) {
-            MyPromotionDetailView(promotion: promotion, processing: $processing)
+			MyPromotionDetailView(isShopActionSuccess: $promotionVM.isCheckoutNavigationActive, promotion: promotion, processing: $processing)
         }
         .onReceive(promotionVM.$actionTaskList) { action in
             if let currentAction = action[promotion.id], currentAction == (true, true) {
