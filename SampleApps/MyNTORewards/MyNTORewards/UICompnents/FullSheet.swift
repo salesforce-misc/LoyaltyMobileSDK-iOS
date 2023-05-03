@@ -7,21 +7,21 @@
 
 import SwiftUI
 
-class FullSheetController<Content>: UIHostingController<Content> where Content : View {
+class FullSheetController<Content>: UIHostingController<Content> where Content: View {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if let presentation = sheetPresentationController {
             presentation.detents = [.large()]
-            //presentation.prefersGrabberVisible = true
-            //presentation.largestUndimmedDetentIdentifier = .medium
+            // presentation.prefersGrabberVisible = true
+            // presentation.largestUndimmedDetentIdentifier = .medium
             presentation.preferredCornerRadius = 20.0
             presentation.selectedDetentIdentifier = .large
         }
     }
 }
 
-struct FullSheet<Content>: UIViewControllerRepresentable where Content : View {
+struct FullSheet<Content>: UIViewControllerRepresentable where Content: View {
 
     private let content: Content
     

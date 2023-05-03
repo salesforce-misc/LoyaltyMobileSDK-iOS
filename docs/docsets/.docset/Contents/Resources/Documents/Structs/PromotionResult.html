@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PromotionResult Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/PromotionResult" class="dashAnchor"></a>
+    <a title="PromotionResult Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        PromotionResult Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ForceClient.html">ForceClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Logger.html">Logger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoyaltyAPIManager.html">LoyaltyAPIManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoyaltyAPIManager/SortBy.html">– SortBy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoyaltyAPIManager/SortOrder.html">– SortOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoyaltyAPIManager/VoucherStatus.html">– VoucherStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoyaltyAPIManager/Resource.html">– Resource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NetworkManager.html">NetworkManager</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/CommonError.html">CommonError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Collection.html">Collection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/DateFormatter.html">DateFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/DateFormatter/Length.html">– Length</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/ForceAuthenticator.html">ForceAuthenticator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NetworkManagerProtocol.html">NetworkManagerProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/AdditionalFieldValues.html">AdditionalFieldValues</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:16LoyaltyMobileSDK010AdditionalA12MemberFieldsV">AdditionalLoyaltyMemberFields</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AdditionalLoyaltyProgramMemberFields.html">AdditionalLoyaltyProgramMemberFields</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AdditionalTransactionJournalAttribute.html">AdditionalTransactionJournalAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:16LoyaltyMobileSDK17AssociatedAccountV">AssociatedAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AssociatedContact.html">AssociatedContact</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AssociatedContactDetails.html">AssociatedContactDetails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BenefitModel.html">BenefitModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Benefits.html">Benefits</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollPromotionOutputModel.html">EnrollPromotionOutputModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollPromotionOutputParameters.html">EnrollPromotionOutputParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollPromotionResult.html">EnrollPromotionResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollPromotionResultsOutputParameters.html">EnrollPromotionResultsOutputParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:16LoyaltyMobileSDK32EnrollPromotionSimulationDetailsV">EnrollPromotionSimulationDetails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollmentModel.html">EnrollmentModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollmentOutputModel.html">EnrollmentOutputModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ForceAPI.html">ForceAPI</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ForceRequest.html">ForceRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ForceRequest.html#/s:16LoyaltyMobileSDK12ForceRequestV6MethodV">– Method</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ForceRequest.html#/s:16LoyaltyMobileSDK12ForceRequestV8MIMETypeV">– MIMEType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ForceRequest.html#/s:16LoyaltyMobileSDK12ForceRequestV6HeaderV">– Header</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LoyaltyAPIVersion.html">LoyaltyAPIVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MemberCurrency.html">MemberCurrency</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MemberTier.html">MemberTier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OutputParameterMain.html">OutputParameterMain</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OutputParameterSub.html">OutputParameterSub</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PointsChange.html">PointsChange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ProfileModel.html">ProfileModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PromotionModel.html">PromotionModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PromotionModelOutputParameters.html">PromotionModelOutputParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PromotionOutputsOutputParameters.html">PromotionOutputsOutputParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PromotionResult.html">PromotionResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:16LoyaltyMobileSDK17SimulationDetailsV">SimulationDetails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TransactionJournal.html">TransactionJournal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TransactionJournalOutput.html">TransactionJournalOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TransactionModel.html">TransactionModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/UnenrollPromotionOutputModel.html">UnenrollPromotionOutputModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/UnenrollPromotionResponseModel.html">UnenrollPromotionResponseModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/UnenrollPromotionResult.html">UnenrollPromotionResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VoucherModel.html">VoucherModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VouchersResponse.html">VouchersResponse</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>PromotionResult</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">PromotionResult</span> <span class="p">:</span> <span class="kt">Codable</span><span class="p">,</span> <span class="kt">Identifiable</span></code></pre>
+
+                </div>
+              </div>
+            
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK15PromotionResultV17fulfillmentActionSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/fulfillmentAction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK15PromotionResultV17fulfillmentActionSSSgvp">fulfillmentAction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">fulfillmentAction</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK15PromotionResultV22promotionEnrollmentRqrSbvp"></a>
+                    <a name="//apple_ref/swift/Property/promotionEnrollmentRqr" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK15PromotionResultV22promotionEnrollmentRqrSbvp">promotionEnrollmentRqr</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">promotionEnrollmentRqr</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK15PromotionResultV25memberEligibilityCategorySSvp"></a>
+                    <a name="//apple_ref/swift/Property/memberEligibilityCategory" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK15PromotionResultV25memberEligibilityCategorySSvp">memberEligibilityCategory</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">memberEligibilityCategory</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK15PromotionResultV17promotionImageURLSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/promotionImageURL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK15PromotionResultV17promotionImageURLSSSgvp">promotionImageURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">promotionImageURL</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK15PromotionResultV07loyaltyD4TypeSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/loyaltyPromotionType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK15PromotionResultV07loyaltyD4TypeSSSgvp">loyaltyPromotionType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">loyaltyPromotionType</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK15PromotionResultV05totalD15RewardPointsValSdSgvp"></a>
+                    <a name="//apple_ref/swift/Property/totalPromotionRewardPointsVal" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK15PromotionResultV05totalD15RewardPointsValSdSgvp">totalPromotionRewardPointsVal</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">totalPromotionRewardPointsVal</span><span class="p">:</span> <span class="kt">Double</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK15PromotionResultV13promotionNameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/promotionName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK15PromotionResultV13promotionNameSSvp">promotionName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">promotionName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK15PromotionResultV9startDateSSvp"></a>
+                    <a name="//apple_ref/swift/Property/startDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK15PromotionResultV9startDateSSvp">startDate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">startDate</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s12IdentifiableP2id2IDQzvp"></a>
+                    <a name="//apple_ref/swift/Property/id" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s12IdentifiableP2id2IDQzvp">id</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK15PromotionResultV7endDateSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/endDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK15PromotionResultV7endDateSSSgvp">endDate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">endDate</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK15PromotionResultV22loyaltyProgramCurrencySSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/loyaltyProgramCurrency" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK15PromotionResultV22loyaltyProgramCurrencySSSgvp">loyaltyProgramCurrency</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">loyaltyProgramCurrency</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK15PromotionResultV11descriptionSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK15PromotionResultV11descriptionSSSgvp">description</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK15PromotionResultV26promotionEnrollmentEndDateSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/promotionEnrollmentEndDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK15PromotionResultV26promotionEnrollmentEndDateSSSgvp">promotionEnrollmentEndDate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">promotionEnrollmentEndDate</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK15PromotionResultV23promEnrollmentStartDateSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/promEnrollmentStartDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK15PromotionResultV23promEnrollmentStartDateSSSgvp">promEnrollmentStartDate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">promEnrollmentStartDate</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK15PromotionResultV17fulfillmentAction22promotionEnrollmentRqr25memberEligibilityCategory0H8ImageURL07loyaltyD4Type05totalD15RewardPointsVal0H4Name2id9startDate03endY00P15ProgramCurrency11description0hi3EndY004promi5StartY0ACSSSg_SbSSA2RSdSgS3SA5Rtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(fulfillmentAction:promotionEnrollmentRqr:memberEligibilityCategory:promotionImageURL:loyaltyPromotionType:totalPromotionRewardPointsVal:promotionName:id:startDate:endDate:loyaltyProgramCurrency:description:promotionEnrollmentEndDate:promEnrollmentStartDate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK15PromotionResultV17fulfillmentAction22promotionEnrollmentRqr25memberEligibilityCategory0H8ImageURL07loyaltyD4Type05totalD15RewardPointsVal0H4Name2id9startDate03endY00P15ProgramCurrency11description0hi3EndY004promi5StartY0ACSSSg_SbSSA2RSdSgS3SA5Rtcfc">init(fulfillmentAction:<wbr>promotionEnrollmentRqr:<wbr>memberEligibilityCategory:<wbr>promotionImageURL:<wbr>loyaltyPromotionType:<wbr>totalPromotionRewardPointsVal:<wbr>promotionName:<wbr>id:<wbr>startDate:<wbr>endDate:<wbr>loyaltyProgramCurrency:<wbr>description:<wbr>promotionEnrollmentEndDate:<wbr>promEnrollmentStartDate:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">fulfillmentAction</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+    <span class="nv">promotionEnrollmentRqr</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span>
+    <span class="nv">memberEligibilityCategory</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">promotionImageURL</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+    <span class="nv">loyaltyPromotionType</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+    <span class="nv">totalPromotionRewardPointsVal</span><span class="p">:</span> <span class="kt">Double</span><span class="p">?,</span>
+    <span class="nv">promotionName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">startDate</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">endDate</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+    <span class="nv">loyaltyProgramCurrency</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+    <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+    <span class="nv">promotionEnrollmentEndDate</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span>
+    <span class="nv">promEnrollmentStartDate</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2023 <a class="link" href="" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2023-04-29)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>

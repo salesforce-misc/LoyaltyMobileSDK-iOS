@@ -7,7 +7,7 @@
 
 enum AppAccessibilty {
     
-    enum navigationView {
+    enum NavigationView {
         static let home = "home_barbutton"
         static let profile = "profile_barbutton"
         static let promotion = "promotion_barbutton"
@@ -113,4 +113,3 @@ enum AppAccessibilty {
     }
     
 }
-

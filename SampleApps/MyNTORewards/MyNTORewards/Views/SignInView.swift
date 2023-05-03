@@ -19,7 +19,6 @@ struct SignInView: View {
     @Binding var signUpPresented: Bool
     @Binding var showResetPassword: Bool
     
-    
     var body: some View {
         VStack {
             SheetHeader(title: "Log In")
@@ -79,7 +78,7 @@ struct SignInView: View {
                                         .font(.buttonText)
                                 }
                                 .accessibilityIdentifier(AppAccessibilty.SignIn.joinNow)
-                                //.presentationDetents([.height(405)])
+                                // .presentationDetents([.height(405)])
                             }
                         }
                         .padding()
@@ -94,7 +93,6 @@ struct SignInView: View {
             }
             
         }
-        
         
     }
     
@@ -133,4 +131,3 @@ struct SignInCredentialFields: View {
         }
     }
 }
-

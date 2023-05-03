@@ -42,14 +42,14 @@ struct AppRootView: View {
                 }
             }
         }
-        .onAppear() {
+        .onAppear {
             appViewRouter.signedIn = appViewRouter.isSignedIn
             if appViewRouter.isSignedIn && rootVM.member == nil {
-                rootVM.member = LocalFileManager.instance.getData(type: MemberModel.self, id: rootVM.email)
+                rootVM.member = LocalFileManager.instance.getData(type: CommunityMemberModel.self, id: rootVM.email)
             }
         }
         .onOpenURL { url in
-            print(url)
+            Logger.debug(url.absoluteString)
             redirectDeeplink(url: url)
         }
         
@@ -61,7 +61,7 @@ struct AppRootView: View {
         
         let defaultPage: Page = appViewRouter.signedIn ? appViewRouter.currentPage : .onboardingPage
         
-        guard url.scheme == AppConstants.Config.deeplinkScheme,
+        guard url.scheme == AppSettings.Defaults.deeplinkScheme,
               let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
               let queryItems = components.queryItems else {
             appViewRouter.currentPage = defaultPage
@@ -69,7 +69,7 @@ struct AppRootView: View {
         }
         
         switch components.host {
-        case AppViewRouter.deeplinkHosts.resetPassword.rawValue:
+        case AppViewRouter.DeeplinkHosts.resetPassword.rawValue:
             let items = queryItems.reduce(into: [String: String]()) { (result, item) in
                 result[item.name] = item.value
             }

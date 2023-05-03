@@ -65,9 +65,9 @@ struct BenefitView: View {
             .frame(height: 520)
             .task {
                 do {
-                    try await benefitVM.getBenefits(memberId: rootVM.member?.enrollmentDetails.loyaltyProgramMemberId ?? "")
+                    try await benefitVM.getBenefits(memberId: rootVM.member?.loyaltyProgramMemberId ?? "")
                 } catch {
-                    print("Fetch Benefits Error: \(error)")
+                    Logger.error("Fetch Benefits Error: \(error)")
                 }
 
             }
@@ -81,7 +81,6 @@ struct BenefitView: View {
     }
 
 }
-
 
 struct BenefitView_Previews: PreviewProvider {
     static var previews: some View {
