@@ -1,0 +1,140 @@
+{
+    "totalSize": 2,
+    "done": true,
+    "records": [
+        {
+            "attributes": {
+                "type": "Voucher",
+                "url": "/services/data/v56.0/sobjects/Voucher/0kD4x000000wr6NEAQ"
+            },
+            "VoucherDefinition": {
+                "attributes": {
+                    "type": "VoucherDefinition",
+                    "url": "/services/data/v56.0/sobjects/VoucherDefinition/2Xa4x0000008RA9CAM"
+                },
+                "Name": "Thanksgving voucher",
+                "Description": null,
+                "Type": "FixedValue",
+                "FaceValue": 100,
+                "DiscountPercent": null
+            },
+            "Image__c": "<p><img src=\"https://unsplash.com/photos/7BpuzmcxlHU/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjY5NDMzMjQy&force=true&w=640\" alt=\"promotion3@3x.jpg\"></img></p>",
+            "VoucherCode": "THANKS2022",
+            "ExpirationDate": "2022-12-15",
+            "Id": "0kD4x000000wr6THAK",
+            "Status": "Issued"
+        },
+        {
+            "attributes": {
+                "type": "Voucher",
+                "url": "/services/data/v56.0/sobjects/Voucher/0kD4x002000wr6EEAQ"
+            },
+            "VoucherDefinition": {
+                "attributes": {
+                    "type": "VoucherDefinition",
+                    "url": "/services/data/v56.0/sobjects/VoucherDefinition/2Xa4x0003008RAECA2"
+                },
+                "Name": "Black Friday Voucher",
+                "Description": null,
+                "Type": "DiscountPercentage",
+                "FaceValue": null,
+                "DiscountPercent": 25
+            },
+            "Image__c": "<p><img src=\"https://unsplash.com/photos/cE8cwN2A2-c/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjY5NDQwNDU2&force=true&w=640\" alt=\"Birthday.jpeg\"></img></p>",
+            "VoucherCode": "BLACK2022",
+            "ExpirationDate": "2022-12-20",
+            "Id": "0kD4x003000wr6EEAQ",
+            "Status": "Issued"
+        },
+        {
+            "attributes": {
+                "type": "Voucher",
+                "url": "/services/data/v56.0/sobjects/Voucher/0kD4x000000wr6EEAQ"
+            },
+            "VoucherDefinition": {
+                "attributes": {
+                    "type": "VoucherDefinition",
+                    "url": "/services/data/v56.0/sobjects/VoucherDefinition/2Xa4x0000008RAECA2"
+                },
+                "Name": "Birthday Discount Voucher",
+                "Description": null,
+                "Type": "DiscountPercentage",
+                "FaceValue": null,
+                "DiscountPercent": 50
+            },
+            "Image__c": "<p><img src=\"https://unsplash.com/photos/M20ylqCzSZw/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjY5NDQwNzY1&force=true&w=640\" alt=\"Birthday.jpeg\"></img></p>",
+            "VoucherCode": "BDAY2000BDAY",
+            "ExpirationDate": "2021-04-14",
+            "Id": "0kD4x000000wr6EEAQ",
+            "Status": "Expired"
+        },
+        {
+            "attributes": {
+                "type": "Voucher",
+                "url": "/services/data/v56.0/sobjects/Voucher/0kD4x000000wr6NEAQ"
+            },
+            "VoucherDefinition": {
+                "attributes": {
+                    "type": "VoucherDefinition",
+                    "url": "/services/data/v56.0/sobjects/VoucherDefinition/2Xa4x0000008RA9CAM"
+                },
+                "Name": "Winter Jackets voucher",
+                "Description": null,
+                "Type": "DiscountPercentage",
+                "FaceValue": null,
+                "DiscountPercent": 30
+            },
+            "Image__c": "<p><img src=\"https://unsplash.com/photos/4Hmj9gkyM6c/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8OHx8d2ludGVyJTIwamFja2V0fGVufDB8fHx8MTY2OTQ0MDcwOA&force=true&w=640\" alt=\"promotion3@3x.jpg\"></img></p>",
+            "VoucherCode": "WIN2124JACK",
+            "ExpirationDate": "2022-07-29",
+            "Id": "0kD4x000000wr6NEAQ",
+            "Status": "Expired"
+        },
+        {
+            "attributes": {
+                "type": "Voucher",
+                "url": "/services/data/v56.0/sobjects/Voucher/0kD4x002030wr6EEAQ"
+            },
+            "VoucherDefinition": {
+                "attributes": {
+                    "type": "VoucherDefinition",
+                    "url": "/services/data/v56.0/sobjects/VoucherDefinition/2Xa4x0003058RAECA2"
+                },
+                "Name": "Labor Day Voucher",
+                "Description": null,
+                "Type": "DiscountPercentage",
+                "FaceValue": null,
+                "DiscountPercent": 30
+            },
+            "Image__c": "<p><img src=\"https://unsplash.com/photos/RZPEflUaGB8/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mnx8bGFib3IlMjBkYXl8ZW58MHx8fHwxNjY5NDQwNDk4&force=true&w=640\" alt=\"Birthday.jpeg\"></img></p>",
+            "VoucherCode": "LABOR2022",
+            "ExpirationDate": "2022-09-30",
+            "Id": "0kD4x007000wr6FFAQ",
+            "Status": "Redeemed"
+        },
+        {
+            "attributes": {
+                "type": "Voucher",
+                "url": "/services/data/v56.0/sobjects/Voucher/0kD4x030000wr6NEAQ"
+            },
+            "VoucherDefinition": {
+                "attributes": {
+                    "type": "VoucherDefinition",
+                    "url": "/services/data/v56.0/sobjects/VoucherDefinition/2Xa4x0040008RA9CAM"
+                },
+                "Name": "Summer Fun voucher",
+                "Description": null,
+                "Type": "FixedValue",
+                "FaceValue": 80,
+                "DiscountPercent": null
+            },
+            "Image__c": "<p><img src=\"https://unsplash.com/photos/fVwqaAqzj2g/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8MjR8fHN1bW1lciUyMGZ1bnxlbnwwfHx8fDE2Njk0NDA2Mjg&force=true&w=640\" alt=\"promotion3@3x.jpg\"></img></p>",
+            "VoucherCode": "SUMMER2022",
+            "ExpirationDate": "2022-08-15",
+            "Id": "0kD4x004000wr6FUNS",
+            "Status": "Redeemed"
+        }
+        
+        
+    ]
+}

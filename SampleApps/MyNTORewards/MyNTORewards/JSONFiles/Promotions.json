@@ -1,0 +1,71 @@
+{
+    "message": null,
+    "outputParameters": {
+        "outputParameters": {
+            "results": [
+                {
+                    "fulfillmentAction": "CREDIT_POINTS",
+                    "promotionEnrollmentRqr": false,
+                    "memberEligibilityCategory": "Eligible",
+                    "promotionImageUrl": "https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fwww.california.com%2Fbest-mountain-biking-trails-california%2F&amp;psig=AOvVaw3YBYsf24517EqRxItBauhh&amp;ust=1678785542447000&amp;source=images&amp;cd=vfe&amp;ved=0CA0QjRxqFwoTCLjgoNbJ2P0CFQAAAAAdAAAAABAD",
+                    "loyaltyPromotionType": "STANDARD",
+                    "totalPromotionRewardPointsVal": 250,
+                    "promotionName": "Mountain Biking Bonanza",
+                    "promotionId": "0c8RO0000000QbRYAU",
+                    "startDate": "2023-01-01",
+                    "endDate": "2023-12-31",
+                    "loyaltyProgramCurrency": "0lcRO00000000BVYAY",
+                    "description": "Promote sustainable travel alternatives and earn rewards by joining us in the Mountain Biking Bonanza event"
+                },
+                {
+                    "fulfillmentAction": "CREDIT_POINTS",
+                    "promotionEnrollmentRqr": true,
+                    "memberEligibilityCategory": "EligibleButNotEnrolled",
+                    "promotionEnrollmentEndDate": "2023-03-31",
+                    "promotionImageUrl": "https://dro000000kef12ao.test1.file.pc-rnd.force.com/sfc/servlet.shepherd/version/download/068RO0000004qRb?asPdf=false&amp;operationContext=CHATTER",
+                    "loyaltyPromotionType": "STANDARD",
+                    "promEnrollmentStartDate": "2023-03-01",
+                    "totalPromotionRewardPointsVal": 100,
+                    "promotionName": "Outdoor Carnival Promotion",
+                    "promotionId": "0c8RO0000000QbMYAU",
+                    "startDate": "2023-03-01",
+                    "endDate": "2024-02-29",
+                    "loyaltyProgramCurrency": "0lcRO00000000BaYAI",
+                    "description": "Outdoor Carnival Promotions, for kids and families to have a great time from a range of carnival rides. Earn Tier Points by participating on the following activities includes:\r\n\r\nFlying Dumbo Ride\r\nCup and Saucer Ride\r\nInflatable Clown Playport\r\nMini Ferris Wheel\r\nGalaxy Mirror Maze\r\nCastle of Fun"
+                },
+                {
+                    "fulfillmentAction": "CREDIT_POINTS",
+                    "promotionEnrollmentRqr": false,
+                    "memberEligibilityCategory": "Eligible",
+                    "promotionImageUrl": "https://unsplash.com/photos/WvDYdXDzkhs/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8NXx8Zml0bmVzc3xlbnwwfHx8fDE2Njk5MTE0Njc&amp;force=true&amp;w=640",
+                    "loyaltyPromotionType": "STANDARD",
+                    "totalPromotionRewardPointsVal": 10,
+                    "promotionName": "Fitness Promotion",
+                    "promotionId": "0c8RO0000000ILTYA2",
+                    "startDate": "2023-01-01",
+                    "loyaltyProgramCurrency": "0lcRO00000000BVYAY"
+                },
+                {
+                    "promotionEnrollmentRqr": true,
+                    "memberEligibilityCategory": "EligibleButNotEnrolled",
+                    "promEnrollmentStartDate": "2023-01-01",
+                    "promotionName": "Newyear Promotion",
+                    "promotionId": "0c8RO0000000ILYYA2",
+                    "startDate": "2023-02-01",
+                    "description": "New Year Promotion Premium"
+                },
+                {
+                    "promotionEnrollmentRqr": true,
+                    "memberEligibilityCategory": "EligibleButNotEnrolled",
+                    "promEnrollmentStartDate": "2023-01-01",
+                    "promotionName": "Birthday Promotion",
+                    "promotionId": "0c8RO0000000ILdYAM",
+                    "startDate": "2023-01-01",
+                    "description": "New Year Promotion Premium"
+                }
+            ]
+        }
+    },
+    "simulationDetails": {},
+    "status": true
+}
