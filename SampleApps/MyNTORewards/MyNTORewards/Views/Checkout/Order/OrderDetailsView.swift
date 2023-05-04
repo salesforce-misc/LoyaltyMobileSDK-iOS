@@ -16,6 +16,7 @@ struct OrderDetailsView: View {
 		VStack {
 			TabView(selection: $index) {
 				ShippingDetailsView(selectedIndex: $index)
+                    .environmentObject(viewModel)
 					.tag(0)
 				PaymentDetailsView()
 					.environmentObject(viewModel)
