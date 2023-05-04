@@ -26,7 +26,7 @@ final class VoucherViewModelTests: XCTestCase {
     
     func testFetchVouchers() async throws {
         let vouchers = try await viewModel.fetchVouchers(membershipNumber: "1234", devMode: true)
-        XCTAssertTrue(vouchers.count == 2)
+        XCTAssertTrue(vouchers.count == 4)
         XCTAssertTrue(vouchers[0].discountPercent == 50)
         XCTAssertTrue(vouchers[0].description == "20% discount on children group party at selected event centers.")
         XCTAssertTrue(vouchers[0].id == "0kDRO00000000Hk2AI")
