@@ -24,12 +24,10 @@ else
     XCPRETTY="cat"
 fi
 
-# Check which tests should be run
-TESTS_TO_RUN=${1:-"-sdkOnly"}
-
 # Set optional flags
 SAVE_LOG=false
 SAVE_REPORT=false
+TESTS_TO_RUN=""
 
 for arg in "$@"
 do
@@ -38,8 +36,15 @@ do
   elif [ "$arg" = "-report" ]; then
     SAVE_REPORT=true
     XCPRETTY="$XCPRETTY --report html"
+  elif [ "$arg" = "-full" ] || [ "$arg" = "-sdkOnly" ] || [ "$arg" = "-appOnly" ]; then
+    TESTS_TO_RUN="$arg"
   fi
 done
+
+# Set the default value for TESTS_TO_RUN if not specified
+if [ -z "$TESTS_TO_RUN" ]; then
+  TESTS_TO_RUN="-sdkOnly"
+fi
 
 # Create the output directory if -log or -report is passed
 if [ "$SAVE_LOG" = true ] || [ "$SAVE_REPORT" = true ]; then
@@ -57,9 +62,9 @@ if [ "$TESTS_TO_RUN" = "-full" ] || [ "$TESTS_TO_RUN" = "-sdkOnly" ]; then
 
   # Run tests for PACKAGE_NAME scheme
   xcodebuild test \
-    -scheme "$PACKAGE_NAME" \
-    -destination "platform=iOS Simulator,name=$SIMULATOR_NAME,OS=$SIMULATOR_OS" \
-    | $XCPRETTY $( [ "$SAVE_REPORT" = true ] && echo "-o \"$OUTPUT_DIR/SDKTestReport_$TIMESTAMP.html\"" )
+  -scheme "$PACKAGE_NAME" \
+  -destination "platform=iOS Simulator,name=$SIMULATOR_NAME,OS=$SIMULATOR_OS" \
+  | $XCPRETTY $( [ "$SAVE_REPORT" = true ] && echo "-o" "$OUTPUT_DIR/SDKTestReport_$TIMESTAMP.html" )
 
   echo "=== Loyalty Mobile SDK Unit Tests End ==="
 fi
@@ -77,7 +82,7 @@ if [ "$TESTS_TO_RUN" = "-full" ] || [ "$TESTS_TO_RUN" = "-appOnly" ]; then
     -destination "platform=iOS Simulator,name=$SIMULATOR_NAME,OS=$SIMULATOR_OS" \
     -only-testing:"$APP_UNIT_TEST_TARGET" \
     -destination-timeout 30s \
-    | $XCPRETTY $( [ "$SAVE_REPORT" = true ] && echo "-o \"$OUTPUT_DIR/AppUnitTestReport_$TIMESTAMP.html\"" )
+    | $XCPRETTY $( [ "$SAVE_REPORT" = true ] && echo "-o" "$OUTPUT_DIR/AppUnitTestReport_$TIMESTAMP.html" )
 
   echo "=== Sample App Unit Tests End ==="
 
@@ -89,7 +94,7 @@ if [ "$TESTS_TO_RUN" = "-full" ] || [ "$TESTS_TO_RUN" = "-appOnly" ]; then
     -scheme "$APP_SCHEME" \
     -destination "platform=iOS Simulator,name=$SIMULATOR_NAME,OS=$SIMULATOR_OS" \
     -only-testing:"$APP_UI_TEST_TARGET" \
-    | $XCPRETTY $( [ "$SAVE_REPORT" = true ] && echo "-o \"$OUTPUT_DIR/AppUITestReport_$TIMESTAMP.html\"" )
+    | $XCPRETTY $( [ "$SAVE_REPORT" = true ] && echo "-o" "$OUTPUT_DIR/AppUITestReport_$TIMESTAMP.html" )
 
   echo "=== Sample App UI Tests End ==="
 fi
