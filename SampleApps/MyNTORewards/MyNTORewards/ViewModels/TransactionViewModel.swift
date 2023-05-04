@@ -14,17 +14,20 @@ class TransactionViewModel: ObservableObject {
     @Published var olderTransactions: [TransactionJournal] = []
     
     private let transactionFolderName = "TransactionJournal"
-    private let authManager = ForceAuthManager.shared
+    private let authManager: ForceAuthenticator
+    private let localFileManager: FileManagerProtocol
     private var loyaltyAPIManager: LoyaltyAPIManager
     
-    init() {
+    init(authManager: ForceAuthenticator = ForceAuthManager.shared, localFileManager: FileManagerProtocol = LocalFileManager.instance) {
+        self.authManager = authManager
+        self.localFileManager = localFileManager
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
                                               loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
                                               instanceURL: AppSettings.getInstanceURL(), forceClient: ForceClient(auth: authManager))
     }
     
     @MainActor
-    func loadTransactions(membershipNumber: String) async throws {
+    func loadTransactions(membershipNumber: String, devMode: Bool = false) async throws {
         if transactions.isEmpty {
             // load from local cache
             if let cached = LocalFileManager.instance.getData(type: [TransactionJournal].self, id: membershipNumber, folderName: transactionFolderName) {
@@ -32,11 +35,11 @@ class TransactionViewModel: ObservableObject {
             } else {
                 do {
                     do {
-                        let result = try await fetchTransactions(membershipNumber: membershipNumber)
+                        let result = try await fetchTransactions(membershipNumber: membershipNumber, devMode: devMode)
                         transactions = Array(result.prefix(3))
                         
                         // save to local
-                        LocalFileManager.instance.saveData(item: result, id: membershipNumber, folderName: transactionFolderName)
+                        localFileManager.saveData(item: result, id: membershipNumber, folderName: transactionFolderName, expiry: .never)
                     } catch {
                         throw error
                     }
@@ -48,9 +51,9 @@ class TransactionViewModel: ObservableObject {
         }
     }
     
-    func fetchTransactions(membershipNumber: String) async throws -> [TransactionJournal] {
+    func fetchTransactions(membershipNumber: String, devMode: Bool = false) async throws -> [TransactionJournal] {
         do {
-            let result = try await loyaltyAPIManager.getTransactions(for: membershipNumber)
+            let result = try await loyaltyAPIManager.getTransactions(for: membershipNumber, devMode: devMode)
             let filtered = result.filter { transaction in
                 transaction.pointsChange.contains { currency in
                     currency.loyaltyMemberCurrency == AppSettings.Defaults.rewardCurrencyName
@@ -62,26 +65,26 @@ class TransactionViewModel: ObservableObject {
         }
     }
     
-    func reloadTransactions(membershipNumber: String) async throws {
+    func reloadTransactions(membershipNumber: String, devMode: Bool = false) async throws {
         do {
-            let result = try await fetchTransactions(membershipNumber: membershipNumber)
+            let result = try await fetchTransactions(membershipNumber: membershipNumber, devMode: devMode)
             
             await MainActor.run {
                 transactions = Array(result.prefix(3))
             }
             
             // save to local
-            LocalFileManager.instance.saveData(item: result, id: membershipNumber, folderName: transactionFolderName)
+            localFileManager.saveData(item: result, id: membershipNumber, folderName: transactionFolderName, expiry: .never)
         } catch {
             throw error
         }
     }
     
     @MainActor
-    func loadAllTransactions(membershipNumber: String) async throws {
+    func loadAllTransactions(membershipNumber: String, devMode: Bool = false) async throws {
         if recentTransactions.isEmpty || olderTransactions.isEmpty {
             // load from local cache
-            if let cached = LocalFileManager.instance.getData(type: [TransactionJournal].self, id: membershipNumber, folderName: transactionFolderName) {
+            if let cached = localFileManager.getData(type: [TransactionJournal].self, id: membershipNumber, folderName: transactionFolderName) {
                 // filter recent transactions - within a month
                 let recent = cached.filter { transaction in
                     guard let date = transaction.activityDate.toDate(withFormat: AppSettings.Defaults.apiDateFormat) else {
@@ -101,7 +104,7 @@ class TransactionViewModel: ObservableObject {
                 
             } else {
                 do {
-                    let result = try await fetchTransactions(membershipNumber: membershipNumber)
+                    let result = try await fetchTransactions(membershipNumber: membershipNumber, devMode: devMode)
                     let recent = result.filter { transaction in
                         guard let date = transaction.activityDate.toDate(withFormat: AppSettings.Defaults.apiDateFormat) else {
                             return false
@@ -118,7 +121,7 @@ class TransactionViewModel: ObservableObject {
                     olderTransactions = older
                     
                     // save to local
-                    LocalFileManager.instance.saveData(item: result, id: membershipNumber, folderName: transactionFolderName)
+                    localFileManager.saveData(item: result, id: membershipNumber, folderName: transactionFolderName, expiry: .never)
                 } catch {
                     throw error
                 }
@@ -127,9 +130,9 @@ class TransactionViewModel: ObservableObject {
         }
     }
     
-    func reloadAllTransactions(membershipNumber: String) async throws {
+    func reloadAllTransactions(membershipNumber: String, devMode: Bool = false) async throws {
         do {
-            let result = try await fetchTransactions(membershipNumber: membershipNumber)
+            let result = try await fetchTransactions(membershipNumber: membershipNumber, devMode: devMode)
             let recent = result.filter { transaction in
                 guard let date = transaction.activityDate.toDate(withFormat: AppSettings.Defaults.apiDateFormat) else {
                     return false
@@ -149,7 +152,7 @@ class TransactionViewModel: ObservableObject {
             }
             
             // save to local
-            LocalFileManager.instance.saveData(item: result, id: membershipNumber, folderName: transactionFolderName)
+            localFileManager.saveData(item: result, id: membershipNumber, folderName: transactionFolderName, expiry: .never)
         } catch {
             throw error
         }

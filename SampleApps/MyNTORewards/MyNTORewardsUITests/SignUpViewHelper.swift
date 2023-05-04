@@ -135,7 +135,7 @@ final class SignUpViewHelper {
         
         app.buttons["Terms and Conditions_dismiss"].tap()
         
-      //  agreeSwitch.tap()
+        // agreeSwitch.tap()
         mailSwitch.tap()
     
         XCTAssertFalse(app.staticTexts["first_name_textfield_error"].exists)
