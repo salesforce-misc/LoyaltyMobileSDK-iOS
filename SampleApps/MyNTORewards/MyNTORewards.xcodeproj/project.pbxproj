@@ -45,6 +45,13 @@
 		2941A23F28BE803F005026CF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A23E28BE803F005026CF /* Color.swift */; };
 		2944F88A28B9A7220098ED1B /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppSettings.swift */; };
 		294E341E293C39E6001F7F48 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E341D293C39E6001F7F48 /* ImageViewModel.swift */; };
+		29528FD52A02CE52002A9961 /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 29528FCE2A02CE52002A9961 /* Profile.json */; };
+		29528FD62A02CE52002A9961 /* Transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = 29528FCF2A02CE52002A9961 /* Transactions.json */; };
+		29528FD72A02CE52002A9961 /* Vouchers.json in Resources */ = {isa = PBXBuildFile; fileRef = 29528FD02A02CE52002A9961 /* Vouchers.json */; };
+		29528FD82A02CE52002A9961 /* Benefits.json in Resources */ = {isa = PBXBuildFile; fileRef = 29528FD12A02CE52002A9961 /* Benefits.json */; };
+		29528FD92A02CE52002A9961 /* UnenrollPromotion.json in Resources */ = {isa = PBXBuildFile; fileRef = 29528FD22A02CE52002A9961 /* UnenrollPromotion.json */; };
+		29528FDA2A02CE52002A9961 /* Promotions.json in Resources */ = {isa = PBXBuildFile; fileRef = 29528FD32A02CE52002A9961 /* Promotions.json */; };
+		29528FDB2A02CE52002A9961 /* GetVouchers.json in Resources */ = {isa = PBXBuildFile; fileRef = 29528FD42A02CE52002A9961 /* GetVouchers.json */; };
 		2955345B29E6215A00CFA391 /* AdminMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2955345A29E6215A00CFA391 /* AdminMenuView.swift */; };
 		2955345D29E621AC00CFA391 /* ConnectedAppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2955345C29E621AC00CFA391 /* ConnectedAppSettingsView.swift */; };
 		2955345F29E63BF500CFA391 /* ConnectedAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2955345E29E63BF500CFA391 /* ConnectedAppsView.swift */; };
@@ -225,6 +232,13 @@
 		2941A23E28BE803F005026CF /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2944F88928B9A7220098ED1B /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		294E341D293C39E6001F7F48 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
+		29528FCE2A02CE52002A9961 /* Profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile.json; sourceTree = "<group>"; };
+		29528FCF2A02CE52002A9961 /* Transactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Transactions.json; sourceTree = "<group>"; };
+		29528FD02A02CE52002A9961 /* Vouchers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Vouchers.json; sourceTree = "<group>"; };
+		29528FD12A02CE52002A9961 /* Benefits.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Benefits.json; sourceTree = "<group>"; };
+		29528FD22A02CE52002A9961 /* UnenrollPromotion.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UnenrollPromotion.json; sourceTree = "<group>"; };
+		29528FD32A02CE52002A9961 /* Promotions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Promotions.json; sourceTree = "<group>"; };
+		29528FD42A02CE52002A9961 /* GetVouchers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GetVouchers.json; sourceTree = "<group>"; };
 		2955345A29E6215A00CFA391 /* AdminMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMenuView.swift; sourceTree = "<group>"; };
 		2955345C29E621AC00CFA391 /* ConnectedAppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedAppSettingsView.swift; sourceTree = "<group>"; };
 		2955345E29E63BF500CFA391 /* ConnectedAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedAppsView.swift; sourceTree = "<group>"; };
@@ -440,6 +454,7 @@
 				2944F88928B9A7220098ED1B /* AppSettings.swift */,
 				218A36A728B85B7900FCEE39 /* Assets.xcassets */,
 				298613A928C9638400BDC744 /* Fonts */,
+				29528FCD2A02CDF4002A9961 /* JSONFiles */,
 				216F218428B6141F00DAA66D /* Preview Content */,
 			);
 			path = MyNTORewards;
@@ -551,6 +566,20 @@
 				292ADC75294C064600753541 /* ProfileModel+CurrencyPoints.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		29528FCD2A02CDF4002A9961 /* JSONFiles */ = {
+			isa = PBXGroup;
+			children = (
+				29528FD12A02CE52002A9961 /* Benefits.json */,
+				29528FD42A02CE52002A9961 /* GetVouchers.json */,
+				29528FCE2A02CE52002A9961 /* Profile.json */,
+				29528FD32A02CE52002A9961 /* Promotions.json */,
+				29528FCF2A02CE52002A9961 /* Transactions.json */,
+				29528FD22A02CE52002A9961 /* UnenrollPromotion.json */,
+				29528FD02A02CE52002A9961 /* Vouchers.json */,
+			);
+			path = JSONFiles;
 			sourceTree = "<group>";
 		};
 		2963770B29C10CFB00D45AB6 /* SOQL+SOSL */ = {
@@ -866,12 +895,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29528FD72A02CE52002A9961 /* Vouchers.json in Resources */,
 				298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */,
+				29528FD82A02CE52002A9961 /* Benefits.json in Resources */,
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
+				29528FD92A02CE52002A9961 /* UnenrollPromotion.json in Resources */,
+				29528FD62A02CE52002A9961 /* Transactions.json in Resources */,
 				29AC2F0328F8B2D7003F56F6 /* Roboto-Regular.ttf in Resources */,
+				29528FDB2A02CE52002A9961 /* GetVouchers.json in Resources */,
 				218A36A828B85B7900FCEE39 /* Assets.xcassets in Resources */,
 				216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */,
+				29528FD52A02CE52002A9961 /* Profile.json in Resources */,
 				298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */,
+				29528FDA2A02CE52002A9961 /* Promotions.json in Resources */,
 				298613B028C9698D00BDC744 /* SF-Pro.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
