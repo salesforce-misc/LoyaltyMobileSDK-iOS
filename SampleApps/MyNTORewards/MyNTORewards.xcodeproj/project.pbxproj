@@ -154,6 +154,7 @@
 		3F714D6F2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D6E2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift */; };
 		AF27C5AC2981118D008C7D79 /* LoyaltyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */; };
 		AF8AA4CD29E3ED54007E2F6F /* AppAccessibilityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8AA4CC29E3ED54007E2F6F /* AppAccessibilityConstants.swift */; };
+		AFC75D3429D458DF003CC86A /* ShippingMethodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */; };
 		AFB345C329F0DD5300F40502 /* MyNTORewardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345C229F0DD5300F40502 /* MyNTORewardsTests.swift */; };
 		AFB345CF29F0DD6B00F40502 /* VoucherViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345C929F0DD6A00F40502 /* VoucherViewModelTests.swift */; };
 		AFB345D029F0DD6B00F40502 /* MockFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345CA29F0DD6A00F40502 /* MockFileManager.swift */; };
@@ -164,6 +165,7 @@
 		AFCDDAA429E53EA2006B00EB /* MyNTORewardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAA329E53EA2006B00EB /* MyNTORewardsUITests.swift */; };
 		AFCDDAA629E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */; };
 		AFCDDAAD29E54621006B00EB /* OnBoardingViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAAC29E54621006B00EB /* OnBoardingViewUITests.swift */; };
+		AFDC733D29DBD87E00A2C7F5 /* ShippingAddressRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC733C29DBD87E00A2C7F5 /* ShippingAddressRecord.swift */; };
 		AFE960DD29EE47A700C888C0 /* OnBoardingViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE960DC29EE47A700C888C0 /* OnBoardingViewHelper.swift */; };
 		AFE960DF29EE489500C888C0 /* SignUpViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE960DE29EE489500C888C0 /* SignUpViewHelper.swift */; };
 		AFE960E129EE4B9D00C888C0 /* SignInViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE960E029EE4B9D00C888C0 /* SignInViewHelper.swift */; };
@@ -334,6 +336,7 @@
 		3F714D6E2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyConditionalNavLink.swift; sourceTree = "<group>"; };
 		AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyaltyTextField.swift; sourceTree = "<group>"; };
 		AF8AA4CC29E3ED54007E2F6F /* AppAccessibilityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAccessibilityConstants.swift; sourceTree = "<group>"; };
+		AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingMethodModel.swift; sourceTree = "<group>"; };
 		AFB345C029F0DD5300F40502 /* MyNTORewardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyNTORewardsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFB345C229F0DD5300F40502 /* MyNTORewardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsTests.swift; sourceTree = "<group>"; };
 		AFB345C929F0DD6A00F40502 /* VoucherViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoucherViewModelTests.swift; sourceTree = "<group>"; };
@@ -346,6 +349,7 @@
 		AFCDDAA329E53EA2006B00EB /* MyNTORewardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsUITests.swift; sourceTree = "<group>"; };
 		AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AFCDDAAC29E54621006B00EB /* OnBoardingViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewUITests.swift; sourceTree = "<group>"; };
+		AFDC733C29DBD87E00A2C7F5 /* ShippingAddressRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingAddressRecord.swift; sourceTree = "<group>"; };
 		AFE960DC29EE47A700C888C0 /* OnBoardingViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewHelper.swift; sourceTree = "<group>"; };
 		AFE960DE29EE489500C888C0 /* SignUpViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewHelper.swift; sourceTree = "<group>"; };
 		AFE960E029EE4B9D00C888C0 /* SignInViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewHelper.swift; sourceTree = "<group>"; };
@@ -406,6 +410,7 @@
 				AFB345C129F0DD5300F40502 /* MyNTORewardsTests */,
 				216F217C28B6141E00DAA66D /* Products */,
 				2906B1D728FF60A3006EAB2D /* Frameworks */,
+				AF141A282A02284200D953E2 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -543,6 +548,8 @@
 				296D393028DBCB530078C88E /* OnboardingModel.swift */,
 				299B38E128ED24B900E45D97 /* PasswordResetModel.swift */,
 				2906B1D328FF5031006EAB2D /* MemberModel.swift */,
+				AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */,
+				AFDC733C29DBD87E00A2C7F5 /* ShippingAddressRecord.swift */,
 				293F642E29D64E48001AC795 /* CommunityMemberModel.swift */,
 				292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */,
 				292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */,
@@ -713,6 +720,13 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		AF141A282A02284200D953E2 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+               sourceTree = "<group>";
+        };
 		AFB345C129F0DD5300F40502 /* MyNTORewardsTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -924,6 +938,7 @@
 				299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */,
 				298D5EFA29D4E5F00062F16E /* String+Date.swift in Sources */,
 				292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */,
+				AFC75D3429D458DF003CC86A /* ShippingMethodModel.swift in Sources */,
 				292ADC72294C04AB00753541 /* VocherModel+VoucherValue.swift in Sources */,
 				292ADC6E294BFD7700753541 /* PreviewProvider.swift in Sources */,
 				29367606293209CB00E09A6D /* CachedAsyncImage.swift in Sources */,
@@ -993,6 +1008,7 @@
 				3F714D6529FA0FEB00CD39E7 /* AddressView.swift in Sources */,
 				29BAF6E128F3EEA000A3F9EB /* MyPromotionCardView.swift in Sources */,
 				29BAF6EB28F4D24500A3F9EB /* TransactionsView.swift in Sources */,
+				AFDC733D29DBD87E00A2C7F5 /* ShippingAddressRecord.swift in Sources */,
 				2955345B29E6215A00CFA391 /* AdminMenuView.swift in Sources */,
 				2984C9472954F091009669EF /* Expiry.swift in Sources */,
 				299B38DC28EB7F7000E45D97 /* CheckYourEmailView.swift in Sources */,

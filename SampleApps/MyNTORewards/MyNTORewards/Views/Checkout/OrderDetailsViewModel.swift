@@ -9,10 +9,17 @@ import Foundation
 import LoyaltyMobileSDK
 
 @MainActor
+
 class OrderDetailsViewModel: ObservableObject {
 	@Published var selectedIndex: Int
 	@Published var isOrderPlacedNavigationActive = false
 	var orderId = ""
+    @Published var shippingAddress: ShippingAddress?
+    
+    private let checkout_shipping_method = "/services/apexrest/ShippingMethods/"
+    private let checkout_shipping_address_query = "SELECT shippingAddress,billingAddress from Account"
+    private let authManager: ForceAuthManager
+    private var forceClient: ForceClient
 	
 	init(authManager: ForceAuthManager = .shared, forceClient: ForceClient? = nil, index: Int = 0) {
 		self.authManager = authManager
@@ -28,9 +35,6 @@ class OrderDetailsViewModel: ObservableObject {
 			print("Unable to place order")
 		}
 	}
-	
-	private var authManager: ForceAuthManager
-	private var forceClient: ForceClient
 	
 	private func placeOrder(
 		productName: String = "Men's Rainier L4 Windproof Soft Shell Hoodie",
@@ -76,6 +80,32 @@ class OrderDetailsViewModel: ObservableObject {
 			throw error
 		}
 	}
+    
+    func getShippingType(devMode: Bool = false) async throws -> [ShippingMethod] {
+        do {
+            if devMode {
+                let result = try forceClient.fetchLocalJson(type: [ShippingMethod].self, file: "ShippingMethod")
+                return result
+            }
+            
+            let request = try ForceRequest.create(instanceURL: AppSettings.getInstanceURL(), path: checkout_shipping_method, method: "GET")
+            let result = try await forceClient.fetch(type: [ShippingMethod].self, with: request)
+            return result
+        } catch {
+            print(error.localizedDescription)
+            throw error
+        }
+    }
+    
+    func getShippingAddress(membershipNumber: String) async throws {
+        do {
+            let queryResult = try await forceClient.SOQL(type: ShippingAddressRecord.self, for: checkout_shipping_address_query)
+            shippingAddress = queryResult.records.compactMap { $0.shippingAddress }.first
+        } catch {
+            print(error.localizedDescription)
+            throw error
+        }
+    }
 }
 
 struct Order: Codable {

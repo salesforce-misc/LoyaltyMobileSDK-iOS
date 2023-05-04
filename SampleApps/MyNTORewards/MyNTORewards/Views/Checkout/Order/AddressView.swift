@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct AddressView: View {
+    @EnvironmentObject private var rootVM: AppRootViewModel
+	@EnvironmentObject var orderDetailsViewModel: OrderDetailsViewModel
 	@Binding var selectedIndex: Int
+
     var body: some View {
 		VStack(spacing: 0) {
 			HStack {
@@ -42,7 +45,13 @@ struct AddressView: View {
 			.padding(.bottom)
 		}
 		.background(Color.white)
-		
+        .task {
+            do {
+                try await orderDetailsViewModel.getShippingAddress(membershipNumber: rootVM.member?.loyaltyProgramMemberId ?? "")
+            } catch {
+                print("Load Vouchers Error: \(error)")
+            }
+        }
     }
 }
 
