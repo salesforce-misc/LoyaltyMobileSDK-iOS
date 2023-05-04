@@ -183,9 +183,18 @@
 		AFAF523F29F63C6F00478F67 /* VoucherViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAF523E29F63C6F00478F67 /* VoucherViewHelper.swift */; };
 		AFAF524129F63D8E00478F67 /* BenefitsViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAF524029F63D8E00478F67 /* BenefitsViewHelper.swift */; };
 		AFAF524329F63E2900478F67 /* TransactionsViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAF524229F63E2900478F67 /* TransactionsViewHelper.swift */; };
+		AFC75D3429D458DF003CC86A /* ShippingMethodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */; };
+		AFB345C329F0DD5300F40502 /* MyNTORewardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345C229F0DD5300F40502 /* MyNTORewardsTests.swift */; };
+		AFB345CF29F0DD6B00F40502 /* VoucherViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345C929F0DD6A00F40502 /* VoucherViewModelTests.swift */; };
+		AFB345D029F0DD6B00F40502 /* MockFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345CA29F0DD6A00F40502 /* MockFileManager.swift */; };
+		AFB345D129F0DD6B00F40502 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345CB29F0DD6B00F40502 /* ProfileViewModelTests.swift */; };
+		AFB345D229F0DD6B00F40502 /* PromotionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345CC29F0DD6B00F40502 /* PromotionViewModelTests.swift */; };
+		AFB345D329F0DD6B00F40502 /* TransactionsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345CD29F0DD6B00F40502 /* TransactionsViewModelTests.swift */; };
+		AFB345D429F0DD6B00F40502 /* BenefitViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345CE29F0DD6B00F40502 /* BenefitViewModelTestCase.swift */; };
 		AFCDDAA429E53EA2006B00EB /* MyNTORewardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAA329E53EA2006B00EB /* MyNTORewardsUITests.swift */; };
 		AFCDDAA629E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */; };
 		AFCDDAAD29E54621006B00EB /* OnBoardingViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAAC29E54621006B00EB /* OnBoardingViewUITests.swift */; };
+		AFDC733D29DBD87E00A2C7F5 /* ShippingAddressRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFDC733C29DBD87E00A2C7F5 /* ShippingAddressRecord.swift */; };
 		AFE960DD29EE47A700C888C0 /* OnBoardingViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE960DC29EE47A700C888C0 /* OnBoardingViewHelper.swift */; };
 		AFE960DF29EE489500C888C0 /* SignUpViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE960DE29EE489500C888C0 /* SignUpViewHelper.swift */; };
 		AFE960E129EE4B9D00C888C0 /* SignInViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE960E029EE4B9D00C888C0 /* SignInViewHelper.swift */; };
@@ -193,6 +202,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AFB345C429F0DD5300F40502 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 216F217328B6141E00DAA66D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 216F217A28B6141E00DAA66D;
+			remoteInfo = MyNTORewards;
+		};
 		AFCDDAA729E53EA2006B00EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 216F217328B6141E00DAA66D /* Project object */;
@@ -378,10 +394,20 @@
 		AFAF523E29F63C6F00478F67 /* VoucherViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherViewHelper.swift; sourceTree = "<group>"; };
 		AFAF524029F63D8E00478F67 /* BenefitsViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitsViewHelper.swift; sourceTree = "<group>"; };
 		AFAF524229F63E2900478F67 /* TransactionsViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewHelper.swift; sourceTree = "<group>"; };
+		AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingMethodModel.swift; sourceTree = "<group>"; };
+		AFB345C029F0DD5300F40502 /* MyNTORewardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyNTORewardsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFB345C229F0DD5300F40502 /* MyNTORewardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsTests.swift; sourceTree = "<group>"; };
+		AFB345C929F0DD6A00F40502 /* VoucherViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoucherViewModelTests.swift; sourceTree = "<group>"; };
+		AFB345CA29F0DD6A00F40502 /* MockFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFileManager.swift; sourceTree = "<group>"; };
+		AFB345CB29F0DD6B00F40502 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
+		AFB345CC29F0DD6B00F40502 /* PromotionViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionViewModelTests.swift; sourceTree = "<group>"; };
+		AFB345CD29F0DD6B00F40502 /* TransactionsViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsViewModelTests.swift; sourceTree = "<group>"; };
+		AFB345CE29F0DD6B00F40502 /* BenefitViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitViewModelTestCase.swift; sourceTree = "<group>"; };
 		AFCDDAA129E53EA2006B00EB /* MyNTORewardsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyNTORewardsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFCDDAA329E53EA2006B00EB /* MyNTORewardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsUITests.swift; sourceTree = "<group>"; };
 		AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AFCDDAAC29E54621006B00EB /* OnBoardingViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewUITests.swift; sourceTree = "<group>"; };
+		AFDC733C29DBD87E00A2C7F5 /* ShippingAddressRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingAddressRecord.swift; sourceTree = "<group>"; };
 		AFE960DC29EE47A700C888C0 /* OnBoardingViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewHelper.swift; sourceTree = "<group>"; };
 		AFE960DE29EE489500C888C0 /* SignUpViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewHelper.swift; sourceTree = "<group>"; };
 		AFE960E029EE4B9D00C888C0 /* SignInViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewHelper.swift; sourceTree = "<group>"; };
@@ -397,6 +423,13 @@
 				2906B1E22900BA8A006EAB2D /* FirebaseAuth in Frameworks */,
 				2906B1E6290127F5006EAB2D /* FirebaseFirestore in Frameworks */,
 				2906B1E8290127FD006EAB2D /* FirebaseFirestoreSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFB345BD29F0DD5300F40502 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,8 +465,10 @@
 				216F218C28B6145200DAA66D /* GoogleService-Info.plist */,
 				216F217D28B6141E00DAA66D /* MyNTORewards */,
 				AFCDDAA229E53EA2006B00EB /* MyNTORewardsUITests */,
+				AFB345C129F0DD5300F40502 /* MyNTORewardsTests */,
 				216F217C28B6141E00DAA66D /* Products */,
 				2906B1D728FF60A3006EAB2D /* Frameworks */,
+				AF141A282A02284200D953E2 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -442,6 +477,7 @@
 			children = (
 				216F217B28B6141E00DAA66D /* MyNTORewards.app */,
 				AFCDDAA129E53EA2006B00EB /* MyNTORewardsUITests.xctest */,
+				AFB345C029F0DD5300F40502 /* MyNTORewardsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -570,6 +606,8 @@
 				296D393028DBCB530078C88E /* OnboardingModel.swift */,
 				299B38E128ED24B900E45D97 /* PasswordResetModel.swift */,
 				2906B1D328FF5031006EAB2D /* MemberModel.swift */,
+				AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */,
+				AFDC733C29DBD87E00A2C7F5 /* ShippingAddressRecord.swift */,
 				293F642E29D64E48001AC795 /* CommunityMemberModel.swift */,
 				292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */,
 				292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */,
@@ -740,6 +778,27 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		AF141A282A02284200D953E2 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+               sourceTree = "<group>";
+        };
+		AFB345C129F0DD5300F40502 /* MyNTORewardsTests */ = {
+			isa = PBXGroup;
+			children = (
+				AFB345C229F0DD5300F40502 /* MyNTORewardsTests.swift */,
+				AFB345CE29F0DD6B00F40502 /* BenefitViewModelTestCase.swift */,
+				AFB345CA29F0DD6A00F40502 /* MockFileManager.swift */,
+				AFB345CB29F0DD6B00F40502 /* ProfileViewModelTests.swift */,
+				AFB345CC29F0DD6B00F40502 /* PromotionViewModelTests.swift */,
+				AFB345CD29F0DD6B00F40502 /* TransactionsViewModelTests.swift */,
+				AFB345C929F0DD6A00F40502 /* VoucherViewModelTests.swift */,
+			);
+			path = MyNTORewardsTests;
+			sourceTree = "<group>";
+		};
 		AFCDDAA229E53EA2006B00EB /* MyNTORewardsUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -787,6 +846,24 @@
 			productReference = 216F217B28B6141E00DAA66D /* MyNTORewards.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AFB345BF29F0DD5300F40502 /* MyNTORewardsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFB345C829F0DD5300F40502 /* Build configuration list for PBXNativeTarget "MyNTORewardsTests" */;
+			buildPhases = (
+				AFB345BC29F0DD5300F40502 /* Sources */,
+				AFB345BD29F0DD5300F40502 /* Frameworks */,
+				AFB345BE29F0DD5300F40502 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AFB345C529F0DD5300F40502 /* PBXTargetDependency */,
+			);
+			name = MyNTORewardsTests;
+			productName = MyNTORewardsTests;
+			productReference = AFB345C029F0DD5300F40502 /* MyNTORewardsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AFCDDAA029E53EA2006B00EB /* MyNTORewardsUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AFCDDAAB29E53EA2006B00EB /* Build configuration list for PBXNativeTarget "MyNTORewardsUITests" */;
@@ -818,6 +895,10 @@
 					216F217A28B6141E00DAA66D = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
+					AFB345BF29F0DD5300F40502 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 216F217A28B6141E00DAA66D;
+					};
 					AFCDDAA029E53EA2006B00EB = {
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = 216F217A28B6141E00DAA66D;
@@ -842,6 +923,7 @@
 			targets = (
 				216F217A28B6141E00DAA66D /* MyNTORewards */,
 				AFCDDAA029E53EA2006B00EB /* MyNTORewardsUITests */,
+				AFB345BF29F0DD5300F40502 /* MyNTORewardsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -858,6 +940,13 @@
 				216F218D28B6145200DAA66D /* GoogleService-Info.plist in Resources */,
 				298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */,
 				298613B028C9698D00BDC744 /* SF-Pro.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFB345BE29F0DD5300F40502 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -913,6 +1002,7 @@
 				299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */,
 				298D5EFA29D4E5F00062F16E /* String+Date.swift in Sources */,
 				292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */,
+				AFC75D3429D458DF003CC86A /* ShippingMethodModel.swift in Sources */,
 				292ADC72294C04AB00753541 /* VocherModel+VoucherValue.swift in Sources */,
 				292ADC6E294BFD7700753541 /* PreviewProvider.swift in Sources */,
 				29367606293209CB00E09A6D /* CachedAsyncImage.swift in Sources */,
@@ -982,6 +1072,7 @@
 				3F714D6529FA0FEB00CD39E7 /* AddressView.swift in Sources */,
 				29BAF6E128F3EEA000A3F9EB /* MyPromotionCardView.swift in Sources */,
 				29BAF6EB28F4D24500A3F9EB /* TransactionsView.swift in Sources */,
+				AFDC733D29DBD87E00A2C7F5 /* ShippingAddressRecord.swift in Sources */,
 				2955345B29E6215A00CFA391 /* AdminMenuView.swift in Sources */,
 				2984C9472954F091009669EF /* Expiry.swift in Sources */,
 				299B38DC28EB7F7000E45D97 /* CheckYourEmailView.swift in Sources */,
@@ -1035,6 +1126,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AFB345BC29F0DD5300F40502 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFB345C329F0DD5300F40502 /* MyNTORewardsTests.swift in Sources */,
+				AFB345D029F0DD6B00F40502 /* MockFileManager.swift in Sources */,
+				AFB345D129F0DD6B00F40502 /* ProfileViewModelTests.swift in Sources */,
+				AFB345D229F0DD6B00F40502 /* PromotionViewModelTests.swift in Sources */,
+				AFB345D429F0DD6B00F40502 /* BenefitViewModelTestCase.swift in Sources */,
+				AFB345D329F0DD6B00F40502 /* TransactionsViewModelTests.swift in Sources */,
+				AFB345CF29F0DD6B00F40502 /* VoucherViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AFCDDA9D29E53EA2006B00EB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1058,6 +1163,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AFB345C529F0DD5300F40502 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 216F217A28B6141E00DAA66D /* MyNTORewards */;
+			targetProxy = AFB345C429F0DD5300F40502 /* PBXContainerItemProxy */;
+		};
 		AFCDDAA829E53EA2006B00EB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 216F217A28B6141E00DAA66D /* MyNTORewards */;
@@ -1258,6 +1368,44 @@
 			};
 			name = Release;
 		};
+		AFB345C629F0DD5300F40502 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyNTORewards.app/MyNTORewards";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyNTORewards.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyNTORewards";
+			};
+			name = Debug;
+		};
+		AFB345C729F0DD5300F40502 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyNTORewards.app/MyNTORewards";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyNTORewards.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MyNTORewards";
+			};
+			name = Release;
+		};
 		AFCDDAA929E53EA2006B00EB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1311,6 +1459,15 @@
 			buildConfigurations = (
 				216F218A28B6141F00DAA66D /* Debug */,
 				216F218B28B6141F00DAA66D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AFB345C829F0DD5300F40502 /* Build configuration list for PBXNativeTarget "MyNTORewardsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFB345C629F0DD5300F40502 /* Debug */,
+				AFB345C729F0DD5300F40502 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

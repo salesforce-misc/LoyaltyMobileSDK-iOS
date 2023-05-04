@@ -24,19 +24,14 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "LoyaltyMobileSDK",
-            dependencies: []),
+            dependencies: [],
+            resources: [
+                .process("Resources")
+            ]
+        ),
         .testTarget(
             name: "LoyaltyMobileSDKTests",
-            dependencies: ["LoyaltyMobileSDK"],
-            resources: [
-                .process("JSONFiles/Profile.json"),
-                .process("JSONFiles/Benefits.json"),
-                .process("JSONFiles/Enrollment.json"),
-                .process("JSONFiles/EnrollmentPromotion.json"),
-                .process("JSONFiles/UnenrollmentPromotion.json"),
-                .process("JSONFiles/Promotions.json"),
-                .process("JSONFiles/Vouchers.json"),
-                .process("JSONFiles/Transactions.json")
-            ])
+            dependencies: ["LoyaltyMobileSDK"]
+        )
     ]
 )

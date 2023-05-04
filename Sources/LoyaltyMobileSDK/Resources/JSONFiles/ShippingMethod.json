@@ -1,0 +1,47 @@
+[
+    {
+        "attributes": {
+            "type": "Shipping_Methods__mdt",
+            "url": "/services/data/v55.0/sobjects/Shipping_Methods__mdt/m004x000001OodHAAS"
+        },
+        "Shipping_Code__c": "0",
+        "Shipping_Type__c": "Store Pickup $0.00",
+        "Id": "m004x000001OodHAAS"
+    },
+    {
+        "attributes": {
+            "type": "Shipping_Methods__mdt",
+            "url": "/services/data/v55.0/sobjects/Shipping_Methods__mdt/m004x000001OodFAAS"
+        },
+        "Shipping_Code__c": "7.99",
+        "Shipping_Type__c": "Ground $7.99",
+        "Id": "m004x000001OodFAAS"
+    },
+    {
+        "attributes": {
+            "type": "Shipping_Methods__mdt",
+            "url": "/services/data/v55.0/sobjects/Shipping_Methods__mdt/m004x000001OodJAAS"
+        },
+        "Shipping_Code__c": "11.99",
+        "Shipping_Type__c": "2-Day Express $11.99",
+        "Id": "m004x000001OodJAAS"
+    },
+    {
+        "attributes": {
+            "type": "Shipping_Methods__mdt",
+            "url": "/services/data/v55.0/sobjects/Shipping_Methods__mdt/m004x000001OodIAAS"
+        },
+        "Shipping_Code__c": "1.99",
+        "Shipping_Type__c": "Super Saver $1.99",
+        "Id": "m004x000001OodIAAS"
+    },
+    {
+        "attributes": {
+            "type": "Shipping_Methods__mdt",
+            "url": "/services/data/v55.0/sobjects/Shipping_Methods__mdt/m004x000001OodGAAS"
+        },
+        "Shipping_Code__c": "19",
+        "Shipping_Type__c": "Overnight $19.99",
+        "Id": "m004x000001OodGAAS"
+    }
+]

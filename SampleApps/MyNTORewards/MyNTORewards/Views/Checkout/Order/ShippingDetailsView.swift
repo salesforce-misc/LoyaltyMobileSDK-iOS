@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ShippingDetailsView: View {
+    @EnvironmentObject private var orderDetailsVM: OrderDetailsViewModel
 	@Binding var selectedIndex: Int
 	var body: some View {
 		VStack {
@@ -23,6 +24,7 @@ struct ShippingDetailsView: View {
 				}
 				.padding(24)
 				AddressView(selectedIndex: $selectedIndex)
+                    .environmentObject(orderDetailsVM)
 					.cornerRadius(16, corners: .allCorners)
 					.padding(.horizontal, 24)
 			}

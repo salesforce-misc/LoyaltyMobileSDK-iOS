@@ -25,24 +25,27 @@ class PromotionViewModel: ObservableObject {
 		return true
 	}
     
-    private let authManager = ForceAuthManager.shared
+    private let authManager: ForceAuthenticator
+    private let localFileManager: FileManagerProtocol
     private var loyaltyAPIManager: LoyaltyAPIManager
     
-    init() {
+    init(authManager: ForceAuthenticator = ForceAuthManager.shared, localFileManager: FileManagerProtocol = LocalFileManager.instance) {
+        self.authManager = authManager
+        self.localFileManager = localFileManager
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
                                               loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
                                               instanceURL: AppSettings.getInstanceURL(), forceClient: ForceClient(auth: authManager))
     }
     
     // Network call to fetch all eligible promotions
-    private func fetchEligiblePromotions(membershipNumber: String) async throws -> [PromotionResult] {
+    private func fetchEligiblePromotions(membershipNumber: String, devMode: Bool = false) async throws -> [PromotionResult] {
         do {
-            let result = try await loyaltyAPIManager.getPromotions(membershipNumber: membershipNumber)
+            let result = try await loyaltyAPIManager.getPromotions(membershipNumber: membershipNumber, devMode: devMode)
             let eligible = result.outputParameters.outputParameters.results.filter { result in
                 return result.memberEligibilityCategory != "Ineligible"
             }
             // save to local
-            LocalFileManager.instance.saveData(item: eligible, id: membershipNumber, folderName: "Promotions")
+            localFileManager.saveData(item: eligible, id: membershipNumber, folderName: "Promotions", expiry: .never)
             
             await MainActor.run {
                 // update promotion list
@@ -55,9 +58,9 @@ class PromotionViewModel: ObservableObject {
         }
     }
     
-    func fetchCarouselPromotions(membershipNumber: String) async throws {
+    func fetchCarouselPromotions(membershipNumber: String, devMode: Bool = false) async throws {
         do {
-            let eligible = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
+            let eligible = try await fetchEligiblePromotions(membershipNumber: membershipNumber, devMode: devMode)
             
             await MainActor.run {
                 // get max of 5 promotions for home page carousel
@@ -68,7 +71,7 @@ class PromotionViewModel: ObservableObject {
         }
     }
     
-    func loadCarouselPromotions(membershipNumber: String) async throws {
+    func loadCarouselPromotions(membershipNumber: String, devMode: Bool = false) async throws {
         
         if promotions.isEmpty {
             // load from local cache
@@ -79,7 +82,7 @@ class PromotionViewModel: ObservableObject {
                 
             } else {
                 do {
-                    try await fetchCarouselPromotions(membershipNumber: membershipNumber)
+                    try await fetchCarouselPromotions(membershipNumber: membershipNumber, devMode: devMode)
                 } catch {
                     throw error
                 }
@@ -89,9 +92,9 @@ class PromotionViewModel: ObservableObject {
     }
     
     // fetch all promotions from salesforce
-    func fetchAllPromotions(membershipNumber: String) async throws {
+    func fetchAllPromotions(membershipNumber: String, devMode: Bool = false) async throws {
         do {
-            let allEligible = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
+            let allEligible = try await fetchEligiblePromotions(membershipNumber: membershipNumber, devMode: devMode)
             
             await MainActor.run {
                 allEligiblePromotions = allEligible
@@ -102,17 +105,17 @@ class PromotionViewModel: ObservableObject {
         }
     }
     
-    func loadAllPromotions(membershipNumber: String) async throws {
+    func loadAllPromotions(membershipNumber: String, devMode: Bool = false) async throws {
 
         if allEligiblePromotions.isEmpty {
             // load from local cache
-            if let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
+            if let cached = localFileManager.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
                 await MainActor.run {
                     allEligiblePromotions = cached
                 }
             } else {
                 do {
-                    try await fetchAllPromotions(membershipNumber: membershipNumber)
+                    try await fetchAllPromotions(membershipNumber: membershipNumber, devMode: devMode)
                 } catch {
                     throw error
                 }
@@ -122,9 +125,9 @@ class PromotionViewModel: ObservableObject {
     }
     
     // fetch active promotions from salesforce
-    func fetchActivePromotions(membershipNumber: String) async throws {
+    func fetchActivePromotions(membershipNumber: String, devMode: Bool = false) async throws {
         do {
-            let promotions = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
+            let promotions = try await fetchEligiblePromotions(membershipNumber: membershipNumber, devMode: devMode)
             let active = promotions.filter { result in
                 return (result.memberEligibilityCategory == "Eligible" || result.promotionEnrollmentRqr == false)
             }
@@ -138,11 +141,11 @@ class PromotionViewModel: ObservableObject {
         }
     }
     
-    func loadActivePromotions(membershipNumber: String) async throws {
+    func loadActivePromotions(membershipNumber: String, devMode: Bool = false) async throws {
         
         if activePromotions.isEmpty {
             // load from local cache
-            if let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
+            if let cached = localFileManager.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
                 let active = cached.filter { result in
                     return (result.memberEligibilityCategory == "Eligible" || result.promotionEnrollmentRqr == false)
                 }
@@ -151,7 +154,7 @@ class PromotionViewModel: ObservableObject {
                 }
             } else {
                 do {
-                    try await fetchActivePromotions(membershipNumber: membershipNumber)
+                    try await fetchActivePromotions(membershipNumber: membershipNumber, devMode: devMode)
                 } catch {
                     throw error
                 }
@@ -160,9 +163,9 @@ class PromotionViewModel: ObservableObject {
         }
     }
     
-    func fetchUnenrolledPromotions(membershipNumber: String) async throws {
+    func fetchUnenrolledPromotions(membershipNumber: String, devMode: Bool = false) async throws {
         do {
-            let promotions = try await fetchEligiblePromotions(membershipNumber: membershipNumber)
+            let promotions = try await fetchEligiblePromotions(membershipNumber: membershipNumber, devMode: devMode)
             let unenrolled = promotions.filter { result in
                 return (result.memberEligibilityCategory == "EligibleButNotEnrolled" && result.promotionEnrollmentRqr == true)
             } 
@@ -176,11 +179,11 @@ class PromotionViewModel: ObservableObject {
         }
     }
     
-    func loadUnenrolledPromotions(membershipNumber: String) async throws {
+    func loadUnenrolledPromotions(membershipNumber: String, devMode: Bool = false) async throws {
         
         if unenrolledPromotions.isEmpty {
             // load from local cache
-            if let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
+            if let cached = localFileManager.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
                 let unenrolled = cached.filter { result in
                     return (result.memberEligibilityCategory == "EligibleButNotEnrolled" && result.promotionEnrollmentRqr == true)
                 }
@@ -189,7 +192,7 @@ class PromotionViewModel: ObservableObject {
                 }
             } else {
                 do {
-                    try await fetchUnenrolledPromotions(membershipNumber: membershipNumber)
+                    try await fetchUnenrolledPromotions(membershipNumber: membershipNumber, devMode: devMode)
                 } catch {
                     throw error
                 }
@@ -234,7 +237,7 @@ class PromotionViewModel: ObservableObject {
     
     func updatePromotionsFromCache(membershipNumber: String, promotionId: String) async {
 
-        guard let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") else {
+        guard let cached = localFileManager.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") else {
             return
         }
         let active = cached.filter { result in
