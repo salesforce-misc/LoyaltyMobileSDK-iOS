@@ -9,7 +9,15 @@ import Foundation
 import SwiftUI
 import LoyaltyMobileSDK
 
-public class LocalFileManager {
+public protocol FileManagerProtocol {
+    func saveData<T: Codable>(item: T, id: String, folderName: String?, expiry: Expiry)
+    func getData<T: Codable>(type: T.Type, id: String, folderName: String?) -> T?
+    func removeData<T>(type: T.Type, id: String, folderName: String?)
+    func saveImage(image: UIImage, imageName: String, folderName: String?, expiry: Expiry)
+    func getImage(imageName: String, folderName: String?) -> UIImage?
+}
+
+public class LocalFileManager: FileManagerProtocol {
     
     public static let instance = LocalFileManager()
     private let cachedAppDataFolder = "AppData"
