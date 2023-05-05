@@ -153,6 +153,7 @@
 		3FFE1C9B29A29FF900F43253 /* UnenrollPromotion.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE1C9A29A29FF900F43253 /* UnenrollPromotion.json */; };
 		3FFE1C9D29A37D5300F43253 /* GetVouchers.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FFE1C9C29A37D5300F43253 /* GetVouchers.json */; };
 		AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */; };
+		3F3E65A42A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */; };
 		3F714D4429FA0F4A00CD39E7 /* ProductHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D3E29FA0F4900CD39E7 /* ProductHeaderView.swift */; };
 		3F714D4529FA0F4A00CD39E7 /* ProductReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D3F29FA0F4900CD39E7 /* ProductReviewView.swift */; };
 		3F714D4629FA0F4A00CD39E7 /* ProductImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D4029FA0F4900CD39E7 /* ProductImagesView.swift */; };
@@ -366,6 +367,7 @@
 		3FFE1C9A29A29FF900F43253 /* UnenrollPromotion.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UnenrollPromotion.json; sourceTree = "<group>"; };
 		3FFE1C9C29A37D5300F43253 /* GetVouchers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GetVouchers.json; sourceTree = "<group>"; };
 		AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewHelper.swift; sourceTree = "<group>"; };
+		3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAndLoyaltyAPITests.swift; sourceTree = "<group>"; };
 		3F714D3E29FA0F4900CD39E7 /* ProductHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductHeaderView.swift; sourceTree = "<group>"; };
 		3F714D3F29FA0F4900CD39E7 /* ProductReviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductReviewView.swift; sourceTree = "<group>"; };
 		3F714D4029FA0F4900CD39E7 /* ProductImagesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductImagesView.swift; sourceTree = "<group>"; };
@@ -469,8 +471,8 @@
 				2920609229523C0B006B20C1 /* Packages */,
 				216F218C28B6145200DAA66D /* GoogleService-Info.plist */,
 				216F217D28B6141E00DAA66D /* MyNTORewards */,
-				AFCDDAA229E53EA2006B00EB /* MyNTORewardsUITests */,
 				AFB345C129F0DD5300F40502 /* MyNTORewardsTests */,
+				AFCDDAA229E53EA2006B00EB /* MyNTORewardsUITests */,
 				216F217C28B6141E00DAA66D /* Products */,
 				2906B1D728FF60A3006EAB2D /* Frameworks */,
 				AF141A282A02284200D953E2 /* Recovered References */,
@@ -730,6 +732,14 @@
 			path = LoyaltyNavigationLink;
 			sourceTree = "<group>";
 		};
+		3F3E65A02A02B67F00180569 /* IntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */,
+			);
+			path = IntegrationTests;
+			sourceTree = "<group>";
+		};
 		3F714D4A29FA0F5300CD39E7 /* Product */ = {
 			isa = PBXGroup;
 			children = (
@@ -788,11 +798,12 @@
 			children = (
 			);
 			name = "Recovered References";
-               sourceTree = "<group>";
-        };
+			sourceTree = "<group>";
+		};
 		AFB345C129F0DD5300F40502 /* MyNTORewardsTests */ = {
 			isa = PBXGroup;
 			children = (
+				3F3E65A02A02B67F00180569 /* IntegrationTests */,
 				AFB345C229F0DD5300F40502 /* MyNTORewardsTests.swift */,
 				AFB345CE29F0DD6B00F40502 /* BenefitViewModelTestCase.swift */,
 				AFB345CA29F0DD6A00F40502 /* MockFileManager.swift */,
@@ -928,8 +939,8 @@
 			projectRoot = "";
 			targets = (
 				216F217A28B6141E00DAA66D /* MyNTORewards */,
-				AFCDDAA029E53EA2006B00EB /* MyNTORewardsUITests */,
 				AFB345BF29F0DD5300F40502 /* MyNTORewardsTests */,
+				AFCDDAA029E53EA2006B00EB /* MyNTORewardsUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1139,6 +1150,7 @@
 				AFB345C329F0DD5300F40502 /* MyNTORewardsTests.swift in Sources */,
 				AFB345D029F0DD6B00F40502 /* MockFileManager.swift in Sources */,
 				AFB345D129F0DD6B00F40502 /* ProfileViewModelTests.swift in Sources */,
+				3F3E65A42A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift in Sources */,
 				AFB345D229F0DD6B00F40502 /* PromotionViewModelTests.swift in Sources */,
 				AFB345D429F0DD6B00F40502 /* BenefitViewModelTestCase.swift in Sources */,
 				AFB345D329F0DD6B00F40502 /* TransactionsViewModelTests.swift in Sources */,
