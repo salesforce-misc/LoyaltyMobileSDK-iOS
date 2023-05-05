@@ -34,10 +34,10 @@ final class SignInViewHelper {
     static func testLogin() throws {
         app.buttons["signIn_login_button"].tap()
         app.textFields["username_textfield"].tap()
-        app.textFields["username_textfield"].typeText("test128@test.com")
+        app.textFields["username_textfield"].typeText(UITestingHelper.userName)
         
         app.secureTextFields["password_textfield"].tap()
-        app.secureTextFields["password_textfield"].typeText("Abcd1234")
+        app.secureTextFields["password_textfield"].typeText(UITestingHelper.password)
         
         app.buttons["signIn_login_button"].tap()
         
@@ -50,10 +50,10 @@ final class SignInViewHelper {
     static func testLoginWithPromotions() throws {
         app.buttons["signIn_login_button"].tap()
         app.textFields["username_textfield"].tap()
-        app.textFields["username_textfield"].typeText("test@ar.com")
+        app.textFields["username_textfield"].typeText(UITestingHelper.userName)
         
         app.secureTextFields["password_textfield"].tap()
-        app.secureTextFields["password_textfield"].typeText("test@123")
+        app.secureTextFields["password_textfield"].typeText(UITestingHelper.password)
         
         app.buttons["signIn_login_button"].tap()
         

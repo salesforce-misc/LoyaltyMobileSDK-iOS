@@ -22,6 +22,9 @@ final class OnBoardingViewUITests: XCTestCase {
     /// 4. Tap logout and verify logout
     
     func testOnBoardingFlow() throws {
+        if UITestingHelper.isLoggedIn() {
+            try MoreViewHelper.testMoreScreen()
+        }
         try OnBoardingViewHelper.testOnBoardingScreen()
         try SignUpViewHelper.testSignUpPage()
         try SignInViewHelper.testSignInScreen()
@@ -35,6 +38,9 @@ final class OnBoardingViewUITests: XCTestCase {
     /// 4. Tap logout and verify logout
     
     func testTabBarButton() throws {
+        if UITestingHelper.isLoggedIn() {
+            try MoreViewHelper.testMoreScreen()
+        }
         let loginButton = app.buttons["login_button"]
         loginButton.tap()
         
@@ -55,6 +61,9 @@ final class OnBoardingViewUITests: XCTestCase {
     /// 4. Verify Vouchers empty screen
     /// 5. Tap logout and verify logout
     func testHomeEmptyScreen() throws {
+        if UITestingHelper.isLoggedIn() {
+            try MoreViewHelper.testMoreScreen()
+        }
         let loginButton = app.buttons["login_button"]
         loginButton.tap()
         try SignInViewHelper.testLogin()
@@ -71,6 +80,9 @@ final class OnBoardingViewUITests: XCTestCase {
     /// 3. Verify Promotions carousel
     /// 4. Tap logout and verify logout
     func testHomeScreen() throws {
+        if UITestingHelper.isLoggedIn() {
+            try MoreViewHelper.testMoreScreen()
+        }
         let loginButton = app.buttons["login_button"]
         loginButton.tap()
         try SignInViewHelper.testLoginWithPromotions()
@@ -85,6 +97,9 @@ final class OnBoardingViewUITests: XCTestCase {
     /// 3. Verify Promotions empty screen
     /// 4. Tap logout and verify logout
     func testPromotionsEmptyScreen() throws {
+        if UITestingHelper.isLoggedIn() {
+            try MoreViewHelper.testMoreScreen()
+        }
         let loginButton = app.buttons["login_button"]
         loginButton.tap()
         try SignInViewHelper.testLogin()
@@ -99,6 +114,9 @@ final class OnBoardingViewUITests: XCTestCase {
     /// 3. Verify Promotions on Active, Eligible and All
     /// 4. Tap logout and verify logout
     func testPromotionScreen() throws {
+        if UITestingHelper.isLoggedIn() {
+            try MoreViewHelper.testMoreScreen()
+        }
         let loginButton = app.buttons["login_button"]
         loginButton.tap()
         try SignInViewHelper.testLoginWithPromotions()
@@ -116,6 +134,9 @@ final class OnBoardingViewUITests: XCTestCase {
     /// 6. Verify Benefits empty screen
     /// 7. Tap logout and verify logout
     func testProfileEmptyScreen() throws {
+        if UITestingHelper.isLoggedIn() {
+            try MoreViewHelper.testMoreScreen()
+        }
         let loginButton = app.buttons["login_button"]
         loginButton.tap()
         try SignInViewHelper.testLogin()
@@ -137,6 +158,9 @@ final class OnBoardingViewUITests: XCTestCase {
     /// 6. Verify Benefits screen
     /// 7. Tap logout and verify logout
     func testProfileScreen() throws {
+        if UITestingHelper.isLoggedIn() {
+            try MoreViewHelper.testMoreScreen()
+        }
         let loginButton = app.buttons["login_button"]
         loginButton.tap()
         try SignInViewHelper.testLoginWithPromotions()

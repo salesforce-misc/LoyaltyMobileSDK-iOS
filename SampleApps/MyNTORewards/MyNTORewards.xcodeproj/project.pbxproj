@@ -176,6 +176,8 @@
 		3F714D6B29FA0FEB00CD39E7 /* OrderVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D6129FA0FEB00CD39E7 /* OrderVoucherView.swift */; };
 		3F714D6D29FA104F00CD39E7 /* OrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D6C29FA104F00CD39E7 /* OrderDetailsViewModel.swift */; };
 		3F714D6F2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D6E2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift */; };
+		AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */; };
+		AF27B7782A05261000399D77 /* UITestingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27B7772A05261000399D77 /* UITestingHelper.swift */; };
 		AF27C5AC2981118D008C7D79 /* LoyaltyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */; };
 		AF468B5729EEFB28003C1344 /* MyProfileViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF468B5629EEFB28003C1344 /* MyProfileViewHelper.swift */; };
 		AF468B5929EEFB60003C1344 /* HomeViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF468B5829EEFB60003C1344 /* HomeViewHelper.swift */; };
@@ -183,7 +185,6 @@
 		AFAF523F29F63C6F00478F67 /* VoucherViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAF523E29F63C6F00478F67 /* VoucherViewHelper.swift */; };
 		AFAF524129F63D8E00478F67 /* BenefitsViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAF524029F63D8E00478F67 /* BenefitsViewHelper.swift */; };
 		AFAF524329F63E2900478F67 /* TransactionsViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAF524229F63E2900478F67 /* TransactionsViewHelper.swift */; };
-		AFC75D3429D458DF003CC86A /* ShippingMethodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */; };
 		AFB345C329F0DD5300F40502 /* MyNTORewardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345C229F0DD5300F40502 /* MyNTORewardsTests.swift */; };
 		AFB345CF29F0DD6B00F40502 /* VoucherViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345C929F0DD6A00F40502 /* VoucherViewModelTests.swift */; };
 		AFB345D029F0DD6B00F40502 /* MockFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345CA29F0DD6A00F40502 /* MockFileManager.swift */; };
@@ -191,6 +192,7 @@
 		AFB345D229F0DD6B00F40502 /* PromotionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345CC29F0DD6B00F40502 /* PromotionViewModelTests.swift */; };
 		AFB345D329F0DD6B00F40502 /* TransactionsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345CD29F0DD6B00F40502 /* TransactionsViewModelTests.swift */; };
 		AFB345D429F0DD6B00F40502 /* BenefitViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB345CE29F0DD6B00F40502 /* BenefitViewModelTestCase.swift */; };
+		AFC75D3429D458DF003CC86A /* ShippingMethodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */; };
 		AFCDDAA429E53EA2006B00EB /* MyNTORewardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAA329E53EA2006B00EB /* MyNTORewardsUITests.swift */; };
 		AFCDDAA629E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */; };
 		AFCDDAAD29E54621006B00EB /* OnBoardingViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCDDAAC29E54621006B00EB /* OnBoardingViewUITests.swift */; };
@@ -387,6 +389,8 @@
 		3F714D6129FA0FEB00CD39E7 /* OrderVoucherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderVoucherView.swift; sourceTree = "<group>"; };
 		3F714D6C29FA104F00CD39E7 /* OrderDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewModel.swift; sourceTree = "<group>"; };
 		3F714D6E2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyConditionalNavLink.swift; sourceTree = "<group>"; };
+		AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewHelper.swift; sourceTree = "<group>"; };
+		AF27B7772A05261000399D77 /* UITestingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingHelper.swift; sourceTree = "<group>"; };
 		AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyaltyTextField.swift; sourceTree = "<group>"; };
 		AF468B5629EEFB28003C1344 /* MyProfileViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewHelper.swift; sourceTree = "<group>"; };
 		AF468B5829EEFB60003C1344 /* HomeViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewHelper.swift; sourceTree = "<group>"; };
@@ -403,6 +407,7 @@
 		AFB345CC29F0DD6B00F40502 /* PromotionViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionViewModelTests.swift; sourceTree = "<group>"; };
 		AFB345CD29F0DD6B00F40502 /* TransactionsViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsViewModelTests.swift; sourceTree = "<group>"; };
 		AFB345CE29F0DD6B00F40502 /* BenefitViewModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenefitViewModelTestCase.swift; sourceTree = "<group>"; };
+		AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingMethodModel.swift; sourceTree = "<group>"; };
 		AFCDDAA129E53EA2006B00EB /* MyNTORewardsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyNTORewardsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFCDDAA329E53EA2006B00EB /* MyNTORewardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsUITests.swift; sourceTree = "<group>"; };
 		AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -815,6 +820,7 @@
 				AF468B5629EEFB28003C1344 /* MyProfileViewHelper.swift */,
 				AF468B5829EEFB60003C1344 /* HomeViewHelper.swift */,
 				AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */,
+				AF27B7772A05261000399D77 /* UITestingHelper.swift */,
 			);
 			path = MyNTORewardsUITests;
 			sourceTree = "<group>";
@@ -1146,6 +1152,7 @@
 			files = (
 				AFCDDAA429E53EA2006B00EB /* MyNTORewardsUITests.swift in Sources */,
 				AFAF523F29F63C6F00478F67 /* VoucherViewHelper.swift in Sources */,
+				AF27B7782A05261000399D77 /* UITestingHelper.swift in Sources */,
 				AFAF524129F63D8E00478F67 /* BenefitsViewHelper.swift in Sources */,
 				AF468B5729EEFB28003C1344 /* MyProfileViewHelper.swift in Sources */,
 				AFCDDAAD29E54621006B00EB /* OnBoardingViewUITests.swift in Sources */,
