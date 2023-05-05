@@ -139,6 +139,51 @@ let vouchers = try await loyaltyAPIManager.getVouchers(membershipNumber: "123456
 
 For a detailed understanding of each method and its parameters, please refer to the comments in the provided `LoyaltyAPIManager` code.
 
+## Testing
+
+### Running Tests with `run_tests.sh`
+
+To run the tests for the LoyaltyMobileSDK-iOS and the sample app, we have provided a script called `run_tests.sh`. This script will run the tests for the SDK and/or the sample app and supports several options to customize the test run. You can run the script from the command line.
+
+Here's how the script works:
+
+1. The script checks if `xcpretty` is installed. If not, it suggests installing it for better test output. [`xcpretty`](https://github.com/xcpretty/xcpretty) is a formatter for `xcodebuild` that makes the output more readable and easier to follow. You can install it using `gem install xcpretty`.
+2. It processes the command line arguments to determine which tests to run and if logs or reports should be saved.
+3. The script runs the tests for the specified schemes and test targets.
+4. It saves logs and/or reports if requested.
+
+### Options
+
+You can pass the following options when running the `run_tests.sh` script:
+
+- `-full`: Run all tests for the SDK and the sample app.
+- `-sdkOnly`: Run only the SDK tests (default option).
+- `-appOnly`: Run only the sample app tests.
+- `-log`: Save the test output to a log file in the `build/TestRun_TIMESTAMP` directory.
+- `-report`: Save test reports as HTML files in the `build/TestRun_TIMESTAMP` directory.
+
+### Example Usage
+
+- Run SDK tests only:
+
+  ```bash
+  ./run_tests.sh
+  ```
+
+- Run all tests and save logs and reports:
+
+  ```bash
+  ./run_tests.sh -full -log -report
+  ```
+
+- Run sample app tests and save logs:
+
+  ```bash
+  ./run_tests.sh -appOnly -log
+  ```
+
+Make sure to give the script execution permissions by running `chmod +x run_tests.sh` if needed.
+
 ## Contributing
 
 We welcome contributions to this project. To contribute, please follow these steps:

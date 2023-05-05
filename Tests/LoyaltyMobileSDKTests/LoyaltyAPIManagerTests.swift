@@ -10,7 +10,6 @@ import XCTest
 
 class MockAuthenticator: ForceAuthenticator {
     static let sharedMock = MockAuthenticator()
-
     
     func getAccessToken() -> String? {
         return "AccessToken1234"
@@ -102,11 +101,11 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         XCTAssertEqual(transactions.count, 4)
         XCTAssertEqual(transactions[0].journalTypeName, "Manual Points Adjustment")
         XCTAssertEqual(transactions[0].id, "0lVRO00000002og2AA")
-        XCTAssertEqual(transactions[0].activityDate, "2023-03-08T04:59:40.000Z")
+        XCTAssertEqual(transactions[0].activityDate, "2023-04-08T04:59:40.000Z")
         
         XCTAssertEqual(transactions[1].journalTypeName, "Manual Points Adjustment")
         XCTAssertEqual(transactions[1].id, "0lVRO00000002ob2AA")
-        XCTAssertEqual(transactions[1].activityDate, "2023-03-08T04:58:07.000Z")
+        XCTAssertEqual(transactions[1].activityDate, "2023-04-08T04:58:07.000Z")
     }
     
     func testGetVouchers() async throws {
