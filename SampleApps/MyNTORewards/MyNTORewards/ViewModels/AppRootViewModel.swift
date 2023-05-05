@@ -150,65 +150,62 @@ class AppRootViewModel: ObservableObject {
         }
     }
     
-    func signInUser(userEmail: String, userPassword: String) {
-        
-        isInProgress = true
-        email = userEmail
-        
-        Task {
-            
-            do {
-                let app = AppSettings.getConnectedApp()
-                let auth = try await ForceAuthManager.shared.authenticate(
-                    communityURL: app.communityURL,
-                    consumerKey: app.consumerKey,
-                    callbackURL: app.callbackURL,
-                    username: userEmail,
-                    password: userPassword)
-                ForceAuthManager.shared.auth = auth
-                Logger.debug("Successfully Granted Access Token. Allow user to login.")
-                
-                // Retrieve member data from local disk
-                let member = LocalFileManager.instance.getData(type: CommunityMemberModel.self, id: userEmail)
-                
-                if let member = member {
-                    self.member = member
-                } else {
-                    // Cannot get the member info from local, then call getCommunityMemberProfile
-                    let authManager = ForceAuthManager.shared
-                    let loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
-                                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                                              instanceURL: AppSettings.getInstanceURL(), forceClient: ForceClient(auth: authManager))
-                    let profile = try await loyaltyAPIManager.getCommunityMemberProfile()
-                    
-                    // TODO: need to handle profile cannot be found(not registered) case
-                    
-                    Logger.debug("\(profile)")
-                    
-                    let member = CommunityMemberModel(firstName: profile.associatedContact.firstName,
-                                                      lastName: profile.associatedContact.lastName,
-                                                      email: profile.associatedContact.email,
-                                                      loyaltyProgramMemberId: profile.loyaltyProgramMemberID,
-                                                      loyaltyProgramName: profile.loyaltyProgramName,
-                                                      membershipNumber: profile.membershipNumber)
-                    self.member = member
-                    // Save member to local disk
-                    LocalFileManager.instance.saveData(item: member, id: member.email)
-                }
-                
-                self.isInProgress = false
-                self.userState = .signedIn
-
-            } catch {
-                
-                // clear auth
-                authManager.clearAuth()
-                
-                self.isInProgress = false
-                self.userErrorMessage = (error.localizedDescription, .signIn)
-            }
-        }
-    }
+	func signInUser(userEmail: String, userPassword: String) async throws {
+		
+		isInProgress = true
+		email = userEmail
+		
+		do {
+			let app = AppSettings.getConnectedApp()
+			let auth = try await ForceAuthManager.shared.authenticate(
+				communityURL: app.communityURL,
+				consumerKey: app.consumerKey,
+				callbackURL: app.callbackURL,
+				username: userEmail,
+				password: userPassword)
+			ForceAuthManager.shared.auth = auth
+			Logger.debug("Successfully Granted Access Token. Allow user to login.")
+			
+			// Retrieve member data from local disk
+			let member = LocalFileManager.instance.getData(type: CommunityMemberModel.self, id: userEmail)
+			
+			if let member = member {
+				self.member = member
+			} else {
+				// Cannot get the member info from local, then call getCommunityMemberProfile
+				let authManager = ForceAuthManager.shared
+				let loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
+														  loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+														  instanceURL: AppSettings.getInstanceURL(), forceClient: ForceClient(auth: authManager))
+				let profile = try await loyaltyAPIManager.getCommunityMemberProfile()
+				
+				// TODO: need to handle profile cannot be found(not registered) case
+				
+				Logger.debug("\(profile)")
+				
+				let member = CommunityMemberModel(firstName: profile.associatedContact.firstName,
+												  lastName: profile.associatedContact.lastName,
+												  email: profile.associatedContact.email,
+												  loyaltyProgramMemberId: profile.loyaltyProgramMemberID,
+												  loyaltyProgramName: profile.loyaltyProgramName,
+												  membershipNumber: profile.membershipNumber)
+				self.member = member
+				// Save member to local disk
+				LocalFileManager.instance.saveData(item: member, id: member.email)
+			}
+			
+			self.isInProgress = false
+			self.userState = .signedIn
+			
+		} catch {
+			
+			// clear auth
+			authManager.clearAuth()
+			
+			self.isInProgress = false
+			self.userErrorMessage = (error.localizedDescription, .signIn)
+		}
+	}
     
     func signOutUser() {
         

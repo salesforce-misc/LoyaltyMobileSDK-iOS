@@ -56,7 +56,9 @@ struct SignInView: View {
                             .padding([.top, .leading, .trailing])
                             
                             Button(action: {
-                                viewModel.signInUser(userEmail: email, userPassword: password)
+								Task {
+									try await viewModel.signInUser(userEmail: email, userPassword: password)
+								}
                                 UIApplication.shared.dismissKeyboard()
                             }) {
                                 Text("Log In")
