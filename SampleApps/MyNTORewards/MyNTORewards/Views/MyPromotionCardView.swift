@@ -15,12 +15,14 @@ struct MyPromotionCardView: View {
     @State var loadImage: Bool = false
     @State var showPromotionDetailView = false
     @State var processing = false
+    let accessibilityID: String
     let promotion: PromotionResult
-
+    
     var body: some View {
         HStack {
             if loadImage {
                 AsyncImageView(imageUrl: promotion.promotionImageURL)
+                    .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.image)
                     .frame(width: 133, height: 166)
                     .cornerRadius(5, corners: [.topLeft, .bottomLeft])
             } else {
@@ -35,6 +37,7 @@ struct MyPromotionCardView: View {
             VStack(alignment: .leading, spacing: 10) {
                 HStack(alignment: .top) {
                     Text(promotion.promotionName)
+                        .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.name)
                         .font(.redeemTitle)
                         .lineSpacing(5)
                     Spacer()
@@ -42,6 +45,7 @@ struct MyPromotionCardView: View {
                 }
                 .padding(.top, 10)
                 Text(promotion.description ?? "")
+                    .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.description)
                     .font(.redeemText)
                     .foregroundColor(.theme.textInactive)
                     .lineSpacing(5)
@@ -50,6 +54,7 @@ struct MyPromotionCardView: View {
                     Spacer()
                     if let expDate = promotion.endDate {
                         Text("Exp \(expDate)")
+                            .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.endDate)
                             .font(.labelText)
                             .frame(width: 92, height: 19)
                             .background(.black)
@@ -110,7 +115,7 @@ struct MyPromotionCardView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.theme.background
-            MyPromotionCardView(promotion: dev.promotion)
+            MyPromotionCardView(accessibilityID: "id", promotion: dev.promotion)
                 .environmentObject(dev.rootVM)
                 .environmentObject(dev.promotionVM)
         }

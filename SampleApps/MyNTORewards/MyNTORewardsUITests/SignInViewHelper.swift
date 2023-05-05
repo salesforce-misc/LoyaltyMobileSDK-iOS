@@ -34,10 +34,26 @@ final class SignInViewHelper {
     static func testLogin() throws {
         app.buttons["signIn_login_button"].tap()
         app.textFields["username_textfield"].tap()
-        app.textFields["username_textfield"].typeText("test128@test.com")
+        app.textFields["username_textfield"].typeText(UITestingHelper.userName)
         
         app.secureTextFields["password_textfield"].tap()
-        app.secureTextFields["password_textfield"].typeText("Abcd1234")
+        app.secureTextFields["password_textfield"].typeText(UITestingHelper.password)
+        
+        app.buttons["signIn_login_button"].tap()
+        
+        XCTAssertTrue(app.tabBars.buttons["Home"].waitForExistence(timeout: 15))
+        XCTAssertTrue(app.tabBars.buttons["My Promotions"].exists)
+        XCTAssertTrue(app.tabBars.buttons["My Profile"].exists)
+        XCTAssertTrue(app.tabBars.buttons["More"].exists)
+    }
+    
+    static func testLoginWithPromotions() throws {
+        app.buttons["signIn_login_button"].tap()
+        app.textFields["username_textfield"].tap()
+        app.textFields["username_textfield"].typeText(UITestingHelper.userName)
+        
+        app.secureTextFields["password_textfield"].tap()
+        app.secureTextFields["password_textfield"].typeText(UITestingHelper.password)
         
         app.buttons["signIn_login_button"].tap()
         

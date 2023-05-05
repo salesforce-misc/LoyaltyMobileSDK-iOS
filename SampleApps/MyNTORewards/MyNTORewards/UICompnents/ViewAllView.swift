@@ -26,6 +26,7 @@ struct ViewAllView<Destination: View, Content: View>: View {
                 Text(title)
                     .font(.offerTitle)
                     .foregroundColor(.black)
+                    .accessibilityIdentifier(title)
                 Spacer()
                 LoyaltyNavLink(destination: {
                     destination
@@ -33,6 +34,7 @@ struct ViewAllView<Destination: View, Content: View>: View {
                     Text("View All")
                         .foregroundColor(Color.theme.accent)
                         .font(.offerViewAll)
+                        .accessibilityIdentifier(title + " View All")
                 })
             }
             .padding()

@@ -54,6 +54,7 @@ extension LoyaltyNavBarView {
         }, label: {
             Image("ic-backarrow")
         })
+        .accessibilityIdentifier("back_button")
     }
     
     private var searchButton: some View {

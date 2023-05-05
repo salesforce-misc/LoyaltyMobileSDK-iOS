@@ -35,10 +35,12 @@ struct HomeView: View {
                     HStack {
                         Text("Hello \(rootVM.member?.firstName.capitalized ?? ""),")
                             .padding(.leading, 15)
+                            .accessibilityIdentifier(AppAccessibilty.Home.userName)
                         Spacer()
                         // swiftlint:disable line_length
                         Text("\(String(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0)) \(AppSettings.Defaults.rewardCurrencyName)")
                             .padding(.trailing, 15)
+                            .accessibilityIdentifier(AppAccessibilty.Home.rewardPoints)
                         // swiftlint:enable line_length
                     }
                     .frame(height: 48)
