@@ -11,7 +11,7 @@ import XCTest
 final class ForceRequestTests: XCTestCase {
     
     func testCreateUrl() async {
-        let sampleUrl = URL(string: "https://google.co.in")!
+        let sampleUrl = URL(string: "https://instanceUrl")!
         do {
             let queryItems = [
                 "username": "testUsername",
@@ -26,16 +26,21 @@ final class ForceRequestTests: XCTestCase {
             XCTAssertEqual(request.httpMethod, "POST")
             XCTAssertEqual(request.cachePolicy, .useProtocolCachePolicy)
             XCTAssertEqual(request.timeoutInterval, 60.0)
+            
         } catch { }
     }
     
     func testCreateMethod() async {
         do {
-            let request = try ForceRequest.create(instanceURL: "https://instanceUrl", path: "connect/loyalty/member/1234/memberbenefits", method: "GET")
+            var request = try ForceRequest.create(instanceURL: "https://instanceUrl", path: "connect/loyalty/member/1234/memberbenefits", method: "GET")
             
             XCTAssertEqual(request.httpMethod, "GET")
             XCTAssertEqual(request.timeoutInterval, 60.0)
-        } catch { }
+            
+            request = try ForceRequest.create(instanceURL: "https:\\instanceUrl", path: "connect/loyalty/member/1234/memberbenefits", method: "GET")
+        } catch {
+            XCTAssertNotNil(error)
+        }
     }
     
     func testSetAuthorization() async throws {
@@ -43,5 +48,4 @@ final class ForceRequestTests: XCTestCase {
         let requestWithAuth = ForceRequest.setAuthorization(request: request, accessToken: "A1234SN")
         XCTAssertEqual(requestWithAuth.allHTTPHeaderFields?["Authorization"], "Bearer A1234SN")
     }
-    
 }
