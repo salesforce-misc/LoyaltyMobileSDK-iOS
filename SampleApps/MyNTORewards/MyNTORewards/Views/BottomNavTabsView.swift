@@ -12,34 +12,32 @@ struct BottomNavTabsView: View {
 	@State var selectedTab: Int = Tab.home.rawValue
 	
 	var body: some View {
-		NavigationView {
-			ZStack(alignment: .bottomLeading) {
+		ZStack(alignment: .bottomLeading) {
+			
+			UITabView(selection: $selectedTab) {
+				HomeView(selectedTab: $selectedTab)
+					.tabItem("Home", image: UIImage(named: "ic-home"))
 				
-				UITabView(selection: $selectedTab) {
-					HomeView(selectedTab: $selectedTab)
-						.tabItem("Home", image: UIImage(named: "ic-home"))
-					
-					MyPromotionsView()
-						.tabItem("My Promotions", image: UIImage(named: "ic-rewards"))
-					
-					ProfileView()
+				MyPromotionsView()
+					.tabItem("My Promotions", image: UIImage(named: "ic-rewards"))
+				
+				ProfileView()
 					.tabItem("My Profile", image: UIImage(named: "ic-profile"))
-					/* Post MVP
-					 RedeemView()
-					 .tabItem("Redeem", image: UIImage(named: "ic-book"))
-					 */
-					
-					MoreView()
-						.tabItem("More", image: UIImage(named: "ic-more"))
-						
-				}
+				/* Post MVP
+				 RedeemView()
+				 .tabItem("Redeem", image: UIImage(named: "ic-book"))
+				 */
+				
+				MoreView()
+					.tabItem("More", image: UIImage(named: "ic-more"))
+				
 			}
-			.background {
-				LoyaltyConditionalNavLink(isActive: $promotionsVM.isCheckoutNavigationActive) {
-					ProductView()
-				} label: {
-					EmptyView()
-				}
+		}
+		.background {
+			LoyaltyConditionalNavLink(isActive: $promotionsVM.isCheckoutNavigationActive) {
+				ProductView()
+			} label: {
+				EmptyView()
 			}
 		}
 		.navigationViewStyle(.stack)
