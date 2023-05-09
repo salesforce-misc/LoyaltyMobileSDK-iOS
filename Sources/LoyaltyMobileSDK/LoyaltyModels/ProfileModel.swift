@@ -151,7 +151,8 @@ public struct ProfileModel: Codable {
 // MARK: - AdditionalLoyaltyProgramMemberFields
 public struct AdditionalLoyaltyProgramMemberFields: Codable {
     public let cityC: String?
-    public let ageC, anniversaryC, referredMemberPromotionC, dateOfBirthC: String?
+    public let ageC: Double?
+    public let anniversaryC, referredMemberPromotionC, dateOfBirthC: String?
     public let hobbiesC, genderC: String?
     public let seedDataC: Bool?
     public let incomeC, stateC, b2CRetailMostRecentSurveyEmailDateC: String?
@@ -189,7 +190,8 @@ public struct AssociatedContact: Codable {
 public struct MemberCurrency: Codable {
     public let additionalLoyaltyMemberCurrencyFields: AdditionalLoyaltyMemberFields
     public let escrowPointsBalance, expirablePoints: Double
-    public let lastAccrualProcessedDate, lastEscrowProcessedDate, lastExpirationProcessRunDate, lastPointsAggregationDate: String?
+    public let lastAccrualProcessedDate: Date?
+    public let lastEscrowProcessedDate, lastExpirationProcessRunDate, lastPointsAggregationDate: String?
     public let lastPointsResetDate: String?
     public let loyaltyMemberCurrencyName, loyaltyProgramCurrencyID: String
     public let loyaltyProgramCurrencyName: String?

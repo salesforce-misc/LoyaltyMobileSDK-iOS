@@ -185,20 +185,20 @@ class AppRootViewModel: ObservableObject {
 				
 				let member = CommunityMemberModel(firstName: profile.associatedContact.firstName,
 												  lastName: profile.associatedContact.lastName,
-												  email: profile.associatedContact.email,
+												  email: userEmail,
 												  loyaltyProgramMemberId: profile.loyaltyProgramMemberID,
 												  loyaltyProgramName: profile.loyaltyProgramName,
 												  membershipNumber: profile.membershipNumber)
-				self.member = member
 				// Save member to local disk
-				LocalFileManager.instance.saveData(item: member, id: member.email)
+				LocalFileManager.instance.saveData(item: member, id: userEmail)
+                
+                self.member = member
 			}
 			
 			self.isInProgress = false
 			self.userState = .signedIn
 			
 		} catch {
-			
 			// clear auth
 			authManager.clearAuth()
 			
