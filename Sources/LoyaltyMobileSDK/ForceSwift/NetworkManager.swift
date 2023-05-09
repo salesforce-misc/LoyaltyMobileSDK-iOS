@@ -70,12 +70,29 @@ public class NetworkManager: NetworkManagerProtocol {
     /// - Returns: A decoded JSON response result.
     /// - Throws: An error if the request or decoding fails.
     public func fetch<T: Decodable>(type: T.Type, request: URLRequest, urlSession: URLSession = URLSession.shared) async throws -> T {
+        
+        let dateFormatters = DateFormatter.forceFormatters()
+        let decoder = JSONDecoder()
+
+        decoder.dateDecodingStrategy = .custom { decoder -> Date in
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
+                        
+            for dateFormatter in dateFormatters {
+                if let date = dateFormatter.date(from: dateString) {
+                    return date
+                }
+            }
+            
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "NetworkManager cannot decode date string \(dateString)")
+        }
       
         do {
             let output = try await urlSession.data(for: request)
             let data = try handleDataAndResponse(output: output)
-            return try JSONDecoder().decode(type, from: data)
+            return try decoder.decode(type, from: data)
         } catch {
+            Logger.error("NetworkManager fetch/decode error: \(error.localizedDescription)")
             throw error
         }
     }

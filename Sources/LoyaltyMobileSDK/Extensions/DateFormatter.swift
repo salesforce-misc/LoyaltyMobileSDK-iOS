@@ -11,20 +11,27 @@ import Foundation
 public extension DateFormatter {
     
     /// Enumeration for representing the length of the date format.
-    enum Length: String {
+    enum Length: String, CaseIterable {
         case short = "yyyy-MM-dd"
         case long = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"
-        case middle = "yyyy-MM-dd'T'HH:mm:ss"
+        case medium = "yyyy-MM-dd'T'HH:mm:ss"
+        case standard = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
     }
     
     /// Creates a DateFormatter instance with a specified date format length.
-    /// - Parameter length: The `Length` of the date format (defaults to `.middle`).
+    /// - Parameter length: The `Length` of the date format (defaults to `.standard`).
     /// - Returns: A DateFormatter instance with the specified date format length.
-    static func forceFormatter(_ length: Length = .middle) -> DateFormatter {
+    static func forceFormatter(_ length: Length = .standard) -> DateFormatter {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.dateFormat = length.rawValue
         return formatter
+    }
+    
+    /// Returns a DateFormatter array of all possible `Length` cases.
+    /// - Returns: A arrary of `DateFormatter` instance with the specified date format length.
+    static func forceFormatters() -> [DateFormatter] {
+        return Length.allCases.map { forceFormatter($0) }
     }
 }
