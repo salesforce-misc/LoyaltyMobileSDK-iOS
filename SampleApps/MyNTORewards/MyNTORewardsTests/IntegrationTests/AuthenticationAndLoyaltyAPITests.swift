@@ -43,28 +43,49 @@ final class AuthenticationAndLoyaltyAPITests: XCTestCase {
 	
 	@MainActor func testGetMemberBenefits() async throws {
 		XCTAssertTrue(benefitViewModel.benefits.isEmpty)
-		try await benefitViewModel.getBenefits(memberId: appRootViewModel.member!.loyaltyProgramMemberId)
+        if let memberId = appRootViewModel.member?.loyaltyProgramMemberId {
+            try await benefitViewModel.getBenefits(memberId: memberId)
+        } else {
+            XCTFail("Member id not found")
+        }
+        
 		XCTAssertFalse(benefitViewModel.benefits.isEmpty)
 	}
 	
 	@MainActor func testGetProfileData() async throws {
 		XCTAssertNil(profileViewModel.profile)
-		try await profileViewModel.getProfileData(memberId: appRootViewModel.member!.loyaltyProgramMemberId)
+        if let memberId = appRootViewModel.member?.loyaltyProgramMemberId {
+		try await profileViewModel.getProfileData(memberId: memberId)
+        } else {
+            XCTFail("Member id not found")
+        }
 		XCTAssertNotNil(profileViewModel.profile)
 	}
 	
 	@MainActor func testGetPromotions() async throws {
 		XCTAssertTrue(promotionViewModel.allEligiblePromotions.isEmpty)
-		_ = try await promotionViewModel.fetchAllPromotions(membershipNumber: appRootViewModel.member!.membershipNumber)
+        if let memberId = appRootViewModel.member?.membershipNumber {
+            try await promotionViewModel.fetchAllPromotions(membershipNumber: memberId)
+        } else {
+            XCTFail("Member id not found")
+        }
 	}
 	
 	@MainActor func testGetTransactions() async throws {
 		XCTAssertTrue(transactionsViewModel.transactions.isEmpty)
-		_ = try await transactionsViewModel.loadTransactions(membershipNumber: appRootViewModel.member!.membershipNumber)
+        if let memberId = appRootViewModel.member?.membershipNumber {
+            try await transactionsViewModel.loadTransactions(membershipNumber: memberId)
+        } else {
+            XCTFail("Member id not found")
+        }
 	}
 	
 	@MainActor func testGetVouchers() async throws {
 		XCTAssertTrue(voucherViewModel.vouchers.isEmpty)
-		_ = try await voucherViewModel.fetchVouchers(membershipNumber: appRootViewModel.member!.membershipNumber)
+        if let memberId = appRootViewModel.member?.membershipNumber {
+            _ = try await voucherViewModel.fetchVouchers(membershipNumber: memberId)
+        } else {
+            XCTFail("Member id not found")
+        }
 	}
 }
