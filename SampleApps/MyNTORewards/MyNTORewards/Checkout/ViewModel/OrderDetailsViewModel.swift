@@ -71,7 +71,6 @@ class OrderDetailsViewModel: ObservableObject {
 												  path: self.orderApiEndpoint,
 												  method: "POST",
 												  body: requestBody)
-			print(request)
 			return try await forceClient.fetch(type: String.self, with: request)
 		} catch {
 			throw error

@@ -14,7 +14,7 @@ struct AppRootView: View {
 	@EnvironmentObject private var rootVM: AppRootViewModel
 	
 	var body: some View {
-		NavigationView {
+		Group {
 			if appViewRouter.signedIn {
 				switch appViewRouter.currentPage {
 				case .navTabsPage(selectedTab: Tab.home.rawValue):
