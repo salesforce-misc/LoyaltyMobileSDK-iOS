@@ -177,6 +177,7 @@
 		3F714D6B29FA0FEB00CD39E7 /* OrderVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D6129FA0FEB00CD39E7 /* OrderVoucherView.swift */; };
 		3F714D6D29FA104F00CD39E7 /* OrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D6C29FA104F00CD39E7 /* OrderDetailsViewModel.swift */; };
 		3F714D6F2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D6E2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift */; };
+		3FC92C612A0AA9E30081BFEC /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC92C602A0AA9E30081BFEC /* Order.swift */; };
 		AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */; };
 		AF27B7782A05261000399D77 /* UITestingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27B7772A05261000399D77 /* UITestingHelper.swift */; };
 		AF27C5AC2981118D008C7D79 /* LoyaltyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */; };
@@ -391,6 +392,7 @@
 		3F714D6129FA0FEB00CD39E7 /* OrderVoucherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderVoucherView.swift; sourceTree = "<group>"; };
 		3F714D6C29FA104F00CD39E7 /* OrderDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewModel.swift; sourceTree = "<group>"; };
 		3F714D6E2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyConditionalNavLink.swift; sourceTree = "<group>"; };
+		3FC92C602A0AA9E30081BFEC /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewHelper.swift; sourceTree = "<group>"; };
 		AF27B7772A05261000399D77 /* UITestingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingHelper.swift; sourceTree = "<group>"; };
 		AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyaltyTextField.swift; sourceTree = "<group>"; };
@@ -400,7 +402,6 @@
 		AFAF523E29F63C6F00478F67 /* VoucherViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherViewHelper.swift; sourceTree = "<group>"; };
 		AFAF524029F63D8E00478F67 /* BenefitsViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitsViewHelper.swift; sourceTree = "<group>"; };
 		AFAF524229F63E2900478F67 /* TransactionsViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewHelper.swift; sourceTree = "<group>"; };
-		AFC75D3329D458DF003CC86A /* ShippingMethodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingMethodModel.swift; sourceTree = "<group>"; };
 		AFB345C029F0DD5300F40502 /* MyNTORewardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyNTORewardsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFB345C229F0DD5300F40502 /* MyNTORewardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNTORewardsTests.swift; sourceTree = "<group>"; };
 		AFB345C929F0DD6A00F40502 /* VoucherViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoucherViewModelTests.swift; sourceTree = "<group>"; };
@@ -501,6 +502,7 @@
 				2944F88228B98D420098ED1B /* Models */,
 				216A9CBF28BDD8A1007881FE /* ViewModels */,
 				296D393828DCE9890078C88E /* UICompnents */,
+				3F714D4B29FA0F6F00CD39E7 /* Checkout */,
 				216F219328B6186400DAA66D /* Views */,
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
 				216F217E28B6141E00DAA66D /* MyNTORewardsApp.swift */,
@@ -524,7 +526,6 @@
 		216F219328B6186400DAA66D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3F714D4B29FA0F6F00CD39E7 /* Checkout */,
 				216F219428B6188600DAA66D /* AppRootView.swift */,
 				296D393428DBCFFB0078C88E /* OnboardingCardView.swift */,
 				296D393228DBCE050078C88E /* OnboardingView.swift */,
@@ -756,10 +757,9 @@
 		3F714D4B29FA0F6F00CD39E7 /* Checkout */ = {
 			isa = PBXGroup;
 			children = (
-				3F714D6C29FA104F00CD39E7 /* OrderDetailsViewModel.swift */,
-				3F714D4D29FA0FAB00CD39E7 /* Components */,
-				3F714D4C29FA0FA000CD39E7 /* Order */,
-				3F714D4A29FA0F5300CD39E7 /* Product */,
+				3FC92C642A0AAA500081BFEC /* ViewModel */,
+				3FC92C632A0AAA4B0081BFEC /* Model */,
+				3FC92C622A0AAA230081BFEC /* View */,
 			);
 			path = Checkout;
 			sourceTree = "<group>";
@@ -791,6 +791,32 @@
 				3F714D5229FA0FC200CD39E7 /* StarRatingView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		3FC92C622A0AAA230081BFEC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3F714D4D29FA0FAB00CD39E7 /* Components */,
+				3F714D4C29FA0FA000CD39E7 /* Order */,
+				3F714D4A29FA0F5300CD39E7 /* Product */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3FC92C632A0AAA4B0081BFEC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3FC92C602A0AA9E30081BFEC /* Order.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3FC92C642A0AAA500081BFEC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3F714D6C29FA104F00CD39E7 /* OrderDetailsViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		AF141A282A02284200D953E2 /* Recovered References */ = {
@@ -1055,6 +1081,7 @@
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
 				29BAF70228F78FA400A3F9EB /* AllTransactionsView.swift in Sources */,
 				296D393528DBCFFB0078C88E /* OnboardingCardView.swift in Sources */,
+				3FC92C612A0AA9E30081BFEC /* Order.swift in Sources */,
 				29BAF6D728F15CF300A3F9EB /* RedeemCardView.swift in Sources */,
 				3F714D5629FA0FC200CD39E7 /* SizeSelectorView.swift in Sources */,
 				216F219528B6188600DAA66D /* AppRootView.swift in Sources */,
