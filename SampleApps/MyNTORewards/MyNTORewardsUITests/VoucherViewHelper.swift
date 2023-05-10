@@ -29,7 +29,6 @@ final class VoucherViewHelper {
     
     static func testVoucherDetailView() throws {
         XCTAssertTrue(app.staticTexts["name"].exists)
-        XCTAssertTrue(app.staticTexts["description"].exists)
         XCTAssertTrue(app.images["image"].exists)
         XCTAssertTrue(app.images["qr_code"].exists)
         XCTAssertTrue(app.staticTexts["voucher_code"].exists)

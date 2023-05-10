@@ -9,7 +9,7 @@ import XCTest
 
 final class UITestingHelper: XCTestCase {
     static let app = XCUIApplication()
-    static let userName = "q3test@test.com"
+    static let userName = "archit.sharma@salesforce.com"
     static let password = "test@321"
     
     static func isLoggedIn() -> Bool {
