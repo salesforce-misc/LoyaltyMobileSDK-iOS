@@ -5,6 +5,7 @@ START_TIME=$(date +%s)
 
 # Variables
 PACKAGE_NAME="LoyaltyMobileSDK-iOS"
+SDK_UNIT_TEST_TARGET="LoyaltyMobileSDKTests"
 APP_NAME="MyNTORewards"
 PROJECT_NAME="MyNTORewards.xcodeproj"
 APP_SCHEME="MyNTORewards"
@@ -90,27 +91,28 @@ if [ "$TESTS_TO_RUN" = "-full" ] || [ "$TESTS_TO_RUN" = "-sdkOnly" ]; then
   # Locate the most recent .xcresult file for Loyalty Mobile SDK Unit Tests
   SDK_XCRESULT_FILE=$(find ~/Library/Developer/Xcode/DerivedData/ -name "*.xcresult" -type d -print0 | xargs -0 stat -f "%m %N" | sort -rn | head -n 1 | awk '{print $2}')
 
-  # Generate code coverage report for Loyalty Mobile SDK Unit Tests
-  xcrun xccov view --report --json "$SDK_XCRESULT_FILE" > "$OUTPUT_DIR/SDK_CodeCoverageReport_$TIMESTAMP.json"
-
-  # Add a title to the code coverage report
-  echo -e "= Loyalty Mobile SDK Code Coverage Summary =\n" | tee "$OUTPUT_DIR/SDK_CodeCoverageSummary_$TIMESTAMP.txt"
-
-  # Add the parsed code coverage information into the summary file
-  jq -r '
-  .targets[] |
-  "\(.name): \( (.lineCoverage * 100) | round )%" +
-  "\n  File                                         Coverage\n  --------------------------------------------------------" +
-  (
-    .files |
-    map(
-      "\n  " + (
-        .name |
-        (if length < 40 then . + (" " * (40 - length)) else .[0:40] end)
-      ) + ": " + (" " * (4 - (length | tostring | length))) + "\( (.lineCoverage * 100) | round )%"
-    ) | join("")
-  ) + "\n"
-  ' "$OUTPUT_DIR/SDK_CodeCoverageReport_$TIMESTAMP.json" | tee -a "$OUTPUT_DIR/SDK_CodeCoverageSummary_$TIMESTAMP.txt"
+  # Generate code coverage report for Loyalty Mobile SDK Unit Tests and format it
+  xcrun xccov view --report --json "$SDK_XCRESULT_FILE" | jq --arg sdk_unit_test_target "$SDK_UNIT_TEST_TARGET" -r '
+    {
+      "version": .version,
+      "targets": [
+        (.targets[] | select(.name == $sdk_unit_test_target))
+      ]
+    } |
+    .targets[] as $target |
+    "= Loyalty Mobile SDK Code Coverage Summary =\n\n" +
+    ($target.name + ": " + (($target.lineCoverage * 100) | round | tostring) + "%") +
+    "\n\n  File                                         Coverage\n  -----------------------------------------------------" +
+    (
+      $target.files |
+      map(
+        "\n  " + (
+          .name |
+          (if length < 40 then . + (" " * (40 - length)) else .[0:40] end)
+        ) + ": " + (" " * (4 - (length | tostring | length))) + "\( (.lineCoverage * 100) | round | tostring )%"
+      ) | join("")
+    ) + "\n"
+  ' | tee "$OUTPUT_DIR/SDK_CodeCoverageSummary_$TIMESTAMP.txt"
 
   echo "=== Loyalty Mobile SDK Unit Tests End ==="
 
@@ -135,27 +137,28 @@ if [ "$TESTS_TO_RUN" = "-full" ] || [ "$TESTS_TO_RUN" = "-appOnly" ]; then
   # Locate the most recent .xcresult file for Sample App Unit Tests
   APP_UNIT_XCRESULT_FILE=$(find ~/Library/Developer/Xcode/DerivedData/ -name "*.xcresult" -type d -print0 | xargs -0 stat -f "%m %N" | sort -rn | head -n 1 | awk '{print $2}')
 
-  # Generate code coverage report for Sample App Unit Tests
-  xcrun xccov view --report --json "$APP_UNIT_XCRESULT_FILE" > "$OUTPUT_DIR/AppUnit_CodeCoverageReport_$TIMESTAMP.json"
-
-  # Add a title to the code coverage report
-  echo -e "= Sample App Unit Test Code Coverage Summary =\n" | tee "$OUTPUT_DIR/AppUnit_CodeCoverageReport_$TIMESTAMP.txt"
-
-  # Add the parsed code coverage information into the summary file
-  jq -r '
-  .targets[] |
-  "\(.name): \( (.lineCoverage * 100) | round )%" +
-  "\n  File                                         Coverage\n  --------------------------------------------------------" +
-  (
-    .files |
-    map(
-      "\n  " + (
-        .name |
-        (if length < 40 then . + (" " * (40 - length)) else .[0:40] end)
-      ) + ": " + (" " * (4 - (length | tostring | length))) + "\( (.lineCoverage * 100) | round )%"
-    ) | join("")
-  ) + "\n"
-  ' "$OUTPUT_DIR/AppUnit_CodeCoverageReport_$TIMESTAMP.json" | tee -a "$OUTPUT_DIR/AppUnit_CodeCoverageReport_$TIMESTAMP.txt"
+  # Generate code coverage report for Sample App Unit Tests and format it
+  xcrun xccov view --report --json "$APP_UNIT_XCRESULT_FILE" | jq --arg app_unit_test_target "${APP_UNIT_TEST_TARGET}.xctest" -r '
+    {
+      "version": .version,
+      "targets": [
+        (.targets[] | select(.name == $app_unit_test_target))
+      ]
+    } |
+    .targets[] as $target |
+    "= Sample App Unit Test Code Coverage Summary =\n\n" +
+    ($target.name + ": " + (($target.lineCoverage * 100) | round | tostring) + "%") +
+    "\n\n  File                                         Coverage\n  -----------------------------------------------------" +
+    (
+      $target.files |
+      map(
+        "\n  " + (
+          .name |
+          (if length < 40 then . + (" " * (40 - length)) else .[0:40] end)
+        ) + ": " + (" " * (4 - (length | tostring | length))) + "\( (.lineCoverage * 100) | round | tostring )%"
+      ) | join("")
+    ) + "\n"
+  ' | tee "$OUTPUT_DIR/AppUnit_CodeCoverageSummary_$TIMESTAMP.txt"
 
   echo "=== Sample App Unit Tests End ==="
 
@@ -173,27 +176,28 @@ if [ "$TESTS_TO_RUN" = "-full" ] || [ "$TESTS_TO_RUN" = "-appOnly" ]; then
   # Locate the most recent .xcresult file for Sample App UI Tests
   APP_UI_XCRESULT_FILE=$(find ~/Library/Developer/Xcode/DerivedData/ -name "*.xcresult" -type d -print0 | xargs -0 stat -f "%m %N" | sort -rn | head -n 1 | awk '{print $2}')
 
-  # Generate code coverage report for Sample App UI Tests
-  xcrun xccov view --report --json "$APP_UI_XCRESULT_FILE" > "$OUTPUT_DIR/AppUI_CodeCoverageReport_$TIMESTAMP.json"
-
-  # Add a title to the code coverage report
-  echo -e "= Sample App UI Test Code Coverage Summary =\n" | tee "$OUTPUT_DIR/AppUI_CodeCoverageReport_$TIMESTAMP.txt"
-
-  # Add the parsed code coverage information into the summary file
-  jq -r '
-  .targets[] |
-  "\(.name): \( (.lineCoverage * 100) | round )%" +
-  "\n  File                                         Coverage\n  --------------------------------------------------------" +
-  (
-    .files |
-    map(
-      "\n  " + (
-        .name |
-        (if length < 40 then . + (" " * (40 - length)) else .[0:40] end)
-      ) + ": " + (" " * (4 - (length | tostring | length))) + "\( (.lineCoverage * 100) | round )%"
-    ) | join("")
-  ) + "\n"
-  ' "$OUTPUT_DIR/AppUI_CodeCoverageReport_$TIMESTAMP.json" | tee -a "$OUTPUT_DIR/AppUI_CodeCoverageReport_$TIMESTAMP.txt"
+  # Generate code coverage report for Sample App UI Tests and format it
+  xcrun xccov view --report --json "$APP_UI_XCRESULT_FILE" | jq --arg app_ui_test_target "${APP_UI_TEST_TARGET}.xctest" -r '
+    {
+      "version": .version,
+      "targets": [
+        (.targets[] | select(.name == $app_ui_test_target))
+      ]
+    } |
+    .targets[] as $target |
+    "= Sample App UI Test Code Coverage Summary =\n\n" +
+    ($target.name + ": " + (($target.lineCoverage * 100) | round | tostring) + "%") +
+    "\n\n  File                                         Coverage\n  -----------------------------------------------------" +
+    (
+      $target.files |
+      map(
+        "\n  " + (
+          .name |
+          (if length < 40 then . + (" " * (40 - length)) else .[0:40] end)
+        ) + ": " + (" " * (4 - (length | tostring | length))) + "\( (.lineCoverage * 100) | round | tostring )%"
+      ) | join("")
+    ) + "\n"
+  ' | tee "$OUTPUT_DIR/AppUI_CodeCoverageSummary_$TIMESTAMP.txt"
 
   echo "=== Sample App UI Tests End ==="
 fi
