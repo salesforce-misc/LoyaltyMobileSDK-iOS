@@ -18,16 +18,17 @@ class OrderDetailsViewModel: ObservableObject {
 	private var orderId = ""
     private let checkout_shipping_method = "/services/apexrest/ShippingMethods/"
     private let checkout_shipping_address_query = "SELECT shippingAddress,billingAddress from Account"
-    private let authManager: CheckoutAuthManager
-    private var checkoutNetworkClient: CheckoutNetworkClient
+	private let orderApiEndpoint = "services/apexrest/NTOOrderCheckOut/"
+    private let authManager: ForceAuthManager
+    private var forceClient: ForceClient
 	
 	init(
-		authManager: CheckoutAuthManager = .shared,
-		checkoutNetworkClient: CheckoutNetworkClient? = nil,
+		authManager: ForceAuthManager = .shared,
+		forceClient: ForceClient? = nil,
 		index: Int = 0
 	) {
 		self.authManager = authManager
-		self.checkoutNetworkClient = checkoutNetworkClient ?? CheckoutNetworkClient(auth: authManager)
+		self.forceClient = forceClient ?? ForceClient(auth: authManager)
 		self.selectedIndex = index
 	}
 	
@@ -66,11 +67,12 @@ class OrderDetailsViewModel: ObservableObject {
 			let encoder = JSONEncoder()
 			encoder.dateEncodingStrategy = .formatted(.forceFormatter())
 			let requestBody = try encoder.encode(order)
-			let request = try ForceRequest.create(instanceURL: CheckoutConfig.Defaults.baseURL,
-												  path: CheckoutConfig.Defaults.orderCheckout,
+			let request = try ForceRequest.create(instanceURL: AppSettings.connectedApp.instanceURL,
+												  path: self.orderApiEndpoint,
 												  method: "POST",
 												  body: requestBody)
-			return try await checkoutNetworkClient.fetch(type: String.self, with: request)
+			print(request)
+			return try await forceClient.fetch(type: String.self, with: request)
 		} catch {
 			throw error
 		}
@@ -79,11 +81,11 @@ class OrderDetailsViewModel: ObservableObject {
 	func getOrderDetails() async throws -> OrderDetails {
 		do {
 			let queryItems = ["orderId": "\(orderId)"]
-			let request = try ForceRequest.create(instanceURL: CheckoutConfig.Defaults.baseURL,
-												  path: CheckoutConfig.Defaults.orderCheckout,
+			let request = try ForceRequest.create(instanceURL: AppSettings.connectedApp.instanceURL,
+												  path: self.orderApiEndpoint,
 												  method: "GET",
 												  queryItems: queryItems)
-			return try await checkoutNetworkClient.fetch(type: OrderDetails.self, with: request)
+			return try await forceClient.fetch(type: OrderDetails.self, with: request)
 		} catch {
 			throw error
 		}
@@ -92,7 +94,7 @@ class OrderDetailsViewModel: ObservableObject {
     func getShippingType(devMode: Bool = false) async throws -> [ShippingMethod] {
         do {
             if devMode {
-                let result = try checkoutNetworkClient.fetchLocalJson(type: [ShippingMethod].self,
+                let result = try forceClient.fetchLocalJson(type: [ShippingMethod].self,
 																	  file: "ShippingMethod")
                 return result
             }
@@ -100,7 +102,7 @@ class OrderDetailsViewModel: ObservableObject {
             let request = try ForceRequest.create(instanceURL: AppSettings.getInstanceURL(),
 												  path: checkout_shipping_method,
 												  method: "GET")
-            let result = try await checkoutNetworkClient.fetch(type: [ShippingMethod].self,
+            let result = try await forceClient.fetch(type: [ShippingMethod].self,
 															   with: request)
             return result
         } catch {
@@ -111,7 +113,7 @@ class OrderDetailsViewModel: ObservableObject {
     
     func getShippingAddress(membershipNumber: String) async throws {
         do {
-            let queryResult = try await checkoutNetworkClient.SOQL(type: ShippingAddressRecord.self,
+            let queryResult = try await forceClient.SOQL(type: ShippingAddressRecord.self,
 																   for: checkout_shipping_address_query)
             shippingAddress = queryResult.records.compactMap { $0.shippingAddress }.first
         } catch {
