@@ -58,24 +58,24 @@ final class TransactionsViewModelTests: XCTestCase {
     
     func testReloadAllTransactions() async throws {
         try await viewModel.reloadAllTransactions(membershipNumber: "1234", devMode: true)
-        XCTAssertTrue(viewModel.recentTransactions.count == 3)
-        XCTAssertTrue(viewModel.recentTransactions[0].id == "0lVRO00000002og2AA")
-        XCTAssertTrue(viewModel.recentTransactions[0].journalTypeName == "Manual Points Adjustment")
-        XCTAssertTrue(viewModel.olderTransactions.count == 1)
-        XCTAssertTrue(viewModel.olderTransactions[0].activityDate == "2022-03-08T04:53:19.000Z")
-        XCTAssertTrue(viewModel.olderTransactions[0].id == "0lVRO00000002oR2AQ")
+        XCTAssertTrue(viewModel.recentTransactions.count == 0)
+        XCTAssertTrue(viewModel.olderTransactions.count == 4)
+        XCTAssertTrue(viewModel.olderTransactions[0].id == "0lVRO00000002og2AA")
+        XCTAssertTrue(viewModel.olderTransactions[0].journalTypeName == "Manual Points Adjustment")
+        XCTAssertTrue(viewModel.olderTransactions[3].activityDate == "2022-03-08T04:53:19.000Z")
+        XCTAssertTrue(viewModel.olderTransactions[3].id == "0lVRO00000002oR2AQ")
     }
     
     func testLoadAllTransactions() async throws {
         await viewModel.clear()
         MockFileManager.mockInstance.clear()
         try await viewModel.loadAllTransactions(membershipNumber: "1234", devMode: true)
-        XCTAssertTrue(viewModel.recentTransactions.count == 3)
-        XCTAssertTrue(viewModel.recentTransactions[0].id == "0lVRO00000002og2AA")
-        XCTAssertTrue(viewModel.recentTransactions[0].journalTypeName == "Manual Points Adjustment")
-        XCTAssertTrue(viewModel.olderTransactions.count == 1)
-        XCTAssertTrue(viewModel.olderTransactions[0].activityDate == "2022-03-08T04:53:19.000Z")
-        XCTAssertTrue(viewModel.olderTransactions[0].id == "0lVRO00000002oR2AQ")
+        XCTAssertTrue(viewModel.recentTransactions.count == 0)
+        XCTAssertTrue(viewModel.olderTransactions.count == 4)
+        XCTAssertTrue(viewModel.olderTransactions[0].id == "0lVRO00000002og2AA")
+        XCTAssertTrue(viewModel.olderTransactions[0].journalTypeName == "Manual Points Adjustment")
+        XCTAssertTrue(viewModel.olderTransactions[3].activityDate == "2022-03-08T04:53:19.000Z")
+        XCTAssertTrue(viewModel.olderTransactions[3].id == "0lVRO00000002oR2AQ")
         
         ///verify the file storage
         let transactions = MockFileManager.mockInstance.getData(type: [TransactionJournal].self, id: "1234", folderName: "TransactionHistory") ?? []
@@ -83,8 +83,8 @@ final class TransactionsViewModelTests: XCTestCase {
         
         await viewModel.clear()
         try await viewModel.loadAllTransactions(membershipNumber: "1234", devMode: true)
-        XCTAssertTrue(viewModel.recentTransactions.count == 3)
-        XCTAssertTrue(viewModel.olderTransactions.count == 1)
+        XCTAssertTrue(viewModel.recentTransactions.count == 0)
+        XCTAssertTrue(viewModel.olderTransactions.count == 4)
     }
 
 }

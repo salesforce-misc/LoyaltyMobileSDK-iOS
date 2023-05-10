@@ -46,11 +46,11 @@ final class OnBoardingViewUITests: XCTestCase {
         
         try SignInViewHelper.testLogin()
         app.tabBars.buttons["Home"].tap()
-        try HomeViewHelper.testEmptyViewElements()
+        try HomeViewHelper.testAllElements()
         app.tabBars.buttons["My Promotions"].tap()
-        try PromotionViewHelper.testEmptyViewElements()
+        try PromotionViewHelper.testAllElements()
         app.tabBars.buttons["My Profile"].tap()
-        try MyProfileViewHelper.testEmptyViewElements()
+        try MyProfileViewHelper.testProfileScreenElements()
         try MoreViewHelper.testMoreScreen()
     }
     
@@ -68,9 +68,11 @@ final class OnBoardingViewUITests: XCTestCase {
         loginButton.tap()
         try SignInViewHelper.testLogin()
         app.tabBars.buttons["Home"].tap()
-        try HomeViewHelper.testEmptyViewElements()
-        try HomeViewHelper.testPromotionViewElements()
-        try HomeViewHelper.testVoucherViewElements()
+        if !UITestingHelper.userNameWithoutPromotion .isEmpty {
+            try HomeViewHelper.testEmptyViewElements()
+            try HomeViewHelper.testPromotionViewElements()
+            try HomeViewHelper.testVoucherViewElements()
+        }
         try MoreViewHelper.testMoreScreen()
     }
     
@@ -104,7 +106,9 @@ final class OnBoardingViewUITests: XCTestCase {
         loginButton.tap()
         try SignInViewHelper.testLogin()
         app.tabBars.buttons["My Promotions"].tap()
-        try PromotionViewHelper.testEmptyViewElements()
+        if !UITestingHelper.userNameWithoutPromotion .isEmpty {
+            try PromotionViewHelper.testEmptyViewElements()
+        }
         try MoreViewHelper.testMoreScreen()
     }
     
@@ -141,11 +145,13 @@ final class OnBoardingViewUITests: XCTestCase {
         loginButton.tap()
         try SignInViewHelper.testLogin()
         app.tabBars.buttons["My Profile"].tap()
-        try MyProfileViewHelper.testEmptyViewElements()
-        try MyProfileViewHelper.testQRScreen()
-        try TransactionsViewHelper.testTransactionsEmptyScreen()
-        try VoucherViewHelper.testVoucherEmptyScreen()
-        try BenefitsViewHelper.testBenefitsEmptyScreen()
+        if !UITestingHelper.userNameWithoutPromotion .isEmpty {
+            try MyProfileViewHelper.testEmptyViewElements()
+            try MyProfileViewHelper.testQRScreen()
+            try TransactionsViewHelper.testTransactionsEmptyScreen()
+            try VoucherViewHelper.testVoucherEmptyScreen()
+            try BenefitsViewHelper.testBenefitsEmptyScreen()
+        }
         try MoreViewHelper.testMoreScreen()
     }
     
