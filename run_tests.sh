@@ -84,7 +84,7 @@ if [ "$TESTS_TO_RUN" = "-full" ] || [ "$TESTS_TO_RUN" = "-sdkOnly" ]; then
   # Run tests for PACKAGE_NAME scheme
   xcodebuild test \
     -scheme "$PACKAGE_NAME" \
-    -destination "platform=iOS Simulator,name=$SIMULATOR_NAME,OS=$SIMULATOR_OS" \
+    -destination "platform=macOS" \
     -enableCodeCoverage YES \
     | $XCPRETTY $( [ "$SAVE_REPORT" = true ] && echo "-o" "$OUTPUT_DIR/SDKTestReport_$TIMESTAMP.html" )
 
