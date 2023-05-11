@@ -16,6 +16,8 @@ final class AuthenticationAndLoyaltyAPITests: XCTestCase {
 	var transactionsViewModel: TransactionViewModel!
 	var voucherViewModel: VoucherViewModel!
 	var appRootViewModel: AppRootViewModel!
+	var username: String!
+	var password: String!
 	
 	@MainActor override func setUp() async throws {
 		try await super.setUp()
@@ -25,7 +27,15 @@ final class AuthenticationAndLoyaltyAPITests: XCTestCase {
 		transactionsViewModel = TransactionViewModel()
 		voucherViewModel = VoucherViewModel()
 		appRootViewModel = AppRootViewModel()
-		try await appRootViewModel.signInUser(userEmail: "archit.sharma@salesforce.com", userPassword: "test@321")
+		do {
+			let username = try TestDataStore.shared.getUsername()
+			let password = try TestDataStore.shared.getPassword()
+			try await appRootViewModel.signInUser(userEmail: username, userPassword: password)
+		} catch TestDataError.incorrectData(let message) {
+			XCTFail(message)
+		} catch {
+			XCTFail(error.localizedDescription)
+		}
 	}
 	
 	override func tearDown() {
