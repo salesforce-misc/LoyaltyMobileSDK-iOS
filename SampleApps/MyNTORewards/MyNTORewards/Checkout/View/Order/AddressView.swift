@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct AddressView: View {
     @EnvironmentObject private var rootVM: AppRootViewModel
@@ -49,7 +50,7 @@ struct AddressView: View {
             do {
                 try await orderDetailsViewModel.getShippingAddress(membershipNumber: rootVM.member?.loyaltyProgramMemberId ?? "")
             } catch {
-                print("Load Vouchers Error: \(error)")
+                Logger.error("Load Vouchers Error: \(error)")
             }
         }
     }

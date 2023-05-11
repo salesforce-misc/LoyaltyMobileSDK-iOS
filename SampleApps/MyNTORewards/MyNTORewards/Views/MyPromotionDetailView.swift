@@ -13,11 +13,9 @@ struct MyPromotionDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
-	@Binding var isShopActionSuccess: Bool
 
     let promotion: PromotionResult
     @Binding var processing: Bool
-//	@Binding var shopTapped: Bool
     
     var body: some View {
         
@@ -144,16 +142,16 @@ struct MyPromotionDetailView: View {
     }
 	
 	private func shopPromotion() {
-		if promotionVM.shopPromotion() {
-			dismiss()
-			isShopActionSuccess = true
-		}
+        dismiss()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            promotionVM.isCheckoutNavigationActive = true
+        }
 	}
 }
 
 struct MyPromotionDetailView_Previews: PreviewProvider {
     static var previews: some View {
-		MyPromotionDetailView(isShopActionSuccess: .constant(false), promotion: dev.promotion, processing: .constant(false))
+		MyPromotionDetailView(promotion: dev.promotion, processing: .constant(false))
             .environmentObject(dev.rootVM)
             .environmentObject(dev.promotionVM)
     }
