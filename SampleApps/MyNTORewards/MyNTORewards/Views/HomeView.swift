@@ -17,6 +17,7 @@ struct HomeView: View {
     @Binding var selectedTab: Int
     
     var body: some View {
+        NavigationView {
             VStack(spacing: 0) {
                 VStack(spacing: 0) {
                     HStack {
@@ -105,10 +106,11 @@ struct HomeView: View {
                             Logger.error("Reload Vouchers Error: \(error)")
                         }
                     }
+                }
+                .navigationBarHidden(true)
             }
-            .navigationBarHidden(true)
+            .navigationViewStyle(.stack)
         }
-        .navigationViewStyle(.stack)
     }
 }
 
@@ -117,5 +119,7 @@ struct HomeView_Previews: PreviewProvider {
         HomeView(selectedTab: .constant(Tab.home.rawValue))
             .environmentObject(dev.rootVM)
             .environmentObject(dev.profileVM)
+            .environmentObject(dev.promotionVM)
+            .environmentObject(dev.voucherVM)
     }
 }
