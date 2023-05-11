@@ -89,3 +89,8 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+# Integration Test
+#
+# Contains test config data
+Integration.xcconfig
