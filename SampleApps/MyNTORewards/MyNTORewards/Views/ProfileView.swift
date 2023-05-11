@@ -87,6 +87,7 @@ struct ProfileView: View {
                         Text("My Profile")
                             .font(.congratsTitle)
                             .padding(.leading, 15)
+                            .accessibilityIdentifier(AppAccessibilty.Profile.header)
                         Spacer()
                     }
                     .frame(height: 44)
@@ -107,11 +108,13 @@ struct ProfileView: View {
             HStack {
                 Image("img-profile-adam")
                 .clipShape(Circle())
+                .accessibilityIdentifier(AppAccessibilty.Profile.image)
                 
                 VStack {
                     HStack {
                         Text("\(rootVM.member?.firstName ?? "") \(rootVM.member?.lastName ?? "")")
                             .font(.profileTitle)
+                            .accessibilityIdentifier(AppAccessibilty.Profile.userName)
                         Spacer()
 
                     }
@@ -119,6 +122,7 @@ struct ProfileView: View {
                         Text("Membership Number: \(rootVM.member?.membershipNumber ?? "")")
                             .foregroundColor(Color.theme.textInactive)
                             .font(.profileSubtitle)
+                            .accessibilityIdentifier(AppAccessibilty.Profile.userId)
                         Spacer()
                     }
                     

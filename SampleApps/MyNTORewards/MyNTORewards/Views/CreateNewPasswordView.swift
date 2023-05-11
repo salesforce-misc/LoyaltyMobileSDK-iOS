@@ -101,7 +101,9 @@ struct CreateNewPasswordView: View {
                 .onReceive(viewModel.$userState) { state in
                     if state == UserState.newPasswordSet {
                         Logger.debug("Password reset for \(viewModel.email) is successful.")
-                        viewModel.signInUser(userEmail: viewModel.email, userPassword: password)
+						Task {
+							try await viewModel.signInUser(userEmail: viewModel.email, userPassword: password)
+						}
                     }
                 } // TODO: redirect to other page: home or onboarding? Need confirmation
                 .onReceive(viewModel.$userState) { state in

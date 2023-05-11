@@ -25,7 +25,7 @@ struct PaymentDetailsView: View {
 					.padding()
 				}
 				
-				NavigationLink {
+				NavigationLink(isActive: $orderDetailsVM.isOrderPlacedNavigationActive) {
 					OrderPlacedView()
 						.environmentObject(orderDetailsVM)
 				} label: {

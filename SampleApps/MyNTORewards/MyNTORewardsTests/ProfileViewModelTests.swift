@@ -33,6 +33,11 @@ final class ProfileViewModelTests: XCTestCase {
     }
     
     @MainActor func testGetProfileData() async throws {
+        /// clear profile and reload true scenerio
+        viewModel.clear()
+        try await viewModel.getProfileData(memberId: "1234",reload: true, devMode: true)
+        XCTAssertEqual((viewModel.profile?.loyaltyProgramMemberID ?? ""), "0lM4x000000LECAEA4")
+        
         /// clear profile and remove local database and reload false scenerio
         viewModel.clear()
         MockFileManager.mockInstance.clear()
@@ -41,11 +46,6 @@ final class ProfileViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.profile?.loyaltyProgramName ?? "", "NTO Insider")
         XCTAssertEqual(viewModel.profile?.membershipNumber ?? "", "Member1")
         XCTAssertEqual(viewModel.profile?.memberStatus ?? "", "Active")
-        
-        /// clear profile and reload true scenerio
-        viewModel.clear()
-        try await viewModel.getProfileData(memberId: "1234",reload: true, devMode: true)
-        XCTAssertEqual((viewModel.profile?.loyaltyProgramMemberID ?? ""), "0lM4x000000LECAEA4")
         
         /// clear profile and reload false scenerio
         try await viewModel.getProfileData(memberId: "1234",reload: false, devMode: true)

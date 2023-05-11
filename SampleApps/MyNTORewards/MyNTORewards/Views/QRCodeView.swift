@@ -22,8 +22,10 @@ struct QRCodeView: View {
                 HStack {
                     Text("My Membership Code")
                         .font(.qrcodeTitle)
+                        .accessibilityIdentifier(AppAccessibilty.QRCode.title)
                     Spacer()
                     Image("ic-close")
+                        .accessibilityIdentifier(AppAccessibilty.QRCode.closeImage)
                         .onTapGesture {
                             dismiss()
                         }
@@ -38,18 +40,24 @@ struct QRCodeView: View {
                     .overlay(
                         VStack(spacing: 12) {
                             Image("img-profile-adam")
+                                .accessibilityIdentifier(AppAccessibilty.QRCode.profileImage)
                             Text(name)
                                 .font(.qrcodeTitle)
+                                .accessibilityIdentifier(AppAccessibilty.QRCode.userName)
                             Text("QR Code")
                                 .font(.qrcodeSubtitle)
                                 .foregroundColor(Color.theme.superLightText)
+                                .accessibilityIdentifier(AppAccessibilty.QRCode.qrCodeText)
                             Image(uiImage: QRCodeImage)
                                 .resizable()
                                 .frame(width: 120, height: 120)
                                 .padding(.vertical)
+                                .accessibilityIdentifier(AppAccessibilty.QRCode.qrImage)
+
                             Text("Membership Number: \(membershipNumber)")
                                 .font(.qrcodeNumber)
                                 .foregroundColor(Color.theme.superLightText)
+                                .accessibilityIdentifier(AppAccessibilty.QRCode.membershipNumber)
                         }
                         .offset(y: -50)
                     )
@@ -60,10 +68,12 @@ struct QRCodeView: View {
                     .foregroundColor(Color.theme.superLightText)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 40)
+                    .accessibilityIdentifier(AppAccessibilty.QRCode.qrDescription)
                 Spacer()
                 Button("Close") {
                     dismiss()
                 }
+                .accessibilityIdentifier(AppAccessibilty.QRCode.closeButton)
                 .buttonStyle(DarkShortButton())
                 
                 Spacer()

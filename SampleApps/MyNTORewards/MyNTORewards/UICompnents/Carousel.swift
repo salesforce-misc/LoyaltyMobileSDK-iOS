@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Carousel<Content: View, T: Identifiable>: View {
     
-    let content: (T) -> Content
+    let content: (String, T) -> Content
     let items: [T]
     let contentWidth: CGFloat
     
@@ -21,7 +21,7 @@ struct Carousel<Content: View, T: Identifiable>: View {
     init(contentWidth: CGFloat = 320, // 320 = PromotionCardView().width
          index: Binding<Int>,
          items: [T],
-         @ViewBuilder content: @escaping (T) -> Content) {
+         @ViewBuilder content: @escaping (String, T) -> Content) {
         
         self.items = items
         self.contentWidth = contentWidth
@@ -44,8 +44,8 @@ struct Carousel<Content: View, T: Identifiable>: View {
                 
                 VStack {
                     HStack(spacing: spacing) {
-                        ForEach(items) { item in
-                            content(item)
+                        ForEach(Array(items.enumerated()), id: \.offset) { index, item in
+                            content("promotion_\(index)", item)
                                 .frame(minWidth: contentWidth, maxWidth: proxy.size.width)
                         }
                     }

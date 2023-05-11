@@ -14,7 +14,6 @@ struct BottomNavTabsView: View {
 	var body: some View {
 		NavigationView {
 			ZStack(alignment: .bottomLeading) {
-				
 				UITabView(selection: $selectedTab) {
 					HomeView(selectedTab: $selectedTab)
 						.tabItem("Home", image: UIImage(named: "ic-home"))
@@ -23,7 +22,7 @@ struct BottomNavTabsView: View {
 						.tabItem("My Promotions", image: UIImage(named: "ic-rewards"))
 					
 					ProfileView()
-					.tabItem("My Profile", image: UIImage(named: "ic-profile"))
+						.tabItem("My Profile", image: UIImage(named: "ic-profile"))
 					/* Post MVP
 					 RedeemView()
 					 .tabItem("Redeem", image: UIImage(named: "ic-book"))
@@ -31,7 +30,6 @@ struct BottomNavTabsView: View {
 					
 					MoreView()
 						.tabItem("More", image: UIImage(named: "ic-more"))
-						
 				}
 			}
 			.background {
@@ -41,21 +39,19 @@ struct BottomNavTabsView: View {
 					EmptyView()
 				}
 			}
+			.navigationViewStyle(.stack)
+			.onAppear {
+				// correct the transparency bug for Tab bars
+				let tabBarAppearance = UITabBarAppearance()
+				tabBarAppearance.configureWithOpaqueBackground()
+				UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+				// correct the transparency bug for Navigation bars
+				let navigationBarAppearance = UINavigationBarAppearance()
+				navigationBarAppearance.configureWithOpaqueBackground()
+				UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+			} // To Fix Tab bar at the bottom of an app goes transparent when navigating back from another view
 		}
-		.navigationViewStyle(.stack)
-		.onAppear {
-			// correct the transparency bug for Tab bars
-			let tabBarAppearance = UITabBarAppearance()
-			tabBarAppearance.configureWithOpaqueBackground()
-			UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-			// correct the transparency bug for Navigation bars
-			let navigationBarAppearance = UINavigationBarAppearance()
-			navigationBarAppearance.configureWithOpaqueBackground()
-			UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
-		} // To Fix Tab bar at the bottom of an app goes transparent when navigating back from another view
-		
 	}
-	
 }
 
 struct BottomNavTabsView_Previews: PreviewProvider {

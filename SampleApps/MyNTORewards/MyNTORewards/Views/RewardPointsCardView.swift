@@ -45,6 +45,7 @@ struct RewardPointsCardView: View {
                     .overlay(alignment: .topLeading) {
                         let tierName = profileVM.profile?.memberTiers[0].loyaltyMemberTierName ?? ""
                         Text(tierName)
+                            .accessibilityIdentifier(AppAccessibilty.Profile.tierName)
                             .font(.transactionPoints)
                             .padding()
                             .frame(height: 26)
@@ -57,6 +58,7 @@ struct RewardPointsCardView: View {
                     }
                     .overlay(alignment: .bottomLeading) {
                         Text("REWARD POINTS") // Hardcoded for now
+                            .accessibilityIdentifier(AppAccessibilty.Profile.rewardPointsText)
                             .font(.transactionPoints)
                             .foregroundColor(.white)
                             .padding(.leading, 35)
@@ -74,6 +76,7 @@ struct RewardPointsCardView: View {
                                 .padding(.trailing, 35)
                                 .padding(.bottom, 15)
                         }
+                        .accessibilityIdentifier(AppAccessibilty.Profile.qrCode)
                         .sheet(isPresented: $showQRCode) {
                             let name = "\(rootVM.member?.firstName ?? "") \(rootVM.member?.lastName ?? "")"
                             let number = rootVM.member?.membershipNumber ?? ""
@@ -86,6 +89,7 @@ struct RewardPointsCardView: View {
                         VStack(alignment: .leading) {
                             Text(String(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0))
                                 .font(.cardPointsText)
+                                .accessibilityIdentifier(AppAccessibilty.Profile.rewardPoints)
                             
                             // Incorrect, a new API will be provided
 //                            if let expiringDate = profileVM.profile?.memberTiers[0].tierExpirationDate,

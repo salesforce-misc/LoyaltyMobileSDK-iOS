@@ -17,6 +17,7 @@ struct HomeView: View {
     @Binding var selectedTab: Int
     
     var body: some View {
+        NavigationView {
             VStack(spacing: 0) {
                 VStack(spacing: 0) {
                     HStack {
@@ -35,10 +36,12 @@ struct HomeView: View {
                     HStack {
                         Text("Hello \(rootVM.member?.firstName.capitalized ?? ""),")
                             .padding(.leading, 15)
+                            .accessibilityIdentifier(AppAccessibilty.Home.userName)
                         Spacer()
                         // swiftlint:disable line_length
                         Text("\(String(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0)) \(AppSettings.Defaults.rewardCurrencyName)")
                             .padding(.trailing, 15)
+                            .accessibilityIdentifier(AppAccessibilty.Home.rewardPoints)
                         // swiftlint:enable line_length
                     }
                     .frame(height: 48)
@@ -103,10 +106,11 @@ struct HomeView: View {
                             Logger.error("Reload Vouchers Error: \(error)")
                         }
                     }
+                }
+                .navigationBarHidden(true)
             }
-            .navigationBarHidden(true)
+            .navigationViewStyle(.stack)
         }
-        .navigationViewStyle(.stack)
     }
 }
 
@@ -115,5 +119,7 @@ struct HomeView_Previews: PreviewProvider {
         HomeView(selectedTab: .constant(Tab.home.rawValue))
             .environmentObject(dev.rootVM)
             .environmentObject(dev.profileVM)
+            .environmentObject(dev.promotionVM)
+            .environmentObject(dev.voucherVM)
     }
 }

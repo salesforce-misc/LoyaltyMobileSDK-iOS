@@ -22,9 +22,11 @@ struct MyPromotionsView: View {
                     Text("My Promotions")
                         .font(.congratsTitle)
                         .padding(.leading, 15)
+                        .accessibilityIdentifier(AppAccessibilty.Promotion.header)
                     Spacer()
                     Image("ic-search")
                         .padding(.trailing, 15)
+                        .accessibilityIdentifier(AppAccessibilty.Promotion.searchImage)
                 }
                 .frame(height: 44)
                 .frame(maxWidth: .infinity)
@@ -80,8 +82,8 @@ struct MyPromotionsView: View {
                     EmptyStateView(title: "No Promotions, yet.",
                                    subTitle: "You do not have any eligibile promotions to enroll. Please come back later.")
                 }
-                ForEach(promotionVM.unenrolledPromotions) { promotion in
-                    MyPromotionCardView(promotion: promotion)
+                ForEach(Array(promotionVM.unenrolledPromotions.enumerated()), id: \.offset) { index, promotion in
+                    MyPromotionCardView(accessibilityID: "promotion_\(index)", promotion: promotion)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -105,8 +107,8 @@ struct MyPromotionsView: View {
                     EmptyStateView(title: "No Promotions, yet.",
                                    subTitle: "You do not have any active promotions. Please come back later.")
                 }
-                ForEach(promotionVM.activePromotions) { promotion in
-                    MyPromotionCardView(promotion: promotion)
+                ForEach(Array(promotionVM.activePromotions.enumerated()), id: \.offset) { index, promotion in
+                    MyPromotionCardView(accessibilityID: "promotion_\(index)", promotion: promotion)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -132,8 +134,8 @@ struct MyPromotionsView: View {
                     EmptyStateView(title: "No Promotions, yet.",
                                    subTitle: "You do not have any eligibile promotions. Please come back later.")
                 }
-                ForEach(promotionVM.allEligiblePromotions) { promotion in
-                    MyPromotionCardView(promotion: promotion)
+                ForEach(Array(promotionVM.allEligiblePromotions.enumerated()), id: \.offset) { index, promotion in
+                    MyPromotionCardView(accessibilityID: "promotion_\(index)", promotion: promotion)
                 }
             }
             .frame(maxWidth: .infinity)

@@ -22,6 +22,7 @@ struct EmptyStateView: View {
             
             VStack(spacing: 8) {
                 Text(title)
+                    .accessibility(identifier: title)
                     .font(.emptyStateTitle)
                 if let subTitle = subTitle {
                     Text(subTitle)
@@ -29,6 +30,7 @@ struct EmptyStateView: View {
                         .multilineTextAlignment(.center)
                         .lineSpacing(6)
                         .padding(.horizontal, 45)
+                        .accessibilityIdentifier(subTitle)
                 }
             }
             

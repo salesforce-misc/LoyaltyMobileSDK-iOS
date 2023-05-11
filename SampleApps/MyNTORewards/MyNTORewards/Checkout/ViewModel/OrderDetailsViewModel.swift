@@ -13,15 +13,20 @@ import LoyaltyMobileSDK
 class OrderDetailsViewModel: ObservableObject {
 	@Published var selectedIndex: Int
 	@Published var isOrderPlacedNavigationActive = false
-	var orderId = ""
     @Published var shippingAddress: ShippingAddress?
-    
+	
+	private var orderId = ""
     private let checkout_shipping_method = "/services/apexrest/ShippingMethods/"
     private let checkout_shipping_address_query = "SELECT shippingAddress,billingAddress from Account"
+	private let orderApiEndpoint = "services/apexrest/NTOOrderCheckOut/"
     private let authManager: ForceAuthManager
     private var forceClient: ForceClient
 	
-	init(authManager: ForceAuthManager = .shared, forceClient: ForceClient? = nil, index: Int = 0) {
+	init(
+		authManager: ForceAuthManager = .shared,
+		forceClient: ForceClient? = nil,
+		index: Int = 0
+	) {
 		self.authManager = authManager
 		self.forceClient = forceClient ?? ForceClient(auth: authManager)
 		self.selectedIndex = index
@@ -62,8 +67,10 @@ class OrderDetailsViewModel: ObservableObject {
 			let encoder = JSONEncoder()
 			encoder.dateEncodingStrategy = .formatted(.forceFormatter())
 			let requestBody = try encoder.encode(order)
-			let path = "services/apexrest/NTOOrderCheckOut/"
-			let request = try ForceRequest.create(instanceURL: AppSettings.getInstanceURL(), path: path, method: "POST", body: requestBody)
+			let request = try ForceRequest.create(instanceURL: AppSettings.connectedApp.instanceURL,
+												  path: self.orderApiEndpoint,
+												  method: "POST",
+												  body: requestBody)
 			return try await forceClient.fetch(type: String.self, with: request)
 		} catch {
 			throw error
@@ -72,9 +79,11 @@ class OrderDetailsViewModel: ObservableObject {
 	
 	func getOrderDetails() async throws -> OrderDetails {
 		do {
-			let path = "services/apexrest/NTOOrderCheckOut/"
 			let queryItems = ["orderId": "\(orderId)"]
-			let request = try ForceRequest.create(instanceURL: AppSettings.getInstanceURL(), path: path, method: "GET", queryItems: queryItems)
+			let request = try ForceRequest.create(instanceURL: AppSettings.connectedApp.instanceURL,
+												  path: self.orderApiEndpoint,
+												  method: "GET",
+												  queryItems: queryItems)
 			return try await forceClient.fetch(type: OrderDetails.self, with: request)
 		} catch {
 			throw error
@@ -84,12 +93,16 @@ class OrderDetailsViewModel: ObservableObject {
     func getShippingType(devMode: Bool = false) async throws -> [ShippingMethod] {
         do {
             if devMode {
-                let result = try forceClient.fetchLocalJson(type: [ShippingMethod].self, file: "ShippingMethod")
+                let result = try forceClient.fetchLocalJson(type: [ShippingMethod].self,
+																	  file: "ShippingMethod")
                 return result
             }
             
-            let request = try ForceRequest.create(instanceURL: AppSettings.getInstanceURL(), path: checkout_shipping_method, method: "GET")
-            let result = try await forceClient.fetch(type: [ShippingMethod].self, with: request)
+            let request = try ForceRequest.create(instanceURL: AppSettings.getInstanceURL(),
+												  path: checkout_shipping_method,
+												  method: "GET")
+            let result = try await forceClient.fetch(type: [ShippingMethod].self,
+															   with: request)
             return result
         } catch {
             print(error.localizedDescription)
@@ -99,43 +112,12 @@ class OrderDetailsViewModel: ObservableObject {
     
     func getShippingAddress(membershipNumber: String) async throws {
         do {
-            let queryResult = try await forceClient.SOQL(type: ShippingAddressRecord.self, for: checkout_shipping_address_query)
+            let queryResult = try await forceClient.SOQL(type: ShippingAddressRecord.self,
+																   for: checkout_shipping_address_query)
             shippingAddress = queryResult.records.compactMap { $0.shippingAddress }.first
         } catch {
             print(error.localizedDescription)
             throw error
         }
     }
-}
-
-struct Order: Codable {
-	let productName: String
-	let redeemPoints: Double
-	let productPrice: Double
-	let orderTotal: Double
-	let useNTOPoints: Bool
-	let pointsBalance: Double
-	let shippingStreet: String
-	let billingStreet: String
-	let voucherCode: String
-	let membershipNumber: String
-}
-
-struct OrderAttributes: Codable {
-	let type: String
-	let url: String
-}
-
-struct OrderDetails: Codable {
-	let attributes: OrderAttributes
-	let id: String
-	let orderNumber: String
-	let activatedDate: String
-	
-	enum CodingKeys: String, CodingKey {
-		case attributes
-		case id = "Id"
-		case orderNumber = "OrderNumber"
-		case activatedDate = "ActivatedDate"
-	}
 }

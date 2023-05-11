@@ -42,6 +42,7 @@ struct TopTabBar: View, Equatable {
                         .font(.offersTabSelected)
                         .foregroundColor(tabIndex == index ? Color.theme.accent : Color.theme.textInactive)
                         .frame(width: 20 + lableText.stringWidth(), height: 4)
+                        .accessibilityIdentifier(lableText)
                 }
                 .onTapGesture {
                     withAnimation(.spring()) {
