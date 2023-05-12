@@ -8,8 +8,12 @@
 import Foundation
 import LoyaltyMobileSDK
 
+protocol Clearable {
+	func clear() async
+}
+
 @MainActor
-class ProfileViewModel: ObservableObject {
+class ProfileViewModel: ObservableObject, Clearable {
     
     @Published var profile: ProfileModel?
     @Published var isLoading = false

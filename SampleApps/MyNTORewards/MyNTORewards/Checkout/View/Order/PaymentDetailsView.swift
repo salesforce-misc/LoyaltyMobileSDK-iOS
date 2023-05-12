@@ -10,6 +10,7 @@ import SwiftUI
 struct PaymentDetailsView: View {
 	@EnvironmentObject private var orderDetailsVM: OrderDetailsViewModel
 	@EnvironmentObject private var rootVM: AppRootViewModel
+	@EnvironmentObject private var profileVM: ProfileViewModel
 	@State private var isScreenLoading = false
 	
     var body: some View {
@@ -33,8 +34,10 @@ struct PaymentDetailsView: View {
 					Text("Confirm Order")
 						.onTapGesture {
 							Task {
+								let memberId = profileVM.profile?.loyaltyProgramMemberID
+								let membershipNumber = profileVM.profile?.membershipNumber
 								isScreenLoading = true
-								await orderDetailsVM.createOrder(membershipNumber: rootVM.member?.membershipNumber)
+								await orderDetailsVM.createOrder(clearable: profileVM, memberId: memberId, membershipNumber: membershipNumber)
 								isScreenLoading = false
 							}
 						}
