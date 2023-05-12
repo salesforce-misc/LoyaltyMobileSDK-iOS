@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PaymentDetailsView: View {
 	@EnvironmentObject private var orderDetailsVM: OrderDetailsViewModel
+	@EnvironmentObject private var rootVM: AppRootViewModel
 	@State private var isScreenLoading = false
 	
     var body: some View {
@@ -33,7 +34,7 @@ struct PaymentDetailsView: View {
 						.onTapGesture {
 							Task {
 								isScreenLoading = true
-								await orderDetailsVM.createOrder()
+								await orderDetailsVM.createOrder(membershipNumber: rootVM.member?.membershipNumber)
 								isScreenLoading = false
 							}
 						}

@@ -32,9 +32,9 @@ class OrderDetailsViewModel: ObservableObject {
 		self.selectedIndex = index
 	}
 	
-	func createOrder() async {
+	func createOrder(membershipNumber: String?) async {
 		do {
-			orderId = try await placeOrder()
+			orderId = try await placeOrder(membershipNumber: membershipNumber ?? "")
 			isOrderPlacedNavigationActive = true
 		} catch {
 			print("Unable to place order")
@@ -44,14 +44,14 @@ class OrderDetailsViewModel: ObservableObject {
 	private func placeOrder(
 		productName: String = "Men's Rainier L4 Windproof Soft Shell Hoodie",
 		redeemPoints: Double = 0,
-		productPrice: Double = 0,
-		orderTotal: Double = 0,
+		productPrice: Double = 200,
+		orderTotal: Double = 207,
 		useNTOPoints: Bool = false,
 		pointsBalance: Double = 0,
-		shippingStreet: String = "",
-		billingStreet: String = "",
+		shippingStreet: String = "1520 W 62nd St Cook IL 60636",
+		billingStreet: String = "1520 W 62nd St Cook IL 60636",
 		voucherCode: String = "",
-		membershipNumber: String = ""
+		membershipNumber: String
 	) async throws -> String {
 		let order = Order(productName: productName,
 						  redeemPoints: redeemPoints,
