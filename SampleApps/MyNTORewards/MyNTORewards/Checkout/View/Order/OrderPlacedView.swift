@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct OrderPlacedView: View {
 	@EnvironmentObject private var promotionVM: PromotionViewModel
@@ -37,7 +38,7 @@ struct OrderPlacedView: View {
 			do {
 				_ = try await orderDetailsVM.getOrderDetails()
 			} catch {
-				print("Error fetching order details..")
+                Logger.error("Error fetching order details..")
 			}
 		}
 		.navigationBarBackButtonHidden(true)

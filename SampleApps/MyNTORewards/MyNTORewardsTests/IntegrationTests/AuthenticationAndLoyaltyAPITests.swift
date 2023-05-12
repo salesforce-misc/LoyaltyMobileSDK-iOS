@@ -25,7 +25,7 @@ final class AuthenticationAndLoyaltyAPITests: XCTestCase {
 		transactionsViewModel = TransactionViewModel()
 		voucherViewModel = VoucherViewModel()
 		appRootViewModel = AppRootViewModel()
-		try await appRootViewModel.signInUser(userEmail: "q3test@test.com", userPassword: "test@321")
+		try await appRootViewModel.signInUser(userEmail: "archit.sharma@salesforce.com", userPassword: "test@321")
 	}
 	
 	override func tearDown() {
