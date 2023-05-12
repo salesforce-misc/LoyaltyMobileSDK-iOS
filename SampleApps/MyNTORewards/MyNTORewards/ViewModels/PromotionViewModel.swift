@@ -20,10 +20,6 @@ class PromotionViewModel: ObservableObject {
     // actionTaskList => [promotionId: (isActionDone, isModalDismissed)]
     @Published var actionTaskList: [String: (Bool, Bool)] = [:]
 	@Published var isCheckoutNavigationActive = false
-	
-	final func shopPromotion() -> Bool {
-		return true
-	}
     
     private let authManager: ForceAuthenticator
     private let localFileManager: FileManagerProtocol

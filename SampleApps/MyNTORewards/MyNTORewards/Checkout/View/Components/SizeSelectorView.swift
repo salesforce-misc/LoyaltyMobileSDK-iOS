@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct SizeSelectorView: View {
 	@State private var selectedIndex = 0
@@ -18,7 +19,7 @@ struct SizeSelectorView: View {
 					.font(.selectionTitleText)
 				Spacer()
 				Button {
-					print("Image tapped!")
+                    Logger.debug("Image tapped!")
 				} label: {
 					Text("View Size Chart")
 						.font(.selectionTitleText)
