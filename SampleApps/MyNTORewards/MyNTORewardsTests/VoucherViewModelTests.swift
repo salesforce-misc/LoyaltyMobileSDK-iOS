@@ -76,7 +76,7 @@ final class VoucherViewModelTests: XCTestCase {
         XCTAssertTrue(vouchers.count == 1)
         XCTAssertTrue(vouchers[0].discountPercent == 40)
         XCTAssertTrue(vouchers[0].description == "20% discount on children group party at selected event centers.")
-        XCTAssertTrue(vouchers[0].id == "0kDRO00000000Hp2AI")
+        XCTAssertTrue(vouchers[0].id == "0kD43872679RO00000000Hp2AI")
     }
     
     @MainActor func testLoadAvailableVouchers() async throws {
@@ -98,7 +98,7 @@ final class VoucherViewModelTests: XCTestCase {
         XCTAssertTrue(viewModel.expiredVochers.count == 1)
         XCTAssertTrue(viewModel.expiredVochers[0].discountPercent == 40)
         XCTAssertTrue(viewModel.expiredVochers[0].description == "20% discount on children group party at selected event centers.")
-        XCTAssertTrue(viewModel.expiredVochers[0].id == "0kDRO00000000Hp2AI")
+        XCTAssertTrue(viewModel.expiredVochers[0].id == "0kD43872679RO00000000Hp2AI")
         
         /// Test with reload True
         viewModel.clear()

@@ -82,4 +82,9 @@ final class ModelClassTests: XCTestCase {
         let benefits = Benefits(memberBenefits: [benefitModel])
         XCTAssertTrue(benefits.memberBenefits.count == 1)
     }
+    
+    func testURLQueryElements() {
+        let urlElements = [URLQueryItem(name: "token", value: "test123")]
+        XCTAssertEqual(urlElements["token"], "test123")
+    }
 }

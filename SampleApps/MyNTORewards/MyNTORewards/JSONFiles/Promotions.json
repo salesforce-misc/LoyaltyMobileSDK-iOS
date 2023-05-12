@@ -13,7 +13,7 @@
                     "fulfillmentAction": "CREDIT_POINTS",
                     "promotionName": "Anniversary promotion",
                     "promotionId": "0c84x000000CoNhAAK",
-                    "startDate": "2020-01-01",
+                    "startDate": "2023-04-08T04:59:40.000Z",
                     "endDate": "2022-12-31",
                     "description": "Double point promotion on member purchases on their anniversary",
                     "imageName": "offer2"
@@ -28,7 +28,7 @@
                     "fulfillmentAction": "CREDIT_POINTS",
                     "promotionName": "Referral Promotions",
                     "promotionId": "0c84x000000CoNiAAK",
-                    "startDate": "2021-01-02",
+                    "startDate": "2023-04-08T04:59:40.000Z",
                     "description": "Additional points for member referral",
                     "imageName": "promotion1"
                 },
@@ -39,7 +39,7 @@
                     "promotionEnrollmentRqr": true,
                     "promotionName": "New Year Promotion Premium",
                     "promotionId": "0c84x000000CtzRAAS",
-                    "startDate": "2022-11-01",
+                    "startDate": "2023-04-08T04:59:40.000Z",
                     "description": "New Year Promotion Premium",
                     "imageName": "meal1"
                 },
@@ -50,7 +50,7 @@
                     "promotionEnrollmentRqr": true,
                     "promotionName": "Christmas Promotion",
                     "promotionId": "0c84x000020CtzWAAS",
-                    "startDate": "2022-12-01",
+                    "startDate": "2023-04-08T04:59:40.000Z",
                     "description": "Christmas Promotion - Happy holidays, enjoy a joyful holiday season with this promotion",
                     "imageName": "promotion3"
                 },
@@ -64,7 +64,7 @@
                     "fulfillmentAction": "CREDIT_POINTS",
                     "promotionName": "Anniversary promotion",
                     "promotionId": "0c84x004000CoNhAAK",
-                    "startDate": "2020-01-01",
+                    "startDate": "2023-04-08T04:59:40.000Z",
                     "description": "Double point promotion on member purchases on their anniversary",
                     "imageName": "offers"
                 },
@@ -78,7 +78,7 @@
                     "fulfillmentAction": "CREDIT_POINTS",
                     "promotionName": "Referral Promotions",
                     "promotionId": "0c84x000006CoNiAAK",
-                    "startDate": "2021-01-02",
+                    "startDate": "2023-04-08T04:59:40.000Z",
                     "description": "Additional points for member referral",
                     "imageName": "shoes1"
                 },
@@ -89,7 +89,7 @@
                     "promotionEnrollmentRqr": true,
                     "promotionName": "Thanksgiving Promotion Premium",
                     "promotionId": "0c84x070000CtzRAAS",
-                    "startDate": "2022-11-01",
+                    "startDate": "2022-04-08T04:59:40.000Z",
                     "description": "Thanksgiving Promotion Premium",
                     "imageName": "jean1"
                 },
@@ -100,7 +100,7 @@
                     "promotionEnrollmentRqr": true,
                     "promotionName": "New Year Promotion Premium",
                     "promotionId": "0c84x000000CtzWAAS",
-                    "startDate": "2022-11-01",
+                    "startDate": "2023-04-08T04:59:40.000Z",
                     "description": "New Year Promotion Premium - Ineligible",
                     "imageName": "coffee1"
                 }

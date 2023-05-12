@@ -238,27 +238,27 @@ final class LoyaltyAPIManagerTests: XCTestCase {
     
     func testGetVouchers() async throws {
         var vouchers = try await loayltyAPIManager.getVouchers(membershipNumber: "1234", pageNumber: 1, productId: ["0kD4x000000wr6THAK", "0kD4x003000wr6EEAQ"], sortBy: .expirationDate, sortOrder: .ascending)
-        XCTAssertEqual(vouchers.count, 6)
-        XCTAssertEqual(vouchers[0].id, "0kD4x000000wr6THAK")
-        XCTAssertEqual(vouchers[0].faceValue, 100)
+        XCTAssertEqual(vouchers.count, 4)
+        XCTAssertEqual(vouchers[0].id, "0kDRO00000000Hk2AI")
+        XCTAssertEqual(vouchers[0].discountPercent, 50)
         
-        XCTAssertEqual(vouchers[1].id, "0kD4x003000wr6EEAQ")
-        XCTAssertEqual(vouchers[1].discountPercent, 25)
+        XCTAssertEqual(vouchers[1].id, "0kDRO00000000Hp2AI")
+        XCTAssertEqual(vouchers[1].discountPercent, 40)
         
-        XCTAssertEqual(vouchers[5].id, "0kD4x004000wr6FUNS")
-        XCTAssertEqual(vouchers[5].faceValue, 80.0)
+        XCTAssertEqual(vouchers[2].id, "0kDRO00000000Hp2BI")
+        XCTAssertEqual(vouchers[2].discountPercent, 40)
         
         /// Verifying dev Mode
         vouchers = try await loayltyAPIManager.getVouchers(membershipNumber: "1234", pageNumber: 1, devMode: true)
-        XCTAssertEqual(vouchers.count, 6)
-        XCTAssertEqual(vouchers[0].id, "0kD4x000000wr6THAK")
-        XCTAssertEqual(vouchers[0].faceValue, 100)
+        XCTAssertEqual(vouchers.count, 4)
+        XCTAssertEqual(vouchers[0].id, "0kDRO00000000Hk2AI")
+        XCTAssertEqual(vouchers[0].discountPercent, 50)
         
-        XCTAssertEqual(vouchers[1].id, "0kD4x003000wr6EEAQ")
-        XCTAssertEqual(vouchers[1].discountPercent, 25)
+        XCTAssertEqual(vouchers[1].id, "0kDRO00000000Hp2AI")
+        XCTAssertEqual(vouchers[1].discountPercent, 40)
         
-        XCTAssertEqual(vouchers[5].id, "0kD4x004000wr6FUNS")
-        XCTAssertEqual(vouchers[5].faceValue, 80.0)
+        XCTAssertEqual(vouchers[2].id, "0kDRO00000000Hp2BI")
+        XCTAssertEqual(vouchers[2].discountPercent, 40)
         
         // Handle authentication failed scenrio
         MockNetworkManager.sharedMock.statusCode = 401
