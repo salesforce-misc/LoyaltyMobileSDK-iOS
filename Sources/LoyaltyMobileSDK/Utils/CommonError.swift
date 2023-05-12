@@ -19,6 +19,7 @@ public enum CommonError: Error, Equatable {
     case authenticationFailed
     case codeCredentials
     case functionalityNotEnabled
+    case unknownException
 }
 
 extension CommonError: CustomStringConvertible, LocalizedError {
@@ -47,6 +48,8 @@ extension CommonError: CustomStringConvertible, LocalizedError {
             return "Authorization code and credentials flow failed."
         case .functionalityNotEnabled:
             return "Functionality is not enabled."
+        case .unknownException:
+            return "An unexpected error occurred."
         }
     }
     
@@ -74,6 +77,8 @@ extension CommonError: CustomStringConvertible, LocalizedError {
             return NSLocalizedString("Authorization code and credentials flow failed.", comment: "Code Credentials Error")
         case .functionalityNotEnabled:
             return NSLocalizedString("Functionality is not enabled.", comment: "Functionality Not Enabled Error")
+        case .unknownException:
+            return NSLocalizedString("An unexpected error occurred.", comment: "Unknown Exception Error")
         }
     }
 }

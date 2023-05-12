@@ -50,6 +50,9 @@ public class NetworkManager: NetworkManagerProtocol {
         case 403:
             Logger.error(CommonError.functionalityNotEnabled.description)
             throw CommonError.functionalityNotEnabled
+        case 500:
+            Logger.error(CommonError.unknownException.description)
+            throw CommonError.unknownException
         default:
             let errorMessage = "HTTP response status code \(httpResponse.statusCode)"
             Logger.error(CommonError.responseUnsuccessful(message: errorMessage).description)

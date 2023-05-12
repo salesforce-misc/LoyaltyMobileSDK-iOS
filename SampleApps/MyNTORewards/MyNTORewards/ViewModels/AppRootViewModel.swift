@@ -179,8 +179,6 @@ class AppRootViewModel: ObservableObject {
 														  instanceURL: AppSettings.getInstanceURL(), forceClient: ForceClient(auth: authManager))
 				let profile = try await loyaltyAPIManager.getCommunityMemberProfile()
 				
-				// TODO: need to handle profile cannot be found(not registered) case
-				
 				Logger.debug("\(profile)")
 				
 				let member = CommunityMemberModel(firstName: profile.associatedContact.firstName,
@@ -198,7 +196,11 @@ class AppRootViewModel: ObservableObject {
 			self.isInProgress = false
 			self.userState = .signedIn
 			
-		} catch {
+        } catch CommonError.unknownException {
+            // if it's 500 error then we need enroll user to the loylty program
+            // TODO: Call Enrollment API
+            
+        } catch {
 			// clear auth
 			authManager.clearAuth()
 			
