@@ -21,8 +21,11 @@ struct SignInView: View {
     
     var body: some View {
         VStack {
-            SheetHeader(title: "Log In")
-                .accessibilityIdentifier(AppAccessibilty.SignIn.loginHeader)
+            SheetHeader(title: "Log In") {
+                signInPresented = false
+                viewModel.userState = .none
+            }
+            .accessibilityIdentifier(AppAccessibilty.SignIn.loginHeader)
             ScrollView {
                 ZStack {
                     VStack {

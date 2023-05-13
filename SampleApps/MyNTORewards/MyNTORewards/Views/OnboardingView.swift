@@ -156,6 +156,10 @@ struct OnboardingView: View {
                             appViewRouter.signedIn = true
                             appViewRouter.currentPage = .navTabsPage()
                         }
+                        if state == UserState.signedInButNotJoined {
+                            signInPresented = false
+                            signUpPresented = true
+                        }
                     }
                 }
                 
