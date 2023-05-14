@@ -111,7 +111,7 @@ class OrderDetailsViewModel: ObservableObject {
 															   with: request)
             return result
         } catch {
-            print(error.localizedDescription)
+            Logger.error(error.localizedDescription)
             throw error
         }
     }
@@ -122,7 +122,7 @@ class OrderDetailsViewModel: ObservableObject {
 																   for: checkout_shipping_address_query)
             shippingAddress = queryResult.records.compactMap { $0.shippingAddress }.first
         } catch {
-            print(error.localizedDescription)
+            Logger.error(error.localizedDescription)
             throw error
         }
     }
