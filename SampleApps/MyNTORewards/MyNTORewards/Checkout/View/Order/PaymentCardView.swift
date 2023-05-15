@@ -30,10 +30,10 @@ struct PaymentCardView: View {
                     .font(.voucherHederText)
                     .foregroundColor(Color(hex: "#181818"))
                 HStack(spacing: 10) {
-                    VoucherPickerView(pickerViewInputValues: .constant(months), selectedValue: .constant(months[0]))
+					ExpiryDatePickerView(selectedValue: .constant(months[0]), pickerViewInputValues: months)
                         .frame(height: 16)
                         .disabled(true)
-                    VoucherPickerView(pickerViewInputValues: .constant(years), selectedValue: .constant(years[0]))
+					ExpiryDatePickerView(selectedValue: .constant(years[0]), pickerViewInputValues: years)
                         .frame(height: 16)
                         .disabled(true)
                     PaymentCardTextField(cardValue: .constant("298"))

@@ -8,6 +8,11 @@
 import Foundation
 import LoyaltyMobileSDK
 
+struct VoucherTitle: Hashable, Identifiable {
+	let id: String
+	var title: String
+}
+
 @MainActor
 class VoucherViewModel: ObservableObject, CacheClearable {
 
@@ -15,6 +20,7 @@ class VoucherViewModel: ObservableObject, CacheClearable {
     @Published var availableVochers: [VoucherModel] = []
     @Published var redeemedVochers: [VoucherModel] = []
     @Published var expiredVochers: [VoucherModel] = []
+	@Published var availableVouchersTitles: [VoucherTitle] = []
     
     enum StatusFilter: String {
         case Issued
@@ -127,6 +133,12 @@ class VoucherViewModel: ObservableObject, CacheClearable {
         }
         
     }
+	
+	func getTitlesOfAvailableVouchers(membershipNumber: String) async throws {
+		availableVouchersTitles = try await loadFilteredVouchers(membershipNumber: membershipNumber, filter: .Issued).map {
+			VoucherTitle(id: $0.id, title: $0.voucherDefinition)
+		}
+	}
     
     func reloadFilteredVouchers(membershipNumber: String, filter: StatusFilter, devMode: Bool = false) async throws -> [VoucherModel] {
         do {

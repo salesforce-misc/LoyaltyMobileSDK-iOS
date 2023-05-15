@@ -181,6 +181,9 @@ class DeveloperPreview {
 								productCategory: "",
 								promotionName: "",
 								promotionId: "")
+	
+	let voucherTitles = [VoucherTitle(id: "1", title: "Ironman Voucher"),
+						 VoucherTitle(id: "2", title: "Winter Jacket")]
     
     let checkoutVouchersCode = ["Trendy wear 25 off", "Trendy wear 50 off", "Trendy wear 15 off", "Trendy wear 75 off", "Trendy wear 100 off"]
     
