@@ -13,6 +13,7 @@ import LoyaltyMobileSDK
 enum ErrorType: Hashable {
     case signUp
     case signIn
+    case enrollUser
     case resetPassword
     case createNewPassword
     case noError
@@ -20,6 +21,7 @@ enum ErrorType: Hashable {
 
 enum UserState: Hashable {
     case signedIn
+    case signedInButNotJoined
     case signedUp
     case resetPasswordRequested
     case newPasswordSet
@@ -46,7 +48,8 @@ class AppRootViewModel: ObservableObject {
     init() {
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
                                               loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                              instanceURL: AppSettings.getInstanceURL(), forceClient: ForceClient(auth: authManager))
+                                              instanceURL: AppSettings.getInstanceURL(),
+                                              forceClient: ForceClient(auth: authManager))
     }
     
     func signUpUser(userEmail: String,
@@ -151,10 +154,8 @@ class AppRootViewModel: ObservableObject {
     }
     
 	func signInUser(userEmail: String, userPassword: String) async throws {
-		
 		isInProgress = true
 		email = userEmail
-		
 		do {
 			let app = AppSettings.getConnectedApp()
 			let auth = try await ForceAuthManager.shared.authenticate(
@@ -176,10 +177,9 @@ class AppRootViewModel: ObservableObject {
 				let authManager = ForceAuthManager.shared
 				let loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
 														  loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-														  instanceURL: AppSettings.getInstanceURL(), forceClient: ForceClient(auth: authManager))
+														  instanceURL: AppSettings.getInstanceURL(),
+                                                          forceClient: ForceClient(auth: authManager))
 				let profile = try await loyaltyAPIManager.getCommunityMemberProfile()
-				
-				// TODO: need to handle profile cannot be found(not registered) case
 				
 				Logger.debug("\(profile)")
 				
@@ -198,7 +198,12 @@ class AppRootViewModel: ObservableObject {
 			self.isInProgress = false
 			self.userState = .signedIn
 			
-		} catch {
+        } catch CommonError.unknownException {
+            // if it's 500 error then we need enroll user to the loylty program
+            self.isInProgress = false
+            self.userState = .signedInButNotJoined
+            
+        } catch {
 			// clear auth
 			authManager.clearAuth()
 			
@@ -206,6 +211,60 @@ class AppRootViewModel: ObservableObject {
 			self.userErrorMessage = (error.localizedDescription, .signIn)
 		}
 	}
+    
+    func joinProgram(emailNotification: Bool) {
+        isInProgress = true
+        Task {
+            do {
+                let forceClient = ForceClient(auth: authManager)
+                let contactQuery = "SELECT FirstName, LastName, Phone FROM Contact"
+                let queryResult = try await forceClient.SOQL(type: Record.self, for: contactQuery)
+                let contact = queryResult.records.first
+                
+                // Need to save contact info for enrollment
+                let firstName = contact?.string(forField: "FirstName") ?? ""
+                let lastName = contact?.string(forField: "LastName") ?? ""
+                let phone = contact?.string(forField: "Phone") ?? ""
+                
+                Logger.debug("First Name: \(firstName) | Last Name: \(lastName) | Phone: \(phone)")
+                
+                let membershipNumber = LoyaltyUtilities.randomString(of: 8)
+                let enrolledMember = try await loyaltyAPIManager.postEnrollment(membershipNumber: membershipNumber,
+                                                                                firstName: firstName,
+                                                                                lastName: lastName,
+                                                                                email: email,
+                                                                                phone: phone,
+                                                                                emailNotification: emailNotification)
+
+                let member = CommunityMemberModel(firstName: firstName,
+                                                  lastName: lastName,
+                                                  email: email,
+                                                  loyaltyProgramMemberId: enrolledMember.loyaltyProgramMemberId,
+                                                  loyaltyProgramName: enrolledMember.loyaltyProgramName,
+                                                  membershipNumber: membershipNumber)
+                // Save member to local disk
+                LocalFileManager.instance.saveData(item: member, id: email)
+
+                self.member = member
+                
+                self.isInProgress = false
+                self.userState = .signedIn
+                
+            } catch {
+                Logger.error(error.localizedDescription)
+                
+                // clear auth
+                authManager.clearAuth()
+                
+                self.isInProgress = false
+                self.userErrorMessage = (error.localizedDescription, .enrollUser)
+            }
+        }
+    }
+    
+    func exitJoinProgram() {
+        authManager.clearAuth()
+    }
     
     func signOutUser() {
         

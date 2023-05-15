@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct SheetHeader: View {
-    
-    @Environment(\.dismiss) private var dismiss
 
     let title: String
+    var onDismiss: () -> Void
     
     var body: some View {
         VStack {
@@ -22,13 +21,12 @@ struct SheetHeader: View {
                     .accessibilityIdentifier(title)
                 Spacer()
                 Button {
-                    dismiss()
+                    onDismiss()
                 } label: {
                     Image("ic-close")
                 }
                 .accessibilityIdentifier(title + "_dismiss")
                 .padding()
-
             }
             .padding(.top)
             Divider()
@@ -38,7 +36,7 @@ struct SheetHeader: View {
 
 struct SheetHeader_Previews: PreviewProvider {
     static var previews: some View {
-        SheetHeader(title: "Log In")
+        SheetHeader(title: "Log In", onDismiss: {})
             .previewLayout(.sizeThatFits)
     }
 }

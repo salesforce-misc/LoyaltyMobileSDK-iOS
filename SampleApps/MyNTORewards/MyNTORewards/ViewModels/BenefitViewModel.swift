@@ -65,9 +65,28 @@ class BenefitViewModel: ObservableObject {
     }
     
     func fetchBenefits(memberId: String, devMode: Bool = false) async throws {
-        
         do {
-            let results: [BenefitModel] = try await loyaltyAPIManager.getMemberBenefits(for: memberId, devMode: devMode)
+            var results: [BenefitModel] = try await loyaltyAPIManager.getMemberBenefits(for: memberId, devMode: devMode)
+
+            // Decode the benefitName of each BenefitModel in the results array
+            results = results.map { benefit in
+                let decodedBenefitName = LoyaltyUtilities.decodeHtmlEntities(benefit.benefitName)
+                
+                // Create a new BenefitModel instance with the decoded benefitName
+                let decodedBenefit = BenefitModel(id: benefit.id,
+                                                  benefitName: decodedBenefitName,
+                                                  benefitTypeID: benefit.benefitTypeID,
+                                                  benefitTypeName: benefit.benefitTypeName,
+                                                  createdRecordID: benefit.createdRecordID,
+                                                  createdRecordName: benefit.createdRecordID,
+                                                  description: benefit.description,
+                                                  endDate: benefit.endDate,
+                                                  isActive: benefit.isActive,
+                                                  memberBenefitStatus: benefit.memberBenefitStatus,
+                                                  startDate: benefit.startDate)
+                
+                return decodedBenefit
+            }
             
             benefits = results
             benefitsPreview = Array(benefits.prefix(5))
