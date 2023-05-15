@@ -9,7 +9,7 @@ import Foundation
 import LoyaltyMobileSDK
 
 @MainActor
-class VoucherViewModel: ObservableObject {
+class VoucherViewModel: ObservableObject, CacheClearable {
 
     @Published var vouchers: [VoucherModel] = []
     @Published var availableVochers: [VoucherModel] = []
@@ -24,6 +24,7 @@ class VoucherViewModel: ObservableObject {
         case None
     }
     
+	private let vouchersFolderName = "Vouchers"
     private let authManager: ForceAuthenticator
     private let localFileManager: FileManagerProtocol
     private var loyaltyAPIManager: LoyaltyAPIManager
@@ -41,7 +42,7 @@ class VoucherViewModel: ObservableObject {
         if vouchers.isEmpty {
             
             // load from local cache
-            if let cached = localFileManager.getData(type: [VoucherModel].self, id: membershipNumber, folderName: "Vouchers") {
+            if let cached = localFileManager.getData(type: [VoucherModel].self, id: membershipNumber, folderName: vouchersFolderName) {
                 vouchers = Array(cached.prefix(2))
             } else {
                 do {
@@ -49,7 +50,7 @@ class VoucherViewModel: ObservableObject {
                     vouchers = Array(result.prefix(2))
                     
                     // save to local
-                    localFileManager.saveData(item: result, id: membershipNumber, folderName: "Vouchers", expiry: .never)
+                    localFileManager.saveData(item: result, id: membershipNumber, folderName: vouchersFolderName, expiry: .never)
                 } catch {
                     throw error
                 }
@@ -66,7 +67,7 @@ class VoucherViewModel: ObservableObject {
             vouchers = Array(result.prefix(2))
             
             // save to local
-            localFileManager.saveData(item: result, id: membershipNumber, folderName: "Vouchers", expiry: .never)
+            localFileManager.saveData(item: result, id: membershipNumber, folderName: vouchersFolderName, expiry: .never)
         } catch {
             throw error
         }
@@ -102,7 +103,7 @@ class VoucherViewModel: ObservableObject {
     func loadFilteredVouchers(membershipNumber: String, filter: StatusFilter, devMode: Bool = false) async throws -> [VoucherModel] {
             
         // load from local cache
-        if let cached = localFileManager.getData(type: [VoucherModel].self, id: membershipNumber, folderName: "Vouchers") {
+        if let cached = localFileManager.getData(type: [VoucherModel].self, id: membershipNumber, folderName: vouchersFolderName) {
             let filtered = cached.filter { voucher in
                 voucher.status == filter.rawValue
             }
@@ -117,7 +118,7 @@ class VoucherViewModel: ObservableObject {
                 }
                 
                 // save to local
-                localFileManager.saveData(item: result, id: membershipNumber, folderName: "Vouchers", expiry: .never)
+                localFileManager.saveData(item: result, id: membershipNumber, folderName: vouchersFolderName, expiry: .never)
                 return filtered
             } catch {
                 throw error
@@ -135,7 +136,7 @@ class VoucherViewModel: ObservableObject {
             }
             
             // save to local
-            localFileManager.saveData(item: result, id: membershipNumber, folderName: "Vouchers", expiry: .never)
+            localFileManager.saveData(item: result, id: membershipNumber, folderName: vouchersFolderName, expiry: .never)
             return filtered
         } catch {
             throw error
@@ -192,4 +193,11 @@ class VoucherViewModel: ObservableObject {
         redeemedVochers = []
         expiredVochers = []
     }
+	
+	@MainActor
+	func clearCache(memberId: String, membershipNumber: String) async {
+		clear()
+		localFileManager.removeData(type: [VoucherModel].self, id: membershipNumber, folderName: vouchersFolderName)
+	}
+	
 }

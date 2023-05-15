@@ -21,26 +21,24 @@ class OrderDetailsViewModel: ObservableObject {
 	private let orderApiEndpoint = "services/apexrest/NTOOrderCheckOut/"
     private let authManager: ForceAuthManager
     private var forceClient: ForceClient
-	private var localFileManager: LocalFileManager
 	
 	init(
 		authManager: ForceAuthManager = .shared,
-		localFileManager: LocalFileManager = .instance,
 		forceClient: ForceClient? = nil,
 		index: Int = 0
 	) {
 		self.authManager = authManager
 		self.forceClient = forceClient ?? ForceClient(auth: authManager)
 		self.selectedIndex = index
-		self.localFileManager = localFileManager
 	}
 	
-	func createOrder(clearable: Clearable, memberId: String?, membershipNumber: String?) async {
+	func createOrder(clearables: [CacheClearable], memberId: String?, membershipNumber: String?) async {
 		do {
 			orderId = try await placeOrder(membershipNumber: membershipNumber ?? "")
 			// invalidating the cache after order is created successfully in order to make the profile page reload when it is visited.
-			await clearable.clear()
-			localFileManager.removeData(type: ProfileModel.self, id: memberId ?? "")
+			for clearable in clearables {
+				await clearable.clearCache(memberId: memberId ?? "", membershipNumber: membershipNumber ?? "")
+			}
 			isOrderPlacedNavigationActive = true
 		} catch {
 			Logger.error("Unable to place order")

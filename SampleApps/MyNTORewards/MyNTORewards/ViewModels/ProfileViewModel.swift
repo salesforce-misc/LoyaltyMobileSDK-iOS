@@ -8,12 +8,12 @@
 import Foundation
 import LoyaltyMobileSDK
 
-protocol Clearable {
-	func clear() async
+protocol CacheClearable {
+	func clearCache(memberId: String, membershipNumber: String) async
 }
 
 @MainActor
-class ProfileViewModel: ObservableObject, Clearable {
+class ProfileViewModel: ObservableObject, CacheClearable {
     
     @Published var profile: ProfileModel?
     @Published var isLoading = false
@@ -77,5 +77,10 @@ class ProfileViewModel: ObservableObject, Clearable {
     func clear() {
         profile = nil
     }
+	
+	func clearCache(memberId: String, membershipNumber: String) async {
+		clear()
+		localFileManager.removeData(type: ProfileModel.self, id: memberId, folderName: nil)
+	}
 
 }

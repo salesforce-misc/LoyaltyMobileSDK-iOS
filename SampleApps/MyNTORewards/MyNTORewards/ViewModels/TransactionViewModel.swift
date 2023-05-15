@@ -7,7 +7,7 @@
 import Foundation
 import LoyaltyMobileSDK
 
-class TransactionViewModel: ObservableObject {
+class TransactionViewModel: ObservableObject, CacheClearable {
  
     @Published var transactions: [TransactionJournal] = []
     @Published var recentTransactions: [TransactionJournal] = []
@@ -165,4 +165,9 @@ class TransactionViewModel: ObservableObject {
         olderTransactions = []
     }
 
+	@MainActor
+	func clearCache(memberId: String, membershipNumber: String) async {
+		clear()
+		localFileManager.removeData(type: [TransactionJournal].self, id: membershipNumber, folderName: transactionFolderName)
+	}
 }

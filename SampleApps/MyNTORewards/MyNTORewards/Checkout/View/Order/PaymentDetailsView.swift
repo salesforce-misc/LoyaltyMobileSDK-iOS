@@ -11,6 +11,8 @@ struct PaymentDetailsView: View {
 	@EnvironmentObject private var orderDetailsVM: OrderDetailsViewModel
 	@EnvironmentObject private var rootVM: AppRootViewModel
 	@EnvironmentObject private var profileVM: ProfileViewModel
+	@EnvironmentObject private var transactionVM: TransactionViewModel
+	@EnvironmentObject private var vouchersVM: VoucherViewModel
 	@State private var isScreenLoading = false
 	
     var body: some View {
@@ -37,7 +39,7 @@ struct PaymentDetailsView: View {
 								let memberId = profileVM.profile?.loyaltyProgramMemberID
 								let membershipNumber = profileVM.profile?.membershipNumber
 								isScreenLoading = true
-								await orderDetailsVM.createOrder(clearable: profileVM, memberId: memberId, membershipNumber: membershipNumber)
+								await orderDetailsVM.createOrder(clearables: [profileVM, transactionVM, vouchersVM], memberId: memberId, membershipNumber: membershipNumber)
 								isScreenLoading = false
 							}
 						}
