@@ -12,6 +12,8 @@ final class OnBoardingViewUITests: XCTestCase {
 
     override func setUpWithError() throws {
         continueAfterFailure = false
+        let device = XCUIDevice.shared
+        device.orientation = .portrait
         app.launch()
     }
 
