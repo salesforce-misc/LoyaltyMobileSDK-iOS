@@ -36,10 +36,26 @@ final class ForceNetworkManagerTests: XCTestCase {
     
     func testHandleUnauthResponse() async throws {
         let data = try XCTestCase.load(resource: "Promotions")
-        let mockSession = URLSession.mock(responseBody: data, statusCode: 401)
-        let output = try await mockSession.data(for: getMockRequest())
+        var mockSession = URLSession.mock(responseBody: data, statusCode: 401)
+        var output = try await mockSession.data(for: getMockRequest())
         XCTAssertThrowsError(try forceNetworkManager.handleDataAndResponse(output: output)) { error in
             XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+        }
+        
+        mockSession = URLSession.mock(responseBody: data, statusCode: 403)
+        output = try await mockSession.data(for: getMockRequest())
+        XCTAssertThrowsError(try forceNetworkManager.handleDataAndResponse(output: output)) { error in
+            XCTAssertEqual(error as! CommonError, CommonError.functionalityNotEnabled)
+        }
+        
+        mockSession = URLSession.mock(responseBody: data, statusCode: 405)
+        output = try await mockSession.data(for: getMockRequest())
+        XCTAssertThrowsError(try forceNetworkManager.handleDataAndResponse(output: output)) { error in
+            XCTAssertEqual(error as! CommonError, CommonError.responseUnsuccessful(message: "HTTP response status code 405"))
+        }
+        
+        XCTAssertThrowsError(try forceNetworkManager.handleDataAndResponse(output: output)) { error in
+            XCTAssertEqual(error as! CommonError, CommonError.responseUnsuccessful(message: "HTTP response status code 405"))
         }
     }
     

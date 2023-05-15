@@ -1,5 +1,5 @@
 {
-    "voucherCount": 2,
+    "voucherCount": 4,
     "vouchers": [
         {
             "description": "20% discount on children group party at selected event centers.",
@@ -31,13 +31,52 @@
             "promotionName": "Birthday Promotion",
             "redeemedValue": 0.0,
             "remainingValue": 0.0,
-            "status": "Expired",
+            "status": "Redeemed",
             "type": "DiscountPercentage",
             "voucherCode": "VOU10101012",
             "voucherDefinition": "Birthday Discount Voucher",
             "voucherId": "0kDRO00000000Hp2AI",
             "voucherImageUrl": "https://thumbs.dreamstime.com/b/10-percent-discount-24471598.jpg",
             "voucherNumber": "00000002"
+        },
+        {
+            "description": "20% discount on children group party at selected event centers.",
+            "discountPercent": 40,
+            "effectiveDate": "2023-01-01",
+            "expirationDate": "2023-06-01",
+            "isVoucherDefinitionActive": true,
+            "isVoucherPartiallyRedeemable": false,
+            "promotionId": "0c8RO0000000ILdYAM",
+            "promotionName": "Birthday Promotion",
+            "redeemedValue": 0.0,
+            "remainingValue": 0.0,
+            "status": "Redeemed",
+            "type": "DiscountPercentage",
+            "voucherCode": "VOU10101012",
+            "voucherDefinition": "Birthday Discount Voucher",
+            "voucherId": "0kDRO00000000Hp2BI",
+            "voucherImageUrl": "https://thumbs.dreamstime.com/b/10-percent-discount-24471598.jpg",
+            "voucherNumber": "00000003"
+        },
+        {
+            "description": "20% discount on children group party at selected event centers.",
+            "discountPercent": 40,
+            "effectiveDate": "2023-01-01",
+            "expirationDate": "2023-05-01",
+            "isVoucherDefinitionActive": true,
+            "isVoucherPartiallyRedeemable": false,
+            "promotionId": "0c8RO0000000ILdYAH",
+            "promotionName": "Birthday Promotion",
+            "redeemedValue": 0.0,
+            "remainingValue": 0.0,
+            "status": "Expired",
+            "type": "DiscountPercentage",
+            "voucherCode": "VOU10101012",
+            "voucherDefinition": "Birthday Discount Voucher",
+            "voucherId": "0kDRO00000000Hp2AI",
+            "voucherImageUrl": "https://thumbs.dreamstime.com/b/10-percent-discount-24471598.jpg",
+            "voucherNumber": "00000004"
         }
     ]
 }
+

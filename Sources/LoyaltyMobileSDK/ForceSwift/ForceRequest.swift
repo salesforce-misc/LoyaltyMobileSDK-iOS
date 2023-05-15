@@ -76,7 +76,6 @@ public struct ForceRequest {
         } catch {
             throw error
         }
-        
     }
     
     /// create a URLRequest with URL

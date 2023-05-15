@@ -12,9 +12,25 @@ class MockNetworkManager: NetworkManagerProtocol {
     public var statusCode = 200
     
     func handleUnauthResponse(output: URLSession.DataTaskPublisher.Output) throws {
-        guard let response = output.response as? HTTPURLResponse,
-              response.statusCode != 401 else {
+        guard let httpResponse = output.response as? HTTPURLResponse else {
+            Logger.error(CommonError.requestFailed(message: "Invalid response").description)
+            throw CommonError.requestFailed(message: "Invalid response")
+        }
+
+        switch httpResponse.statusCode {
+        case 200..<300:
+            break
+        case 401:
+            Logger.error(CommonError.authenticationNeeded.description)
             throw CommonError.authenticationNeeded
+        case 403:
+            Logger.error(CommonError.functionalityNotEnabled.description)
+            throw CommonError.functionalityNotEnabled
+        default:
+            let errorMessage = "HTTP response status code \(httpResponse.statusCode)"
+            Logger.error(CommonError.responseUnsuccessful(message: errorMessage).description)
+            Logger.debug(httpResponse.description)
+            throw CommonError.responseUnsuccessful(message: errorMessage)
         }
     }
     

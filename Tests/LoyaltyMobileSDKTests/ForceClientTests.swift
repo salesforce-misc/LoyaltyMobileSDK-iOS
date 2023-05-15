@@ -38,6 +38,12 @@ final class ForceClientTests: XCTestCase {
         XCTAssertEqual(result.status, true)
         XCTAssertEqual(result.outputParameters.outputParameters.results.count, 8)
         XCTAssertNil(result.message)
+        
+        do {
+            _ = try forceClient.fetchLocalJson(type: PromotionModel.self, file: "Promotions", bundle: Bundle.main)
+        } catch {
+            XCTAssertNotNil(error)
+        }
     }
     
     func testFetch() async throws {
@@ -48,8 +54,19 @@ final class ForceClientTests: XCTestCase {
         XCTAssertEqual(promotions.outputParameters.outputParameters.results.count, 8)
         XCTAssertNil(promotions.message)
         
+        MockAuthenticator.sharedMock.needToThrowError = true
+        // Handle authentication failed scenrio
+        do {
+            let promotionsWithAuthFlow = try await forceClient.fetch(type: PromotionModel.self, with: getMockRequest(), urlSession: mockSession)
+            XCTAssertEqual(promotionsWithAuthFlow.status, true)
+        } catch {
+            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+        }
+        
+        MockAuthenticator.sharedMock.needToThrowError = false
+        
         MockNetworkManager.sharedMock.statusCode = 401
-        let mockSessionWithError = URLSession.mock(responseBody: data, statusCode: 401)
+        var mockSessionWithError = URLSession.mock(responseBody: data, statusCode: 401)
         // Handle authentication failed scenrio
         do {
             let promotionsWithAuthFlow = try await forceClient.fetch(type: PromotionModel.self, with: getMockRequest(), urlSession: mockSessionWithError)
@@ -58,5 +75,15 @@ final class ForceClientTests: XCTestCase {
             XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
         }
         
+        MockNetworkManager.sharedMock.statusCode = 403
+        mockSessionWithError = URLSession.mock(responseBody: data, statusCode: 403)
+        // Handle other error failed scenrio
+        do {
+            let promotionsWithAuthFlow = try await forceClient.fetch(type: PromotionModel.self, with: getMockRequest(), urlSession: mockSessionWithError)
+            XCTAssertEqual(promotionsWithAuthFlow.status, true)
+        } catch {
+            XCTAssertEqual(error as! CommonError, CommonError.functionalityNotEnabled)
+        }
+
     }
 }

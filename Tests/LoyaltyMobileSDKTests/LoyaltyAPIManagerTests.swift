@@ -11,7 +11,10 @@ import XCTest
 class MockAuthenticator: ForceAuthenticator {
     static let sharedMock = MockAuthenticator()
     
+    var needToThrowError = false
+    
     func getAccessToken() -> String? {
+        guard !needToThrowError else { return nil }
         return "AccessToken1234"
     }
     
@@ -44,10 +47,48 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         XCTAssertNotNil(identity)
         XCTAssertEqual(identity.associatedContact.firstName, "Aman")
         XCTAssertEqual(identity.associatedContact.lastName, "Bindal")
+        
+        /// Verifying dev Mode
+        let devIdentity = try await loayltyAPIManager.getMemberProfile(for: "MRI706", devMode: true)
+
+        XCTAssertNotNil(devIdentity)
+        XCTAssertEqual(devIdentity.associatedContact.firstName, "Aman")
+        XCTAssertEqual(devIdentity.associatedContact.lastName, "Bindal")
+        
+        // Handle authentication failed scenrio
+        MockNetworkManager.sharedMock.statusCode = 401
+        do {
+            _ = try await loayltyAPIManager.getMemberProfile(for: "MRI706")
+        } catch {
+            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+        }
+    }
+    
+    func testCommunityMemberProfile() async throws {
+        var identity = try await loayltyAPIManager.getCommunityMemberProfile()
+
+        XCTAssertNotNil(identity)
+        XCTAssertEqual(identity.associatedContact.firstName, "Aman")
+        XCTAssertEqual(identity.associatedContact.lastName, "Bindal")
+        
+        /// Verifying dev Mode
+        identity = try await loayltyAPIManager.getCommunityMemberProfile(devMode: true)
+        
+        XCTAssertNotNil(identity)
+        XCTAssertEqual(identity.associatedContact.firstName, "Aman")
+        XCTAssertEqual(identity.associatedContact.lastName, "Bindal")
+        
+        // Handle authentication failed scenrio
+        MockNetworkManager.sharedMock.statusCode = 401
+        do {
+            _ = try await loayltyAPIManager.getCommunityMemberProfile()
+        } catch {
+            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+        }
     }
     
     func testGetMemberBenefits() async throws {
-        let benefits = try await loayltyAPIManager.getMemberBenefits(for: "1234")
+        var benefits = try await loayltyAPIManager.getMemberBenefits(for: "1234")
 
         XCTAssertEqual(benefits.count, 6)
         XCTAssertEqual(benefits[0].id, "0ji4x0000008REdAAM")
@@ -56,6 +97,21 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         XCTAssertEqual(benefits[3].id, "0ji4x0000008REZAA2")
         XCTAssertEqual(benefits[4].id, "0ji4x0000008REiAAM")
         XCTAssertEqual(benefits[5].id, "0ji4x0000008REfAAM")
+        
+        /// Verifying dev Mode
+        benefits = try await loayltyAPIManager.getMemberBenefits(for: "1234", devMode: true)
+
+        XCTAssertEqual(benefits.count, 6)
+        XCTAssertEqual(benefits[0].id, "0ji4x0000008REdAAM")
+        XCTAssertEqual(benefits[1].id, "0ji4x0000008REjAAM")
+        
+        // Handle authentication failed scenrio
+        MockNetworkManager.sharedMock.statusCode = 401
+        do {
+            _ = try await loayltyAPIManager.getMemberBenefits(for: "1234")
+        } catch {
+            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+        }
     }
 
     func testPostEnrollement() async throws {
@@ -64,7 +120,14 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         XCTAssertEqual(enrollment.contactId, "0034x00001JdPg6")
         XCTAssertEqual(enrollment.loyaltyProgramName, "NTO Insider")
         XCTAssertEqual(enrollment.loyaltyProgramMemberId, "0lM4x000000LOrM")
-
+        
+        // Handle authentication failed scenrio
+        MockNetworkManager.sharedMock.statusCode = 401
+        do {
+            _ = try await loayltyAPIManager.postEnrollment(membershipNumber: "1234", firstName: "testFirstName", lastName: "testSecondName", email: "test@mail.com", phone: "12335699", emailNotification: false)
+        } catch {
+            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+        }
     }
 
     func testEnrollIn() async throws {
@@ -74,6 +137,14 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         } catch {
             XCTFail("Enroll promotion not complete successfully.")
         }
+        
+        // Handle authentication failed scenrio
+        MockNetworkManager.sharedMock.statusCode = 401
+        do {
+            _ = try await loayltyAPIManager.enrollIn(promotion: "health", for: "1234")
+        } catch {
+            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+        }
     }
 
     func testUnenrollIn() async throws {
@@ -82,6 +153,34 @@ final class LoyaltyAPIManagerTests: XCTestCase {
             XCTAssertNotNil(unenrollPromotionModel)
         } catch {
             XCTFail("unEnroll promotion not complete successfully.")
+        }
+        
+        let unenrollPromotionModel: () = try await loayltyAPIManager.unenroll(promotionName: "Health", for: "1234", devMode: true)
+        XCTAssertNotNil(unenrollPromotionModel)
+        
+        // Handle authentication failed scenrio
+        MockNetworkManager.sharedMock.statusCode = 401
+        do {
+            _ = try await loayltyAPIManager.unenroll(promotionName: "Health", for: "1234")
+        } catch {
+            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+        }
+    }
+    
+    func testUnenrollPromotionId() async throws {
+        do {
+            let unenrollPromotionModel: () = try await loayltyAPIManager.unenroll(promotionId: "3456", for: "Health")
+            XCTAssertNotNil(unenrollPromotionModel)
+        } catch {
+            XCTFail("unEnroll promotion not complete successfully.")
+        }
+        
+        // Handle authentication failed scenrio
+        MockNetworkManager.sharedMock.statusCode = 401
+        do {
+            _ = try await loayltyAPIManager.unenroll(promotionId: "3456", for: "Health")
+        } catch {
+            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
         }
     }
 
@@ -94,10 +193,24 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         XCTAssertEqual(promotions.status, true)
         XCTAssertEqual(promotions.outputParameters.outputParameters.results.count, 8)
         XCTAssertNil(promotions.message)
+        
+        /// Verifying dev Mode
+        promotions = try await loayltyAPIManager.getPromotions(memberId: "1234", devMode: true)
+        XCTAssertEqual(promotions.status, true)
+        XCTAssertEqual(promotions.outputParameters.outputParameters.results.count, 8)
+        XCTAssertNil(promotions.message)
+        
+        // Handle authentication failed scenrio
+        MockNetworkManager.sharedMock.statusCode = 401
+        do {
+            _ = try await loayltyAPIManager.getPromotions(memberId: "1234")
+        } catch {
+            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+        }
     }
 
     func testGetTransactions() async throws {
-        let transactions = try await loayltyAPIManager.getTransactions(for: "1234")
+        var transactions = try await loayltyAPIManager.getTransactions(for: "1234")
         XCTAssertEqual(transactions.count, 4)
         XCTAssertEqual(transactions[0].journalTypeName, "Manual Points Adjustment")
         XCTAssertEqual(transactions[0].id, "0lVRO00000002og2AA")
@@ -106,19 +219,54 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         XCTAssertEqual(transactions[1].journalTypeName, "Manual Points Adjustment")
         XCTAssertEqual(transactions[1].id, "0lVRO00000002ob2AA")
         XCTAssertEqual(transactions[1].activityDate, "2023-04-08T04:58:07.000Z")
+        
+        /// Verifying dev Mode
+        transactions = try await loayltyAPIManager.getTransactions(for: "1234", devMode: true)
+        XCTAssertEqual(transactions.count, 4)
+        XCTAssertEqual(transactions[0].journalTypeName, "Manual Points Adjustment")
+        XCTAssertEqual(transactions[0].id, "0lVRO00000002og2AA")
+        XCTAssertEqual(transactions[0].activityDate, "2023-04-08T04:59:40.000Z")
+        
+        // Handle authentication failed scenrio
+        MockNetworkManager.sharedMock.statusCode = 401
+        do {
+            _ = try await loayltyAPIManager.getTransactions(for: "1234")
+        } catch {
+            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+        }
     }
     
     func testGetVouchers() async throws {
-        let vouchers = try await loayltyAPIManager.getVouchers(membershipNumber: "1234")
-        XCTAssertEqual(vouchers.count, 6)
-        XCTAssertEqual(vouchers[0].id, "0kD4x000000wr6THAK")
-        XCTAssertEqual(vouchers[0].faceValue, 100)
+        var vouchers = try await loayltyAPIManager.getVouchers(membershipNumber: "1234", pageNumber: 1, productId: ["0kD4x000000wr6THAK", "0kD4x003000wr6EEAQ"], sortBy: .expirationDate, sortOrder: .ascending)
+        XCTAssertEqual(vouchers.count, 4)
+        XCTAssertEqual(vouchers[0].id, "0kDRO00000000Hk2AI")
+        XCTAssertEqual(vouchers[0].discountPercent, 50)
         
-        XCTAssertEqual(vouchers[1].id, "0kD4x003000wr6EEAQ")
-        XCTAssertEqual(vouchers[1].discountPercent, 25)
+        XCTAssertEqual(vouchers[1].id, "0kDRO00000000Hp2AI")
+        XCTAssertEqual(vouchers[1].discountPercent, 40)
         
-        XCTAssertEqual(vouchers[5].id, "0kD4x004000wr6FUNS")
-        XCTAssertEqual(vouchers[5].faceValue, 80.0)
+        XCTAssertEqual(vouchers[2].id, "0kDRO00000000Hp2BI")
+        XCTAssertEqual(vouchers[2].discountPercent, 40)
+        
+        /// Verifying dev Mode
+        vouchers = try await loayltyAPIManager.getVouchers(membershipNumber: "1234", pageNumber: 1, devMode: true)
+        XCTAssertEqual(vouchers.count, 4)
+        XCTAssertEqual(vouchers[0].id, "0kDRO00000000Hk2AI")
+        XCTAssertEqual(vouchers[0].discountPercent, 50)
+        
+        XCTAssertEqual(vouchers[1].id, "0kDRO00000000Hp2AI")
+        XCTAssertEqual(vouchers[1].discountPercent, 40)
+        
+        XCTAssertEqual(vouchers[2].id, "0kDRO00000000Hp2BI")
+        XCTAssertEqual(vouchers[2].discountPercent, 40)
+        
+        // Handle authentication failed scenrio
+        MockNetworkManager.sharedMock.statusCode = 401
+        do {
+            _ = try await loayltyAPIManager.getVouchers(membershipNumber: "1234", pageNumber: 1, productId: ["0kD4x000000wr6THAK", "0kD4x003000wr6EEAQ"], sortBy: .expirationDate, sortOrder: .ascending)
+        } catch {
+            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+        }
     }
     
 }

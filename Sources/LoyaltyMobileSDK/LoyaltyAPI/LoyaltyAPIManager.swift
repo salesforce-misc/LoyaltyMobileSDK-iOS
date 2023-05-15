@@ -301,7 +301,7 @@ public class LoyaltyAPIManager {
         version: String = LoyaltyAPIVersion.defaultVersion,
         devMode: Bool = false) async throws {
 		if devMode {
-			_ = try forceClient.fetchLocalJson(type: UnenrollPromotionResponseModel.self, file: "UnenrollPromotion")
+			_ = try forceClient.fetchLocalJson(type: UnenrollPromotionResponseModel.self, file: "UnenrollmentPromotion")
 			return
 		}
 		
@@ -442,7 +442,7 @@ public class LoyaltyAPIManager {
         devMode: Bool = false) async throws -> [VoucherModel] {
 		do {
 			if devMode {
-				let result = try forceClient.fetchLocalJson(type: VouchersResponse.self, file: "GetVouchers")
+				let result = try forceClient.fetchLocalJson(type: VouchersResponse.self, file: "Vouchers")
 				return result.vouchers ?? []
 			}
 			let queries = [
