@@ -16,7 +16,8 @@ struct TransactionCardView: View {
         
         let points = transaction.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName)
         // swiftlint:disable line_length
-        let pointsString = points > 0 ? "+\(points) \(AppSettings.Defaults.rewardCurrencyNameShort)" : "\(points) \(AppSettings.Defaults.rewardCurrencyNameShort)"
+        let roundedPoints = String(format: "%.2f", points)
+        let pointsString = Int(points) >= 0 ? "+\(roundedPoints) \(AppSettings.Defaults.rewardCurrencyNameShort)" : "\(roundedPoints) \(AppSettings.Defaults.rewardCurrencyNameShort)"
         // swiftlint:enable line_length
         
         HStack(spacing: 10) {
@@ -47,7 +48,7 @@ struct TransactionCardView: View {
             Text(pointsString)
                 .accessibilityIdentifier(accessibilityID + "_" +  AppAccessibilty.Transaction.points)
                 .font(.transactionPoints)
-                .foregroundColor(points < 0 ? Color.theme.negativePoints : Color.theme.points)
+                .foregroundColor(Int(points) < 0 ? Color.theme.negativePoints : Color.theme.points)
             
             Spacer()
 
