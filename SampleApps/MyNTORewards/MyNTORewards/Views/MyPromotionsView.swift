@@ -13,7 +13,7 @@ struct MyPromotionsView: View {
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
     @State var offerTabSelected: Int = 0
-    let barItems = ["Unenrolled", "Active", "All"]
+    let barItems = ["All", "Active", "Unenrolled"]
     
     var body: some View {
         VStack(spacing: 0) {
@@ -38,11 +38,11 @@ struct MyPromotionsView: View {
                 
                 TabView(selection: $offerTabSelected) {
                     
-                    unenrolledView
+                    allView
                         .tag(0)
                     activeView
                         .tag(1)
-                    allView
+                    unenrolledView
                         .tag(2)
                     
                 }
