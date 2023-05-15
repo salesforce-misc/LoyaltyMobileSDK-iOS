@@ -87,7 +87,7 @@ struct MyPromotionDetailView: View {
                         HStack {
                             Spacer()
                             Button("Shop") {
-								shopPromotion()
+                                shopPromotion(promotion: currentPromotion)
                             }
                             .accessibilityIdentifier(AppAccessibilty.Promotion.shopButton)
                             .buttonStyle(DarkShortPromotionButton())
@@ -117,7 +117,7 @@ struct MyPromotionDetailView: View {
                             Spacer()
                             Button("Shop") {
                                 // link to e-commerce
-								shopPromotion()
+                                shopPromotion(promotion: currentPromotion)
                             }
                             .accessibilityIdentifier(AppAccessibilty.Promotion.shopButton)
                             .buttonStyle(DarkShortButton())
@@ -141,12 +141,14 @@ struct MyPromotionDetailView: View {
         
     }
 	
-	private func shopPromotion() {
-        dismiss()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            promotionVM.isCheckoutNavigationActive = true
+    private func shopPromotion(promotion: PromotionResult) {
+        if promotion.promotionName == "Gold Tier Rejuvenation" {
+            dismiss()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                promotionVM.isCheckoutNavigationActive = true
+            }
         }
-	}
+    }
 }
 
 struct MyPromotionDetailView_Previews: PreviewProvider {
