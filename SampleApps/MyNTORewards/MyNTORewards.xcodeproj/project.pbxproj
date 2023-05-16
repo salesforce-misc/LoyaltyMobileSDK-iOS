@@ -39,6 +39,7 @@
 		292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */; };
 		292ADC76294C064600753541 /* ProfileModel+CurrencyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC75294C064600753541 /* ProfileModel+CurrencyPoints.swift */; };
 		293293C92A0EEE1700244BE1 /* TermsAndConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293293C82A0EEE1700244BE1 /* TermsAndConditionsView.swift */; };
+		293293CD2A13EDAC00244BE1 /* ExpiryDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293293CC2A13EDAC00244BE1 /* ExpiryDatePickerView.swift */; };
 		29367606293209CB00E09A6D /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29367605293209CB00E09A6D /* CachedAsyncImage.swift */; };
 		293F642F29D64E48001AC795 /* CommunityMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F642E29D64E48001AC795 /* CommunityMemberModel.swift */; };
 		293F643129D6C5AD001AC795 /* ForceConnectedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */; };
@@ -231,6 +232,7 @@
 		292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionHistory+CurrencyPoints.swift"; sourceTree = "<group>"; };
 		292ADC75294C064600753541 /* ProfileModel+CurrencyPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileModel+CurrencyPoints.swift"; sourceTree = "<group>"; };
 		293293C82A0EEE1700244BE1 /* TermsAndConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsView.swift; sourceTree = "<group>"; };
+		293293CC2A13EDAC00244BE1 /* ExpiryDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDatePickerView.swift; sourceTree = "<group>"; };
 		29367605293209CB00E09A6D /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		293F642E29D64E48001AC795 /* CommunityMemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMemberModel.swift; sourceTree = "<group>"; };
 		293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceConnectedApp.swift; sourceTree = "<group>"; };
@@ -738,6 +740,7 @@
 				3F714D5C29FA0FEA00CD39E7 /* PaymentDetailsView.swift */,
 				3F714D6029FA0FEA00CD39E7 /* ShippingDetailsView.swift */,
 				3F714D5A29FA0FE900CD39E7 /* VoucherPickerView.swift */,
+				293293CC2A13EDAC00244BE1 /* ExpiryDatePickerView.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -991,6 +994,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29AC2EF928F8901A003F56F6 /* LoyaltyNavBarView.swift in Sources */,
+				293293CD2A13EDAC00244BE1 /* ExpiryDatePickerView.swift in Sources */,
 				2984C9482954F091009669EF /* Date+Extensions.swift in Sources */,
 				299B38DE28EB8D4900E45D97 /* CreateNewPasswordView.swift in Sources */,
 				3F714D4429FA0F4A00CD39E7 /* ProductHeaderView.swift in Sources */,

@@ -1,22 +1,22 @@
 //
-//  LoyaltyPickerView.swift
-//  CheckoutScreen
+//  ExpiryDatePickerView.swift
+//  MyNTORewards
 //
-//  Created by Anandhakrishnan Kanagaraj on 15/03/23.
+//  Created by Leon Qi on 5/16/23.
 //
 
 import SwiftUI
 
-struct VoucherPickerView: View {
-	@Binding var selectedValue: VoucherTitle
-	
-    var pickerViewInputValues: [VoucherTitle]
-	
+struct ExpiryDatePickerView: View {
+    @Binding var selectedValue: String
+    
+    var pickerViewInputValues: [String]
+    
     var body: some View {
         Menu {
             Picker("", selection: $selectedValue) {
                 ForEach(pickerViewInputValues, id: \.self) {
-					Text($0.title)
+                    Text($0)
                         .listRowSeparator(.hidden)
                 }
             }
@@ -29,7 +29,7 @@ struct VoucherPickerView: View {
     var customLabel: some View {
         HStack {
             Spacer()
-			Text(selectedValue.title)
+            Text(selectedValue)
                 .font(.dropDownText)
             Spacer()
             Text("⌵")
@@ -45,8 +45,8 @@ struct VoucherPickerView: View {
     }
 }
 
-struct VoucherPickerView_Previews: PreviewProvider {
+struct ExpiryDatePickerView_Previews: PreviewProvider {
     static var previews: some View {
-		VoucherPickerView(selectedValue: .constant(dev.voucherTitles[0]), pickerViewInputValues: dev.voucherTitles)
+        ExpiryDatePickerView(selectedValue: .constant("1"), pickerViewInputValues: ["1", "2", "3"])
     }
 }
