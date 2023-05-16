@@ -213,7 +213,8 @@ public class ForceAuthManager: ForceAuthenticator {
             return newAuth
             
         } catch {
-            throw error
+            Logger.error("Error to refresh the token and cannot renew the session. \(error.localizedDescription)")
+            throw CommonError.sessionExpired
         }
         
     }
