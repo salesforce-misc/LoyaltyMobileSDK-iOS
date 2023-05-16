@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Firebase
 
 struct MenuItem: Identifiable {
     var id: UUID = UUID()
