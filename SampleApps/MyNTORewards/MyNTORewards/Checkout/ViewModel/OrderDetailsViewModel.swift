@@ -32,12 +32,12 @@ class OrderDetailsViewModel: ObservableObject {
 		self.selectedIndex = index
 	}
 	
-	func createOrder(clearables: [CacheClearable], memberId: String?, membershipNumber: String?) async {
+	func createOrder(reloadables: [Reloadable], memberId: String?, membershipNumber: String?) async throws {
 		do {
 			orderId = try await placeOrder(membershipNumber: membershipNumber ?? "")
 			// invalidating the cache after order is created successfully in order to make the profile page reload when it is visited.
-			for clearable in clearables {
-				await clearable.clearCache(memberId: memberId ?? "", membershipNumber: membershipNumber ?? "")
+			for reloadable in reloadables {
+				try await reloadable.reload(id: memberId ?? "", number: membershipNumber ?? "")
 			}
 			isOrderPlacedNavigationActive = true
 		} catch {

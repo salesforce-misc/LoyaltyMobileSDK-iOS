@@ -14,7 +14,7 @@ struct VoucherTitle: Hashable, Identifiable {
 }
 
 @MainActor
-class VoucherViewModel: ObservableObject, CacheClearable {
+class VoucherViewModel: ObservableObject, Reloadable {
 
     @Published var vouchers: [VoucherModel] = []
     @Published var availableVochers: [VoucherModel] = []
@@ -207,9 +207,8 @@ class VoucherViewModel: ObservableObject, CacheClearable {
     }
 	
 	@MainActor
-	func clearCache(memberId: String, membershipNumber: String) async {
-		clear()
-		localFileManager.removeData(type: [VoucherModel].self, id: membershipNumber, folderName: vouchersFolderName)
+	func reload(id: String, number: String) async throws {
+		try await self.reloadVouchers(membershipNumber: number)
 	}
 	
 }

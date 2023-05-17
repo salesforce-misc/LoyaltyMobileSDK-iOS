@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct PaymentDetailsView: View {
 	@EnvironmentObject private var orderDetailsVM: OrderDetailsViewModel
@@ -39,7 +40,11 @@ struct PaymentDetailsView: View {
 								let memberId = profileVM.profile?.loyaltyProgramMemberID
 								let membershipNumber = profileVM.profile?.membershipNumber
 								isScreenLoading = true
-								await orderDetailsVM.createOrder(clearables: [profileVM, transactionVM, vouchersVM], memberId: memberId, membershipNumber: membershipNumber)
+								do {
+									try await orderDetailsVM.createOrder(reloadables: [profileVM, transactionVM, vouchersVM], memberId: memberId, membershipNumber: membershipNumber)
+								} catch {
+									Logger.error("Unable to create order")
+								}
 								isScreenLoading = false
 							}
 						}
