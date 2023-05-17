@@ -16,21 +16,13 @@ struct MenuItem: Identifiable {
 
 struct MoreView: View {
     
-    @EnvironmentObject private var appViewRouter: AppViewRouter
     @EnvironmentObject private var rootVM: AppRootViewModel
-    @EnvironmentObject private var benefitVM: BenefitViewModel
-    @EnvironmentObject private var profileVM: ProfileViewModel
-    @EnvironmentObject private var promotionVM: PromotionViewModel
-    @EnvironmentObject private var transactionVM: TransactionViewModel
-    @EnvironmentObject private var voucherVM: VoucherViewModel
-    @EnvironmentObject private var imageVM: ImageViewModel
     
     let menuItems: [MenuItem] = [
         MenuItem(icon: "ic-person", title: "Account", accessibilityIdentifier: AppAccessibilty.More.account),
         MenuItem(icon: "ic-address", title: "Addresses", accessibilityIdentifier: AppAccessibilty.More.address),
         MenuItem(icon: "ic-card", title: "Payment Methods", accessibilityIdentifier: AppAccessibilty.More.paymentMethod),
         MenuItem(icon: "ic-orders", title: "Orders", accessibilityIdentifier: AppAccessibilty.More.orders),
-        // MenuItem(icon: "ic-benefits", title: "Benefits"),
         MenuItem(icon: "ic-case", title: "Support", accessibilityIdentifier: AppAccessibilty.More.support),
         MenuItem(icon: "ic-heart", title: "Favorites", accessibilityIdentifier: AppAccessibilty.More.favourites)
     ]
@@ -70,19 +62,6 @@ struct MoreView: View {
                     .buttonStyle(.plain)
                     .listRowSeparator(.hidden, edges: .bottom)
                     .frame(height: 72)
-                    .onReceive(rootVM.$userState) { state in
-                        if state == UserState.signedOut {
-                            appViewRouter.signedIn = false
-                            appViewRouter.currentPage = .onboardingPage
-                            
-                            benefitVM.clear()
-                            profileVM.clear()
-                            promotionVM.clear()
-                            transactionVM.clear()
-                            voucherVM.clear()
-                            imageVM.clear()
-                        }
-                    }
                 }
                 .listStyle(.plain)
                 .navigationBarHidden(true)
