@@ -12,6 +12,12 @@ struct AppRootView: View {
 	
 	@EnvironmentObject private var appViewRouter: AppViewRouter
 	@EnvironmentObject private var rootVM: AppRootViewModel
+    @EnvironmentObject private var benefitVM: BenefitViewModel
+    @EnvironmentObject private var profileVM: ProfileViewModel
+    @EnvironmentObject private var promotionVM: PromotionViewModel
+    @EnvironmentObject private var transactionVM: TransactionViewModel
+    @EnvironmentObject private var voucherVM: VoucherViewModel
+    @EnvironmentObject private var imageVM: ImageViewModel
 	
 	var body: some View {
 		Group {
@@ -42,15 +48,33 @@ struct AppRootView: View {
 			}
 		}
 		.onAppear {
-			appViewRouter.signedIn = appViewRouter.isSignedIn
-			if appViewRouter.isSignedIn && rootVM.member == nil {
+			appViewRouter.signedIn = appViewRouter.isAuthenticated
+			if appViewRouter.isAuthenticated && rootVM.member == nil {
 				rootVM.member = LocalFileManager.instance.getData(type: CommunityMemberModel.self, id: rootVM.email)
 			}
 		}
+        .onChange(of: appViewRouter.isAuthenticated, perform: { newValue in
+            if !newValue {
+                rootVM.signOutUser()
+            }
+        })
 		.onOpenURL { url in
 			Logger.debug(url.absoluteString)
 			redirectDeeplink(url: url)
 		}
+        .onReceive(rootVM.$userState) { state in
+            if state == UserState.signedOut {
+                appViewRouter.signedIn = false
+                appViewRouter.currentPage = .onboardingPage
+                
+                benefitVM.clear()
+                profileVM.clear()
+                promotionVM.clear()
+                transactionVM.clear()
+                voucherVM.clear()
+                imageVM.clear()
+            }
+        }
 	}
 	
 	/// Sample reset password email link:

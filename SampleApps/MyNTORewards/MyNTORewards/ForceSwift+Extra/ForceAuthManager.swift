@@ -39,6 +39,9 @@ public class ForceAuthManager: ForceAuthenticator {
                 self.auth = newAuth
                 return newAuth.accessToken
             } catch {
+                if let error = error as? CommonError, error == .sessionExpired {
+                    clearAuth()
+                }
                 throw error
             }
         } else {
@@ -55,6 +58,9 @@ public class ForceAuthManager: ForceAuthenticator {
                 return newAuth.accessToken
                 
             } catch {
+                if let error = error as? CommonError, error == .sessionExpired {
+                    clearAuth()
+                }
                 throw error
             }
         }
