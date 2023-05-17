@@ -21,7 +21,7 @@ struct VoucherDetailView: View {
             
             VStack(alignment: .leading) {
                 
-                AsyncImageWithAuth(url: voucher.voucherImageUrl, content: { image in
+                LoyaltyAsyncImage(url: voucher.voucherImageUrl, content: { image in
                     image
                         .resizable()
                         .scaledToFill()
