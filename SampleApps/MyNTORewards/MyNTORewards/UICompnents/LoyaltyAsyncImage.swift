@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AsyncImageWithAuth<Content: View, Placeholder: View>: View {
+struct LoyaltyAsyncImage<Content: View, Placeholder: View>: View {
     
     @EnvironmentObject private var imageVM: ImageViewModel
     @State var uiImage: UIImage?
@@ -25,17 +25,10 @@ struct AsyncImageWithAuth<Content: View, Placeholder: View>: View {
     }
     
     var body: some View {
-        
-        if let url = url {
-            let urlHash = url.MD5
-            if let uiImage = imageVM.images[urlHash] {
-                content(Image(uiImage: uiImage))
-            } else {
-                placeholder()
-                    .task {
-                        await imageVM.getImage(url: url)
-                    }
-            }
+        if let url = url, let image = imageVM.images[url.MD5] {
+            content(Image(uiImage: image))
+        } else if let url = url {
+            placeholder().task { await imageVM.getImage(url: url) }
         } else {
             Image("img-placeholder")
         }
@@ -45,7 +38,7 @@ struct AsyncImageWithAuth<Content: View, Placeholder: View>: View {
 struct AsyncImageWithAuth_Previews: PreviewProvider {
     static var previews: some View {
         // swiftlint:disable line_length
-        AsyncImageWithAuth(url: "https://internalmobileteam-dev-ed.develop.file.force.com/services/data/v56.0/sobjects/Voucher/0kD4x000000wr6EEAQ/richTextImageFields/Image__c/0EM4x00000443bE") { image in
+        LoyaltyAsyncImage(url: "https://unsplash.com/photos/CDLBz2lPpLM/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NDR8fHdpbnRlciUyMGphY2tldHN8ZW58MHx8fHwxNjg0Mjg4OTU2fDA&force=true&w=640") { image in
             image
                 .resizable()
                 .scaledToFill()
@@ -53,7 +46,7 @@ struct AsyncImageWithAuth_Previews: PreviewProvider {
         } placeholder: {
             ProgressView()
         }
+        .environmentObject(dev.imageVM)
         // swiftlint:enable line_length
-
     }
 }

@@ -88,7 +88,7 @@
 		299B38DE28EB8D4900E45D97 /* CreateNewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38DD28EB8D4900E45D97 /* CreateNewPasswordView.swift */; };
 		299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38E128ED24B900E45D97 /* PasswordResetModel.swift */; };
 		299B38E428EE040900E45D97 /* UIApplication+DismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */; };
-		29A39BC12937C699005833C2 /* AsyncImageWithAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A39BC02937C699005833C2 /* AsyncImageWithAuth.swift */; };
+		29A39BC12937C699005833C2 /* LoyaltyAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A39BC02937C699005833C2 /* LoyaltyAsyncImage.swift */; };
 		29A39BC32937F46D005833C2 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A39BC22937F46D005833C2 /* String+MD5.swift */; };
 		29A39BC529397B98005833C2 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A39BC429397B98005833C2 /* EmptyStateView.swift */; };
 		29AB2E1C28E2763700D4B32C /* SheetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AB2E1B28E2763700D4B32C /* SheetHeader.swift */; };
@@ -278,7 +278,7 @@
 		299B38DD28EB8D4900E45D97 /* CreateNewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPasswordView.swift; sourceTree = "<group>"; };
 		299B38E128ED24B900E45D97 /* PasswordResetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetModel.swift; sourceTree = "<group>"; };
 		299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DismissKeyboard.swift"; sourceTree = "<group>"; };
-		29A39BC02937C699005833C2 /* AsyncImageWithAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageWithAuth.swift; sourceTree = "<group>"; };
+		29A39BC02937C699005833C2 /* LoyaltyAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyAsyncImage.swift; sourceTree = "<group>"; };
 		29A39BC22937F46D005833C2 /* String+MD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
 		29A39BC429397B98005833C2 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		29AB2E1B28E2763700D4B32C /* SheetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeader.swift; sourceTree = "<group>"; };
@@ -607,7 +607,7 @@
 				290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */,
 				29367605293209CB00E09A6D /* CachedAsyncImage.swift */,
 				29D7497B2931D10100BC81AD /* AsyncImageView.swift */,
-				29A39BC02937C699005833C2 /* AsyncImageWithAuth.swift */,
+				29A39BC02937C699005833C2 /* LoyaltyAsyncImage.swift */,
 				29A39BC429397B98005833C2 /* EmptyStateView.swift */,
 				29FEDDF1294293BF0014BEBA /* UITabView.swift */,
 				2955346A29E93EF800CFA391 /* InfoNavigationLink.swift */,
@@ -1075,7 +1075,7 @@
 				29A39BC529397B98005833C2 /* EmptyStateView.swift in Sources */,
 				29BAF6D328F103B600A3F9EB /* PromotionCarouselView.swift in Sources */,
 				29BAF6DF28F3ECA600A3F9EB /* TopTabBar.swift in Sources */,
-				29A39BC12937C699005833C2 /* AsyncImageWithAuth.swift in Sources */,
+				29A39BC12937C699005833C2 /* LoyaltyAsyncImage.swift in Sources */,
 				3F714D5729FA0FC200CD39E7 /* StarRatingView.swift in Sources */,
 				2963770E29C10D2400D45AB6 /* ForceClient+SOSL.swift in Sources */,
 				3F714D4829FA0F4A00CD39E7 /* ProductTermsAndConditionsView.swift in Sources */,
