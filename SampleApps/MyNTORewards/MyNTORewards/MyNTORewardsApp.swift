@@ -6,13 +6,9 @@
 //
 
 import SwiftUI
-import Firebase
 
 @main
 struct MyNTORewardsApp: App {
-    
-    // register app delegate for Firebase setup
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
     @StateObject var appViewRouter = AppViewRouter()
     @StateObject var appRootVM = AppRootViewModel()

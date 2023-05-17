@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Firebase
 import LoyaltyMobileSDK
 
 // recommend MainActor in ObservableObject class
@@ -18,26 +17,6 @@ class AppViewRouter: ObservableObject {
     @Published var currentPage: Page = .onboardingPage
     // used for managing the signIn state.
     @Published var signedIn = false
-    
-    init() {
-        signOutIfNeeded()
-    }
-    
-    // this is deal with Firebase Auth saved to keychain and will retain logged in even delete/reinstall the app
-    func signOutIfNeeded() {
-        
-        let userDefaults = UserDefaults.standard
-        if userDefaults.value(forKey: "appFirstTimeLauched") == nil {
-            // if app is first time opened then it will be nil
-            userDefaults.setValue(true, forKey: "appFirstTimeLauched")
-            // signOut from FIRAuth
-            do {
-                try Auth.auth().signOut()
-            } catch {
-                Logger.error("<Firebase> - Error signing out: \(error)")
-            }
-        }
-    }
     
     // check if the user is signedin already when app starts.
     private let auth = ForceAuthManager.shared.getAuth()

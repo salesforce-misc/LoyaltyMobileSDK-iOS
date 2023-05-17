@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Firebase
 import SwiftUI
 import LoyaltyMobileSDK
 
@@ -62,6 +61,8 @@ class AppRootViewModel: ObservableObject {
         isInProgress = true
         email = userEmail
         
+        // TODO: Need to redo Sign Up since Firebase is removed
+        /*
         Auth.auth().createUser(withEmail: userEmail, password: userPassword) { [weak self] authResult, error in
             
             if let error = error {
@@ -77,7 +78,6 @@ class AppRootViewModel: ObservableObject {
             case .some:
                 Logger.debug("<Firebase> - User created on Firebase.")
                 
-                /*
                 Task {
                     do {
                         try await self?.authManager.grantAuth()
@@ -146,11 +146,11 @@ class AppRootViewModel: ObservableObject {
                     }
 
                 }
-                 */
-                
+
             }
             
         }
+         */
     }
     
 	func signInUser(userEmail: String, userPassword: String) async throws {
@@ -217,7 +217,7 @@ class AppRootViewModel: ObservableObject {
         Task {
             do {
                 let forceClient = ForceClient(auth: authManager)
-                let contactQuery = "SELECT FirstName, LastName, Phone FROM Contact"
+                let contactQuery = "SELECT FirstName, LastName, Phone FROM Contact WHERE Email = '\(email)'"
                 let queryResult = try await forceClient.SOQL(type: Record.self, for: contactQuery)
                 let contact = queryResult.records.first
                 
@@ -267,28 +267,23 @@ class AppRootViewModel: ObservableObject {
     }
     
     func signOutUser() {
-        
         isInProgress = true
         
-        do {
-            try Auth.auth().signOut()
-            ForceAuthManager.shared.clearAuth()
-            userState = .signedOut
-            isInProgress = false
-            member = nil
-            
-            // delete all cached data
-            LocalFileManager.instance.removeAllAppData()
-        } catch {
-            Logger.error("<Firebase> - Error signing out: \(error.localizedDescription)")
-            isInProgress = false
-        }
+        ForceAuthManager.shared.clearAuth()
+        userState = .signedOut
+        isInProgress = false
+        member = nil
+        
+        // delete all cached data
+        LocalFileManager.instance.removeAllAppData()
     }
     
     func requestResetPassword(userEmail: String) {
         
         isInProgress = true
         
+        // TODO: redo requestResetPassword since Firebase is removed
+        /*
         Auth.auth().sendPasswordReset(withEmail: userEmail) { [weak self] error in
             
             if let error = error {
@@ -301,6 +296,7 @@ class AppRootViewModel: ObservableObject {
             self?.isInProgress = false
             
         }
+         */
     }
     
     // Firebase REST API Endpoint: https://identitytoolkit.googleapis.com/v1/accounts:resetPassword?key=[API_KEY]
