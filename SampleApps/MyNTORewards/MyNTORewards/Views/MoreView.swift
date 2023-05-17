@@ -16,14 +16,7 @@ struct MenuItem: Identifiable {
 
 struct MoreView: View {
     
-//    @EnvironmentObject private var appViewRouter: AppViewRouter
     @EnvironmentObject private var rootVM: AppRootViewModel
-//    @EnvironmentObject private var benefitVM: BenefitViewModel
-//    @EnvironmentObject private var profileVM: ProfileViewModel
-//    @EnvironmentObject private var promotionVM: PromotionViewModel
-//    @EnvironmentObject private var transactionVM: TransactionViewModel
-//    @EnvironmentObject private var voucherVM: VoucherViewModel
-//    @EnvironmentObject private var imageVM: ImageViewModel
     
     let menuItems: [MenuItem] = [
         MenuItem(icon: "ic-person", title: "Account", accessibilityIdentifier: AppAccessibilty.More.account),
