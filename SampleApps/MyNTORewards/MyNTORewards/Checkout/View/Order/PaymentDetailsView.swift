@@ -41,7 +41,7 @@ struct PaymentDetailsView: View {
 								let membershipNumber = profileVM.profile?.membershipNumber
 								isScreenLoading = true
 								do {
-									try await orderDetailsVM.createOrder(reloadables: [profileVM, transactionVM, vouchersVM], memberId: memberId, membershipNumber: membershipNumber)
+									try await orderDetailsVM.createOrder(reloadables: [transactionVM, vouchersVM, profileVM], memberId: memberId, membershipNumber: membershipNumber)
 								} catch {
 									Logger.error("Unable to create order")
 								}

@@ -35,7 +35,7 @@ class OrderDetailsViewModel: ObservableObject {
 	func createOrder(reloadables: [Reloadable], memberId: String?, membershipNumber: String?) async throws {
 		do {
 			orderId = try await placeOrder(membershipNumber: membershipNumber ?? "")
-			// invalidating the cache after order is created successfully in order to make the profile page reload when it is visited.
+			// Reloading data when the order is placed.
 			for reloadable in reloadables {
 				try await reloadable.reload(id: memberId ?? "", number: membershipNumber ?? "")
 			}
