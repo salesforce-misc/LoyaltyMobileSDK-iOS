@@ -19,7 +19,7 @@ extension ForceClient {
         do {
             let path = ForceAPI.path(for: "search", version: LoyaltyAPIVersion.defaultVersion)
             let queryItems = ["q": query]
-            let request = try ForceRequest.create(instanceURL: AppSettings.getInstanceURL(), path: path, queryItems: queryItems)
+            let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(), path: path, queryItems: queryItems)
             let result = try await fetch(type: SearchResult.self, with: request)
             return result.searchRecords
         } catch {

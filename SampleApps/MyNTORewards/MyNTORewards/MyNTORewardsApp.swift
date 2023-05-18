@@ -19,6 +19,10 @@ struct MyNTORewardsApp: App {
     @StateObject var voucherVM = VoucherViewModel()
     @StateObject var imageVM = ImageViewModel()
     @StateObject var connectedAppVM = ConnectedAppsViewModel()
+    
+    init() {
+        _ = AppSettings.shared
+    }
 
     var body: some Scene {
         WindowGroup {

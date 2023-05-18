@@ -227,6 +227,7 @@
 		293F642E29D64E48001AC795 /* CommunityMemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMemberModel.swift; sourceTree = "<group>"; };
 		293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceConnectedApp.swift; sourceTree = "<group>"; };
 		293F643229DCDAF8001AC795 /* ForceClient+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceClient+Image.swift"; sourceTree = "<group>"; };
+		293F86A62A15A07100733A42 /* ConnectedApp.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ConnectedApp.xcconfig; sourceTree = "<group>"; };
 		2941A23E28BE803F005026CF /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2944F88928B9A7220098ED1B /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		294E341D293C39E6001F7F48 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
@@ -439,6 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				298613AC28C964D900BDC744 /* Info.plist */,
+				293F86A62A15A07100733A42 /* ConnectedApp.xcconfig */,
 				298D5EE829CCF4C20062F16E /* ForceSwift+Extra */,
 				2963770B29C10CFB00D45AB6 /* SOQL+SOSL */,
 				2944F87F28B98C2C0098ED1B /* Extensions */,
@@ -877,7 +879,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					216F217A28B6141E00DAA66D = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -1166,7 +1168,6 @@
 /* Begin XCBuildConfiguration section */
 		216F218728B6141F00DAA66D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FBEFDEF2A0DFB2E00685BAF /* IntegrationConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1227,7 +1228,6 @@
 		};
 		216F218828B6141F00DAA66D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FBEFDEF2A0DFB2E00685BAF /* IntegrationConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1282,6 +1282,7 @@
 		};
 		216F218A28B6141F00DAA66D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 293F86A62A15A07100733A42 /* ConnectedApp.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1321,6 +1322,7 @@
 		};
 		216F218B28B6141F00DAA66D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 293F86A62A15A07100733A42 /* ConnectedApp.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1360,6 +1362,7 @@
 		};
 		AFB345C629F0DD5300F40502 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FBEFDEF2A0DFB2E00685BAF /* IntegrationConfig.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyNTORewards.app/MyNTORewards";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1384,6 +1387,7 @@
 		};
 		AFB345C729F0DD5300F40502 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FBEFDEF2A0DFB2E00685BAF /* IntegrationConfig.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyNTORewards.app/MyNTORewards";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

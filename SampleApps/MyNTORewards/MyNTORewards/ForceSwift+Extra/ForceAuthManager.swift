@@ -28,7 +28,7 @@ public class ForceAuthManager: ForceAuthenticator {
     }
     
     public func grantAccessToken() async throws -> String {
-        let app = AppSettings.getConnectedApp()
+        let app = AppSettings.shared.getConnectedApp()
         let url = app.baseURL + AppSettings.Defaults.tokenPath
         
         if let refreshToken = self.auth?.refreshToken {
@@ -100,7 +100,7 @@ public class ForceAuthManager: ForceAuthenticator {
         }
         Task {
             do {
-                let revokeURL = AppSettings.getConnectedApp().instanceURL + AppSettings.Defaults.revokePath
+                let revokeURL = AppSettings.shared.getConnectedApp().instanceURL + AppSettings.Defaults.revokePath
                 try await self.revoke(url: revokeURL, token: auth.accessToken)
             } catch {
                 Logger.error("Failed to revolk token")

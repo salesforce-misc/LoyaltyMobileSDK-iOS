@@ -1,0 +1,12 @@
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// Note: For URLs, please remove `https://`. For example, BASE_URL = login.salesforce.com
+
+CONNECTED_APP_NAME = YOUR_CONNECTED_APP_NAME
+CONSUMER_KEY = YOUR_CONSUMER_KEY
+CONSUMER_SECRET = YOUR_CONSUMER_SECRET
+CALLBACK_URL = YOUR_CALLBACK_URL
+BASE_URL = YOUR_BASE_URL
+INSTANCE_URL = YOUR_INSTANCE_URL
+COMMUNITY_URL = YOUR_COMMUNITY_URL
