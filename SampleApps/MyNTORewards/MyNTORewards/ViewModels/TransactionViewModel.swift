@@ -147,6 +147,7 @@ class TransactionViewModel: ObservableObject, Reloadable {
             }
             
             await MainActor.run {
+				transactions = Array(result.prefix(3))
                 recentTransactions = recent
                 olderTransactions = older
             }
