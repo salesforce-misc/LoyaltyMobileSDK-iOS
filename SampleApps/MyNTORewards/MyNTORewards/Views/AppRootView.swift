@@ -78,7 +78,7 @@ struct AppRootView: View {
 	}
 	
 	/// Sample reset password email link:
-	/// loyaltyapp://resetpassword?mode=resetPassword&oobCode=BIteQhy4O0-go_XjLjnbaF3C0KLZXPOQjViTajZTx18AAAGDpVgcog&apiKey=AIzaSyC6N0qud6ZeKl_chRjY_JUEi7QTSPbNWz4&lang=en
+	/// loyaltyapp://resetpassword?mode=resetPassword&oobCode=YOUR_CODE&apiKey=YOUR_KEY&lang=en
 	func redirectDeeplink(url: URL) {
 		
 		let defaultPage: Page = appViewRouter.signedIn ? appViewRouter.currentPage : .onboardingPage

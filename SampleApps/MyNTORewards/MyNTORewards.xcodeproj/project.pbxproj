@@ -38,6 +38,9 @@
 		293F642F29D64E48001AC795 /* CommunityMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F642E29D64E48001AC795 /* CommunityMemberModel.swift */; };
 		293F643129D6C5AD001AC795 /* ForceConnectedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */; };
 		293F643329DCDAF8001AC795 /* ForceClient+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F643229DCDAF8001AC795 /* ForceClient+Image.swift */; };
+		293F86AB2A174EE000733A42 /* ConnectedApp.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 293F86AA2A174EE000733A42 /* ConnectedApp.xcconfig */; };
+		293F86AD2A174FD800733A42 /* TestConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 293F86AC2A174FD800733A42 /* TestConfig.xcconfig */; };
+		293F86AE2A174FD800733A42 /* TestConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 293F86AC2A174FD800733A42 /* TestConfig.xcconfig */; };
 		2941A23F28BE803F005026CF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A23E28BE803F005026CF /* Color.swift */; };
 		2944F88A28B9A7220098ED1B /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppSettings.swift */; };
 		294E341E293C39E6001F7F48 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E341D293C39E6001F7F48 /* ImageViewModel.swift */; };
@@ -153,7 +156,6 @@
 		AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */; };
 		AF27B7782A05261000399D77 /* UITestingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27B7772A05261000399D77 /* UITestingHelper.swift */; };
 		AF27C5AC2981118D008C7D79 /* LoyaltyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */; };
-		AF463C242A1722DB00323FD1 /* UITestingConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = AF463C232A1722DB00323FD1 /* UITestingConfig.xcconfig */; };
 		AF463C262A1722EE00323FD1 /* UITestingInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF463C252A1722EE00323FD1 /* UITestingInfo.plist */; };
 		AF468B5729EEFB28003C1344 /* MyProfileViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF468B5629EEFB28003C1344 /* MyProfileViewHelper.swift */; };
 		AF468B5929EEFB60003C1344 /* HomeViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF468B5829EEFB60003C1344 /* HomeViewHelper.swift */; };
@@ -229,6 +231,8 @@
 		293F642E29D64E48001AC795 /* CommunityMemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMemberModel.swift; sourceTree = "<group>"; };
 		293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceConnectedApp.swift; sourceTree = "<group>"; };
 		293F643229DCDAF8001AC795 /* ForceClient+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceClient+Image.swift"; sourceTree = "<group>"; };
+		293F86AA2A174EE000733A42 /* ConnectedApp.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ConnectedApp.xcconfig; sourceTree = "<group>"; };
+		293F86AC2A174FD800733A42 /* TestConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TestConfig.xcconfig; sourceTree = "<group>"; };
 		2941A23E28BE803F005026CF /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2944F88928B9A7220098ED1B /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		294E341D293C39E6001F7F48 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
@@ -342,12 +346,10 @@
 		3F714D6E2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyConditionalNavLink.swift; sourceTree = "<group>"; };
 		3FBEFDEC2A0D1C3C00685BAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3FBEFDED2A0D1CB400685BAF /* TestDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataStore.swift; sourceTree = "<group>"; };
-		3FBEFDEF2A0DFB2E00685BAF /* IntegrationConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = IntegrationConfig.xcconfig; sourceTree = "<group>"; };
 		3FC92C602A0AA9E30081BFEC /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewHelper.swift; sourceTree = "<group>"; };
 		AF27B7772A05261000399D77 /* UITestingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingHelper.swift; sourceTree = "<group>"; };
 		AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyaltyTextField.swift; sourceTree = "<group>"; };
-		AF463C232A1722DB00323FD1 /* UITestingConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UITestingConfig.xcconfig; sourceTree = "<group>"; };
 		AF463C252A1722EE00323FD1 /* UITestingInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = UITestingInfo.plist; sourceTree = "<group>"; };
 		AF468B5629EEFB28003C1344 /* MyProfileViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewHelper.swift; sourceTree = "<group>"; };
 		AF468B5829EEFB60003C1344 /* HomeViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewHelper.swift; sourceTree = "<group>"; };
@@ -443,6 +445,8 @@
 			isa = PBXGroup;
 			children = (
 				298613AC28C964D900BDC744 /* Info.plist */,
+				293F86AA2A174EE000733A42 /* ConnectedApp.xcconfig */,
+				293F86AC2A174FD800733A42 /* TestConfig.xcconfig */,
 				298D5EE829CCF4C20062F16E /* ForceSwift+Extra */,
 				2963770B29C10CFB00D45AB6 /* SOQL+SOSL */,
 				2944F87F28B98C2C0098ED1B /* Extensions */,
@@ -684,7 +688,6 @@
 		3F3E65A02A02B67F00180569 /* IntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
-				3FBEFDEF2A0DFB2E00685BAF /* IntegrationConfig.xcconfig */,
 				3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */,
 				3FBEFDED2A0D1CB400685BAF /* TestDataStore.swift */,
 			);
@@ -810,7 +813,6 @@
 				AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */,
 				AF27B7772A05261000399D77 /* UITestingHelper.swift */,
 				AF463C252A1722EE00323FD1 /* UITestingInfo.plist */,
-				AF463C232A1722DB00323FD1 /* UITestingConfig.xcconfig */,
 			);
 			path = MyNTORewardsUITests;
 			sourceTree = "<group>";
@@ -925,6 +927,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				293F86AB2A174EE000733A42 /* ConnectedApp.xcconfig in Resources */,
 				298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */,
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
 				29AC2F0328F8B2D7003F56F6 /* Roboto-Regular.ttf in Resources */,
@@ -938,6 +941,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				293F86AD2A174FD800733A42 /* TestConfig.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -945,8 +949,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF463C242A1722DB00323FD1 /* UITestingConfig.xcconfig in Resources */,
 				AF463C262A1722EE00323FD1 /* UITestingInfo.plist in Resources */,
+				293F86AE2A174FD800733A42 /* TestConfig.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1288,6 +1292,7 @@
 		};
 		216F218A28B6141F00DAA66D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 293F86AA2A174EE000733A42 /* ConnectedApp.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1327,6 +1332,7 @@
 		};
 		216F218B28B6141F00DAA66D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 293F86AA2A174EE000733A42 /* ConnectedApp.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1366,7 +1372,7 @@
 		};
 		AFB345C629F0DD5300F40502 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FBEFDEF2A0DFB2E00685BAF /* IntegrationConfig.xcconfig */;
+			baseConfigurationReference = 293F86AC2A174FD800733A42 /* TestConfig.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyNTORewards.app/MyNTORewards";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1391,7 +1397,7 @@
 		};
 		AFB345C729F0DD5300F40502 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FBEFDEF2A0DFB2E00685BAF /* IntegrationConfig.xcconfig */;
+			baseConfigurationReference = 293F86AC2A174FD800733A42 /* TestConfig.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyNTORewards.app/MyNTORewards";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1416,7 +1422,7 @@
 		};
 		AFCDDAA929E53EA2006B00EB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF463C232A1722DB00323FD1 /* UITestingConfig.xcconfig */;
+			baseConfigurationReference = 293F86AC2A174FD800733A42 /* TestConfig.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
@@ -1441,7 +1447,7 @@
 		};
 		AFCDDAAA29E53EA2006B00EB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF463C232A1722DB00323FD1 /* UITestingConfig.xcconfig */;
+			baseConfigurationReference = 293F86AC2A174FD800733A42 /* TestConfig.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
