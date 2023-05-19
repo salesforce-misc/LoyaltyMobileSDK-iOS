@@ -47,7 +47,7 @@ class AppRootViewModel: ObservableObject {
     init() {
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
                                               loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                              instanceURL: AppSettings.getInstanceURL(),
+                                              instanceURL: AppSettings.shared.getInstanceURL(),
                                               forceClient: ForceClient(auth: authManager))
     }
     
@@ -157,7 +157,7 @@ class AppRootViewModel: ObservableObject {
 		isInProgress = true
 		email = userEmail
 		do {
-			let app = AppSettings.getConnectedApp()
+            let app = AppSettings.shared.getConnectedApp()
 			let auth = try await ForceAuthManager.shared.authenticate(
 				communityURL: app.communityURL,
 				consumerKey: app.consumerKey,
@@ -177,7 +177,7 @@ class AppRootViewModel: ObservableObject {
 				let authManager = ForceAuthManager.shared
 				let loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
 														  loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-														  instanceURL: AppSettings.getInstanceURL(),
+                                                          instanceURL: AppSettings.shared.getInstanceURL(),
                                                           forceClient: ForceClient(auth: authManager))
 				let profile = try await loyaltyAPIManager.getCommunityMemberProfile()
 				

@@ -49,12 +49,11 @@ public extension ForceClient {
     }
     
     private func handleImageResponse(output: URLSession.DataTaskPublisher.Output) -> UIImage? {
-        guard
-            let image = UIImage(data: output.data),
-            let response = output.response as? HTTPURLResponse,
-            response.statusCode >= 200 && response.statusCode < 300 else {
+        guard let response = output.response as? HTTPURLResponse,
+            response.statusCode >= 200 && response.statusCode < 300,
+            let image = UIImage(data: output.data) else {
                 return nil
-            }
+        }
         return image
     }
 }

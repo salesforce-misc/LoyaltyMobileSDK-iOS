@@ -40,7 +40,8 @@ class VoucherViewModel: ObservableObject, Reloadable {
         self.localFileManager = localFileManager
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
                                               loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                              instanceURL: AppSettings.getInstanceURL(), forceClient: ForceClient(auth: authManager))
+                                              instanceURL: AppSettings.shared.getInstanceURL(),
+                                              forceClient: ForceClient(auth: authManager))
     }
     
     func loadVouchers(membershipNumber: String, devMode: Bool = false) async throws {

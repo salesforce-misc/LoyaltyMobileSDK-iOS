@@ -23,7 +23,8 @@ class ProfileViewModel: ObservableObject, Reloadable {
         self.localFileManager = localFileManager
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
                                               loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                              instanceURL: AppSettings.getInstanceURL(), forceClient: ForceClient(auth: authManager))
+                                              instanceURL: AppSettings.shared.getInstanceURL(),
+                                              forceClient: ForceClient(auth: authManager))
     }
     
     func getProfileData(memberId: String, reload: Bool = false, devMode: Bool = false) async throws {

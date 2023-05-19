@@ -23,11 +23,11 @@ class ConnectedAppsViewModel: ObservableObject {
         if let storedValue = UserDefaults.standard.string(forKey: AppSettings.Defaults.storedInstanceURLKey) {
             selectedInstance = storedValue
         } else {
-            selectedInstance = AppSettings.connectedApp.instanceURL
+            selectedInstance = AppSettings.shared.connectedApp.instanceURL
         }
         
         guard let app = retrieveApp(instance: selectedInstance) else {
-            let initApp = AppSettings.connectedApp
+            let initApp = AppSettings.shared.connectedApp
             saveApp(connectedApp: initApp)
             updateSavedApps()
             return

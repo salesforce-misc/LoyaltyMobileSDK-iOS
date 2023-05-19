@@ -18,10 +18,9 @@ class AppViewRouter: ObservableObject {
     // used for managing the signIn state.
     @Published var signedIn = false
     
-    // check if the user is signedin already when app starts.
-    private let auth = ForceAuthManager.shared.getAuth()
-    var isSignedIn: Bool {
-        return auth != nil
+    // check if the user is authenticated
+    var isAuthenticated: Bool {
+        return ForceAuthManager.shared.getAuth() != nil
     }
     
     enum DeeplinkHosts: String {

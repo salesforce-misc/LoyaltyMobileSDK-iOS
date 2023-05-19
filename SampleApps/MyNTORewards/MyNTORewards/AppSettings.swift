@@ -10,15 +10,24 @@ import LoyaltyMobileSDK
 
 struct AppSettings {
     
-    static let connectedApp = ForceConnectedApp(
-        connectedAppName: "Default",
-        consumerKey: "3MVG9SemV5D80oBcyrqrDrrcbLgQBxn3kO2L9XD1sPRm315AGmtHcq1dFUMHh6vSotuV1uuZPfw==",
-        consumerSecret: "0ADA86BBC47966C01405CA64A6F409AB15BF9F80E9F83A1B098AB6136AEAC434",
-        callbackURL: "https://hutl.my.site.com/oauth2/callback",
-        baseURL: "https://login.salesforce.com",
-        instanceURL: "https://hutl.my.salesforce.com",
-        communityURL: "https://hutl.my.site.com"
-    )
+    static var shared = AppSettings()
+        
+    let connectedApp: ForceConnectedApp
+    
+    private init() {
+        guard let connectedAppSettings = Bundle.main.infoDictionary?["ConnectedApp"] as? [String: Any] else {
+            fatalError("Failed to load ConnectedApp settings from Info.plist.")
+        }
+        self.connectedApp = ForceConnectedApp(
+            connectedAppName: connectedAppSettings["CONNECTED_APP_NAME"] as? String ?? "Default",
+            consumerKey: connectedAppSettings["CONSUMER_KEY"] as? String ?? "",
+            consumerSecret: connectedAppSettings["CONSUMER_SECRET"] as? String ?? "",
+            callbackURL: connectedAppSettings["CALLBACK_URL"] as? String ?? "",
+            baseURL: connectedAppSettings["BASE_URL"] as? String ?? "",
+            instanceURL: connectedAppSettings["INSTANCE_URL"] as? String ?? "",
+            communityURL: connectedAppSettings["COMMUNITY_URL"] as? String ?? ""
+        )
+    }
 
     struct Defaults {
         static let loyaltyProgramName = "NTO Insider"
@@ -29,7 +38,6 @@ struct AppSettings {
         static let keychainAuthServiceId = "LoyaltyMobileSDK.Auth"
         static let keychainConnectedAppServiceId = "LoyaltyMobileSDK.ConnectedApp"
         static let deeplinkScheme = "loyaltyapp" // Should match URL Scheme from Info.plist
-        // Orginal is "https://loyalty-management-sandbox.firebaseapp.com/__/auth/action"
         static let customActionUrlForPasswordResetEmail = "loyaltyapp://resetpassword"
         static let rewardCurrencyName = "Reward Points"
         static let rewardCurrencyNameShort = "Points"
@@ -45,25 +53,16 @@ struct AppSettings {
         static let codeSuccessfullyCopied = "Code successfully copied!"
     }
     
-    static func config() throws -> ForceConnectedApp {
-        
-        guard let url = Bundle.main.url(forResource: "ConnectedApp", withExtension: "json")
-                ?? Bundle.main.url(forResource: "connectedApp", withExtension: "json") else {
-                throw URLError(.badURL, userInfo: [NSURLErrorFailingURLStringErrorKey: "ConnectedApp.json"])
-        }
-        return try JSONDecoder().decode(ForceConnectedApp.self, from: try Data(contentsOf: url))
-    }
-    
-    static func getInstanceURL() -> String {
+    func getInstanceURL() -> String {
         
         if let storedValue = UserDefaults.standard.string(forKey: Defaults.storedInstanceURLKey) {
             return storedValue
         } else {
-            return AppSettings.connectedApp.instanceURL
+            return self.connectedApp.instanceURL
         }
     }
     
-    static func getConnectedApp() -> ForceConnectedApp {
+    func getConnectedApp() -> ForceConnectedApp {
         
         let instance = getInstanceURL()
         
@@ -78,12 +77,12 @@ struct AppSettings {
         return connectedApp
     }
     
-    static func getBaseURL() -> String {
+    func getBaseURL() -> String {
         
         if let storedValue = UserDefaults.standard.string(forKey: Defaults.storedBaseURLKey) {
             return storedValue
         } else {
-            return AppSettings.connectedApp.baseURL
+            return self.connectedApp.baseURL
         }
     }
 

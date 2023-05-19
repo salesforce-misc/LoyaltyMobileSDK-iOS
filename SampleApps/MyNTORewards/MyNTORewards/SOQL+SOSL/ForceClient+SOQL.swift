@@ -15,7 +15,7 @@ extension ForceClient {
         do {
             let path = ForceAPI.path(for: "query", version: LoyaltyAPIVersion.defaultVersion)
             let queryItems = ["q": query]
-            let request = try ForceRequest.create(instanceURL: AppSettings.getInstanceURL(), path: path, queryItems: queryItems)
+            let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(), path: path, queryItems: queryItems)
             return try await fetch(type: QueryResult.self, with: request)
         } catch {
             throw error
@@ -33,7 +33,7 @@ extension ForceClient {
     
     func SOQLNextRecords<T: Decodable>(type: T.Type, path: String) async throws -> QueryResult<T> {
         do {
-            let request = try ForceRequest.create(instanceURL: AppSettings.getInstanceURL(), path: path)
+            let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(), path: path)
             return try await fetch(type: QueryResult.self, with: request)
         } catch {
             throw error

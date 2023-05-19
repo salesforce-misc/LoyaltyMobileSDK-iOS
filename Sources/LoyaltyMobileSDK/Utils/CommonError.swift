@@ -20,6 +20,7 @@ public enum CommonError: Error, Equatable {
     case codeCredentials
     case functionalityNotEnabled
     case unknownException
+    case sessionExpired
 }
 
 extension CommonError: CustomStringConvertible, LocalizedError {
@@ -50,6 +51,8 @@ extension CommonError: CustomStringConvertible, LocalizedError {
             return "Functionality is not enabled."
         case .unknownException:
             return "An unexpected error occurred."
+        case .sessionExpired:
+            return "You sesssion has expired."
         }
     }
     
@@ -79,6 +82,8 @@ extension CommonError: CustomStringConvertible, LocalizedError {
             return NSLocalizedString("Functionality is not enabled.", comment: "Functionality Not Enabled Error")
         case .unknownException:
             return NSLocalizedString("An unexpected error occurred.", comment: "Unknown Exception Error")
+        case .sessionExpired:
+            return NSLocalizedString("Your session has expired.", comment: "Session Expired Error")
         }
     }
 }
