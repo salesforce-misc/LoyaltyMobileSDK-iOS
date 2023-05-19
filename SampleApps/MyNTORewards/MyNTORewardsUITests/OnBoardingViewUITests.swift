@@ -70,7 +70,7 @@ final class OnBoardingViewUITests: XCTestCase {
         loginButton.tap()
         try SignInViewHelper.testLogin()
         app.tabBars.buttons["Home"].tap()
-        if !UITestingHelper.userNameWithoutPromotion .isEmpty {
+        if !(try UITestingHelper.getEmptyPromotionUserName().isEmpty) {
             try HomeViewHelper.testEmptyViewElements()
             try HomeViewHelper.testPromotionViewElements()
             try HomeViewHelper.testVoucherViewElements()
@@ -108,7 +108,7 @@ final class OnBoardingViewUITests: XCTestCase {
         loginButton.tap()
         try SignInViewHelper.testLogin()
         app.tabBars.buttons["My Promotions"].tap()
-        if !UITestingHelper.userNameWithoutPromotion .isEmpty {
+        if !(try UITestingHelper.getEmptyPromotionUserName().isEmpty) {
             try PromotionViewHelper.testEmptyViewElements()
         }
         try MoreViewHelper.testMoreScreen()
@@ -147,7 +147,7 @@ final class OnBoardingViewUITests: XCTestCase {
         loginButton.tap()
         try SignInViewHelper.testLogin()
         app.tabBars.buttons["My Profile"].tap()
-        if !UITestingHelper.userNameWithoutPromotion .isEmpty {
+        if !(try UITestingHelper.getEmptyPromotionUserName().isEmpty) {
             try MyProfileViewHelper.testEmptyViewElements()
             try MyProfileViewHelper.testQRScreen()
             try TransactionsViewHelper.testTransactionsEmptyScreen()
