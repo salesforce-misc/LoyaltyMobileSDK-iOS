@@ -1,13 +1,14 @@
 //
-//  UITestingConfig.xcconfig
-//  MyNTORewardsUITests
+//  TestConfig.xcconfig
+//  MyNTORewards
 //
-//  Created by Anandhakrishnan Kanagaraj on 19/05/23.
+//  Created by Leon Qi on 5/18/23.
 //
 
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
-USERNAME = archit.sharma@salesforce.com
-PASSWORD = test@321
+
+USERNAME = YOUR_TEST_USERNAME
+PASSWORD = YOUR_TEST_PASSWORD
 EMPTYPROMOTIONUSERNAME  =
 EMPTYPROMOTIONPASSWORD  =
