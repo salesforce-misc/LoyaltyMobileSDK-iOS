@@ -35,9 +35,22 @@ class OrderDetailsViewModel: ObservableObject {
 		self.localFileManager = localFileManager
 	}
 	
-	func createOrder(clearable: Clearable, memberId: String?, membershipNumber: String?) async {
+	func createOrder(clearable: Clearable,
+					 productVM: ProductViewModel,
+					 profileVM: ProfileViewModel,
+					 memberId: String?,
+					 membershipNumber: String?) async {
 		do {
-			orderId = try await placeOrder(membershipNumber: membershipNumber ?? "")
+			
+			let productPrice = Double(productVM.basePrice)
+			let orderTotal = Double(productVM.getTotalAmount())
+			let pointsBalance = profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0
+			
+			orderId = try await placeOrder(productPrice: productPrice,
+										   orderTotal: orderTotal,
+										   pointsBalance: pointsBalance,
+										   membershipNumber: membershipNumber ?? "")
+			
 			// invalidating the cache after order is created successfully in order to make the profile page reload when it is visited.
 			await clearable.clear()
 			localFileManager.removeData(type: ProfileModel.self, id: memberId ?? "")

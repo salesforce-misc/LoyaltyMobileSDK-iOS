@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProductView: View {
 	@State private var tabIndex = 0
+	@StateObject var productViewModel = ProductViewModel()
 	
 	var tabbarItems: [String] = ["Details", "Reviews", "T&C"]
 	
@@ -27,11 +28,13 @@ struct ProductView: View {
 			
 			LoyaltyNavLink {
 				OrderDetailsView()
+					.environmentObject(productViewModel)
 			} label: {
 				Text("Buy Now")
 					.longFlexibleButtonStyle()
 			}
 		}
+		.environmentObject(productViewModel)
 		.loytaltyNavigationTitle("Outdoor Collection")
 		.loyaltyNavigationSubtitle("Double points on Outdoor Product Category")
 		.loyaltyNavBarSearchButtonHidden(true)
