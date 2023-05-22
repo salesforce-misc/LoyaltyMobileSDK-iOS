@@ -60,8 +60,14 @@ struct MoreView: View {
                     }
                     .accessibilityIdentifier(AppAccessibilty.More.logout)
                     .buttonStyle(.plain)
-                    .listRowSeparator(.hidden, edges: .bottom)
                     .frame(height: 72)
+                    
+                    Text("App Version \(Bundle.main.appVersion ?? "") (\(Bundle.main.buildNumber ?? ""))")
+                        .listRowSeparator(.hidden, edges: .bottom)
+                        .frame(height: 65)
+                        .font(.footnote)
+                        .foregroundColor(Color.theme.textInactive)
+                    
                 }
                 .listStyle(.plain)
                 .navigationBarHidden(true)

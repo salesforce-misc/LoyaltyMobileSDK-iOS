@@ -29,6 +29,7 @@
 		290EA9C1292C0ACF00BBF2F2 /* VoucherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9C0292C0ACF00BBF2F2 /* VoucherViewModel.swift */; };
 		290EA9C5292C4DA500BBF2F2 /* MyPromotionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9C4292C4DA500BBF2F2 /* MyPromotionDetailView.swift */; };
 		2920609529523C9C006B20C1 /* LoyaltyMobileSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2920609429523C9C006B20C1 /* LoyaltyMobileSDK */; };
+		292453E62A185D75002112B3 /* Bundle+Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292453E52A185D75002112B3 /* Bundle+Info.swift */; };
 		292ADC6E294BFD7700753541 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC6D294BFD7700753541 /* PreviewProvider.swift */; };
 		292ADC72294C04AB00753541 /* VocherModel+VoucherValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */; };
 		292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */; };
@@ -222,6 +223,7 @@
 		290EA9C0292C0ACF00BBF2F2 /* VoucherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherViewModel.swift; sourceTree = "<group>"; };
 		290EA9C4292C4DA500BBF2F2 /* MyPromotionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPromotionDetailView.swift; sourceTree = "<group>"; };
 		2920609329523C0B006B20C1 /* LoyaltyMobileSDK-iOS */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "LoyaltyMobileSDK-iOS"; path = ../..; sourceTree = "<group>"; };
+		292453E52A185D75002112B3 /* Bundle+Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Info.swift"; sourceTree = "<group>"; };
 		292ADC6D294BFD7700753541 /* PreviewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VocherModel+VoucherValue.swift"; sourceTree = "<group>"; };
 		292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionHistory+CurrencyPoints.swift"; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 				298D5EF929D4E5F00062F16E /* String+Date.swift */,
 				29BAF6DC28F3AE8B00A3F9EB /* String+StringWidth.swift */,
 				29A39BC22937F46D005833C2 /* String+MD5.swift */,
+				292453E52A185D75002112B3 /* Bundle+Info.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1108,6 +1111,7 @@
 				29053F7D2907452800F84561 /* Assets.swift in Sources */,
 				293F643129D6C5AD001AC795 /* ForceConnectedApp.swift in Sources */,
 				2955346B29E93EF800CFA391 /* InfoNavigationLink.swift in Sources */,
+				292453E62A185D75002112B3 /* Bundle+Info.swift in Sources */,
 				29AC2F0728F8B70D003F56F6 /* AllBenefitsView.swift in Sources */,
 				29D7497C2931D10100BC81AD /* AsyncImageView.swift in Sources */,
 				218A36AC28B85D5500FCEE39 /* MyPromotionsView.swift in Sources */,
@@ -1209,6 +1213,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1227,12 +1232,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 0.3.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -1269,6 +1276,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1281,12 +1289,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 0.3.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -1317,7 +1327,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewards;
 				PRODUCT_NAME = MyNTORewards;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1327,6 +1337,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -1357,7 +1368,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewards;
 				PRODUCT_NAME = MyNTORewards;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1367,6 +1378,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -1382,7 +1394,7 @@
 				INFOPLIST_FILE = MyNTORewardsTests/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1407,7 +1419,7 @@
 				INFOPLIST_FILE = MyNTORewardsTests/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1432,7 +1444,7 @@
 				INFOPLIST_FILE = MyNTORewardsUITests/UITestingInfo.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1457,7 +1469,7 @@
 				INFOPLIST_FILE = MyNTORewardsUITests/UITestingInfo.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
