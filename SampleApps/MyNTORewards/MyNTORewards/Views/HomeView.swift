@@ -101,7 +101,7 @@ struct HomeView: View {
                     
                     Task {
                         do {
-                            try await voucherVM.reloadVouchers(membershipNumber: rootVM.member?.membershipNumber ?? "")
+							try await voucherVM.loadVouchers(membershipNumber: rootVM.member?.membershipNumber ?? "", reload: true)
                         } catch {
                             Logger.error("Reload Vouchers Error: \(error)")
                         }

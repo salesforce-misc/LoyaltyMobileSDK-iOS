@@ -37,42 +37,13 @@ class VoucherViewModel: ObservableObject {
                                               forceClient: ForceClient(auth: authManager))
     }
     
-    func loadVouchers(membershipNumber: String, devMode: Bool = false) async throws {
-        
-        if vouchers.isEmpty {
-            
-            // load from local cache
-            if let cached = localFileManager.getData(type: [VoucherModel].self, id: membershipNumber, folderName: "Vouchers") {
-                vouchers = Array(cached.prefix(2))
-            } else {
-                do {
-                    let result = try await fetchVouchers(membershipNumber: membershipNumber, devMode: devMode)
-                    vouchers = Array(result.prefix(2))
-                    
-                    // save to local
-                    localFileManager.saveData(item: result, id: membershipNumber, folderName: "Vouchers", expiry: .never)
-                } catch {
-                    throw error
-                }
-                
-            }
-            
-        }
-        
-    }
-    
-    func reloadVouchers(membershipNumber: String, devMode: Bool = false) async throws {
-        do {
-            let result = try await fetchVouchers(membershipNumber: membershipNumber, devMode: devMode)
-            vouchers = Array(result.prefix(2))
-            
-            // save to local
-            localFileManager.saveData(item: result, id: membershipNumber, folderName: "Vouchers", expiry: .never)
-        } catch {
-            throw error
-        }
-    }
-    
+	func loadVouchers(membershipNumber: String, devMode: Bool = false, reload: Bool = false) async throws {
+		if vouchers.isEmpty || reload {
+			let expiringVouchers = try await getExpiringVouchers(membershipNumber: membershipNumber, devMode: devMode, reload: reload)
+			vouchers = Array(expiringVouchers.prefix(2))
+		}
+	}
+	
 	func fetchVouchers(
         membershipNumber: String,
         voucherStatus: [LoyaltyAPIManager.VoucherStatus]? = nil,
@@ -99,6 +70,28 @@ class VoucherViewModel: ObservableObject {
             throw error
         }
     }
+	
+	/// Returns active vouchers sorted by expiring date (Soon to be expired first)
+	func getExpiringVouchers(membershipNumber: String,
+							 devMode: Bool = false,
+							 reload: Bool = false)
+	async throws -> [VoucherModel] {
+		do {
+			try await loadAvailableVouchers(membershipNumber: membershipNumber, reload: reload, devMode: devMode)
+			return availableVochers.sorted { firstVoucher, nextVoucher in
+				let dateFormatter = DateFormatter()
+				dateFormatter.dateFormat = "yyyy-MM-dd"
+				guard let firstVoucherDate = dateFormatter.date(from: firstVoucher.expirationDate),
+					  let nextVoucherDate = dateFormatter.date(from: nextVoucher.expirationDate)
+				else {
+					return true
+				}
+				return firstVoucherDate < nextVoucherDate
+			}
+		} catch {
+			throw error
+		}
+	}
     
     func loadFilteredVouchers(membershipNumber: String, filter: StatusFilter, devMode: Bool = false) async throws -> [VoucherModel] {
             
