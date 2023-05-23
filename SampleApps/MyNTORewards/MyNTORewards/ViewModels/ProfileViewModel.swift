@@ -8,12 +8,8 @@
 import Foundation
 import LoyaltyMobileSDK
 
-protocol Clearable {
-	func clear() async
-}
-
 @MainActor
-class ProfileViewModel: ObservableObject, Clearable {
+class ProfileViewModel: ObservableObject, Reloadable {
     
     @Published var profile: ProfileModel?
     @Published var isLoading = false
@@ -78,5 +74,9 @@ class ProfileViewModel: ObservableObject, Clearable {
     func clear() {
         profile = nil
     }
+	
+	func reload(id: String, number: String) async throws {
+		try await fetchProfile(memberId: id)
+	}
 
 }
