@@ -20,6 +20,15 @@ do
         echo $CURRENT_BUILD_VERSION
         cd - > /dev/null
         ;;
+        --full-versions)
+        cd $APP_DIR
+        echo "Current App Version:"
+        xcrun agvtool what-marketing-version -terse1
+        echo "Current Build Version:"
+        CURRENT_BUILD_VERSION=$(xcrun agvtool what-version -terse)
+        echo $CURRENT_BUILD_VERSION
+        cd - > /dev/null
+        ;;
         --update-app-version=*)
         NEW_APP_VERSION="${arg#*=}"
         # Check that NEW_APP_VERSION is a valid semantic version number (e.g. 1.0.1)
@@ -31,6 +40,8 @@ do
         echo "Updating App Version to $NEW_APP_VERSION"
         cd $APP_DIR
         xcrun agvtool new-marketing-version $NEW_APP_VERSION
+        echo "Resetting Build Version to 1"
+        xcrun agvtool new-version -all 1
         cd - > /dev/null
         ;;
         --update-build-version)
@@ -64,7 +75,8 @@ do
         echo "app_version.sh usage:"
         echo "  --app-version: print the current app version"
         echo "  --build-version: print the current build version"
-        echo "  --update-app-version=<version>: set the app version to <version>"
+        echo "  --full-versions: print both the current app version and build version"
+        echo "  --update-app-version=<version>: set the app version to <version> and reset build version to 1"
         echo "  --update-build-version: increment the build version"
         echo "  --set-build-version=<build>: set the build version to <build>, if it's greater than or equal to the current build number"
         echo "  --help: display this help message"
@@ -75,7 +87,8 @@ do
         echo "app_version.sh usage:"
         echo "  --app-version: print the current app version"
         echo "  --build-version: print the current build version"
-        echo "  --update-app-version=<version>: set the app version to <version>"
+        echo "  --full-versions: print both the current app version and build version"
+        echo "  --update-app-version=<version>: set the app version to <version> and also reset build version to 1"
         echo "  --update-build-version: increment the build version"
         echo "  --set-build-version=<build>: set the build version to <build>, if it's greater than or equal to the current build number"
         echo "  --help: display this help message"
