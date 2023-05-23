@@ -8,25 +8,47 @@
 import SwiftUI
 
 struct SheetHeader: View {
-
     let title: String
-    var onDismiss: () -> Void
-    
+    let onDismiss: () -> Void
+    let alert: (() -> Alert)?
+
+    @State private var showDismissAlert = false
+
+    init(title: String, onDismiss: @escaping () -> Void, alert: (() -> Alert)? = nil) {
+        self.title = title
+        self.onDismiss = onDismiss
+        self.alert = alert
+    }
+
     var body: some View {
         VStack {
             HStack {
                 Text(title)
-                    .font(.boldedText)
+                    .font(.headline)
                     .padding()
-                    .accessibilityIdentifier(title)
+
                 Spacer()
-                Button {
-                    onDismiss()
-                } label: {
-                    Image("ic-close")
+
+                if let alert = alert {
+                    Button(action: {
+                        self.showDismissAlert = true
+                    }) {
+                        Image("ic-close")
+                    }
+                    .alert(isPresented: $showDismissAlert, content: alert)
+                    .accessibilityIdentifier(title + "_dismiss")
+                    .padding()
+
+                } else {
+                    Button(action: {
+                        onDismiss()
+                    }) {
+                        Image("ic-close")
+                    }
+                    .accessibilityIdentifier(title + "_dismiss")
+                    .padding()
+
                 }
-                .accessibilityIdentifier(title + "_dismiss")
-                .padding()
             }
             .padding(.top)
             Divider()

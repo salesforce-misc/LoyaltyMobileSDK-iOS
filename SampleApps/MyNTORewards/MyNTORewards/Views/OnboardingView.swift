@@ -16,6 +16,7 @@ struct OnboardingView: View {
     @State private var opacityText: Double = 1
     @State private var signUpPresented: Bool = false
     @State private var signInPresented: Bool = false
+    @State private var showSelfRegister: Bool = false
     @State private var congratsPresented: Bool = false
     @State private var showResetPassword: Bool = false
     @State var showCreateNewPassword: Bool = false
@@ -28,6 +29,8 @@ struct OnboardingView: View {
         OnboardingModel(image: "img-preview2", description: "Earn points to unlock new rewards!", offset: CGSize(width: -80, height: 0)),
         OnboardingModel(image: "img-preview3", description: "Get personalized offers!", offset: CGSize(width: 60, height: 0))
     ]
+    
+    private let url = URL(string: "https://hutl.my.site.com/s/login/SelfRegister")!
     
     var body: some View {
         let pageCount = onboardingData.count
@@ -107,18 +110,37 @@ struct OnboardingView: View {
                 .allowsHitTesting(false)
 
                 Button(action: {
-                    signUpPresented.toggle()
+                    // signUpPresented.toggle()
+                    showSelfRegister = true
                     viewModel.userErrorMessage = ("", ErrorType.noError)
                 }, label: {
                     Text("Join")
                 })
                 .accessibility(identifier: AppAccessibilty.Onboarding.joinButton)
                 .buttonStyle(LightLongButton())
-                .sheet(isPresented: $signUpPresented) {
-                    FullSheet {
-                        SignUpView(signInPresented: $signInPresented, signUpPresented: $signUpPresented)
+//                .sheet(isPresented: $signUpPresented) {
+//                    FullSheet {
+//                        SignUpView(signInPresented: $signInPresented, signUpPresented: $signUpPresented)
+//                    }
+//
+//                }
+                .sheet(isPresented: $showSelfRegister) {
+                    VStack {
+                        SheetHeader(title: "Register", onDismiss: {
+                            showSelfRegister = false
+                        }) {
+                            Alert(
+                                title: Text("Confirm"),
+                                message: Text("Are you sure you want to quit?"),
+                                primaryButton: .destructive(Text("Quit")) {
+                                    showSelfRegister = false
+                                },
+                                secondaryButton: .cancel()
+                            )
+                        }
+                        WebView(url: url)
+                            .edgesIgnoringSafeArea(.all)
                     }
-      
                 }
                 .onReceive(viewModel.$userState) { state in
                     if state == UserState.signedUp {
