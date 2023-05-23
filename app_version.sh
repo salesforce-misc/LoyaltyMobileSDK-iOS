@@ -1,35 +1,24 @@
 #!/bin/bash
 
-# The directory of your sample app
-APP_DIR="./SampleApps/MyNTORewards"
+# Path to your AppVersion.xcconfig file
+CONFIG_FILE_PATH="./SampleApps/MyNTORewards/MyNTORewards/AppVersion.xcconfig"
+
+print_versions () {
+    echo "Current App and Build Version:"
+    grep -E 'MARKETING_VERSION|CURRENT_PROJECT_VERSION' $CONFIG_FILE_PATH
+}
 
 # Parse command line arguments
+if [ $# -eq 0 ]
+then
+    print_versions
+    exit 0
+fi
+
 for arg in "$@"
 do
     case $arg in
-        --app-version)
-        cd $APP_DIR
-        echo "Current App Version:"
-        xcrun agvtool what-marketing-version -terse1
-        cd - > /dev/null
-        ;;
-        --build-version)
-        cd $APP_DIR
-        echo "Current Build Version:"
-        CURRENT_BUILD_VERSION=$(xcrun agvtool what-version -terse)
-        echo $CURRENT_BUILD_VERSION
-        cd - > /dev/null
-        ;;
-        --full-versions)
-        cd $APP_DIR
-        echo "Current App Version:"
-        xcrun agvtool what-marketing-version -terse1
-        echo "Current Build Version:"
-        CURRENT_BUILD_VERSION=$(xcrun agvtool what-version -terse)
-        echo $CURRENT_BUILD_VERSION
-        cd - > /dev/null
-        ;;
-        --update-app-version=*)
+        --app-version=*)
         NEW_APP_VERSION="${arg#*=}"
         # Check that NEW_APP_VERSION is a valid semantic version number (e.g. 1.0.1)
         if ! [[ $NEW_APP_VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
@@ -37,20 +26,12 @@ do
             echo "ERROR: Invalid app version: $NEW_APP_VERSION. Must follow MAJOR.MINOR.PATCH format (e.g. 1.0.1)."
             exit 1
         fi
-        echo "Updating App Version to $NEW_APP_VERSION"
-        cd $APP_DIR
-        xcrun agvtool new-marketing-version $NEW_APP_VERSION
-        echo "Resetting Build Version to 1"
-        xcrun agvtool new-version -all 1
-        cd - > /dev/null
+        echo "Updating App Version to $NEW_APP_VERSION and resetting Build Version to 1 in $CONFIG_FILE_PATH"
+        sed -i '' "s/^MARKETING_VERSION = .*/MARKETING_VERSION = $NEW_APP_VERSION/" $CONFIG_FILE_PATH
+        sed -i '' "s/^CURRENT_PROJECT_VERSION = .*/CURRENT_PROJECT_VERSION = 1/" $CONFIG_FILE_PATH
+        print_versions
         ;;
-        --update-build-version)
-        echo "Incrementing Build Version"
-        cd $APP_DIR
-        xcrun agvtool next-version -all
-        cd - > /dev/null
-        ;;
-        --set-build-version=*)
+        --build-version=*)
         NEW_BUILD_VERSION="${arg#*=}"
         # Check that NEW_BUILD_VERSION is a valid integer
         if ! [[ $NEW_BUILD_VERSION =~ ^[0-9]+$ ]]
@@ -58,39 +39,33 @@ do
             echo "ERROR: Invalid build version: $NEW_BUILD_VERSION. Must be an integer."
             exit 1
         fi
-        cd $APP_DIR
-        CURRENT_BUILD_VERSION=$(xcrun agvtool what-version -terse)
-        cd - > /dev/null
-        if [ $NEW_BUILD_VERSION -ge $CURRENT_BUILD_VERSION ]
-        then
-            echo "Setting Build Version to $NEW_BUILD_VERSION"
-            cd $APP_DIR
-            xcrun agvtool new-version -all $NEW_BUILD_VERSION
-            cd - > /dev/null
-        else
-            echo "ERROR: Cannot set build version to a number less than the current build version ($CURRENT_BUILD_VERSION)"
-        fi
+        echo "Updating Build Version to $NEW_BUILD_VERSION in $CONFIG_FILE_PATH"
+        sed -i '' "s/^CURRENT_PROJECT_VERSION = .*/CURRENT_PROJECT_VERSION = $NEW_BUILD_VERSION/" $CONFIG_FILE_PATH
+        print_versions
+        ;;
+        --increment-build-version)
+        echo "Incrementing Build Version in $CONFIG_FILE_PATH"
+        CURRENT_BUILD_VERSION=$(grep -E 'CURRENT_PROJECT_VERSION' $CONFIG_FILE_PATH | cut -d'=' -f2 | tr -d ' ')
+        NEW_BUILD_VERSION=$(($CURRENT_BUILD_VERSION + 1))
+        sed -i '' "s/^CURRENT_PROJECT_VERSION = .*/CURRENT_PROJECT_VERSION = $NEW_BUILD_VERSION/" $CONFIG_FILE_PATH
+        print_versions
         ;;
         --help)
         echo "app_version.sh usage:"
-        echo "  --app-version: print the current app version"
-        echo "  --build-version: print the current build version"
-        echo "  --full-versions: print both the current app version and build version"
-        echo "  --update-app-version=<version>: set the app version to <version> and reset build version to 1"
-        echo "  --update-build-version: increment the build version"
-        echo "  --set-build-version=<build>: set the build version to <build>, if it's greater than or equal to the current build number"
+        echo "  No arguments: print current app and build version"
+        echo "  --app-version=<version>: set the app version to <version> and reset build version to 1"
+        echo "  --build-version=<build>: set the build version to <build>"
+        echo "  --increment-build-version: increment the build version"
         echo "  --help: display this help message"
         exit 0
         ;;
         *)
         echo "ERROR: Invalid command: $arg"
         echo "app_version.sh usage:"
-        echo "  --app-version: print the current app version"
-        echo "  --build-version: print the current build version"
-        echo "  --full-versions: print both the current app version and build version"
-        echo "  --update-app-version=<version>: set the app version to <version> and also reset build version to 1"
-        echo "  --update-build-version: increment the build version"
-        echo "  --set-build-version=<build>: set the build version to <build>, if it's greater than or equal to the current build number"
+        echo "  No arguments: print current app and build version"
+        echo "  --app-version=<version>: set the app version to <version> and reset build version to 1"
+        echo "  --build-version=<build>: set the build version to <build>"
+        echo "  --increment-build-version: increment the build version"
         echo "  --help: display this help message"
         exit 1
         ;;

@@ -28,6 +28,12 @@
 		290EA9BD2928ADB700BBF2F2 /* ViewAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */; };
 		290EA9C1292C0ACF00BBF2F2 /* VoucherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9C0292C0ACF00BBF2F2 /* VoucherViewModel.swift */; };
 		290EA9C5292C4DA500BBF2F2 /* MyPromotionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290EA9C4292C4DA500BBF2F2 /* MyPromotionDetailView.swift */; };
+		2913FB482A1CA6560065F0D5 /* MasterConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2913FB472A1CA6560065F0D5 /* MasterConfig.xcconfig */; };
+		2913FB492A1CA6560065F0D5 /* MasterConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2913FB472A1CA6560065F0D5 /* MasterConfig.xcconfig */; };
+		2913FB4A2A1CA6560065F0D5 /* MasterConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2913FB472A1CA6560065F0D5 /* MasterConfig.xcconfig */; };
+		2913FB4C2A1CA6B30065F0D5 /* AppVersion.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2913FB4B2A1CA6B30065F0D5 /* AppVersion.xcconfig */; };
+		2913FB4D2A1CA6B30065F0D5 /* AppVersion.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2913FB4B2A1CA6B30065F0D5 /* AppVersion.xcconfig */; };
+		2913FB4E2A1CA6B30065F0D5 /* AppVersion.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2913FB4B2A1CA6B30065F0D5 /* AppVersion.xcconfig */; };
 		2920609529523C9C006B20C1 /* LoyaltyMobileSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2920609429523C9C006B20C1 /* LoyaltyMobileSDK */; };
 		292453E62A185D75002112B3 /* Bundle+Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292453E52A185D75002112B3 /* Bundle+Info.swift */; };
 		292ADC6E294BFD7700753541 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC6D294BFD7700753541 /* PreviewProvider.swift */; };
@@ -222,6 +228,8 @@
 		290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllView.swift; sourceTree = "<group>"; };
 		290EA9C0292C0ACF00BBF2F2 /* VoucherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherViewModel.swift; sourceTree = "<group>"; };
 		290EA9C4292C4DA500BBF2F2 /* MyPromotionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPromotionDetailView.swift; sourceTree = "<group>"; };
+		2913FB472A1CA6560065F0D5 /* MasterConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MasterConfig.xcconfig; sourceTree = "<group>"; };
+		2913FB4B2A1CA6B30065F0D5 /* AppVersion.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppVersion.xcconfig; sourceTree = "<group>"; };
 		2920609329523C0B006B20C1 /* LoyaltyMobileSDK-iOS */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "LoyaltyMobileSDK-iOS"; path = ../..; sourceTree = "<group>"; };
 		292453E52A185D75002112B3 /* Bundle+Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Info.swift"; sourceTree = "<group>"; };
 		292ADC6D294BFD7700753541 /* PreviewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
@@ -447,6 +455,8 @@
 			isa = PBXGroup;
 			children = (
 				298613AC28C964D900BDC744 /* Info.plist */,
+				2913FB472A1CA6560065F0D5 /* MasterConfig.xcconfig */,
+				2913FB4B2A1CA6B30065F0D5 /* AppVersion.xcconfig */,
 				293F86AA2A174EE000733A42 /* ConnectedApp.xcconfig */,
 				293F86AC2A174FD800733A42 /* TestConfig.xcconfig */,
 				298D5EE829CCF4C20062F16E /* ForceSwift+Extra */,
@@ -931,12 +941,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				293F86AB2A174EE000733A42 /* ConnectedApp.xcconfig in Resources */,
+				2913FB482A1CA6560065F0D5 /* MasterConfig.xcconfig in Resources */,
 				298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */,
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
 				29AC2F0328F8B2D7003F56F6 /* Roboto-Regular.ttf in Resources */,
 				218A36A828B85B7900FCEE39 /* Assets.xcassets in Resources */,
 				298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */,
 				298613B028C9698D00BDC744 /* SF-Pro.ttf in Resources */,
+				2913FB4C2A1CA6B30065F0D5 /* AppVersion.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -945,6 +957,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				293F86AD2A174FD800733A42 /* TestConfig.xcconfig in Resources */,
+				2913FB492A1CA6560065F0D5 /* MasterConfig.xcconfig in Resources */,
+				2913FB4D2A1CA6B30065F0D5 /* AppVersion.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,7 +966,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2913FB4E2A1CA6B30065F0D5 /* AppVersion.xcconfig in Resources */,
 				AF463C262A1722EE00323FD1 /* UITestingInfo.plist in Resources */,
+				2913FB4A2A1CA6560065F0D5 /* MasterConfig.xcconfig in Resources */,
 				293F86AE2A174FD800733A42 /* TestConfig.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1182,6 +1198,7 @@
 /* Begin XCBuildConfiguration section */
 		216F218728B6141F00DAA66D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2913FB472A1CA6560065F0D5 /* MasterConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1213,7 +1230,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1231,8 +1248,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 0.3.2;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1245,6 +1263,7 @@
 		};
 		216F218828B6141F00DAA66D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2913FB472A1CA6560065F0D5 /* MasterConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1276,7 +1295,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1288,8 +1307,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 0.3.2;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1302,14 +1322,14 @@
 		};
 		216F218A28B6141F00DAA66D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 293F86AA2A174EE000733A42 /* ConnectedApp.xcconfig */;
+			baseConfigurationReference = 2913FB472A1CA6560065F0D5 /* MasterConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 7EQ9RGBBQ2;
 				ENABLE_PREVIEWS = YES;
@@ -1326,7 +1346,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.2;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewards;
 				PRODUCT_NAME = MyNTORewards;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1342,14 +1362,14 @@
 		};
 		216F218B28B6141F00DAA66D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 293F86AA2A174EE000733A42 /* ConnectedApp.xcconfig */;
+			baseConfigurationReference = 2913FB472A1CA6560065F0D5 /* MasterConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 7EQ9RGBBQ2;
 				ENABLE_PREVIEWS = YES;
@@ -1366,7 +1386,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.2;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewards;
 				PRODUCT_NAME = MyNTORewards;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1382,16 +1402,16 @@
 		};
 		AFB345C629F0DD5300F40502 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 293F86AC2A174FD800733A42 /* TestConfig.xcconfig */;
+			baseConfigurationReference = 2913FB472A1CA6560065F0D5 /* MasterConfig.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyNTORewards.app/MyNTORewards";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				INFOPLIST_FILE = MyNTORewardsTests/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 0.3.2;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1406,16 +1426,16 @@
 		};
 		AFB345C729F0DD5300F40502 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 293F86AC2A174FD800733A42 /* TestConfig.xcconfig */;
+			baseConfigurationReference = 2913FB472A1CA6560065F0D5 /* MasterConfig.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyNTORewards.app/MyNTORewards";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				INFOPLIST_FILE = MyNTORewardsTests/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 0.3.2;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1430,16 +1450,16 @@
 		};
 		AFCDDAA929E53EA2006B00EB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 293F86AC2A174FD800733A42 /* TestConfig.xcconfig */;
+			baseConfigurationReference = 2913FB472A1CA6560065F0D5 /* MasterConfig.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				INFOPLIST_FILE = MyNTORewardsUITests/UITestingInfo.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 0.3.2;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1454,16 +1474,16 @@
 		};
 		AFCDDAAA29E53EA2006B00EB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 293F86AC2A174FD800733A42 /* TestConfig.xcconfig */;
+			baseConfigurationReference = 2913FB472A1CA6560065F0D5 /* MasterConfig.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				INFOPLIST_FILE = MyNTORewardsUITests/UITestingInfo.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 0.3.2;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
