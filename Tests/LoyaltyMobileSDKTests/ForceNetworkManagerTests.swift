@@ -39,23 +39,39 @@ final class ForceNetworkManagerTests: XCTestCase {
         var mockSession = URLSession.mock(responseBody: data, statusCode: 401)
         var output = try await mockSession.data(for: getMockRequest())
         XCTAssertThrowsError(try forceNetworkManager.handleDataAndResponse(output: output)) { error in
-            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.authenticationNeeded)
         }
         
         mockSession = URLSession.mock(responseBody: data, statusCode: 403)
         output = try await mockSession.data(for: getMockRequest())
         XCTAssertThrowsError(try forceNetworkManager.handleDataAndResponse(output: output)) { error in
-            XCTAssertEqual(error as! CommonError, CommonError.functionalityNotEnabled)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.functionalityNotEnabled)
         }
         
         mockSession = URLSession.mock(responseBody: data, statusCode: 405)
         output = try await mockSession.data(for: getMockRequest())
         XCTAssertThrowsError(try forceNetworkManager.handleDataAndResponse(output: output)) { error in
-            XCTAssertEqual(error as! CommonError, CommonError.responseUnsuccessful(message: "HTTP response status code 405"))
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.responseUnsuccessful(message: "HTTP response status code 405"))
         }
         
         XCTAssertThrowsError(try forceNetworkManager.handleDataAndResponse(output: output)) { error in
-            XCTAssertEqual(error as! CommonError, CommonError.responseUnsuccessful(message: "HTTP response status code 405"))
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.responseUnsuccessful(message: "HTTP response status code 405"))
         }
     }
     
@@ -73,7 +89,11 @@ final class ForceNetworkManagerTests: XCTestCase {
             _ = try await forceNetworkManager.fetch(type: PromotionModel.self, request: getMockRequest(), urlSession: mockSession1)
             XCTAssertEqual(promotions.status, true)
         } catch {
-            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.authenticationNeeded)
         }
         
         let mockSession2 = URLSession.mock(responseBody: data, statusCode: 201)
@@ -82,7 +102,11 @@ final class ForceNetworkManagerTests: XCTestCase {
             _ = try await forceNetworkManager.fetch(type: PromotionModel.self, request: getMockRequest(), urlSession: mockSession2)
             XCTAssertEqual(promotions.status, true)
         } catch {
-            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.authenticationNeeded)
         }
     }
     

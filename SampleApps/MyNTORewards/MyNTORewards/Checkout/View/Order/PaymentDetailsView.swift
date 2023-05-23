@@ -42,13 +42,14 @@ struct PaymentDetailsView: View {
 								let membershipNumber = profileVM.profile?.membershipNumber
 								isScreenLoading = true
 								do {
-									await orderDetailsVM.createOrder(reloadables: [transactionVM, vouchersVM, profileVM],
-																	 productVM: productVM,
-																	 profileVM: profileVM,
-																	 memberId: memberId,
-																	 membershipNumber: membershipNumber)
+									try await orderDetailsVM.createOrder(
+                                        reloadables: [transactionVM, vouchersVM, profileVM],
+                                        productVM: productVM,
+                                        profileVM: profileVM,
+                                        memberId: memberId,
+                                        membershipNumber: membershipNumber)
 								} catch {
-									Logger.error("Unable to create order")
+                                    Logger.error("Unable to create order: \(error.localizedDescription)")
 								}
 								isScreenLoading = false
 							}
