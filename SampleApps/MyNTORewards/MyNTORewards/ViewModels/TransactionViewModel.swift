@@ -7,7 +7,7 @@
 import Foundation
 import LoyaltyMobileSDK
 
-class TransactionViewModel: ObservableObject {
+class TransactionViewModel: ObservableObject, Reloadable {
  
     @Published var transactions: [TransactionJournal] = []
     @Published var recentTransactions: [TransactionJournal] = []
@@ -148,6 +148,7 @@ class TransactionViewModel: ObservableObject {
             }
             
             await MainActor.run {
+				transactions = Array(result.prefix(3))
                 recentTransactions = recent
                 olderTransactions = older
             }
@@ -166,4 +167,8 @@ class TransactionViewModel: ObservableObject {
         olderTransactions = []
     }
 
+	@MainActor
+	func reload(id: String, number: String) async throws {
+		try await reloadAllTransactions(membershipNumber: number)
+	}
 }
