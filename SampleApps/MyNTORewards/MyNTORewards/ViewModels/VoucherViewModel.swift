@@ -79,9 +79,10 @@ class VoucherViewModel: ObservableObject, Reloadable {
     }
 	
 	/// Returns active vouchers sorted by expiring date (Soon to be expired first)
-	func getExpiringVouchers(membershipNumber: String,
-							 devMode: Bool = false,
-							 reload: Bool = false)
+	func getExpiringVouchers(
+		membershipNumber: String,
+		devMode: Bool = false,
+		reload: Bool = false)
 	async throws -> [VoucherModel] {
 		do {
 			try await loadAvailableVouchers(membershipNumber: membershipNumber, reload: reload, devMode: devMode)
