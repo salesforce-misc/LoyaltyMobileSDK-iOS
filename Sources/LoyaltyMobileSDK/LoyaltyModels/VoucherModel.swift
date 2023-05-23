@@ -10,7 +10,7 @@ public struct VouchersResponse: Codable {
 }
 
 // MARK: - Voucher Model
-public struct VoucherModel: Codable, Identifiable {
+public struct VoucherModel: Codable, Identifiable, Equatable {
 	public let id, voucherDefinition, voucherCode, voucherNumber: String
 	public let description: String?
 	public let type: String?

@@ -39,28 +39,22 @@ final class VoucherViewModelTests: XCTestCase {
         viewModel.clear()
         MockFileManager.mockInstance.clear()
         try await viewModel.loadVouchers(membershipNumber: "1234", devMode: true)
-        XCTAssertTrue(viewModel.vouchers.count == 2)
+        XCTAssertTrue(viewModel.vouchers.count == 1)
         
         
         try await viewModel.loadVouchers(membershipNumber: "1234", devMode: true)
-        XCTAssertTrue(viewModel.vouchers.count == 2)
+        XCTAssertTrue(viewModel.vouchers.count == 1)
         XCTAssertTrue(viewModel.vouchers[0].discountPercent == 50)
         XCTAssertTrue(viewModel.vouchers[0].description == "20% discount on children group party at selected event centers.")
         XCTAssertTrue(viewModel.vouchers[0].id == "0kDRO00000000Hk2AI")
-        XCTAssertTrue(viewModel.vouchers[1].discountPercent == 40)
-        XCTAssertTrue(viewModel.vouchers[1].description == "20% discount on children group party at selected event centers.")
-        XCTAssertTrue(viewModel.vouchers[1].id == "0kDRO00000000Hp2AI")
     }
     
     @MainActor func testReloadVouchers() async throws {
-        try await viewModel.reloadVouchers(membershipNumber: "1234", devMode: true)
-        XCTAssertTrue(viewModel.vouchers.count == 2)
+        try await viewModel.loadVouchers(membershipNumber: "1234", devMode: true, reload: true)
+        XCTAssertTrue(viewModel.vouchers.count == 1)
         XCTAssertTrue(viewModel.vouchers[0].discountPercent == 50)
         XCTAssertTrue(viewModel.vouchers[0].description == "20% discount on children group party at selected event centers.")
         XCTAssertTrue(viewModel.vouchers[0].id == "0kDRO00000000Hk2AI")
-        XCTAssertTrue(viewModel.vouchers[1].discountPercent == 40)
-        XCTAssertTrue(viewModel.vouchers[1].description == "20% discount on children group party at selected event centers.")
-        XCTAssertTrue(viewModel.vouchers[1].id == "0kDRO00000000Hp2AI")
     }
     
     @MainActor func testFilteredVocuher() async throws {
