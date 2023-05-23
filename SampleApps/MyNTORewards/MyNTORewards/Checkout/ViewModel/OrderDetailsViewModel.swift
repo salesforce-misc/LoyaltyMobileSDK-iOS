@@ -32,9 +32,22 @@ class OrderDetailsViewModel: ObservableObject {
 		self.selectedIndex = index
 	}
 	
-	func createOrder(reloadables: [Reloadable], memberId: String?, membershipNumber: String?) async throws {
+	func createOrder(
+		reloadables: [Reloadable],
+		productVM: ProductViewModel,
+		profileVM: ProfileViewModel,
+		memberId: String?,
+		membershipNumber: String?)
+	async {
 		do {
-			orderId = try await placeOrder(membershipNumber: membershipNumber ?? "")
+			let productPrice = Double(productVM.basePrice)
+			let orderTotal = Double(productVM.getTotalAmount())
+			let pointsBalance = profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0
+			
+			orderId = try await placeOrder(productPrice: productPrice,
+										   orderTotal: orderTotal,
+										   pointsBalance: pointsBalance,
+										   membershipNumber: membershipNumber ?? "")
 			try await Task.sleep(nanoseconds: 1_000_000_000)
 			// Reloading data when the order is placed. Adding 1 sec delay to wait for point balance to be updated in the backend.
 			for reloadable in reloadables {
