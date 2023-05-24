@@ -11,7 +11,9 @@ import XCTest
 final class ForceRequestTests: XCTestCase {
     
     func testCreateUrl() async {
-        let sampleUrl = URL(string: "https://instanceUrl")!
+        guard let sampleUrl = URL(string: "https://instanceUrl") else {
+            return
+        }
         do {
             let queryItems = [
                 "username": "testUsername",

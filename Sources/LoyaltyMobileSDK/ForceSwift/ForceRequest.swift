@@ -164,8 +164,6 @@ public struct ForceRequest {
             throw URLError(.badURL)
         }
         
-        Logger.debug("ForceRequest: The new URL with queryItems has transformed to \(newURL.absoluteString)")
-        
         return newURL
     }
     

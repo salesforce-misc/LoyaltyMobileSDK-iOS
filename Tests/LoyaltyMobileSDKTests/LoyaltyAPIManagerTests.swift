@@ -31,7 +31,9 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         super.setUp()
         loayltyAPIManager = LoyaltyAPIManager(auth: MockAuthenticator.sharedMock,
                                               loyaltyProgramName: "MYNTO Rewards",
-                                              instanceURL: "https://instanceUrl", forceClient: ForceClient(auth: MockAuthenticator.sharedMock, forceNetworkManager: MockNetworkManager.sharedMock))
+                                              instanceURL: "https://instanceUrl",
+                                              forceClient: ForceClient(auth: MockAuthenticator.sharedMock,
+                                                                       forceNetworkManager: MockNetworkManager.sharedMock))
         MockNetworkManager.sharedMock.statusCode = 200
         
     }
@@ -60,7 +62,11 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         do {
             _ = try await loayltyAPIManager.getMemberProfile(for: "MRI706")
         } catch {
-            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.authenticationNeeded)
         }
     }
     
@@ -83,7 +89,11 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         do {
             _ = try await loayltyAPIManager.getCommunityMemberProfile()
         } catch {
-            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.authenticationNeeded)
         }
     }
     
@@ -110,12 +120,21 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         do {
             _ = try await loayltyAPIManager.getMemberBenefits(for: "1234")
         } catch {
-            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.authenticationNeeded)
         }
     }
 
     func testPostEnrollement() async throws {
-        let enrollment = try await loayltyAPIManager.postEnrollment(membershipNumber: "1234", firstName: "testFirstName", lastName: "testSecondName", email: "test@mail.com", phone: "12335699", emailNotification: false)
+        let enrollment = try await loayltyAPIManager.postEnrollment(membershipNumber: "1234",
+                                                                    firstName: "testFirstName",
+                                                                    lastName: "testSecondName",
+                                                                    email: "test@mail.com",
+                                                                    phone: "12335699",
+                                                                    emailNotification: false)
         
         XCTAssertEqual(enrollment.contactId, "0034x00001JdPg6")
         XCTAssertEqual(enrollment.loyaltyProgramName, "NTO Insider")
@@ -124,9 +143,18 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         // Handle authentication failed scenrio
         MockNetworkManager.sharedMock.statusCode = 401
         do {
-            _ = try await loayltyAPIManager.postEnrollment(membershipNumber: "1234", firstName: "testFirstName", lastName: "testSecondName", email: "test@mail.com", phone: "12335699", emailNotification: false)
+            _ = try await loayltyAPIManager.postEnrollment(membershipNumber: "1234",
+                                                           firstName: "testFirstName",
+                                                           lastName: "testSecondName",
+                                                           email: "test@mail.com",
+                                                           phone: "12335699",
+                                                           emailNotification: false)
         } catch {
-            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.authenticationNeeded)
         }
     }
 
@@ -143,7 +171,11 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         do {
             _ = try await loayltyAPIManager.enrollIn(promotion: "health", for: "1234")
         } catch {
-            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.authenticationNeeded)
         }
     }
 
@@ -163,7 +195,11 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         do {
             _ = try await loayltyAPIManager.unenroll(promotionName: "Health", for: "1234")
         } catch {
-            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.authenticationNeeded)
         }
     }
     
@@ -180,7 +216,11 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         do {
             _ = try await loayltyAPIManager.unenroll(promotionId: "3456", for: "Health")
         } catch {
-            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.authenticationNeeded)
         }
     }
 
@@ -205,7 +245,11 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         do {
             _ = try await loayltyAPIManager.getPromotions(memberId: "1234")
         } catch {
-            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.authenticationNeeded)
         }
     }
 
@@ -232,12 +276,20 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         do {
             _ = try await loayltyAPIManager.getTransactions(for: "1234")
         } catch {
-            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.authenticationNeeded)
         }
     }
     
     func testGetVouchers() async throws {
-        var vouchers = try await loayltyAPIManager.getVouchers(membershipNumber: "1234", pageNumber: 1, productId: ["0kD4x000000wr6THAK", "0kD4x003000wr6EEAQ"], sortBy: .expirationDate, sortOrder: .ascending)
+        var vouchers = try await loayltyAPIManager.getVouchers(membershipNumber: "1234",
+                                                               pageNumber: 1,
+                                                               productId: ["0kD4x000000wr6THAK", "0kD4x003000wr6EEAQ"],
+                                                               sortBy: .expirationDate,
+                                                               sortOrder: .ascending)
         XCTAssertEqual(vouchers.count, 4)
         XCTAssertEqual(vouchers[0].id, "0kDRO00000000Hk2AI")
         XCTAssertEqual(vouchers[0].discountPercent, 50)
@@ -263,9 +315,17 @@ final class LoyaltyAPIManagerTests: XCTestCase {
         // Handle authentication failed scenrio
         MockNetworkManager.sharedMock.statusCode = 401
         do {
-            _ = try await loayltyAPIManager.getVouchers(membershipNumber: "1234", pageNumber: 1, productId: ["0kD4x000000wr6THAK", "0kD4x003000wr6EEAQ"], sortBy: .expirationDate, sortOrder: .ascending)
+            _ = try await loayltyAPIManager.getVouchers(membershipNumber: "1234",
+                                                        pageNumber: 1,
+                                                        productId: ["0kD4x000000wr6THAK", "0kD4x003000wr6EEAQ"],
+                                                        sortBy: .expirationDate,
+                                                        sortOrder: .ascending)
         } catch {
-            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.authenticationNeeded)
         }
     }
     

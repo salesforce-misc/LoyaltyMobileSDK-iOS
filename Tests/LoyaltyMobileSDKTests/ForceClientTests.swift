@@ -60,7 +60,11 @@ final class ForceClientTests: XCTestCase {
             let promotionsWithAuthFlow = try await forceClient.fetch(type: PromotionModel.self, with: getMockRequest(), urlSession: mockSession)
             XCTAssertEqual(promotionsWithAuthFlow.status, true)
         } catch {
-            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.authenticationNeeded)
         }
         
         MockAuthenticator.sharedMock.needToThrowError = false
@@ -72,7 +76,11 @@ final class ForceClientTests: XCTestCase {
             let promotionsWithAuthFlow = try await forceClient.fetch(type: PromotionModel.self, with: getMockRequest(), urlSession: mockSessionWithError)
             XCTAssertEqual(promotionsWithAuthFlow.status, true)
         } catch {
-            XCTAssertEqual(error as! CommonError, CommonError.authenticationNeeded)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.authenticationNeeded)
         }
         
         MockNetworkManager.sharedMock.statusCode = 403
@@ -82,7 +90,11 @@ final class ForceClientTests: XCTestCase {
             let promotionsWithAuthFlow = try await forceClient.fetch(type: PromotionModel.self, with: getMockRequest(), urlSession: mockSessionWithError)
             XCTAssertEqual(promotionsWithAuthFlow.status, true)
         } catch {
-            XCTAssertEqual(error as! CommonError, CommonError.functionalityNotEnabled)
+            guard let commonError = error as? CommonError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            XCTAssertEqual(commonError, CommonError.functionalityNotEnabled)
         }
 
     }
