@@ -12,6 +12,7 @@ struct PaymentDetailsView: View {
 	@EnvironmentObject private var orderDetailsVM: OrderDetailsViewModel
 	@EnvironmentObject private var rootVM: AppRootViewModel
 	@EnvironmentObject private var profileVM: ProfileViewModel
+	@EnvironmentObject private var productVM: ProductViewModel
 	@EnvironmentObject private var transactionVM: TransactionViewModel
 	@EnvironmentObject private var vouchersVM: VoucherViewModel
 	@State private var isScreenLoading = false
@@ -41,7 +42,11 @@ struct PaymentDetailsView: View {
 								let membershipNumber = profileVM.profile?.membershipNumber
 								isScreenLoading = true
 								do {
-									try await orderDetailsVM.createOrder(reloadables: [transactionVM, vouchersVM, profileVM], memberId: memberId, membershipNumber: membershipNumber)
+									await orderDetailsVM.createOrder(reloadables: [transactionVM, vouchersVM, profileVM],
+																	 productVM: productVM,
+																	 profileVM: profileVM,
+																	 memberId: memberId,
+																	 membershipNumber: membershipNumber)
 								} catch {
 									Logger.error("Unable to create order")
 								}

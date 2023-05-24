@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ProductDetailsView: View {
+	@EnvironmentObject var productViewModel: ProductViewModel
 	@State private var sizeSelected = 0
 	@State private var colorSelected = 0
-	@State private var quantitySelected: Int = 1
 	var body: some View {
 		ScrollView(showsIndicators: false) {
 			ZStack {
@@ -29,10 +29,10 @@ struct ProductDetailsView: View {
 					SizeSelectorView(selection: $sizeSelected, sizes: ["S", "M", "L", "XL"])
 					AvailableColorsView(selection: $colorSelected, colors: [Color("VibrantRed"), Color("ProductGreen"), Color("ProductPeach"), Color("VibrantPurple")])
 					HStack(alignment: .bottom) {
-						QuantityView(quantitySelected: $quantitySelected, min: 1, max: 10)
+						QuantityView(quantitySelected: $productViewModel.quantitySelected, min: 1, max: 10)
 						Spacer()
 						VStack(alignment: .trailing) {
-							Text("$\(quantitySelected * 179)")
+							Text("$\(productViewModel.quantitySelected * productViewModel.basePrice)")
 								.font(.totalAmountText)
 							Text("Free shipping")
 								.font(.productShippingText)

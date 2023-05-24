@@ -1,0 +1,15 @@
+//
+//  AppVersion.xcconfig
+//  MyNTORewards
+//
+//  Created by Leon Qi on 5/23/23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// This is master configurations and should include all other .xcconfig files
+
+#include "AppVersion.xcconfig"
+#include "ConnectedApp.xcconfig"
+#include "TestConfig.xcconfig"

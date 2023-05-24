@@ -20,6 +20,8 @@ struct CheckBoxView: View {
 }
 
 struct AmountPayableView: View {
+	@EnvironmentObject var productVM: ProductViewModel
+	@EnvironmentObject var profileVM: ProfileViewModel
     var body: some View {
         VStack(spacing: 16) {
             HStack {
@@ -28,7 +30,7 @@ struct AmountPayableView: View {
                     .font(.useMyPointsText)
                     .foregroundColor(Color(hex: "#181818"))
                 Spacer()
-                Text("Points Available: 300")
+				Text("Points Available: \(Int(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0))")
                     .font(.useMyPointsText)
                     .foregroundColor(Color(hex: "#181818"))
             }
@@ -37,8 +39,8 @@ struct AmountPayableView: View {
                     .font(.voucherHederText)
                     .foregroundColor(Color(hex: "#181818"))
                 Spacer()
-                Text(" $154")
-                    .font(.amountText)
+				Text(" $\(productVM.getTotalAmount())")
+					.font(.totalAmountText)
                     .foregroundColor(Color(hex: "#181818"))
             }
             .padding()
