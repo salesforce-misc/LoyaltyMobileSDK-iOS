@@ -181,8 +181,6 @@ class AppRootViewModel: ObservableObject {
                                                           forceClient: ForceClient(auth: authManager))
 				let profile = try await loyaltyAPIManager.getCommunityMemberProfile()
 				
-				Logger.debug("\(profile)")
-				
 				let member = CommunityMemberModel(firstName: profile.associatedContact.firstName,
 												  lastName: profile.associatedContact.lastName,
 												  email: userEmail,
@@ -225,8 +223,6 @@ class AppRootViewModel: ObservableObject {
                 let firstName = contact?.string(forField: "FirstName") ?? ""
                 let lastName = contact?.string(forField: "LastName") ?? ""
                 let phone = contact?.string(forField: "Phone") ?? ""
-                
-                Logger.debug("First Name: \(firstName) | Last Name: \(lastName) | Phone: \(phone)")
                 
                 let membershipNumber = LoyaltyUtilities.randomString(of: 8)
                 let enrolledMember = try await loyaltyAPIManager.postEnrollment(membershipNumber: membershipNumber,

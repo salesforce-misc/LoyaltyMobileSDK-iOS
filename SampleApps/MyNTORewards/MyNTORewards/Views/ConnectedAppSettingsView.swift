@@ -176,14 +176,6 @@ struct ConnectedAppSettingsView: View {
     }
     
     private func save() {
-        // Handle submission of form data
-        Logger.debug("Connected App Name: \(name)")
-        Logger.debug("Consumer Key: \(consumerKey)")
-        Logger.debug("Consumer Secret: \(consumerSecret)")
-        Logger.debug("Callback URL: \(callbackURL)")
-        Logger.debug("Base URL: \(baseURL)")
-        Logger.debug("Instance URL: \(instanceURL)")
-        Logger.debug("Community URL: \(communityURL)")
         
         let app = ForceConnectedApp(connectedAppName: name,
                                     consumerKey: consumerKey,
