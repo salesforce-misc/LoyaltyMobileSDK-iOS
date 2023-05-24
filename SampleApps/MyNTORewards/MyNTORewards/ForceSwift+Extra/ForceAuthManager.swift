@@ -205,7 +205,6 @@ public class ForceAuthManager: ForceAuthenticator {
         do {
             let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
             let auth = try await NetworkManager.shared.fetch(type: ForceAuth.self, request: request)
-            Logger.debug("Refreshed the access token: \(auth)")
             
             /// Add back the refreshToken
             let newAuth = ForceAuth(accessToken: auth.accessToken,
@@ -324,7 +323,6 @@ public class ForceAuthManager: ForceAuthenticator {
             guard let authCode = getAuthorizationCode(fromUrl: url) else {
                 throw CommonError.codeCredentials
             }
-            Logger.debug(authCode)
             return authCode
 
         } catch {
@@ -350,7 +348,6 @@ public class ForceAuthManager: ForceAuthenticator {
             let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
             let auth = try await NetworkManager.shared.fetch(type: ForceAuth.self, request: request)
 
-            Logger.debug("\(auth)")
             try saveAuth(for: auth)
             return auth
 
