@@ -80,7 +80,7 @@ struct VoucherDetailView: View {
                                 .frame(width: 15, height: 15)
                                 .padding(.trailing, 8)
                         }
-                        .frame(width: 145.8, height: 32)
+                        .frame(width: 152, height: 32)
                         .background(Color.theme.voucherBackground)
                         .cornerRadius(10)
                         .overlay(
