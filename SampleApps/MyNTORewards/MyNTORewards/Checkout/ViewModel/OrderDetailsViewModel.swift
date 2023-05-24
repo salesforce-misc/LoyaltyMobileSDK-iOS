@@ -37,8 +37,7 @@ class OrderDetailsViewModel: ObservableObject {
 		productVM: ProductViewModel,
 		profileVM: ProfileViewModel,
 		memberId: String?,
-		membershipNumber: String?)
-	async {
+		membershipNumber: String?) async throws {
 		do {
 			let productPrice = Double(productVM.basePrice)
 			let orderTotal = Double(productVM.getTotalAmount())
@@ -55,7 +54,8 @@ class OrderDetailsViewModel: ObservableObject {
 			}
 			isOrderPlacedNavigationActive = true
 		} catch {
-			Logger.error("Unable to place order")
+            Logger.error("Unable to place order: \(error.localizedDescription)")
+            throw error
 		}
 	}
 	
@@ -131,7 +131,7 @@ class OrderDetailsViewModel: ObservableObject {
     func getShippingAddress(membershipNumber: String) async throws {
         do {
             let queryResult = try await forceClient.SOQL(type: ShippingAddressRecord.self,
-																   for: checkout_shipping_address_query)
+                                                         for: checkout_shipping_address_query)
             shippingAddress = queryResult.records.compactMap { $0.shippingAddress }.first
         } catch {
             Logger.error(error.localizedDescription)
