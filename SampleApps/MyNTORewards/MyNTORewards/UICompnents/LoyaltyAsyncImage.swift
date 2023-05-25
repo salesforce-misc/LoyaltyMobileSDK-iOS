@@ -30,7 +30,7 @@ struct LoyaltyAsyncImage<Content: View, Placeholder: View>: View {
         } else if let url = url {
             placeholder().task { await imageVM.getImage(url: url) }
         } else {
-            Image("img-placeholder")
+            content(Image("img-placeholder"))
         }
     }
 }
