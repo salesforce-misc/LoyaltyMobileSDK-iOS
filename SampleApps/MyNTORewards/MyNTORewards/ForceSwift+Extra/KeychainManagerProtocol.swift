@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol KeychainManagerProtocol {
+public protocol KeychainManagerProtocol {
     associatedtype T
     static func save(item: T) throws
     static func retrieve(for accountId: String) throws -> T?

@@ -8,16 +8,17 @@
 import Foundation
 import LoyaltyMobileSDK
 
-struct ForceAuthKeychainManager: KeychainManagerProtocol {
+public struct ForceAuthKeychainManager: KeychainManagerProtocol {
     
+    public typealias  T = ForceAuth
     static let serviceId: String = AppSettings.Defaults.keychainAuthServiceId
     
-    static func save(item auth: ForceAuth) throws {
+    public static func save(item auth: ForceAuth) throws {
         let data = try JSONEncoder().encode(auth)
         try Keychain.write(data: data, service: serviceId, account: auth.identityURL)
     }
     
-    static func retrieve(for identityURL: String) throws -> ForceAuth? {
+    public static func retrieve(for identityURL: String) throws -> ForceAuth? {
         do {
             let data = try Keychain.read(service: serviceId, account: identityURL)
             return try JSONDecoder().decode(ForceAuth.self, from: data)
@@ -30,7 +31,7 @@ struct ForceAuthKeychainManager: KeychainManagerProtocol {
         }
     }
     
-    static func retrieveAll() throws -> [ForceAuth] {
+    public static func retrieveAll() throws -> [ForceAuth] {
         do {
             let dataArray = try Keychain.read(service: serviceId)
             let decoder = JSONDecoder()
@@ -51,7 +52,7 @@ struct ForceAuthKeychainManager: KeychainManagerProtocol {
         }
     }
     
-    static func delete(for identityURL: String) throws {
+    public static func delete(for identityURL: String) throws {
         do {
             try Keychain.delete(service: serviceId, account: identityURL)
         } catch {

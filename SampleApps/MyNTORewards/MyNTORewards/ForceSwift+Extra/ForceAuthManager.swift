@@ -378,10 +378,12 @@ public class ForceAuthManager: ForceAuthenticator {
 
     }
     
+    // swiftlint:disable line_length
+    
     /// Save Auth to Keychain
-    public func saveAuth(for auth: ForceAuth) throws {
+    public func saveAuth<ForceAuthKeychainManagerType: KeychainManagerProtocol>(for auth: ForceAuth, forceAuth: ForceAuthKeychainManagerType.Type = ForceAuthKeychainManager) throws where ForceAuthKeychainManagerType.T == ForceAuth {
         do {
-            try ForceAuthKeychainManager.save(item: auth)
+            try ForceAuthKeychainManagerType.save(item: auth)
             defaults.userIdentifier = auth.identityURL
         } catch {
             throw error
@@ -389,21 +391,21 @@ public class ForceAuthManager: ForceAuthenticator {
     }
     
     /// Delete Auth from Keychain
-    public func deleteAuth() throws {
+    public func deleteAuth<ForceAuthKeychainManagerType: KeychainManagerProtocol>(forceAuth: ForceAuthKeychainManagerType.Type = ForceAuthKeychainManager) throws where ForceAuthKeychainManagerType.T == ForceAuth {
         if let id = self.userIdentifier {
-            try? ForceAuthKeychainManager.delete(for: id)
+            try? ForceAuthKeychainManagerType.delete(for: id)
         }
     }
     
     /// Retrieve Auth from Keychain
-    public func retrieveAuth() throws -> ForceAuth {
+    public func retrieveAuth<ForceAuthKeychainManagerType: KeychainManagerProtocol>(forceAuth: ForceAuthKeychainManagerType.Type = ForceAuthKeychainManager) throws -> ForceAuth where ForceAuthKeychainManagerType.T == ForceAuth {
         guard let id = ForceAuthManager.shared.userIdentifier else {
             throw CommonError.userIdentityUnknown
         }
-        guard let auth = try ForceAuthKeychainManager.retrieve(for: id) else {
+        guard let auth = try ForceAuthKeychainManagerType.retrieve(for: id) else {
             throw CommonError.authNotFoundInKeychain
         }
         return auth
     }
-    
+    // swiftlint:enable line_length
 }

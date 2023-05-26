@@ -10,7 +10,7 @@ import LoyaltyMobileSDK
 
 struct ConnectedAppsView: View {
     
-    @EnvironmentObject private var connectedAppVM: ConnectedAppsViewModel
+    @EnvironmentObject private var connectedAppVM: ConnectedAppsViewModel<ForceConnectedAppKeychainManager>
     
     @State private var selectedApp: ForceConnectedApp = AppSettings.shared.getConnectedApp()
     @State private var showAddOther: Bool = false
