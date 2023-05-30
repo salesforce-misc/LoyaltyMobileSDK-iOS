@@ -123,7 +123,9 @@ struct VoucherCardView: View {
                  )
         )
         .onTapGesture {
-            showVoucherDetailView.toggle()
+			if voucher.status == "Issued" {
+				showVoucherDetailView.toggle()
+			}
         }
         .sheet(isPresented: $showVoucherDetailView) {
             VoucherDetailView(voucher: voucher)

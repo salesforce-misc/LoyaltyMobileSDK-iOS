@@ -17,7 +17,7 @@ struct ProductDetailsView: View {
 				Color(hex: "#F1F3FB")
 				VStack {
 					VStack {
-						ProductHeaderView(title: "STOP", subTitle: "Women Flight Jacket", rating: 4)
+						ProductHeaderView(title: "SHOP", subTitle: "Men's Rainier L4 Windproof Soft Shell Hoodie", rating: 4)
 						ProductImagesView(mainImage: "img-product1",
 										  subImages: [
 											"img-product2",
