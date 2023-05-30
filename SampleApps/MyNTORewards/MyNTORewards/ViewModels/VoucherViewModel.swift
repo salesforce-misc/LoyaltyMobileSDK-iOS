@@ -34,8 +34,8 @@ class VoucherViewModel: ObservableObject, Reloadable {
 	private let authManager: ForceAuthenticator
 	private let localFileManager: FileManagerProtocol
 	private var loyaltyAPIManager: LoyaltyAPIManager
-	private let expiredVouchersFilterPeriod = 60
-	private let redeemedVouchersFilterPeriod = 60
+	private let expiredVouchersFilterPeriod = 30
+	private let redeemedVouchersFilterPeriod = 90
 	
 	init(authManager: ForceAuthenticator = ForceAuthManager.shared, localFileManager: FileManagerProtocol = LocalFileManager.instance) {
 		self.authManager = authManager
