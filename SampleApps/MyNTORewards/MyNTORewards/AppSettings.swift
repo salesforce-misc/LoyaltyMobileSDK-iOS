@@ -25,7 +25,8 @@ struct AppSettings {
             callbackURL: connectedAppSettings["CALLBACK_URL"] as? String ?? "",
             baseURL: connectedAppSettings["BASE_URL"] as? String ?? "",
             instanceURL: connectedAppSettings["INSTANCE_URL"] as? String ?? "",
-            communityURL: connectedAppSettings["COMMUNITY_URL"] as? String ?? ""
+            communityURL: connectedAppSettings["COMMUNITY_URL"] as? String ?? "",
+            selfRegisterURL: connectedAppSettings["SELF_REGISTER_URL"] as? String ?? ""
         )
     }
 

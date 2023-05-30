@@ -30,8 +30,6 @@ struct OnboardingView: View {
         OnboardingModel(image: "img-preview3", description: "Get personalized offers!", offset: CGSize(width: 60, height: 0))
     ]
     
-    private let url = URL(string: "https://hutl.my.site.com/s/login/SelfRegister")!
-    
     var body: some View {
         let pageCount = onboardingData.count
         ZStack {
@@ -128,18 +126,24 @@ struct OnboardingView: View {
                     VStack {
                         SheetHeader(title: "Register", onDismiss: {
                             showSelfRegister = false
-                        }) {
-                            Alert(
-                                title: Text("Confirm"),
-                                message: Text("Are you sure you want to quit?"),
-                                primaryButton: .destructive(Text("Quit")) {
-                                    showSelfRegister = false
-                                },
-                                secondaryButton: .cancel()
-                            )
+                        })
+//                        {
+//                            Alert(
+//                                title: Text("Confirm"),
+//                                message: Text("Are you sure you want to quit?"),
+//                                primaryButton: .destructive(Text("Quit")) {
+//                                    showSelfRegister = false
+//                                },
+//                                secondaryButton: .cancel()
+//                            )
+//                        }
+                        if let url = URL(string: AppSettings.shared.connectedApp.selfRegisterURL) {
+                            WebView(url: url)
+                                .edgesIgnoringSafeArea(.all)
+                        } else {
+                            EmptyStateView(title: "Sorry, we're having some technical difficulties and self registration is not available.")
                         }
-                        WebView(url: url)
-                            .edgesIgnoringSafeArea(.all)
+                        
                     }
                 }
                 .onReceive(viewModel.$userState) { state in
