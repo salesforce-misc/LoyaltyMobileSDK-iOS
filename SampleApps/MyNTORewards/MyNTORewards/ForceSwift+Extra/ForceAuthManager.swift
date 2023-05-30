@@ -381,9 +381,9 @@ public class ForceAuthManager: ForceAuthenticator {
     // swiftlint:disable line_length
     
     /// Save Auth to Keychain
-    public func saveAuth<ForceAuthKeychainManagerType: KeychainManagerProtocol>(for auth: ForceAuth, forceAuth: ForceAuthKeychainManagerType.Type = ForceAuthKeychainManager) throws where ForceAuthKeychainManagerType.T == ForceAuth {
+    public func saveAuth<KeychainManagerType: KeychainManagerProtocol>(for auth: ForceAuth, forceAuth: KeychainManagerType.Type = ForceAuthKeychainManager) throws where KeychainManagerType.T == ForceAuth {
         do {
-            try ForceAuthKeychainManagerType.save(item: auth)
+            try KeychainManagerType.save(item: auth)
             defaults.userIdentifier = auth.identityURL
         } catch {
             throw error
@@ -391,18 +391,18 @@ public class ForceAuthManager: ForceAuthenticator {
     }
     
     /// Delete Auth from Keychain
-    public func deleteAuth<ForceAuthKeychainManagerType: KeychainManagerProtocol>(forceAuth: ForceAuthKeychainManagerType.Type = ForceAuthKeychainManager) throws where ForceAuthKeychainManagerType.T == ForceAuth {
+    public func deleteAuth<KeychainManagerType: KeychainManagerProtocol>(forceAuth: KeychainManagerType.Type = ForceAuthKeychainManager) throws where KeychainManagerType.T == ForceAuth {
         if let id = self.userIdentifier {
-            try? ForceAuthKeychainManagerType.delete(for: id)
+            try? KeychainManagerType.delete(for: id)
         }
     }
     
     /// Retrieve Auth from Keychain
-    public func retrieveAuth<ForceAuthKeychainManagerType: KeychainManagerProtocol>(forceAuth: ForceAuthKeychainManagerType.Type = ForceAuthKeychainManager) throws -> ForceAuth where ForceAuthKeychainManagerType.T == ForceAuth {
+    public func retrieveAuth<KeychainManagerType: KeychainManagerProtocol>(forceAuth: KeychainManagerType.Type = ForceAuthKeychainManager) throws -> ForceAuth where KeychainManagerType.T == ForceAuth {
         guard let id = ForceAuthManager.shared.userIdentifier else {
             throw CommonError.userIdentityUnknown
         }
-        guard let auth = try ForceAuthKeychainManagerType.retrieve(for: id) else {
+        guard let auth = try KeychainManagerType.retrieve(for: id) else {
             throw CommonError.authNotFoundInKeychain
         }
         return auth

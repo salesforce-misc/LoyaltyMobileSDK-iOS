@@ -9,7 +9,7 @@ import Foundation
 import LoyaltyMobileSDK
 
 public struct ForceAuthKeychainManager: KeychainManagerProtocol {
-    
+
     public typealias  T = ForceAuth
     static let serviceId: String = AppSettings.Defaults.keychainAuthServiceId
     
