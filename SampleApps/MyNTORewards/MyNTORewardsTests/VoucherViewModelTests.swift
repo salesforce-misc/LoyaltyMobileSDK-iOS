@@ -110,4 +110,64 @@ final class VoucherViewModelTests: XCTestCase {
         try await viewModel.loadRedeemedVouchers(membershipNumber: "1234", reload: true, devMode: true)
         XCTAssertTrue(viewModel.expiredVochers.isEmpty)
     }
+	
+	@MainActor func test_getRecentlyExpiredVouchers_whenPassing30Days_shouldReturnTwoVouchers() async throws {
+		let vouchers = try await viewModel.fetchVouchers(membershipNumber: "1234", devMode: true)
+		let currentDate = "2023-05-30".toDate()
+		let recentVouchers: [VoucherModel] = viewModel.getRecentlyExpiredVouchers(from: vouchers,
+																		 withinDays: 30,
+																		 currentDate: currentDate)
+		XCTAssertEqual(recentVouchers.count, 2)
+	}
+	
+	@MainActor func test_getRecentlyExpiredVouchers_whenPassing10Days_shouldReturnOneVoucher() async throws {
+		let vouchers = try await viewModel.fetchVouchers(membershipNumber: "1234", devMode: true)
+		let currentDate = "2023-05-30".toDate()
+		let recentVouchers: [VoucherModel] = viewModel.getRecentlyExpiredVouchers(from: vouchers,
+																		 withinDays: 10,
+																		 currentDate: currentDate)
+		XCTAssertEqual(recentVouchers.count, 1)
+	}
+	
+	@MainActor func test_getRecentlyExpiredVouchers_whenPassing9Days_shouldNotReturnAnyVouchers() async throws {
+		let vouchers = try await viewModel.fetchVouchers(membershipNumber: "1234", devMode: true)
+		let currentDate = "2023-05-30".toDate()
+		let recentVouchers: [VoucherModel] = viewModel.getRecentlyExpiredVouchers(from: vouchers,
+																		 withinDays: 9,
+																		 currentDate: currentDate)
+		XCTAssertEqual(recentVouchers.count, 0)
+	}
+	
+	@MainActor func test_getRecentlyRedeemedVouchers_whenPassed30Days_shouldReturnOneVoucher() async throws {
+		let vouchers = try await viewModel.fetchVouchers(membershipNumber: "1234", devMode: true)
+		let currentDate = "2023-05-30".toDate()
+		let recentVouchers: [VoucherModel] = viewModel.getRecentlyRedeemedVouchers(from: vouchers,
+																				   withinDays: 30,
+																				   currentDate: currentDate)
+		XCTAssertEqual(recentVouchers.count, 1)
+	}
+	
+	@MainActor func test_getRecentlyRedeemedVouchers_whenPassed40Days_shouldReturnTwoVouchers() async throws {
+		let vouchers = try await viewModel.fetchVouchers(membershipNumber: "1234", devMode: true)
+		let currentDate = "2023-05-30".toDate()
+		let recentVouchers: [VoucherModel] = viewModel.getRecentlyRedeemedVouchers(from: vouchers,
+																				   withinDays: 40,
+																				   currentDate: currentDate)
+		XCTAssertEqual(recentVouchers.count, 2)
+	}
+	
+	func test_getDateBeforeDays_whenPassed30Days_shouldReturnDateBefore30Days() throws {
+		let currentDate = "2023-05-01".toDate()
+		let expectedDate = "2023-04-01".toDate()
+		let resultDate: Date = try XCTUnwrap(currentDate?.getDate(beforeDays: 30))
+		XCTAssertEqual(resultDate, expectedDate)
+	}
+	
+	func test_getDateBeforeDays_whenPassed60Days_shouldReturnDateBefore60Days() throws {
+		let currentDate = "2023-05-01".toDate()
+		let expectedDate = "2023-03-02".toDate()
+		let resultDate: Date = try XCTUnwrap(currentDate?.getDate(beforeDays: 60))
+		XCTAssertEqual(resultDate, expectedDate)
+	}
+	
 }

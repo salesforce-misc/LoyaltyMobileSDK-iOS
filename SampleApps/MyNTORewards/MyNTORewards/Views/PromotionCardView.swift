@@ -20,6 +20,7 @@ struct PromotionCardView: View {
         VStack {
             AsyncImageView(imageUrl: promotion.promotionImageURL)
                 .frame(width: 289, height: 154)
+				.contentShape(Rectangle())
                 .cornerRadius(5, corners: [.topLeft, .topRight])
                 .padding(.top)
                 .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.image)

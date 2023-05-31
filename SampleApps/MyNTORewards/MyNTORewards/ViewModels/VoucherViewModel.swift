@@ -31,19 +31,21 @@ class VoucherViewModel: ObservableObject, Reloadable {
     }
     
 	private let vouchersFolderName = "Vouchers"
-    private let authManager: ForceAuthenticator
-    private let localFileManager: FileManagerProtocol
-    private var loyaltyAPIManager: LoyaltyAPIManager
-    
-    init(authManager: ForceAuthenticator = ForceAuthManager.shared, localFileManager: FileManagerProtocol = LocalFileManager.instance) {
-        self.authManager = authManager
-        self.localFileManager = localFileManager
-        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
-                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                              instanceURL: AppSettings.shared.getInstanceURL(),
-                                              forceClient: ForceClient(auth: authManager))
-    }
-    
+	private let authManager: ForceAuthenticator
+	private let localFileManager: FileManagerProtocol
+	private var loyaltyAPIManager: LoyaltyAPIManager
+	private let expiredVouchersFilterPeriod = 30
+	private let redeemedVouchersFilterPeriod = 90
+	
+	init(authManager: ForceAuthenticator = ForceAuthManager.shared, localFileManager: FileManagerProtocol = LocalFileManager.instance) {
+		self.authManager = authManager
+		self.localFileManager = localFileManager
+		loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
+											  loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+											  instanceURL: AppSettings.shared.getInstanceURL(),
+											  forceClient: ForceClient(auth: authManager))
+	}
+	
 	func loadVouchers(membershipNumber: String, devMode: Bool = false, reload: Bool = false) async throws {
 		if vouchers.isEmpty || reload {
 			let expiringVouchers = try await getExpiringVouchers(membershipNumber: membershipNumber, devMode: devMode, reload: reload)
@@ -165,33 +167,65 @@ class VoucherViewModel: ObservableObject, Reloadable {
         }
     }
     
-    func loadRedeemedVouchers(membershipNumber: String, reload: Bool = false, devMode: Bool = false) async throws {
-        if reload {
-            do {
-                redeemedVochers = try await reloadFilteredVouchers(membershipNumber: membershipNumber, filter: .Redeemed, devMode: devMode)
-            } catch {
-                throw error
-            }
-        } else {
-            if redeemedVochers.isEmpty {
-                redeemedVochers = try await loadFilteredVouchers(membershipNumber: membershipNumber, filter: .Redeemed, devMode: devMode)
-            }
-        }
-    }
-    
-    func loadExpiredVouchers(membershipNumber: String, reload: Bool = false, devMode: Bool = false) async throws {
-        if reload {
-            do {
-                expiredVochers = try await reloadFilteredVouchers(membershipNumber: membershipNumber, filter: .Expired, devMode: devMode)
-            } catch {
-                throw error
-            }
-        } else {
-            if expiredVochers.isEmpty {
-                expiredVochers = try await loadFilteredVouchers(membershipNumber: membershipNumber, filter: .Expired, devMode: devMode)
-            }
-        }
-    }
+	func loadRedeemedVouchers(membershipNumber: String, reload: Bool = false, devMode: Bool = false) async throws {
+		if reload {
+			do {
+				let allRedeemedVouchers = try await reloadFilteredVouchers(membershipNumber: membershipNumber, filter: .Redeemed, devMode: devMode)
+				redeemedVochers = getRecentlyRedeemedVouchers(from: allRedeemedVouchers, withinDays: redeemedVouchersFilterPeriod)
+			} catch {
+				throw error
+			}
+		} else {
+			if redeemedVochers.isEmpty {
+				let allRedeemedVouchers = try await loadFilteredVouchers(membershipNumber: membershipNumber, filter: .Redeemed, devMode: devMode)
+				redeemedVochers = getRecentlyRedeemedVouchers(from: allRedeemedVouchers, withinDays: redeemedVouchersFilterPeriod)
+			}
+		}
+	}
+	
+	func loadExpiredVouchers(membershipNumber: String, reload: Bool = false, devMode: Bool = false) async throws {
+		if reload {
+			do {
+				let allExpiredVouchers = try await reloadFilteredVouchers(membershipNumber: membershipNumber, filter: .Expired, devMode: devMode)
+				expiredVochers = getRecentlyExpiredVouchers(from: allExpiredVouchers, withinDays: expiredVouchersFilterPeriod)
+			} catch {
+				throw error
+			}
+		} else {
+			if expiredVochers.isEmpty {
+				let allExpiredVouchers = try await loadFilteredVouchers(membershipNumber: membershipNumber, filter: .Expired, devMode: devMode)
+				expiredVochers = getRecentlyExpiredVouchers(from: allExpiredVouchers, withinDays: expiredVouchersFilterPeriod)
+			}
+		}
+	}
+	
+	final func getRecentlyExpiredVouchers(
+		from vouchers: [VoucherModel],
+		withinDays days: Int,
+		currentDate: Date? = Date()
+	) -> [VoucherModel] {
+		let recentVouchers = vouchers.filter { voucher in
+			guard let expirationDate = voucher.expirationDate.toDate(),
+				  let thresholdDate = currentDate?.getDate(beforeDays: days)
+			else { return false }
+			return expirationDate > thresholdDate
+		}
+		return recentVouchers
+	}
+	
+	final func getRecentlyRedeemedVouchers(
+		from vouchers: [VoucherModel],
+		withinDays days: Int,
+		currentDate: Date? = Date()
+	) -> [VoucherModel] {
+		let recentVouchers = vouchers.filter { voucher in
+			guard let redeemedDate = voucher.useDate?.toDate(),
+				  let thresholdDate = currentDate?.getDate(beforeDays: days)
+			else { return false }
+			return redeemedDate > thresholdDate
+		}
+		return recentVouchers
+	}
     
     @MainActor
     func clear() {
