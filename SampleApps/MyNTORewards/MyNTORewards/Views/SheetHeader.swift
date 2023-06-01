@@ -24,9 +24,9 @@ struct SheetHeader: View {
         VStack {
             HStack {
                 Text(title)
-                    .font(.headline)
+                    .font(.boldedText)
                     .padding()
-
+                    .accessibilityIdentifier(title)
                 Spacer()
 
                 if let alert = alert {

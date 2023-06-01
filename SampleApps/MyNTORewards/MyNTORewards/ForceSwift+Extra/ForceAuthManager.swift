@@ -285,6 +285,7 @@ public class ForceAuthManager: ForceAuthenticator {
                                                 callbackURL: callbackURL)
 
         } catch {
+            Logger.debug("[authenticate] Error encountered: \(error.localizedDescription)")
             throw error
         }
     }
@@ -306,26 +307,37 @@ public class ForceAuthManager: ForceAuthenticator {
         ]
 
         let headers = [
-            "Auth-Request-Type": "Named-User"
+            "Auth-Request-Type": "Named-User",
+            "Accept": "text/html;charset=UTF-8",
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
         ]
 
         do {
             let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems, headers: headers)
+            
+            Logger.debug("Request is: \(request)")
 
             let output = try await URLSession.shared.data(for: request)
+            
+            Logger.debug("Response is: \(output.1)")
 
             guard let response = output.1 as? HTTPURLResponse,
-                  let url = response.url,
+                  let redirectUrl = response.url,
                   response.statusCode == 401 else {
-                throw CommonError.codeCredentials
+                Logger.debug("[requestAuthorizationCode] Error getting redirect URL")
+                throw CommonError.responseUnsuccessful(message: "Failed getting rediect URL for authorization code")
             }
+            
+            Logger.debug("Redirect URL is: \(redirectUrl)")
 
-            guard let authCode = getAuthorizationCode(fromUrl: url) else {
+            guard let authCode = getAuthorizationCode(fromUrl: redirectUrl) else {
+                Logger.debug("[requestAuthorizationCode] Error getting valid authorization code")
                 throw CommonError.codeCredentials
             }
             return authCode
 
         } catch {
+            Logger.debug("[requestAuthorizationCode] Error occurred: \(error.localizedDescription)")
             throw error
         }
 
@@ -352,6 +364,7 @@ public class ForceAuthManager: ForceAuthenticator {
             return auth
 
         } catch {
+            Logger.debug("[requestAccessToken] Error occurred in getting accessToken: \(error.localizedDescription)")
             throw error
         }
 
@@ -360,14 +373,17 @@ public class ForceAuthManager: ForceAuthenticator {
     private func getAuthorizationCode(fromUrl: URL) -> String? {
 
         guard let components = URLComponents(url: fromUrl, resolvingAgainstBaseURL: false) else {
+            Logger.debug("[getAuthorizationCode] Error: components")
             return nil
         }
 
         guard let queryItems = components.queryItems else {
+            Logger.debug("[getAuthorizationCode] Error: queryItems")
             return nil
         }
 
         guard let code = queryItems["code"] else {
+            Logger.debug("[getAuthorizationCode] Error: code")
             return nil
         }
 

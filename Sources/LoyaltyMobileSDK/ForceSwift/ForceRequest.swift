@@ -164,6 +164,8 @@ public struct ForceRequest {
             throw URLError(.badURL)
         }
         
+        Logger.debug("The new URL after transformation is: \(newURL)")
+        
         return newURL
     }
     
