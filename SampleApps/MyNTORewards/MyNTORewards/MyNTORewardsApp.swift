@@ -18,7 +18,7 @@ struct MyNTORewardsApp: App {
     @StateObject var transactionVM = TransactionViewModel()
     @StateObject var voucherVM = VoucherViewModel()
     @StateObject var imageVM = ImageViewModel()
-    @StateObject var connectedAppVM = ConnectedAppsViewModel()
+    @StateObject var connectedAppVM = ConnectedAppsViewModel<ForceConnectedAppKeychainManager>()
     
     init() {
         _ = AppSettings.shared

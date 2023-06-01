@@ -11,7 +11,7 @@ import Combine
 
 struct ConnectedAppSettingsView: View {
     @Environment(\.dismiss) private var dismiss
-    @EnvironmentObject private var connectedAppVM: ConnectedAppsViewModel
+    @EnvironmentObject private var connectedAppVM: ConnectedAppsViewModel<ForceConnectedAppKeychainManager>
     
     @FocusState private var nameIsFocused: Bool
     @State var isAddingNew: Bool = false
