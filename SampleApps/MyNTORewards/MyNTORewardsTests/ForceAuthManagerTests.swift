@@ -17,19 +17,19 @@ final class ForceAuthManagerTests: XCTestCase {
     }
 
     func getMockAuth() throws -> ForceAuth {
-        return ForceAuth(accessToken: "ACT00D4x000008ZreC!AQcAQDf6x5AjGhB8FIxmOLCqq7XmGzNgt97ID0HiBToYj5tfNB7f4eM39.UivE_HXIg.46Bm3IhQXOawUwznIZRbsJNQV7W9", instanceURL: "https://sampleInstanceUrl", identityURL: "https://sampleIdentityUrl", tokenType: "refresh", timestamp: "20:20", signature: "nto", refreshToken: "token1234")
+        return ForceAuth(accessToken: "DumMYaCceSsTOkEn1234", instanceURL: "https://sampleInstanceUrl", identityURL: "https://sampleIdentityUrl", tokenType: "refresh", timestamp: "20:20", signature: "nto", refreshToken: "token1234")
     }
 
     func testSaveAuth() throws {
         try authManager.saveAuth(for: getMockAuth(), forceAuth: MockAuthManager.self)
         let auth = try MockAuthManager.retrieve(for: "https://sampleInstanceUrl")
-        XCTAssertEqual(auth?.accessToken, "ACT00D4x000008ZreC!AQcAQDf6x5AjGhB8FIxmOLCqq7XmGzNgt97ID0HiBToYj5tfNB7f4eM39.UivE_HXIg.46Bm3IhQXOawUwznIZRbsJNQV7W9")
+        XCTAssertEqual(auth?.accessToken, "DumMYaCceSsTOkEn1234")
     }
 
     func testRetrieveAuth() throws {
         try authManager.saveAuth(for: getMockAuth(), forceAuth: MockAuthManager.self)
         let auth = try authManager.retrieveAuth(forceAuth: MockAuthManager.self)
-        XCTAssertEqual(auth.accessToken, "ACT00D4x000008ZreC!AQcAQDf6x5AjGhB8FIxmOLCqq7XmGzNgt97ID0HiBToYj5tfNB7f4eM39.UivE_HXIg.46Bm3IhQXOawUwznIZRbsJNQV7W9")
+        XCTAssertEqual(auth.accessToken, "DumMYaCceSsTOkEn1234")
     }
 
     func testDeleteAuth() throws {
