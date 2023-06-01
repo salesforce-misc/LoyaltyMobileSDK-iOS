@@ -8,13 +8,19 @@
 import Foundation
 import LoyaltyMobileSDK
 
+struct VoucherTitle: Hashable, Identifiable {
+	let id: String
+	var title: String
+}
+
 @MainActor
-class VoucherViewModel: ObservableObject {
+class VoucherViewModel: ObservableObject, Reloadable {
 
     @Published var vouchers: [VoucherModel] = []
     @Published var availableVochers: [VoucherModel] = []
     @Published var redeemedVochers: [VoucherModel] = []
     @Published var expiredVochers: [VoucherModel] = []
+	@Published var availableVouchersTitles: [VoucherTitle] = []
     
     enum StatusFilter: String {
         case Issued
@@ -24,55 +30,29 @@ class VoucherViewModel: ObservableObject {
         case None
     }
     
-    private let authManager: ForceAuthenticator
-    private let localFileManager: FileManagerProtocol
-    private var loyaltyAPIManager: LoyaltyAPIManager
-    
-    init(authManager: ForceAuthenticator = ForceAuthManager.shared, localFileManager: FileManagerProtocol = LocalFileManager.instance) {
-        self.authManager = authManager
-        self.localFileManager = localFileManager
-        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
-                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                              instanceURL: AppSettings.shared.getInstanceURL(),
-                                              forceClient: ForceClient(auth: authManager))
-    }
-    
-    func loadVouchers(membershipNumber: String, devMode: Bool = false) async throws {
-        
-        if vouchers.isEmpty {
-            
-            // load from local cache
-            if let cached = localFileManager.getData(type: [VoucherModel].self, id: membershipNumber, folderName: "Vouchers") {
-                vouchers = Array(cached.prefix(2))
-            } else {
-                do {
-                    let result = try await fetchVouchers(membershipNumber: membershipNumber, devMode: devMode)
-                    vouchers = Array(result.prefix(2))
-                    
-                    // save to local
-                    localFileManager.saveData(item: result, id: membershipNumber, folderName: "Vouchers", expiry: .never)
-                } catch {
-                    throw error
-                }
-                
-            }
-            
-        }
-        
-    }
-    
-    func reloadVouchers(membershipNumber: String, devMode: Bool = false) async throws {
-        do {
-            let result = try await fetchVouchers(membershipNumber: membershipNumber, devMode: devMode)
-            vouchers = Array(result.prefix(2))
-            
-            // save to local
-            localFileManager.saveData(item: result, id: membershipNumber, folderName: "Vouchers", expiry: .never)
-        } catch {
-            throw error
-        }
-    }
-    
+	private let vouchersFolderName = "Vouchers"
+	private let authManager: ForceAuthenticator
+	private let localFileManager: FileManagerProtocol
+	private var loyaltyAPIManager: LoyaltyAPIManager
+	private let expiredVouchersFilterPeriod = 30
+	private let redeemedVouchersFilterPeriod = 90
+	
+	init(authManager: ForceAuthenticator = ForceAuthManager.shared, localFileManager: FileManagerProtocol = LocalFileManager.instance) {
+		self.authManager = authManager
+		self.localFileManager = localFileManager
+		loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
+											  loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+											  instanceURL: AppSettings.shared.getInstanceURL(),
+											  forceClient: ForceClient(auth: authManager))
+	}
+	
+	func loadVouchers(membershipNumber: String, devMode: Bool = false, reload: Bool = false) async throws {
+		if vouchers.isEmpty || reload {
+			let expiringVouchers = try await getExpiringVouchers(membershipNumber: membershipNumber, devMode: devMode, reload: reload)
+			vouchers = Array(expiringVouchers.prefix(2))
+		}
+	}
+	
 	func fetchVouchers(
         membershipNumber: String,
         voucherStatus: [LoyaltyAPIManager.VoucherStatus]? = nil,
@@ -99,11 +79,34 @@ class VoucherViewModel: ObservableObject {
             throw error
         }
     }
+	
+	/// Returns active vouchers sorted by expiring date (Soon to be expired first)
+	func getExpiringVouchers(
+		membershipNumber: String,
+		devMode: Bool = false,
+		reload: Bool = false)
+	async throws -> [VoucherModel] {
+		do {
+			try await loadAvailableVouchers(membershipNumber: membershipNumber, reload: reload, devMode: devMode)
+			return availableVochers.sorted { firstVoucher, nextVoucher in
+				let dateFormatter = DateFormatter()
+				dateFormatter.dateFormat = "yyyy-MM-dd"
+				guard let firstVoucherDate = dateFormatter.date(from: firstVoucher.expirationDate),
+					  let nextVoucherDate = dateFormatter.date(from: nextVoucher.expirationDate)
+				else {
+					return true
+				}
+				return firstVoucherDate < nextVoucherDate
+			}
+		} catch {
+			throw error
+		}
+	}
     
     func loadFilteredVouchers(membershipNumber: String, filter: StatusFilter, devMode: Bool = false) async throws -> [VoucherModel] {
             
         // load from local cache
-        if let cached = localFileManager.getData(type: [VoucherModel].self, id: membershipNumber, folderName: "Vouchers") {
+        if let cached = localFileManager.getData(type: [VoucherModel].self, id: membershipNumber, folderName: vouchersFolderName) {
             let filtered = cached.filter { voucher in
                 voucher.status == filter.rawValue
             }
@@ -118,7 +121,7 @@ class VoucherViewModel: ObservableObject {
                 }
                 
                 // save to local
-                localFileManager.saveData(item: result, id: membershipNumber, folderName: "Vouchers", expiry: .never)
+                localFileManager.saveData(item: result, id: membershipNumber, folderName: vouchersFolderName, expiry: .never)
                 return filtered
             } catch {
                 throw error
@@ -127,6 +130,12 @@ class VoucherViewModel: ObservableObject {
         }
         
     }
+	
+	func getTitlesOfAvailableVouchers(membershipNumber: String) async throws {
+		availableVouchersTitles = try await loadFilteredVouchers(membershipNumber: membershipNumber, filter: .Issued).map {
+			VoucherTitle(id: $0.id, title: $0.voucherDefinition)
+		}
+	}
     
     func reloadFilteredVouchers(membershipNumber: String, filter: StatusFilter, devMode: Bool = false) async throws -> [VoucherModel] {
         do {
@@ -136,7 +145,7 @@ class VoucherViewModel: ObservableObject {
             }
             
             // save to local
-            localFileManager.saveData(item: result, id: membershipNumber, folderName: "Vouchers", expiry: .never)
+            localFileManager.saveData(item: result, id: membershipNumber, folderName: vouchersFolderName, expiry: .never)
             return filtered
         } catch {
             throw error
@@ -158,33 +167,65 @@ class VoucherViewModel: ObservableObject {
         }
     }
     
-    func loadRedeemedVouchers(membershipNumber: String, reload: Bool = false, devMode: Bool = false) async throws {
-        if reload {
-            do {
-                redeemedVochers = try await reloadFilteredVouchers(membershipNumber: membershipNumber, filter: .Redeemed, devMode: devMode)
-            } catch {
-                throw error
-            }
-        } else {
-            if redeemedVochers.isEmpty {
-                redeemedVochers = try await loadFilteredVouchers(membershipNumber: membershipNumber, filter: .Redeemed, devMode: devMode)
-            }
-        }
-    }
-    
-    func loadExpiredVouchers(membershipNumber: String, reload: Bool = false, devMode: Bool = false) async throws {
-        if reload {
-            do {
-                expiredVochers = try await reloadFilteredVouchers(membershipNumber: membershipNumber, filter: .Expired, devMode: devMode)
-            } catch {
-                throw error
-            }
-        } else {
-            if expiredVochers.isEmpty {
-                expiredVochers = try await loadFilteredVouchers(membershipNumber: membershipNumber, filter: .Expired, devMode: devMode)
-            }
-        }
-    }
+	func loadRedeemedVouchers(membershipNumber: String, reload: Bool = false, devMode: Bool = false) async throws {
+		if reload {
+			do {
+				let allRedeemedVouchers = try await reloadFilteredVouchers(membershipNumber: membershipNumber, filter: .Redeemed, devMode: devMode)
+				redeemedVochers = getRecentlyRedeemedVouchers(from: allRedeemedVouchers, withinDays: redeemedVouchersFilterPeriod)
+			} catch {
+				throw error
+			}
+		} else {
+			if redeemedVochers.isEmpty {
+				let allRedeemedVouchers = try await loadFilteredVouchers(membershipNumber: membershipNumber, filter: .Redeemed, devMode: devMode)
+				redeemedVochers = getRecentlyRedeemedVouchers(from: allRedeemedVouchers, withinDays: redeemedVouchersFilterPeriod)
+			}
+		}
+	}
+	
+	func loadExpiredVouchers(membershipNumber: String, reload: Bool = false, devMode: Bool = false) async throws {
+		if reload {
+			do {
+				let allExpiredVouchers = try await reloadFilteredVouchers(membershipNumber: membershipNumber, filter: .Expired, devMode: devMode)
+				expiredVochers = getRecentlyExpiredVouchers(from: allExpiredVouchers, withinDays: expiredVouchersFilterPeriod)
+			} catch {
+				throw error
+			}
+		} else {
+			if expiredVochers.isEmpty {
+				let allExpiredVouchers = try await loadFilteredVouchers(membershipNumber: membershipNumber, filter: .Expired, devMode: devMode)
+				expiredVochers = getRecentlyExpiredVouchers(from: allExpiredVouchers, withinDays: expiredVouchersFilterPeriod)
+			}
+		}
+	}
+	
+	final func getRecentlyExpiredVouchers(
+		from vouchers: [VoucherModel],
+		withinDays days: Int,
+		currentDate: Date? = Date()
+	) -> [VoucherModel] {
+		let recentVouchers = vouchers.filter { voucher in
+			guard let expirationDate = voucher.expirationDate.toDate(),
+				  let thresholdDate = currentDate?.getDate(beforeDays: days)
+			else { return false }
+			return expirationDate > thresholdDate
+		}
+		return recentVouchers
+	}
+	
+	final func getRecentlyRedeemedVouchers(
+		from vouchers: [VoucherModel],
+		withinDays days: Int,
+		currentDate: Date? = Date()
+	) -> [VoucherModel] {
+		let recentVouchers = vouchers.filter { voucher in
+			guard let redeemedDate = voucher.useDate?.toDate(),
+				  let thresholdDate = currentDate?.getDate(beforeDays: days)
+			else { return false }
+			return redeemedDate > thresholdDate
+		}
+		return recentVouchers
+	}
     
     @MainActor
     func clear() {
@@ -193,4 +234,10 @@ class VoucherViewModel: ObservableObject {
         redeemedVochers = []
         expiredVochers = []
     }
+	
+	@MainActor
+	func reload(id: String, number: String) async throws {
+		try await self.loadVouchers(membershipNumber: number, reload: true)
+	}
+	
 }

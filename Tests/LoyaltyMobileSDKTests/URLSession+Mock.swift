@@ -18,7 +18,10 @@ extension URLSession {
     
     static func mock(responseBody: Data, statusCode: Int) -> URLSession {
         let loadingHandler: ((URLRequest) -> (HTTPURLResponse, Data?, Error?))? = { request in
-            let metadata = HTTPURLResponse(url: request.url!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+            guard let url = request.url,
+                  let metadata = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil) else {
+                fatalError("request.url or HTTPURLResponse is nil")
+            }
             return (metadata, responseBody, nil)
         }
         return mock(withLoadingHandler: loadingHandler)
@@ -26,7 +29,10 @@ extension URLSession {
     
     static func mock(error: Error, statusCode: Int) -> URLSession {
         let loadingHandler: ((URLRequest) -> (HTTPURLResponse, Data?, Error?))? = { request in
-            let metadata = HTTPURLResponse(url: request.url!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+            guard let url = request.url,
+                  let metadata = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil) else {
+                fatalError("request.url or HTTPURLResponse is nil")
+            }
             return (metadata, nil, error)
         }
         return mock(withLoadingHandler: loadingHandler)

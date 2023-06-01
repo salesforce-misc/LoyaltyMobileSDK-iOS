@@ -21,29 +21,41 @@ class OrderDetailsViewModel: ObservableObject {
 	private let orderApiEndpoint = "services/apexrest/NTOOrderCheckOut/"
     private let authManager: ForceAuthManager
     private var forceClient: ForceClient
-	private var localFileManager: LocalFileManager
 	
 	init(
 		authManager: ForceAuthManager = .shared,
-		localFileManager: LocalFileManager = .instance,
 		forceClient: ForceClient? = nil,
 		index: Int = 0
 	) {
 		self.authManager = authManager
 		self.forceClient = forceClient ?? ForceClient(auth: authManager)
 		self.selectedIndex = index
-		self.localFileManager = localFileManager
 	}
 	
-	func createOrder(clearable: Clearable, memberId: String?, membershipNumber: String?) async {
+	func createOrder(
+		reloadables: [Reloadable],
+		productVM: ProductViewModel,
+		profileVM: ProfileViewModel,
+		memberId: String?,
+		membershipNumber: String?) async throws {
 		do {
-			orderId = try await placeOrder(membershipNumber: membershipNumber ?? "")
-			// invalidating the cache after order is created successfully in order to make the profile page reload when it is visited.
-			await clearable.clear()
-			localFileManager.removeData(type: ProfileModel.self, id: memberId ?? "")
+			let productPrice = Double(productVM.basePrice)
+			let orderTotal = Double(productVM.getTotalAmount())
+			let pointsBalance = profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0
+			
+			orderId = try await placeOrder(productPrice: productPrice,
+										   orderTotal: orderTotal,
+										   pointsBalance: pointsBalance,
+										   membershipNumber: membershipNumber ?? "")
+			try await Task.sleep(nanoseconds: 1_000_000_000)
+			// Reloading data when the order is placed. Adding 1 sec delay to wait for point balance to be updated in the backend.
+			for reloadable in reloadables {
+				try await reloadable.reload(id: memberId ?? "", number: membershipNumber ?? "")
+			}
 			isOrderPlacedNavigationActive = true
 		} catch {
-			Logger.error("Unable to place order")
+            Logger.error("Unable to place order: \(error.localizedDescription)")
+            throw error
 		}
 	}
 	
@@ -119,7 +131,7 @@ class OrderDetailsViewModel: ObservableObject {
     func getShippingAddress(membershipNumber: String) async throws {
         do {
             let queryResult = try await forceClient.SOQL(type: ShippingAddressRecord.self,
-																   for: checkout_shipping_address_query)
+                                                         for: checkout_shipping_address_query)
             shippingAddress = queryResult.records.compactMap { $0.shippingAddress }.first
         } catch {
             Logger.error(error.localizedDescription)

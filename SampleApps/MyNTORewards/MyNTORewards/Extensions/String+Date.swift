@@ -31,6 +31,10 @@ public extension Date {
         let string = dateFormatter.string(from: self)
         return string
     }
+
+	func getDate(beforeDays days: Int) -> Date? {
+		return Calendar.current.date(byAdding: .day, value: -days, to: self)
+	}
 }
 
 public extension Date {
