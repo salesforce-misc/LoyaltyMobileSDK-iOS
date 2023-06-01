@@ -21,20 +21,20 @@ final class ForceAuthManagerTests: XCTestCase {
     }
 
     func testSaveAuth() throws {
-        try authManager.saveAuth(for: getMockAuth(), forceAuth: MockAuthManager.self)
+        try authManager.saveAuth(for: getMockAuth(), using: MockAuthManager.self)
         let auth = try MockAuthManager.retrieve(for: "https://sampleInstanceUrl")
         XCTAssertEqual(auth?.accessToken, "DumMYaCceSsTOkEn1234")
     }
 
     func testRetrieveAuth() throws {
-        try authManager.saveAuth(for: getMockAuth(), forceAuth: MockAuthManager.self)
-        let auth = try authManager.retrieveAuth(forceAuth: MockAuthManager.self)
+        try authManager.saveAuth(for: getMockAuth(), using: MockAuthManager.self)
+        let auth = try authManager.retrieveAuth(using: MockAuthManager.self)
         XCTAssertEqual(auth.accessToken, "DumMYaCceSsTOkEn1234")
     }
 
     func testDeleteAuth() throws {
-        try authManager.saveAuth(for: getMockAuth(), forceAuth: MockAuthManager.self)
-        try authManager.deleteAuth(forceAuth: MockAuthManager.self)
+        try authManager.saveAuth(for: getMockAuth(), using: MockAuthManager.self)
+        try authManager.deleteAuth(using: MockAuthManager.self)
         XCTAssertTrue(MockAuthManager.mockKeyChain.isEmpty)
     }
 

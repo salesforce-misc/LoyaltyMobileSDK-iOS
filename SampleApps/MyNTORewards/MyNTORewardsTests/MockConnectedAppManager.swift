@@ -8,7 +8,7 @@
 import XCTest
 @testable import MyNTORewards
 
-final class MockKeychainManager: KeychainManagerProtocol {
+final class MockConnectedAppManager: KeychainManagerProtocol {
     
     typealias T = ForceConnectedApp
     static var mockKeyChain: [String: [String: ForceConnectedApp]] = [:]

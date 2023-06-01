@@ -155,7 +155,7 @@
 		3FC92C612A0AA9E30081BFEC /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC92C602A0AA9E30081BFEC /* Order.swift */; };
 		AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */; };
 		AF1691BC2A1B0D0C005A0EB3 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */; };
-		AF1691C02A1B2225005A0EB3 /* MockKeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1691BF2A1B2225005A0EB3 /* MockKeychainManager.swift */; };
+		AF1691C02A1B2225005A0EB3 /* MockConnectedAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */; };
 		AF27B7782A05261000399D77 /* UITestingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27B7772A05261000399D77 /* UITestingHelper.swift */; };
 		AF27C5AC2981118D008C7D79 /* LoyaltyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */; };
 		AF463C262A1722EE00323FD1 /* UITestingInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF463C252A1722EE00323FD1 /* UITestingInfo.plist */; };
@@ -353,7 +353,7 @@
 		3FC92C602A0AA9E30081BFEC /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewHelper.swift; sourceTree = "<group>"; };
 		AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
-		AF1691BF2A1B2225005A0EB3 /* MockKeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockKeychainManager.swift; sourceTree = "<group>"; };
+		AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectedAppManager.swift; sourceTree = "<group>"; };
 		AF27B7772A05261000399D77 /* UITestingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingHelper.swift; sourceTree = "<group>"; };
 		AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyaltyTextField.swift; sourceTree = "<group>"; };
 		AF463C252A1722EE00323FD1 /* UITestingInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = UITestingInfo.plist; sourceTree = "<group>"; };
@@ -801,7 +801,7 @@
 				AFB345CD29F0DD6B00F40502 /* TransactionsViewModelTests.swift */,
 				AFB345C929F0DD6A00F40502 /* VoucherViewModelTests.swift */,
 				AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */,
-				AF1691BF2A1B2225005A0EB3 /* MockKeychainManager.swift */,
+				AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */,
 				AFCE106D2A20BA2A00602E35 /* MockAuthManager.swift */,
 			);
 			path = MyNTORewardsTests;
@@ -1141,7 +1141,7 @@
 			files = (
 				AFB345C329F0DD5300F40502 /* MyNTORewardsTests.swift in Sources */,
 				AF5660022A1F921F008C5F47 /* ForceAuthManagerTests.swift in Sources */,
-				AF1691C02A1B2225005A0EB3 /* MockKeychainManager.swift in Sources */,
+				AF1691C02A1B2225005A0EB3 /* MockConnectedAppManager.swift in Sources */,
 				AFB345D029F0DD6B00F40502 /* MockFileManager.swift in Sources */,
 				AFB345D129F0DD6B00F40502 /* ProfileViewModelTests.swift in Sources */,
 				3F3E65A42A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift in Sources */,
