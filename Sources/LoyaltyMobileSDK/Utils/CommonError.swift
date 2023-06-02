@@ -21,6 +21,7 @@ public enum CommonError: Error, Equatable {
     case functionalityNotEnabled
     case unknownException
     case sessionExpired
+    case urlEncodingFailed
 }
 
 extension CommonError: CustomStringConvertible, LocalizedError {
@@ -53,6 +54,8 @@ extension CommonError: CustomStringConvertible, LocalizedError {
             return "An unexpected error occurred."
         case .sessionExpired:
             return "You sesssion has expired."
+        case .urlEncodingFailed:
+            return "Failed to encode the string."
         }
     }
     
@@ -84,6 +87,8 @@ extension CommonError: CustomStringConvertible, LocalizedError {
             return NSLocalizedString("An unexpected error occurred.", comment: "Unknown Exception Error")
         case .sessionExpired:
             return NSLocalizedString("Your session has expired.", comment: "Session Expired Error")
+        case .urlEncodingFailed:
+            return NSLocalizedString("Failed to encode the string.", comment: "URL Encoding Error")
         }
     }
 }

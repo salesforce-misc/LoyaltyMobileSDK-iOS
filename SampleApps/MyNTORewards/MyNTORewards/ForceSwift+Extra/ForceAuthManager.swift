@@ -297,7 +297,7 @@ public class ForceAuthManager: ForceAuthenticator {
                                           username: String,
                                           password: String) async throws -> String? {
 
-        let queryItems = [
+        let parameters = [
             "scope": "api refresh_token", // These scopes need to be selected from Connected App Settings
             "response_type": "code_credentials",
             "client_id": consumerKey,
@@ -313,7 +313,21 @@ public class ForceAuthManager: ForceAuthenticator {
         ]
 
         do {
-            let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems, headers: headers)
+            let parameterArray = try parameters.map { key, value in
+                // Remove `+` from the allowed list which will allow it to be encoded to `%2B`
+                // Otherwise, `+` will be retained and later on it will be interpreted as a space
+                var customSet = CharacterSet.urlQueryAllowed
+                customSet.remove("+")
+                
+                guard let encodedValue = value.addingPercentEncoding(withAllowedCharacters: customSet) else {
+                    throw CommonError.urlEncodingFailed
+                }
+                return "\(key)=\(encodedValue)"
+            }
+            let parameterString = parameterArray.joined(separator: "&")
+            let body = parameterString.data(using: .utf8)
+            
+            let request = try ForceRequest.create(url: url, method: "POST", headers: headers, body: body)
             
             Logger.debug("Request is: \(request)")
 
