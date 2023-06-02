@@ -122,7 +122,7 @@ public class ForceAuthManager: ForceAuthenticator {
             throw URLError(.badURL)
         }
         
-        let queryItems = [
+        let parameters = [
             "username": username,
             "password": password,
             "grant_type": "password",
@@ -130,8 +130,13 @@ public class ForceAuthManager: ForceAuthenticator {
             "client_secret": consumerSecret
         ]
         
+        let headers = [
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        ]
+        
         do {
-            let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
+            let body = try ForceRequest.percentEncodedFormData(parameters)
+            let request = try ForceRequest.create(url: url, method: "POST", headers: headers, body: body)
             let auth = try await NetworkManager.shared.fetch(type: ForceAuth.self, request: request)
             try saveAuth(for: auth)
             return auth
@@ -313,27 +318,9 @@ public class ForceAuthManager: ForceAuthenticator {
         ]
 
         do {
-            let parameterArray = try parameters.map { key, value in
-                // Remove `+` from the allowed list which will allow it to be encoded to `%2B`
-                // Otherwise, `+` will be retained and later on it will be interpreted as a space
-                var customSet = CharacterSet.urlQueryAllowed
-                customSet.remove("+")
-                
-                guard let encodedValue = value.addingPercentEncoding(withAllowedCharacters: customSet) else {
-                    throw CommonError.urlEncodingFailed
-                }
-                return "\(key)=\(encodedValue)"
-            }
-            let parameterString = parameterArray.joined(separator: "&")
-            let body = parameterString.data(using: .utf8)
-            
+            let body = try ForceRequest.percentEncodedFormData(parameters)
             let request = try ForceRequest.create(url: url, method: "POST", headers: headers, body: body)
-            
-            Logger.debug("Request is: \(request)")
-
             let output = try await URLSession.shared.data(for: request)
-            
-            Logger.debug("Response is: \(output.1)")
 
             guard let response = output.1 as? HTTPURLResponse,
                   let redirectUrl = response.url,
@@ -341,8 +328,6 @@ public class ForceAuthManager: ForceAuthenticator {
                 Logger.debug("[requestAuthorizationCode] Error getting redirect URL")
                 throw CommonError.responseUnsuccessful(message: "Failed getting rediect URL for authorization code")
             }
-            
-            Logger.debug("Redirect URL is: \(redirectUrl)")
 
             guard let authCode = getAuthorizationCode(fromUrl: redirectUrl) else {
                 Logger.debug("[requestAuthorizationCode] Error getting valid authorization code")
@@ -363,15 +348,20 @@ public class ForceAuthManager: ForceAuthenticator {
                                     consumerKey: String,
                                     callbackURL: URL) async throws -> ForceAuth {
 
-        let queryItems = [
+        let parameters = [
             "code": authCode,
             "grant_type": "authorization_code",
             "client_id": consumerKey,
             "redirect_uri": callbackURL.absoluteString
         ]
+        
+        let headers = [
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        ]
 
         do {
-            let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
+            let body = try ForceRequest.percentEncodedFormData(parameters)
+            let request = try ForceRequest.create(url: url, method: "POST", headers: headers, body: body)
             let auth = try await NetworkManager.shared.fetch(type: ForceAuth.self, request: request)
 
             try saveAuth(for: auth)

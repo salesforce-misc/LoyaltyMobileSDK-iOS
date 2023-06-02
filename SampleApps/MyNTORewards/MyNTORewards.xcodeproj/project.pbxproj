@@ -113,6 +113,7 @@
 		29AC2F0528F8B6E6003F56F6 /* AllRedeemPointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2F0428F8B6E6003F56F6 /* AllRedeemPointsView.swift */; };
 		29AC2F0728F8B70D003F56F6 /* AllBenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2F0628F8B70D003F56F6 /* AllBenefitsView.swift */; };
 		29AC2F0928F8B724003F56F6 /* AllBadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2F0828F8B724003F56F6 /* AllBadgesView.swift */; };
+		29B1CE432A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B1CE422A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift */; };
 		29B427D429109095009CC587 /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B427D329109095009CC587 /* TransactionViewModel.swift */; };
 		29B427D629109E60009CC587 /* PromotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B427D529109E60009CC587 /* PromotionViewModel.swift */; };
 		29BAF6CF28F0FC3A00A3F9EB /* CornerRadiusStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6CE28F0FC3A00A3F9EB /* CornerRadiusStyle.swift */; };
@@ -314,6 +315,7 @@
 		29AC2F0428F8B6E6003F56F6 /* AllRedeemPointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRedeemPointsView.swift; sourceTree = "<group>"; };
 		29AC2F0628F8B70D003F56F6 /* AllBenefitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBenefitsView.swift; sourceTree = "<group>"; };
 		29AC2F0828F8B724003F56F6 /* AllBadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBadgesView.swift; sourceTree = "<group>"; };
+		29B1CE422A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceRequest+PercentEncoding.swift"; sourceTree = "<group>"; };
 		29B427D329109095009CC587 /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
 		29B427D529109E60009CC587 /* PromotionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewModel.swift; sourceTree = "<group>"; };
 		29BAF6CE28F0FC3A00A3F9EB /* CornerRadiusStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyle.swift; sourceTree = "<group>"; };
@@ -695,6 +697,7 @@
 				2955346229E7809400CFA391 /* KeychainManagerProtocol.swift */,
 				298D5EF129CCF94D0062F16E /* WebAuthenticationSession.swift */,
 				298D5EF529CCFCE60062F16E /* ForceRequest+Auth.swift */,
+				29B1CE422A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift */,
 			);
 			path = "ForceSwift+Extra";
 			sourceTree = "<group>";
@@ -1154,6 +1157,7 @@
 				29BAF6FE28F63A5800A3F9EB /* RewardPointsCardView.swift in Sources */,
 				299B38D028E3DECE00E45D97 /* AppRootViewModel.swift in Sources */,
 				29B427D429109095009CC587 /* TransactionViewModel.swift in Sources */,
+				29B1CE432A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift in Sources */,
 				2955346729E88BC500CFA391 /* ConnectedAppsViewModel.swift in Sources */,
 				29AC2EFF28F896C2003F56F6 /* LoyaltyNavBarPreferenceKeys.swift in Sources */,
 				29BAF6D128F1032800A3F9EB /* Carousel.swift in Sources */,
