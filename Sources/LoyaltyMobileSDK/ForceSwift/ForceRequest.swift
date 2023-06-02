@@ -130,11 +130,10 @@ public struct ForceRequest {
         
         // Headers
         let contentType: String = {
-            switch method?.uppercased() {
-            case nil, Method.get.uppercased(), Method.delete.uppercased():
-                return MIMEType.formUrlEncoded
-            default:
+            if let body = body, body.isValidJSON {
                 return MIMEType.json
+            } else {
+                return MIMEType.formUrlEncoded
             }
         }()
         let defaultHeaders: [String: String] = [
