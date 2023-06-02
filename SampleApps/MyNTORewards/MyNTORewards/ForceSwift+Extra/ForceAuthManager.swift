@@ -122,7 +122,7 @@ public class ForceAuthManager: ForceAuthenticator {
             throw URLError(.badURL)
         }
         
-        let queryItems = [
+        let parameters = [
             "username": username,
             "password": password,
             "grant_type": "password",
@@ -130,8 +130,13 @@ public class ForceAuthManager: ForceAuthenticator {
             "client_secret": consumerSecret
         ]
         
+        let headers = [
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        ]
+        
         do {
-            let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
+            let body = try ForceRequest.percentEncodedFormData(parameters)
+            let request = try ForceRequest.create(url: url, method: "POST", headers: headers, body: body)
             let auth = try await NetworkManager.shared.fetch(type: ForceAuth.self, request: request)
             try saveAuth(for: auth)
             return auth
@@ -285,6 +290,7 @@ public class ForceAuthManager: ForceAuthenticator {
                                                 callbackURL: callbackURL)
 
         } catch {
+            Logger.debug("[authenticate] Error encountered: \(error.localizedDescription)")
             throw error
         }
     }
@@ -296,7 +302,7 @@ public class ForceAuthManager: ForceAuthenticator {
                                           username: String,
                                           password: String) async throws -> String? {
 
-        let queryItems = [
+        let parameters = [
             "scope": "api refresh_token", // These scopes need to be selected from Connected App Settings
             "response_type": "code_credentials",
             "client_id": consumerKey,
@@ -306,26 +312,31 @@ public class ForceAuthManager: ForceAuthenticator {
         ]
 
         let headers = [
-            "Auth-Request-Type": "Named-User"
+            "Auth-Request-Type": "Named-User",
+            "Accept": "text/html;charset=UTF-8",
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
         ]
 
         do {
-            let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems, headers: headers)
-
+            let body = try ForceRequest.percentEncodedFormData(parameters)
+            let request = try ForceRequest.create(url: url, method: "POST", headers: headers, body: body)
             let output = try await URLSession.shared.data(for: request)
 
             guard let response = output.1 as? HTTPURLResponse,
-                  let url = response.url,
+                  let redirectUrl = response.url,
                   response.statusCode == 401 else {
-                throw CommonError.codeCredentials
+                Logger.debug("[requestAuthorizationCode] Error getting redirect URL")
+                throw CommonError.responseUnsuccessful(message: "Failed getting rediect URL for authorization code")
             }
 
-            guard let authCode = getAuthorizationCode(fromUrl: url) else {
+            guard let authCode = getAuthorizationCode(fromUrl: redirectUrl) else {
+                Logger.debug("[requestAuthorizationCode] Error getting valid authorization code")
                 throw CommonError.codeCredentials
             }
             return authCode
 
         } catch {
+            Logger.debug("[requestAuthorizationCode] Error occurred: \(error.localizedDescription)")
             throw error
         }
 
@@ -337,21 +348,27 @@ public class ForceAuthManager: ForceAuthenticator {
                                     consumerKey: String,
                                     callbackURL: URL) async throws -> ForceAuth {
 
-        let queryItems = [
+        let parameters = [
             "code": authCode,
             "grant_type": "authorization_code",
             "client_id": consumerKey,
             "redirect_uri": callbackURL.absoluteString
         ]
+        
+        let headers = [
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        ]
 
         do {
-            let request = try ForceRequest.create(url: url, method: "POST", queryItems: queryItems)
+            let body = try ForceRequest.percentEncodedFormData(parameters)
+            let request = try ForceRequest.create(url: url, method: "POST", headers: headers, body: body)
             let auth = try await NetworkManager.shared.fetch(type: ForceAuth.self, request: request)
 
             try saveAuth(for: auth)
             return auth
 
         } catch {
+            Logger.debug("[requestAccessToken] Error occurred in getting accessToken: \(error.localizedDescription)")
             throw error
         }
 
@@ -360,14 +377,17 @@ public class ForceAuthManager: ForceAuthenticator {
     private func getAuthorizationCode(fromUrl: URL) -> String? {
 
         guard let components = URLComponents(url: fromUrl, resolvingAgainstBaseURL: false) else {
+            Logger.debug("[getAuthorizationCode] Error: components")
             return nil
         }
 
         guard let queryItems = components.queryItems else {
+            Logger.debug("[getAuthorizationCode] Error: queryItems")
             return nil
         }
 
         guard let code = queryItems["code"] else {
+            Logger.debug("[getAuthorizationCode] Error: code")
             return nil
         }
 

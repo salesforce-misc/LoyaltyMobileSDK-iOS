@@ -15,4 +15,5 @@ public struct ForceConnectedApp: Codable, Hashable {
     public let baseURL: String
     public let instanceURL: String
     public let communityURL: String
+    public let selfRegisterURL: String
 }

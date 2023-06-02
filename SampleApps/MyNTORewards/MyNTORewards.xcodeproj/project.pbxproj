@@ -36,6 +36,7 @@
 		2913FB4E2A1CA6B30065F0D5 /* AppVersion.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2913FB4B2A1CA6B30065F0D5 /* AppVersion.xcconfig */; };
 		2920609529523C9C006B20C1 /* LoyaltyMobileSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2920609429523C9C006B20C1 /* LoyaltyMobileSDK */; };
 		292453E62A185D75002112B3 /* Bundle+Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292453E52A185D75002112B3 /* Bundle+Info.swift */; };
+		292453E82A1C4658002112B3 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292453E72A1C4658002112B3 /* WebView.swift */; };
 		292ADC6E294BFD7700753541 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC6D294BFD7700753541 /* PreviewProvider.swift */; };
 		292ADC72294C04AB00753541 /* VocherModel+VoucherValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */; };
 		292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */; };
@@ -59,6 +60,7 @@
 		2955346529E788C100CFA391 /* ForceConnectedAppKeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2955346429E788C100CFA391 /* ForceConnectedAppKeychainManager.swift */; };
 		2955346729E88BC500CFA391 /* ConnectedAppsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2955346629E88BC500CFA391 /* ConnectedAppsViewModel.swift */; };
 		2955346B29E93EF800CFA391 /* InfoNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2955346A29E93EF800CFA391 /* InfoNavigationLink.swift */; };
+		2962E6A12A280ADA001C386F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2962E6A02A280ADA001C386F /* WelcomeView.swift */; };
 		2963770E29C10D2400D45AB6 /* ForceClient+SOSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2963770C29C10D2400D45AB6 /* ForceClient+SOSL.swift */; };
 		2963770F29C10D2400D45AB6 /* ForceClient+SOQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2963770D29C10D2400D45AB6 /* ForceClient+SOQL.swift */; };
 		2963771429C10D6200D45AB6 /* QueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2963771129C10D6200D45AB6 /* QueryResult.swift */; };
@@ -111,6 +113,7 @@
 		29AC2F0528F8B6E6003F56F6 /* AllRedeemPointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2F0428F8B6E6003F56F6 /* AllRedeemPointsView.swift */; };
 		29AC2F0728F8B70D003F56F6 /* AllBenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2F0628F8B70D003F56F6 /* AllBenefitsView.swift */; };
 		29AC2F0928F8B724003F56F6 /* AllBadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2F0828F8B724003F56F6 /* AllBadgesView.swift */; };
+		29B1CE432A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B1CE422A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift */; };
 		29B427D429109095009CC587 /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B427D329109095009CC587 /* TransactionViewModel.swift */; };
 		29B427D629109E60009CC587 /* PromotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B427D529109E60009CC587 /* PromotionViewModel.swift */; };
 		29BAF6CF28F0FC3A00A3F9EB /* CornerRadiusStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6CE28F0FC3A00A3F9EB /* CornerRadiusStyle.swift */; };
@@ -239,6 +242,7 @@
 		2913FB4B2A1CA6B30065F0D5 /* AppVersion.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppVersion.xcconfig; sourceTree = "<group>"; };
 		2920609329523C0B006B20C1 /* LoyaltyMobileSDK-iOS */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "LoyaltyMobileSDK-iOS"; path = ../..; sourceTree = "<group>"; };
 		292453E52A185D75002112B3 /* Bundle+Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Info.swift"; sourceTree = "<group>"; };
+		292453E72A1C4658002112B3 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		292ADC6D294BFD7700753541 /* PreviewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VocherModel+VoucherValue.swift"; sourceTree = "<group>"; };
 		292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionHistory+CurrencyPoints.swift"; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 		2955346429E788C100CFA391 /* ForceConnectedAppKeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceConnectedAppKeychainManager.swift; sourceTree = "<group>"; };
 		2955346629E88BC500CFA391 /* ConnectedAppsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedAppsViewModel.swift; sourceTree = "<group>"; };
 		2955346A29E93EF800CFA391 /* InfoNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNavigationLink.swift; sourceTree = "<group>"; };
+		2962E6A02A280ADA001C386F /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		2963770C29C10D2400D45AB6 /* ForceClient+SOSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ForceClient+SOSL.swift"; sourceTree = "<group>"; };
 		2963770D29C10D2400D45AB6 /* ForceClient+SOQL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ForceClient+SOQL.swift"; sourceTree = "<group>"; };
 		2963771129C10D6200D45AB6 /* QueryResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryResult.swift; sourceTree = "<group>"; };
@@ -314,6 +319,7 @@
 		29AC2F0428F8B6E6003F56F6 /* AllRedeemPointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRedeemPointsView.swift; sourceTree = "<group>"; };
 		29AC2F0628F8B70D003F56F6 /* AllBenefitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBenefitsView.swift; sourceTree = "<group>"; };
 		29AC2F0828F8B724003F56F6 /* AllBadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBadgesView.swift; sourceTree = "<group>"; };
+		29B1CE422A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceRequest+PercentEncoding.swift"; sourceTree = "<group>"; };
 		29B427D329109095009CC587 /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
 		29B427D529109E60009CC587 /* PromotionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewModel.swift; sourceTree = "<group>"; };
 		29BAF6CE28F0FC3A00A3F9EB /* CornerRadiusStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyle.swift; sourceTree = "<group>"; };
@@ -515,6 +521,7 @@
 				299B38DB28EB7F7000E45D97 /* CheckYourEmailView.swift */,
 				299B38DD28EB8D4900E45D97 /* CreateNewPasswordView.swift */,
 				299B38D328E5F78400E45D97 /* CongratsView.swift */,
+				2962E6A02A280ADA001C386F /* WelcomeView.swift */,
 				218A36A928B85CA500FCEE39 /* BottomNavTabsView.swift */,
 				216F219A28B618C700DAA66D /* HomeView.swift */,
 				218A36B428B85E4C00FCEE39 /* BenefitView.swift */,
@@ -647,6 +654,7 @@
 				29A39BC429397B98005833C2 /* EmptyStateView.swift */,
 				29FEDDF1294293BF0014BEBA /* UITabView.swift */,
 				2955346A29E93EF800CFA391 /* InfoNavigationLink.swift */,
+				292453E72A1C4658002112B3 /* WebView.swift */,
 			);
 			path = UICompnents;
 			sourceTree = "<group>";
@@ -697,6 +705,7 @@
 				2955346229E7809400CFA391 /* KeychainManagerProtocol.swift */,
 				298D5EF129CCF94D0062F16E /* WebAuthenticationSession.swift */,
 				298D5EF529CCFCE60062F16E /* ForceRequest+Auth.swift */,
+				29B1CE422A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift */,
 			);
 			path = "ForceSwift+Extra";
 			sourceTree = "<group>";
@@ -1089,6 +1098,7 @@
 				29AC2F0528F8B6E6003F56F6 /* AllRedeemPointsView.swift in Sources */,
 				29AC2F0128F89EBE003F56F6 /* LoyaltyNavLink.swift in Sources */,
 				218A36AE28B85D6000FCEE39 /* FavoriteView.swift in Sources */,
+				2962E6A12A280ADA001C386F /* WelcomeView.swift in Sources */,
 				29A39BC32937F46D005833C2 /* String+MD5.swift in Sources */,
 				299B38E428EE040900E45D97 /* UIApplication+DismissKeyboard.swift in Sources */,
 				298613AE28C9652300BDC744 /* FontStyles.swift in Sources */,
@@ -1134,6 +1144,7 @@
 				3F714D5729FA0FC200CD39E7 /* StarRatingView.swift in Sources */,
 				2963770E29C10D2400D45AB6 /* ForceClient+SOSL.swift in Sources */,
 				3F714D4829FA0F4A00CD39E7 /* ProductTermsAndConditionsView.swift in Sources */,
+				292453E82A1C4658002112B3 /* WebView.swift in Sources */,
 				290EA9C1292C0ACF00BBF2F2 /* VoucherViewModel.swift in Sources */,
 				3F714D6429FA0FEB00CD39E7 /* VoucherPickerView.swift in Sources */,
 				296D393E28DE1EFF0078C88E /* ButtonStyles.swift in Sources */,
@@ -1158,6 +1169,7 @@
 				29BAF6FE28F63A5800A3F9EB /* RewardPointsCardView.swift in Sources */,
 				299B38D028E3DECE00E45D97 /* AppRootViewModel.swift in Sources */,
 				29B427D429109095009CC587 /* TransactionViewModel.swift in Sources */,
+				29B1CE432A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift in Sources */,
 				2955346729E88BC500CFA391 /* ConnectedAppsViewModel.swift in Sources */,
 				29AC2EFF28F896C2003F56F6 /* LoyaltyNavBarPreferenceKeys.swift in Sources */,
 				29BAF6D128F1032800A3F9EB /* Carousel.swift in Sources */,

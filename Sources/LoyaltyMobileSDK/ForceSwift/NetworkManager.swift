@@ -41,6 +41,7 @@ public class NetworkManager: NetworkManagerProtocol {
             throw CommonError.requestFailed(message: "Invalid response")
         }
 
+        Logger.debug("HTTP response code is: \(httpResponse.statusCode)")
         switch httpResponse.statusCode {
         case 200..<300:
             break

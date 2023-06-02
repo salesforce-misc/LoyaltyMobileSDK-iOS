@@ -32,6 +32,7 @@ struct ConnectedAppSettingsView: View {
     @State var baseURL: String
     @State var instanceURL: String
     @State var communityURL: String
+    @State var selfRegisterURL: String
     
     var body: some View {
         
@@ -57,7 +58,8 @@ struct ConnectedAppSettingsView: View {
                                    callbackURL.isEmpty ||
                                    baseURL.isEmpty ||
                                    instanceURL.isEmpty ||
-                                   communityURL.isEmpty))
+                                   communityURL.isEmpty ||
+                                   selfRegisterURL.isEmpty))
                         
                     }
                 }
@@ -148,6 +150,14 @@ struct ConnectedAppSettingsView: View {
                                 .frame(height: 60)
                                 .disabled(!isEditing && !isAddingNew)
                         }
+                        HStack {
+                            Text("Self Register URL")
+                                .frame(width: 80, alignment: .leading)
+                            TextEditor(text: $selfRegisterURL)
+                                .foregroundColor(.secondary)
+                                .frame(height: 60)
+                                .disabled(!isEditing && !isAddingNew)
+                        }
                         
                     }
                     
@@ -169,7 +179,8 @@ struct ConnectedAppSettingsView: View {
                            callbackURL.isEmpty ||
                            baseURL.isEmpty ||
                            instanceURL.isEmpty ||
-                           communityURL.isEmpty))
+                           communityURL.isEmpty ||
+                           selfRegisterURL.isEmpty))
             )
         }
             
@@ -183,7 +194,8 @@ struct ConnectedAppSettingsView: View {
                                     callbackURL: callbackURL,
                                     baseURL: baseURL,
                                     instanceURL: instanceURL,
-                                    communityURL: communityURL)
+                                    communityURL: communityURL,
+                                    selfRegisterURL: selfRegisterURL)
         connectedAppVM.saveApp(connectedApp: app)
         connectedAppVM.updateSavedApps()
         dismiss()

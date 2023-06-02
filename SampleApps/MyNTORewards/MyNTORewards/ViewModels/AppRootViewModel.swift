@@ -206,7 +206,7 @@ class AppRootViewModel: ObservableObject {
 			authManager.clearAuth()
 			
 			self.isInProgress = false
-			self.userErrorMessage = (error.localizedDescription, .signIn)
+			self.userErrorMessage = ("The username or password you entered is incorrect. Please try again.", .signIn)
 		}
 	}
     

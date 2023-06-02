@@ -38,7 +38,8 @@ struct ConnectedAppsView: View {
                                                      callbackURL: selectedApp.callbackURL,
                                                      baseURL: selectedApp.baseURL,
                                                      instanceURL: selectedApp.instanceURL,
-                                                     communityURL: selectedApp.communityURL)
+                                                     communityURL: selectedApp.communityURL,
+                                                     selfRegisterURL: selectedApp.selfRegisterURL)
                         } label: {
                             
                         }
@@ -56,17 +57,20 @@ struct ConnectedAppsView: View {
             Section {
                 ForEach(connectedAppVM.savedApps, id: \.self) { app in
                     if app.instanceURL != connectedAppVM.selectedInstance {
-                        InfoNavigationLink(destination: ConnectedAppSettingsView(name: app.connectedAppName,
-                                                                                 consumerKey: app.consumerKey,
-                                                                                 consumerSecret: app.consumerSecret,
-                                                                                 callbackURL: app.callbackURL,
-                                                                                 baseURL: app.baseURL,
-                                                                                 instanceURL: app.instanceURL,
-                                                                                 communityURL: app.communityURL),
-                                           action: {
-                            selectedApp = app
-                            connectedAppVM.selectedInstance = app.instanceURL
-                            connectedAppVM.updateSavedApps()
+                        InfoNavigationLink(
+                            destination: ConnectedAppSettingsView(
+                                name: app.connectedAppName,
+                                consumerKey: app.consumerKey,
+                                consumerSecret: app.consumerSecret,
+                                callbackURL: app.callbackURL,
+                                baseURL: app.baseURL,
+                                instanceURL: app.instanceURL,
+                                communityURL: app.communityURL,
+                                selfRegisterURL: app.selfRegisterURL),
+                            action: {
+                                selectedApp = app
+                                connectedAppVM.selectedInstance = app.instanceURL
+                                connectedAppVM.updateSavedApps()
                         }) {
                             ZStack(alignment: .leading) {
                                 Text(app.connectedAppName)
@@ -117,7 +121,8 @@ struct ConnectedAppsView: View {
                                      callbackURL: "",
                                      baseURL: "",
                                      instanceURL: "",
-                                     communityURL: "")
+                                     communityURL: "",
+                                     selfRegisterURL: "")
         }
 
     }

@@ -16,7 +16,7 @@ struct SignInView: View {
     @State private var password = ""
     
     @Binding var signInPresented: Bool
-    @Binding var signUpPresented: Bool
+    @Binding var showSelfRegister: Bool
     @Binding var showResetPassword: Bool
     
     var body: some View {
@@ -34,7 +34,7 @@ struct SignInView: View {
                             SignInCredentialFields(email: $email, password: $password)
                             
                             if !viewModel.userErrorMessage.0.isEmpty {
-                                Text("Failed signing in: \(viewModel.userErrorMessage.0)")
+                                Text("\(viewModel.userErrorMessage.0)")
                                     .foregroundColor(.red)
                                     .font(.footnote)
                             }
@@ -45,15 +45,6 @@ struct SignInView: View {
                                     .accessibilityIdentifier(AppAccessibilty.SignIn.forgotPassword)
                                     .foregroundColor(Color.theme.accent)
                                     .font(.regularText)
-                                    .onTapGesture {
-                                        withAnimation {
-                                            signUpPresented = false
-                                            signInPresented = false
-                                            viewModel.userErrorMessage = ("", ErrorType.noError)
-                                            showResetPassword.toggle()
-                                        }
-                                        
-                                    }
                                 Spacer()
                             }
                             .padding([.top, .leading, .trailing])
@@ -76,14 +67,14 @@ struct SignInView: View {
                                     .accessibilityIdentifier(AppAccessibilty.SignIn.notAMember)
                                 Button(action: {
                                     signInPresented = false
-                                    signUpPresented = true
+                                    showSelfRegister = true
+                                    
                                     viewModel.userErrorMessage = ("", ErrorType.noError)
                                 }) {
                                     Text("Join Now")
                                         .font(.buttonText)
                                 }
                                 .accessibilityIdentifier(AppAccessibilty.SignIn.joinNow)
-                                // .presentationDetents([.height(405)])
                             }
                         }
                         .padding()
@@ -114,7 +105,7 @@ struct SignInView: View {
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView(signInPresented: .constant(false),
-                   signUpPresented: .constant(false),
+                   showSelfRegister: .constant(false),
                    showResetPassword: .constant(false))
             .environmentObject(AppRootViewModel())
     }

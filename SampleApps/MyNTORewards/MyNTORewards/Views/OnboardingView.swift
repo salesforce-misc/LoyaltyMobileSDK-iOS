@@ -16,7 +16,9 @@ struct OnboardingView: View {
     @State private var opacityText: Double = 1
     @State private var signUpPresented: Bool = false
     @State private var signInPresented: Bool = false
+    @State private var showSelfRegister: Bool = false
     @State private var congratsPresented: Bool = false
+    @State private var welcomePresented: Bool = false
     @State private var showResetPassword: Bool = false
     @State var showCreateNewPassword: Bool = false
     @State private var showAdminMenu: Bool = false
@@ -107,7 +109,8 @@ struct OnboardingView: View {
                 .allowsHitTesting(false)
 
                 Button(action: {
-                    signUpPresented.toggle()
+                    // signUpPresented.toggle()
+                    showSelfRegister = true
                     viewModel.userErrorMessage = ("", ErrorType.noError)
                 }, label: {
                     Text("Join")
@@ -118,7 +121,40 @@ struct OnboardingView: View {
                     FullSheet {
                         SignUpView(signInPresented: $signInPresented, signUpPresented: $signUpPresented)
                     }
-      
+
+                }
+                .sheet(isPresented: $showSelfRegister) {
+                    FullSheet {
+                        VStack {
+                            SheetHeader(title: "Register", onDismiss: {
+                                showSelfRegister = false
+                            })
+//                            {
+//                                Alert(
+//                                    title: Text("Confirm"),
+//                                    message: Text("Are you sure you want to quit?"),
+//                                    primaryButton: .destructive(Text("Quit")) {
+//                                        showSelfRegister = false
+//                                    },
+//                                    secondaryButton: .cancel()
+//                                )
+//                            }
+                            if let url = URL(string: AppSettings.shared.connectedApp.selfRegisterURL) {
+                                WebView(url: url,
+                                        redirectUrlString: "\(AppSettings.shared.getConnectedApp().communityURL)/apex/CommunitiesLanding",
+                                        onDismiss: {
+                                            showSelfRegister = false
+                                            welcomePresented = true
+                                })
+                                .interactiveDismissDisabled()
+                                // .edgesIgnoringSafeArea(.all)
+                            } else {
+                                EmptyStateView(title: "Sorry, we're having some technical difficulties and self registration is not available.")
+                            }
+                            
+                        }
+
+                    }
                 }
                 .onReceive(viewModel.$userState) { state in
                     if state == UserState.signedUp {
@@ -146,7 +182,7 @@ struct OnboardingView: View {
                     .sheet(isPresented: $signInPresented) {
                         HalfSheet {
                             SignInView(signInPresented: $signInPresented,
-                                       signUpPresented: $signUpPresented,
+                                       showSelfRegister: $showSelfRegister,
                                        showResetPassword: $showResetPassword)
                         }
                         
@@ -179,6 +215,10 @@ struct OnboardingView: View {
             CongratsView(email: viewModel.email)
                 .interactiveDismissDisabled()
         }
+        .sheet(isPresented: $welcomePresented, content: {
+            WelcomeView(welcomePresented: $welcomePresented, signInPresented: $signInPresented)
+                .interactiveDismissDisabled()
+        })
         .sheet(isPresented: $showAdminMenu, onDismiss: {
             showAdminMenu = false
         }) {
