@@ -9,14 +9,13 @@ import Foundation
 import LoyaltyMobileSDK
 
 @MainActor
-class ConnectedAppsViewModel: ObservableObject {
+class ConnectedAppsViewModel<KeychainManagerType: KeychainManagerProtocol>: ObservableObject where KeychainManagerType.T == ForceConnectedApp {
         
     @Published var selectedInstance: String {
         didSet {
             UserDefaults.standard.setValue(selectedInstance, forKey: AppSettings.Defaults.storedInstanceURLKey)
         }
     }
-        
     @Published var savedApps: [ForceConnectedApp] = []
     
     init() {
@@ -38,7 +37,7 @@ class ConnectedAppsViewModel: ObservableObject {
     
     func saveApp(connectedApp: ForceConnectedApp) {
         do {
-            try ForceConnectedAppKeychainManager.save(item: connectedApp)
+            try KeychainManagerType.save(item: connectedApp)
         } catch {
             Logger.error("Failed to save \(connectedApp.connectedAppName) info into Keychain - \(error.localizedDescription)")
         }
@@ -47,7 +46,7 @@ class ConnectedAppsViewModel: ObservableObject {
     func updateSavedApps() {
         
         do {
-            savedApps = try ForceConnectedAppKeychainManager.retrieveAll()
+            savedApps = try KeychainManagerType.retrieveAll()
         } catch {
             Logger.error("Failed to update saved connected apps - \(error.localizedDescription)")
         }
@@ -56,7 +55,7 @@ class ConnectedAppsViewModel: ObservableObject {
     
     func deleteApp(connectedApp: ForceConnectedApp) {
         do {
-            try ForceConnectedAppKeychainManager.delete(for: connectedApp.instanceURL)
+            try KeychainManagerType.delete(for: connectedApp.instanceURL)
         } catch {
             Logger.error("Failed to delete \(connectedApp.connectedAppName) info from Keychain - \(error.localizedDescription)")
         }
@@ -68,7 +67,7 @@ class ConnectedAppsViewModel: ObservableObject {
     
     func retrieveApp(instance: String) -> ForceConnectedApp? {
         do {
-            return try ForceConnectedAppKeychainManager.retrieve(for: instance)
+            return try KeychainManagerType.retrieve(for: instance)
         } catch {
             Logger.error("Failed to retrieve info for \(instance) from Keychain - \(error.localizedDescription)")
             return nil

@@ -395,32 +395,46 @@ public class ForceAuthManager: ForceAuthenticator {
 
     }
     
+    // swiftlint:disable line_length
+    
     /// Save Auth to Keychain
-    public func saveAuth(for auth: ForceAuth) throws {
+    public func saveAuth<KeychainManagerType: KeychainManagerProtocol>(for auth: ForceAuth, using keychainManagerType: KeychainManagerType.Type) throws where KeychainManagerType.T == ForceAuth {
         do {
-            try ForceAuthKeychainManager.save(item: auth)
+            try keychainManagerType.save(item: auth)
             defaults.userIdentifier = auth.identityURL
         } catch {
             throw error
         }
     }
+
+    public func saveAuth(for auth: ForceAuth) throws {
+        try saveAuth(for: auth, using: ForceAuthKeychainManager.self)
+    }
     
     /// Delete Auth from Keychain
-    public func deleteAuth() throws {
+    public func deleteAuth<KeychainManagerType: KeychainManagerProtocol>(using keychainManagerType: KeychainManagerType.Type) throws where KeychainManagerType.T == ForceAuth {
         if let id = self.userIdentifier {
-            try? ForceAuthKeychainManager.delete(for: id)
+            try? KeychainManagerType.delete(for: id)
         }
     }
     
+    public func deleteAuth() throws {
+        try deleteAuth(using: ForceAuthKeychainManager.self)
+    }
+    
     /// Retrieve Auth from Keychain
-    public func retrieveAuth() throws -> ForceAuth {
+    public func retrieveAuth<KeychainManagerType: KeychainManagerProtocol>(using keychainManagerType: KeychainManagerType.Type) throws -> ForceAuth where KeychainManagerType.T == ForceAuth {
         guard let id = ForceAuthManager.shared.userIdentifier else {
             throw CommonError.userIdentityUnknown
         }
-        guard let auth = try ForceAuthKeychainManager.retrieve(for: id) else {
+        guard let auth = try KeychainManagerType.retrieve(for: id) else {
             throw CommonError.authNotFoundInKeychain
         }
         return auth
     }
     
+    public func retrieveAuth() throws -> ForceAuth {
+        try retrieveAuth(using: ForceAuthKeychainManager.self)
+    }
+    // swiftlint:enable line_length
 }
