@@ -13,7 +13,7 @@ struct MyPromotionsView: View {
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
     @State var offerTabSelected: Int = 0
-    let barItems = ["All", "Active", "Unenrolled"]
+    let barItems = ["All", "Opted In", "Available to Opt In"]
     
     var body: some View {
         VStack(spacing: 0) {
