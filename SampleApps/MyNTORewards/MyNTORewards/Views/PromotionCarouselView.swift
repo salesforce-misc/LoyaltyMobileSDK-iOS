@@ -37,8 +37,8 @@ struct PromotionCarouselView: View {
             
             if promotionVM.promotions.isEmpty {
                 Spacer()
-                EmptyStateView(title: "No Promotions, yet.",
-                               subTitle: "You do not have any eligibile promotions to enroll. Please come back later.")
+                EmptyStateView(title: "No promotions yet",
+                               subTitle: "When you have eligible promotions to opt for, you’ll see them here.")
                 Spacer()
             } else {
                 Carousel(index: $currentIndex, items: promotionVM.promotions) { id, promotion in
