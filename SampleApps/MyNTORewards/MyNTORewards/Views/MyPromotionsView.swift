@@ -79,8 +79,8 @@ struct MyPromotionsView: View {
         ScrollView {
             LazyVStack(spacing: 15) {
                 if promotionVM.unenrolledPromotions.isEmpty {
-                    EmptyStateView(title: "No Promotions, yet.",
-                                   subTitle: "You do not have any eligibile promotions to enroll. Please come back later.")
+                    EmptyStateView(title: "No promotions yet",
+                                   subTitle: "When you have eligible promotions to opt for, you’ll see them here.")
                 }
                 ForEach(Array(promotionVM.unenrolledPromotions.enumerated()), id: \.offset) { index, promotion in
                     MyPromotionCardView(accessibilityID: "promotion_\(index)", promotion: promotion)
