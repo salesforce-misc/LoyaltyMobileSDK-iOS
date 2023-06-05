@@ -62,7 +62,7 @@ struct MyPromotionDetailView: View {
                     if currentPromotion.memberEligibilityCategory == "EligibleButNotEnrolled" {
                         HStack {
                             Spacer()
-                            Button("Join") {
+                            Button("Opt In") {
                                 // enroll to the promotion
                                 processing = true
                                 Task {
@@ -92,7 +92,7 @@ struct MyPromotionDetailView: View {
                             .accessibilityIdentifier(AppAccessibilty.Promotion.shopButton)
                             .buttonStyle(DarkShortPromotionButton())
                             Spacer()
-                            Button("Leave") {
+                            Button("Opt Out") {
                                 // unenroll to the promotion
                                 processing = true
                                 Task {
