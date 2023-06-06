@@ -140,6 +140,7 @@ struct ConnectedAppsView: View {
 struct ConnectedAppsView_Previews: PreviewProvider {
     static var previews: some View {
         ConnectedAppsView()
+            .environmentObject(dev.connectedAppVM)
     }
 }
 
