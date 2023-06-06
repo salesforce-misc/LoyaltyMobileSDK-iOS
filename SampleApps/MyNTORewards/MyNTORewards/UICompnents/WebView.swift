@@ -51,7 +51,13 @@ struct WebView: UIViewRepresentable {
             if let url = navigationAction.request.url {
                 Logger.debug("Redirecting URL: \(url) and expected URL: \(parent.redirectUrlString)")
                 if url.absoluteString == parent.redirectUrlString {
-                    // Handle the redirection: dismiss the WebView, show a new sheet, etc.
+                    // Handle the redirection: clear cookie, dismiss the WebView, show a new sheet, etc.
+                    Logger.debug("Clear cookie...")
+                    webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { cookies in
+                        for cookie in cookies {
+                            webView.configuration.websiteDataStore.httpCookieStore.delete(cookie)
+                        }
+                    }
                     Logger.debug("Redireting...Close webview.")
                     parent.onDismiss()
                 }
