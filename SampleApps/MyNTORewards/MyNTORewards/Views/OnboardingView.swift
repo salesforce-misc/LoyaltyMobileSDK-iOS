@@ -139,7 +139,7 @@ struct OnboardingView: View {
 //                                    secondaryButton: .cancel()
 //                                )
 //                            }
-                            if let url = URL(string: AppSettings.shared.connectedApp.selfRegisterURL) {
+                            if let url = URL(string: AppSettings.shared.getConnectedApp().selfRegisterURL) {
                                 WebView(url: url,
                                         redirectUrlString: "\(AppSettings.shared.getConnectedApp().communityURL)/apex/CommunitiesLanding",
                                         onDismiss: {

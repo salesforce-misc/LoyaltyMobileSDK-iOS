@@ -203,8 +203,15 @@ struct ConnectedAppSettingsView: View {
     
 }
 
-// struct ConnectedAppSettingsModalView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ConnectedAppSettingsView()
-//    }
-// }
+ struct ConnectedAppSettingsModalView_Previews: PreviewProvider {
+    static var previews: some View {
+        ConnectedAppSettingsView(name: "Sample",
+                                 consumerKey: "key123",
+                                 consumerSecret: "secret123",
+                                 callbackURL: "https://abc.com/callback",
+                                 baseURL: "https://abc.com",
+                                 instanceURL: "https://abc.com/instance",
+                                 communityURL: "https://abc.com/community",
+                                 selfRegisterURL: "https://abc.com/self-register")
+    }
+ }
