@@ -105,7 +105,7 @@ struct MyPromotionsView: View {
             LazyVStack(spacing: 15) {
                 if promotionVM.activePromotions.isEmpty {
                     EmptyStateView(title: "No Promotions, yet.",
-                                   subTitle: "You do not have any active promotions. Please come back later.")
+                                   subTitle: "After you opt for promotions, you’ll see them here.")
                 }
                 ForEach(Array(promotionVM.activePromotions.enumerated()), id: \.offset) { index, promotion in
                     MyPromotionCardView(accessibilityID: "promotion_\(index)", promotion: promotion)
@@ -132,7 +132,7 @@ struct MyPromotionsView: View {
             LazyVStack(spacing: 15) {
                 if promotionVM.allEligiblePromotions.isEmpty {
                     EmptyStateView(title: "No promotions yet",
-                                   subTitle: "When you have eligible promotions to opt for, you’ll see them here.")
+                                   subTitle: "When you opt for promotions or have eligible promotions to opt for, you’ll see them here.")
                 }
                 ForEach(Array(promotionVM.allEligiblePromotions.enumerated()), id: \.offset) { index, promotion in
                     MyPromotionCardView(accessibilityID: "promotion_\(index)", promotion: promotion)
