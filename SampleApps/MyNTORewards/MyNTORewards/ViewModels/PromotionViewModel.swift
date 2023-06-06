@@ -39,6 +39,10 @@ class PromotionViewModel: ObservableObject {
         do {
             let result = try await loyaltyAPIManager.getPromotions(membershipNumber: membershipNumber, devMode: devMode)
             let eligible = result.outputParameters.outputParameters.results.filter { result in
+				// if endDate is present and is before current date (expired promotions), should not display.
+				if let endDate = result.endDate?.toDate(), endDate < Date() {
+					return false
+				}
                 return result.memberEligibilityCategory != "Ineligible"
             }
             // save to local
