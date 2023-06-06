@@ -64,7 +64,7 @@ struct AllVouchersView: View {
         
         ScrollView {
             if voucherVM.availableVochers.isEmpty {
-                EmptyStateView(title: "You have no Available Vouchers")
+                EmptyStateView(title: "No vouchers yet", subTitle: "When you have vouchers available for redemption, you’ll see them here.")
             }
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(Array(voucherVM.availableVochers.enumerated()), id: \.offset) { index, voucher in
@@ -112,7 +112,7 @@ struct AllVouchersView: View {
         
         ScrollView {
             if voucherVM.expiredVochers.isEmpty {
-                EmptyStateView(title: "You have no Expired Vouchers")
+                EmptyStateView(title: "No expired vouchers", subTitle: "When your vouchers expire, you’ll see them here.")
             }
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(Array(voucherVM.expiredVochers.enumerated()), id: \.offset) { index, voucher in

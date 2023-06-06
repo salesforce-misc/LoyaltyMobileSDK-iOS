@@ -20,14 +20,14 @@ struct TransactionsView: View {
         } content: {
             VStack(spacing: 15) {
                 if transactionVM.transactions.isEmpty {
-                    EmptyStateView(title: "You have no Transactions")
+                    EmptyStateView(title: "Nothing to report", subTitle: "When you complete your first transaction, you’ll find it here.")
                 }
                 ForEach(Array(transactionVM.transactions.enumerated()), id: \.offset) { index, transaction in
                     TransactionCardView(accessibilityID: "transaction_\(index)", transaction: transaction)
                 }
             }
         }
-        .frame(height: 320)
+        .frame(height: 340)
         .task {
             do {
                 try await transactionVM.loadTransactions(membershipNumber: rootVM.member?.membershipNumber ?? "")

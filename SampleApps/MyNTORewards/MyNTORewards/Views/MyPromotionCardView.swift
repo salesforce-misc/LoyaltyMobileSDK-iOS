@@ -53,10 +53,10 @@ struct MyPromotionCardView: View {
                 HStack {
                     Spacer()
                     if let expDate = promotion.endDate {
-                        Text("Exp \(expDate)")
+                        Text("Expiring on \(expDate)")
                             .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.endDate)
                             .font(.labelText)
-                            .frame(width: 92, height: 19)
+							.frame(width: 136, height: 19)
                             .background(.black)
                             .foregroundColor(.white)
                             .cornerRadius(4)

@@ -20,7 +20,7 @@ struct VouchersView: View {
         } content: {
             HStack(spacing: 20) {
                 if voucherVM.vouchers.isEmpty {
-                    EmptyStateView(title: "You have no Vouchers Available")
+                    EmptyStateView(title: "No vouchers yet", subTitle: "When you have vouchers available for redemption, you’ll see them here.")
                 }
                 ForEach(Array(voucherVM.vouchers.enumerated()), id: \.offset) { index, voucher in
                     VoucherCardView(accessibilityID: "voucher_\(index)", voucher: voucher)
@@ -34,7 +34,7 @@ struct VouchersView: View {
                 }
             }
         }
-        .frame(height: 320)
+        .frame(height: 340)
         
     }
 }

@@ -10,8 +10,8 @@ import SwiftUI
 struct ProductReviewView: View {
     var body: some View {
 		VStack {
-			EmptyStateView(title: "No reviews, yet.",
-						   subTitle: "There are no reviews yet. Please come back later.")
+			EmptyStateView(title: "No reviews yet.",
+						   subTitle: "After someone reviews the product, you’ll see the reviews here.")
 			Spacer()
 		}
     }
