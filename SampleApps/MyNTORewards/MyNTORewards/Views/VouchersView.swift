@@ -34,7 +34,7 @@ struct VouchersView: View {
                 }
             }
         }
-        .frame(height: 320)
+        .frame(height: 340)
         
     }
 }
