@@ -149,9 +149,11 @@ struct OnboardingView: View {
                                 .interactiveDismissDisabled()
                                 // .edgesIgnoringSafeArea(.all)
                             } else {
-                                EmptyStateView(title: "Sorry, we're having some technical difficulties and self registration is not available.")
+                                EmptyStateView(
+                                    title: "Self Registration Not Available",
+                                    subTitle: "Sorry, we're having some technical difficulties and self registration is not available.")
                             }
-                            
+                            Spacer()
                         }
 
                     }
