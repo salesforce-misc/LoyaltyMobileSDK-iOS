@@ -85,7 +85,7 @@ class OrderDetailsViewModel: ObservableObject {
 			let encoder = JSONEncoder()
 			encoder.dateEncodingStrategy = .formatted(.forceFormatter())
 			let requestBody = try encoder.encode(order)
-            let request = try ForceRequest.create(instanceURL: AppSettings.shared.connectedApp.instanceURL,
+            let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(),
 												  path: self.orderApiEndpoint,
 												  method: "POST",
 												  body: requestBody)
@@ -98,7 +98,7 @@ class OrderDetailsViewModel: ObservableObject {
 	func getOrderDetails() async throws -> OrderDetails {
 		do {
 			let queryItems = ["orderId": "\(orderId)"]
-            let request = try ForceRequest.create(instanceURL: AppSettings.shared.connectedApp.instanceURL,
+            let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(),
 												  path: self.orderApiEndpoint,
 												  method: "GET",
 												  queryItems: queryItems)

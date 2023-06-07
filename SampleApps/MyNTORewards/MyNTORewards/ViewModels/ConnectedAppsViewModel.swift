@@ -19,14 +19,9 @@ class ConnectedAppsViewModel<KeychainManagerType: KeychainManagerProtocol>: Obse
     @Published var savedApps: [ForceConnectedApp] = []
     
     init() {
-        if let storedValue = UserDefaults.standard.string(forKey: AppSettings.Defaults.storedInstanceURLKey) {
-            selectedInstance = storedValue
-        } else {
-            selectedInstance = AppSettings.shared.connectedApp.instanceURL
-        }
-        
+        selectedInstance = AppSettings.shared.getInstanceURL()
         guard let app = retrieveApp(instance: selectedInstance) else {
-            let initApp = AppSettings.shared.connectedApp
+            let initApp = AppSettings.shared.getConnectedApp()
             saveApp(connectedApp: initApp)
             updateSavedApps()
             return

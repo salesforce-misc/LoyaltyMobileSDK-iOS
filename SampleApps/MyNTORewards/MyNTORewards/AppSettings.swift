@@ -12,7 +12,7 @@ struct AppSettings {
     
     static var shared = AppSettings()
         
-    let connectedApp: ForceConnectedApp
+    private let connectedApp: ForceConnectedApp
     
     private init() {
         guard let connectedAppSettings = Bundle.main.infoDictionary?["ConnectedApp"] as? [String: Any] else {
