@@ -20,12 +20,17 @@ struct WebView: UIViewRepresentable {
         webView.scrollView.contentInsetAdjustmentBehavior = .never
         webView.navigationDelegate = context.coordinator
         webView.configuration.userContentController.add(context.coordinator, name: "app")
+
+        // Start loading the URL
+        let request = URLRequest(url: self.url)
+        webView.load(request)
+
         return webView
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {
-        let request = URLRequest(url: url)
-        webView.load(request)
+        // This function will be called when this SwiftUI view updates.
+        // Since we are loading the URL when the WebView is created, we don't need to do anything here.
     }
 
     func makeCoordinator() -> Coordinator {

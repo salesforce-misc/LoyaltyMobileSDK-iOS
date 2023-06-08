@@ -81,7 +81,7 @@ struct ConnectedAppSettingsView: View {
                             Text("Name")
                                 .frame(width: 80, alignment: .leading)
                             TextField("Connected App Name", text: $name)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(isEditing || isAddingNew ? .primary : .secondary)
                                 .disabled(!isEditing && !isAddingNew)
                                 .focused($nameIsFocused)
                                 .overlay(
@@ -106,7 +106,7 @@ struct ConnectedAppSettingsView: View {
                             Text("Consumer Key")
                                 .frame(width: 80, alignment: .leading)
                             TextEditor(text: $consumerKey)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(isEditing || isAddingNew ? .primary : .secondary)
                                 .frame(height: 60)
                                 .disabled(!isEditing && !isAddingNew)
                         }
@@ -114,7 +114,7 @@ struct ConnectedAppSettingsView: View {
                             Text("Consumer Secret")
                                 .frame(width: 80, alignment: .leading)
                             TextEditor(text: $consumerSecret)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(isEditing || isAddingNew ? .primary : .secondary)
                                 .frame(height: 60)
                                 .disabled(!isEditing && !isAddingNew)
                         }
@@ -122,7 +122,7 @@ struct ConnectedAppSettingsView: View {
                             Text("Callback URL")
                                 .frame(width: 80, alignment: .leading)
                             TextEditor(text: $callbackURL)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(isEditing || isAddingNew ? .primary : .secondary)
                                 .frame(height: 60)
                                 .disabled(!isEditing && !isAddingNew)
                         }
@@ -130,7 +130,7 @@ struct ConnectedAppSettingsView: View {
                             Text("Base URL")
                                 .frame(width: 80, alignment: .leading)
                             TextEditor(text: $baseURL)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(isEditing || isAddingNew ? .primary : .secondary)
                                 .frame(height: 60)
                                 .disabled(!isEditing && !isAddingNew)
                         }
@@ -138,15 +138,15 @@ struct ConnectedAppSettingsView: View {
                             Text("Instance URL")
                                 .frame(width: 80, alignment: .leading)
                             TextEditor(text: $instanceURL)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(isAddingNew ? .primary : .secondary)
                                 .frame(height: 60)
-                                .disabled(!isEditing && !isAddingNew)
+                                .disabled(!isAddingNew)
                         }
                         HStack {
                             Text("Community URL")
                                 .frame(width: 80, alignment: .leading)
                             TextEditor(text: $communityURL)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(isEditing || isAddingNew ? .primary : .secondary)
                                 .frame(height: 60)
                                 .disabled(!isEditing && !isAddingNew)
                         }
@@ -154,7 +154,7 @@ struct ConnectedAppSettingsView: View {
                             Text("Self Register URL")
                                 .frame(width: 80, alignment: .leading)
                             TextEditor(text: $selfRegisterURL)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(isEditing || isAddingNew ? .primary : .secondary)
                                 .frame(height: 60)
                                 .disabled(!isEditing && !isAddingNew)
                         }

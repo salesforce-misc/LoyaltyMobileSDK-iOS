@@ -120,6 +120,28 @@ struct Keychain {
         }
     }
     
+    /// Deletes all items from the keychain.
+    /// - Parameters:
+    ///   - service: The service name for the item.
+    static func deleteAll(service: String) throws {
+        
+        // Delete the existing item(s) from the keychain.
+        let err = SecItemDelete([
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: service
+            ] as NSDictionary)
+        
+        // Throw an error if an unexpected status was returned
+        switch err {
+        case errSecSuccess:
+            return
+        case errSecItemNotFound:
+            throw KeychainError.itemNotFound
+        default:
+            throw KeychainError.deleteFailure(status: err)
+        }
+    }
+    
     /// Stores a value to a generic password keychain item.
     /// This private routine is called to update an existing keychain item.
     /// - Parameters:
