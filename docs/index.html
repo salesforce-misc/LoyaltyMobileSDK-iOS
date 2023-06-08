@@ -236,82 +236,91 @@
         <section>
           <section class="section">
             
-            <h1 id='salesforce-loyalty-mobile-sdk-for-ios' class='heading'>Salesforce Loyalty Mobile SDK for iOS</h1>
+            <h1 id='save-time-and-effort-with-loyalty-management-mobile-sdk-for-ios' class='heading'>Save Time and Effort With Loyalty Management Mobile SDK for iOS</h1>
 
-<p>Salesforce Loyalty Mobile SDK gives developers the tools to build custom mobile apps with unique user experiences. Mobile SDK allows our
-customers to produce standalone or integrate with existing Apps that they distribute through the App Store or Google Play Store. These apps
-can target customers, business and partners.</p>
+<p>Experience Loyalty Management on your iOS mobile devices and use the mobile software development kit’s (SDK) capabilities and build custom mobile applications with unique user experiences. Use pre-built loyalty components to build your own apps or enhance your existing mobile apps. Build the SDK for your loyalty program members to view their profile, membership details, and benefits, to enroll for promotions, and to avail vouchers. The SDK is bundled with a ready-to-use sample app, which is embedded with Loyalty Management features.</p>
 
-<p>Loyalty Mobile SDK enables programs to engage with members on mobile channels and deliver immersive experiences. As a Loyalty Program
-Member, users can access a mobile app to view their membership details, avail promotions and vouchers, manage their loyalty rewards, and
-engage with the brand.</p>
+<p><strong>Where:</strong> This feature is available in Lightning Experience in all editions.<br>
+<strong>How:</strong> Install the Loyalty Management Mobile SDK for iOS, create a connected app, and then clone the GitHub repository.</p>
+<h2 id='ios-mobile-sdk-for-loyalty-management' class='heading'>iOS Mobile SDK for Loyalty Management</h2>
 
-<p>LoyaltyMobileSDK-iOS is a Swift package that provides a convenient and easy-to-use interface for integrating loyalty program features into
-your iOS applications. The SDK currently supports iOS 15+.</p>
-<h2 id='features' class='heading'>Features</h2>
+<p>Enhance brand engagement by providing Loyalty Management features on your iOS mobile devices. Use the iOS Mobile Software Development Kit (SDK) for Loyalty Management to build custom mobile applications with immersive member experiences. Elevate member experience and loyalty, by providing personalized offers, rewards, and checkouts on mobile devices.</p>
+<h3 id='supported-versions-of-tools-and-components' class='heading'>Supported Versions of Tools and Components</h3>
 
-<ul>
-<li>Profile information</li>
-<li>Benefit information</li>
-<li>Enrollment</li>
-<li>Enroll and unenroll in promotions</li>
-<li>Promotions management</li>
-<li>Vouchers management</li>
-<li>Transaction history</li>
-</ul>
-<h2 id='installation' class='heading'>Installation</h2>
+<table><thead>
+<tr>
+<th>Tool or Component</th>
+<th>Supported Version</th>
+<th>Installation Details</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Swift Version</td>
+<td>5.7+</td>
+<td>Installed by Xcode</td>
+</tr>
+<tr>
+<td>Xcode</td>
+<td>14.0+</td>
+<td>Install from the App Store</td>
+</tr>
+<tr>
+<td>iOS SDK</td>
+<td>15.0+</td>
+<td>Installed by Xcode</td>
+</tr>
+<tr>
+<td>Swift Package Manager</td>
+<td>5.7+</td>
+<td>Included in Swift</td>
+</tr>
+</tbody></table>
+<h3 id='installation' class='heading'>Installation</h3>
 
-<p>To integrate LoyaltyMobileSDK-iOS into your Xcode project, add it as a package dependency:</p>
+<p>To integrate Loyalty Management Mobile SDK for iOS with your Xcode project, add it as a package dependency.</p>
 
 <ol>
-<li>In Xcode, navigate to File &gt; Swift Packages &gt; Add Package Dependency.</li>
+<li>With your app project open in Xcode, select <strong>File</strong> → <strong>Swift Packages</strong> → <strong>Add Package Dependency</strong>.</li>
 <li>Enter the repository URL: <code>https://github.com/salesforce-misc/LoyaltyMobileSDK-iOS</code></li>
-<li>Specify the version you want to use.</li>
+<li>Select a version, and click <strong>Add Package</strong>.</li>
 </ol>
-<h2 id='usage' class='heading'>Usage</h2>
+<h2 id='import-sdk-in-an-ios-swift-project' class='heading'>Import SDK in an iOS Swift Project</h2>
 
-<p>First, import the <code>LoyaltyMobileSDK</code> module into your Swift file:</p>
+<p>Automatically download and manage external dependencies. To import Loyalty Management Mobile SDK for iOS, open the swift file where you want to save LoyaltyMobileSDK, and to the first line of code, add:</p>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">LoyaltyMobileSDK</span>
 </code></pre>
-
-<p>Then, you can use the SDK&rsquo;s APIs to manage loyalty features in your application.</p>
 <h2 id='forceswift' class='heading'>ForceSwift</h2>
 
-<p>ForceSwift is a set of tools that allows developers to interact with Salesforce through a third-party app. The library provides several structs and classes
-to perform common Salesforce operations, such as authentication and making network requests.</p>
-<h3 id='key-components' class='heading'>Key Components</h3>
+<p>ForceSwift is a library that uses SwiftUI to build user interfaces in iOS apps while interacting with Salesforce. ForceSwift provides tools, structures, classes, and utilities that make it easier to perform common operations, such as authentication and network requests. Key components of ForceSwift include:</p>
 
-<ol>
-<li><code><a href="Structs/ForceAPI.html">ForceAPI</a></code> - Provides a utility function to generate the path for API endpoints based on the API name and version.</li>
-<li><code><a href="Protocols/ForceAuthenticator.html">ForceAuthenticator</a></code> - A protocol defining the required methods for handling access tokens in Salesforce API.</li>
-<li><code><a href="Classes/ForceClient.html">ForceClient</a></code> - A class handling network requests with authentication using <code><a href="Protocols/ForceAuthenticator.html">ForceAuthenticator</a></code>. It provides methods for fetching data from Salesforce API or a local JSON file.</li>
-<li><code><a href="Structs/ForceRequest.html">ForceRequest</a></code> - A struct to help create and configure <code>URLRequest</code> instances. It provides utility functions for creating requests with a URL, adding query parameters, and setting authorization.</li>
+<ul>
+<li><code><a href="Structs/ForceAPI.html">ForceAPI</a></code> - A struct that generates the path for API endpoints, based on the API name and version.</li>
+<li><code><a href="Protocols/ForceAuthenticator.html">ForceAuthenticator</a></code> - A  protocol that defines the required methods for handling access tokens in Salesforce API.</li>
+<li><code><a href="Classes/ForceClient.html">ForceClient</a></code> - A class that handles network requests with authentication by using <code><a href="Protocols/ForceAuthenticator.html">ForceAuthenticator</a></code>. This class provides methods to fetch data from Salesforce API or a local JSON file.</li>
+<li><code><a href="Structs/ForceRequest.html">ForceRequest</a></code> - A struct to help create and configure URLRequest instances. It provides utility functions to create requests with a URL, add query parameters, and set authorization.</li>
 <li><code><a href="Protocols/NetworkManagerProtocol.html">NetworkManagerProtocol</a></code> - A protocol that defines the requirements for a network manager.</li>
-<li><code><a href="Classes/NetworkManager.html">NetworkManager</a></code> - A class that handles network requests and data processing. It conforms to the <code><a href="Protocols/NetworkManagerProtocol.html">NetworkManagerProtocol</a></code> and provides a method to fetch data and decode it into the specified type.</li>
-</ol>
+<li><code><a href="Classes/NetworkManager.html">NetworkManager</a></code> - A class that handles network requests and data processing. This class conforms to the NetworkManagerProtocol and provides a method to fetch and decode the data into the specified type.</li>
+</ul>
 <h2 id='loyaltyapimanager' class='heading'>LoyaltyAPIManager</h2>
 
-<p>The <code><a href="Classes/LoyaltyAPIManager.html">LoyaltyAPIManager</a></code> class manages requests related to loyalty programs using the Force API. It provides an easy way to interact with the Salesforce
-Loyalty Management API and retrieve member benefits, member profiles, and other related data. It can be used in both development and production
-environments.</p>
-<h3 id='features' class='heading'>Features</h3>
+<p>The <code><a href="Classes/LoyaltyAPIManager.html">LoyaltyAPIManager</a></code> class manages requests related to loyalty programs using the Force API. Interact with the Salesforce Loyalty Management API and retrieve member benefits, transactions, profile, and more, in development and production environments. With LoyaltyAPIManager, you can:</p>
 
 <ul>
-<li>Handles authentication using a <code><a href="Protocols/ForceAuthenticator.html">ForceAuthenticator</a></code> instance</li>
-<li>Provides methods for interacting with the Loyalty Management API, including:
+<li>Manage authentication by creating an instance of ForceAuthenticator.</li>
+<li>Interact with the Loyalty Management APIs, including:
 
 <ul>
-<li>Get Member Benefits</li>
-<li>Get Member Profile</li>
-<li>Get Community Member Profile</li>
-<li>Get Transaction History</li>
-<li>Get Promotions</li>
-<li>Enroll in Promotion</li>
-<li>Unenroll from Promotion</li>
-<li>Get Vouchers</li>
+<li>Individual Member Enrollments</li>
+<li>Enroll for Promotions</li>
+<li>Get Member Promotions</li>
+<li>Member Benefits</li>
+<li>Member Profile</li>
+<li>Member Vouchers</li>
+<li>Transaction History</li>
+<li>Opt Out from a Promotion</li>
 </ul></li>
-<li>Supports both live API calls and local JSON file fetching for development mode</li>
-<li>Uses Swift async/await syntax for asynchronous requests</li>
+<li>Support both live API calls and local JSON file fetch for development mode.</li>
+<li>Manage asynchronous requests by using Swift Aync/Await syntax.</li>
 </ul>
 <h3 id='usage' class='heading'>Usage</h3>
 
@@ -349,59 +358,52 @@ environments.</p>
     <span class="nv">emailNotification</span><span class="p">:</span> <span class="n">emailNotification</span>
 <span class="p">)</span>
 
-<span class="c1">// Get Member Benefits</span>
+<span class="c1">// Retrieve the member benefits</span>
 <span class="k">let</span> <span class="nv">benefits</span> <span class="o">=</span> <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">getMemberBenefits</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="s">"memberId"</span><span class="p">)</span>
 
-<span class="c1">// Get Member Profile</span>
+<span class="c1">// Retrieve the member profile</span>
 <span class="k">let</span> <span class="nv">profile</span> <span class="o">=</span> <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">getMemberProfile</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="s">"memberId"</span><span class="p">)</span>
 
-<span class="c1">// Get Community Member Profile</span>
+<span class="c1">// Retrive the community member profile</span>
 <span class="k">let</span> <span class="nv">communityProfile</span> <span class="o">=</span> <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">getCommunityMemberProfile</span><span class="p">()</span>
 
-<span class="c1">// Enroll a member in a promotion</span>
+<span class="c1">// Opt in a promotion for member</span>
 <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">enrollIn</span><span class="p">(</span><span class="nv">promotion</span><span class="p">:</span> <span class="s">"PromotionName"</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">)</span>
 
-<span class="c1">// Unenroll a member from a promotion using promotion ID or promotion name</span>
+<span class="c1">// Opt out a member from a promotion using promotion ID or promotion name</span>
 <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">unenroll</span><span class="p">(</span><span class="nv">promotionId</span><span class="p">:</span> <span class="s">"promotionId"</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">)</span>
 <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">unenroll</span><span class="p">(</span><span class="nv">promotionName</span><span class="p">:</span> <span class="s">"PromotionName"</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">)</span>
 
-<span class="c1">// Get transactions for a loyalty member</span>
+<span class="c1">// Retrieve loyalty member transactions</span>
 <span class="k">let</span> <span class="nv">transactions</span> <span class="o">=</span> <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">getTransactions</span><span class="p">(</span><span class="nv">for</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">)</span>
 
-<span class="c1">// Get promotions for a loyalty member</span>
+<span class="c1">// Retrieve promotions for a loyalty member</span>
 <span class="k">let</span> <span class="nv">promotions</span> <span class="o">=</span> <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">getPromotions</span><span class="p">(</span><span class="nv">membershipNumber</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">)</span>
 
-<span class="c1">// Get vouchers for a loyalty member</span>
+<span class="c1">// Retrieve vouchers for a loyalty member</span>
 <span class="k">let</span> <span class="nv">vouchers</span> <span class="o">=</span> <span class="k">try</span> <span class="n">await</span> <span class="n">loyaltyAPIManager</span><span class="o">.</span><span class="nf">getVouchers</span><span class="p">(</span><span class="nv">membershipNumber</span><span class="p">:</span> <span class="s">"1234567890"</span><span class="p">)</span>
 
 </code></pre>
 
 <p>For a detailed understanding of each method and its parameters, please refer to the comments in the provided <code><a href="Classes/LoyaltyAPIManager.html">LoyaltyAPIManager</a></code> code.</p>
-<h2 id='testing' class='heading'>Testing</h2>
-<h3 id='running-tests-with-code-run_tests-sh-code' class='heading'>Running Tests with <code>run_tests.sh</code></h3>
+<h2 id='test-the-loyalty-management-mobile-sdk-for-ios-and-sample-app' class='heading'>Test the Loyalty Management Mobile SDK for iOS and Sample App</h2>
 
-<p>To run the tests for the LoyaltyMobileSDK-iOS and the sample app, we have provided a script called <code>run_tests.sh</code>. This script will run the tests for the SDK and/or the sample app and supports several options to customize the test run. You can run the script from the command line.</p>
+<p>Run the <code>run_tests.sh</code> script from the command line to test the LoyaltyMobileSDK-iOS and the sample app. To ensure that the script is executable, run the <code>chmod +x run_tests.sh</code> script. The script provides these capabilities.</p>
 
-<p>Here&rsquo;s how the script works:</p>
-
-<ol>
-<li>The script checks if <code>xcpretty</code> is installed. If not, it suggests installing it for better test output. <a href="https://github.com/xcpretty/xcpretty"><code>xcpretty</code></a> is a formatter for <code>xcodebuild</code> that makes the output more readable and easier to follow. You can install it using <code>gem install xcpretty</code>.</li>
-<li>It processes the command line arguments to determine which tests to run and if logs or reports should be saved.</li>
-<li>The script runs the tests for the specified schemes and test targets.</li>
-<li>It saves logs and/or reports if requested.</li>
-</ol>
-<h3 id='options' class='heading'>Options</h3>
-
-<p>You can pass the following options when running the <code>run_tests.sh</code> script:</p>
+<ul>
+<li>Verifies if <code>xcpretty</code> is installed, which is a formatter for xcodebuild and makes the output more readable. If not installed, install <code>xcpretty</code> by using the code <code>gem install xcpretty</code>.</li>
+<li>Determines the tests to run and whether the tests save the logs and reports.
+Runs tests for the specified schemes and test targets. Also provides options to customize the test run. To customize the <code>run_tests.sh</code> script, choose from these options:
 
 <ul>
 <li><code>-full</code>: Run all tests for the SDK and the sample app.</li>
-<li><code>-sdkOnly</code>: Run only the SDK tests (default option).</li>
+<li><code>-sdkOnly</code>: Run only the SDK tests.</li>
 <li><code>-appOnly</code>: Run only the sample app tests.</li>
 <li><code>-log</code>: Save the test output to a log file in the <code>build/TestRun_TIMESTAMP</code> directory.</li>
 <li><code>-report</code>: Save test reports as HTML files in the <code>build/TestRun_TIMESTAMP</code> directory.</li>
+</ul></li>
 </ul>
-<h3 id='example-usage' class='heading'>Example Usage</h3>
+<h3 id='examples' class='heading'>Examples</h3>
 
 <ul>
 <li>Run SDK tests only:</li>
@@ -420,18 +422,20 @@ environments.</p>
 </ul>
 <pre class="highlight shell"><code>  ./run_tests.sh -appOnly -log
 </code></pre>
+<h2 id='contribute-to-the-sdk' class='heading'>Contribute to the SDK</h2>
 
-<p>Make sure to give the script execution permissions by running <code>chmod +x run_tests.sh</code> if needed.</p>
-<h2 id='contributing' class='heading'>Contributing</h2>
-
-<p>We welcome contributions to this project. To contribute, please follow these steps:</p>
+<p>You can contribute to the development of the Loyalty Management Mobile SDK. </p>
 
 <ol>
-<li>Fork the repository.</li>
-<li>Create a new branch with a descriptive name.</li>
-<li>Implement your changes and ensure that tests are passing.</li>
-<li>Create a pull request and describe your changes.</li>
+<li>Fork the Loyalty Management Mobile SDK for iOS <a href="https://github.com/salesforce-misc/LoyaltyMobileSDK-iOS">repository</a>.</li>
+<li>Create a branch with a descriptive name.</li>
+<li>Implement your changes.</li>
+<li>Test your changes.</li>
+<li>Submit a pull request.</li>
 </ol>
+
+<p>See also:
+<a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo">Fork a repo</a></p>
 <h2 id='license' class='heading'>License</h2>
 
 <p>LoyaltyMobileSDK-iOS is available under the BSD 3-Clause License.</p>
