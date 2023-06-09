@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ForceRequest Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/ForceRequest" class="dashAnchor"></a>
+    <a title="ForceRequest Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        ForceRequest Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/ForceClient.html">ForceClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Logger.html">Logger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoyaltyAPIManager.html">LoyaltyAPIManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoyaltyAPIManager/SortBy.html">– SortBy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoyaltyAPIManager/SortOrder.html">– SortOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoyaltyAPIManager/VoucherStatus.html">– VoucherStatus</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoyaltyAPIManager/Resource.html">– Resource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NetworkManager.html">NetworkManager</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/CommonError.html">CommonError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Collection.html">Collection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/DateFormatter.html">DateFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/DateFormatter/Length.html">– Length</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Foundation.Bundle.html">Foundation.Bundle</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/ForceAuthenticator.html">ForceAuthenticator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NetworkManagerProtocol.html">NetworkManagerProtocol</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/AdditionalFieldValues.html">AdditionalFieldValues</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:16LoyaltyMobileSDK010AdditionalA12MemberFieldsV">AdditionalLoyaltyMemberFields</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AdditionalLoyaltyProgramMemberFields.html">AdditionalLoyaltyProgramMemberFields</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AdditionalTransactionJournalAttribute.html">AdditionalTransactionJournalAttribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:16LoyaltyMobileSDK17AssociatedAccountV">AssociatedAccount</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AssociatedContact.html">AssociatedContact</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AssociatedContactDetails.html">AssociatedContactDetails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BenefitModel.html">BenefitModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Benefits.html">Benefits</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollPromotionOutputModel.html">EnrollPromotionOutputModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollPromotionOutputParameters.html">EnrollPromotionOutputParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollPromotionResult.html">EnrollPromotionResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollPromotionResultsOutputParameters.html">EnrollPromotionResultsOutputParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:16LoyaltyMobileSDK32EnrollPromotionSimulationDetailsV">EnrollPromotionSimulationDetails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollmentModel.html">EnrollmentModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EnrollmentOutputModel.html">EnrollmentOutputModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ForceAPI.html">ForceAPI</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ForceRequest.html">ForceRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ForceRequest.html#/s:16LoyaltyMobileSDK12ForceRequestV6MethodV">– Method</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ForceRequest.html#/s:16LoyaltyMobileSDK12ForceRequestV8MIMETypeV">– MIMEType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ForceRequest.html#/s:16LoyaltyMobileSDK12ForceRequestV6HeaderV">– Header</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LoyaltyAPIVersion.html">LoyaltyAPIVersion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MemberCurrency.html">MemberCurrency</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MemberTier.html">MemberTier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OutputParameterMain.html">OutputParameterMain</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OutputParameterSub.html">OutputParameterSub</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PointsChange.html">PointsChange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ProfileModel.html">ProfileModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PromotionModel.html">PromotionModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PromotionModelOutputParameters.html">PromotionModelOutputParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PromotionOutputsOutputParameters.html">PromotionOutputsOutputParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PromotionResult.html">PromotionResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs.html#/s:16LoyaltyMobileSDK17SimulationDetailsV">SimulationDetails</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TransactionJournal.html">TransactionJournal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TransactionJournalOutput.html">TransactionJournalOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TransactionModel.html">TransactionModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/UnenrollPromotionOutputModel.html">UnenrollPromotionOutputModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/UnenrollPromotionResponseModel.html">UnenrollPromotionResponseModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/UnenrollPromotionResult.html">UnenrollPromotionResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VoucherModel.html">VoucherModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VouchersResponse.html">VouchersResponse</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>ForceRequest</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ForceRequest</span></code></pre>
+
+                </div>
+              </div>
+            <p>A struct to help create and configure URLRequest instances.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK12ForceRequestV6MethodV"></a>
+                    <a name="//apple_ref/swift/Struct/Method" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK12ForceRequestV6MethodV">Method</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Constants for HTTP methods.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Method</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK12ForceRequestV8MIMETypeV"></a>
+                    <a name="//apple_ref/swift/Struct/MIMEType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK12ForceRequestV8MIMETypeV">MIMEType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Constants for MIME types.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MIMEType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK12ForceRequestV6HeaderV"></a>
+                    <a name="//apple_ref/swift/Struct/Header" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK12ForceRequestV6HeaderV">Header</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Constants for HTTP headers.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Header</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK12ForceRequestV6create11instanceURL4path6method10queryItems7headers4body11cachePolicy15timeoutInterval10Foundation10URLRequestVSS_S2SSgSDyS2SGSgArM4DataVSgSo017NSURLRequestCacheP0VSdtKFZ"></a>
+                    <a name="//apple_ref/swift/Method/create(instanceURL:path:method:queryItems:headers:body:cachePolicy:timeoutInterval:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK12ForceRequestV6create11instanceURL4path6method10queryItems7headers4body11cachePolicy15timeoutInterval10Foundation10URLRequestVSS_S2SSgSDyS2SGSgArM4DataVSgSo017NSURLRequestCacheP0VSdtKFZ">create(instanceURL:<wbr>path:<wbr>method:<wbr>queryItems:<wbr>headers:<wbr>body:<wbr>cachePolicy:<wbr>timeoutInterval:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>create a URLRequest with path</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">create</span><span class="p">(</span>
+    <span class="nv">instanceURL</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+    <span class="nv">method</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">queryItems</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">headers</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">body</span><span class="p">:</span> <span class="kt">Data</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">cachePolicy</span><span class="p">:</span> <span class="kt">URLRequest</span><span class="o">.</span><span class="kt">CachePolicy</span> <span class="o">=</span> <span class="o">.</span><span class="n">useProtocolCachePolicy</span><span class="p">,</span>
+    <span class="nv">timeoutInterval</span><span class="p">:</span> <span class="kt">TimeInterval</span> <span class="o">=</span> <span class="mf">60.0</span>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">URLRequest</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>instanceURL</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The instanceURL of the org</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>path</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The path of the request</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>method</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The HTTP Method, for example <code>GET</code>, <code>POST</code> and etc</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>queryItems</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The request queryItems</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>headers</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The request headers</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>body</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The request body</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cachePolicy</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The request <code>CachePolicy</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>timeoutInterval</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The request <code>TimeInterval</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>URLRequest</code></p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK12ForceRequestV6create3url6method10queryItems7headers4body11cachePolicy15timeoutInterval10Foundation10URLRequestVAL3URLV_SSSgSDyS2SGSgAsL4DataVSgSo017NSURLRequestCacheN0VSdtKFZ"></a>
+                    <a name="//apple_ref/swift/Method/create(url:method:queryItems:headers:body:cachePolicy:timeoutInterval:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK12ForceRequestV6create3url6method10queryItems7headers4body11cachePolicy15timeoutInterval10Foundation10URLRequestVAL3URLV_SSSgSDyS2SGSgAsL4DataVSgSo017NSURLRequestCacheN0VSdtKFZ">create(url:<wbr>method:<wbr>queryItems:<wbr>headers:<wbr>body:<wbr>cachePolicy:<wbr>timeoutInterval:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>create a URLRequest with URL</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">create</span><span class="p">(</span>
+    <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span>
+    <span class="nv">method</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">queryItems</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">headers</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">body</span><span class="p">:</span> <span class="kt">Data</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">cachePolicy</span><span class="p">:</span> <span class="kt">URLRequest</span><span class="o">.</span><span class="kt">CachePolicy</span> <span class="o">=</span> <span class="o">.</span><span class="n">useProtocolCachePolicy</span><span class="p">,</span>
+    <span class="nv">timeoutInterval</span><span class="p">:</span> <span class="kt">TimeInterval</span> <span class="o">=</span> <span class="mf">60.0</span>
+<span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">URLRequest</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The request <code>URL</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>method</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The HTTP Method, for example <code>GET</code>, <code>POST</code> and etc</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>queryItems</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The request queryItems</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>headers</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The request headers</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>body</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The request body</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cachePolicy</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The request <code>CachePolicy</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>timeoutInterval</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The request <code>TimeInterval</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>URLRequest</code></p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK12ForceRequestV9transform4from3add10Foundation3URLVAI_SDyS2SGtKFZ"></a>
+                    <a name="//apple_ref/swift/Method/transform(from:add:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK12ForceRequestV9transform4from3add10Foundation3URLVAI_SDyS2SGtKFZ">transform(from:<wbr>add:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Transform a URL with queryItems added</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">transform</span><span class="p">(</span><span class="n">from</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="n">add</span> <span class="nv">queryItems</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">])</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">URL</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The URL to be transformed</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>queryItems</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>QueryItems to be added</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new URL with queryItems added</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:16LoyaltyMobileSDK12ForceRequestV16setAuthorization7request11accessToken10Foundation10URLRequestVAI_SStFZ"></a>
+                    <a name="//apple_ref/swift/Method/setAuthorization(request:accessToken:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:16LoyaltyMobileSDK12ForceRequestV16setAuthorization7request11accessToken10Foundation10URLRequestVAI_SStFZ">setAuthorization(request:<wbr>accessToken:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Attach an accessToken to the request</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">setAuthorization</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="kt">URLRequest</span><span class="p">,</span> <span class="nv">accessToken</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">URLRequest</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>request</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A request to be updated</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accessToken</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An accessToken for an API service</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A new <code>URLRequest</code> with authorization added</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>Copyright (c) 2023, Salesforce Industries. All rights reserved.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>
