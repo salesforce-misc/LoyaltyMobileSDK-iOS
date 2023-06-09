@@ -1,78 +1,65 @@
-# Salesforce Loyalty Mobile SDK for iOS
+# Save Time and Effort With Loyalty Management Mobile SDK for iOS
 
-Salesforce Loyalty Mobile SDK gives developers the tools to build custom mobile apps with unique user experiences. Mobile SDK allows our
-customers to produce standalone or integrate with existing Apps that they distribute through the App Store or Google Play Store. These apps
-can target customers, business and partners.
+Experience Loyalty Management on your iOS mobile devices and use the mobile software development kit’s (SDK) capabilities and build custom mobile applications with unique user experiences. Use pre-built loyalty components to build your own apps or enhance your existing mobile apps. Build the SDK for your loyalty program members to view their profile, membership details, and benefits, to enroll for promotions, and to avail vouchers. The SDK is bundled with a ready-to-use sample app, which is embedded with Loyalty Management features.
 
-Loyalty Mobile SDK enables programs to engage with members on mobile channels and deliver immersive experiences. As a Loyalty Program
-Member, users can access a mobile app to view their membership details, avail promotions and vouchers, manage their loyalty rewards, and
-engage with the brand.
+**Where:** This feature is available in Lightning Experience in all editions.  
+**How:** Install the Loyalty Management Mobile SDK for iOS, create a connected app, and then clone the GitHub repository.
 
-LoyaltyMobileSDK-iOS is a Swift package that provides a convenient and easy-to-use interface for integrating loyalty program features into
-your iOS applications. The SDK currently supports iOS 15+.
+## iOS Mobile SDK for Loyalty Management
 
-## Features
+Enhance brand engagement by providing Loyalty Management features on your iOS mobile devices. Use the iOS Mobile Software Development Kit (SDK) for Loyalty Management to build custom mobile applications with immersive member experiences. Elevate member experience and loyalty, by providing personalized offers, rewards, and checkouts on mobile devices.
 
-- Profile information
-- Benefit information
-- Enrollment
-- Enroll and unenroll in promotions
-- Promotions management
-- Vouchers management
-- Transaction history
+### Supported Versions of Tools and Components
 
-## Installation
+| Tool or Component     | Supported Version | Installation Details          |
+|-----------------------|-------------------|-------------------------------|
+| Swift Version         | 5.7+              | Installed by Xcode            |
+| Xcode                 | 14.0+             | Install from the App Store    |
+| iOS SDK               | 15.0+             | Installed by Xcode            |
+| Swift Package Manager | 5.7+              | Included in Swift             |
 
-To integrate LoyaltyMobileSDK-iOS into your Xcode project, add it as a package dependency:
+### Installation
 
-1. In Xcode, navigate to File > Swift Packages > Add Package Dependency.
+To integrate Loyalty Management Mobile SDK for iOS with your Xcode project, add it as a package dependency.
+
+1. With your app project open in Xcode, select **File** → **Swift Packages** → **Add Package Dependency**.
 2. Enter the repository URL: `https://github.com/salesforce-misc/LoyaltyMobileSDK-iOS`
-3. Specify the version you want to use.
+3. Select a version, and click **Add Package**.
 
-## Usage
+## Import SDK in an iOS Swift Project
 
-First, import the `LoyaltyMobileSDK` module into your Swift file:
+Automatically download and manage external dependencies. To import Loyalty Management Mobile SDK for iOS, open the swift file where you want to save LoyaltyMobileSDK, and to the first line of code, add:
 
 ```swift
 import LoyaltyMobileSDK
 ```
 
-Then, you can use the SDK's APIs to manage loyalty features in your application.
-
 ## ForceSwift
 
-ForceSwift is a set of tools that allows developers to interact with Salesforce through a third-party app. The library provides several structs and classes
-to perform common Salesforce operations, such as authentication and making network requests.
+ForceSwift is a library that uses SwiftUI to build user interfaces in iOS apps while interacting with Salesforce. ForceSwift provides tools, structures, classes, and utilities that make it easier to perform common operations, such as authentication and network requests. Key components of ForceSwift include:
 
-### Key Components
-
-1. `ForceAPI` - Provides a utility function to generate the path for API endpoints based on the API name and version.
-2. `ForceAuthenticator` - A protocol defining the required methods for handling access tokens in Salesforce API.
-3. `ForceClient` - A class handling network requests with authentication using `ForceAuthenticator`. It provides methods for fetching data from Salesforce API or a local JSON file.
-4. `ForceRequest` - A struct to help create and configure `URLRequest` instances. It provides utility functions for creating requests with a URL, adding query parameters, and setting authorization.
-5. `NetworkManagerProtocol` - A protocol that defines the requirements for a network manager.
-6. `NetworkManager` - A class that handles network requests and data processing. It conforms to the `NetworkManagerProtocol` and provides a method to fetch data and decode it into the specified type.
+- `ForceAPI` - A struct that generates the path for API endpoints, based on the API name and version.
+- `ForceAuthenticator` - A  protocol that defines the required methods for handling access tokens in Salesforce API.
+- `ForceClient` - A class that handles network requests with authentication by using `ForceAuthenticator`. This class provides methods to fetch data from Salesforce API or a local JSON file. 
+- `ForceRequest` - A struct to help create and configure URLRequest instances. It provides utility functions to create requests with a URL, add query parameters, and set authorization.
+- `NetworkManagerProtocol` - A protocol that defines the requirements for a network manager.
+- `NetworkManager` - A class that handles network requests and data processing. This class conforms to the NetworkManagerProtocol and provides a method to fetch and decode the data into the specified type.
 
 ## LoyaltyAPIManager
 
-The `LoyaltyAPIManager` class manages requests related to loyalty programs using the Force API. It provides an easy way to interact with the Salesforce
-Loyalty Management API and retrieve member benefits, member profiles, and other related data. It can be used in both development and production
-environments.
-
-### Features
-
-- Handles authentication using a `ForceAuthenticator` instance
-- Provides methods for interacting with the Loyalty Management API, including:
-  - Get Member Benefits
-  - Get Member Profile
-  - Get Community Member Profile
-  - Get Transaction History
-  - Get Promotions
-  - Enroll in Promotion
-  - Unenroll from Promotion
-  - Get Vouchers
-- Supports both live API calls and local JSON file fetching for development mode
-- Uses Swift async/await syntax for asynchronous requests
+The `LoyaltyAPIManager` class manages requests related to loyalty programs using the Force API. Interact with the Salesforce Loyalty Management API and retrieve member benefits, transactions, profile, and more, in development and production environments. With LoyaltyAPIManager, you can:
+- Manage authentication by creating an instance of ForceAuthenticator.
+- Interact with the Loyalty Management APIs, including:
+    - Individual Member Enrollments
+    - Enroll for Promotions
+    - Get Member Promotions
+    - Member Benefits
+    - Member Profile
+    - Member Vouchers
+    - Transaction History
+    - Opt Out from a Promotion
+- Support both live API calls and local JSON file fetch for development mode.
+- Manage asynchronous requests by using Swift Aync/Await syntax.
 
 ### Usage
 
@@ -110,59 +97,48 @@ let enrollmentOutput = try await loyaltyAPIManager.postEnrollment(
     emailNotification: emailNotification
 )
 
-// Get Member Benefits
+// Retrieve the member benefits
 let benefits = try await loyaltyAPIManager.getMemberBenefits(for: "memberId")
 
-// Get Member Profile
+// Retrieve the member profile
 let profile = try await loyaltyAPIManager.getMemberProfile(for: "memberId")
 
-// Get Community Member Profile
+// Retrive the community member profile
 let communityProfile = try await loyaltyAPIManager.getCommunityMemberProfile()
 
-// Enroll a member in a promotion
+// Opt in a promotion for member
 try await loyaltyAPIManager.enrollIn(promotion: "PromotionName", for: "1234567890")
 
-// Unenroll a member from a promotion using promotion ID or promotion name
+// Opt out a member from a promotion using promotion ID or promotion name
 try await loyaltyAPIManager.unenroll(promotionId: "promotionId", for: "1234567890")
 try await loyaltyAPIManager.unenroll(promotionName: "PromotionName", for: "1234567890")
 
-// Get transactions for a loyalty member
+// Retrieve loyalty member transactions
 let transactions = try await loyaltyAPIManager.getTransactions(for: "1234567890")
 
-// Get promotions for a loyalty member
+// Retrieve promotions for a loyalty member
 let promotions = try await loyaltyAPIManager.getPromotions(membershipNumber: "1234567890")
 
-// Get vouchers for a loyalty member
+// Retrieve vouchers for a loyalty member
 let vouchers = try await loyaltyAPIManager.getVouchers(membershipNumber: "1234567890")
 
 ```
 
 For a detailed understanding of each method and its parameters, please refer to the comments in the provided `LoyaltyAPIManager` code.
 
-## Testing
+## Test the Loyalty Management Mobile SDK for iOS and Sample App
 
-### Running Tests with `run_tests.sh`
+Run the `run_tests.sh` script from the command line to test the LoyaltyMobileSDK-iOS and the sample app. To ensure that the script is executable, run the `chmod +x run_tests.sh` script. The script provides these capabilities.
+- Verifies if `xcpretty` is installed, which is a formatter for xcodebuild and makes the output more readable. If not installed, install `xcpretty` by using the code `gem install xcpretty`.
+- Determines the tests to run and whether the tests save the logs and reports.
+Runs tests for the specified schemes and test targets. Also provides options to customize the test run. To customize the `run_tests.sh` script, choose from these options:
+    - `-full`: Run all tests for the SDK and the sample app.
+    - `-sdkOnly`: Run only the SDK tests.
+    - `-appOnly`: Run only the sample app tests.
+    - `-log`: Save the test output to a log file in the `build/TestRun_TIMESTAMP` directory.
+    - `-report`: Save test reports as HTML files in the `build/TestRun_TIMESTAMP` directory.
 
-To run the tests for the LoyaltyMobileSDK-iOS and the sample app, we have provided a script called `run_tests.sh`. This script will run the tests for the SDK and/or the sample app and supports several options to customize the test run. You can run the script from the command line.
-
-Here's how the script works:
-
-1. The script checks if `xcpretty` is installed. If not, it suggests installing it for better test output. [`xcpretty`](https://github.com/xcpretty/xcpretty) is a formatter for `xcodebuild` that makes the output more readable and easier to follow. You can install it using `gem install xcpretty`.
-2. It processes the command line arguments to determine which tests to run and if logs or reports should be saved.
-3. The script runs the tests for the specified schemes and test targets.
-4. It saves logs and/or reports if requested.
-
-### Options
-
-You can pass the following options when running the `run_tests.sh` script:
-
-- `-full`: Run all tests for the SDK and the sample app.
-- `-sdkOnly`: Run only the SDK tests (default option).
-- `-appOnly`: Run only the sample app tests.
-- `-log`: Save the test output to a log file in the `build/TestRun_TIMESTAMP` directory.
-- `-report`: Save test reports as HTML files in the `build/TestRun_TIMESTAMP` directory.
-
-### Example Usage
+### Examples
 
 - Run SDK tests only:
 
@@ -182,16 +158,17 @@ You can pass the following options when running the `run_tests.sh` script:
   ./run_tests.sh -appOnly -log
   ```
 
-Make sure to give the script execution permissions by running `chmod +x run_tests.sh` if needed.
+## Contribute to the SDK
 
-## Contributing
+You can contribute to the development of the Loyalty Management Mobile SDK. 
+1. Fork the Loyalty Management Mobile SDK for iOS [repository](https://github.com/salesforce-misc/LoyaltyMobileSDK-iOS).
+2. Create a branch with a descriptive name.
+3. Implement your changes.
+4. Test your changes.
+5. Submit a pull request.
 
-We welcome contributions to this project. To contribute, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch with a descriptive name.
-3. Implement your changes and ensure that tests are passing.
-4. Create a pull request and describe your changes.
+See also:
+[Fork a repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
 
 ## License
 
