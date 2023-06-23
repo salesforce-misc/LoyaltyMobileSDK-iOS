@@ -87,11 +87,10 @@ class DeveloperPreview {
      ]
      */
     
-    // swiftlint:disable line_length
     let promotion = PromotionResult(fulfillmentAction: "CREDIT_POINTS",
                                     promotionEnrollmentRqr: false,
                                     memberEligibilityCategory: "Eligible",
-                                    promotionImageURL: "https://unsplash.com/photos/sTa-fO_VM4k/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjc4NzI2MDcx&force=true&w=640",
+                                    promotionImageURL: "https://salesforce.widen.net/content/f1h2462zr8/png/AdobeStock_328036344.jpeg",
                                     loyaltyPromotionType: "STANDARD",
                                     totalPromotionRewardPointsVal: 250,
                                     promotionName: "Mountain Biking Bonanza",
@@ -102,7 +101,6 @@ class DeveloperPreview {
                                     description: "Promote sustainable travel alternatives and earn rewards by joining us in the Mountain Biking Bonanza event",
                                     promotionEnrollmentEndDate: "end",
                                     promEnrollmentStartDate: "start")
-    // swiftlint:enable line_length
     
     // let currency = TransactionCurrency(value: 100, name: "Reward Points")
     let transactions = [

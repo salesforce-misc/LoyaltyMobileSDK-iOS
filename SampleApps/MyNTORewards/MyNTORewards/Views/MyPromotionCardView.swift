@@ -12,7 +12,6 @@ struct MyPromotionCardView: View {
     
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
-    @State var loadImage: Bool = false
     @State var showPromotionDetailView = false
     @State var processing = false
     let accessibilityID: String
@@ -20,20 +19,18 @@ struct MyPromotionCardView: View {
     
     var body: some View {
         HStack {
-            if loadImage {
-                AsyncImageView(imageUrl: promotion.promotionImageURL)
-                    .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.image)
-                    .frame(width: 133, height: 166)
-                    .cornerRadius(5, corners: [.topLeft, .bottomLeft])
-            } else {
-                Rectangle()
-                    .foregroundColor(.white)
-                    .frame(width: 133, height: 166)
-                    .cornerRadius(5, corners: [.topLeft, .bottomLeft])
-                    .overlay {
-                        ProgressView()
-                    }
-            }
+            LoyaltyAsyncImage(url: promotion.promotionImageURL, content: { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .clipped()
+            }, placeholder: {
+                ProgressView()
+            })
+            .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.image)
+            .frame(width: 133, height: 166)
+            .cornerRadius(5, corners: [.topLeft, .bottomLeft])
+            
             VStack(alignment: .leading, spacing: 10) {
                 HStack(alignment: .top) {
                     Text(promotion.promotionName)
@@ -66,11 +63,6 @@ struct MyPromotionCardView: View {
             }
             .padding(.all, 6)
             Spacer()
-        }
-        .onAppear {
-            withAnimation(Animation.spring().delay(0)) {
-                loadImage = true
-            }
         }
         .frame(width: 343, height: 166)
         .background(Color.white)
@@ -118,6 +110,7 @@ struct MyPromotionCardView_Previews: PreviewProvider {
             MyPromotionCardView(accessibilityID: "id", promotion: dev.promotion)
                 .environmentObject(dev.rootVM)
                 .environmentObject(dev.promotionVM)
+                .environmentObject(dev.imageVM)
         }
         
     }

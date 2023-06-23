@@ -24,11 +24,17 @@ struct MyPromotionDetailView: View {
         ZStack {
             Color.white
             
-            VStack {
-                AsyncImageView(imageUrl: promotion.promotionImageURL)
+            VStack(spacing: 20) {
+                GeometryReader { geometry in
+                    LoyaltyAsyncImage(url: promotion.promotionImageURL, content: { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                    }, placeholder: {
+                        ProgressView()
+                    })
                     .accessibilityIdentifier(AppAccessibilty.Promotion.image)
-                    .frame(maxWidth: .infinity, maxHeight: 220)
-                    .clipped()
+                    .frame(maxWidth: geometry.size.width, maxHeight: 220)
                     .overlay(alignment: .topTrailing) {
                         Image("ic-dismiss")
                             .accessibilityIdentifier(AppAccessibilty.Promotion.dismissButton)
@@ -37,6 +43,8 @@ struct MyPromotionDetailView: View {
                                 dismiss()
                             }
                     }
+                }
+                .frame(maxHeight: 220)
                 
                 VStack(alignment: .leading, spacing: 20) {
                     Text(currentPromotion.promotionName)
@@ -156,5 +164,6 @@ struct MyPromotionDetailView_Previews: PreviewProvider {
 		MyPromotionDetailView(promotion: dev.promotion, processing: .constant(false))
             .environmentObject(dev.rootVM)
             .environmentObject(dev.promotionVM)
+            .environmentObject(dev.imageVM)
     }
 }

@@ -18,12 +18,18 @@ struct PromotionCardView: View {
     
     var body: some View {
         VStack {
-            AsyncImageView(imageUrl: promotion.promotionImageURL)
-                .frame(width: 289, height: 154)
-				.contentShape(Rectangle())
-                .cornerRadius(5, corners: [.topLeft, .topRight])
-                .padding(.top)
-                .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.image)
+            LoyaltyAsyncImage(url: promotion.promotionImageURL, content: { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+            }, placeholder: {
+                ProgressView()
+            })
+            .frame(width: 289, height: 154)
+            .contentShape(Rectangle())
+            .cornerRadius(5, corners: [.topLeft, .topRight])
+            .padding(.top)
+            .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.image)
             
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
@@ -82,5 +88,7 @@ struct PromotionCardView_Previews: PreviewProvider {
     static var previews: some View {
         PromotionCardView(accessibilityID: "id", promotion: dev.promotion)
             .previewLayout(.sizeThatFits)
+            .environmentObject(dev.promotionVM)
+            .environmentObject(dev.imageVM)
     }
 }
