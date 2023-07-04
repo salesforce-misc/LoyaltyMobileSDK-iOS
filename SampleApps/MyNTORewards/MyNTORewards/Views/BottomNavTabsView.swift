@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct BottomNavTabsView: View {
-	@EnvironmentObject var promotionsVM: PromotionViewModel
+	@StateObject var promotionsVM = PromotionViewModel()
+	@StateObject var vouchersVM = VoucherViewModel()
+	@StateObject var profileVM = ProfileViewModel()
+	@StateObject var transactionVM = TransactionViewModel()
 	@State var selectedTab: Int = Tab.home.rawValue
 	
 	var body: some View {
@@ -51,6 +54,11 @@ struct BottomNavTabsView: View {
 				UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
 			} // To Fix Tab bar at the bottom of an app goes transparent when navigating back from another view
 		}
+		.environmentObject(promotionsVM)
+		.environmentObject(vouchersVM)
+		.environmentObject(profileVM)
+		.environmentObject(transactionVM)
+		.navigationViewStyle(.stack)
 	}
 }
 

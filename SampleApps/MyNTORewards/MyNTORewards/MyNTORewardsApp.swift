@@ -13,10 +13,7 @@ struct MyNTORewardsApp: App {
     @StateObject var appViewRouter = AppViewRouter()
     @StateObject var appRootVM = AppRootViewModel()
     @StateObject var benefitVM = BenefitViewModel()
-    @StateObject var profileVM = ProfileViewModel()
-    @StateObject var promotionVM = PromotionViewModel()
-    @StateObject var transactionVM = TransactionViewModel()
-    @StateObject var voucherVM = VoucherViewModel()
+	@StateObject var profileVM = ProfileViewModel()
     @StateObject var imageVM = ImageViewModel()
     @StateObject var connectedAppVM = ConnectedAppsViewModel<ForceConnectedAppKeychainManager>()
     
@@ -30,10 +27,7 @@ struct MyNTORewardsApp: App {
                 .environmentObject(appViewRouter)
                 .environmentObject(appRootVM)
                 .environmentObject(benefitVM)
-                .environmentObject(profileVM)
-                .environmentObject(promotionVM)
-                .environmentObject(transactionVM)
-                .environmentObject(voucherVM)
+				.environmentObject(profileVM)
                 .environmentObject(imageVM)
                 .environmentObject(connectedAppVM)
         }
