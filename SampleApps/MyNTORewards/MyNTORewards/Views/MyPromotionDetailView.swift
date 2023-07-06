@@ -35,6 +35,7 @@ struct MyPromotionDetailView: View {
                     })
                     .accessibilityIdentifier(AppAccessibilty.Promotion.image)
                     .frame(maxWidth: geometry.size.width, maxHeight: 220)
+                    .clipped()
                     .overlay(alignment: .topTrailing) {
                         Image("ic-dismiss")
                             .accessibilityIdentifier(AppAccessibilty.Promotion.dismissButton)
