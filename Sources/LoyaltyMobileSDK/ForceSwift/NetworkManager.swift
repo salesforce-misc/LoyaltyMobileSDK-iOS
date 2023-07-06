@@ -58,6 +58,7 @@ public class NetworkManager: NetworkManagerProtocol {
             let errorMessage = "HTTP response status code \(httpResponse.statusCode)"
             Logger.error(CommonError.responseUnsuccessful(message: errorMessage).description)
             Logger.debug(httpResponse.description)
+            Logger.debug("Details: \(output.data)")
             throw CommonError.responseUnsuccessful(message: errorMessage)
         }
 
