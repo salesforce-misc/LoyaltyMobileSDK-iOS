@@ -20,26 +20,28 @@ struct VoucherDetailView: View {
             Color.white
             
             VStack(alignment: .leading) {
-                
-                LoyaltyAsyncImage(url: voucher.voucherImageUrl, content: { image in
-                    image
-                        .resizable()
-                        .scaledToFill()
-                }, placeholder: {
-                    ProgressView()
-                })
-                .accessibilityIdentifier(AppAccessibilty.Voucher.image)
-                .frame(maxWidth: .infinity, maxHeight: 220)
-                .clipped()
-                .overlay(alignment: .topTrailing) {
-                    Image("ic-dismiss")
-                        .accessibilityIdentifier(AppAccessibilty.Voucher.dismissButton)
-                        .padding()
-                        .onTapGesture {
-                            dismiss()
-                        }
-                }
-                
+				GeometryReader { geometry in
+					LoyaltyAsyncImage(url: voucher.voucherImageUrl, content: { image in
+						image
+							.resizable()
+							.scaledToFill()
+					}, placeholder: {
+						ProgressView()
+					})
+					.accessibilityIdentifier(AppAccessibilty.Voucher.image)
+					.frame(maxWidth: geometry.size.width, maxHeight: 220)
+					.clipped()
+					.overlay(alignment: .topTrailing) {
+						Image("ic-dismiss")
+							.accessibilityIdentifier(AppAccessibilty.Voucher.dismissButton)
+							.padding()
+							.onTapGesture {
+								dismiss()
+							}
+					}
+				}
+				.frame(maxHeight: 220)
+
                 VStack(alignment: .leading, spacing: 20) {
                     Text(voucher.voucherDefinition)
                         .font(.voucherTitle)

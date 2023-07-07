@@ -63,22 +63,32 @@ The `LoyaltyAPIManager` class manages requests related to loyalty programs using
 
 ### Usage
 
-1. Create an instance of `LoyaltyAPIManager` with the necessary parameters:
+1. In order to use the SDK, you need to provide a valid `accessToken` to interact with Salesforce API. To do this, you are required to conform and implement [`ForceAuthenticator`](https://github.com/salesforce-misc/LoyaltyMobileSDK-iOS/blob/main/Sources/LoyaltyMobileSDK/ForceSwift/ForceAuthenticator.swift) protocol which we provided in the SDK. For our sample app, we implemented this protocol in [`ForceAuthManager.swift`](https://github.com/salesforce-misc/LoyaltyMobileSDK-iOS/blob/main/SampleApps/MyNTORewards/MyNTORewards/ForceSwift%2BExtra/ForceAuthManager.swift).
+
+2. Create an instance of `ForceClient` with the necessary parameters:
 
 ```swift
-let loyaltyAPIManager = LoyaltyAPIManager(auth: forceAuthenticator, loyaltyProgramName: "YourLoyaltyProgramName", instanceURL: "YourInstanceURL", forceClient: forceClient)
+let authManager = ForceAuthManager.shared
+let forceClient = ForceClient(auth: authManager)
 ```
 
-2. Call the appropriate methods to interact with the Loyalty Management API:
+3. Create an instance of `LoyaltyAPIManager` with the necessary parameters:
+
+```swift
+let loyaltyAPIManager = LoyaltyAPIManager(auth: authManager, loyaltyProgramName: "YourLoyaltyProgramName", instanceURL: "YourInstanceURL", forceClient: forceClient)
+```
+
+4. Call the appropriate methods to interact with the Loyalty Management API:
 
 ```swift
 import LoyaltyMobileSDK
 
 let instanceURL = URL(string: "https://your_salesforce_instance_url")!
 let loyaltyProgramName = "YourLoyaltyProgramName"
-let forceClient = ForceClient(clientId: "your_client_id", clientSecret: "your_client_secret", redirectURI: "your_redirect_uri")
+let authManager = ForceAuthManager.shared
+let forceClient = ForceClient(auth: authManager)
 
-let loyaltyAPIManager = LoyaltyAPIManager(instanceURL: instanceURL, loyaltyProgramName: loyaltyProgramName, forceClient: forceClient)
+let loyaltyAPIManager = LoyaltyAPIManager(auth: authManager, loyaltyProgramName: loyaltyProgramName, instanceURL: instanceURL, forceClient: forceClient)
 
 // Enroll Members
 let membershipNumber = "1234567890"
