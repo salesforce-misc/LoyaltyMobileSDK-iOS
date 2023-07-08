@@ -42,7 +42,7 @@ struct BottomNavTabsView: View {
 					EmptyView()
 				}
 			}
-			.navigationViewStyle(.stack)
+            .navigationBarHidden(true)
 			.onAppear {
 				// correct the transparency bug for Tab bars
 				let tabBarAppearance = UITabBarAppearance()

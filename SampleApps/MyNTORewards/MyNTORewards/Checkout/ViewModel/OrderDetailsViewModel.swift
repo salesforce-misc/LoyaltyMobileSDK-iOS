@@ -11,7 +11,6 @@ import LoyaltyMobileSDK
 @MainActor
 
 class OrderDetailsViewModel: ObservableObject {
-	@Published var selectedIndex: Int
 	@Published var isOrderPlacedNavigationActive = false
     @Published var shippingAddress: ShippingAddress?
 	
@@ -24,12 +23,10 @@ class OrderDetailsViewModel: ObservableObject {
 	
 	init(
 		authManager: ForceAuthManager = .shared,
-		forceClient: ForceClient? = nil,
-		index: Int = 0
+		forceClient: ForceClient? = nil
 	) {
 		self.authManager = authManager
 		self.forceClient = forceClient ?? ForceClient(auth: authManager)
-		self.selectedIndex = index
 	}
 	
 	func createOrder(

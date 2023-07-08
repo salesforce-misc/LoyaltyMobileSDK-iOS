@@ -194,6 +194,7 @@ class DeveloperPreview {
     let transactionVM = TransactionViewModel()
 	let orderDetailsVM = OrderDetailsViewModel()
     let connectedAppVM = ConnectedAppsViewModel<ForceConnectedAppKeychainManager>()
+    let productVM = ProductViewModel()
     
     private init() {
         setMember(member: member)

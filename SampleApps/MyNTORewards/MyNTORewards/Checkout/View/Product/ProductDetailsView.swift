@@ -49,5 +49,6 @@ struct ProductDetailsView: View {
 struct ProductDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         ProductDetailsView()
+            .environmentObject(dev.productVM)
     }
 }

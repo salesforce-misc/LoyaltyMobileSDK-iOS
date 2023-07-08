@@ -38,5 +38,7 @@ struct OrderVoucherView: View {
 struct OrderVoucherView_Previews: PreviewProvider {
     static var previews: some View {
         OrderVoucherView()
+            .environmentObject(dev.profileVM)
+            .environmentObject(dev.voucherVM)
     }
 }

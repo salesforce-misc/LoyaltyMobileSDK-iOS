@@ -53,5 +53,7 @@ struct AmountPayableView: View {
 struct AmountPayableView_Previews: PreviewProvider {
     static var previews: some View {
         AmountPayableView()
+            .environmentObject(dev.profileVM)
+            .environmentObject(dev.productVM)
     }
 }

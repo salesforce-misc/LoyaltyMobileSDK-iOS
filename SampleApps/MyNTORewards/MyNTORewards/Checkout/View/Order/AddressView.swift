@@ -11,7 +11,6 @@ import LoyaltyMobileSDK
 struct AddressView: View {
     @EnvironmentObject private var rootVM: AppRootViewModel
 	@EnvironmentObject var orderDetailsViewModel: OrderDetailsViewModel
-	@Binding var selectedIndex: Int
 
     var body: some View {
 		VStack(spacing: 0) {
@@ -58,7 +57,8 @@ struct AddressView: View {
 
 struct AddressView_Previews: PreviewProvider {
     static var previews: some View {
-		AddressView(selectedIndex: .constant(0))
+		AddressView()
+            .environmentObject(dev.rootVM)
 			.environmentObject(dev.orderDetailsVM)
     }
 }
