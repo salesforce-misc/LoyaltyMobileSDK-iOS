@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ShippingDetailsView: View {
     @EnvironmentObject private var orderDetailsVM: OrderDetailsViewModel
-	@Binding var selectedIndex: Int
+	@Binding var orderDetailsIndex: Int
 	var body: some View {
 		VStack {
-			ScrollView {
+			VStack {
 				HStack {
 					Text("Shipping Address")
 						.font(.smallHeaderText)
@@ -23,14 +23,15 @@ struct ShippingDetailsView: View {
 					}
 				}
 				.padding(24)
-				AddressView(selectedIndex: $selectedIndex)
+				AddressView()
                     .environmentObject(orderDetailsVM)
 					.cornerRadius(16, corners: .allCorners)
 					.padding(.horizontal, 24)
 			}
+            Spacer()
 			Button("Deliver to This Address") {
 				withAnimation {
-					selectedIndex = 1
+                    orderDetailsIndex = 1
 				}
 			}
 			.buttonStyle(DarkFlexibleButton())
@@ -41,6 +42,8 @@ struct ShippingDetailsView: View {
 
 struct ShippingDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-		ShippingDetailsView(selectedIndex: .constant(0))
+		ShippingDetailsView(orderDetailsIndex: .constant(0))
+            .environmentObject(dev.orderDetailsVM)
+            .environmentObject(dev.rootVM)
     }
 }

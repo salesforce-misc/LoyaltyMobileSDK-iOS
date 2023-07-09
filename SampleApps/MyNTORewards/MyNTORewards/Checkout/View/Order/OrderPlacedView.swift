@@ -31,8 +31,8 @@ struct OrderPlacedView: View {
 				Text("Continue Shopping")
 					.font(.boldButtonText)
 			}
-				.buttonStyle(DarkFlexibleButton())
-				.frame(width: 220)
+            .buttonStyle(DarkFlexibleButton())
+            .frame(width: 220)
 		}
 		.task {
 			do {
@@ -48,5 +48,7 @@ struct OrderPlacedView: View {
 struct OrderPlacedView_Previews: PreviewProvider {
     static var previews: some View {
         OrderPlacedView()
+            .environmentObject(dev.promotionVM)
+            .environmentObject(dev.orderDetailsVM)
     }
 }

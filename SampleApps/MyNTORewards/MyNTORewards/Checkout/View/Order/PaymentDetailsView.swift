@@ -78,5 +78,12 @@ struct LoadingScreen: View {
 struct PaymentDetailsView_Previews: PreviewProvider {
     static var previews: some View {
 		PaymentDetailsView()
+            .environmentObject(dev.orderDetailsVM)
+            .environmentObject(dev.rootVM)
+            .environmentObject(dev.profileVM)
+            .environmentObject(dev.productVM)
+            .environmentObject(dev.transactionVM)
+            .environmentObject(dev.voucherVM)
+        
     }
 }

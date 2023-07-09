@@ -14,9 +14,6 @@ struct AppRootView: View {
 	@EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var benefitVM: BenefitViewModel
     @EnvironmentObject private var profileVM: ProfileViewModel
-    @EnvironmentObject private var promotionVM: PromotionViewModel
-    @EnvironmentObject private var transactionVM: TransactionViewModel
-    @EnvironmentObject private var voucherVM: VoucherViewModel
     @EnvironmentObject private var imageVM: ImageViewModel
 	
 	var body: some View {
@@ -69,9 +66,6 @@ struct AppRootView: View {
                 
                 benefitVM.clear()
                 profileVM.clear()
-                promotionVM.clear()
-                transactionVM.clear()
-                voucherVM.clear()
                 imageVM.clear()
             }
         }
