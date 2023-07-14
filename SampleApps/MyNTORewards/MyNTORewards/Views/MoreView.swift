@@ -23,6 +23,7 @@ struct MoreView: View {
         MenuItem(icon: "ic-address", title: "Addresses", accessibilityIdentifier: AppAccessibilty.More.address),
         MenuItem(icon: "ic-card", title: "Payment Methods", accessibilityIdentifier: AppAccessibilty.More.paymentMethod),
         MenuItem(icon: "ic-orders", title: "Orders", accessibilityIdentifier: AppAccessibilty.More.orders),
+		MenuItem(icon: "ic-receipt", title: "Receipts", accessibilityIdentifier: AppAccessibilty.More.receipts),
         MenuItem(icon: "ic-case", title: "Support", accessibilityIdentifier: AppAccessibilty.More.support),
         MenuItem(icon: "ic-heart", title: "Favorites", accessibilityIdentifier: AppAccessibilty.More.favourites)
     ]
@@ -44,11 +45,13 @@ struct MoreView: View {
                     .frame(height: 85)
                     
                     ForEach(menuItems) { menu in
-						Label(menu.title, image: menu.icon)
-							.font(.menuText)
-							.frame(height: 65)
-							.listRowSeparatorTint(Color.theme.listSeparatorPink)
-                            .accessibilityIdentifier(menu.accessibilityIdentifier)
+						NavigationLink(destination: menu.title == "Receipts" ? ReceiptsView() : nil) {
+							Label(menu.title, image: menu.icon)
+								.font(.menuText)
+								.frame(height: 65)
+								.listRowSeparatorTint(Color.theme.listSeparatorPink)
+								.accessibilityIdentifier(menu.accessibilityIdentifier)
+						}
                     }
 
                     Button {

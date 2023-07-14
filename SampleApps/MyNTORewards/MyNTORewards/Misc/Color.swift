@@ -72,7 +72,8 @@ struct ColorTheme {
     let redeemedButtonBackground = Color("RedeemedBackgroundColor") // #FBF3E0
     let expiredButtonText = Color("TextExpiredButtonColor") // #5C5C5C
     let expiredBackgroundText = Color("ExpiredBackgroundColor") // #E5E5E5
-    
+	let receiptListItemShadowColor = Color("ReceiptListItemShadowColor") // #ABABAB
+    let searchBarBackgroundColor = Color("SearchBarBackgroundColor") // #E9E1F3
 }
 
 struct TierColor {
