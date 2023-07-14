@@ -58,6 +58,7 @@ enum AppAccessibilty {
         static let address = "address_label"
         static let paymentMethod = "paymentMethod_label"
         static let orders = "orders_label"
+		static let receipts = "receipts_label"
         static let support = "support_label"
         static let favourites = "favourites_label"
         static let logout = "logout_button"

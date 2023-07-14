@@ -298,4 +298,7 @@ extension Font {
         return Font.custom("Archivo-ExtraBold", size: 20)
     }
     
+	static var receiptSearchText: Font {
+		return Font.custom("Segoe", size: 13)
+	}
 }

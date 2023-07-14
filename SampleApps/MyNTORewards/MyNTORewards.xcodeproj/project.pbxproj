@@ -139,6 +139,11 @@
 		29BAF70228F78FA400A3F9EB /* AllTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */; };
 		29FEDDF2294293BF0014BEBA /* UITabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FEDDF1294293BF0014BEBA /* UITabView.swift */; };
 		3F3E65A42A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */; };
+		3F5002AF2A5F9AB900E12AE4 /* ReceiptListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002AE2A5F9AB900E12AE4 /* ReceiptListItem.swift */; };
+		3F5002B12A5FA07100E12AE4 /* ReceiptList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */; };
+		3F5002B72A5FC82800E12AE4 /* ReceiptSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */; };
+		3F5002B92A5FE65200E12AE4 /* ReceiptsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B82A5FE65100E12AE4 /* ReceiptsView.swift */; };
+		3F5002BB2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002BA2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift */; };
 		3F714D4429FA0F4A00CD39E7 /* ProductHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D3E29FA0F4900CD39E7 /* ProductHeaderView.swift */; };
 		3F714D4529FA0F4A00CD39E7 /* ProductReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D3F29FA0F4900CD39E7 /* ProductReviewView.swift */; };
 		3F714D4629FA0F4A00CD39E7 /* ProductImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D4029FA0F4900CD39E7 /* ProductImagesView.swift */; };
@@ -345,6 +350,11 @@
 		29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsView.swift; sourceTree = "<group>"; };
 		29FEDDF1294293BF0014BEBA /* UITabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabView.swift; sourceTree = "<group>"; };
 		3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAndLoyaltyAPITests.swift; sourceTree = "<group>"; };
+		3F5002AE2A5F9AB900E12AE4 /* ReceiptListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListItem.swift; sourceTree = "<group>"; };
+		3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptList.swift; sourceTree = "<group>"; };
+		3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptSearchBar.swift; sourceTree = "<group>"; };
+		3F5002B82A5FE65100E12AE4 /* ReceiptsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptsView.swift; sourceTree = "<group>"; };
+		3F5002BA2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPopUpView.swift; sourceTree = "<group>"; };
 		3F714D3E29FA0F4900CD39E7 /* ProductHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductHeaderView.swift; sourceTree = "<group>"; };
 		3F714D3F29FA0F4900CD39E7 /* ProductReviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductReviewView.swift; sourceTree = "<group>"; };
 		3F714D4029FA0F4900CD39E7 /* ProductImagesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductImagesView.swift; sourceTree = "<group>"; };
@@ -488,6 +498,7 @@
 				216A9CBF28BDD8A1007881FE /* ViewModels */,
 				296D393828DCE9890078C88E /* UICompnents */,
 				3F714D4B29FA0F6F00CD39E7 /* Checkout */,
+				3F5002AD2A5F9A9000E12AE4 /* ReceiptScanning */,
 				216F219328B6186400DAA66D /* Views */,
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
 				216F217E28B6141E00DAA66D /* MyNTORewardsApp.swift */,
@@ -729,6 +740,18 @@
 				3FBEFDED2A0D1CB400685BAF /* TestDataStore.swift */,
 			);
 			path = IntegrationTests;
+			sourceTree = "<group>";
+		};
+		3F5002AD2A5F9A9000E12AE4 /* ReceiptScanning */ = {
+			isa = PBXGroup;
+			children = (
+				3F5002AE2A5F9AB900E12AE4 /* ReceiptListItem.swift */,
+				3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */,
+				3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */,
+				3F5002BA2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift */,
+				3F5002B82A5FE65100E12AE4 /* ReceiptsView.swift */,
+			);
+			path = ReceiptScanning;
 			sourceTree = "<group>";
 		};
 		3F714D4A29FA0F5300CD39E7 /* Product */ = {
@@ -1050,10 +1073,12 @@
 				299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */,
 				294EDB6D2A5F75C80047926A /* ImagePicker.swift in Sources */,
 				298D5EFA29D4E5F00062F16E /* String+Date.swift in Sources */,
+				3F5002B72A5FC82800E12AE4 /* ReceiptSearchBar.swift in Sources */,
 				292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */,
 				AFC75D3429D458DF003CC86A /* ShippingMethodModel.swift in Sources */,
 				292ADC72294C04AB00753541 /* VocherModel+VoucherValue.swift in Sources */,
 				292ADC6E294BFD7700753541 /* PreviewProvider.swift in Sources */,
+				3F5002B92A5FE65200E12AE4 /* ReceiptsView.swift in Sources */,
 				29AC2F0928F8B724003F56F6 /* AllBadgesView.swift in Sources */,
 				294E341E293C39E6001F7F48 /* ImageViewModel.swift in Sources */,
 				29BAF6E728F4BE5A00A3F9EB /* AllVouchersView.swift in Sources */,
@@ -1072,14 +1097,17 @@
 				2955345F29E63BF500CFA391 /* ConnectedAppsView.swift in Sources */,
 				2941A23F28BE803F005026CF /* Color.swift in Sources */,
 				296D393328DBCE050078C88E /* OnboardingView.swift in Sources */,
+				3F5002AF2A5F9AB900E12AE4 /* ReceiptListItem.swift in Sources */,
 				2955345D29E621AC00CFA391 /* ConnectedAppSettingsView.swift in Sources */,
 				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
 				298D5EED29CCF5340062F16E /* ForceAuthKeychainManager.swift in Sources */,
 				290EA9BD2928ADB700BBF2F2 /* ViewAllView.swift in Sources */,
 				298D5EEE29CCF5340062F16E /* ForceAuth.swift in Sources */,
 				293F642F29D64E48001AC795 /* CommunityMemberModel.swift in Sources */,
+				3F5002BB2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift in Sources */,
 				29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */,
 				3F714D6929FA0FEB00CD39E7 /* OrderDetailsView.swift in Sources */,
+				3F5002B12A5FA07100E12AE4 /* ReceiptList.swift in Sources */,
 				299B38D828E796BC00E45D97 /* FullSheet.swift in Sources */,
 				3F714D6629FA0FEB00CD39E7 /* PaymentDetailsView.swift in Sources */,
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
