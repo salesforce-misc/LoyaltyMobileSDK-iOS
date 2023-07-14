@@ -50,6 +50,15 @@ struct MoreView: View {
 							.listRowSeparatorTint(Color.theme.listSeparatorPink)
                             .accessibilityIdentifier(menu.accessibilityIdentifier)
                     }
+                    
+                    NavigationLink {
+                        ReceiptsView()
+                    } label: {
+                        Label("Receipts", image: "ic-receipts")
+                            .font(.menuText)
+                            .frame(height: 65)
+                            .listRowSeparatorTint(Color.theme.listSeparatorPink)
+                    }
 
                     Button {
                         rootVM.signOutUser()
