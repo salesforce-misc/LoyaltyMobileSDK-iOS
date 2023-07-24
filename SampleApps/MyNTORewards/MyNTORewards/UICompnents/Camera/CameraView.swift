@@ -83,7 +83,7 @@ struct CameraView: View {
                     }
                     .padding(.leading, 20)
                     .sheet(isPresented: $showPhotoPicker) {
-                        ImagePickerView(image: self.$capturedImage, sourceType: .photoLibrary)
+                        ImagePickerView(image: self.$capturedImage, showCapturedImage: self.$showCapturedImage, sourceType: .photoLibrary)
                     }
                     
                     Spacer()

@@ -10,6 +10,7 @@ import SwiftUI
 struct ImagePickerView: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var image: UIImage?
+    @Binding var showCapturedImage: Bool
     var sourceType: UIImagePickerController.SourceType
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickerView>) -> UIImagePickerController {
@@ -39,6 +40,7 @@ struct ImagePickerView: UIViewControllerRepresentable {
                                    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
             if let uiImage = info[.originalImage] as? UIImage {
                 parent.image = uiImage
+                parent.showCapturedImage = true
             }
 
             parent.presentationMode.wrappedValue.dismiss()
