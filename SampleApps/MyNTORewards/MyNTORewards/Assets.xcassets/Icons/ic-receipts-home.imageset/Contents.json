@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ic_receipt.svg",
+      "filename" : "ic-receipts-home.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "ic-receipts-home@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "ic-receipts-home@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
