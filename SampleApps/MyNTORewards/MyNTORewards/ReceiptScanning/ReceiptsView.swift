@@ -11,13 +11,17 @@ import LoyaltyMobileSDK
 struct ReceiptsView: View {
 	@State var searchText = ""
 	@StateObject var viewModel = ReceiptListViewModel()
+    @State private var showCamera = false
+    @State var showCapturedImage: Bool = false
+    @State var capturedImage: UIImage?
+
 	var body: some View {
 		VStack(spacing: 4) {
 			HStack(spacing: 8) {
 				ReceiptSearchBar(fieldValue: $viewModel.searchText)
 					.padding(.leading)
 				Button {
-					print("new tapped")
+                    self.showCamera = true
 				} label: {
 					Text("New")
 						.font(.boldButtonText)
@@ -27,10 +31,28 @@ struct ReceiptsView: View {
 				.frame(width: 81, height: 48)
 				.padding(.horizontal, 16)
 				.padding(.vertical, 4)
+
 			}
 			ReceiptList(receipts: viewModel.searchText.isEmpty ? viewModel.receipts : viewModel.filteredReceipts)
+            .padding(.top, 12)
 		}
-		.background(Color.theme.background)
+        .fullScreenCover(isPresented: $showCamera) {
+            ZStack {
+                ZStack {
+                    CameraView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
+                        .zIndex(showCapturedImage ? 0 : 1)
+
+                    if showCapturedImage {
+                        CapturedImageView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
+                            .transition(.move(edge: .trailing))
+                            .zIndex(showCapturedImage ? 1 : 0)
+                    }
+                }
+                .animation(.default, value: showCapturedImage)
+            }
+            
+        }
+        
 	}
 }
 

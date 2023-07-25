@@ -24,7 +24,7 @@ struct HomeView: View {
                         Image("ic-logo-home")
                             .padding(.leading, 15)
                         Spacer()
-                        Image("ic-magnifier")
+                        Image("ic-receipts-home")
                             .padding(.trailing, 15)
                     }
                     .frame(height: 44)
@@ -121,5 +121,6 @@ struct HomeView_Previews: PreviewProvider {
             .environmentObject(dev.profileVM)
             .environmentObject(dev.promotionVM)
             .environmentObject(dev.voucherVM)
+            .environmentObject(dev.imageVM)
     }
 }
