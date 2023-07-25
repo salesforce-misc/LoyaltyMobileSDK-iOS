@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ReceiptListItem: View {
-	let receiptNumber: Int
+	let receiptNumber: String
 	let receiptDate: String
 	let amount: Int
 	let points: Int
@@ -38,6 +38,6 @@ struct ReceiptListItem: View {
 
 struct ReceiptListItem_Previews: PreviewProvider {
     static var previews: some View {
-		ReceiptListItem(receiptNumber: 43456, receiptDate: "13/07/2023", amount: 187000, points: 500, currency: "INR")
+		ReceiptListItem(receiptNumber: "43456", receiptDate: "13/07/2023", amount: 187000, points: 500, currency: "INR")
     }
 }

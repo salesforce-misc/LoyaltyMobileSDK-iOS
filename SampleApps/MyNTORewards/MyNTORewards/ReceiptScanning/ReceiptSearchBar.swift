@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ReceiptSearchBar: View {
-	@State var fieldValue: String = ""
+	@Binding var fieldValue: String
     var body: some View {
 		HStack {
 			Image(systemName: "magnifyingglass").foregroundColor(.gray)
@@ -23,6 +23,6 @@ struct ReceiptSearchBar: View {
 
 struct ReceiptSearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        ReceiptSearchBar()
+		ReceiptSearchBar(fieldValue: .constant("675"))
     }
 }

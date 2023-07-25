@@ -9,10 +9,12 @@ import SwiftUI
 import LoyaltyMobileSDK
 
 struct ReceiptsView: View {
+	@State var searchText = ""
+	@StateObject var viewModel = ReceiptListViewModel()
 	var body: some View {
 		VStack(spacing: 4) {
 			HStack(spacing: 8) {
-				ReceiptSearchBar()
+				ReceiptSearchBar(fieldValue: $viewModel.searchText)
 					.padding(.leading)
 				Button {
 					print("new tapped")
@@ -26,7 +28,7 @@ struct ReceiptsView: View {
 				.padding(.horizontal, 16)
 				.padding(.vertical, 4)
 			}
-			ReceiptList()
+			ReceiptList(receipts: viewModel.searchText.isEmpty ? viewModel.receipts : viewModel.filteredReceipts)
 		}
 		.background(Color.theme.background)
 	}
