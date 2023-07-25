@@ -16,7 +16,7 @@ struct ReceiptsView: View {
     @State var capturedImage: UIImage?
 
 	var body: some View {
-		VStack(spacing: 4) {
+		VStack(spacing: 12) {
 			HStack(spacing: 8) {
 				ReceiptSearchBar(fieldValue: $viewModel.searchText)
 					.padding(.leading)
@@ -30,12 +30,14 @@ struct ReceiptsView: View {
 				}
 				.frame(width: 81, height: 48)
 				.padding(.horizontal, 16)
-				.padding(.vertical, 4)
-
+				
 			}
+			.padding(.top, 12)
 			ReceiptList(receipts: viewModel.searchText.isEmpty ? viewModel.receipts : viewModel.filteredReceipts)
-            .padding(.top, 12)
+			.loytaltyNavigationTitle("Receipts")
+			.loyaltyNavBarSearchButtonHidden(true)
 		}
+		.background(Color.theme.background)
         .fullScreenCover(isPresented: $showCamera) {
             ZStack {
                 ZStack {

@@ -45,7 +45,9 @@ struct MoreView: View {
                     .frame(height: 85)
                     
                     ForEach(menuItems) { menu in
-						NavigationLink(destination: menu.title == "Receipts" ? ReceiptsView() : nil) {
+						LoyaltyNavLink {
+							menu.title == "Receipts" ? ReceiptsView() : nil
+						} label: {
 							Label(menu.title, image: menu.icon)
 								.font(.menuText)
 								.frame(height: 65)
