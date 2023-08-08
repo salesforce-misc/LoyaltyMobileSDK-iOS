@@ -14,6 +14,7 @@ struct ReceiptSearchBar: View {
 			Image(systemName: "magnifyingglass").foregroundColor(.gray)
 			TextField("Search for Receipt number", text: $fieldValue)
 				.font(.receiptSearchText)
+				.accessibilityIdentifier(AppAccessibilty.receipts.searchBar)
 		}
 		.padding()
 		.background(Color.theme.searchBarBackgroundColor)

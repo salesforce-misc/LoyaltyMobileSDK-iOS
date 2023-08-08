@@ -11,6 +11,8 @@ import Photos
 struct CapturedImageView: View {
     @Binding var showCapturedImage: Bool
     @Binding var capturedImage: UIImage?
+	@EnvironmentObject var routerPath: RouterPath
+	@Environment(\.dismiss) private var dismiss
 
     var body: some View {
         ZStack {
@@ -39,6 +41,7 @@ struct CapturedImageView: View {
                             .padding(10)
                             .foregroundColor(.white)
                     }
+					.accessibilityIdentifier(AppAccessibilty.receipts.backButtonCapturedImageView)
                     .buttonStyle(CircularButtonStyle())
                     .padding(.leading, 20)
                     
@@ -55,11 +58,14 @@ struct CapturedImageView: View {
                         withAnimation {
                             showCapturedImage = false
                             capturedImage = nil
+							dismiss()
+							routerPath.presentedSheet = .processingReceipt
                         }
                     }
                     
                     // TODO: move to processing screen
                 }
+				.accessibilityIdentifier(AppAccessibilty.receipts.processButton)
                 .buttonStyle(LightLongButton())
                 
                 Text("Try again")

@@ -15,3 +15,9 @@ struct Receipt: Identifiable {
 	let points: Int
 	let currency: String
 }
+
+enum ReceiptState {
+	case processing
+	case processed
+	case submitted
+}

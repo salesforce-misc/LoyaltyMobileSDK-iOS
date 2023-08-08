@@ -297,8 +297,30 @@ extension Font {
     static var amountText: Font {
         return Font.custom("Archivo-ExtraBold", size: 20)
     }
+	
+	/// Receipt items
+	
+	static var receiptItemsFont: Font {
+		return Font.custom("IBMPlexMono-Regular", size: 10)
+	}
+	
+	static var receiptItemsTitleFont: Font {
+		return Font.custom("IBMPlexMono-SemiBold", size: 10)
+	}
     
 	static var receiptSearchText: Font {
 		return Font.custom("Segoe", size: 13)
+	}
+	
+	static var scanningReceiptTitleFont: Font {
+		return Font.custom("SF Pro Display", size: 20)
+	}
+	
+	static var scanningReceiptCaptionFont: Font {
+		return Font.custom("SF Pro Display", size: 12)
+	}
+	
+	static var scanningReceiptCancelFont: Font {
+		return Font.custom("SF Pro Display", size: 16)
 	}
 }

@@ -135,4 +135,24 @@ enum AppAccessibilty {
         static let logo = "logo"
         static let description = "description"
     }
+	
+	enum receipts {
+		static let searchBar = "receipts_search_bar"
+		static let newButton = "new_button"
+		static let receiptsViewTitle = "receipts_view_title"
+		static let chooseFromPhotos = "choose_from_photos"
+		static let closeCameraButton = "close_camera_button"
+		static let cameraShutterButton = "camera_shutter_button"
+		static let processButton = "process_button"
+		static let backButtonCapturedImageView = "back_button_captured_image_view"
+		static let scanningReceiptLabel = "scanning_receipt"
+		static let scanningReceiptSubtitle = "scanning_receipt_subtitle"
+		static let submitReceiptButton = "submit_receipt"
+		static let receiptNumberLabel = "receipt_number_label"
+		static let storeLabel = "store_label"
+		static let receiptDate = "receipt_date"
+		static let tryAgainButtonProcessedReceipt = "try_again_processed_receipt"
+		static let receiptSubmittedCongrats = "receipt_submitted_congrats"
+		static let scanAnotherReceipt = "scan_another_receipt"
+	}
 }

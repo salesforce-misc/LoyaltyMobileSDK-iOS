@@ -9,6 +9,7 @@ import SwiftUI
 import LoyaltyMobileSDK
 
 struct ReceiptList: View {
+	@EnvironmentObject var routerPath: RouterPath
 	@State var isShowingModel: Bool = false
 	var receipts: [Receipt]
     var body: some View {
@@ -21,7 +22,7 @@ struct ReceiptList: View {
 								currency: receipt.currency)
 					.padding(-3)
 					.onTapGesture {
-						isShowingModel = true
+						routerPath.presentedSheet = .storedReceipt
 					}
 			}
 			.listRowSeparator(.hidden)
@@ -32,7 +33,6 @@ struct ReceiptList: View {
 				ReceiptPopUpView(receiptNumber: "43456", receiptDate: "13/07/2023")
 			}
 		}
-
     }
 }
 

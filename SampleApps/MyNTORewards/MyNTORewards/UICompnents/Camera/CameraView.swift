@@ -38,12 +38,14 @@ struct CameraView: View {
                 HStack {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
+						print("camera close button tapped")
                     }) {
                         Image(systemName: "xmark")
                             .font(.system(size: 25))
                             .padding(10)
                             .foregroundColor(.white)
                     }
+					.accessibilityIdentifier(AppAccessibilty.receipts.closeCameraButton)
                     .buttonStyle(CircularButtonStyle())
                     .padding(.leading, 20)
 
@@ -81,6 +83,7 @@ struct CameraView: View {
                             .cornerRadius(10, corners: .allCorners)
                             .padding(.all, 15)
                     }
+					.accessibilityIdentifier(AppAccessibilty.receipts.chooseFromPhotos)
                     .padding(.leading, 20)
                     .sheet(isPresented: $showPhotoPicker) {
                         ImagePickerView(image: self.$capturedImage, showCapturedImage: self.$showCapturedImage, sourceType: .photoLibrary)
@@ -113,6 +116,7 @@ struct CameraView: View {
                         }
                         
                     }
+					.accessibilityIdentifier(AppAccessibilty.receipts.cameraShutterButton)
 
                     Spacer()
                     

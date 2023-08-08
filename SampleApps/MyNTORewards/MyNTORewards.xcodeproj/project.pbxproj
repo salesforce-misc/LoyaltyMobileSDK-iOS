@@ -141,6 +141,11 @@
 		29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */; };
 		29BAF70228F78FA400A3F9EB /* AllTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */; };
 		29FEDDF2294293BF0014BEBA /* UITabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FEDDF1294293BF0014BEBA /* UITabView.swift */; };
+		3F2055B62A81134800D38034 /* CameraViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2055B52A81134800D38034 /* CameraViewUITests.swift */; };
+		3F2D8B702A651E46008F5AE0 /* ProcessedReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D8B6F2A651E46008F5AE0 /* ProcessedReceiptView.swift */; };
+		3F3805B22A7A6D2400223808 /* RouterPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3805B12A7A6D2400223808 /* RouterPath.swift */; };
+		3F3805B42A7A6D8500223808 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3805B32A7A6D8500223808 /* Destination.swift */; };
+		3F3805B62A7A6EF700223808 /* View+Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3805B52A7A6EF700223808 /* View+Destination.swift */; };
 		3F3E65A42A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */; };
 		3F5002AF2A5F9AB900E12AE4 /* ReceiptListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002AE2A5F9AB900E12AE4 /* ReceiptListItem.swift */; };
 		3F5002B12A5FA07100E12AE4 /* ReceiptList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */; };
@@ -170,6 +175,24 @@
 		3F714D6B29FA0FEB00CD39E7 /* OrderVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D6129FA0FEB00CD39E7 /* OrderVoucherView.swift */; };
 		3F714D6D29FA104F00CD39E7 /* OrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D6C29FA104F00CD39E7 /* OrderDetailsViewModel.swift */; };
 		3F714D6F2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D6E2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift */; };
+		3F7DAF9B2A81276D00A521E2 /* CapturedImageViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7DAF9A2A81276D00A521E2 /* CapturedImageViewUITests.swift */; };
+		3F7DAF9D2A81314300A521E2 /* ProcessingReceiptViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7DAF9C2A81314300A521E2 /* ProcessingReceiptViewUITests.swift */; };
+		3F7DAF9F2A8136E900A521E2 /* ProcessedReceiptViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7DAF9E2A8136E900A521E2 /* ProcessedReceiptViewUITests.swift */; };
+		3F7DAFA12A813BBC00A521E2 /* ReceiptCongratsViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7DAFA02A813BBC00A521E2 /* ReceiptCongratsViewUITests.swift */; };
+		3F7DAFA32A81E6D900A521E2 /* ReceiptsViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7DAFA22A81E6D900A521E2 /* ReceiptsViewHelper.swift */; };
+		3F7DAFA92A825F9600A521E2 /* ReceiptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7DAFA82A825F9600A521E2 /* ReceiptViewModel.swift */; };
+		3F7EF5302A70CED70005BA30 /* ReceiptCongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7EF52F2A70CED70005BA30 /* ReceiptCongratsView.swift */; };
+		3F7EF5322A70D0E90005BA30 /* Double+round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7EF5312A70D0E90005BA30 /* Double+round.swift */; };
+		3F874FD42A652A0A00F90C4D /* ProcessedReceiptItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F874FD32A652A0A00F90C4D /* ProcessedReceiptItem.swift */; };
+		3F874FD62A652A6B00F90C4D /* ProcessedReceiptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F874FD52A652A6B00F90C4D /* ProcessedReceiptViewModel.swift */; };
+		3F874FD82A655DB400F90C4D /* ProcessedReceiptList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F874FD72A655DB400F90C4D /* ProcessedReceiptList.swift */; };
+		3F874FDA2A655E1400F90C4D /* ReceiptTableTitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F874FD92A655E1400F90C4D /* ReceiptTableTitleRow.swift */; };
+		3F874FDC2A655E3300F90C4D /* ReceiptTableContentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F874FDB2A655E3300F90C4D /* ReceiptTableContentRow.swift */; };
+		3F874FDF2A69475500F90C4D /* IBMPlexMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F874FDE2A69475500F90C4D /* IBMPlexMono-Regular.ttf */; };
+		3F9149652A7C0495009FADAB /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9149642A7C0495009FADAB /* CameraModel.swift */; };
+		3F9149692A7C1AE5009FADAB /* ProcessingReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9149682A7C1AE5009FADAB /* ProcessingReceiptView.swift */; };
+		3F9149A32A7DD6DC009FADAB /* ReceiptsViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9149A22A7DD6DC009FADAB /* ReceiptsViewUITests.swift */; };
+		3FA6B0562A6967AD00E5878E /* IBMPlexMono-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FA6B0532A6967AD00E5878E /* IBMPlexMono-SemiBold.ttf */; };
 		3FB333932A1492A200C3A639 /* Reloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB333922A1492A200C3A639 /* Reloadable.swift */; };
 		3FB333972A18E33800C3A639 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB333962A18E33800C3A639 /* ProductViewModel.swift */; };
 		3FBEFDEE2A0D1CB400685BAF /* TestDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBEFDED2A0D1CB400685BAF /* TestDataStore.swift */; };
@@ -357,6 +380,11 @@
 		29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsView.swift; sourceTree = "<group>"; };
 		29FEDDF1294293BF0014BEBA /* UITabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabView.swift; sourceTree = "<group>"; };
+		3F2055B52A81134800D38034 /* CameraViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewUITests.swift; sourceTree = "<group>"; };
+		3F2D8B6F2A651E46008F5AE0 /* ProcessedReceiptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedReceiptView.swift; sourceTree = "<group>"; };
+		3F3805B12A7A6D2400223808 /* RouterPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterPath.swift; sourceTree = "<group>"; };
+		3F3805B32A7A6D8500223808 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
+		3F3805B52A7A6EF700223808 /* View+Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Destination.swift"; sourceTree = "<group>"; };
 		3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAndLoyaltyAPITests.swift; sourceTree = "<group>"; };
 		3F5002AE2A5F9AB900E12AE4 /* ReceiptListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListItem.swift; sourceTree = "<group>"; };
 		3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptList.swift; sourceTree = "<group>"; };
@@ -386,6 +414,24 @@
 		3F714D6129FA0FEB00CD39E7 /* OrderVoucherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderVoucherView.swift; sourceTree = "<group>"; };
 		3F714D6C29FA104F00CD39E7 /* OrderDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewModel.swift; sourceTree = "<group>"; };
 		3F714D6E2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyConditionalNavLink.swift; sourceTree = "<group>"; };
+		3F7DAF9A2A81276D00A521E2 /* CapturedImageViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedImageViewUITests.swift; sourceTree = "<group>"; };
+		3F7DAF9C2A81314300A521E2 /* ProcessingReceiptViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingReceiptViewUITests.swift; sourceTree = "<group>"; };
+		3F7DAF9E2A8136E900A521E2 /* ProcessedReceiptViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedReceiptViewUITests.swift; sourceTree = "<group>"; };
+		3F7DAFA02A813BBC00A521E2 /* ReceiptCongratsViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptCongratsViewUITests.swift; sourceTree = "<group>"; };
+		3F7DAFA22A81E6D900A521E2 /* ReceiptsViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsViewHelper.swift; sourceTree = "<group>"; };
+		3F7DAFA82A825F9600A521E2 /* ReceiptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptViewModel.swift; sourceTree = "<group>"; };
+		3F7EF52F2A70CED70005BA30 /* ReceiptCongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptCongratsView.swift; sourceTree = "<group>"; };
+		3F7EF5312A70D0E90005BA30 /* Double+round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+round.swift"; sourceTree = "<group>"; };
+		3F874FD32A652A0A00F90C4D /* ProcessedReceiptItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedReceiptItem.swift; sourceTree = "<group>"; };
+		3F874FD52A652A6B00F90C4D /* ProcessedReceiptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedReceiptViewModel.swift; sourceTree = "<group>"; };
+		3F874FD72A655DB400F90C4D /* ProcessedReceiptList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedReceiptList.swift; sourceTree = "<group>"; };
+		3F874FD92A655E1400F90C4D /* ReceiptTableTitleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptTableTitleRow.swift; sourceTree = "<group>"; };
+		3F874FDB2A655E3300F90C4D /* ReceiptTableContentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptTableContentRow.swift; sourceTree = "<group>"; };
+		3F874FDE2A69475500F90C4D /* IBMPlexMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Regular.ttf"; sourceTree = "<group>"; };
+		3F9149642A7C0495009FADAB /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
+		3F9149682A7C1AE5009FADAB /* ProcessingReceiptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingReceiptView.swift; sourceTree = "<group>"; };
+		3F9149A22A7DD6DC009FADAB /* ReceiptsViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsViewUITests.swift; sourceTree = "<group>"; };
+		3FA6B0532A6967AD00E5878E /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
 		3FB333922A1492A200C3A639 /* Reloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reloadable.swift; sourceTree = "<group>"; };
 		3FB333962A18E33800C3A639 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		3FBEFDEC2A0D1C3C00685BAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -509,8 +555,11 @@
 				296D393828DCE9890078C88E /* UICompnents */,
 				3F714D4B29FA0F6F00CD39E7 /* Checkout */,
 				3F5002AD2A5F9A9000E12AE4 /* ReceiptScanning */,
+				3F874FDD2A655E8800F90C4D /* ProcessReceipt */,
 				216F219328B6186400DAA66D /* Views */,
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
+				3F3805B12A7A6D2400223808 /* RouterPath.swift */,
+				3F3805B32A7A6D8500223808 /* Destination.swift */,
 				216F217E28B6141E00DAA66D /* MyNTORewardsApp.swift */,
 				2944F88928B9A7220098ED1B /* AppSettings.swift */,
 				218A36A728B85B7900FCEE39 /* Assets.xcassets */,
@@ -611,6 +660,8 @@
 				29BAF6DC28F3AE8B00A3F9EB /* String+StringWidth.swift */,
 				29A39BC22937F46D005833C2 /* String+MD5.swift */,
 				292453E52A185D75002112B3 /* Bundle+Info.swift */,
+				3F7EF5312A70D0E90005BA30 /* Double+round.swift */,
+				3F3805B52A7A6EF700223808 /* View+Destination.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -703,6 +754,8 @@
 		298613A928C9638400BDC744 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				3FA6B0532A6967AD00E5878E /* IBMPlexMono-SemiBold.ttf */,
+				3F874FDE2A69475500F90C4D /* IBMPlexMono-Regular.ttf */,
 				298613AF28C9698D00BDC744 /* SF-Pro.ttf */,
 				298613B128CA8A9600BDC744 /* Archivo-Regular.ttf */,
 				298613C928CBBFA200BDC744 /* Archivo-Bold.ttf */,
@@ -719,6 +772,7 @@
 				298CAA092A68A4CF003F7F42 /* ClearBackgroundView.swift */,
 				298CAA0C2A6A3499003F7F42 /* CapturedImageView.swift */,
 				298CAA0E2A6B4B48003F7F42 /* CircularButtonStyle.swift */,
+				3F9149642A7C0495009FADAB /* CameraModel.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -773,6 +827,7 @@
 				3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */,
 				3F5002BA2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift */,
 				3F5002B82A5FE65100E12AE4 /* ReceiptsView.swift */,
+				3F7DAFA82A825F9600A521E2 /* ReceiptViewModel.swift */,
 			);
 			path = ReceiptScanning;
 			sourceTree = "<group>";
@@ -828,6 +883,21 @@
 				3F714D5229FA0FC200CD39E7 /* StarRatingView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		3F874FDD2A655E8800F90C4D /* ProcessReceipt */ = {
+			isa = PBXGroup;
+			children = (
+				3F2D8B6F2A651E46008F5AE0 /* ProcessedReceiptView.swift */,
+				3F874FDB2A655E3300F90C4D /* ReceiptTableContentRow.swift */,
+				3F874FD92A655E1400F90C4D /* ReceiptTableTitleRow.swift */,
+				3F874FD72A655DB400F90C4D /* ProcessedReceiptList.swift */,
+				3F874FD32A652A0A00F90C4D /* ProcessedReceiptItem.swift */,
+				3F874FD52A652A6B00F90C4D /* ProcessedReceiptViewModel.swift */,
+				3F7EF52F2A70CED70005BA30 /* ReceiptCongratsView.swift */,
+				3F9149682A7C1AE5009FADAB /* ProcessingReceiptView.swift */,
+			);
+			path = ProcessReceipt;
 			sourceTree = "<group>";
 		};
 		3FC92C622A0AAA230081BFEC /* View */ = {
@@ -893,6 +963,13 @@
 				AFE960DE29EE489500C888C0 /* SignUpViewHelper.swift */,
 				AFE960E029EE4B9D00C888C0 /* SignInViewHelper.swift */,
 				AFE960E229EE4D0800C888C0 /* MoreViewHelper.swift */,
+				3F7DAF9A2A81276D00A521E2 /* CapturedImageViewUITests.swift */,
+				3F7DAFA02A813BBC00A521E2 /* ReceiptCongratsViewUITests.swift */,
+				3F7DAF9C2A81314300A521E2 /* ProcessingReceiptViewUITests.swift */,
+				3F7DAFA22A81E6D900A521E2 /* ReceiptsViewHelper.swift */,
+				3F7DAF9E2A8136E900A521E2 /* ProcessedReceiptViewUITests.swift */,
+				3F9149A22A7DD6DC009FADAB /* ReceiptsViewUITests.swift */,
+				3F2055B52A81134800D38034 /* CameraViewUITests.swift */,
 				AFAF523E29F63C6F00478F67 /* VoucherViewHelper.swift */,
 				AFAF524029F63D8E00478F67 /* BenefitsViewHelper.swift */,
 				AFAF524229F63E2900478F67 /* TransactionsViewHelper.swift */,
@@ -1018,8 +1095,10 @@
 			files = (
 				293F86AB2A174EE000733A42 /* ConnectedApp.xcconfig in Resources */,
 				2913FB482A1CA6560065F0D5 /* MasterConfig.xcconfig in Resources */,
+				3F874FDF2A69475500F90C4D /* IBMPlexMono-Regular.ttf in Resources */,
 				298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */,
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
+				3FA6B0562A6967AD00E5878E /* IBMPlexMono-SemiBold.ttf in Resources */,
 				29AC2F0328F8B2D7003F56F6 /* Roboto-Regular.ttf in Resources */,
 				218A36A828B85B7900FCEE39 /* Assets.xcassets in Resources */,
 				298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */,
@@ -1085,20 +1164,24 @@
 				3F714D4929FA0F4A00CD39E7 /* ProductView.swift in Sources */,
 				3F714D4629FA0F4A00CD39E7 /* ProductImagesView.swift in Sources */,
 				29B427D629109E60009CC587 /* PromotionViewModel.swift in Sources */,
+				3F874FDC2A655E3300F90C4D /* ReceiptTableContentRow.swift in Sources */,
 				29AC2EFB28F8959E003F56F6 /* LoyaltyNavBarContainerView.swift in Sources */,
 				2963771429C10D6200D45AB6 /* QueryResult.swift in Sources */,
 				216F219928B618BB00DAA66D /* SignInView.swift in Sources */,
 				299B38D428E5F78400E45D97 /* CongratsView.swift in Sources */,
+				3F3805B22A7A6D2400223808 /* RouterPath.swift in Sources */,
 				29BAF6E328F4824B00A3F9EB /* VoucherCardView.swift in Sources */,
 				299B38DA28EB597700E45D97 /* ResetPasswordView.swift in Sources */,
 				298D5EF329CCF94D0062F16E /* ForceUserIdentifier.swift in Sources */,
 				299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */,
+				3F9149692A7C1AE5009FADAB /* ProcessingReceiptView.swift in Sources */,
 				294EDB6D2A5F75C80047926A /* ImagePickerView.swift in Sources */,
 				298D5EFA29D4E5F00062F16E /* String+Date.swift in Sources */,
 				3F5002B72A5FC82800E12AE4 /* ReceiptSearchBar.swift in Sources */,
 				292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */,
 				AFC75D3429D458DF003CC86A /* ShippingMethodModel.swift in Sources */,
 				292ADC72294C04AB00753541 /* VocherModel+VoucherValue.swift in Sources */,
+				3F2D8B702A651E46008F5AE0 /* ProcessedReceiptView.swift in Sources */,
 				292ADC6E294BFD7700753541 /* PreviewProvider.swift in Sources */,
 				3F5002B92A5FE65200E12AE4 /* ReceiptsView.swift in Sources */,
 				29AC2F0928F8B724003F56F6 /* AllBadgesView.swift in Sources */,
@@ -1110,9 +1193,11 @@
 				3F714D5329FA0FC200CD39E7 /* AvailableColorsView.swift in Sources */,
 				298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */,
 				2984C9442954F091009669EF /* LoyaltyUtilities.swift in Sources */,
+				3F7EF5302A70CED70005BA30 /* ReceiptCongratsView.swift in Sources */,
 				29BAF6F128F5D6D600A3F9EB /* VoucherDetailView.swift in Sources */,
 				3FB333972A18E33800C3A639 /* ProductViewModel.swift in Sources */,
 				29BAF6D528F14E4400A3F9EB /* PromotionCardView.swift in Sources */,
+				3F874FD62A652A6B00F90C4D /* ProcessedReceiptViewModel.swift in Sources */,
 				3F714D6829FA0FEB00CD39E7 /* PaymentCardTextField.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
 				3F714D6229FA0FEB00CD39E7 /* AmountPayableView.swift in Sources */,
@@ -1125,6 +1210,7 @@
 				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
 				298D5EED29CCF5340062F16E /* ForceAuthKeychainManager.swift in Sources */,
 				290EA9BD2928ADB700BBF2F2 /* ViewAllView.swift in Sources */,
+				3F3805B62A7A6EF700223808 /* View+Destination.swift in Sources */,
 				298D5EEE29CCF5340062F16E /* ForceAuth.swift in Sources */,
 				293F642F29D64E48001AC795 /* CommunityMemberModel.swift in Sources */,
 				3F5002BB2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift in Sources */,
@@ -1158,6 +1244,7 @@
 				3F714D6329FA0FEB00CD39E7 /* PaymentCardView.swift in Sources */,
 				3FB333932A1492A200C3A639 /* Reloadable.swift in Sources */,
 				2963771629C10D6200D45AB6 /* Record.swift in Sources */,
+				3F874FD42A652A0A00F90C4D /* ProcessedReceiptItem.swift in Sources */,
 				299B38CA28E365AD00E45D97 /* HalfSheet.swift in Sources */,
 				298D5EF829CCFFD00062F16E /* UserDefaults.swift in Sources */,
 				3F714D4729FA0F4A00CD39E7 /* ProductDetailsView.swift in Sources */,
@@ -1172,9 +1259,12 @@
 				296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */,
 				29BAF6DD28F3AE8B00A3F9EB /* String+StringWidth.swift in Sources */,
 				2963771529C10D6200D45AB6 /* Address.swift in Sources */,
+				3F874FD82A655DB400F90C4D /* ProcessedReceiptList.swift in Sources */,
+				3F7EF5322A70D0E90005BA30 /* Double+round.swift in Sources */,
 				3F714D6529FA0FEB00CD39E7 /* AddressView.swift in Sources */,
 				29BAF6E128F3EEA000A3F9EB /* MyPromotionCardView.swift in Sources */,
 				3FE8BFC62A6D8ED300ECD45B /* ReceiptListViewModel.swift in Sources */,
+				3F9149652A7C0495009FADAB /* CameraModel.swift in Sources */,
 				29BAF6EB28F4D24500A3F9EB /* TransactionsView.swift in Sources */,
 				AFDC733D29DBD87E00A2C7F5 /* ShippingAddressRecord.swift in Sources */,
 				2955345B29E6215A00CFA391 /* AdminMenuView.swift in Sources */,
@@ -1190,12 +1280,14 @@
 				3F714D4529FA0F4A00CD39E7 /* ProductReviewView.swift in Sources */,
 				2955346329E7809400CFA391 /* KeychainManagerProtocol.swift in Sources */,
 				2955346529E788C100CFA391 /* ForceConnectedAppKeychainManager.swift in Sources */,
+				3F874FDA2A655E1400F90C4D /* ReceiptTableTitleRow.swift in Sources */,
 				3F714D6B29FA0FEB00CD39E7 /* OrderVoucherView.swift in Sources */,
 				29BAF6ED28F4DE1C00A3F9EB /* BadgeCardView.swift in Sources */,
 				29A39BC529397B98005833C2 /* EmptyStateView.swift in Sources */,
 				29BAF6D328F103B600A3F9EB /* PromotionCarouselView.swift in Sources */,
 				29BAF6DF28F3ECA600A3F9EB /* TopTabBar.swift in Sources */,
 				29A39BC12937C699005833C2 /* LoyaltyAsyncImage.swift in Sources */,
+				3F3805B42A7A6D8500223808 /* Destination.swift in Sources */,
 				3F714D5729FA0FC200CD39E7 /* StarRatingView.swift in Sources */,
 				2963770E29C10D2400D45AB6 /* ForceClient+SOSL.swift in Sources */,
 				3F714D4829FA0F4A00CD39E7 /* ProductTermsAndConditionsView.swift in Sources */,
@@ -1219,6 +1311,7 @@
 				293F643129D6C5AD001AC795 /* ForceConnectedApp.swift in Sources */,
 				2955346B29E93EF800CFA391 /* InfoNavigationLink.swift in Sources */,
 				292453E62A185D75002112B3 /* Bundle+Info.swift in Sources */,
+				3F7DAFA92A825F9600A521E2 /* ReceiptViewModel.swift in Sources */,
 				29AC2F0728F8B70D003F56F6 /* AllBenefitsView.swift in Sources */,
 				218A36AC28B85D5500FCEE39 /* MyPromotionsView.swift in Sources */,
 				29BAF6FE28F63A5800A3F9EB /* RewardPointsCardView.swift in Sources */,
@@ -1262,17 +1355,24 @@
 				AFCDDAA429E53EA2006B00EB /* MyNTORewardsUITests.swift in Sources */,
 				AFAF523F29F63C6F00478F67 /* VoucherViewHelper.swift in Sources */,
 				AF27B7782A05261000399D77 /* UITestingHelper.swift in Sources */,
+				3F7DAFA12A813BBC00A521E2 /* ReceiptCongratsViewUITests.swift in Sources */,
 				AFAF524129F63D8E00478F67 /* BenefitsViewHelper.swift in Sources */,
+				3F7DAF9F2A8136E900A521E2 /* ProcessedReceiptViewUITests.swift in Sources */,
 				AF468B5729EEFB28003C1344 /* MyProfileViewHelper.swift in Sources */,
+				3F2055B62A81134800D38034 /* CameraViewUITests.swift in Sources */,
 				AFCDDAAD29E54621006B00EB /* OnBoardingViewUITests.swift in Sources */,
 				AFE960E129EE4B9D00C888C0 /* SignInViewHelper.swift in Sources */,
 				AFCDDAA629E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift in Sources */,
+				3F7DAFA32A81E6D900A521E2 /* ReceiptsViewHelper.swift in Sources */,
 				AFE960DD29EE47A700C888C0 /* OnBoardingViewHelper.swift in Sources */,
 				AFE960E329EE4D0800C888C0 /* MoreViewHelper.swift in Sources */,
+				3F7DAF9D2A81314300A521E2 /* ProcessingReceiptViewUITests.swift in Sources */,
 				AFAF524329F63E2900478F67 /* TransactionsViewHelper.swift in Sources */,
 				AF468B5929EEFB60003C1344 /* HomeViewHelper.swift in Sources */,
 				AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */,
+				3F7DAF9B2A81276D00A521E2 /* CapturedImageViewUITests.swift in Sources */,
 				AFE960DF29EE489500C888C0 /* SignUpViewHelper.swift in Sources */,
+				3F9149A32A7DD6DC009FADAB /* ReceiptsViewUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1345,7 +1445,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1404,7 +1504,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -1506,7 +1606,7 @@
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				INFOPLIST_FILE = MyNTORewardsTests/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1530,7 +1630,7 @@
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				INFOPLIST_FILE = MyNTORewardsTests/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1554,7 +1654,7 @@
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				INFOPLIST_FILE = MyNTORewardsUITests/UITestingInfo.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1578,7 +1678,7 @@
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				INFOPLIST_FILE = MyNTORewardsUITests/UITestingInfo.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewardsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
