@@ -12,37 +12,44 @@ struct ReceiptCongratsView: View {
 	@EnvironmentObject var cameraModel: CameraModel
 	var points: Double
 	var body: some View {
-		VStack {
-			Image("img-congrats")
-				.resizable()
-				.scaledToFit()
-			Image("img-gift")
-			Text(StringConstants.Receipts.receiptUploadedText)
-				.font(.congratsTitle)
-				.padding(.top, 30)
-				.padding()
-				.accessibilityIdentifier(AppAccessibilty.receipts.receiptSubmittedCongrats)
-			
-			Text("We’ve credited \(points.truncate(to: 2)) points for the uploaded receipt")
-				.font(.congratsText)
-				.lineSpacing(5)
-				.multilineTextAlignment(.center)
-				.padding([.leading, .trailing], 40)
-			Spacer()
-			Text("Done")
-				.onTapGesture {
-					routerPath.dismissSheets()
-				}
-				.longFlexibleButtonStyle()
-			Button(StringConstants.Receipts.uploadAnotherReceiptButton) {
-				routerPath.dismissSheets()
-				DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-					cameraModel.showCamera = true
-				}
+		ZStack {
+			VStack {
+				Image("img-congrats")
+					.resizable()
+					.scaledToFit()
+				Spacer()
 			}
-			.padding(.bottom, 20)
-			.foregroundColor(.black)
-			.accessibilityIdentifier(AppAccessibilty.receipts.scanAnotherReceipt)
+			VStack {
+				Spacer()
+				Image("img-gift")
+					.padding(.top, 60)
+				Text(StringConstants.Receipts.receiptUploadedText)
+					.font(.congratsTitle)
+					.padding(.top, 30)
+					.padding(.bottom, 2)
+					.accessibilityIdentifier(AppAccessibilty.receipts.receiptSubmittedCongrats)
+				
+				Text("We’ve credited \(points.truncate(to: 2)) points for the uploaded receipt")
+					.font(.congratsText)
+					.lineSpacing(5)
+					.multilineTextAlignment(.center)
+					.padding([.leading, .trailing], 40)
+				Spacer()
+				Text("Done")
+					.onTapGesture {
+						routerPath.dismissSheets()
+					}
+					.longFlexibleButtonStyle()
+				Button(StringConstants.Receipts.uploadAnotherReceiptButton) {
+					routerPath.dismissSheets()
+					DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+						cameraModel.showCamera = true
+					}
+				}
+				.padding(.bottom, 20)
+				.foregroundColor(.black)
+				.accessibilityIdentifier(AppAccessibilty.receipts.scanAnotherReceipt)
+			}
 		}
 	}
 }

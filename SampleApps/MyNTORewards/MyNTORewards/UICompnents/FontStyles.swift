@@ -50,7 +50,7 @@ extension Font {
     }
     
     static var congratsText: Font {
-        return Font.custom("SFPro-Regular", size: 16)
+        return Font.custom("SFProDisplay-Regular", size: 16)
     }
     
     /// Check you email
