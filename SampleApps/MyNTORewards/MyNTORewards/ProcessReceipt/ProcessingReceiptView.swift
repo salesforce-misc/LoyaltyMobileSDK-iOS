@@ -35,12 +35,11 @@ struct ProcessingView: View {
 				ProgressView()
 					.onAppear {
 						DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-//							routerPath.presentedSheet = .processedReceipt
 							receiptViewModel.receiptState = .processed
 						}
 					}
 				VStack(spacing: 8) {
-					Text("Scanning Receipt...")
+					Text("Generating preview...")
 						.font(.scanningReceiptTitleFont)
 						.fontWeight(.heavy)
 						.accessibilityIdentifier(AppAccessibilty.receipts.scanningReceiptLabel)

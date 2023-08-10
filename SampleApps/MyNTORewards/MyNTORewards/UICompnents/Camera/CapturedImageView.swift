@@ -51,7 +51,7 @@ struct CapturedImageView: View {
                 
                 Spacer()
 
-                Button("Process") {
+                Button("Upload") {
                     // Handle processing image
                     if let image = capturedImage {
                         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
@@ -68,7 +68,7 @@ struct CapturedImageView: View {
 				.accessibilityIdentifier(AppAccessibilty.receipts.processButton)
                 .buttonStyle(LightLongButton())
                 
-                Text("Try again")
+                Text("Try Again")
                     .foregroundColor(.white)
                     .padding(.bottom, 20)
                     .onTapGesture {

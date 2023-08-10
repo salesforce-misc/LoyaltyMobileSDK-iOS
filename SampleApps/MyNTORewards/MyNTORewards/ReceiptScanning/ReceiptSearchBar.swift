@@ -12,7 +12,7 @@ struct ReceiptSearchBar: View {
     var body: some View {
 		HStack {
 			Image(systemName: "magnifyingglass").foregroundColor(.gray)
-			TextField("Search for Receipt number", text: $fieldValue)
+			TextField("Search receipts...", text: $fieldValue)
 				.font(.receiptSearchText)
 				.accessibilityIdentifier(AppAccessibilty.receipts.searchBar)
 		}

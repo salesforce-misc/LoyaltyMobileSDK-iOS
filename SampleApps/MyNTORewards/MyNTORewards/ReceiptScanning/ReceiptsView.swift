@@ -13,6 +13,7 @@ struct ReceiptsView: View {
 	@StateObject var viewModel = ReceiptListViewModel()
 	@StateObject var routerpath = RouterPath()
 	@StateObject var cameraModel = CameraModel()
+	@StateObject var receiptViewModel = ReceiptViewModel()
     @State var showCapturedImage: Bool = false
     @State var capturedImage: UIImage?
 
@@ -26,7 +27,7 @@ struct ReceiptsView: View {
 						cameraModel.showCamera = true
 //						routerpath.presentedFullSheet = .receiptCongrats(points: 50)
 					} label: {
-						Text("New")
+						Text("Upload Receipt")
 							.font(.boldButtonText)
 							.longFlexibleButtonStyle()
 							.frame(width: 120)
@@ -46,6 +47,7 @@ struct ReceiptsView: View {
 			.withFullScreenCover(fullSheetDestination: $routerpath.presentedFullSheet)
 			.environmentObject(routerpath)
 			.environmentObject(cameraModel)
+			.environmentObject(receiptViewModel)
 			.background(Color.theme.background)
 		}
 		.background(Color.theme.background)

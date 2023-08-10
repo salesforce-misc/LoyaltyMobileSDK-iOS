@@ -20,3 +20,18 @@ struct RegularTextFieldStyle: TextFieldStyle {
             .padding([.leading, .trailing])
     }
 }
+
+struct GrayedTextFieldStyle: TextFieldStyle {
+	
+	func _body(configuration: TextField<Self._Label>) -> some View {
+		configuration
+			.padding()
+			.font(.subheadline)
+			.background(Color.theme.commentsTextFieldBackground)
+			.cornerRadius(8)
+			.overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.theme.commentsTextFieldBorderColor, lineWidth: 1))
+			.textInputAutocapitalization(.never)
+			.padding([.leading, .trailing])
+	}
+}
+

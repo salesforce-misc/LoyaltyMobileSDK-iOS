@@ -313,14 +313,22 @@ extension Font {
 	}
 	
 	static var scanningReceiptTitleFont: Font {
-		return Font.custom("SF Pro Display", size: 20)
+		return Font.custom("SFProDisplay-Regular", size: 20)
 	}
 	
 	static var scanningReceiptCaptionFont: Font {
-		return Font.custom("SF Pro Display", size: 12)
+		return Font.custom("SFProDisplay-Regular", size: 12)
 	}
 	
 	static var scanningReceiptCancelFont: Font {
-		return Font.custom("SF Pro Display", size: 16)
+		return Font.custom("SFProDisplay-Regular", size: 16)
+	}
+	
+	static var manualReviewCommentLabel: Font {
+		return Font.custom("SFProDisplay-Regular", size: 13)
+	}
+	
+	static var manualReviewTitleLabel: Font {
+		return Font.custom("SFProDisplay-Bold", size: 16)
 	}
 }

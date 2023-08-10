@@ -41,4 +41,18 @@ final class ReceiptsViewHelper {
 		goToProcessedReceiptView(app: app)
 		app.staticTexts["Submit Receipt"].tap()
 	}
+	
+	static func goToReceiptDetailsView(app: XCUIApplication) {
+		goToReceiptsView(app: app)
+		_ = app.cells.element.waitForExistence(timeout: 5)
+		app.cells.element(boundBy: 0).tap()
+	}
+	
+	static func goToRequestManualReviewView(app: XCUIApplication) {
+		goToReceiptsView(app: app)
+		_ = app.cells.element.waitForExistence(timeout: 5)
+		app.cells.element(boundBy: 0).tap()
+		_ = app.buttons["Request a Manual Review"].waitForExistence(timeout: 3)
+		app.buttons["Request a Manual Review"].tap()
+	}
 }

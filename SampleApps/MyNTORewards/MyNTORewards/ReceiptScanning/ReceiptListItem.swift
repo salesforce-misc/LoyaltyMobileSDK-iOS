@@ -16,13 +16,13 @@ struct ReceiptListItem: View {
     var body: some View {
 		VStack(spacing: 8) {
 			HStack {
-				Text("\(receiptNumber)")
+				Text("Receipt \(receiptNumber)")
 				Spacer()
 				Text("\(currency) \(amount)")
 			}
 			.font(.transactionText )
 			HStack {
-				Text("\(receiptDate)")
+				Text("Date \(receiptDate)")
 				Spacer()
 				Text("\(points) Points")
 			}

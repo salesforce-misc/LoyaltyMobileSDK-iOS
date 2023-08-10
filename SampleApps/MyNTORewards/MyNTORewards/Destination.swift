@@ -21,7 +21,6 @@ enum RouterDestination: Identifiable, Hashable {
 	}
 	
 	case receipts
-	
 	case capturedReceipt
 	case congrats
 }

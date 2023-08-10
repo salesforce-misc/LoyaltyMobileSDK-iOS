@@ -9,4 +9,5 @@ import Foundation
 
 class ReceiptViewModel: ObservableObject {
 	@Published var receiptState: ReceiptState = .processing
+	@Published var showManualReviewRequestView = false
 }

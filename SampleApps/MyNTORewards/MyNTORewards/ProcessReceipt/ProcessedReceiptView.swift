@@ -19,14 +19,14 @@ struct ProcessedReceiptView: View {
 	var body: some View {
 		VStack {
 			VStack(alignment: .leading, spacing: 20) {
-				Text("Receipt Number: \(receiptNumber)")
+				Text("Receipt \(receiptNumber)")
 					.font(.offerTitle)
 					.accessibilityIdentifier(AppAccessibilty.receipts.receiptNumberLabel)
 				HStack {
 					Text("Store: \(storeName)")
 						.accessibilityIdentifier(AppAccessibilty.receipts.storeLabel)
 					Spacer()
-					Text("Receipt Date: \(receiptDate)")
+					Text("Date: \(receiptDate)")
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptDate)
 				}
 				.font(.offerText)
@@ -57,7 +57,7 @@ struct ProcessedReceiptView: View {
 			.cornerRadius(4)
 			.padding()
 			Spacer()
-			Text("Submit Receipt")
+			Text("Submit")
 				.onTapGesture {
 //					routerPath.presentFullSheet(destination: .receiptCongrats(points: 45))
 					receiptViewModel.receiptState = .submitted

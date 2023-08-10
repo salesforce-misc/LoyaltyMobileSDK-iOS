@@ -17,13 +17,13 @@ struct ReceiptCongratsView: View {
 				.resizable()
 				.scaledToFit()
 			Image("img-gift")
-			Text("Congratulations!!!")
+			Text("Your receipt is uploaded!")
 				.font(.congratsTitle)
 				.padding(.top, 30)
 				.padding()
 				.accessibilityIdentifier(AppAccessibilty.receipts.receiptSubmittedCongrats)
 			
-			Text("We’ve credited \(points.truncate(to: 2)) points for the scanned receipt")
+			Text("We’ve credited \(points.truncate(to: 2)) points for the uploaded receipt")
 				.font(.congratsText)
 				.lineSpacing(5)
 				.multilineTextAlignment(.center)
@@ -35,7 +35,7 @@ struct ReceiptCongratsView: View {
 					routerPath.presentedFullSheet = nil
 				}
 				.longFlexibleButtonStyle()
-			Button("Scan Another Receipt") {
+			Button("Upload Another Receipt") {
 				// button action
 				routerPath.presentedSheet = nil
 				routerPath.presentedFullSheet = nil

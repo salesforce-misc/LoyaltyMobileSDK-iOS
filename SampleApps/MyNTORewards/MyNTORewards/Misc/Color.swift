@@ -74,6 +74,9 @@ struct ColorTheme {
     let expiredBackgroundText = Color("ExpiredBackgroundColor") // #E5E5E5
 	let receiptListItemShadowColor = Color("ReceiptListItemShadowColor") // #ABABAB
     let searchBarBackgroundColor = Color("SearchBarBackgroundColor") // #E9E1F3
+	let manualReviewCommentLabelColor = Color("ManualReviewCommentLabelColor") // #444444
+	let commentsTextFieldBorderColor = Color("CommentsTextFieldBorderColor") // #A0A0A0
+	let commentsTextFieldBackground = Color("CommentsTextFieldBackground") // #FAFCFF
 }
 
 struct TierColor {

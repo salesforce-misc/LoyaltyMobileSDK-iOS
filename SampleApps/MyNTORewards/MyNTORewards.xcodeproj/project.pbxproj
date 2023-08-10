@@ -141,6 +141,7 @@
 		29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */; };
 		29BAF70228F78FA400A3F9EB /* AllTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */; };
 		29FEDDF2294293BF0014BEBA /* UITabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FEDDF1294293BF0014BEBA /* UITabView.swift */; };
+		3F0C4F792A827A0B00394CB0 /* ManualReviewInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C4F782A827A0B00394CB0 /* ManualReviewInputView.swift */; };
 		3F2055B62A81134800D38034 /* CameraViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2055B52A81134800D38034 /* CameraViewUITests.swift */; };
 		3F2D8B702A651E46008F5AE0 /* ProcessedReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D8B6F2A651E46008F5AE0 /* ProcessedReceiptView.swift */; };
 		3F3805B22A7A6D2400223808 /* RouterPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3805B12A7A6D2400223808 /* RouterPath.swift */; };
@@ -152,6 +153,10 @@
 		3F5002B72A5FC82800E12AE4 /* ReceiptSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */; };
 		3F5002B92A5FE65200E12AE4 /* ReceiptsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B82A5FE65100E12AE4 /* ReceiptsView.swift */; };
 		3F5002BB2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002BA2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift */; };
+		3F667DF62A829B9700267958 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3F667DF52A829B0900267958 /* SF-Pro-Display-Regular.otf */; };
+		3F667DF72A829B9A00267958 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3F667DF32A829A3E00267958 /* SF-Pro-Display-Bold.otf */; };
+		3F667DFA2A836E2100267958 /* ReceiptDetailsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F667DF92A836E2100267958 /* ReceiptDetailsUITests.swift */; };
+		3F667DFC2A83778200267958 /* RequestManualReviewViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F667DFB2A83778200267958 /* RequestManualReviewViewUITests.swift */; };
 		3F714D4429FA0F4A00CD39E7 /* ProductHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D3E29FA0F4900CD39E7 /* ProductHeaderView.swift */; };
 		3F714D4529FA0F4A00CD39E7 /* ProductReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D3F29FA0F4900CD39E7 /* ProductReviewView.swift */; };
 		3F714D4629FA0F4A00CD39E7 /* ProductImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D4029FA0F4900CD39E7 /* ProductImagesView.swift */; };
@@ -380,6 +385,7 @@
 		29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsView.swift; sourceTree = "<group>"; };
 		29FEDDF1294293BF0014BEBA /* UITabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabView.swift; sourceTree = "<group>"; };
+		3F0C4F782A827A0B00394CB0 /* ManualReviewInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualReviewInputView.swift; sourceTree = "<group>"; };
 		3F2055B52A81134800D38034 /* CameraViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewUITests.swift; sourceTree = "<group>"; };
 		3F2D8B6F2A651E46008F5AE0 /* ProcessedReceiptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedReceiptView.swift; sourceTree = "<group>"; };
 		3F3805B12A7A6D2400223808 /* RouterPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterPath.swift; sourceTree = "<group>"; };
@@ -391,6 +397,10 @@
 		3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptSearchBar.swift; sourceTree = "<group>"; };
 		3F5002B82A5FE65100E12AE4 /* ReceiptsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptsView.swift; sourceTree = "<group>"; };
 		3F5002BA2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPopUpView.swift; sourceTree = "<group>"; };
+		3F667DF32A829A3E00267958 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		3F667DF52A829B0900267958 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		3F667DF92A836E2100267958 /* ReceiptDetailsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDetailsUITests.swift; sourceTree = "<group>"; };
+		3F667DFB2A83778200267958 /* RequestManualReviewViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManualReviewViewUITests.swift; sourceTree = "<group>"; };
 		3F714D3E29FA0F4900CD39E7 /* ProductHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductHeaderView.swift; sourceTree = "<group>"; };
 		3F714D3F29FA0F4900CD39E7 /* ProductReviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductReviewView.swift; sourceTree = "<group>"; };
 		3F714D4029FA0F4900CD39E7 /* ProductImagesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductImagesView.swift; sourceTree = "<group>"; };
@@ -754,6 +764,8 @@
 		298613A928C9638400BDC744 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				3F667DF52A829B0900267958 /* SF-Pro-Display-Regular.otf */,
+				3F667DF32A829A3E00267958 /* SF-Pro-Display-Bold.otf */,
 				3FA6B0532A6967AD00E5878E /* IBMPlexMono-SemiBold.ttf */,
 				3F874FDE2A69475500F90C4D /* IBMPlexMono-Regular.ttf */,
 				298613AF28C9698D00BDC744 /* SF-Pro.ttf */,
@@ -828,6 +840,7 @@
 				3F5002BA2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift */,
 				3F5002B82A5FE65100E12AE4 /* ReceiptsView.swift */,
 				3F7DAFA82A825F9600A521E2 /* ReceiptViewModel.swift */,
+				3F0C4F782A827A0B00394CB0 /* ManualReviewInputView.swift */,
 			);
 			path = ReceiptScanning;
 			sourceTree = "<group>";
@@ -967,6 +980,8 @@
 				3F7DAFA02A813BBC00A521E2 /* ReceiptCongratsViewUITests.swift */,
 				3F7DAF9C2A81314300A521E2 /* ProcessingReceiptViewUITests.swift */,
 				3F7DAFA22A81E6D900A521E2 /* ReceiptsViewHelper.swift */,
+				3F667DF92A836E2100267958 /* ReceiptDetailsUITests.swift */,
+				3F667DFB2A83778200267958 /* RequestManualReviewViewUITests.swift */,
 				3F7DAF9E2A8136E900A521E2 /* ProcessedReceiptViewUITests.swift */,
 				3F9149A22A7DD6DC009FADAB /* ReceiptsViewUITests.swift */,
 				3F2055B52A81134800D38034 /* CameraViewUITests.swift */,
@@ -1100,9 +1115,11 @@
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
 				3FA6B0562A6967AD00E5878E /* IBMPlexMono-SemiBold.ttf in Resources */,
 				29AC2F0328F8B2D7003F56F6 /* Roboto-Regular.ttf in Resources */,
+				3F667DF72A829B9A00267958 /* SF-Pro-Display-Bold.otf in Resources */,
 				218A36A828B85B7900FCEE39 /* Assets.xcassets in Resources */,
 				298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */,
 				298613B028C9698D00BDC744 /* SF-Pro.ttf in Resources */,
+				3F667DF62A829B9700267958 /* SF-Pro-Display-Regular.otf in Resources */,
 				2913FB4C2A1CA6B30065F0D5 /* AppVersion.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1171,6 +1188,7 @@
 				299B38D428E5F78400E45D97 /* CongratsView.swift in Sources */,
 				3F3805B22A7A6D2400223808 /* RouterPath.swift in Sources */,
 				29BAF6E328F4824B00A3F9EB /* VoucherCardView.swift in Sources */,
+				3F0C4F792A827A0B00394CB0 /* ManualReviewInputView.swift in Sources */,
 				299B38DA28EB597700E45D97 /* ResetPasswordView.swift in Sources */,
 				298D5EF329CCF94D0062F16E /* ForceUserIdentifier.swift in Sources */,
 				299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */,
@@ -1357,6 +1375,7 @@
 				AF27B7782A05261000399D77 /* UITestingHelper.swift in Sources */,
 				3F7DAFA12A813BBC00A521E2 /* ReceiptCongratsViewUITests.swift in Sources */,
 				AFAF524129F63D8E00478F67 /* BenefitsViewHelper.swift in Sources */,
+				3F667DFC2A83778200267958 /* RequestManualReviewViewUITests.swift in Sources */,
 				3F7DAF9F2A8136E900A521E2 /* ProcessedReceiptViewUITests.swift in Sources */,
 				AF468B5729EEFB28003C1344 /* MyProfileViewHelper.swift in Sources */,
 				3F2055B62A81134800D38034 /* CameraViewUITests.swift in Sources */,
@@ -1373,6 +1392,7 @@
 				3F7DAF9B2A81276D00A521E2 /* CapturedImageViewUITests.swift in Sources */,
 				AFE960DF29EE489500C888C0 /* SignUpViewHelper.swift in Sources */,
 				3F9149A32A7DD6DC009FADAB /* ReceiptsViewUITests.swift in Sources */,
+				3F667DFA2A836E2100267958 /* ReceiptDetailsUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

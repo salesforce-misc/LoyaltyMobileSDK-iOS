@@ -154,5 +154,12 @@ enum AppAccessibilty {
 		static let tryAgainButtonProcessedReceipt = "try_again_processed_receipt"
 		static let receiptSubmittedCongrats = "receipt_submitted_congrats"
 		static let scanAnotherReceipt = "scan_another_receipt"
+		static let receiptNumberText = "receipt_number_text"
+		static let receiptDateText = "receipt_date_text"
+		static let receiptAmountText = "receipt_amount_text"
+		static let receiptPointsText = "receipt_points_text"
+		static let closeButton = "close_button"
+		static let submitForManualReviewButton = "submit_for_manual_review_button"
+		static let backButton = "back_button_in_manual_review"
 	}
 }

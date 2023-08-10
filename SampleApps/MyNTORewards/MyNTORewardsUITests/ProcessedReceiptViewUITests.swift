@@ -22,6 +22,10 @@ final class ProcessedReceiptViewUITests: XCTestCase {
 		XCTAssert(app.staticTexts["receipt_number_label"].exists)
 		XCTAssert(app.staticTexts["store_label"].exists)
 		XCTAssert(app.staticTexts["receipt_date"].exists)
+		XCTAssert(app.staticTexts["Item name"].exists)
+		XCTAssert(app.staticTexts["Qty"].exists)
+		XCTAssert(app.staticTexts["Price"].exists)
+		XCTAssert(app.staticTexts["Total"].exists)
 		XCTAssert(app.buttons["Try Again"].exists)
 	}
 	

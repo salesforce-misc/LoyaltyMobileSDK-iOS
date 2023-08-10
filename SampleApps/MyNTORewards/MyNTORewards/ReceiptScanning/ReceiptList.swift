@@ -10,7 +10,10 @@ import LoyaltyMobileSDK
 
 struct ReceiptList: View {
 	@EnvironmentObject var routerPath: RouterPath
-	@State var isShowingModel: Bool = false
+	@EnvironmentObject var receiptViewModel: ReceiptViewModel
+//	@StateObject var receiptViewModel = ReceiptViewModel()
+//	@State private var showManualReviewRequest = false
+//	@State var isShowingModel: Bool = false
 	var receipts: [Receipt]
     var body: some View {
 		List {
@@ -23,16 +26,16 @@ struct ReceiptList: View {
 					.padding(-3)
 					.onTapGesture {
 						routerPath.presentedSheet = .storedReceipt
+//						isShowingModel = true
 					}
 			}
 			.listRowSeparator(.hidden)
 		}
 		.listStyle(.plain)
-		.sheet(isPresented: $isShowingModel) {
-			HalfSheet {
-				ReceiptPopUpView(receiptNumber: "43456", receiptDate: "13/07/2023")
-			}
-		}
+//		.sheet(isPresented: $isShowingModel) {
+//			ReceiptPopUpView(showManualReviewRequest: $showManualReviewRequest, isPresented: $isShowingModel)
+//				.presentationDetents(showManualReviewRequest ? [.height(524)] : [.height(700)]).animation(.easeIn, value: showManualReviewRequest)
+//		}
     }
 }
 

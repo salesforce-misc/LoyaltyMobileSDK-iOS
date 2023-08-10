@@ -69,7 +69,7 @@ struct CameraView: View {
                 Spacer()
 
                 HStack {
-                    Text("Take a photo of the receipt")
+                    Text("Click or Upload the Receipt")
                         .foregroundColor(Color.white)
                 }
                 HStack {

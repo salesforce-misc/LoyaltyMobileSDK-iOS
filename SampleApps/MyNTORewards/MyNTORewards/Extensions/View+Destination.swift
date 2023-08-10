@@ -21,12 +21,15 @@ extension View {
 	}
 	
 	func withSheetDestination(sheetDestination: Binding<SheetDestination?>) -> some View {
+		
 		sheet(item: sheetDestination) { sheet in
 			switch sheet {
 			case .storedReceipt:
-				HalfSheet {
-					ReceiptPopUpView(receiptNumber: "43456", receiptDate: "13/07/2023")
-				}
+				ReceiptPopUpView()
+					.frame(maxWidth: .infinity, maxHeight: .infinity)
+					.background(Color.theme.background)
+					.interactiveDismissDisabled()
+					.presentationDragIndicator(.hidden)
 			case .processingReceipt:
 				ProcessingReceiptView()
 					.interactiveDismissDisabled()
