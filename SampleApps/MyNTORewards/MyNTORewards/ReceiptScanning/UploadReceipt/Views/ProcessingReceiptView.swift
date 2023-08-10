@@ -39,25 +39,25 @@ struct ProcessingView: View {
 						}
 					}
 				VStack(spacing: 8) {
-					Text("Generating preview...")
+					Text(StringConstants.Receipts.processingScreenTitle)
 						.font(.scanningReceiptTitleFont)
 						.fontWeight(.heavy)
 						.accessibilityIdentifier(AppAccessibilty.receipts.scanningReceiptLabel)
-					Text("Hang in there! This may take a minute.")
+					Text(StringConstants.Receipts.processingScreenSubtitle)
 						.font(.scanningReceiptCaptionFont)
 						.accessibilityIdentifier(AppAccessibilty.receipts.scanningReceiptSubtitle)
 				}
 			}
 			Spacer()
 			Button {
-				routerPath.presentedSheet = nil
-				routerPath.presentedFullSheet = nil
+				routerPath.dismissSheets()
 				// Todo:- cancel the processing api call
 			} label: {
-				Text("Cancel")
+				Text(StringConstants.Receipts.cancelButton)
 					.foregroundColor(.black)
 					.font(.scanningReceiptCancelFont)
 			}
+			.padding(.bottom, 20)
 		}
 	}
 }

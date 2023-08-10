@@ -34,4 +34,3 @@ struct GrayedTextFieldStyle: TextFieldStyle {
 			.padding([.leading, .trailing])
 	}
 }
-

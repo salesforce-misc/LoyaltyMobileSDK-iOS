@@ -17,7 +17,7 @@ struct ReceiptCongratsView: View {
 				.resizable()
 				.scaledToFit()
 			Image("img-gift")
-			Text("Your receipt is uploaded!")
+			Text(StringConstants.Receipts.receiptUploadedText)
 				.font(.congratsTitle)
 				.padding(.top, 30)
 				.padding()
@@ -31,22 +31,19 @@ struct ReceiptCongratsView: View {
 			Spacer()
 			Text("Done")
 				.onTapGesture {
-					routerPath.presentedSheet = nil
-					routerPath.presentedFullSheet = nil
+					routerPath.dismissSheets()
 				}
 				.longFlexibleButtonStyle()
-			Button("Upload Another Receipt") {
-				// button action
-				routerPath.presentedSheet = nil
-				routerPath.presentedFullSheet = nil
+			Button(StringConstants.Receipts.uploadAnotherReceiptButton) {
+				routerPath.dismissSheets()
 				DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 					cameraModel.showCamera = true
 				}
 			}
+			.padding(.bottom, 20)
 			.foregroundColor(.black)
 			.accessibilityIdentifier(AppAccessibilty.receipts.scanAnotherReceipt)
 		}
-		.ignoresSafeArea(edges: .top)
 	}
 }
 

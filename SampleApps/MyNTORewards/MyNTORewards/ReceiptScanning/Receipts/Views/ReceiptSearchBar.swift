@@ -10,13 +10,14 @@ import SwiftUI
 struct ReceiptSearchBar: View {
 	@Binding var fieldValue: String
     var body: some View {
-		HStack {
+		HStack(spacing: 4) {
 			Image(systemName: "magnifyingglass").foregroundColor(.gray)
-			TextField("Search receipts...", text: $fieldValue)
+			TextField(StringConstants.Receipts.searchPlaceholder, text: $fieldValue)
 				.font(.receiptSearchText)
 				.accessibilityIdentifier(AppAccessibilty.receipts.searchBar)
 		}
-		.padding()
+		.padding(.horizontal, 8)
+		.padding(.vertical)
 		.background(Color.theme.searchBarBackgroundColor)
 		.cornerRadius(12)
     }

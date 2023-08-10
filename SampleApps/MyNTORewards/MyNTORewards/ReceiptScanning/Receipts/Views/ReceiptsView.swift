@@ -9,42 +9,34 @@ import SwiftUI
 import LoyaltyMobileSDK
 
 struct ReceiptsView: View {
-	@State var searchText = ""
 	@StateObject var viewModel = ReceiptListViewModel()
 	@StateObject var routerpath = RouterPath()
 	@StateObject var cameraModel = CameraModel()
 	@StateObject var receiptViewModel = ReceiptViewModel()
+	@State var searchText = ""
     @State var showCapturedImage: Bool = false
     @State var capturedImage: UIImage?
 
 	var body: some View {
-		NavigationStack(path: $routerpath.path) {
-			VStack(spacing: 12) {
-				HStack(spacing: 8) {
+		NavigationStack {
+			VStack(spacing: 0) {
+				HStack(spacing: 0) {
 					ReceiptSearchBar(fieldValue: $viewModel.searchText)
 						.padding(.leading)
-					Button {
-						cameraModel.showCamera = true
-//						routerpath.presentedFullSheet = .receiptCongrats(points: 50)
-					} label: {
-						Text("Upload Receipt")
-							.font(.boldButtonText)
-							.longFlexibleButtonStyle()
-							.frame(width: 120)
-					}
-					.frame(width: 81, height: 48)
-					.padding(.horizontal, 16)
-					.accessibilityIdentifier(AppAccessibilty.receipts.newButton)
-					
+					Text(StringConstants.Receipts.uploadReceiptButton)
+						.font(.boldButtonText)
+						.longFlexibleButtonStyle()
+						.frame(width: 180)
+						.accessibilityIdentifier(AppAccessibilty.receipts.newButton)
+						.onTapGesture {
+							cameraModel.showCamera = true
+						}
 				}
-				.padding(.top, 12)
 				ReceiptList(receipts: viewModel.searchText.isEmpty ? viewModel.receipts : viewModel.filteredReceipts)
-					.loytaltyNavigationTitle("Receipts")
+					.loytaltyNavigationTitle(StringConstants.Receipts.receiptsListTitle)
 					.loyaltyNavBarSearchButtonHidden(true)
 			}
-			.withAppRouter()
 			.withSheetDestination(sheetDestination: $routerpath.presentedSheet)
-			.withFullScreenCover(fullSheetDestination: $routerpath.presentedFullSheet)
 			.environmentObject(routerpath)
 			.environmentObject(cameraModel)
 			.environmentObject(receiptViewModel)
@@ -66,10 +58,7 @@ struct ReceiptsView: View {
                 .animation(.default, value: showCapturedImage)
 				.environmentObject(routerpath)
             }
-//			.accessibilityIdentifier("camera_view")
-            
         }
-        
 	}
 }
 

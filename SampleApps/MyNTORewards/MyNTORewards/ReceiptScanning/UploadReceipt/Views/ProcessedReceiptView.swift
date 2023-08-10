@@ -51,20 +51,19 @@ struct ProcessedReceiptView: View {
 						.frame(height: 1)
 						.padding()
 				}
-				.frame(height: 400)
+				.frame(maxHeight: .infinity)
 			}
 			.background(.white)
 			.cornerRadius(4)
 			.padding()
 			Spacer()
-			Text("Submit")
+			Text(StringConstants.Receipts.submitButton)
 				.onTapGesture {
-//					routerPath.presentFullSheet(destination: .receiptCongrats(points: 45))
 					receiptViewModel.receiptState = .submitted
 				}
 				.longFlexibleButtonStyle()
 				.accessibilityIdentifier(AppAccessibilty.receipts.submitReceiptButton)
-			Button("Try Again") {
+			Button(StringConstants.Receipts.tryAgainButton) {
 				// button action
 				routerPath.presentedSheet = nil
 				DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -74,7 +73,7 @@ struct ProcessedReceiptView: View {
 			.foregroundColor(.black)
 			.accessibilityIdentifier(AppAccessibilty.receipts.tryAgainButtonProcessedReceipt)
 		}
-		.padding(.top, 20)
+		.padding(.vertical, 20)
 		.background(Color.theme.background)
 	}
 }
