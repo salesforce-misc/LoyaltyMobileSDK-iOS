@@ -161,5 +161,6 @@ enum AppAccessibilty {
 		static let closeButton = "close_button"
 		static let submitForManualReviewButton = "submit_for_manual_review_button"
 		static let backButton = "back_button_in_manual_review"
+		static let receiptsIcon = "receipts_icon"
 	}
 }

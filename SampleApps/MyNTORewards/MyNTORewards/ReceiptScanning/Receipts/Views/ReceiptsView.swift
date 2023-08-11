@@ -11,7 +11,7 @@ import LoyaltyMobileSDK
 struct ReceiptsView: View {
 	@StateObject var viewModel = ReceiptListViewModel()
 	@StateObject var routerpath = RouterPath()
-	@StateObject var cameraModel = CameraModel()
+	@StateObject var cameraViewModel = CameraViewModel()
 	@StateObject var receiptViewModel = ReceiptViewModel()
 	@State var searchText = ""
     @State var showCapturedImage: Bool = false
@@ -29,7 +29,7 @@ struct ReceiptsView: View {
 						.frame(width: 180)
 						.accessibilityIdentifier(AppAccessibilty.receipts.newButton)
 						.onTapGesture {
-							cameraModel.showCamera = true
+							cameraViewModel.showCamera = true
 						}
 				}
 				ReceiptList(receipts: viewModel.searchText.isEmpty ? viewModel.receipts : viewModel.filteredReceipts)
@@ -38,12 +38,12 @@ struct ReceiptsView: View {
 			}
 			.withSheetDestination(sheetDestination: $routerpath.presentedSheet)
 			.environmentObject(routerpath)
-			.environmentObject(cameraModel)
+			.environmentObject(cameraViewModel)
 			.environmentObject(receiptViewModel)
 			.background(Color.theme.background)
 		}
 		.background(Color.theme.background)
-		.fullScreenCover(isPresented: $cameraModel.showCamera) {
+		.fullScreenCover(isPresented: $cameraViewModel.showCamera) {
             ZStack {
                 ZStack {
                     CameraView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ReceiptCongratsView: View {
 	@EnvironmentObject var routerPath: RouterPath
-	@EnvironmentObject var cameraModel: CameraModel
+	@EnvironmentObject var cameraModel: CameraViewModel
 	var points: Double
 	var body: some View {
 		ZStack {

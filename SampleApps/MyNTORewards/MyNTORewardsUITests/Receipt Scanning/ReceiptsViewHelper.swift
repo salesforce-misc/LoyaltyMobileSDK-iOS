@@ -16,7 +16,7 @@ final class ReceiptsViewHelper {
 	
 	static func goToCameraView(app: XCUIApplication) {
 		goToReceiptsView(app: app)
-		app.buttons["new_button"].tap()
+		app.staticTexts["new_button"].tap()
 	}
 	
 	static func goToCapturedImageView(app: XCUIApplication) {
