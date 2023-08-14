@@ -24,8 +24,12 @@ struct HomeView: View {
                         Image("ic-logo-home")
                             .padding(.leading, 15)
                         Spacer()
-                        Image("ic-receipts-home")
-                            .padding(.trailing, 15)
+                        LoyaltyNavLink {
+                            ReceiptsView()
+                        } label: {
+                            Image("ic-receipts-home")
+                                .padding(.trailing, 15)
+                        }
                     }
                     .frame(height: 44)
                     .frame(maxWidth: .infinity)
@@ -109,8 +113,9 @@ struct HomeView: View {
                 }
                 .navigationBarHidden(true)
             }
-            .navigationViewStyle(.stack)
+
         }
+        .navigationViewStyle(.stack)
     }
 }
 
