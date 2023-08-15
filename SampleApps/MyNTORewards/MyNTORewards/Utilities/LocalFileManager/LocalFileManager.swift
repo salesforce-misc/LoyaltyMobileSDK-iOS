@@ -88,6 +88,18 @@ public class LocalFileManager: FileManagerProtocol {
         deleteData(url: url)
     }
     
+    public func removeDataFolders(folderNames: [String]) {
+        
+        for folderName in folderNames {
+            guard
+                let url = getURLForFolder(folderName: folderName),
+                FileManager.default.fileExists(atPath: url.path) else {
+                    return
+                }
+            deleteData(url: url)
+        }
+    }
+    
     public func removeAllAppData() {
         guard
             let bundleID = Bundle.main.bundleIdentifier,
