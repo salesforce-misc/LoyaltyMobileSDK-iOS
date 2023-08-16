@@ -6,38 +6,46 @@
 //
 
 import Foundation
+import LoyaltyMobileSDK
 
+@MainActor
 class ReceiptListViewModel: ObservableObject {
-	var receipts: [Receipt] = [
-		Receipt(receiptNumber: "315188", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "346555", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "345346", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "453634", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "985676", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "674577", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "354646", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "674567", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "345656", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "567567", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$")
-	]
-	
+	@Published var receipts: [Receipt] = []
 	@Published var filteredReceipts: [Receipt] = []
+	@Published var isLoading = false
 	@Published var searchText: String = "" {
 		didSet {
-			print("\(searchText)")
 			filter(query: searchText)
 		}
 	}
 	
+	private let receipts_query = "select Id,Purchase_Date__c,ReceiptId__c,Name,Status__c,StoreName__c,Total_Points__c,TotalAmount__c from Receipts__c Order by CreatedDate DESC"
+	private let authManager: ForceAuthManager
+	private var forceClient: ForceClient
+	
+	init(
+		authManager: ForceAuthManager = .shared,
+		forceClient: ForceClient? = nil
+	) {
+		self.authManager = authManager
+		self.forceClient = forceClient ?? ForceClient(auth: authManager)
+	}
+	
 	func filter(query: String) {
-		print("query: \(query)")
-		if query.isEmpty {
-			filteredReceipts = receipts
-			print("query is emty: \(filteredReceipts)")
-		} else {
-			filteredReceipts = receipts.filter { $0.receiptNumber.contains(query) }
-			print("query is not emty: \(filteredReceipts)")
+		filteredReceipts = query.isEmpty ? receipts : receipts.filter { $0.receiptId.contains(query) }
+	}
+	
+	func getReceipts() async throws {
+		defer {
+			isLoading = false
 		}
-		
+		isLoading = true
+		do {
+			let queryResult = try await forceClient.SOQL(type: Receipt.self, for: receipts_query)
+			receipts = queryResult.records
+		} catch {
+			Logger.error(error.localizedDescription)
+			throw error
+		}
 	}
 }

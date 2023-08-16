@@ -10,21 +10,21 @@ import SwiftUI
 struct ReceiptListItem: View {
 	let receiptNumber: String
 	let receiptDate: String
-	let amount: Int
-	let points: Int
+	let amount: Double
+	let points: Double
 	let currency: String
     var body: some View {
 		VStack(spacing: 8) {
 			HStack {
 				Text("Receipt \(receiptNumber)")
 				Spacer()
-				Text("\(currency) \(amount)")
+				Text("\(currency) \(amount, specifier: "%.0f")")
 			}
 			.font(.transactionText )
 			HStack {
-				Text("Date \(receiptDate)")
+				Text("Date \(receiptDate.toDateString() ?? "")")
 				Spacer()
-				Text("\(points) Points")
+				Text("\(points, specifier: "%.0f") Points")
 			}
 			.font(.transactionDate)
 		}
