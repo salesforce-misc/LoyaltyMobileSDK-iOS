@@ -19,7 +19,7 @@ class ReceiptListViewModel: ObservableObject {
 		}
 	}
 	
-	private let receipts_query = "select Id,Purchase_Date__c,ReceiptId__c,Name,Status__c,StoreName__c,Total_Points__c,TotalAmount__c from Receipts__c Order by CreatedDate DESC"
+	private let receipts_query = "select Id,Purchase_Date__c,ReceiptId__c,Name,Status__c,StoreName__c,Total_Points__c,CreatedDate,TotalAmount__c from Receipts__c Order by CreatedDate DESC"
 	private let authManager: ForceAuthManager
 	private var forceClient: ForceClient
 	

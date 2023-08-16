@@ -16,6 +16,7 @@ struct Receipt: Identifiable, Decodable {
 	let purchaseDate: String
 	let totalAmount: Double
 	let totalPoints: Double?
+	let createdDate: String
 	
 	enum CodingKeys: String, CodingKey {
 		case id = "Id"
@@ -26,6 +27,7 @@ struct Receipt: Identifiable, Decodable {
 		case purchaseDate = "Purchase_Date__c"
 		case totalAmount = "TotalAmount__c"
 		case totalPoints = "Total_Points__c"
+		case createdDate = "CreatedDate"
 	}
 }
 
