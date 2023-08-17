@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Photos
+import LoyaltyMobileSDK
 
 struct CapturedImageView: View {
     @Binding var showCapturedImage: Bool
@@ -54,7 +55,14 @@ struct CapturedImageView: View {
                 Button("Upload") {
                     // Handle processing image
                     if let image = capturedImage {
-                        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                        
+                        if let base64String = image.base64String() {
+                            Logger.debug(base64String)
+                            
+                            // TODO: move to processing screen
+                        }
+                        
+                        // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                         withAnimation {
                             showCapturedImage = false
                             capturedImage = nil
@@ -63,7 +71,6 @@ struct CapturedImageView: View {
                         }
                     }
                     
-                    // TODO: move to processing screen
                 }
 				.accessibilityIdentifier(AppAccessibilty.receipts.processButton)
                 .buttonStyle(LightLongButton())
