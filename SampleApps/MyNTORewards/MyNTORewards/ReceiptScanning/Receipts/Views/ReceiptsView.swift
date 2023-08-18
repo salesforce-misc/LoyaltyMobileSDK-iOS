@@ -9,6 +9,7 @@ import SwiftUI
 import LoyaltyMobileSDK
 
 struct ReceiptsView: View {
+	@EnvironmentObject var rootVM: AppRootViewModel
 	@StateObject var viewModel = ReceiptListViewModel()
 	@StateObject var routerpath = RouterPath()
 	@StateObject var cameraModel = CameraModel()
@@ -36,7 +37,7 @@ struct ReceiptsView: View {
 					if !viewModel.isLoading {
 						ReceiptList(receipts: viewModel.searchText.isEmpty ? viewModel.receipts : viewModel.filteredReceipts)
 							.refreshable {
-								await getReceipts()
+								await getReceipts(forced: true)
 							}
 					} else {
 						Spacer()
@@ -76,9 +77,9 @@ struct ReceiptsView: View {
 		}
 	}
 	
-	func getReceipts() async {
+	func getReceipts(forced: Bool = false) async {
 		do {
-			try await viewModel.getReceipts()
+			try await viewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: forced)
 		} catch {
 			Logger.error(error.localizedDescription)
 		}
