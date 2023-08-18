@@ -12,6 +12,8 @@ struct BottomNavTabsView: View {
 	@StateObject var vouchersVM = VoucherViewModel()
 	@StateObject var profileVM = ProfileViewModel()
 	@StateObject var transactionVM = TransactionViewModel()
+	@StateObject var cameraVM = CameraViewModel()
+	@StateObject var routerPath = RouterPath()
 	@State var selectedTab: Int = Tab.home.rawValue
 	
 	var body: some View {
@@ -58,6 +60,8 @@ struct BottomNavTabsView: View {
 		.environmentObject(vouchersVM)
 		.environmentObject(profileVM)
 		.environmentObject(transactionVM)
+		.environmentObject(cameraVM)
+		.environmentObject(routerPath)
 		.navigationViewStyle(.stack)
 	}
 }

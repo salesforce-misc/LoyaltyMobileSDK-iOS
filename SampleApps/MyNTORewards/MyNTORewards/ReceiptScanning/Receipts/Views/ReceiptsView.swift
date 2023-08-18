@@ -12,7 +12,7 @@ struct ReceiptsView: View {
 	@EnvironmentObject var rootVM: AppRootViewModel
 	@StateObject var viewModel = ReceiptListViewModel()
 	@StateObject var routerpath = RouterPath()
-	@StateObject var cameraModel = CameraModel()
+	@StateObject var cameraViewModel = CameraViewModel()
 	@StateObject var receiptViewModel = ReceiptViewModel()
 	@State var searchText = ""
 	@State var showCapturedImage: Bool = false
@@ -20,46 +20,44 @@ struct ReceiptsView: View {
 	
 	var body: some View {
 		NavigationStack {
-			ZStack {
-				VStack(spacing: 0) {
-					HStack(spacing: 0) {
-						ReceiptSearchBar(fieldValue: $viewModel.searchText)
-							.padding(.leading)
-						Text(StringConstants.Receipts.uploadReceiptButton)
-							.font(.boldButtonText)
-							.longFlexibleButtonStyle()
-							.frame(width: 180)
-							.accessibilityIdentifier(AppAccessibilty.receipts.newButton)
-							.onTapGesture {
-								cameraModel.showCamera = true
-							}
-					}
-					if !viewModel.isLoading {
-						ReceiptList(receipts: viewModel.searchText.isEmpty ? viewModel.receipts : viewModel.filteredReceipts)
-							.refreshable {
-								await getReceipts(forced: true)
-							}
-					} else {
-						Spacer()
-						ProgressView()
-						Spacer()
-					}
+			VStack(spacing: 0) {
+				HStack(spacing: 0) {
+					ReceiptSearchBar(fieldValue: $viewModel.searchText)
+						.padding(.leading)
+					Text(StringConstants.Receipts.uploadReceiptButton)
+						.font(.boldButtonText)
+						.longFlexibleButtonStyle()
+						.frame(width: 180)
+						.accessibilityIdentifier(AppAccessibilty.receipts.newButton)
+						.onTapGesture {
+							cameraViewModel.showCamera = true
+						}
 				}
-				.loytaltyNavigationTitle(StringConstants.Receipts.receiptsListTitle)
-				.loyaltyNavBarSearchButtonHidden(true)
-				.withSheetDestination(sheetDestination: $routerpath.presentedSheet)
-				.environmentObject(routerpath)
-				.environmentObject(cameraModel)
-				.environmentObject(receiptViewModel)
-				.background(Color.theme.background)
+				if !viewModel.isLoading {
+					ReceiptList(receipts: viewModel.searchText.isEmpty ? viewModel.receipts : viewModel.filteredReceipts)
+						.refreshable {
+							await getReceipts(forced: true)
+						}
+				} else {
+					Spacer()
+					ProgressView()
+					Spacer()
+				}
 			}
+			.loytaltyNavigationTitle(StringConstants.Receipts.receiptsListTitle)
+			.loyaltyNavBarSearchButtonHidden(true)
+			.withSheetDestination(sheetDestination: $routerpath.presentedSheet)
+			.environmentObject(routerpath)
+			.environmentObject(cameraViewModel)
+			.environmentObject(receiptViewModel)
+			.background(Color.theme.background)
 			
 		}
 		.task {
 			await getReceipts()
 		}
 		.background(Color.theme.background)
-		.fullScreenCover(isPresented: $cameraModel.showCamera) {
+		.fullScreenCover(isPresented: $cameraViewModel.showCamera) {
 			ZStack {
 				ZStack {
 					CameraView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
