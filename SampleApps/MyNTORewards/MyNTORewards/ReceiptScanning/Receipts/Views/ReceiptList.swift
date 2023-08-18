@@ -17,8 +17,9 @@ struct ReceiptList: View {
 				ReceiptListItem(receiptNumber: receipt.receiptId,
 								receiptDate: receipt.purchaseDate,
 								amount: receipt.totalAmount,
-								points: receipt.totalPoints ?? 0,
-								currency: "$")
+								points: receipt.totalPoints,
+								currency: "$",
+								status: receipt.status)
 					.padding(-3)
 					.onTapGesture {
 						routerPath.presentedSheet = .storedReceipt

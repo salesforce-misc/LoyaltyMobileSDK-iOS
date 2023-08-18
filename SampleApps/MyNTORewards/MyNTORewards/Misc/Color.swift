@@ -77,6 +77,9 @@ struct ColorTheme {
 	let manualReviewCommentLabelColor = Color("ManualReviewCommentLabelColor") // #444444
 	let commentsTextFieldBorderColor = Color("CommentsTextFieldBorderColor") // #A0A0A0
 	let commentsTextFieldBackground = Color("CommentsTextFieldBackground") // #FAFCFF
+	let receiptStatusPending = Color("ReceiptStatusPending")
+	let receiptStatusManualReview = Color("ReceiptStatusManualReview")
+	let receiptStatusRejected = Color("ReceiptStatusRejected")
 }
 
 struct TierColor {
