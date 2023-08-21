@@ -40,7 +40,7 @@ struct WelcomeView: View {
                 .multilineTextAlignment(.center)
                 .padding([.leading, .trailing], 40)
             
-            Text("Please login with username and password you have created.")
+            Text("Log in with your username and password.")
                 .font(.congratsText)
                 .lineSpacing(5)
                 .multilineTextAlignment(.center)
