@@ -26,16 +26,16 @@ struct AmountPayableView: View {
         VStack(spacing: 16) {
             HStack {
                 CheckBoxView(checked: .constant(false))
-                Text("use loyalty points")
+                Text("Use my points")
                     .font(.useMyPointsText)
                     .foregroundColor(Color(hex: "#181818"))
                 Spacer()
-				Text("Points Available: \(Int(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0))")
+				Text("Available Points: \(Int(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0))")
                     .font(.useMyPointsText)
                     .foregroundColor(Color(hex: "#181818"))
             }
             HStack {
-                Text("Amount Payable:")
+                Text("Pay:")
                     .font(.voucherHederText)
                     .foregroundColor(Color(hex: "#181818"))
                 Spacer()

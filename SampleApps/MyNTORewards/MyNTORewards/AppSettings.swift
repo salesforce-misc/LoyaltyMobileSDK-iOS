@@ -51,7 +51,7 @@ struct AppSettings {
     }
     
     struct Vouchers {
-        static let codeSuccessfullyCopied = "Code successfully copied!"
+        static let codeSuccessfullyCopied = "Code was copied!"
     }
     
     func getInstanceURL() -> String {

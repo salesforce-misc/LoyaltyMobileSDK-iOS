@@ -30,7 +30,7 @@ struct ProductView: View {
 				OrderDetailsView()
 					.environmentObject(productViewModel)
 			} label: {
-				Text("Buy Now")
+				Text("Buy")
 					.longFlexibleButtonStyle()
 			}
 		}

@@ -16,9 +16,9 @@ struct OrderPlacedView: View {
 			Spacer()
 			VStack(spacing: 16) {
 				Image("circle_checked")
-				Text("Order Placed!")
+				Text("Your Order \(orderDetailsVM.orderId) is Placed.")
 					.font(.productDetailTitleText)
-				Text("Your payment is complete, please check the deliver details at the tracking page")
+				Text("You can view the delivery status on the tracking page.")
 					.font(.aggreementText)
 					.multilineTextAlignment(.center)
 					.lineSpacing(6)

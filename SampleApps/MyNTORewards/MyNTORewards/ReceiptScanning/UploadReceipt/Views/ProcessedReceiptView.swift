@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProcessedReceiptView: View {
 	@StateObject var viewModel = ProcessedReceiptViewModel()
-	@EnvironmentObject var cameraModel: CameraModel
+	@EnvironmentObject var cameraModel: CameraViewModel
 	@EnvironmentObject var routerPath: RouterPath
 	@EnvironmentObject var receiptViewModel: ReceiptViewModel
 	var receiptNumber = "2323"

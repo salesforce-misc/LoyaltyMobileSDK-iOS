@@ -76,6 +76,7 @@ struct MoreView: View {
                 }
                 .listStyle(.plain)
                 .navigationBarHidden(true)
+				.environmentObject(rootVM)
                 
             }
             .navigationViewStyle(.stack)

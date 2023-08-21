@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ReceiptCongratsView: View {
 	@EnvironmentObject var routerPath: RouterPath
-	@EnvironmentObject var cameraModel: CameraModel
+	@EnvironmentObject var cameraModel: CameraViewModel
 	var points: Double
 	var body: some View {
 		ZStack {
@@ -57,7 +57,7 @@ struct ReceiptCongratsView: View {
 #if !TESTING
 struct ReceiptCongratsView_Previews: PreviewProvider {
 	static var previews: some View {
-		ReceiptCongratsView(points: 250)
+		ReceiptCongratsView(points: 50)
 	}
 }
 #endif
