@@ -62,6 +62,7 @@ class ReceiptListViewModel: ObservableObject {
 		defer {
 			isLoading = false
 		}
+		guard receipts.isEmpty || forced else { return }
 		isLoading = true
 		if !forced, let cached = LocalFileManager.instance.getData(type: [Receipt].self, id: membershipNumber, folderName: receiptsListFolderName) {
 			receipts = cached
