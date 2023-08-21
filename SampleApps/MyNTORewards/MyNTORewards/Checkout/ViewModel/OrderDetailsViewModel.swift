@@ -14,7 +14,7 @@ class OrderDetailsViewModel: ObservableObject {
 	@Published var isOrderPlacedNavigationActive = false
     @Published var shippingAddress: ShippingAddress?
 	
-	private var orderId = ""
+	var orderId = ""
     private let checkout_shipping_method = "/services/apexrest/ShippingMethods/"
     private let checkout_shipping_address_query = "SELECT shippingAddress,billingAddress from Account"
 	private let orderApiEndpoint = "services/apexrest/NTOOrderCheckOut/"

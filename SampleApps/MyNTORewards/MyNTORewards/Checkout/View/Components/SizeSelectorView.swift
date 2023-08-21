@@ -15,13 +15,13 @@ struct SizeSelectorView: View {
     var body: some View {
 		VStack(alignment: .leading) {
 			HStack {
-				Text("Select size")
+				Text("Size")
 					.font(.selectionTitleText)
 				Spacer()
 				Button {
                     Logger.debug("Image tapped!")
 				} label: {
-					Text("View Size Chart")
+					Text("Size Chart")
 						.font(.selectionTitleText)
 				}
 			}
