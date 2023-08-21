@@ -6,38 +6,75 @@
 //
 
 import Foundation
+import LoyaltyMobileSDK
 
+enum SortOrder: String {
+	case ASC
+	case DESC
+}
+
+@MainActor
 class ReceiptListViewModel: ObservableObject {
-	var receipts: [Receipt] = [
-		Receipt(receiptNumber: "315188", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "346555", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "345346", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "453634", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "985676", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "674577", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "354646", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "674567", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "345656", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$"),
-		Receipt(receiptNumber: "567567", receiptDate: "21/03/2023", amount: 200, points: 100, currency: "$")
-	]
-	
+	@Published var receipts: [Receipt] = []
 	@Published var filteredReceipts: [Receipt] = []
+	@Published var isLoading = false
 	@Published var searchText: String = "" {
 		didSet {
-			print("\(searchText)")
 			filter(query: searchText)
 		}
 	}
+	let queryFields = ["Id",
+					   "Purchase_Date__c",
+					   "ReceiptId__c",
+					   "Name",
+					   "Status__c",
+					   "StoreName__c",
+					   "Total_Points__c",
+					   "CreatedDate",
+					   "TotalAmount__c"]
+	let recordName = "Receipts__c"
+	let orderByField = "CreatedDate"
+	let sortOrder = SortOrder.DESC
+	private let authManager: ForceAuthenticator
+	private var forceClient: ForceClient
+	private let localFileManager: FileManagerProtocol
+	private let receiptsListFolderName = "ReceiptsList"
+	
+	init(
+		localFileManager: FileManagerProtocol = LocalFileManager.instance,
+		authManager: ForceAuthenticator = ForceAuthManager.shared,
+		forceClient: ForceClient? = nil
+	) {
+		self.localFileManager = localFileManager
+		self.authManager = authManager
+		self.forceClient = forceClient ?? ForceClient(auth: authManager)
+	}
 	
 	func filter(query: String) {
-		print("query: \(query)")
-		if query.isEmpty {
-			filteredReceipts = receipts
-			print("query is emty: \(filteredReceipts)")
-		} else {
-			filteredReceipts = receipts.filter { $0.receiptNumber.contains(query) }
-			print("query is not emty: \(filteredReceipts)")
+		filteredReceipts = query.trimmingCharacters(in: CharacterSet(charactersIn: " ")).isEmpty ? receipts : receipts.filter { $0.receiptId.contains(query) }
+	}
+	
+	func getQuery() -> String {
+		"select \(queryFields.joined(separator: ",")) from \(recordName) Order by \(orderByField) \(sortOrder.rawValue)"
+	}
+	
+	func getReceipts(membershipNumber: String, forced: Bool = false) async throws {
+		defer {
+			isLoading = false
 		}
-		
+		guard receipts.isEmpty || forced else { return }
+		isLoading = true
+		if !forced, let cached = LocalFileManager.instance.getData(type: [Receipt].self, id: membershipNumber, folderName: receiptsListFolderName) {
+			receipts = cached
+		} else {
+			do {
+				let queryResult = try await forceClient.SOQL(type: Receipt.self, for: getQuery())
+				receipts = queryResult.records
+				localFileManager.saveData(item: receipts, id: membershipNumber, folderName: receiptsListFolderName, expiry: .never)
+			} catch {
+				Logger.error(error.localizedDescription)
+				throw error
+			}
+		}
 	}
 }

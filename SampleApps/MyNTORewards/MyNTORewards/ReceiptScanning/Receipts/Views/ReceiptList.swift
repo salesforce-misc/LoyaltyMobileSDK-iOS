@@ -14,11 +14,12 @@ struct ReceiptList: View {
     var body: some View {
 		List {
 			ForEach(receipts) { receipt in
-				ReceiptListItem(receiptNumber: receipt.receiptNumber,
-								receiptDate: receipt.receiptDate,
-								amount: receipt.amount,
-								points: receipt.amount,
-								currency: receipt.currency)
+				ReceiptListItem(receiptNumber: receipt.receiptId,
+								receiptDate: receipt.purchaseDate,
+								amount: receipt.totalAmount,
+								points: receipt.totalPoints,
+								currency: "$",
+								status: receipt.status)
 					.padding(-3)
 					.onTapGesture {
 						routerPath.presentedSheet = .storedReceipt

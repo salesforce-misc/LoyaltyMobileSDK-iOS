@@ -8,23 +8,30 @@
 import SwiftUI
 
 struct ReceiptListItem: View {
+	@StateObject private var receiptVM = ReceiptViewModel()
 	let receiptNumber: String
 	let receiptDate: String
-	let amount: Int
-	let points: Int
+	let amount: Double
+	let points: Double?
 	let currency: String
+	let status: String
     var body: some View {
 		VStack(spacing: 8) {
 			HStack {
 				Text("Receipt \(receiptNumber)")
 				Spacer()
-				Text("\(currency) \(amount)")
+				Text("\(currency) \(amount, specifier: "%.0f")")
 			}
 			.font(.transactionText )
 			HStack {
-				Text("Date \(receiptDate)")
+				Text("Date \(receiptDate.toDateString() ?? "")")
 				Spacer()
-				Text("\(points) Points")
+				if let points = points {
+					Text("\(points, specifier: "%.0f") Points")
+				} else {
+					Text(status)
+						.foregroundColor(receiptVM.getColor(for: status))
+				}
 			}
 			.font(.transactionDate)
 		}
@@ -38,6 +45,6 @@ struct ReceiptListItem: View {
 
 struct ReceiptListItem_Previews: PreviewProvider {
     static var previews: some View {
-		ReceiptListItem(receiptNumber: "43456", receiptDate: "13/07/2023", amount: 187000, points: 500, currency: "INR")
+		ReceiptListItem(receiptNumber: "43456", receiptDate: "13/07/2023", amount: 187000, points: 500, currency: "INR", status: "Pending")
     }
 }

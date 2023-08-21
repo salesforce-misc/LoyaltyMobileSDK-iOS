@@ -57,7 +57,7 @@ struct ReceiptCongratsView: View {
 #if !TESTING
 struct ReceiptCongratsView_Previews: PreviewProvider {
 	static var previews: some View {
-		ReceiptCongratsView(points: 250)
+		ReceiptCongratsView(points: 50)
 	}
 }
 #endif
