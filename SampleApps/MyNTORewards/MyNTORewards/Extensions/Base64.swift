@@ -10,7 +10,7 @@ import UIKit
 // UIImage extension to convert image to Base64 string
 extension UIImage {
     func base64String() -> String? {
-        guard let imageData = self.jpegData(compressionQuality: 1.0) else {
+        guard let imageData = self.pngData() else {
             return nil
         }
         return imageData.base64EncodedString(options: .lineLength64Characters)
