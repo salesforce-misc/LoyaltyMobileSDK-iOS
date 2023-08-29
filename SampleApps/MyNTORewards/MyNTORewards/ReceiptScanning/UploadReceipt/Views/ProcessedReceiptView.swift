@@ -32,29 +32,7 @@ struct ProcessedReceiptView: View {
 				.font(.offerText)
 			}
 			.padding(.horizontal)
-			VStack(spacing: 0) {
-				Rectangle()
-					.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
-					.frame(height: 1)
-					.padding()
-					
-				ReceiptTableTitleRow()
-					.font(.receiptItemsTitleFont)
-				Rectangle()
-					.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
-					.frame(height: 1)
-					.padding()
-				ScrollView {
-					ProcessedReceiptList(items: viewModel.processedListItems)
-					Rectangle()
-						.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
-						.frame(height: 1)
-						.padding()
-				}
-				.frame(maxHeight: .infinity)
-			}
-			.background(.white)
-			.cornerRadius(4)
+			ProcessedReceiptListWithHeader(processedListItems: viewModel.processedListItems)
 			.padding()
 			Spacer()
 			Text(StringConstants.Receipts.submitButton)

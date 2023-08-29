@@ -14,16 +14,18 @@ struct ReceiptList: View {
     var body: some View {
 		List {
 			ForEach(receipts) { receipt in
-				ReceiptListItem(receiptNumber: receipt.receiptId,
-								receiptDate: receipt.purchaseDate,
-								amount: receipt.totalAmount,
-								points: receipt.totalPoints,
-								currency: "$",
-								status: receipt.status)
+				LoyaltyNavLink {
+					ReceiptDetailView(receiptNumber: receipt.receiptId, receiptDate: receipt.purchaseDate, amount: receipt.totalAmount, points: receipt.totalPoints ?? 0)
+				} label: {
+					ReceiptListItem(receiptNumber: receipt.receiptId,
+									receiptDate: receipt.purchaseDate,
+									amount: receipt.totalAmount,
+									points: receipt.totalPoints,
+									currency: "$",
+									status: receipt.status)
+					
 					.padding(-3)
-					.onTapGesture {
-						routerPath.presentedSheet = .storedReceipt
-					}
+				}
 			}
 			.listRowSeparator(.hidden)
 		}

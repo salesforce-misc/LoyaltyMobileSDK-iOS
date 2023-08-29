@@ -19,45 +19,42 @@ struct ReceiptsView: View {
 	@State var capturedImage: UIImage?
 	
 	var body: some View {
-		NavigationStack {
-			VStack(spacing: 0) {
-				if !viewModel.isLoading && viewModel.receipts.isEmpty {
-					ScrollView {
-						EmptyStateView(title: "No Receipts")
-							.frame(maxWidth: .infinity, maxHeight: .infinity)
-					}
-				} else {
-					if !viewModel.isLoading {
-						HStack(spacing: 0) {
-							ReceiptSearchBar(fieldValue: $viewModel.searchText)
-								.padding(.leading)
-							Text(StringConstants.Receipts.uploadReceiptButton)
-								.font(.boldButtonText)
-								.longFlexibleButtonStyle()
-								.frame(width: 180)
-								.accessibilityIdentifier(AppAccessibilty.receipts.newButton)
-								.onTapGesture {
-									cameraViewModel.showCamera = true
-								}
-						}
-						ReceiptList(receipts: viewModel.searchText.isEmpty ? viewModel.receipts : viewModel.filteredReceipts)
-							.refreshable {
-								await getReceipts(forced: true)
+		VStack(spacing: 0) {
+			if !viewModel.isLoading && viewModel.receipts.isEmpty {
+				ScrollView {
+					EmptyStateView(title: "No Receipts")
+						.frame(maxWidth: .infinity, maxHeight: .infinity)
+				}
+			} else {
+				if !viewModel.isLoading {
+					HStack(spacing: 0) {
+						ReceiptSearchBar(fieldValue: $viewModel.searchText)
+							.padding(.leading)
+						Text(StringConstants.Receipts.uploadReceiptButton)
+							.font(.boldButtonText)
+							.longFlexibleButtonStyle()
+							.frame(width: 180)
+							.accessibilityIdentifier(AppAccessibilty.receipts.newButton)
+							.onTapGesture {
+								cameraViewModel.showCamera = true
 							}
-					} else {
-						LoadingScreen()
 					}
+					ReceiptList(receipts: viewModel.searchText.isEmpty ? viewModel.receipts : viewModel.filteredReceipts)
+						.refreshable {
+							await getReceipts(forced: true)
+						}
+				} else {
+					LoadingScreen()
 				}
 			}
-			.loytaltyNavigationTitle(StringConstants.Receipts.receiptsListTitle)
-			.loyaltyNavBarSearchButtonHidden(true)
-			.withSheetDestination(sheetDestination: $routerpath.presentedSheet)
-			.environmentObject(routerpath)
-			.environmentObject(cameraViewModel)
-			.environmentObject(receiptViewModel)
-			.background(Color.theme.background)
-			
 		}
+		.loytaltyNavigationTitle(StringConstants.Receipts.receiptsListTitle)
+		.loyaltyNavBarSearchButtonHidden(true)
+		.withSheetDestination(sheetDestination: $routerpath.presentedSheet)
+		.environmentObject(routerpath)
+		.environmentObject(cameraViewModel)
+		.environmentObject(receiptViewModel)
+		.background(Color.theme.background)
 		.task {
 			await getReceipts()
 		}

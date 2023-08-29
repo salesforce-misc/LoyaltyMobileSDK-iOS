@@ -1,73 +1,67 @@
 //
-//  ReceiptDetailView.swift
+//  ReceiptDetailsView.swift
 //  MyNTORewards
 //
-//  Created by Vasanthkumar Velusamy on 10/08/23.
+//  Created by Vasanthkumar Velusamy on 24/08/23.
 //
 
 import SwiftUI
 
 struct ReceiptDetailView: View {
-	@StateObject var viewModel = ProcessedReceiptViewModel()
+	@EnvironmentObject var routerPath: RouterPath
+	@State private var tabIndex = 0
+	@State private var showManualReviewRequest = false
+	@State var lastScaleValue: CGFloat = 1.0
+	@State var scale: CGFloat = 1.0
+	@StateObject var processedReceiptViewModel = ProcessedReceiptViewModel()
 	let receiptNumber: String
 	let receiptDate: String
-	let amount: String
-	let points: String
-	@Binding var showManualReviewRequest: Bool
-	@Binding var selectedDetent: PresentationDetent
-	var body: some View {
+	let amount: Double
+	let points: Double
+	var tabbarItems = ["Eligible Items", "Receipt Image"]
+    var body: some View {
 		VStack {
 			HStack {
 				VStack(alignment: .leading, spacing: 8) {
 					Text("Receipt \(receiptNumber)")
 						.font(.transactionText)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptNumberText)
-					Text("Date: \(receiptDate)")
+					Text("Date: \(receiptDate.toDateString() ?? " - ")")
 						.font(.transactionDate)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptDateText)
 				}
 				Spacer()
 				VStack(alignment: .trailing, spacing: 8) {
-					Text("\(amount)")
+					Text("\(amount, specifier: "%.0f")")
 						.font(.transactionText)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptAmountText)
-					Text("\(points) Points")
+					Text("\(points, specifier: "%.0f") Points")
 						.font(.transactionDate)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptPointsText)
 				}
 				.padding(.trailing, 15)
 			}
-			.padding(.horizontal)
-			.padding(.bottom, 8)
-			
-			VStack(spacing: 0) {
-				Rectangle()
-					.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
-					.frame(height: 1)
-					.padding()
-				
-				ReceiptTableTitleRow()
-					.font(.receiptItemsTitleFont)
-				Rectangle()
-					.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
-					.frame(height: 1)
-					.padding()
-				ScrollView {
-					ProcessedReceiptList(items: viewModel.processedListItems)
-					Rectangle()
-						.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
-						.frame(height: 1)
-						.padding()
+			.padding(.horizontal, 30)
+			.padding(.top, 10)
+			TopTabBar(barItems: tabbarItems, tabIndex: $tabIndex)
+			ZStack {
+				Color.theme.background
+				TabView(selection: $tabIndex) {
+					ProcessedReceiptListWithHeader(processedListItems: processedReceiptViewModel.processedListItems)
+						.backgroundStyle(Color.theme.background)
+						.padding(20)
+						.tag(0)
+					ZoomableScrollView {
+						Image("scanned_receipt")
+							.resizable()
+					}
+					.padding(20)
+					.tag(1)
 				}
-				.frame(maxHeight: .infinity)
+				.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
 			}
-			.background(.white)
-			.cornerRadius(4)
-			.padding()
-			Spacer()
 			Button {
-				showManualReviewRequest = true
-				selectedDetent = .manualReview
+				routerPath.presentedSheet = .storedReceipt
 			} label: {
 				Text("Request a Manual Review")
 					.foregroundColor(.black)
@@ -76,22 +70,18 @@ struct ReceiptDetailView: View {
 			Button {
 				//TODO: Download
 			} label: {
-				Text("Download")
+				Text("Download Image")
 					.foregroundColor(.black)
 			}
 			.padding(.vertical, 20)
 		}
-	}
+		.loytaltyNavigationTitle("Outdoor Collection")
+		.loyaltyNavBarSearchButtonHidden(true)
+    }
 }
 
 struct ReceiptDetailView_Previews: PreviewProvider {
     static var previews: some View {
-		ReceiptDetailView(receiptNumber: "42588",
-						  receiptDate: "13/07/2023",
-						  amount: "INR 32392",
-						  points: "432 Points",
-						  showManualReviewRequest: .constant(true),
-						  selectedDetent: .constant(.large)
-		)
+		ReceiptDetailView(receiptNumber: "2323", receiptDate: "08/27/2023", amount: 5660, points: 418)
     }
 }

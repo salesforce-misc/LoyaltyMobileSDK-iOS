@@ -29,7 +29,7 @@ struct MoreView: View {
     ]
     var body: some View {
         VStack {
-            NavigationView {
+            NavigationStack {
                 List {
                     VStack(alignment: .leading) {
                         HStack {
