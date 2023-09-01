@@ -10,11 +10,11 @@ import SwiftUI
 struct ReceiptTableTitleRow: View {
 	var body: some View {
 		HStack {
-			Text("Item")
+			Text("Item Name")
 			Spacer()
-			Text("Quantity")
+			Text("Qty")
 			Spacer()
-			Text("Unit Price")
+			Text("Price")
 			Spacer()
 			Text("Total")
 		}

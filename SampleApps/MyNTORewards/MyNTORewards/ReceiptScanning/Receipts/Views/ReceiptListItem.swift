@@ -10,9 +10,9 @@ import SwiftUI
 struct ReceiptListItem: View {
 	@StateObject private var receiptVM = ReceiptViewModel()
 	let receiptNumber: String
-	let receiptDate: String
-	let amount: Double
-	let points: Double?
+	let receiptDate: Date
+	let amount: String?
+	let points: String?
 	let currency: String
 	let status: String
     var body: some View {
@@ -20,14 +20,14 @@ struct ReceiptListItem: View {
 			HStack {
 				Text("Receipt \(receiptNumber)")
 				Spacer()
-				Text("\(currency) \(amount, specifier: "%.0f")")
+				Text("\(currency) \(amount ?? "")")
 			}
 			.font(.transactionText )
 			HStack {
-				Text("Date \(receiptDate.toDateString() ?? "")")
+                Text("Date \(receiptDate.toString(withFormat: "YYYY-MM-DDTHH:MM:SS.sssZ"))")
 				Spacer()
 				if let points = points {
-					Text("\(points, specifier: "%.0f") Points")
+					Text("\(points) Points")
 				} else {
 					Text(status)
 						.foregroundColor(receiptVM.getColor(for: status))
@@ -45,6 +45,11 @@ struct ReceiptListItem: View {
 
 struct ReceiptListItem_Previews: PreviewProvider {
     static var previews: some View {
-		ReceiptListItem(receiptNumber: "43456", receiptDate: "13/07/2023", amount: 187000, points: 500, currency: "INR", status: "Pending")
+		ReceiptListItem(receiptNumber: "43456",
+                        receiptDate: "2019-11-02T00:00:00.000+0000".toDate(withFormat: "YYYY-MM-DDTHH:MM:SS.sssZ") ?? Date(),
+                        amount: "187000",
+                        points: "500",
+                        currency: "INR",
+                        status: "Pending")
     }
 }

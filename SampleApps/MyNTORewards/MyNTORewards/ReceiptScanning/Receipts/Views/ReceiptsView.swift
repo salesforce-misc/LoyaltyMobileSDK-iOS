@@ -92,5 +92,6 @@ struct ReceiptsView: View {
 struct ReceiptsView_Previews: PreviewProvider {
 	static var previews: some View {
 		ReceiptsView()
+            .environmentObject(dev.rootVM)
 	}
 }

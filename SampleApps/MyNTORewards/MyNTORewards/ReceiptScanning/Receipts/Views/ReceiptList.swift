@@ -18,7 +18,7 @@ struct ReceiptList: View {
 								receiptDate: receipt.purchaseDate,
 								amount: receipt.totalAmount,
 								points: receipt.totalPoints,
-								currency: "$",
+								currency: "USD",
 								status: receipt.status)
 					.padding(-3)
 					.onTapGesture {

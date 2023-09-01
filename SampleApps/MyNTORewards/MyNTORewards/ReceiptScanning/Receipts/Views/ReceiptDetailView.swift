@@ -53,7 +53,7 @@ struct ReceiptDetailView: View {
 					.frame(height: 1)
 					.padding()
 				ScrollView {
-					ProcessedReceiptList(items: viewModel.processedListItems)
+					//ProcessedReceiptList(items: viewModel.processedListItems)
 					Rectangle()
 						.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
 						.frame(height: 1)

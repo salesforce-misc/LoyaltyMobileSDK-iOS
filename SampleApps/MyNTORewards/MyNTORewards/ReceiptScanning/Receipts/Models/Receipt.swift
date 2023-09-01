@@ -13,10 +13,10 @@ struct Receipt: Identifiable, Codable {
 	let name: String
 	let status: String
 	let storeName: String
-	let purchaseDate: String
-	let totalAmount: Double
-	let totalPoints: Double?
-	let createdDate: String
+	let purchaseDate: Date
+	let totalAmount: String?
+	let totalPoints: String?
+	let createdDate: Date
 	
 	enum CodingKeys: String, CodingKey {
 		case id = "Id"

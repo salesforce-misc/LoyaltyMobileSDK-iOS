@@ -17,64 +17,84 @@ struct ProcessedReceiptView: View {
 	var receiptDate = "17/07/2023"
 	
 	var body: some View {
-		VStack {
-			VStack(alignment: .leading, spacing: 20) {
-				Text("Receipt \(receiptNumber)")
-					.font(.offerTitle)
-					.accessibilityIdentifier(AppAccessibilty.receipts.receiptNumberLabel)
-				HStack {
-					Text("Store: \(storeName)")
-						.accessibilityIdentifier(AppAccessibilty.receipts.storeLabel)
-					Spacer()
-					Text("Date: \(receiptDate)")
-						.accessibilityIdentifier(AppAccessibilty.receipts.receiptDate)
-				}
-				.font(.offerText)
-			}
-			.padding(.horizontal)
-			VStack(spacing: 0) {
-				Rectangle()
-					.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
-					.frame(height: 1)
-					.padding()
-					
-				ReceiptTableTitleRow()
-					.font(.receiptItemsTitleFont)
-				Rectangle()
-					.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
-					.frame(height: 1)
-					.padding()
-				ScrollView {
-					ProcessedReceiptList(items: viewModel.processedListItems)
-					Rectangle()
-						.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
-						.frame(height: 1)
-						.padding()
-				}
-				.frame(maxHeight: .infinity)
-			}
-			.background(.white)
-			.cornerRadius(4)
-			.padding()
-			Spacer()
-			Text(StringConstants.Receipts.submitButton)
-				.onTapGesture {
-					receiptViewModel.receiptState = .submitted
-				}
-				.longFlexibleButtonStyle()
-				.accessibilityIdentifier(AppAccessibilty.receipts.submitReceiptButton)
-			Button(StringConstants.Receipts.tryAgainButton) {
-				// button action
-				routerPath.presentedSheet = nil
-				DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-					cameraModel.showCamera = true
-				}
-			}
-			.foregroundColor(.black)
-			.accessibilityIdentifier(AppAccessibilty.receipts.tryAgainButtonProcessedReceipt)
-		}
-		.padding(.vertical, 20)
-		.background(Color.theme.background)
+        if let processedReceipt = viewModel.processedReceipt {
+            VStack {
+                VStack(alignment: .leading, spacing: 20) {
+                    Text("Receipt \(processedReceipt.receiptNumber)")
+                        .font(.offerTitle)
+                        .accessibilityIdentifier(AppAccessibilty.receipts.receiptNumberLabel)
+                    HStack {
+                        Text("Store: \(processedReceipt.storeName)")
+                            .accessibilityIdentifier(AppAccessibilty.receipts.storeLabel)
+                        Spacer()
+                        Text("Date: \(processedReceipt.receiptDate)")
+                            .accessibilityIdentifier(AppAccessibilty.receipts.receiptDate)
+                    }
+                    .font(.offerText)
+                }
+                .padding(.horizontal)
+                VStack(spacing: 0) {
+                    Rectangle()
+                        .strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
+                        .frame(height: 1)
+                        .padding()
+                        
+                    ReceiptTableTitleRow()
+                        .font(.receiptItemsTitleFont)
+                    Rectangle()
+                        .strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
+                        .frame(height: 1)
+                        .padding()
+                    ScrollView {
+                        ProcessedReceiptList(items: processedReceipt.lineItem)
+                        Rectangle()
+                            .strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
+                            .frame(height: 1)
+                            .padding()
+                    }
+                    .frame(maxHeight: .infinity)
+                }
+                .background(.white)
+                .cornerRadius(4)
+                .padding()
+                Spacer()
+                Text(StringConstants.Receipts.submitButton)
+                    .onTapGesture {
+                        receiptViewModel.receiptState = .submitted
+                    }
+                    .longFlexibleButtonStyle()
+                    .accessibilityIdentifier(AppAccessibilty.receipts.submitReceiptButton)
+                Button(StringConstants.Receipts.tryAgainButton) {
+                    // button action
+                    routerPath.presentedSheet = nil
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        cameraModel.showCamera = true
+                    }
+                }
+                .foregroundColor(.black)
+                .accessibilityIdentifier(AppAccessibilty.receipts.tryAgainButtonProcessedReceipt)
+            }
+            .padding(.vertical, 20)
+            .background(Color.theme.background)
+        } else {
+            VStack {
+                Spacer()
+                EmptyStateView(title: "Error", subTitle: "Error on processing the receipt, please try again.")
+                Spacer()
+                Spacer()
+                Button(StringConstants.Receipts.tryAgainButton) {
+                    // button action
+                    routerPath.presentedSheet = nil
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        cameraModel.showCamera = true
+                    }
+                }
+                .foregroundColor(.black)
+                .accessibilityIdentifier(AppAccessibilty.receipts.tryAgainButtonProcessedReceipt)
+            }
+            
+        }
+		
 	}
 }
 
