@@ -14,17 +14,19 @@ struct ReceiptList: View {
     var body: some View {
 		List {
 			ForEach(receipts) { receipt in
-				LoyaltyNavLink {
-					ReceiptDetailView(receiptNumber: receipt.receiptId, receiptDate: receipt.purchaseDate, amount: receipt.totalAmount, points: receipt.totalPoints ?? 0)
-				} label: {
-					ReceiptListItem(receiptNumber: receipt.receiptId,
-									receiptDate: receipt.purchaseDate,
-									amount: receipt.totalAmount,
-									points: receipt.totalPoints,
-									currency: "$",
-									status: receipt.status)
-					
-					.padding(-3)
+				ReceiptListItem(receiptNumber: receipt.receiptId,
+								receiptDate: receipt.purchaseDate,
+								amount: receipt.totalAmount,
+								points: receipt.totalPoints,
+								currency: "$",
+								status: receipt.status)
+				.padding(-3)
+				.background {
+					LoyaltyNavLink {
+						ReceiptDetailView(receiptNumber: receipt.receiptId, receiptDate: receipt.purchaseDate, amount: receipt.totalAmount, points: receipt.totalPoints ?? 0)
+					} label: {
+						EmptyView()
+					}
 				}
 			}
 			.listRowSeparator(.hidden)
