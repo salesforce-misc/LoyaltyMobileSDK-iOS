@@ -17,7 +17,7 @@ struct MenuItem: Identifiable {
 struct MoreView: View {
     
     @EnvironmentObject private var rootVM: AppRootViewModel
-    
+	@StateObject var routerPath = RouterPath()
     let menuItems: [MenuItem] = [
 //        MenuItem(icon: "ic-person", title: "Account", accessibilityIdentifier: AppAccessibilty.More.account),
 //        MenuItem(icon: "ic-address", title: "Addresses", accessibilityIdentifier: AppAccessibilty.More.address),
@@ -76,8 +76,9 @@ struct MoreView: View {
                 }
                 .listStyle(.plain)
                 .navigationBarHidden(true)
+				.withSheetDestination(sheetDestination: $routerPath.presentedSheet)
 				.environmentObject(rootVM)
-                
+				.environmentObject(routerPath)
             }
             .navigationViewStyle(.stack)
             

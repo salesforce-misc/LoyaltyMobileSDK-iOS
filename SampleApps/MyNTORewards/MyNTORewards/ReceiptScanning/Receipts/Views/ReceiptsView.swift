@@ -10,8 +10,8 @@ import LoyaltyMobileSDK
 
 struct ReceiptsView: View {
 	@EnvironmentObject var rootVM: AppRootViewModel
+	@EnvironmentObject var routerPath: RouterPath
 	@StateObject var viewModel = ReceiptListViewModel()
-	@StateObject var routerpath = RouterPath()
 	@StateObject var cameraViewModel = CameraViewModel()
 	@StateObject var receiptViewModel = ReceiptViewModel()
 	@State var searchText = ""
@@ -50,8 +50,7 @@ struct ReceiptsView: View {
 		}
 		.loytaltyNavigationTitle(StringConstants.Receipts.receiptsListTitle)
 		.loyaltyNavBarSearchButtonHidden(true)
-		.withSheetDestination(sheetDestination: $routerpath.presentedSheet)
-		.environmentObject(routerpath)
+		.environmentObject(routerPath)
 		.environmentObject(cameraViewModel)
 		.environmentObject(receiptViewModel)
 		.background(Color.theme.background)
@@ -72,7 +71,7 @@ struct ReceiptsView: View {
 					}
 				}
 				.animation(.default, value: showCapturedImage)
-				.environmentObject(routerpath)
+				.environmentObject(routerPath)
 			}
 		}
 	}
