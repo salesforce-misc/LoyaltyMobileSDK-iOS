@@ -20,6 +20,18 @@ struct ReceiptsView: View {
 	
 	var body: some View {
 		VStack(spacing: 0) {
+			HStack(spacing: 0) {
+				ReceiptSearchBar(fieldValue: $viewModel.searchText)
+					.padding(.leading)
+				Text(StringConstants.Receipts.uploadReceiptButton)
+					.font(.boldButtonText)
+					.longFlexibleButtonStyle()
+					.frame(width: 180)
+					.accessibilityIdentifier(AppAccessibilty.receipts.newButton)
+					.onTapGesture {
+						cameraViewModel.showCamera = true
+					}
+			}
 			if !viewModel.isLoading && viewModel.receipts.isEmpty {
 				ScrollView {
 					EmptyStateView(title: "No Receipts")
@@ -27,18 +39,6 @@ struct ReceiptsView: View {
 				}
 			} else {
 				if !viewModel.isLoading {
-					HStack(spacing: 0) {
-						ReceiptSearchBar(fieldValue: $viewModel.searchText)
-							.padding(.leading)
-						Text(StringConstants.Receipts.uploadReceiptButton)
-							.font(.boldButtonText)
-							.longFlexibleButtonStyle()
-							.frame(width: 180)
-							.accessibilityIdentifier(AppAccessibilty.receipts.newButton)
-							.onTapGesture {
-								cameraViewModel.showCamera = true
-							}
-					}
 					ReceiptList(receipts: viewModel.searchText.isEmpty ? viewModel.receipts : viewModel.filteredReceipts)
 						.refreshable {
 							await getReceipts(forced: true)
