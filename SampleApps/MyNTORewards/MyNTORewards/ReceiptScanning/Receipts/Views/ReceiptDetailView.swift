@@ -9,11 +9,9 @@ import SwiftUI
 
 struct ReceiptDetailView: View {
 	@EnvironmentObject var routerPath: RouterPath
+	@StateObject var processedReceiptViewModel = ProcessedReceiptViewModel()
 	@State private var tabIndex = 0
 	@State private var showManualReviewRequest = false
-	@State var lastScaleValue: CGFloat = 1.0
-	@State var scale: CGFloat = 1.0
-	@StateObject var processedReceiptViewModel = ProcessedReceiptViewModel()
 	let receiptNumber: String
 	let receiptDate: String
 	let amount: Double
@@ -61,7 +59,7 @@ struct ReceiptDetailView: View {
 				.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
 			}
 			Button {
-				routerPath.presentedSheet = .storedReceipt
+				showManualReviewRequest = true
 			} label: {
 				Text("Request a Manual Review")
 					.foregroundColor(.black)
@@ -77,6 +75,11 @@ struct ReceiptDetailView: View {
 		}
 		.loytaltyNavigationTitle("Outdoor Collection")
 		.loyaltyNavBarSearchButtonHidden(true)
+		.sheet(isPresented: $showManualReviewRequest) {
+			ReceiptPopUpView(showManualReviewRequest: $showManualReviewRequest)
+				.interactiveDismissDisabled()
+				.presentationDetents(Set([ .height(524)]))
+		}
     }
 }
 

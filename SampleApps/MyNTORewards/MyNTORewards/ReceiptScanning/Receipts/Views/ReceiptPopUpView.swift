@@ -8,21 +8,16 @@
 import SwiftUI
 import LoyaltyMobileSDK
 
-extension PresentationDetent {
-	static var receiptDetailPopUp: PresentationDetent = .height(800)
-	static var manualReview: PresentationDetent = .height(524)
-}
-
 struct ReceiptPopUpView: View {
 	@EnvironmentObject var receiptViewModel: ReceiptViewModel
 	@EnvironmentObject var routerPath: RouterPath
-	@State var showManualReviewRequest: Bool = false
+	@Binding var showManualReviewRequest: Bool
 	var body: some View {
 		VStack(spacing: 20) {
 			HStack {
 				Spacer()
 				Button {
-					routerPath.presentedSheet = nil
+					showManualReviewRequest = false
 				} label: {
 					Image(systemName: "xmark")
 						.foregroundColor(.gray)
@@ -36,12 +31,13 @@ struct ReceiptPopUpView: View {
 								  amount: "INR 32392",
 								  points: "432 Points")
 		}
-		.presentationDetents([.manualReview])
+		.frame(maxWidth: .infinity, maxHeight: .infinity)
+		.background(Color.theme.background)
 	}
 }
 
 struct ReceiptPopUpView_Previews: PreviewProvider {
 	static var previews: some View {
-		ReceiptPopUpView()
+		ReceiptPopUpView(showManualReviewRequest: .constant(true))
 	}
 }
