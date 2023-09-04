@@ -53,7 +53,7 @@ struct ManualReviewInputView: View {
 				.padding(8)
 			Text(StringConstants.Receipts.submitForManualReviewButton)
 				.onTapGesture {
-					routerPath.presentedSheet = nil
+					dismiss()
 				}
 				.longFlexibleButtonStyle()
 			Button {

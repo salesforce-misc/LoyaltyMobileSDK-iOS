@@ -23,28 +23,33 @@ final class ReceiptDetailsUITests: XCTestCase {
 		XCTAssert(app.staticTexts["receipt_date_text"].exists)
 		XCTAssert(app.staticTexts["receipt_amount_text"].exists)
 		XCTAssert(app.staticTexts["receipt_points_text"].exists)
-		XCTAssert(app.staticTexts["Item name"].exists)
-		XCTAssert(app.staticTexts["Qty"].exists)
-		XCTAssert(app.staticTexts["Price"].exists)
+		XCTAssert(app.staticTexts["Item"].exists)
+		XCTAssert(app.staticTexts["Quantity"].exists)
+		XCTAssert(app.staticTexts["Unit Price"].exists)
 		XCTAssert(app.staticTexts["Total"].exists)
 		XCTAssert(app.buttons["Request a Manual Review"].exists)
-		XCTAssert(app.buttons["Download"].exists)
-		XCTAssert(app.buttons["close_button"].exists)
+		XCTAssert(app.buttons["Download Image"].exists)
+		XCTAssert(app.staticTexts["Eligible Items"].exists)
+		XCTAssert(app.staticTexts["Receipt Image"].exists)
 	}
 	
 	func testRequestManualReviewButton() {
 		ReceiptsViewHelper.goToReceiptDetailsView(app: app)
 		XCTAssert(app.buttons["Request a Manual Review"].waitForExistence(timeout: 3))
 		app.buttons["Request a Manual Review"].tap()
-		XCTAssert(app.staticTexts["Submit for Manual Review"].waitForExistence(timeout: 3))
-		XCTAssertFalse(app.buttons["Request a Manual Review"].waitForExistence(timeout: 3))
+		XCTAssert(app.staticTexts["Manual review"].waitForExistence(timeout: 3))
+		XCTAssertFalse(app.buttons["Submit"].waitForExistence(timeout: 3))
 	}
-	
-	func testCloseButton() {
+
+	func testTab() {
 		ReceiptsViewHelper.goToReceiptDetailsView(app: app)
-		XCTAssert(app.buttons["close_button"].waitForExistence(timeout: 3))
-		app.buttons["close_button"].tap()
-		XCTAssertFalse(app.buttons["Request a Manual Review"].waitForExistence(timeout: 3))
+		XCTAssert(app.staticTexts["Receipt Image"].waitForExistence(timeout: 2))
+		app.staticTexts["Receipt Image"].tap()
+		XCTAssert(app.images.element.waitForExistence(timeout: 2))
+		XCTAssertFalse(app.staticTexts["Item"].waitForExistence(timeout: 2))
+		app.staticTexts["Eligible Items"].tap()
+		XCTAssert(app.staticTexts["Item"].waitForExistence(timeout: 2))
+		XCTAssert(app.staticTexts["Quantity"].exists)
 	}
 	
 }
