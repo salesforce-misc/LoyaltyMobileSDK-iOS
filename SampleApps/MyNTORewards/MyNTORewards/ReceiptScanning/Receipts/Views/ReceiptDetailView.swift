@@ -14,8 +14,8 @@ struct ReceiptDetailView: View {
 	@State private var showManualReviewRequest = false
 	let receiptNumber: String
 	let receiptDate: String
-	let amount: Double
-	let points: Double
+	let amount: String?
+	let points: String?
 	var tabbarItems = ["Eligible Items", "Receipt Image"]
     var body: some View {
 		VStack {
@@ -30,10 +30,10 @@ struct ReceiptDetailView: View {
 				}
 				Spacer()
 				VStack(alignment: .trailing, spacing: 8) {
-					Text("\(amount, specifier: "%.0f")")
+					Text("\(amount ?? "0")")
 						.font(.transactionText)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptAmountText)
-					Text("\(points, specifier: "%.0f") Points")
+					Text("\(points ?? "0") Points")
 						.font(.transactionDate)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptPointsText)
 				}
@@ -85,6 +85,6 @@ struct ReceiptDetailView: View {
 
 struct ReceiptDetailView_Previews: PreviewProvider {
     static var previews: some View {
-		ReceiptDetailView(receiptNumber: "2323", receiptDate: "08/27/2023", amount: 5660, points: 418)
+		ReceiptDetailView(receiptNumber: "2323", receiptDate: "08/27/2023", amount: "5660", points: "418")
     }
 }

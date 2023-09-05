@@ -14,8 +14,8 @@ struct Receipt: Identifiable, Codable {
 	let status: String
 	let storeName: String
 	let purchaseDate: String
-	let totalAmount: Double
-	let totalPoints: Double?
+	let totalAmount: String?
+	let totalPoints: String?
 	let createdDate: String
 	
 	enum CodingKeys: String, CodingKey {

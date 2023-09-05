@@ -18,12 +18,11 @@ struct ReceiptList: View {
 								receiptDate: receipt.purchaseDate,
 								amount: receipt.totalAmount,
 								points: receipt.totalPoints,
-								currency: "$",
 								status: receipt.status)
 				.padding(-3)
 				.background {
 					LoyaltyNavLink {
-						ReceiptDetailView(receiptNumber: receipt.receiptId, receiptDate: receipt.purchaseDate, amount: receipt.totalAmount, points: receipt.totalPoints ?? 0)
+						ReceiptDetailView(receiptNumber: receipt.receiptId, receiptDate: receipt.purchaseDate, amount: receipt.totalAmount, points: receipt.totalPoints)
 					} label: {
 						EmptyView()
 					}
