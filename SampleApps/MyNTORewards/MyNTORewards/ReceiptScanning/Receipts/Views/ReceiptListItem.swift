@@ -10,21 +10,21 @@ import SwiftUI
 struct ReceiptListItem: View {
 	@StateObject private var receiptVM = ReceiptViewModel()
 	let receiptNumber: String
-	let receiptDate: Date
+	let receiptDate: String
 	let amount: String?
 	let points: String?
-	let currency: String
+
 	let status: String
     var body: some View {
 		VStack(spacing: 8) {
 			HStack {
 				Text("Receipt \(receiptNumber)")
 				Spacer()
-				Text("\(currency) \(amount ?? "")")
+				Text("\(amount ?? "0")")
 			}
 			.font(.transactionText )
 			HStack {
-                Text("Date \(receiptDate.toString(withFormat: "YYYY-MM-DDTHH:MM:SS.sssZ"))")
+                Text("Date \(receiptDate.toDateString() ?? "")")
 				Spacer()
 				if let points = points {
 					Text("\(points) Points")
@@ -46,10 +46,9 @@ struct ReceiptListItem: View {
 struct ReceiptListItem_Previews: PreviewProvider {
     static var previews: some View {
 		ReceiptListItem(receiptNumber: "43456",
-                        receiptDate: "2019-11-02T00:00:00.000+0000".toDate(withFormat: "YYYY-MM-DDTHH:MM:SS.sssZ") ?? Date(),
+                        receiptDate: "13/07/2023",
                         amount: "187000",
                         points: "500",
-                        currency: "INR",
                         status: "Pending")
     }
 }

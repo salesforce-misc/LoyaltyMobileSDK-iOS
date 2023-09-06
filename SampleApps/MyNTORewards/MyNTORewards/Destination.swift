@@ -12,6 +12,5 @@ enum SheetDestination: Identifiable {
 		UUID()
 	}
 	
-	case storedReceipt
 	case processingReceipt
 }
