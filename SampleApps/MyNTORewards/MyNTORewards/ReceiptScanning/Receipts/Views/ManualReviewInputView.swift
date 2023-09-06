@@ -9,9 +9,8 @@ import SwiftUI
 
 struct ManualReviewInputView: View {
 	@EnvironmentObject var routerPath: RouterPath
+	@Environment(\.dismiss) var dismiss
 	@State private var comment: String = ""
-	@Binding var showManualReviewRequest: Bool
-	@Binding var selectedDetent: PresentationDetent
 	let receiptNumber: String
 	let receiptDate: String
 	let amount: String
@@ -54,12 +53,11 @@ struct ManualReviewInputView: View {
 				.padding(8)
 			Text(StringConstants.Receipts.submitForManualReviewButton)
 				.onTapGesture {
-					routerPath.presentedSheet = nil
+					dismiss()
 				}
 				.longFlexibleButtonStyle()
 			Button {
-				showManualReviewRequest = false
-				selectedDetent = .receiptDetailPopUp
+				dismiss()
 			} label: {
 				Text(StringConstants.Receipts.cancelButton)
 					.foregroundColor(.black)
@@ -89,9 +87,7 @@ struct CommentsInputView: View {
 
 struct ManualReviewInputView_Previews: PreviewProvider {
     static var previews: some View {
-		ManualReviewInputView(showManualReviewRequest: .constant(true),
-							  selectedDetent: .constant(.large),
-							  receiptNumber: "42588",
+		ManualReviewInputView(receiptNumber: "42588",
 							  receiptDate: "13/07/2023",
 							  amount: "INR 32392",
 							  points: "432 Points")

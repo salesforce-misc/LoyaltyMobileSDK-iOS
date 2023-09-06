@@ -12,9 +12,6 @@ struct ProcessedReceiptView: View {
 	@EnvironmentObject var cameraModel: CameraViewModel
 	@EnvironmentObject var routerPath: RouterPath
 	@EnvironmentObject var receiptViewModel: ReceiptViewModel
-	var receiptNumber = "2323"
-	var storeName = "Dmart"
-	var receiptDate = "17/07/2023"
 	
 	var body: some View {
         if let processedReceipt = viewModel.processedReceipt {
@@ -94,7 +91,6 @@ struct ProcessedReceiptView: View {
             }
             
         }
-		
 	}
 }
 
