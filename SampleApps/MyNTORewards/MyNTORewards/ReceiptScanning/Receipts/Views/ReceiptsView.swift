@@ -39,7 +39,8 @@ struct ReceiptsView: View {
 				}
 			} else {
 				if !viewModel.isLoading {
-					ReceiptList(receipts: viewModel.searchText.isEmpty ? viewModel.receipts : viewModel.filteredReceipts)
+					ReceiptList()
+                        .environmentObject(viewModel)
 						.refreshable {
 							await getReceipts(forced: true)
 						}

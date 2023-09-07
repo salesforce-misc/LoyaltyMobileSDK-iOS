@@ -26,9 +26,11 @@ class ProcessedReceiptViewModel: ObservableObject {
     }
     
     @MainActor
-    func processImage(base64Image: String) async throws {
+    func processImage(membershipNumber: String, base64Image: String) async throws {
         
+        //print(base64Image)
         let body = [
+            "memberShipNumber": membershipNumber,
             "base64image": base64Image
         ]
         

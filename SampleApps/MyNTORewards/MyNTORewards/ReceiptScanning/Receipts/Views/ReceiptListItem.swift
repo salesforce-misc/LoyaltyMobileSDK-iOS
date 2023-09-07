@@ -46,7 +46,7 @@ struct ReceiptListItem: View {
 struct ReceiptListItem_Previews: PreviewProvider {
     static var previews: some View {
 		ReceiptListItem(receiptNumber: "43456",
-                        receiptDate: "13/07/2023",
+                        receiptDate: "2022-11-23T00:00:00.000+0000",
                         amount: "187000",
                         points: "500",
                         status: "Pending")

@@ -33,6 +33,7 @@ class ReceiptListViewModel: ObservableObject {
 					   "CreatedDate",
 					   "TotalAmount__c"]
 	let recordName = "Receipts__c"
+    let whereClause = "Loyalty_Program_Member__r.MembershipNumber"
 	let orderByField = "CreatedDate"
 	let sortOrder = SortOrder.DESC
 	private let authManager: ForceAuthenticator
@@ -54,8 +55,8 @@ class ReceiptListViewModel: ObservableObject {
 		filteredReceipts = query.trimmingCharacters(in: CharacterSet(charactersIn: " ")).isEmpty ? receipts : receipts.filter { $0.receiptId.contains(query) }
 	}
 	
-	func getQuery() -> String {
-		"select \(queryFields.joined(separator: ",")) from \(recordName) Order by \(orderByField) \(sortOrder.rawValue)"
+    func getQuery(membershipNumber: String) -> String {
+		"SELECT \(queryFields.joined(separator: ",")) FROM \(recordName) WHERE \(whereClause) = '\(membershipNumber)' ORDER BY \(orderByField) \(sortOrder.rawValue)"
 	}
 	
 	func getReceipts(membershipNumber: String, forced: Bool = false) async throws {
@@ -68,7 +69,7 @@ class ReceiptListViewModel: ObservableObject {
 			receipts = cached
 		} else {
 			do {
-				let queryResult = try await forceClient.SOQL(type: Receipt.self, for: getQuery())
+				let queryResult = try await forceClient.SOQL(type: Receipt.self, for: getQuery(membershipNumber: membershipNumber))
 				receipts = queryResult.records
 				localFileManager.saveData(item: receipts, id: membershipNumber, folderName: receiptsListFolderName, expiry: .never)
 			} catch {
