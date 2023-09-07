@@ -45,6 +45,7 @@ struct ReceiptDetailView: View {
 			ZStack {
 				Color.theme.background
 				TabView(selection: $tabIndex) {
+                    // TODO: this is incorrect, wait for new API to get list of lineItems
 					ProcessedReceiptListWithHeader(processedListItems: processedReceiptViewModel.processedReceipt?.lineItem ?? [])
 						.backgroundStyle(Color.theme.background)
 						.padding(20)
@@ -73,7 +74,7 @@ struct ReceiptDetailView: View {
 			}
 			.padding(.vertical, 20)
 		}
-		.loytaltyNavigationTitle("Outdoor Collection")
+		.loytaltyNavigationTitle("Receipt Details")
 		.loyaltyNavBarSearchButtonHidden(true)
 		.sheet(isPresented: $showManualReviewRequest) {
 			ReceiptPopUpView(showManualReviewRequest: $showManualReviewRequest)
@@ -86,7 +87,7 @@ struct ReceiptDetailView: View {
 struct ReceiptDetailView_Previews: PreviewProvider {
     static var previews: some View {
 		ReceiptDetailView(receiptNumber: "2323",
-                          receiptDate: "08/27/2023",
+                          receiptDate: "2022-11-22T00:00:00.000+0000",
                           amount: "5660",
                           points: "418")
     }

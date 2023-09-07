@@ -10,10 +10,11 @@ import LoyaltyMobileSDK
 
 struct ReceiptList: View {
 	@EnvironmentObject var routerPath: RouterPath
-	var receipts: [Receipt]
+    @EnvironmentObject var receiptListVM: ReceiptListViewModel
+    
     var body: some View {
 		List {
-            ForEach(receipts) { receipt in
+            ForEach(receiptListVM.receipts) { receipt in
 				ReceiptListItem(receiptNumber: receipt.receiptId,
 								receiptDate: receipt.purchaseDate,
 								amount: receipt.totalAmount,
@@ -39,6 +40,6 @@ struct ReceiptList: View {
 
 struct ReceiptList_Previews: PreviewProvider {
     static var previews: some View {
-		ReceiptList(receipts: [])
+		ReceiptList()
     }
 }
