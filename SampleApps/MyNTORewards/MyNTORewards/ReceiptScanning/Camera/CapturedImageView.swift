@@ -11,7 +11,7 @@ import LoyaltyMobileSDK
 
 struct CapturedImageView: View {
     @EnvironmentObject var rootVM: AppRootViewModel
-    @StateObject var viewModel = ProcessedReceiptViewModel()
+    @EnvironmentObject var viewModel: ProcessedReceiptViewModel
     @Binding var showCapturedImage: Bool
     @Binding var capturedImage: UIImage?
 	@EnvironmentObject var routerPath: RouterPath
