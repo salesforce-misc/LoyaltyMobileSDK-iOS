@@ -10,7 +10,7 @@ import SwiftUI
 struct ProcessedReceiptList: View {
 	var items: [ProcessedReceiptItem]
 	var body: some View {
-        ForEach(items) { item in
+        ForEach(items, id: \.self) { item in
 			ReceiptTableContentRow(itemName: item.productName,
 								   qty: item.quantity,
 								   price: item.price ?? "",

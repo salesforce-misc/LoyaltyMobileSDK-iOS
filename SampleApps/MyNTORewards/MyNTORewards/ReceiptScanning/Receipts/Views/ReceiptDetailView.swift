@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ReceiptDetailView: View {
 	@EnvironmentObject var routerPath: RouterPath
-	@StateObject var processedReceiptViewModel = ProcessedReceiptViewModel()
+    @EnvironmentObject var processedReceiptViewModel: ProcessedReceiptViewModel
 	@State private var tabIndex = 0
 	@State private var showManualReviewRequest = false
 	let receiptNumber: String
