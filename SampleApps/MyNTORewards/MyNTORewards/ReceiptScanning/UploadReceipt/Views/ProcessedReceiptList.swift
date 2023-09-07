@@ -10,11 +10,11 @@ import SwiftUI
 struct ProcessedReceiptList: View {
 	var items: [ProcessedReceiptItem]
 	var body: some View {
-		ForEach(items) { item in
-			ReceiptTableContentRow(itemName: item.itemName,
+        ForEach(items) { item in
+			ReceiptTableContentRow(itemName: item.productName,
 								   qty: item.quantity,
-								   price: item.price,
-								   total: item.total)
+								   price: item.price ?? "",
+                                   total: item.lineItemPrice ?? "")
 			.listRowSeparator(.hidden)
 			.padding(0.5)
 		}
@@ -25,7 +25,9 @@ struct ProcessedReceiptList: View {
 
 struct ProcessedReceiptList_Previews: PreviewProvider {
     static var previews: some View {
-		ProcessedReceiptList(items: [ProcessedReceiptItem(itemName: "Converse Shoes", quantity: 1, price: 599, total: 599)
-									])
+        ProcessedReceiptList(items: [ProcessedReceiptItem(quantity: "1",
+                                                          productName: "Converse Shoes",
+                                                          price: "$199",
+                                                          lineItemPrice: "$199")])
     }
 }

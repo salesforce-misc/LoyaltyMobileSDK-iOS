@@ -24,7 +24,7 @@ struct ReceiptDetailView: View {
 					Text("Receipt \(receiptNumber)")
 						.font(.transactionText)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptNumberText)
-					Text("Date: \(receiptDate.toDateString() ?? " - ")")
+                    Text("Date: \(receiptDate.toDateString() ?? " - ")")
 						.font(.transactionDate)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptDateText)
 				}
@@ -45,7 +45,8 @@ struct ReceiptDetailView: View {
 			ZStack {
 				Color.theme.background
 				TabView(selection: $tabIndex) {
-					ProcessedReceiptListWithHeader(processedListItems: processedReceiptViewModel.processedListItems)
+                    // TODO: this is incorrect, wait for new API to get list of lineItems
+					ProcessedReceiptListWithHeader(processedListItems: processedReceiptViewModel.processedReceipt?.lineItem ?? [])
 						.backgroundStyle(Color.theme.background)
 						.padding(20)
 						.tag(0)
@@ -73,7 +74,7 @@ struct ReceiptDetailView: View {
 			}
 			.padding(.vertical, 20)
 		}
-		.loytaltyNavigationTitle("Outdoor Collection")
+		.loytaltyNavigationTitle("Receipt Details")
 		.loyaltyNavBarSearchButtonHidden(true)
 		.sheet(isPresented: $showManualReviewRequest) {
 			ReceiptPopUpView(showManualReviewRequest: $showManualReviewRequest)
@@ -85,6 +86,9 @@ struct ReceiptDetailView: View {
 
 struct ReceiptDetailView_Previews: PreviewProvider {
     static var previews: some View {
-		ReceiptDetailView(receiptNumber: "2323", receiptDate: "08/27/2023", amount: "5660", points: "418")
+		ReceiptDetailView(receiptNumber: "2323",
+                          receiptDate: "2022-11-22T00:00:00.000+0000",
+                          amount: "5660",
+                          points: "418")
     }
 }

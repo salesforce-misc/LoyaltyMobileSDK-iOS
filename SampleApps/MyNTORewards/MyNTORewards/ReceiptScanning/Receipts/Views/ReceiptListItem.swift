@@ -13,6 +13,7 @@ struct ReceiptListItem: View {
 	let receiptDate: String
 	let amount: String?
 	let points: String?
+
 	let status: String
     var body: some View {
 		VStack(spacing: 8) {
@@ -23,7 +24,7 @@ struct ReceiptListItem: View {
 			}
 			.font(.transactionText )
 			HStack {
-				Text("Date \(receiptDate.toDateString() ?? "")")
+                Text("Date \(receiptDate.toDateString() ?? "")")
 				Spacer()
 				if let points = points {
 					Text("\(points) Points")
@@ -44,6 +45,10 @@ struct ReceiptListItem: View {
 
 struct ReceiptListItem_Previews: PreviewProvider {
     static var previews: some View {
-		ReceiptListItem(receiptNumber: "43456", receiptDate: "13/07/2023", amount: "187000", points: "500", status: "Pending")
+		ReceiptListItem(receiptNumber: "43456",
+                        receiptDate: "2022-11-23T00:00:00.000+0000",
+                        amount: "187000",
+                        points: "500",
+                        status: "Pending")
     }
 }

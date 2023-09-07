@@ -38,6 +38,9 @@ struct ProcessedReceiptListWithHeader: View {
 
 struct ProcessedReceiptListWithHeader_Previews: PreviewProvider {
     static var previews: some View {
-		ProcessedReceiptListWithHeader(processedListItems: [ProcessedReceiptItem(itemName: "3453d", quantity: 3, price: 4000, total: 12000)])
+		ProcessedReceiptListWithHeader(processedListItems: [ProcessedReceiptItem(quantity: "3",
+                                                                                 productName: "sample product",
+                                                                                 price: "4000",
+                                                                                 lineItemPrice: "12000")])
     }
 }
