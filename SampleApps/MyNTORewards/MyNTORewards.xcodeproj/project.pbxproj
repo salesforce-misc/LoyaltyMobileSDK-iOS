@@ -141,6 +141,7 @@
 		29BAF6FE28F63A5800A3F9EB /* RewardPointsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6FD28F63A5800A3F9EB /* RewardPointsCardView.swift */; };
 		29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */; };
 		29BAF70228F78FA400A3F9EB /* AllTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */; };
+		29EC33242AAA962A00104363 /* ProcessingErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EC33232AAA962A00104363 /* ProcessingErrorView.swift */; };
 		29FEDDF2294293BF0014BEBA /* UITabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FEDDF1294293BF0014BEBA /* UITabView.swift */; };
 		3F0C4F792A827A0B00394CB0 /* ManualReviewInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C4F782A827A0B00394CB0 /* ManualReviewInputView.swift */; };
 		3F16D95D2A9D8E85003DA01A /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F16D95C2A9D8E85003DA01A /* ZoomableScrollView.swift */; };
@@ -392,6 +393,8 @@
 		29BAF6FD28F63A5800A3F9EB /* RewardPointsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardPointsCardView.swift; sourceTree = "<group>"; };
 		29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsView.swift; sourceTree = "<group>"; };
+		29EC33232AAA962A00104363 /* ProcessingErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingErrorView.swift; sourceTree = "<group>"; };
+		29EC33252AAA999F00104363 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		29FEDDF1294293BF0014BEBA /* UITabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabView.swift; sourceTree = "<group>"; };
 		3F0C4F782A827A0B00394CB0 /* ManualReviewInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualReviewInputView.swift; sourceTree = "<group>"; };
 		3F16D95C2A9D8E85003DA01A /* ZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
@@ -781,6 +784,7 @@
 				3F667DF52A829B0900267958 /* SF-Pro-Display-Regular.otf */,
 				3F667DF32A829A3E00267958 /* SF-Pro-Display-Bold.otf */,
 				3FA6B0532A6967AD00E5878E /* IBMPlexMono-SemiBold.ttf */,
+				29EC33252AAA999F00104363 /* SF-Pro-Text-Regular.otf */,
 				3F874FDE2A69475500F90C4D /* IBMPlexMono-Regular.ttf */,
 				298613AF28C9698D00BDC744 /* SF-Pro.ttf */,
 				298613B128CA8A9600BDC744 /* Archivo-Regular.ttf */,
@@ -918,6 +922,7 @@
 				3F7EF52F2A70CED70005BA30 /* ReceiptCongratsView.swift */,
 				3F9149682A7C1AE5009FADAB /* ProcessingReceiptView.swift */,
 				3F16D95F2A9D96A3003DA01A /* ProcessedReceiptListWithHeader.swift */,
+				29EC33232AAA962A00104363 /* ProcessingErrorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1441,6 +1446,7 @@
 				3FE8BFC42A6D8E5700ECD45B /* Receipt.swift in Sources */,
 				296D394028DE59240078C88E /* TextFieldStyles.swift in Sources */,
 				2906B1D428FF5031006EAB2D /* MemberModel.swift in Sources */,
+				29EC33242AAA962A00104363 /* ProcessingErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

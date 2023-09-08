@@ -76,18 +76,26 @@ struct ProcessedReceiptView: View {
         } else {
             VStack {
                 Spacer()
-                EmptyStateView(title: "Error", subTitle: "Error on processing the receipt, please try again.")
+                ProcessingErrorView(message: StringConstants.Receipts.processingErrorMessage)
                 Spacer()
                 Spacer()
-                Button(StringConstants.Receipts.tryAgainButton) {
-                    // button action
-                    routerPath.presentedSheet = nil
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        cameraModel.showCamera = true
+                Text(StringConstants.Receipts.tryAgainButton)
+                    .onTapGesture {
+                        // button action
+                        routerPath.presentedSheet = nil
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            cameraModel.showCamera = true
+                        }
                     }
+                    .longFlexibleButtonStyle()
+                Button {
+                    routerPath.presentedSheet = nil
+                } label: {
+                    Text(StringConstants.Receipts.homeButton)
+                        .foregroundColor(.black)
                 }
-                .foregroundColor(.black)
-                .accessibilityIdentifier(AppAccessibilty.receipts.tryAgainButtonProcessedReceipt)
+                .padding(.bottom, 20)
+                .accessibilityIdentifier(AppAccessibilty.receipts.homeButton)
             }
             
         }
