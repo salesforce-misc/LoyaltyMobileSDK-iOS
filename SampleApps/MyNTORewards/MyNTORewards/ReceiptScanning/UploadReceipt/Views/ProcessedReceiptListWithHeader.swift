@@ -23,7 +23,7 @@ struct ProcessedReceiptListWithHeader: View {
 				.frame(height: 1)
 				.padding()
 			ScrollView {
-				ProcessedReceiptList(items: processedAwsResponse.lineItem)
+                ProcessedReceiptList(items: processedAwsResponse.lineItem)
 				Rectangle()
 					.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
 					.frame(height: 1)
@@ -44,7 +44,7 @@ struct ProcessedReceiptListWithHeader_Previews: PreviewProvider {
 																				  receiptNumber: "R-9867",
 																				  receiptDate: "12/30/2022",
 																				  memberShipNumber: "34523443",
-																				  lineItem: [LineItem(quantity: "1",
+																				  lineItem: [ProcessedReceiptItem(quantity: "1",
 																									  productName: "Converse shoes",
 																									  price: "$599",
 																									  lineItemPrice: "$599")]

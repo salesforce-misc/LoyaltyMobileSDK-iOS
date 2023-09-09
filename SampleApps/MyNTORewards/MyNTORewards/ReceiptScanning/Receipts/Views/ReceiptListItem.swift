@@ -10,6 +10,7 @@ import SwiftUI
 struct ReceiptListItem: View {
 	@StateObject private var receiptVM = ReceiptViewModel()
 	let receipt: Receipt
+
     var body: some View {
 		VStack(spacing: 8) {
 			HStack {
@@ -20,6 +21,7 @@ struct ReceiptListItem: View {
 			.font(.transactionText )
 			HStack {
 				Text("Date \(receipt.purchaseDate.toDateString() ?? " - "    )")
+
 				Spacer()
 				if let points = receipt.totalPoints {
 					Text("\(points) Points")

@@ -7,8 +7,11 @@
 
 import SwiftUI
 import Photos
+import LoyaltyMobileSDK
 
 struct CapturedImageView: View {
+    @EnvironmentObject var rootVM: AppRootViewModel
+    @EnvironmentObject var viewModel: ProcessedReceiptViewModel
     @Binding var showCapturedImage: Bool
     @Binding var capturedImage: UIImage?
 	@EnvironmentObject var routerPath: RouterPath
@@ -54,7 +57,22 @@ struct CapturedImageView: View {
                 Button("Upload") {
                     // Handle processing image
                     if let image = capturedImage {
-                        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                        
+                        if let base64String = image.base64String() {
+                            //print(base64String)
+                            
+                            Task {
+                                do {
+                                    try await viewModel.processImage(membershipNumber: rootVM.member?.membershipNumber ?? "", base64Image: base64String)
+                                } catch {
+                                    Logger.error("Failed to process the image")
+                                }
+                                
+                            }
+                            // TODO: move to processing screen
+                        }
+                        
+                        // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                         withAnimation {
                             showCapturedImage = false
                             capturedImage = nil
@@ -63,7 +81,6 @@ struct CapturedImageView: View {
                         }
                     }
                     
-                    // TODO: move to processing screen
                 }
 				.accessibilityIdentifier(AppAccessibilty.receipts.processButton)
                 .buttonStyle(LightLongButton())
