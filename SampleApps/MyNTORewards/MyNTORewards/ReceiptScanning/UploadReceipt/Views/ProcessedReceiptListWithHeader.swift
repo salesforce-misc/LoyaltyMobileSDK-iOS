@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProcessedReceiptListWithHeader: View {
-	var processedListItems: [ProcessedReceiptItem]
+	var processedAwsResponse: ProcessedAwsResponse
 	var body: some View {
 		VStack(spacing: 0) {
 			Rectangle()
@@ -23,7 +23,7 @@ struct ProcessedReceiptListWithHeader: View {
 				.frame(height: 1)
 				.padding()
 			ScrollView {
-				ProcessedReceiptList(items: processedListItems)
+				ProcessedReceiptList(items: processedAwsResponse.lineItem)
 				Rectangle()
 					.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
 					.frame(height: 1)
@@ -37,7 +37,17 @@ struct ProcessedReceiptListWithHeader: View {
 }
 
 struct ProcessedReceiptListWithHeader_Previews: PreviewProvider {
-    static var previews: some View {
-		ProcessedReceiptListWithHeader(processedListItems: [ProcessedReceiptItem(itemName: "3453d", quantity: 3, price: 4000, total: 12000)])
-    }
+	static var previews: some View {
+		ProcessedReceiptListWithHeader(processedAwsResponse: ProcessedAwsResponse(totalAmount: "$599",
+																				  storeName: "Costco",
+																				  storeAddress: "Palo Alto",
+																				  receiptNumber: "R-9867",
+																				  receiptDate: "12/30/2022",
+																				  memberShipNumber: "34523443",
+																				  lineItem: [LineItem(quantity: "1",
+																									  productName: "Converse shoes",
+																									  price: "$599",
+																									  lineItemPrice: "$599")]
+																				 ))
+	}
 }

@@ -11,12 +11,17 @@ struct ReceiptTableTitleRow: View {
 	var body: some View {
 		HStack {
 			Text("Item")
+				.productNameFrame()
 			Spacer()
+				.productQuantitySpaceFrame()
 			Text("Quantity")
+				.quantityFrame()
 			Spacer()
 			Text("Unit Price")
+				.priceFrame()
 			Spacer()
 			Text("Total")
+				.totalPriceFrame()
 		}
 		.padding(.horizontal)
 	}

@@ -31,7 +31,8 @@ class ReceiptListViewModel: ObservableObject {
 					   "StoreName__c",
 					   "Total_Points__c",
 					   "CreatedDate",
-					   "TotalAmount__c"]
+					   "TotalAmount__c",
+					   "Processed_AWS_Response__c"]
 	let recordName = "Receipts__c"
 	let orderByField = "CreatedDate"
 	let sortOrder = SortOrder.DESC
@@ -64,6 +65,7 @@ class ReceiptListViewModel: ObservableObject {
 		}
 		guard receipts.isEmpty || forced else { return }
 		isLoading = true
+		
 		if !forced, let cached = LocalFileManager.instance.getData(type: [Receipt].self, id: membershipNumber, folderName: receiptsListFolderName) {
 			receipts = cached
 		} else {

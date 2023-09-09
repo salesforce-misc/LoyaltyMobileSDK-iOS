@@ -145,6 +145,7 @@
 		3F16D95D2A9D8E85003DA01A /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F16D95C2A9D8E85003DA01A /* ZoomableScrollView.swift */; };
 		3F16D9602A9D96A3003DA01A /* ProcessedReceiptListWithHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F16D95F2A9D96A3003DA01A /* ProcessedReceiptListWithHeader.swift */; };
 		3F2055B62A81134800D38034 /* CameraViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2055B52A81134800D38034 /* CameraViewUITests.swift */; };
+		3F29C5A32AA7371E00FBE5B0 /* ProcessedAwsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29C5A22AA7371E00FBE5B0 /* ProcessedAwsResponse.swift */; };
 		3F2D8B702A651E46008F5AE0 /* ProcessedReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D8B6F2A651E46008F5AE0 /* ProcessedReceiptView.swift */; };
 		3F3805B22A7A6D2400223808 /* RouterPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3805B12A7A6D2400223808 /* RouterPath.swift */; };
 		3F3805B42A7A6D8500223808 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3805B32A7A6D8500223808 /* Destination.swift */; };
@@ -395,6 +396,7 @@
 		3F16D95C2A9D8E85003DA01A /* ZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
 		3F16D95F2A9D96A3003DA01A /* ProcessedReceiptListWithHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedReceiptListWithHeader.swift; sourceTree = "<group>"; };
 		3F2055B52A81134800D38034 /* CameraViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewUITests.swift; sourceTree = "<group>"; };
+		3F29C5A22AA7371E00FBE5B0 /* ProcessedAwsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedAwsResponse.swift; sourceTree = "<group>"; };
 		3F2D8B6F2A651E46008F5AE0 /* ProcessedReceiptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedReceiptView.swift; sourceTree = "<group>"; };
 		3F3805B12A7A6D2400223808 /* RouterPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterPath.swift; sourceTree = "<group>"; };
 		3F3805B32A7A6D8500223808 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
@@ -872,6 +874,7 @@
 			isa = PBXGroup;
 			children = (
 				3FE8BFC32A6D8E5700ECD45B /* Receipt.swift */,
+				3F29C5A22AA7371E00FBE5B0 /* ProcessedAwsResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1283,6 +1286,7 @@
 				299B38DA28EB597700E45D97 /* ResetPasswordView.swift in Sources */,
 				298D5EF329CCF94D0062F16E /* ForceUserIdentifier.swift in Sources */,
 				299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */,
+				3F29C5A32AA7371E00FBE5B0 /* ProcessedAwsResponse.swift in Sources */,
 				3F9149692A7C1AE5009FADAB /* ProcessingReceiptView.swift in Sources */,
 				294EDB6D2A5F75C80047926A /* ImagePickerView.swift in Sources */,
 				298D5EFA29D4E5F00062F16E /* String+Date.swift in Sources */,

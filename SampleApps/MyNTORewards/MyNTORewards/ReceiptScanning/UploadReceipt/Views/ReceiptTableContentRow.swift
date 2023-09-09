@@ -9,18 +9,23 @@ import SwiftUI
 
 struct ReceiptTableContentRow: View {
 	var itemName: String
-	var qty: Int
-	var price: Double
-	var total: Double
+	var qty: String
+	var price: String
+	var total: String
 	var body: some View {
 		HStack {
 			Text("\(itemName)")
+				.productNameFrame()
 			Spacer()
+				.productQuantitySpaceFrame()
 			Text("\(qty)")
+				.quantityFrame()
 			Spacer()
-			Text("$\(String(format: "%.0f", price))")
+			Text("\(price)")
+				.priceFrame()
 			Spacer()
-			Text("$\(String(format: "%.0f", total))")
+			Text("$\(total)")
+				.totalPriceFrame()
 		}
 		.padding(.horizontal)
 	}
@@ -28,6 +33,6 @@ struct ReceiptTableContentRow: View {
 
 struct ReceiptTableContentRow_Previews: PreviewProvider {
     static var previews: some View {
-		ReceiptTableContentRow(itemName: "Converse shoes", qty: 1, price: 599, total: 599)
+		ReceiptTableContentRow(itemName: "Converse Shoes", qty: "1", price: "$599", total: "$599")
     }
 }

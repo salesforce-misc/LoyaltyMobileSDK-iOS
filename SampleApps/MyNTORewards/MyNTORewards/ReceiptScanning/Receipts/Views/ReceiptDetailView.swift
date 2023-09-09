@@ -12,28 +12,25 @@ struct ReceiptDetailView: View {
 	@StateObject var processedReceiptViewModel = ProcessedReceiptViewModel()
 	@State private var tabIndex = 0
 	@State private var showManualReviewRequest = false
-	let receiptNumber: String
-	let receiptDate: String
-	let amount: String?
-	let points: String?
 	var tabbarItems = ["Eligible Items", "Receipt Image"]
+	let receipt: Receipt
     var body: some View {
 		VStack {
 			HStack {
 				VStack(alignment: .leading, spacing: 8) {
-					Text("Receipt \(receiptNumber)")
+					Text("Receipt \(receipt.receiptId)")
 						.font(.transactionText)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptNumberText)
-					Text("Date: \(receiptDate.toDateString() ?? " - ")")
+					Text("Date: \(receipt.purchaseDate.toDateString() ?? " - ")")
 						.font(.transactionDate)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptDateText)
 				}
 				Spacer()
 				VStack(alignment: .trailing, spacing: 8) {
-					Text("\(amount ?? "0")")
+					Text("\(receipt.totalAmount ?? "0")")
 						.font(.transactionText)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptAmountText)
-					Text("\(points ?? "0") Points")
+					Text("\(receipt.totalPoints ?? "0") Points")
 						.font(.transactionDate)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptPointsText)
 				}
@@ -45,16 +42,22 @@ struct ReceiptDetailView: View {
 			ZStack {
 				Color.theme.background
 				TabView(selection: $tabIndex) {
-					ProcessedReceiptListWithHeader(processedListItems: processedReceiptViewModel.processedListItems)
-						.backgroundStyle(Color.theme.background)
+					if let processedAwsResponse = processedReceiptViewModel.processedAwsResponse {
+						ProcessedReceiptListWithHeader(processedAwsResponse: processedAwsResponse)
+							.backgroundStyle(Color.theme.background)
+							.padding(20)
+							.tag(0)
+						ZoomableScrollView {
+							Image("scanned_receipt")
+								.resizable()
+						}
 						.padding(20)
-						.tag(0)
-					ZoomableScrollView {
-						Image("scanned_receipt")
-							.resizable()
+						.tag(1)
+					} else {
+						// TODO: Handle data unavailable case
+						Text("No Data")
 					}
-					.padding(20)
-					.tag(1)
+					
 				}
 				.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
 			}
@@ -73,6 +76,13 @@ struct ReceiptDetailView: View {
 			}
 			.padding(.vertical, 20)
 		}
+		.onAppear {
+			do {
+				try processedReceiptViewModel.getProcessedReceiptItems(from: receipt)
+			} catch {
+				// TODO: show error on processed receipts tab
+			}
+		}
 		.loytaltyNavigationTitle("Outdoor Collection")
 		.loyaltyNavBarSearchButtonHidden(true)
 		.sheet(isPresented: $showManualReviewRequest) {
@@ -85,6 +95,15 @@ struct ReceiptDetailView: View {
 
 struct ReceiptDetailView_Previews: PreviewProvider {
     static var previews: some View {
-		ReceiptDetailView(receiptNumber: "2323", receiptDate: "08/27/2023", amount: "5660", points: "418")
+		ReceiptDetailView(receipt: Receipt(id: "Receipt 56g",
+										   receiptId: "3453463",
+										   name: "Receipt",
+										   status: "Draft",
+										   storeName: "Ratna cafe",
+										   purchaseDate: "08/09/2023",
+										   totalAmount: "$4500",
+										   totalPoints: "50",
+										   createdDate: "03/05/2022",
+										   processedAwsReceipt: "{\n  \"totalAmount\" : \"$154.06\",\n  \"storeName\" : \"East Repair Inc.\"n}"))
     }
 }

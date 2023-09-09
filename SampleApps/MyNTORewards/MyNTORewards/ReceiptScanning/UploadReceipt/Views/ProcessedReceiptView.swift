@@ -32,7 +32,7 @@ struct ProcessedReceiptView: View {
 				.font(.offerText)
 			}
 			.padding(.horizontal)
-			ProcessedReceiptListWithHeader(processedListItems: viewModel.processedListItems)
+			ProcessedReceiptListWithHeader(processedAwsResponse: viewModel.getProcessedReceiptItems())
 			.padding()
 			Spacer()
 			Text(StringConstants.Receipts.submitButton)

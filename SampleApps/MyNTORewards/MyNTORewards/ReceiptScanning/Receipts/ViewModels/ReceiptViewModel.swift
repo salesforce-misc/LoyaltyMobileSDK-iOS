@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 class ReceiptViewModel: ObservableObject {
 	@Published var receiptState: ReceiptState = .processing
@@ -14,7 +15,7 @@ class ReceiptViewModel: ObservableObject {
 		switch status {
 		case "Rejected":
 			return Color.theme.receiptStatusRejected
-		case "Pending", "Submitted for Manual Review":
+		case "Pending", "Submitted for Manual Review", "Draft":
 			return Color.theme.receiptStatusPending
 		default:
 			return .orange
