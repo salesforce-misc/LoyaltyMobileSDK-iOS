@@ -113,7 +113,7 @@ public class NetworkManager: NetworkManagerProtocol {
             let data = try handleDataAndResponse(output: output)
             return try decoder.decode(type, from: data)
         } catch {
-            Logger.error("NetworkManager fetch/decode error: \(error.localizedDescription)")
+            Logger.error("NetworkManager fetch/decode error: \(error)")
             throw error
         }
     }

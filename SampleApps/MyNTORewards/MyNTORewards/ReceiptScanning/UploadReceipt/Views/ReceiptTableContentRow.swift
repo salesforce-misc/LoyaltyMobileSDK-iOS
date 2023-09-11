@@ -15,12 +15,17 @@ struct ReceiptTableContentRow: View {
 	var body: some View {
 		HStack {
 			Text("\(itemName)")
+				.productNameFrame()
 			Spacer()
+				.productQuantitySpaceFrame()
 			Text("\(qty)")
+				.quantityFrame()
 			Spacer()
 			Text("\(price)")
+				.priceFrame()
 			Spacer()
 			Text("\(total)")
+				.totalPriceFrame()
 		}
 		.padding(.horizontal)
 	}
@@ -28,6 +33,6 @@ struct ReceiptTableContentRow: View {
 
 struct ReceiptTableContentRow_Previews: PreviewProvider {
     static var previews: some View {
-		ReceiptTableContentRow(itemName: "Converse shoes", qty: "1", price: "$199", total: "$199")
+		ReceiptTableContentRow(itemName: "Converse Shoes", qty: "1", price: "$599", total: "$599")
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - ProcessedReceipt
 struct ProcessedReceipt: Codable, Identifiable, Hashable {
-    var id = UUID()
+    var id: UUID? = UUID()
     let totalAmount: String
     let storeName: String
     let storeAddress: String
@@ -29,7 +29,7 @@ struct ProcessedReceipt: Codable, Identifiable, Hashable {
 
 // MARK: - ProcessedReceiptItem
 struct ProcessedReceiptItem: Codable, Identifiable, Hashable {
-    var id = UUID()
+    var id: UUID? = UUID()
     let quantity: String
     let productName: String
     let price: String?

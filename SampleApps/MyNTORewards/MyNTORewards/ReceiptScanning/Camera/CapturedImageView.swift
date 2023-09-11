@@ -11,7 +11,7 @@ import LoyaltyMobileSDK
 
 struct CapturedImageView: View {
     @EnvironmentObject var rootVM: AppRootViewModel
-    @StateObject var viewModel = ProcessedReceiptViewModel()
+    @EnvironmentObject var viewModel: ProcessedReceiptViewModel
     @Binding var showCapturedImage: Bool
     @Binding var capturedImage: UIImage?
 	@EnvironmentObject var routerPath: RouterPath
@@ -60,7 +60,7 @@ struct CapturedImageView: View {
                         
                         if let base64String = image.base64String() {
                             //print(base64String)
-                            
+                            viewModel.clearProcessedReceipt()
                             Task {
                                 do {
                                     try await viewModel.processImage(membershipNumber: rootVM.member?.membershipNumber ?? "", base64Image: base64String)

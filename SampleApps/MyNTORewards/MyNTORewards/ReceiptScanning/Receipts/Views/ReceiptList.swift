@@ -15,18 +15,11 @@ struct ReceiptList: View {
     var body: some View {
 		List {
             ForEach(receiptListVM.receipts) { receipt in
-				ReceiptListItem(receiptNumber: receipt.receiptId,
-								receiptDate: receipt.purchaseDate,
-								amount: receipt.totalAmount,
-								points: receipt.totalPoints,
-								status: receipt.status)
+				ReceiptListItem(receipt: receipt)
 				.padding(-3)
 				.background {
 					LoyaltyNavLink {
-						ReceiptDetailView(receiptNumber: receipt.receiptId,
-                                          receiptDate: receipt.purchaseDate,
-                                          amount: receipt.totalAmount,
-                                          points: receipt.totalPoints)
+						ReceiptDetailView(receipt: receipt)
 					} label: {
 						EmptyView()
 					}

@@ -13,7 +13,7 @@ extension UIImage {
         guard let imageData = self.pngData() else {
             return nil
         }
-        return imageData.base64EncodedString(options: .lineLength64Characters)
+        return imageData.base64EncodedString()
     }
 }
 

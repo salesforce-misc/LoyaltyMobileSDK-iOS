@@ -17,6 +17,7 @@ struct Receipt: Identifiable, Codable {
 	let totalAmount: String?
 	let totalPoints: String?
 	let createdDate: String
+	let processedAwsReceipt: String?
 	
 	enum CodingKeys: String, CodingKey {
 		case id = "Id"
@@ -28,6 +29,7 @@ struct Receipt: Identifiable, Codable {
 		case totalAmount = "TotalAmount__c"
 		case totalPoints = "Total_Points__c"
 		case createdDate = "CreatedDate"
+		case processedAwsReceipt = "Processed_AWS_Response__c"
 	}
 }
 

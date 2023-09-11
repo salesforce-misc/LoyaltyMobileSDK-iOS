@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProcessedReceiptView: View {
-	@StateObject var viewModel = ProcessedReceiptViewModel()
+    @EnvironmentObject var viewModel: ProcessedReceiptViewModel
 	@EnvironmentObject var cameraModel: CameraViewModel
 	@EnvironmentObject var routerPath: RouterPath
 	@EnvironmentObject var receiptViewModel: ReceiptViewModel
