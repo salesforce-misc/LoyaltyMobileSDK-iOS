@@ -15,7 +15,7 @@ struct StringConstants {
 		static let submitForManualReviewButton = "Submit"
 		static let manualReviewTitle = "Manual review"
 		static let cancelButton = "Cancel"
-        static let homeButton = "Home"
+        static let backButton = "Back"
 		static let commentsHeader = "Comments"
 		static let enterCommentsPlaceholder = "Enter comments..."
 		static let tryAgainButton = "Try Again"
@@ -24,6 +24,7 @@ struct StringConstants {
 		static let uploadAnotherReceiptButton = "Upload Another Receipt"
 		static let processingScreenTitle = "Generating preview..."
 		static let processingScreenSubtitle = "Hang in there! This may take a minute."
-        static let processingErrorMessage = "Oops! Something went wrong while processing the request. Try again."
+        static let processingErrorMessageLine1 = "Oops! Something went wrong"
+        static let processingErrorMessageLine2 = "while processing the request. Try again."
 	}
 }

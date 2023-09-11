@@ -8,17 +8,24 @@
 import SwiftUI
 
 struct ProcessingErrorView: View {
-    let message: String
-    
     var body: some View {
         VStack {
             Image("img-astronaut")
-            Text(message)
-                .font(.errorMessageText)
-                .multilineTextAlignment(.center)
-                .lineSpacing(6)
-                .padding(.horizontal, 45)
-                .accessibilityIdentifier(message)
+            VStack(alignment: .center, spacing: 6) {
+                Text(StringConstants.Receipts.processingErrorMessageLine1)
+                    .font(.errorMessageText)
+                    .foregroundColor(Color(hex: "747474"))
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 60) // Increase padding to make it shorter
+                    
+                Text(StringConstants.Receipts.processingErrorMessageLine2)
+                    .font(.errorMessageText)
+                    .foregroundColor(Color(hex: "747474"))
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 30) // Decrease padding to make it longer
+            }
         }
         
     }
@@ -26,6 +33,6 @@ struct ProcessingErrorView: View {
 
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        ProcessingErrorView(message: "Oops! Something went wrong while processing the request. Try again.")
+        ProcessingErrorView()
     }
 }

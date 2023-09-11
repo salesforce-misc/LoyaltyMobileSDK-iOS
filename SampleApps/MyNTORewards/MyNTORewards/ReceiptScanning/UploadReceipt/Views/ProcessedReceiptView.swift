@@ -76,7 +76,7 @@ struct ProcessedReceiptView: View {
         } else {
             VStack {
                 Spacer()
-                ProcessingErrorView(message: StringConstants.Receipts.processingErrorMessage)
+                ProcessingErrorView()
                 Spacer()
                 Spacer()
                 Text(StringConstants.Receipts.tryAgainButton)
@@ -91,11 +91,11 @@ struct ProcessedReceiptView: View {
                 Button {
                     routerPath.presentedSheet = nil
                 } label: {
-                    Text(StringConstants.Receipts.homeButton)
+                    Text(StringConstants.Receipts.backButton)
                         .foregroundColor(.black)
                 }
                 .padding(.bottom, 20)
-                .accessibilityIdentifier(AppAccessibilty.receipts.homeButton)
+                .accessibilityIdentifier(AppAccessibilty.receipts.backButton)
             }
             
         }
@@ -105,5 +105,8 @@ struct ProcessedReceiptView: View {
 struct ProcessedReceiptView_Previews: PreviewProvider {
 	static var previews: some View {
 		ProcessedReceiptView()
+            .environmentObject(dev.processedReceiptVM)
+            .environmentObject(dev.camVM)
+            .environmentObject(dev.receiptVM)
 	}
 }
