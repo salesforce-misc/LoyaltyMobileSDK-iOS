@@ -24,7 +24,7 @@ struct ReceiptTableContentRow: View {
 			Text("\(price)")
 				.priceFrame()
 			Spacer()
-			Text("$\(total)")
+			Text("\(total)")
 				.totalPriceFrame()
 		}
 		.padding(.horizontal)

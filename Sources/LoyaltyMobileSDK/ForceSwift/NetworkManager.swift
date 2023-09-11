@@ -45,21 +45,37 @@ public class NetworkManager: NetworkManagerProtocol {
         switch httpResponse.statusCode {
         case 200..<300:
             break
-        case 401:
-            Logger.error(CommonError.authenticationNeeded.description)
-            throw CommonError.authenticationNeeded
-        case 403:
-            Logger.error(CommonError.functionalityNotEnabled.description)
-            throw CommonError.functionalityNotEnabled
-        case 500:
-            Logger.error(CommonError.unknownException.description)
-            throw CommonError.unknownException
         default:
             let errorMessage = "HTTP response status code \(httpResponse.statusCode)"
             Logger.error(CommonError.responseUnsuccessful(message: errorMessage).description)
             Logger.debug(httpResponse.description)
-            Logger.debug("Details: \(output.data)")
-            throw CommonError.responseUnsuccessful(message: errorMessage)
+
+            // Log JSON error response here
+            do {
+                if let json = try JSONSerialization.jsonObject(with: output.data, options: []) as? [String: Any] {
+                    Logger.error("Error JSON response: \(json)")
+                } else {
+                    if let jsonString = String(data: output.data, encoding: .utf8) {
+                        Logger.debug("Error response: \(jsonString)")
+                    } else {
+                        Logger.debug("Failed to convert error data to a string. Raw data: \(output.data)")
+                    }
+                }
+            } catch {
+                Logger.error("Failed to serialize error data to JSON: \(error)")
+            }
+
+            // Throw appropriate error based on status code
+            switch httpResponse.statusCode {
+            case 401:
+                throw CommonError.authenticationNeeded
+            case 403:
+                throw CommonError.functionalityNotEnabled
+            case 500:
+                throw CommonError.unknownException
+            default:
+                throw CommonError.responseUnsuccessful(message: errorMessage)
+            }
         }
 
         return output.data
@@ -97,7 +113,7 @@ public class NetworkManager: NetworkManagerProtocol {
             let data = try handleDataAndResponse(output: output)
             return try decoder.decode(type, from: data)
         } catch {
-            Logger.error("NetworkManager fetch/decode error: \(error.localizedDescription)")
+            Logger.error("NetworkManager fetch/decode error: \(error)")
             throw error
         }
     }
