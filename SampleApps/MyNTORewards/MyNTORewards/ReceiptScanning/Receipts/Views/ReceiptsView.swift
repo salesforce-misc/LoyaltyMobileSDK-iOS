@@ -38,15 +38,13 @@ struct ReceiptsView: View {
 						.frame(maxWidth: .infinity, maxHeight: .infinity)
 				}
 			} else {
-				if !viewModel.isLoading {
-					ReceiptList()
-                        .environmentObject(viewModel)
-						.refreshable {
-							await getReceipts(forced: true)
-						}
-				} else {
-					LoadingScreen()
-				}
+                ReceiptList()
+                    .environmentObject(viewModel)
+                    .refreshable {
+                        await Task {
+                            await getReceipts(forced: true)
+                        }.value
+                    }
 			}
 		}
 		.loytaltyNavigationTitle(StringConstants.Receipts.receiptsListTitle)
