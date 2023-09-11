@@ -8,12 +8,15 @@
 import Foundation
 import LoyaltyMobileSDK
 
+@MainActor
 class ProcessedReceiptViewModel: ObservableObject {
+
+	@Published var processedAwsResponse: ProcessedAwsResponse?
+    @Published var processedReceipt: ProcessedReceipt?
+	
     private let authManager: ForceAuthenticator
     private var forceClient: ForceClient
     private let localFileManager: FileManagerProtocol
-    
-    @Published var processedReceipt: ProcessedReceipt?
     
     init(
         localFileManager: FileManagerProtocol = LocalFileManager.instance,
@@ -25,7 +28,10 @@ class ProcessedReceiptViewModel: ObservableObject {
         self.forceClient = forceClient ?? ForceClient(auth: authManager)
     }
     
-    @MainActor
+    func clearProcessedReceipt() {
+        processedReceipt = nil
+    }
+    
     func processImage(membershipNumber: String, base64Image: String) async throws {
         
         let body = [
@@ -45,4 +51,27 @@ class ProcessedReceiptViewModel: ObservableObject {
             throw error
         }
     }
+    
+    final func getProcessedReceiptItems(from receipt: Receipt) throws {
+        let processedResponseString = receipt.processedAwsReceipt
+        if let processedResponseData = processedResponseString?.data(using: .utf8) {
+            processedAwsResponse = try JSONDecoder().decode(ProcessedAwsResponse.self, from: processedResponseData)
+        }
+    }
+    
+//    final func getProcessedReceiptItems() -> ProcessedAwsResponse {
+//        return ProcessedAwsResponse(totalAmount: "$1568",
+//                                    storeName: "East Repair Inc",
+//                                    storeAddress: "",
+//                                    receiptNumber: "US-001",
+//                                    receiptDate: "11/02/2019",
+//                                    memberShipNumber: "435234534",
+//                                    lineItem: [ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
+//                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
+//                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
+//                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
+//                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
+//                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599")
+//                                               ])
+//    }
 }

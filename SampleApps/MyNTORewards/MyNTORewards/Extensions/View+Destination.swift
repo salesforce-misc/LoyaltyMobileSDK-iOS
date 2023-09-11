@@ -19,3 +19,26 @@ extension View {
 		}
 	}
 }
+
+// MARK: For processed receipt table field alignment
+extension View {
+	func productNameFrame() -> some View {
+		self.frame(width: 100, alignment: .leading)
+	}
+	
+	func quantityFrame() -> some View {
+		self.frame(width: 55, alignment: .trailing)
+	}
+	
+	func priceFrame() -> some View {
+		self.frame(width: 60, alignment: .trailing)
+	}
+	
+	func totalPriceFrame() -> some View {
+		self.frame(width: 45, alignment: .trailing)
+	}
+	
+	func productQuantitySpaceFrame() -> some View {
+		self.frame(width: 16)
+	}
+}

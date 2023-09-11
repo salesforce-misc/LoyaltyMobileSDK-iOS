@@ -60,7 +60,7 @@ struct CapturedImageView: View {
                         
                         if let base64String = image.base64String() {
                             //print(base64String)
-                            
+                            viewModel.clearProcessedReceipt()
                             Task {
                                 do {
                                     try await viewModel.processImage(membershipNumber: rootVM.member?.membershipNumber ?? "", base64Image: base64String)
