@@ -77,7 +77,7 @@ struct ManualReviewInputView: View {
 							}
 						}
 					}
-					.longFlexibleButtonStyle()
+					.longFlexibleButtonStyle(disabled: comment.isEmpty)
 				Button {
 					dismiss()
 				} label: {
