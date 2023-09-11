@@ -42,7 +42,9 @@ struct ReceiptsView: View {
 					ReceiptList()
                         .environmentObject(viewModel)
 						.refreshable {
-							await getReceipts(forced: true)
+							await Task {
+								await getReceipts(forced: true)
+							}.value
 						}
 				} else {
 					LoadingScreen()
