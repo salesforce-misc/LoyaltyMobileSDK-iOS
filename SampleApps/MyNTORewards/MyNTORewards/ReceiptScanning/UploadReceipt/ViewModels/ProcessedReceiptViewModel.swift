@@ -8,6 +8,7 @@
 import Foundation
 import LoyaltyMobileSDK
 
+@MainActor
 class ProcessedReceiptViewModel: ObservableObject {
 
 	@Published var processedAwsResponse: ProcessedAwsResponse?
@@ -27,7 +28,10 @@ class ProcessedReceiptViewModel: ObservableObject {
         self.forceClient = forceClient ?? ForceClient(auth: authManager)
     }
     
-    @MainActor
+    func clearProcessedReceipt() {
+        processedReceipt = nil
+    }
+    
     func processImage(membershipNumber: String, base64Image: String) async throws {
         
         let body = [
@@ -55,19 +59,19 @@ class ProcessedReceiptViewModel: ObservableObject {
         }
     }
     
-    final func getProcessedReceiptItems() -> ProcessedAwsResponse {
-        return ProcessedAwsResponse(totalAmount: "$1568",
-                                    storeName: "East Repair Inc",
-                                    storeAddress: "",
-                                    receiptNumber: "US-001",
-                                    receiptDate: "11/02/2019",
-                                    memberShipNumber: "435234534",
-                                    lineItem: [ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
-                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
-                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
-                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
-                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
-                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599")
-                                               ])
-    }
+//    final func getProcessedReceiptItems() -> ProcessedAwsResponse {
+//        return ProcessedAwsResponse(totalAmount: "$1568",
+//                                    storeName: "East Repair Inc",
+//                                    storeAddress: "",
+//                                    receiptNumber: "US-001",
+//                                    receiptDate: "11/02/2019",
+//                                    memberShipNumber: "435234534",
+//                                    lineItem: [ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
+//                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
+//                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
+//                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
+//                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
+//                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599")
+//                                               ])
+//    }
 }
