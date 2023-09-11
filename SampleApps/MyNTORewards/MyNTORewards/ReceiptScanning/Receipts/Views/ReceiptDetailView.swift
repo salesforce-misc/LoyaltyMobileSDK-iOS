@@ -18,10 +18,10 @@ struct ReceiptDetailView: View {
 		VStack {
 			HStack {
 				VStack(alignment: .leading, spacing: 8) {
-					Text("Receipt \(receipt.receiptId)")
+					Text("Receipt \(receipt.receiptId ?? "-")")
 						.font(.transactionText)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptNumberText)
-					Text("Date: \(receipt.purchaseDate.toDateString() ?? " - ")")
+					Text("Date: \(receipt.purchaseDate?.toDateString() ?? " - ")")
 						.font(.transactionDate)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptDateText)
 				}
@@ -64,10 +64,10 @@ struct ReceiptDetailView: View {
 			Button {
 				showManualReviewRequest = true
 			} label: {
-				Text((processedReceiptViewModel.isSubmittedForManualReview || "Manual Review" == receipt.status) ? "Submitted for Manual Review" : "Request a Manual Review")
+				Text("Manual Review" == receipt.status ? "Submitted for Manual Review" : "Request a Manual Review")
 					.foregroundColor(.black)
 			}
-			.disabled((processedReceiptViewModel.isSubmittedForManualReview || "Manual Review" == receipt.status))
+			.disabled("Manual Review" == receipt.status)
 			.padding(.top, 10)
 			Button {
 				//TODO: Download
@@ -97,15 +97,6 @@ struct ReceiptDetailView: View {
 
 struct ReceiptDetailView_Previews: PreviewProvider {
     static var previews: some View {
-		ReceiptDetailView(receipt: Receipt(id: "Receipt 56g",
-										   receiptId: "3453463",
-										   name: "Receipt",
-										   status: "Draft",
-										   storeName: "Ratna cafe",
-										   purchaseDate: "08/09/2023",
-										   totalAmount: "$4500",
-										   totalPoints: "50",
-										   createdDate: "03/05/2022",
-										   processedAwsReceipt: "{\n  \"totalAmount\" : \"$154.06\",\n  \"storeName\" : \"East Repair Inc.\"n}"))
+		ReceiptDetailView(receipt: Receipt())
     }
 }

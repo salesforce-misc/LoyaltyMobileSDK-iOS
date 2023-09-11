@@ -7,17 +7,17 @@
 
 import Foundation
 
-struct Receipt: Identifiable, Codable {
-	let id: String
-	let receiptId: String
-	let name: String
-	let status: String
-	let storeName: String
-	let purchaseDate: String
-	let totalAmount: String?
-	let totalPoints: String?
-	let createdDate: String
-	let processedAwsReceipt: String?
+class Receipt: Identifiable, Codable {
+	var id: String?
+	var receiptId: String?
+	var name: String?
+	var status: String?
+	var storeName: String?
+	var purchaseDate: String?
+	var totalAmount: String?
+	var totalPoints: String?
+	var createdDate: String?
+	var processedAwsReceipt: String?
 	
 	enum CodingKeys: String, CodingKey {
 		case id = "Id"
