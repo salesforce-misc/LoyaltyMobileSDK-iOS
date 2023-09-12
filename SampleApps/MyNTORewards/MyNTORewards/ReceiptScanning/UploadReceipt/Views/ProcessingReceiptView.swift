@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ProcessingReceiptView: View {
-	@StateObject private var receiptViewModel = ReceiptViewModel()
+	@EnvironmentObject var processedReceiptViewModel: ProcessedReceiptViewModel
 	@EnvironmentObject var routerPath: RouterPath
     var body: some View {
 		Group {
-			switch receiptViewModel.receiptState {
+			switch processedReceiptViewModel.receiptState {
 			case .processing:
 				ProcessingView()
 			case .processed:
@@ -21,23 +21,19 @@ struct ProcessingReceiptView: View {
 				ReceiptCongratsView(points: 25)
 			}
 		}
-		.environmentObject(receiptViewModel)
+		.environmentObject(processedReceiptViewModel)
     }
 }
 
 struct ProcessingView: View {
 	@EnvironmentObject var routerPath: RouterPath
-	@EnvironmentObject var receiptViewModel: ReceiptViewModel
+	@EnvironmentObject var processedReceiptViewModel: ProcessedReceiptViewModel
+	
 	var body: some View {
 		VStack {
 			Spacer()
 			VStack(spacing: 40) {
 				ProgressView()
-					.onAppear {
-						DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-							receiptViewModel.receiptState = .processed
-						}
-					}
 				VStack(spacing: 8) {
 					Text(StringConstants.Receipts.processingScreenTitle)
 						.font(.scanningReceiptTitleFont)

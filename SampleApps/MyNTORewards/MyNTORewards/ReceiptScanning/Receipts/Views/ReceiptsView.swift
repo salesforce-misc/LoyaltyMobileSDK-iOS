@@ -38,13 +38,20 @@ struct ReceiptsView: View {
 						.frame(maxWidth: .infinity, maxHeight: .infinity)
 				}
 			} else {
-                ReceiptList()
-                    .environmentObject(viewModel)
-                    .refreshable {
-                        await Task {
-                            await getReceipts(forced: true)
-                        }.value
-                    }
+				ZStack {
+					ReceiptList()
+						.environmentObject(viewModel)
+						.refreshable {
+							await Task {
+								await getReceipts(forced: true)
+							}.value
+						}
+					if viewModel.isLoading {
+						ProgressView()
+							.frame(maxWidth: .infinity, maxHeight: .infinity)
+							.background(Color.theme.background)
+					}
+				}
 			}
 		}
 		.loytaltyNavigationTitle(StringConstants.Receipts.receiptsListTitle)
@@ -71,6 +78,7 @@ struct ReceiptsView: View {
 				}
 				.animation(.default, value: showCapturedImage)
 				.environmentObject(routerPath)
+				.environmentObject(viewModel)
 			}
 		}
 	}

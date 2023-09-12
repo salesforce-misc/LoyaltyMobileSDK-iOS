@@ -13,6 +13,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
 	@Published var processedAwsResponse: ProcessedAwsResponse?
     @Published var processedReceipt: ProcessedReceipt?
 	@Published var isSubmittedForManualReview = false
+	@Published var receiptState: ReceiptState = .processing
 	
     private let authManager: ForceAuthenticator
     private var forceClient: ForceClient
@@ -44,10 +45,12 @@ final class ProcessedReceiptViewModel: ObservableObject {
             let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
             let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(), path: path, method: "POST", body: bodyJsonData)
             processedReceipt = try await forceClient.fetch(type: ProcessedReceipt.self, with: request)
+			receiptState = .processed
             if let processedReceipt = processedReceipt {
                 Logger.debug("\(processedReceipt)")
             }
         } catch {
+			receiptState = .processed
             throw error
         }
     }
@@ -59,7 +62,15 @@ final class ProcessedReceiptViewModel: ObservableObject {
         }
     }
 	
-	func submitForManualReview(receiptId: String, status: String = "Manual Review", comments: String) async throws -> Bool {
+    func submitForManualReview(receiptId: String, status: String = "Manual Review", comments: String) async throws -> Bool {
+		try await updateStatus(receiptId: receiptId, status: "Manual Review", comments: comments)
+	}
+	
+	func submitForProcessing(receiptId: String) async throws -> Bool {
+		try await updateStatus(receiptId: receiptId, status: "In Progress")
+	}
+	
+    private func updateStatus(receiptId: String, status: String, comments: String = "") async throws -> Bool {
 		let body = [
 			"receiptId": receiptId,
 			"status": status,

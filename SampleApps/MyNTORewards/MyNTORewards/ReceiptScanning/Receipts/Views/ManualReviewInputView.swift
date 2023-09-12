@@ -98,7 +98,7 @@ struct ManualReviewInputView: View {
 			if isLoading {
 				ProgressView()
 					.frame(maxWidth: .infinity, maxHeight: .infinity)
-					.background(Color.theme.background)
+					.background(Color.theme.progressBarBackground)
 					.opacity(0.7)
 			}
 		}

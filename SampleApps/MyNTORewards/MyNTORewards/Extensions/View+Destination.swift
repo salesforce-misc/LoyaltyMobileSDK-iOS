@@ -12,8 +12,9 @@ extension View {
 	func withSheetDestination(sheetDestination: Binding<SheetDestination?>) -> some View {
 		sheet(item: sheetDestination) { sheet in
 			switch sheet {
-			case .processingReceipt:
+			case .processingReceipt(let receiptListViewModel):
 				ProcessingReceiptView()
+					.environmentObject(receiptListViewModel)
 					.interactiveDismissDisabled()
 			}
 		}
