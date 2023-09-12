@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ReceiptDetailView: View {
 	@EnvironmentObject var routerPath: RouterPath
-    @EnvironmentObject var processedReceiptViewModel: ProcessedReceiptViewModel
+    @StateObject var processedReceiptViewModel = ProcessedReceiptViewModel()
 	@State private var tabIndex = 0
 	@State private var showManualReviewRequest = false
 	var tabbarItems = ["Eligible Items", "Receipt Image"]
@@ -64,9 +64,10 @@ struct ReceiptDetailView: View {
 			Button {
 				showManualReviewRequest = true
 			} label: {
-				Text("Request a Manual Review")
+				Text("Manual Review" == receipt.status ? "Submitted for Manual Review" : "Request a Manual Review")
 					.foregroundColor(.black)
 			}
+			.disabled("Manual Review" == receipt.status)
 			.padding(.top, 10)
 			Button {
 				//TODO: Download
@@ -83,13 +84,14 @@ struct ReceiptDetailView: View {
 				// TODO: show error on processed receipts tab
 			}
 		}
-		.loytaltyNavigationTitle("Outdoor Collection")
+		.loytaltyNavigationTitle("Receipt Details")
 		.loyaltyNavBarSearchButtonHidden(true)
 		.sheet(isPresented: $showManualReviewRequest) {
-			ReceiptPopUpView(showManualReviewRequest: $showManualReviewRequest)
+			ManualReviewInputView(showManualReviewRequest: $showManualReviewRequest, receipt: receipt)
 				.interactiveDismissDisabled()
 				.presentationDetents(Set([ .height(524)]))
 		}
+		.environmentObject(processedReceiptViewModel)
     }
 }
 

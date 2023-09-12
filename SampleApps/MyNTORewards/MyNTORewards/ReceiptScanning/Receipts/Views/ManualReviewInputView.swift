@@ -8,64 +8,97 @@
 import SwiftUI
 
 struct ManualReviewInputView: View {
-	@EnvironmentObject var routerPath: RouterPath
+	@EnvironmentObject var processedReceiptViewModel: ProcessedReceiptViewModel
+	@EnvironmentObject var receiptListViewModel: ReceiptListViewModel
+	@EnvironmentObject var rootVM: AppRootViewModel
+	@Binding var showManualReviewRequest: Bool
 	@Environment(\.dismiss) var dismiss
 	@State private var comment: String = ""
-	let receiptNumber: String
-	let receiptDate: String
-	let amount: String
-	let points: String
-
+	@State private var isLoading = false
+	let receipt: Receipt
+	
     var body: some View {
-		VStack {
-			VStack(spacing: 20) {
+		ZStack {
+			VStack {
 				HStack {
-					Text(StringConstants.Receipts.manualReviewTitle)
-						.font(.manualReviewTitleLabel)
-						.padding(.leading, 25)
-						.padding(.top, 2)
 					Spacer()
-				}
-				HStack {
-					VStack(alignment: .leading, spacing: 8) {
-						Text("Receipt \(receiptNumber)")
-							.font(.transactionText)
-							.accessibilityIdentifier(AppAccessibilty.receipts.receiptNumberText)
-						Text("Date \(receiptDate)")
-							.font(.transactionDate)
-							.accessibilityIdentifier(AppAccessibilty.receipts.receiptDateText)
+					Button {
+						showManualReviewRequest = false
+					} label: {
+						Image(systemName: "xmark")
+							.foregroundColor(.gray)
 					}
-					Spacer()
-					VStack(alignment: .trailing, spacing: 8) {
-						Text("\(amount)")
-							.font(.transactionText)
-							.accessibilityIdentifier(AppAccessibilty.receipts.receiptAmountText)
-						Text("\(points) Points")
-							.font(.transactionDate)
-							.accessibilityIdentifier(AppAccessibilty.receipts.receiptPointsText)
-					}
-					.padding(.trailing, 15)
+					.padding(.trailing, 10)
+					.accessibility(identifier: AppAccessibilty.receipts.closeButton)
 				}
-				.padding(.horizontal, 25)
-				.padding(.bottom, 8)
-			}
-			CommentsInputView(comment: $comment)
-				.padding(8)
-			Text(StringConstants.Receipts.submitForManualReviewButton)
-				.onTapGesture {
+				.padding(.top, 12)
+				VStack(spacing: 20) {
+					HStack {
+						Text(StringConstants.Receipts.manualReviewTitle)
+							.font(.manualReviewTitleLabel)
+							.padding(.leading, 25)
+							.padding(.top, 2)
+						Spacer()
+					}
+					HStack {
+						VStack(alignment: .leading, spacing: 8) {
+							Text("Receipt \(receipt.receiptId)")
+								.font(.transactionText)
+								.accessibilityIdentifier(AppAccessibilty.receipts.receiptNumberText)
+							Text("Date \(receipt.purchaseDate.toDateString() ?? "-")")
+								.font(.transactionDate)
+								.accessibilityIdentifier(AppAccessibilty.receipts.receiptDateText)
+						}
+						Spacer()
+						VStack(alignment: .trailing, spacing: 8) {
+							Text("\(receipt.totalAmount ?? "0")")
+								.font(.transactionText)
+								.accessibilityIdentifier(AppAccessibilty.receipts.receiptAmountText)
+							Text("\(receipt.totalPoints ?? "0") Points")
+								.font(.transactionDate)
+								.accessibilityIdentifier(AppAccessibilty.receipts.receiptPointsText)
+						}
+						.padding(.trailing, 15)
+					}
+					.padding(.horizontal, 25)
+					.padding(.bottom, 8)
+				}
+				CommentsInputView(comment: $comment)
+					.padding(8)
+				Text(StringConstants.Receipts.submitForManualReviewButton)
+					.onTapGesture {
+						Task {
+							do {
+								let success = try await processedReceiptViewModel.submitForManualReview(receiptId: receipt.id, comments: comment)
+								if success {
+									try await receiptListViewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: true)
+									dismiss()
+								}
+							} catch {
+								// MARK: handle error
+							}
+						}
+					}
+					.longFlexibleButtonStyle(disabled: comment.isEmpty)
+				Button {
 					dismiss()
+				} label: {
+					Text(StringConstants.Receipts.cancelButton)
+						.foregroundColor(.black)
 				}
-				.longFlexibleButtonStyle()
-			Button {
-				dismiss()
-			} label: {
-				Text(StringConstants.Receipts.cancelButton)
-					.foregroundColor(.black)
+				.padding(.bottom, 20)
+				.accessibilityIdentifier(AppAccessibilty.receipts.backButton)
 			}
-			.padding(.bottom, 20)
-			.accessibilityIdentifier(AppAccessibilty.receipts.backButton)
+			.frame(maxWidth: .infinity, maxHeight: .infinity)
+			.background(Color.theme.background)
+			
+			if processedReceiptViewModel.isLoading {
+				ProgressView()
+					.frame(maxWidth: .infinity, maxHeight: .infinity)
+					.background(Color.theme.background)
+					.opacity(0.7)
+			}
 		}
-		.background(Color.theme.background)
     }
 }
 
@@ -87,9 +120,15 @@ struct CommentsInputView: View {
 
 struct ManualReviewInputView_Previews: PreviewProvider {
     static var previews: some View {
-		ManualReviewInputView(receiptNumber: "42588",
-							  receiptDate: "13/07/2023",
-							  amount: "INR 32392",
-							  points: "432 Points")
+		ManualReviewInputView(showManualReviewRequest: .constant(true), receipt: Receipt(id: "Receipt 56g",
+																						 receiptId: "3453463",
+																						 name: "Receipt",
+																						 status: "Draft",
+																						 storeName: "Ratna cafe",
+																						 purchaseDate: "08/09/2023",
+																						 totalAmount: "$4500",
+																						 totalPoints: "50",
+																						 createdDate: "03/05/2022",
+																						 processedAwsReceipt: "{\n  \"totalAmount\" : \"$154.06\",\n  \"storeName\" : \"East Repair Inc.\"n}"))
     }
 }

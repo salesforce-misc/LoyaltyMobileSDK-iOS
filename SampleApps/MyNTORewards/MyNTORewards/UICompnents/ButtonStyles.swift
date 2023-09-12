@@ -116,13 +116,14 @@ struct DarkFlexibleButton: ButtonStyle {
 }
 
 extension View {
-	func longFlexibleButtonStyle() -> some View {
+	func longFlexibleButtonStyle(disabled: Bool = false) -> some View {
 		self
 			.font(.buttonText)
 			.foregroundColor(.white)
 			.frame(maxWidth: .infinity)
 			.frame(height: 48)
-			.background(Color.theme.darkButton)
+			.background(disabled ? Color.theme.textInactive : Color.theme.darkButton)
+			.disabled(disabled)
 			.cornerRadius(24)
 			.padding()
 	}

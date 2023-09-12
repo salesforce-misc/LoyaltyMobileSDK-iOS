@@ -152,12 +152,12 @@
 		3F3805B22A7A6D2400223808 /* RouterPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3805B12A7A6D2400223808 /* RouterPath.swift */; };
 		3F3805B42A7A6D8500223808 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3805B32A7A6D8500223808 /* Destination.swift */; };
 		3F3805B62A7A6EF700223808 /* View+Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3805B52A7A6EF700223808 /* View+Destination.swift */; };
+		3F3983D72AB00AAD00C5C980 /* ReceiptStatusUpdateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3983D62AB00AAD00C5C980 /* ReceiptStatusUpdateResponse.swift */; };
 		3F3E65A42A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */; };
 		3F5002AF2A5F9AB900E12AE4 /* ReceiptListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002AE2A5F9AB900E12AE4 /* ReceiptListItem.swift */; };
 		3F5002B12A5FA07100E12AE4 /* ReceiptList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */; };
 		3F5002B72A5FC82800E12AE4 /* ReceiptSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */; };
 		3F5002B92A5FE65200E12AE4 /* ReceiptsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B82A5FE65100E12AE4 /* ReceiptsView.swift */; };
-		3F5002BB2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002BA2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift */; };
 		3F667DF62A829B9700267958 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3F667DF52A829B0900267958 /* SF-Pro-Display-Regular.otf */; };
 		3F667DF72A829B9A00267958 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3F667DF32A829A3E00267958 /* SF-Pro-Display-Bold.otf */; };
 		3F667DFA2A836E2100267958 /* ReceiptDetailsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F667DF92A836E2100267958 /* ReceiptDetailsUITests.swift */; };
@@ -406,12 +406,12 @@
 		3F3805B12A7A6D2400223808 /* RouterPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterPath.swift; sourceTree = "<group>"; };
 		3F3805B32A7A6D8500223808 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		3F3805B52A7A6EF700223808 /* View+Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Destination.swift"; sourceTree = "<group>"; };
+		3F3983D62AB00AAD00C5C980 /* ReceiptStatusUpdateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptStatusUpdateResponse.swift; sourceTree = "<group>"; };
 		3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAndLoyaltyAPITests.swift; sourceTree = "<group>"; };
 		3F5002AE2A5F9AB900E12AE4 /* ReceiptListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListItem.swift; sourceTree = "<group>"; };
 		3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptList.swift; sourceTree = "<group>"; };
 		3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptSearchBar.swift; sourceTree = "<group>"; };
 		3F5002B82A5FE65100E12AE4 /* ReceiptsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptsView.swift; sourceTree = "<group>"; };
-		3F5002BA2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPopUpView.swift; sourceTree = "<group>"; };
 		3F667DF32A829A3E00267958 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		3F667DF52A829B0900267958 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		3F667DF92A836E2100267958 /* ReceiptDetailsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDetailsUITests.swift; sourceTree = "<group>"; };
@@ -881,6 +881,7 @@
 			children = (
 				3FE8BFC32A6D8E5700ECD45B /* Receipt.swift */,
 				3F29C5A22AA7371E00FBE5B0 /* ProcessedAwsResponse.swift */,
+				3F3983D62AB00AAD00C5C980 /* ReceiptStatusUpdateResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -891,7 +892,6 @@
 				3F5002AE2A5F9AB900E12AE4 /* ReceiptListItem.swift */,
 				3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */,
 				3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */,
-				3F5002BA2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift */,
 				3F5002B82A5FE65100E12AE4 /* ReceiptsView.swift */,
 				3F0C4F782A827A0B00394CB0 /* ManualReviewInputView.swift */,
 				3FFCCC252A973B3E0014823E /* ReceiptDetailView.swift */,
@@ -1316,6 +1316,7 @@
 				298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */,
 				2984C9442954F091009669EF /* LoyaltyUtilities.swift in Sources */,
 				3F7EF5302A70CED70005BA30 /* ReceiptCongratsView.swift in Sources */,
+				3F3983D72AB00AAD00C5C980 /* ReceiptStatusUpdateResponse.swift in Sources */,
 				29BAF6F128F5D6D600A3F9EB /* VoucherDetailView.swift in Sources */,
 				3FB333972A18E33800C3A639 /* ProductViewModel.swift in Sources */,
 				29BAF6D528F14E4400A3F9EB /* PromotionCardView.swift in Sources */,
@@ -1335,7 +1336,6 @@
 				3F3805B62A7A6EF700223808 /* View+Destination.swift in Sources */,
 				298D5EEE29CCF5340062F16E /* ForceAuth.swift in Sources */,
 				293F642F29D64E48001AC795 /* CommunityMemberModel.swift in Sources */,
-				3F5002BB2A5FEFCF00E12AE4 /* ReceiptPopUpView.swift in Sources */,
 				3FFCCC262A973B3E0014823E /* ReceiptDetailView.swift in Sources */,
 				29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */,
 				3F714D6929FA0FEB00CD39E7 /* OrderDetailsView.swift in Sources */,
