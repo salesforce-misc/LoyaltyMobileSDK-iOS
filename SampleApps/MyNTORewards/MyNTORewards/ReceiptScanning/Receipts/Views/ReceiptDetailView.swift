@@ -71,8 +71,8 @@ struct ReceiptDetailView: View {
 			Button {
 				showManualReviewRequest = true
 			} label: {
-				Text("Manual Review" == receipt.status ? "Submitted for Manual Review" : "Request a Manual Review")
-					.foregroundColor(.black)
+				Text(isManualReview() ? "Submitted for Manual Review" : "Request a Manual Review")
+					.foregroundColor(isManualReview() ? .gray : .black)
 			}
 			.disabled("Manual Review" == receipt.status)
 			.padding(.top, 10)
@@ -100,6 +100,10 @@ struct ReceiptDetailView: View {
 		}
 		.environmentObject(processedReceiptViewModel)
     }
+	
+	private func isManualReview() -> Bool {
+		"Manual Review" == receipt.status
+	}
 }
 
 struct ReceiptDetailView_Previews: PreviewProvider {
