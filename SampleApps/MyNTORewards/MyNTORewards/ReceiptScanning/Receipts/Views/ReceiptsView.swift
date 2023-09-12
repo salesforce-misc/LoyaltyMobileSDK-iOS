@@ -88,5 +88,6 @@ struct ReceiptsView_Previews: PreviewProvider {
 	static var previews: some View {
 		ReceiptsView()
             .environmentObject(dev.rootVM)
+            .environmentObject(dev.routerPath)
 	}
 }
