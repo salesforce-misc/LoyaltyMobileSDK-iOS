@@ -26,13 +26,13 @@ struct ReceiptsView: View {
 				Text(StringConstants.Receipts.uploadReceiptButton)
 					.font(.boldButtonText)
 					.longFlexibleButtonStyle()
-					.frame(width: 180)
+					.frame(width: 140)
 					.accessibilityIdentifier(AppAccessibilty.receipts.newButton)
 					.onTapGesture {
 						cameraViewModel.showCamera = true
 					}
 			}
-			if !viewModel.isLoading && viewModel.receipts.isEmpty {
+			if !viewModel.isLoading && (viewModel.receipts.isEmpty || viewModel.filteredReceipts.isEmpty) {
 				ScrollView {
 					EmptyStateView(title: "No Receipts")
 						.frame(maxWidth: .infinity, maxHeight: .infinity)
