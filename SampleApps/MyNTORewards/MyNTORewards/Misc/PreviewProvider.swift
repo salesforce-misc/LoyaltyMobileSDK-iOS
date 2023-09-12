@@ -195,6 +195,10 @@ class DeveloperPreview {
 	let orderDetailsVM = OrderDetailsViewModel()
     let connectedAppVM = ConnectedAppsViewModel<ForceConnectedAppKeychainManager>()
     let productVM = ProductViewModel()
+    let processedReceiptVM = ProcessedReceiptViewModel()
+    let camVM = CameraViewModel()
+    let routerPath = RouterPath()
+    let receiptVM = ReceiptViewModel()
     
     private init() {
         setMember(member: member)

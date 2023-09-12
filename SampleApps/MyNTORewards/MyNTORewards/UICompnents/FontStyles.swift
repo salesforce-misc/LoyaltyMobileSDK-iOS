@@ -331,4 +331,8 @@ extension Font {
 	static var manualReviewTitleLabel: Font {
 		return Font.custom("SFProDisplay-Bold", size: 16)
 	}
+    
+    static var errorMessageText: Font {
+        return Font.custom("SFProText-Regular", size: 14)
+    }
 }
