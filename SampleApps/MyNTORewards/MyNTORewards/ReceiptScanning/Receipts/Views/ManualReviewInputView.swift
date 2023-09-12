@@ -69,7 +69,7 @@ struct ManualReviewInputView: View {
 					.onTapGesture {
 						Task {
 							do {
-								let success = try await processedReceiptViewModel.submitForManualReview(receiptId: receipt.id, comments: "test")
+								let success = try await processedReceiptViewModel.submitForManualReview(receiptId: receipt.id, comments: comment)
 								if success {
 									try await receiptListViewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: true)
 									dismiss()

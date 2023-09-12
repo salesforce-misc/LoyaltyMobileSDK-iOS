@@ -16,10 +16,3 @@ struct ProcessedAwsResponse: Decodable {
 	let memberShipNumber: String
 	let lineItem: [ProcessedReceiptItem]
 }
-
-//struct LineItem: Decodable, Hashable {
-//	let quantity: String
-//	let productName: String
-//	let price: String
-//	let lineItemPrice: String
-//}

@@ -78,26 +78,4 @@ final class ProcessedReceiptViewModel: ObservableObject {
 		isSubmittedForManualReview = "Success" == response.status
 		return isSubmittedForManualReview
 	}
-    
-//    final func getProcessedReceiptItems() -> ProcessedAwsResponse {
-//        return ProcessedAwsResponse(totalAmount: "$1568",
-//                                    storeName: "East Repair Inc",
-//                                    storeAddress: "",
-//                                    receiptNumber: "US-001",
-//                                    receiptDate: "11/02/2019",
-//                                    memberShipNumber: "435234534",
-//                                    lineItem: [ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
-//                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
-//                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
-//                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
-//                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599"),
-//                                               ProcessedReceiptItem(quantity: "1", productName: "Converse Shoes", price: "$599", lineItemPrice: "$599")
-//                                               ])
-//    }
-}
-
-struct ReceiptStatusUpdateResponse: Decodable {
-	let status: String
-	let message: String
-	let errorCode: String
 }
