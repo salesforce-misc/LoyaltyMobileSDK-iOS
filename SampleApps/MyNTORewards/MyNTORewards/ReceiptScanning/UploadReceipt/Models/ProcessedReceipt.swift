@@ -10,6 +10,7 @@ import Foundation
 // MARK: - ProcessedReceipt
 struct ProcessedReceipt: Codable, Identifiable, Hashable {
     var id: UUID? = UUID()
+	let receiptSFDCId: String
     let totalAmount: String
     let storeName: String
     let storeAddress: String
@@ -17,14 +18,22 @@ struct ProcessedReceipt: Codable, Identifiable, Hashable {
     let receiptDate: String
     let lineItem: [ProcessedReceiptItem]
     
-    init(totalAmount: String, storeName: String, storeAddress: String, receiptNumber: String, receiptDate: String, lineItem: [ProcessedReceiptItem]) {
-        self.totalAmount = totalAmount
-        self.storeName = storeName
-        self.storeAddress = storeAddress
-        self.receiptNumber = receiptNumber
-        self.receiptDate = receiptDate
-        self.lineItem = lineItem
-    }
+	init(
+		receiptSfdcId: String,
+		totalAmount: String,
+		storeName: String,
+		storeAddress: String,
+		receiptNumber: String,
+		receiptDate: String,
+		lineItem: [ProcessedReceiptItem]) {
+		self.receiptSFDCId = receiptSfdcId
+		self.totalAmount = totalAmount
+		self.storeName = storeName
+		self.storeAddress = storeAddress
+		self.receiptNumber = receiptNumber
+		self.receiptDate = receiptDate
+		self.lineItem = lineItem
+	}
 }
 
 // MARK: - ProcessedReceiptItem

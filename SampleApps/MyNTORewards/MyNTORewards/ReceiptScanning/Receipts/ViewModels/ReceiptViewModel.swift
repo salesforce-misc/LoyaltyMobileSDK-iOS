@@ -9,7 +9,6 @@ import SwiftUI
 import LoyaltyMobileSDK
 
 class ReceiptViewModel: ObservableObject {
-	@Published var receiptState: ReceiptState = .processing
 	
 	final func getColor(for status: String) -> Color {
 		switch status {

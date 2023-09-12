@@ -12,6 +12,7 @@ import LoyaltyMobileSDK
 struct CapturedImageView: View {
     @EnvironmentObject var rootVM: AppRootViewModel
     @EnvironmentObject var viewModel: ProcessedReceiptViewModel
+	@EnvironmentObject var receiptListViewModel: ReceiptListViewModel
     @Binding var showCapturedImage: Bool
     @Binding var capturedImage: UIImage?
 	@EnvironmentObject var routerPath: RouterPath
@@ -77,7 +78,8 @@ struct CapturedImageView: View {
                             showCapturedImage = false
                             capturedImage = nil
 							dismiss()
-							routerPath.presentedSheet = .processingReceipt
+							viewModel.receiptState = .processing
+							routerPath.presentedSheet = .processingReceipt(receiptListViewModel: receiptListViewModel)
                         }
                     }
                     

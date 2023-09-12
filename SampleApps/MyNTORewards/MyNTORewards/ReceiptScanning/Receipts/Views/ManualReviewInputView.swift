@@ -95,7 +95,7 @@ struct ManualReviewInputView: View {
 			if processedReceiptViewModel.isLoading {
 				ProgressView()
 					.frame(maxWidth: .infinity, maxHeight: .infinity)
-					.background(Color.theme.background)
+					.background(Color.theme.progressBarBackground)
 					.opacity(0.7)
 			}
 		}
@@ -129,6 +129,7 @@ struct ManualReviewInputView_Previews: PreviewProvider {
 																						 totalAmount: "$4500",
 																						 totalPoints: "50",
 																						 createdDate: "03/05/2022",
+																						 imageUrl: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg",
 																						 processedAwsReceipt: "{\n  \"totalAmount\" : \"$154.06\",\n  \"storeName\" : \"East Repair Inc.\"n}"))
     }
 }

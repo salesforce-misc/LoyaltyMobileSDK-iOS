@@ -12,5 +12,5 @@ enum SheetDestination: Identifiable {
 		UUID()
 	}
 	
-	case processingReceipt
+	case processingReceipt(receiptListViewModel: ReceiptListViewModel)
 }
