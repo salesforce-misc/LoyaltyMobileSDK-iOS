@@ -20,7 +20,10 @@ class ReceiptListViewModel: ObservableObject {
 	@Published var isLoading = false
 	@Published var searchText: String = "" {
 		didSet {
-			filter(query: searchText)
+            if oldValue != searchText {
+                Logger.debug("Old Value: \(oldValue), New Value: \(searchText)")
+                filter(query: searchText)
+            }
 		}
 	}
 	let queryFields = ["Id",
@@ -54,11 +57,22 @@ class ReceiptListViewModel: ObservableObject {
 	}
 	
 	func filter(query: String) {
-		filteredReceipts = query.trimmingCharacters(in: CharacterSet(charactersIn: " ")).isEmpty ? receipts : receipts.filter { $0.receiptId.contains(query) }
+		let trimmedQuery = query.trimmingCharacters(in: CharacterSet(charactersIn: " "))
+		filteredReceipts = trimmedQuery.isEmpty ? receipts : receipts.filter { $0.receiptId.lowercased().contains(trimmedQuery.lowercased()) }
+		Logger.debug("\(filteredReceipts.count) receipts found for search text of '\(query)'")
 	}
 	
     func getQuery(membershipNumber: String) -> String {
 		"SELECT \(queryFields.joined(separator: ",")) FROM \(recordName) WHERE \(whereClause) = '\(membershipNumber)' ORDER BY \(orderByField) \(sortOrder.rawValue)"
+	}
+	
+	private func setReceipts(receipts: [Receipt]) {
+		self.receipts = receipts
+		if searchText.isEmpty {
+			self.filteredReceipts = receipts
+		} else {
+			filter(query: searchText)
+		}
 	}
 	
 	func getReceipts(membershipNumber: String, forced: Bool = false) async throws {
@@ -69,11 +83,11 @@ class ReceiptListViewModel: ObservableObject {
 		isLoading = true
 		
 		if !forced, let cached = LocalFileManager.instance.getData(type: [Receipt].self, id: membershipNumber, folderName: receiptsListFolderName) {
-			receipts = cached
+			setReceipts(receipts: cached)
 		} else {
 			do {
 				let queryResult = try await forceClient.SOQL(type: Receipt.self, for: getQuery(membershipNumber: membershipNumber))
-				receipts = queryResult.records
+				setReceipts(receipts: queryResult.records)
 				localFileManager.saveData(item: receipts, id: membershipNumber, folderName: receiptsListFolderName, expiry: .never)
 			} catch {
 				Logger.error(error.localizedDescription)

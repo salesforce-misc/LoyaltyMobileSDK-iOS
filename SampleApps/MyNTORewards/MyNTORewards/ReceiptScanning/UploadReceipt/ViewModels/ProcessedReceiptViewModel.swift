@@ -10,10 +10,8 @@ import LoyaltyMobileSDK
 
 @MainActor
 final class ProcessedReceiptViewModel: ObservableObject {
-
 	@Published var processedAwsResponse: ProcessedAwsResponse?
     @Published var processedReceipt: ProcessedReceipt?
-	@Published var isLoading: Bool = false
 	@Published var isSubmittedForManualReview = false
 	
     private let authManager: ForceAuthenticator
@@ -62,10 +60,6 @@ final class ProcessedReceiptViewModel: ObservableObject {
     }
 	
 	func submitForManualReview(receiptId: String, status: String = "Manual Review", comments: String) async throws -> Bool {
-		defer {
-			isLoading = false
-		}
-		isLoading = true
 		let body = [
 			"receiptId": receiptId,
 			"status": status,
