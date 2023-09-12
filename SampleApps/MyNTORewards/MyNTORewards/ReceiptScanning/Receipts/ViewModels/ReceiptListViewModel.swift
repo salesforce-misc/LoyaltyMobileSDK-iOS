@@ -32,6 +32,7 @@ class ReceiptListViewModel: ObservableObject {
 					   "Total_Points__c",
 					   "CreatedDate",
 					   "TotalAmount__c",
+					   "ImageUrl__c",
 					   "Processed_AWS_Response__c"]
 	let recordName = "Receipts__c"
     let whereClause = "Loyalty_Program_Member__r.MembershipNumber"

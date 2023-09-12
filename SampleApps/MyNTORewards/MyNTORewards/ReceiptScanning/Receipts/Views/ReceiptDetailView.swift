@@ -48,8 +48,15 @@ struct ReceiptDetailView: View {
 							.padding(20)
 							.tag(0)
 						ZoomableScrollView {
-							Image("scanned_receipt")
-								.resizable()
+//							LoyaltyAsyncImage(url: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg") { image in
+							LoyaltyAsyncImage(url: receipt.imageUrl) { image in
+								image
+									.resizable()
+									.aspectRatio(contentMode: .fit)
+							} placeholder: {
+								ProgressView()
+									.frame(maxWidth: .infinity, maxHeight: .infinity)
+							}
 						}
 						.padding(20)
 						.tag(1)
@@ -106,6 +113,7 @@ struct ReceiptDetailView_Previews: PreviewProvider {
 										   totalAmount: "$4500",
 										   totalPoints: "50",
 										   createdDate: "03/05/2022",
+										   imageUrl: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg",
 										   processedAwsReceipt: "{\n  \"totalAmount\" : \"$154.06\",\n  \"storeName\" : \"East Repair Inc.\"n}"))
     }
 }
