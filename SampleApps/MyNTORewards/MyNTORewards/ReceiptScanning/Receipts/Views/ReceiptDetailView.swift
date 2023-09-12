@@ -10,8 +10,10 @@ import SwiftUI
 struct ReceiptDetailView: View {
 	@EnvironmentObject var routerPath: RouterPath
     @StateObject var processedReceiptViewModel = ProcessedReceiptViewModel()
+	@StateObject var imageVM = ImageViewModel()
 	@State private var tabIndex = 0
 	@State private var showManualReviewRequest = false
+	@State private var showPhotoDownloadedAlert = false
 	var tabbarItems = ["Eligible Items", "Receipt Image"]
 	let receipt: Receipt
     var body: some View {
@@ -48,8 +50,8 @@ struct ReceiptDetailView: View {
 							.padding(20)
 							.tag(0)
 						ZoomableScrollView {
-//							LoyaltyAsyncImage(url: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg") { image in
-							LoyaltyAsyncImage(url: receipt.imageUrl) { image in
+							LoyaltyAsyncImage(url: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg") { image in
+//							LoyaltyAsyncImage(url: receipt.imageUrl) { image in
 								image
 									.resizable()
 									.aspectRatio(contentMode: .fit)
@@ -77,7 +79,15 @@ struct ReceiptDetailView: View {
 			.disabled("Manual Review" == receipt.status)
 			.padding(.top, 10)
 			Button {
-				//TODO: Download
+				Task {
+					//TODO: Replace with url from response(receipt.imageURL).
+					let urlString = "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg"
+					await imageVM.getImage(url: urlString)
+					if let image = imageVM.images[urlString.MD5] {
+						UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+						showPhotoDownloadedAlert = true
+					}
+				}
 			} label: {
 				Text("Download Image")
 					.foregroundColor(.black)
@@ -98,6 +108,9 @@ struct ReceiptDetailView: View {
 				.interactiveDismissDisabled()
 				.presentationDetents(Set([ .height(524)]))
 		}
+		.alert(StringConstants.Receipts.receiptSavedToPhotos, isPresented: $showPhotoDownloadedAlert, actions: {
+			Text("")
+		})
 		.environmentObject(processedReceiptViewModel)
     }
 }

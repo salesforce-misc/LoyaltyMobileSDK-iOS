@@ -26,5 +26,6 @@ struct StringConstants {
 		static let processingScreenSubtitle = "Hang in there! This may take a minute."
         static let processingErrorMessageLine1 = "Oops! Something went wrong"
         static let processingErrorMessageLine2 = "while processing the request. Try again."
+		static let receiptSavedToPhotos = "Receipt saved to Photos"
 	}
 }
