@@ -76,7 +76,8 @@ struct ProcessedReceiptView: View {
         } else {
             VStack {
                 Spacer()
-                ProcessingErrorView()
+                ProcessingErrorView(message1: StringConstants.Receipts.processingErrorMessageLine1,
+                                    message2: StringConstants.Receipts.processingErrorMessageLine2)
                 Spacer()
                 Spacer()
                 Text(StringConstants.Receipts.tryAgainButton)
