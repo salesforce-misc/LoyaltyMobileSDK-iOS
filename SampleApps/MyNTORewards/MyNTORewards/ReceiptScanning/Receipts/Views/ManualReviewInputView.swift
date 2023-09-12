@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ManualReviewInputView: View {
 	@EnvironmentObject var processedReceiptViewModel: ProcessedReceiptViewModel
+	@EnvironmentObject var receiptListViewModel: ReceiptListViewModel
+	@EnvironmentObject var rootVM: AppRootViewModel
 	@Binding var showManualReviewRequest: Bool
 	@Environment(\.dismiss) var dismiss
 	@State private var comment: String = ""
@@ -40,10 +42,10 @@ struct ManualReviewInputView: View {
 					}
 					HStack {
 						VStack(alignment: .leading, spacing: 8) {
-							Text("Receipt \(receipt.receiptId ?? "-")")
+							Text("Receipt \(receipt.receiptId)")
 								.font(.transactionText)
 								.accessibilityIdentifier(AppAccessibilty.receipts.receiptNumberText)
-							Text("Date \(receipt.purchaseDate?.toDateString() ?? "-")")
+							Text("Date \(receipt.purchaseDate.toDateString() ?? "-")")
 								.font(.transactionDate)
 								.accessibilityIdentifier(AppAccessibilty.receipts.receiptDateText)
 						}
@@ -67,9 +69,9 @@ struct ManualReviewInputView: View {
 					.onTapGesture {
 						Task {
 							do {
-								let success = try await processedReceiptViewModel.submitForManualReview(receiptId: receipt.id ?? "-", comments: "test")
+								let success = try await processedReceiptViewModel.submitForManualReview(receiptId: receipt.id, comments: "test")
 								if success {
-									receipt.status = "Manual Review"
+									try await receiptListViewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: true)
 									dismiss()
 								}
 							} catch {
@@ -118,7 +120,15 @@ struct CommentsInputView: View {
 
 struct ManualReviewInputView_Previews: PreviewProvider {
     static var previews: some View {
-		ManualReviewInputView(showManualReviewRequest: .constant(true), receipt: Receipt()
-		)
+		ManualReviewInputView(showManualReviewRequest: .constant(true), receipt: Receipt(id: "Receipt 56g",
+																						 receiptId: "3453463",
+																						 name: "Receipt",
+																						 status: "Draft",
+																						 storeName: "Ratna cafe",
+																						 purchaseDate: "08/09/2023",
+																						 totalAmount: "$4500",
+																						 totalPoints: "50",
+																						 createdDate: "03/05/2022",
+																						 processedAwsReceipt: "{\n  \"totalAmount\" : \"$154.06\",\n  \"storeName\" : \"East Repair Inc.\"n}"))
     }
 }

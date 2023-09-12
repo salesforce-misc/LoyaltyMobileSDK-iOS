@@ -9,7 +9,6 @@ import SwiftUI
 import LoyaltyMobileSDK
 
 struct ReceiptList: View {
-	@EnvironmentObject var routerPath: RouterPath
     @EnvironmentObject var receiptListVM: ReceiptListViewModel
     
     var body: some View {
@@ -20,6 +19,7 @@ struct ReceiptList: View {
 				.background {
 					LoyaltyNavLink {
 						ReceiptDetailView(receipt: receipt)
+							.environmentObject(receiptListVM)
 					} label: {
 						EmptyView()
 					}

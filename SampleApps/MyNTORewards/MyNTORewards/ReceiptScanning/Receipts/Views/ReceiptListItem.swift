@@ -14,20 +14,20 @@ struct ReceiptListItem: View {
     var body: some View {
 		VStack(spacing: 8) {
 			HStack {
-				Text("Receipt \(receipt.receiptId ?? "-")")
+				Text("Receipt \(receipt.receiptId)")
 				Spacer()
 				Text("\(receipt.totalAmount ?? "0")")
 			}
 			.font(.transactionText )
 			HStack {
-				Text("Date \(receipt.purchaseDate?.toDateString() ?? " - "    )")
+				Text("Date \(receipt.purchaseDate.toDateString() ?? " - "    )")
 
 				Spacer()
 				if let points = receipt.totalPoints {
 					Text("\(points) Points")
 				} else {
-					Text(receipt.status ?? "-")
-						.foregroundColor(receiptVM.getColor(for: receipt.status ?? "-"))
+					Text(receipt.status)
+						.foregroundColor(receiptVM.getColor(for: receipt.status))
 				}
 			}
 			.font(.transactionDate)
@@ -42,6 +42,15 @@ struct ReceiptListItem: View {
 
 struct ReceiptListItem_Previews: PreviewProvider {
     static var previews: some View {
-		ReceiptListItem(receipt: Receipt())
+		ReceiptListItem(receipt: Receipt(id: "Receipt 56g",
+										 receiptId: "3453463",
+										 name: "Receipt",
+										 status: "Draft",
+										 storeName: "Ratna cafe",
+										 purchaseDate: "08/09/2023",
+										 totalAmount: "$4500",
+										 totalPoints: "50",
+										 createdDate: "03/05/2022",
+										 processedAwsReceipt: "{\n  \"totalAmount\" : \"$154.06\",\n  \"storeName\" : \"East Repair Inc.\"n}"))
     }
 }

@@ -53,7 +53,7 @@ class ReceiptListViewModel: ObservableObject {
 	}
 	
 	func filter(query: String) {
-		filteredReceipts = query.trimmingCharacters(in: CharacterSet(charactersIn: " ")).isEmpty ? receipts : receipts.filter { $0.receiptId!.contains(query) }
+		filteredReceipts = query.trimmingCharacters(in: CharacterSet(charactersIn: " ")).isEmpty ? receipts : receipts.filter { $0.receiptId.contains(query) }
 	}
 	
     func getQuery(membershipNumber: String) -> String {
