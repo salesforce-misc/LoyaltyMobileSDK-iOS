@@ -13,7 +13,7 @@ struct ReceiptList: View {
     
     var body: some View {
 		List {
-            ForEach(receiptListVM.receipts) { receipt in
+            ForEach(receiptListVM.filteredReceipts) { receipt in
 				ReceiptListItem(receipt: receipt)
 				.padding(-3)
 				.background {

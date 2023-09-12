@@ -15,6 +15,13 @@ struct ReceiptSearchBar: View {
 			TextField(StringConstants.Receipts.searchPlaceholder, text: $fieldValue)
 				.font(.receiptSearchText)
 				.accessibilityIdentifier(AppAccessibilty.receipts.searchBar)
+			if !fieldValue.isEmpty {
+				Button {
+					fieldValue = ""
+				} label: {
+					Image(systemName: "xmark.circle").foregroundColor(.gray)
+				}
+			}
 		}
 		.padding(.horizontal, 8)
 		.padding(.vertical)

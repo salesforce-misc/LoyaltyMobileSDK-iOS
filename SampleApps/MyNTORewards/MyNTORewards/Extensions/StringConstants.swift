@@ -10,7 +10,7 @@ import Foundation
 struct StringConstants {
 	struct Receipts {
 		static let receiptsListTitle = "Receipts"
-		static let uploadReceiptButton = "Upload Receipt"
+		static let uploadReceiptButton = "Upload"
 		static let searchPlaceholder = "Search receipts..."
 		static let submitForManualReviewButton = "Submit"
 		static let manualReviewTitle = "Manual review"
@@ -26,5 +26,6 @@ struct StringConstants {
 		static let processingScreenSubtitle = "Hang in there! This may take a minute."
         static let processingErrorMessageLine1 = "Oops! Something went wrong"
         static let processingErrorMessageLine2 = "while processing the request. Try again."
+		static let receiptSavedToPhotos = "Receipt saved to Photos"
 	}
 }

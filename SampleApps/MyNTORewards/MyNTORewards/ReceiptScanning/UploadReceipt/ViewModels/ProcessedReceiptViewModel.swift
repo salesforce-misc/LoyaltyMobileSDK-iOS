@@ -10,10 +10,8 @@ import LoyaltyMobileSDK
 
 @MainActor
 final class ProcessedReceiptViewModel: ObservableObject {
-
 	@Published var processedAwsResponse: ProcessedAwsResponse?
     @Published var processedReceipt: ProcessedReceipt?
-	@Published var isLoading: Bool = false
 	@Published var isSubmittedForManualReview = false
 	@Published var receiptState: ReceiptState = .processing
 	
@@ -64,7 +62,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
         }
     }
 	
-	func submitForManualReview(receiptId: String, comments: String) async throws -> Bool {
+    func submitForManualReview(receiptId: String, status: String = "Manual Review", comments: String) async throws -> Bool {
 		try await updateStatus(receiptId: receiptId, status: "Manual Review", comments: comments)
 	}
 	
@@ -72,11 +70,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
 		try await updateStatus(receiptId: receiptId, status: "In Progress")
 	}
 	
-	private func updateStatus(receiptId: String, status: String, comments: String = "") async throws -> Bool {
-		defer {
-			isLoading = false
-		}
-		isLoading = true
+    private func updateStatus(receiptId: String, status: String, comments: String = "") async throws -> Bool {
 		let body = [
 			"receiptId": receiptId,
 			"status": status,
