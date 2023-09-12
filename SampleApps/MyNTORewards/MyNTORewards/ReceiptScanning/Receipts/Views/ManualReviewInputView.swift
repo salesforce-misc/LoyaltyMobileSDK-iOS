@@ -69,12 +69,15 @@ struct ManualReviewInputView: View {
 					.onTapGesture {
 						Task {
 							do {
+								isLoading = true
 								let success = try await processedReceiptViewModel.submitForManualReview(receiptId: receipt.id, comments: comment)
 								if success {
-									try await receiptListViewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: true)
 									dismiss()
+									try await receiptListViewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: true)
 								}
+								isLoading = false
 							} catch {
+								isLoading = false
 								// MARK: handle error
 							}
 						}
@@ -92,7 +95,7 @@ struct ManualReviewInputView: View {
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.background(Color.theme.background)
 			
-			if processedReceiptViewModel.isLoading {
+			if isLoading {
 				ProgressView()
 					.frame(maxWidth: .infinity, maxHeight: .infinity)
 					.background(Color.theme.background)
@@ -129,6 +132,7 @@ struct ManualReviewInputView_Previews: PreviewProvider {
 																						 totalAmount: "$4500",
 																						 totalPoints: "50",
 																						 createdDate: "03/05/2022",
+																						 imageUrl: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg",
 																						 processedAwsReceipt: "{\n  \"totalAmount\" : \"$154.06\",\n  \"storeName\" : \"East Repair Inc.\"n}"))
     }
 }

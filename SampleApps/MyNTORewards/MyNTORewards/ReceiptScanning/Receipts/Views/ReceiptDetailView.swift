@@ -48,8 +48,8 @@ struct ReceiptDetailView: View {
 							.padding(20)
 							.tag(0)
 						ZoomableScrollView {
-//							LoyaltyAsyncImage(url: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg") { image in
-							LoyaltyAsyncImage(url: receipt.imageUrl) { image in
+							LoyaltyAsyncImage(url: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg") { image in
+//							LoyaltyAsyncImage(url: receipt.imageUrl) { image in
 								image
 									.resizable()
 									.aspectRatio(contentMode: .fit)
