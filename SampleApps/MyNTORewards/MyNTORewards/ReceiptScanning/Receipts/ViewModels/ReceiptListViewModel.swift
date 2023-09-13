@@ -17,7 +17,7 @@ enum SortOrder: String {
 class ReceiptListViewModel: ObservableObject {
 	@Published var receipts: [Receipt] = []
 	@Published var filteredReceipts: [Receipt] = []
-	@Published var isLoading = false
+	@Published var isLoading = true
 	@Published var searchText: String = "" {
 		didSet {
             if oldValue != searchText {

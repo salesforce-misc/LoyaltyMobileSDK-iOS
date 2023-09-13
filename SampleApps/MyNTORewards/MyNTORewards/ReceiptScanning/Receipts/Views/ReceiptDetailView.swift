@@ -14,6 +14,7 @@ struct ReceiptDetailView: View {
 	@State private var tabIndex = 0
 	@State private var showManualReviewRequest = false
 	@State private var showPhotoDownloadedAlert = false
+	@State private var isTableLoading = true
 	var tabbarItems = ["Eligible Items", "Receipt Image"]
 	let receipt: Receipt
     var body: some View {
@@ -32,7 +33,7 @@ struct ReceiptDetailView: View {
 					Text("\(receipt.totalAmount ?? "0")")
 						.font(.transactionText)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptAmountText)
-					Text("\(receipt.totalPoints ?? "0") Points")
+					Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points")
 						.font(.transactionDate)
 						.accessibilityIdentifier(AppAccessibilty.receipts.receiptPointsText)
 				}
@@ -49,6 +50,15 @@ struct ReceiptDetailView: View {
 							.backgroundStyle(Color.theme.background)
 							.padding(20)
 							.tag(0)
+					} else {
+						if isTableLoading {
+							ProgressView()
+								.frame(maxWidth: .infinity, maxHeight: .infinity)
+								.background(Color.theme.background)
+						} else {
+							Text("No Data")
+						}
+					}
 						ZoomableScrollView {
 							LoyaltyAsyncImage(url: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg") { image in
 //							LoyaltyAsyncImage(url: receipt.imageUrl) { image in
@@ -62,10 +72,6 @@ struct ReceiptDetailView: View {
 						}
 						.padding(20)
 						.tag(1)
-					} else {
-						// TODO: Handle data unavailable case
-						Text("No Data")
-					}
 					
 				}
 				.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
@@ -95,10 +101,15 @@ struct ReceiptDetailView: View {
 			.padding(.vertical, 20)
 		}
 		.onAppear {
-			do {
-				try processedReceiptViewModel.getProcessedReceiptItems(from: receipt)
-			} catch {
-				// TODO: show error on processed receipts tab
+			Task {
+				do {
+					isTableLoading = true
+					try await processedReceiptViewModel.getProcessedReceiptItems(from: receipt)
+					isTableLoading = false
+				} catch {
+					isTableLoading = false
+					// TODO: show error on processed receipts tab
+				}
 			}
 		}
 		.loytaltyNavigationTitle("Receipt Details")
@@ -128,7 +139,7 @@ struct ReceiptDetailView_Previews: PreviewProvider {
 										   storeName: "Ratna cafe",
 										   purchaseDate: "08/09/2023",
 										   totalAmount: "$4500",
-										   totalPoints: "50",
+										   totalPoints: 50,
 										   createdDate: "03/05/2022",
 										   imageUrl: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg",
 										   processedAwsReceipt: "{\n  \"totalAmount\" : \"$154.06\",\n  \"storeName\" : \"East Repair Inc.\"n}"))

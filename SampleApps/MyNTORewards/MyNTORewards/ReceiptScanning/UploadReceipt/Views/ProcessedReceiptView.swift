@@ -10,6 +10,8 @@ import SwiftUI
 struct ProcessedReceiptView: View {
     @EnvironmentObject var viewModel: ProcessedReceiptViewModel
 	@EnvironmentObject var cameraModel: CameraViewModel
+	@EnvironmentObject var receiptlistViewModel: ReceiptListViewModel
+	@EnvironmentObject var rootViewModel: AppRootViewModel
 	@EnvironmentObject var routerPath: RouterPath
 	@State private var isLoading = false
 	
@@ -65,6 +67,7 @@ struct ProcessedReceiptView: View {
 									let success = try await viewModel.submitForProcessing(receiptId: receiptSFDCId)
 									if success {
 										viewModel.receiptState = .submitted
+										try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "", forced: true)
 									}
 									isLoading = false
 								} catch {
@@ -76,7 +79,12 @@ struct ProcessedReceiptView: View {
 						.accessibilityIdentifier(AppAccessibilty.receipts.submitReceiptButton)
 					Button(StringConstants.Receipts.tryAgainButton) {
 						// button action
-						routerPath.presentedSheet = nil
+						Task {
+							routerPath.presentedSheet = nil
+							do {
+								try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "", forced: true)
+							}
+						}
 						DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 							cameraModel.showCamera = true
 						}

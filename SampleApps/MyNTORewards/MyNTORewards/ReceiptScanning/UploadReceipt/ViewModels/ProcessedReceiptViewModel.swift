@@ -55,7 +55,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
         }
     }
 	
-    func getProcessedReceiptItems(from receipt: Receipt) throws {
+    func getProcessedReceiptItems(from receipt: Receipt) async throws {
         let processedResponseString = receipt.processedAwsReceipt
         if let processedResponseData = processedResponseString?.data(using: .utf8) {
             processedAwsResponse = try JSONDecoder().decode(ProcessedAwsResponse.self, from: processedResponseData)
