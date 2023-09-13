@@ -11,7 +11,7 @@ import LoyaltyMobileSDK
 struct ReceiptsView: View {
 	@EnvironmentObject var rootVM: AppRootViewModel
 	@EnvironmentObject var routerPath: RouterPath
-	@StateObject var viewModel = ReceiptListViewModel()
+	@EnvironmentObject var receiptListViewModel: ReceiptListViewModel
 	@EnvironmentObject var cameraViewModel: CameraViewModel
 	@StateObject var receiptViewModel = ReceiptViewModel()
 	@State var searchText = ""
@@ -21,7 +21,7 @@ struct ReceiptsView: View {
 	var body: some View {
 		VStack(spacing: 0) {
 			HStack(spacing: 0) {
-				ReceiptSearchBar(fieldValue: $viewModel.searchText)
+				ReceiptSearchBar(fieldValue: $receiptListViewModel.searchText)
 					.padding(.leading)
 				Text(StringConstants.Receipts.uploadReceiptButton)
 					.font(.boldButtonText)
@@ -32,7 +32,7 @@ struct ReceiptsView: View {
 						cameraViewModel.showCamera = true
 					}
 			}
-			if !viewModel.isLoading && (viewModel.receipts.isEmpty || viewModel.filteredReceipts.isEmpty) {
+			if !receiptListViewModel.isLoading && (receiptListViewModel.receipts.isEmpty || receiptListViewModel.filteredReceipts.isEmpty) {
 				ScrollView {
 					EmptyStateView(title: "No Receipts")
 						.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -40,13 +40,13 @@ struct ReceiptsView: View {
 			} else {
 				ZStack {
 					ReceiptList()
-						.environmentObject(viewModel)
+						.environmentObject(receiptListViewModel)
 						.refreshable {
 							await Task {
 								await getReceipts(forced: true)
 							}.value
 						}
-					if viewModel.isLoading {
+					if receiptListViewModel.isLoading {
 						ProgressView()
 							.frame(maxWidth: .infinity, maxHeight: .infinity)
 							.background(Color.theme.background)
@@ -78,14 +78,14 @@ struct ReceiptsView: View {
 				}
 				.animation(.default, value: showCapturedImage)
 				.environmentObject(routerPath)
-				.environmentObject(viewModel)
+				.environmentObject(receiptListViewModel)
 			}
 		}
 	}
 	
 	func getReceipts(forced: Bool = false) async {
 		do {
-			try await viewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: forced)
+			try await receiptListViewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: forced)
 		} catch {
 			Logger.error(error.localizedDescription)
 		}

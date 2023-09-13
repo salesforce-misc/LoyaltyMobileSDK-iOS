@@ -62,8 +62,9 @@ struct ProcessedReceiptView: View {
 						.onTapGesture {
 							Task {
 								do {
+									guard let receiptSFDCId = processedReceipt.receiptSFDCId else { return }
 									isLoading = true
-									let success = try await viewModel.submitForProcessing(receiptId: processedReceipt.receiptSFDCId)
+									let success = try await viewModel.submitForProcessing(receiptId: receiptSFDCId)
 									if success {
 										viewModel.receiptState = .submitted
 										try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "", forced: true)
