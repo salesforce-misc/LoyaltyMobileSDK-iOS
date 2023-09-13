@@ -54,7 +54,7 @@ struct ManualReviewInputView: View {
 							Text("\(receipt.totalAmount ?? "0")")
 								.font(.transactionText)
 								.accessibilityIdentifier(AppAccessibilty.receipts.receiptAmountText)
-							Text("\(receipt.totalPoints ?? "0") Points")
+							Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points")
 								.font(.transactionDate)
 								.accessibilityIdentifier(AppAccessibilty.receipts.receiptPointsText)
 						}
@@ -91,6 +91,7 @@ struct ManualReviewInputView: View {
 				}
 				.padding(.bottom, 20)
 				.accessibilityIdentifier(AppAccessibilty.receipts.backButton)
+				Spacer()
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.background(Color.theme.background)
@@ -130,7 +131,7 @@ struct ManualReviewInputView_Previews: PreviewProvider {
 																						 storeName: "Ratna cafe",
 																						 purchaseDate: "08/09/2023",
 																						 totalAmount: "$4500",
-																						 totalPoints: "50",
+																						 totalPoints: 50,
 																						 createdDate: "03/05/2022",
 																						 imageUrl: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg",
 																						 processedAwsReceipt: "{\n  \"totalAmount\" : \"$154.06\",\n  \"storeName\" : \"East Repair Inc.\"n}"))

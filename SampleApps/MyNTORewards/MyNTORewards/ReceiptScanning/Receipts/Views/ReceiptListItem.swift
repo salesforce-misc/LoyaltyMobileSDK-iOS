@@ -20,11 +20,12 @@ struct ReceiptListItem: View {
 			}
 			.font(.transactionText )
 			HStack {
-				Text("Date \(receipt.purchaseDate.toDateString() ?? " - "    )")
+				Text("Date \(receipt.purchaseDate.toDateString() ?? " - ")")
 
 				Spacer()
-				if let points = receipt.totalPoints {
-					Text("\(points) Points")
+				
+				if receipt.status == "Processed" {
+					Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points")
 				} else {
 					Text(receipt.status)
 						.foregroundColor(receiptVM.getColor(for: receipt.status))
@@ -49,7 +50,7 @@ struct ReceiptListItem_Previews: PreviewProvider {
 										 storeName: "Ratna cafe",
 										 purchaseDate: "08/09/2023",
 										 totalAmount: "$4500",
-										 totalPoints: "50",
+										 totalPoints: 50,
 										 createdDate: "03/05/2022",
 										 imageUrl: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg",
 										 processedAwsReceipt: "{\n  \"totalAmount\" : \"$154.06\",\n  \"storeName\" : \"East Repair Inc.\"n}"))

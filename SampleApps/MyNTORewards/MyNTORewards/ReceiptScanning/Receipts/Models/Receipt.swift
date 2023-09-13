@@ -15,7 +15,7 @@ struct Receipt: Identifiable, Codable {
 	let storeName: String
 	let purchaseDate: String
 	let totalAmount: String?
-	let totalPoints: String?
+	let totalPoints: Double?
 	let createdDate: String
 	let imageUrl: String?
 	let processedAwsReceipt: String?
