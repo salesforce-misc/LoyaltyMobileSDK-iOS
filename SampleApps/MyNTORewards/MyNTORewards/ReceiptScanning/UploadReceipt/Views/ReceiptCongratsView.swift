@@ -10,8 +10,6 @@ import SwiftUI
 struct ReceiptCongratsView: View {
 	@EnvironmentObject var routerPath: RouterPath
 	@EnvironmentObject var cameraModel: CameraViewModel
-	@EnvironmentObject var receiptlistViewModel: ReceiptListViewModel
-	@EnvironmentObject var rootViewModel: AppRootViewModel
 	var points: Double
 	var body: some View {
 		ZStack {
@@ -40,11 +38,6 @@ struct ReceiptCongratsView: View {
 				Text("Done")
 					.onTapGesture {
 						routerPath.dismissSheets()
-						Task {
-							do {
-								try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "", forced: true)
-							} catch { }
-						}
 					}
 					.longFlexibleButtonStyle()
 				Button(StringConstants.Receipts.uploadAnotherReceiptButton) {
