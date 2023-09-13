@@ -16,6 +16,7 @@ struct HomeView: View {
     @EnvironmentObject private var voucherVM: VoucherViewModel
 	@EnvironmentObject private var cameraVM: CameraViewModel
 	@EnvironmentObject private var routerPath: RouterPath
+	@EnvironmentObject private var receiptListViewModel: ReceiptListViewModel
 	@State var showCapturedImage: Bool = false
 	@State var capturedImage: UIImage?
     @Binding var selectedTab: Int
@@ -32,6 +33,7 @@ struct HomeView: View {
 							.padding(.trailing, 15)
 							.accessibilityIdentifier(AppAccessibilty.receipts.receiptsIcon)
 							.onTapGesture {
+								routerPath.dismissSheets()
 								cameraVM.showCamera = true
 							}
 					}
@@ -128,6 +130,7 @@ struct HomeView: View {
 					
 					if showCapturedImage {
 						CapturedImageView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
+							.environmentObject(receiptListViewModel)
 							.transition(.move(edge: .trailing))
 							.zIndex(showCapturedImage ? 1 : 0)
 					}

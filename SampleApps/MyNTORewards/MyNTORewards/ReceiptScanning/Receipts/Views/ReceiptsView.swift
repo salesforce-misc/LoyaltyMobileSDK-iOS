@@ -11,8 +11,8 @@ import LoyaltyMobileSDK
 struct ReceiptsView: View {
 	@EnvironmentObject var rootVM: AppRootViewModel
 	@EnvironmentObject var routerPath: RouterPath
-	@StateObject var viewModel = ReceiptListViewModel()
-	@StateObject var cameraViewModel = CameraViewModel()
+	@EnvironmentObject var viewModel: ReceiptListViewModel
+	@EnvironmentObject var cameraViewModel: CameraViewModel
 	@StateObject var receiptViewModel = ReceiptViewModel()
 	@State var searchText = ""
 	@State var showCapturedImage: Bool = false
