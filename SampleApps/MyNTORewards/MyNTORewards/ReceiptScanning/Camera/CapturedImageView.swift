@@ -45,7 +45,7 @@ struct CapturedImageView: View {
                             .padding(10)
                             .foregroundColor(.white)
                     }
-					.accessibilityIdentifier(AppAccessibilty.receipts.backButtonCapturedImageView)
+					.accessibilityIdentifier(AppAccessibilty.Receipts.backButtonCapturedImageView)
                     .buttonStyle(CircularButtonStyle())
                     .padding(.leading, 20)
                     
@@ -84,7 +84,7 @@ struct CapturedImageView: View {
                     }
                     
                 }
-				.accessibilityIdentifier(AppAccessibilty.receipts.processButton)
+				.accessibilityIdentifier(AppAccessibilty.Receipts.processButton)
                 .buttonStyle(LightLongButton())
                 
                 Text("Try Again")

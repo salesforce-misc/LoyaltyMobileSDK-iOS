@@ -29,7 +29,7 @@ struct ManualReviewInputView: View {
 							.foregroundColor(.gray)
 					}
 					.padding(.trailing, 10)
-					.accessibility(identifier: AppAccessibilty.receipts.closeButton)
+					.accessibility(identifier: AppAccessibilty.Receipts.closeButton)
 				}
 				.padding(.top, 12)
 				VStack(spacing: 20) {
@@ -44,19 +44,19 @@ struct ManualReviewInputView: View {
 						VStack(alignment: .leading, spacing: 8) {
 							Text("Receipt \(receipt.receiptId)")
 								.font(.transactionText)
-								.accessibilityIdentifier(AppAccessibilty.receipts.receiptNumberText)
+								.accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberText)
 							Text("Date \(receipt.purchaseDate.toDateString() ?? "-")")
 								.font(.transactionDate)
-								.accessibilityIdentifier(AppAccessibilty.receipts.receiptDateText)
+								.accessibilityIdentifier(AppAccessibilty.Receipts.receiptDateText)
 						}
 						Spacer()
 						VStack(alignment: .trailing, spacing: 8) {
 							Text("\(receipt.totalAmount ?? "0")")
 								.font(.transactionText)
-								.accessibilityIdentifier(AppAccessibilty.receipts.receiptAmountText)
+								.accessibilityIdentifier(AppAccessibilty.Receipts.receiptAmountText)
 							Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points")
 								.font(.transactionDate)
-								.accessibilityIdentifier(AppAccessibilty.receipts.receiptPointsText)
+								.accessibilityIdentifier(AppAccessibilty.Receipts.receiptPointsText)
 						}
 						.padding(.trailing, 15)
 					}
@@ -90,7 +90,7 @@ struct ManualReviewInputView: View {
 						.foregroundColor(.black)
 				}
 				.padding(.bottom, 20)
-				.accessibilityIdentifier(AppAccessibilty.receipts.backButton)
+				.accessibilityIdentifier(AppAccessibilty.Receipts.backButton)
 				Spacer()
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)

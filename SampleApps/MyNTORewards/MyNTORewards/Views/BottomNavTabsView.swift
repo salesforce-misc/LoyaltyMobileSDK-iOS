@@ -37,6 +37,9 @@ struct BottomNavTabsView: View {
 					MoreView()
 						.tabItem("More", image: UIImage(named: "ic-more"))
 				}
+				.onChange(of: selectedTab) { _ in
+					routerPath.path.removeAll()
+				}
 			}
 			.background {
 				LoyaltyConditionalNavLink(isActive: $promotionsVM.isCheckoutNavigationActive) {

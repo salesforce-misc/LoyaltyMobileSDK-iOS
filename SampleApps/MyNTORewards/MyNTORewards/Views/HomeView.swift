@@ -31,7 +31,7 @@ struct HomeView: View {
 						Spacer()
 						Image("ic-receipts-home")
 							.padding(.trailing, 15)
-							.accessibilityIdentifier(AppAccessibilty.receipts.receiptsIcon)
+							.accessibilityIdentifier(AppAccessibilty.Receipts.receiptsIcon)
 							.onTapGesture {
 								routerPath.dismissSheets()
 								cameraVM.showCamera = true

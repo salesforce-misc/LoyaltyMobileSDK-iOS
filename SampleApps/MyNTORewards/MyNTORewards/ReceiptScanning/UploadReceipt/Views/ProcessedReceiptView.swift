@@ -22,13 +22,13 @@ struct ProcessedReceiptView: View {
 					VStack(alignment: .leading, spacing: 20) {
 						Text("Receipt \(processedReceipt.receiptNumber)")
 							.font(.offerTitle)
-							.accessibilityIdentifier(AppAccessibilty.receipts.receiptNumberLabel)
+							.accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberLabel)
 						HStack {
 							Text("Store: \(processedReceipt.storeName)")
-								.accessibilityIdentifier(AppAccessibilty.receipts.storeLabel)
+								.accessibilityIdentifier(AppAccessibilty.Receipts.storeLabel)
 							Spacer()
 							Text("Date: \(processedReceipt.receiptDate)")
-								.accessibilityIdentifier(AppAccessibilty.receipts.receiptDate)
+								.accessibilityIdentifier(AppAccessibilty.Receipts.receiptDate)
 						}
 						.font(.offerText)
 					}
@@ -76,7 +76,7 @@ struct ProcessedReceiptView: View {
 							}
 						}
 						.longFlexibleButtonStyle()
-						.accessibilityIdentifier(AppAccessibilty.receipts.submitReceiptButton)
+						.accessibilityIdentifier(AppAccessibilty.Receipts.submitReceiptButton)
 					Button(StringConstants.Receipts.tryAgainButton) {
 						// button action
 						Task {
@@ -90,7 +90,7 @@ struct ProcessedReceiptView: View {
 						}
 					}
 					.foregroundColor(.black)
-					.accessibilityIdentifier(AppAccessibilty.receipts.tryAgainButtonProcessedReceipt)
+					.accessibilityIdentifier(AppAccessibilty.Receipts.tryAgainButtonProcessedReceipt)
 				}
 				.padding(.vertical, 20)
 				.background(Color.theme.background)
@@ -124,7 +124,7 @@ struct ProcessedReceiptView: View {
                         .foregroundColor(.black)
                 }
                 .padding(.bottom, 20)
-                .accessibilityIdentifier(AppAccessibilty.receipts.backButton)
+                .accessibilityIdentifier(AppAccessibilty.Receipts.backButton)
             }
             
         }

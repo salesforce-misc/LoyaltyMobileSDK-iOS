@@ -14,3 +14,11 @@ enum SheetDestination: Identifiable {
 	
 	case processingReceipt(receiptListViewModel: ReceiptListViewModel)
 }
+
+enum RouterDestination: Identifiable {
+	var id: UUID {
+		UUID()
+	}
+	
+	case receipts
+}

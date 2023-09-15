@@ -38,10 +38,10 @@ struct ProcessingView: View {
 					Text(StringConstants.Receipts.processingScreenTitle)
 						.font(.scanningReceiptTitleFont)
 						.fontWeight(.heavy)
-						.accessibilityIdentifier(AppAccessibilty.receipts.scanningReceiptLabel)
+						.accessibilityIdentifier(AppAccessibilty.Receipts.scanningReceiptLabel)
 					Text(StringConstants.Receipts.processingScreenSubtitle)
 						.font(.scanningReceiptCaptionFont)
-						.accessibilityIdentifier(AppAccessibilty.receipts.scanningReceiptSubtitle)
+						.accessibilityIdentifier(AppAccessibilty.Receipts.scanningReceiptSubtitle)
 				}
 			}
 			Spacer()
