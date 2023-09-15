@@ -8,6 +8,15 @@
 import Foundation
 import LoyaltyMobileSDK
 
+
+enum ReceiptStatus: String {
+	case manualReview = "Manual Review"
+	case draft = "Draft"
+	case inProgress = "In Progress"
+	case processed = "Processed"
+	case cancelled = "Cancelled"
+}
+
 @MainActor
 final class ProcessedReceiptViewModel: ObservableObject {
 	@Published var processedAwsResponse: ProcessedAwsResponse?
@@ -62,18 +71,10 @@ final class ProcessedReceiptViewModel: ObservableObject {
         }
     }
 	
-    func submitForManualReview(receiptId: String, status: String = "Manual Review", comments: String) async throws -> Bool {
-		try await updateStatus(receiptId: receiptId, status: "Manual Review", comments: comments)
-	}
-	
-	func submitForProcessing(receiptId: String) async throws -> Bool {
-		try await updateStatus(receiptId: receiptId, status: "In Progress")
-	}
-	
-    private func updateStatus(receiptId: String, status: String, comments: String = "") async throws -> Bool {
+    func updateStatus(receiptId: String, status: ReceiptStatus, comments: String = "") async throws -> Bool {
 		let body = [
 			"receiptId": receiptId,
-			"status": status,
+			"status": status.rawValue,
 			"comments": comments
 		]
 		let path = "/services/apexrest/ReceiptStatusUpdate/"

@@ -33,46 +33,12 @@ struct ProcessedReceiptView: View {
 						.font(.offerText)
 					}
 					.padding(.horizontal)
-					VStack(spacing: 0) {
-						Rectangle()
-							.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
-							.frame(height: 1)
-							.padding()
-						
-						ReceiptTableTitleRow()
-							.font(.receiptItemsTitleFont)
-						Rectangle()
-							.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
-							.frame(height: 1)
-							.padding()
-						ScrollView {
-							ProcessedReceiptList(items: processedReceipt.lineItem)
-							Rectangle()
-								.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
-								.frame(height: 1)
-								.padding()
-						}
-						.frame(maxHeight: .infinity)
-					}
-					.background(.white)
-					.cornerRadius(4)
-					.padding()
+					ProcessedReceiptTableView(items: processedReceipt.lineItem)
 					Spacer()
 					Text(StringConstants.Receipts.submitButton)
 						.onTapGesture {
 							Task {
-								do {
-									guard let receiptSFDCId = processedReceipt.receiptSFDCId else { return }
-									isLoading = true
-									let success = try await viewModel.submitForProcessing(receiptId: receiptSFDCId)
-									if success {
-										viewModel.receiptState = .submitted
-										try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "", forced: true)
-									}
-									isLoading = false
-								} catch {
-									isLoading = false
-								}
+								await updateStatus(status: .inProgress, for: processedReceipt)
 							}
 						}
 						.longFlexibleButtonStyle()
@@ -81,9 +47,7 @@ struct ProcessedReceiptView: View {
 						// button action
 						Task {
 							routerPath.presentedSheet = nil
-							do {
-								try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "", forced: true)
-							}
+							await updateStatus(status: .cancelled, for: processedReceipt)
 						}
 						DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 							cameraModel.showCamera = true
@@ -128,6 +92,21 @@ struct ProcessedReceiptView: View {
             }
             
         }
+	}
+	
+	func updateStatus(status: ReceiptStatus, for receipt: ProcessedReceipt) async {
+		do {
+			guard let receiptSFDCId = receipt.receiptSFDCId else { return }
+			isLoading = true
+			let success = try await viewModel.updateStatus(receiptId: receiptSFDCId, status: status)
+			if success {
+				viewModel.receiptState = .submitted
+				try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "", forced: true)
+			}
+			isLoading = false
+		} catch {
+			isLoading = false
+		}
 	}
 }
 
