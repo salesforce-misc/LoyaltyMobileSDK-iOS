@@ -14,7 +14,7 @@ struct ReceiptSearchBar: View {
 			Image(systemName: "magnifyingglass").foregroundColor(.gray)
 			TextField(StringConstants.Receipts.searchPlaceholder, text: $fieldValue)
 				.font(.receiptSearchText)
-				.accessibilityIdentifier(AppAccessibilty.receipts.searchBar)
+				.accessibilityIdentifier(AppAccessibilty.Receipts.searchBar)
 			if !fieldValue.isEmpty {
 				Button {
 					fieldValue = ""

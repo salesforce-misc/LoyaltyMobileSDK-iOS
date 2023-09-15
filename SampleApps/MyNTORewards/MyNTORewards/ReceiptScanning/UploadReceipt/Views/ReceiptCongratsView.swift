@@ -27,7 +27,7 @@ struct ReceiptCongratsView: View {
 					.font(.congratsTitle)
 					.padding(.top, 30)
 					.padding(.bottom, 2)
-					.accessibilityIdentifier(AppAccessibilty.receipts.receiptSubmittedCongrats)
+					.accessibilityIdentifier(AppAccessibilty.Receipts.receiptSubmittedCongrats)
 				
 				Text("We’ve credited \(points.truncate(to: 2)) points for the uploaded receipt")
 					.font(.congratsText)
@@ -48,7 +48,7 @@ struct ReceiptCongratsView: View {
 				}
 				.padding(.bottom, 20)
 				.foregroundColor(.black)
-				.accessibilityIdentifier(AppAccessibilty.receipts.scanAnotherReceipt)
+				.accessibilityIdentifier(AppAccessibilty.Receipts.scanAnotherReceipt)
 			}
 		}
 	}

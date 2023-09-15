@@ -20,6 +20,16 @@ struct ReceiptsView: View {
 	
 	var body: some View {
 		VStack(spacing: 0) {
+			HStack {
+				Text("Receipts")
+					.font(.congratsTitle)
+					.padding(.leading, 15)
+					.accessibilityIdentifier(AppAccessibilty.Receipts.receiptsViewTitle)
+				Spacer()
+			}
+			.frame(height: 44)
+			.frame(maxWidth: .infinity)
+			.background(.white)
 			HStack(spacing: 0) {
 				ReceiptSearchBar(fieldValue: $receiptListViewModel.searchText)
 					.padding(.leading)
@@ -27,7 +37,7 @@ struct ReceiptsView: View {
 					.font(.boldButtonText)
 					.longFlexibleButtonStyle()
 					.frame(width: 140)
-					.accessibilityIdentifier(AppAccessibilty.receipts.newButton)
+					.accessibilityIdentifier(AppAccessibilty.Receipts.newButton)
 					.onTapGesture {
 						cameraViewModel.showCamera = true
 					}
@@ -54,8 +64,7 @@ struct ReceiptsView: View {
 				}
 			}
 		}
-		.loytaltyNavigationTitle(StringConstants.Receipts.receiptsListTitle)
-		.loyaltyNavBarSearchButtonHidden(true)
+		.navigationBarBackButtonHidden()
 		.environmentObject(routerPath)
 		.environmentObject(cameraViewModel)
 		.environmentObject(receiptViewModel)

@@ -9,6 +9,15 @@ import SwiftUI
 
 @MainActor
 extension View {
+	func withAppRouter() -> some View {
+		navigationDestination(for: RouterDestination.self) { destination in
+			switch destination {
+			case .receipts:
+				ReceiptsView()
+			}
+		}
+	}
+	
 	func withSheetDestination(sheetDestination: Binding<SheetDestination?>) -> some View {
 		sheet(item: sheetDestination) { sheet in
 			switch sheet {

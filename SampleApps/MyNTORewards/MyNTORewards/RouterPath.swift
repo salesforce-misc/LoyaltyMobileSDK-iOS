@@ -9,10 +9,15 @@ import SwiftUI
 
 @MainActor
 class RouterPath: ObservableObject {
+	@Published var path: [RouterDestination] = []
 	@Published var presentedSheet: SheetDestination?
 	
 	func dismissSheets() {
 		presentedSheet = nil
+	}
+	
+	func navigate(to destination: RouterDestination) {
+		path.append(destination)
 	}
 	
 	func presentSheet(destination: SheetDestination) {
