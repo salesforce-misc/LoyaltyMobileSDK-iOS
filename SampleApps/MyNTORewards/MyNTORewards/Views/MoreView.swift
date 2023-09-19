@@ -46,7 +46,12 @@ struct MoreView: View {
                     
                     ForEach(menuItems) { menu in
 						Button {
-							menu.title == "Receipts" ? routerPath.navigate(to: .receipts) : nil
+                            switch menu.title {
+                            case "Receipts":
+                                routerPath.navigate(to: .receipts)
+                            default:
+                                break
+                            }
 						} label: {
 							HStack {
 								Label(menu.title, image: menu.icon)
