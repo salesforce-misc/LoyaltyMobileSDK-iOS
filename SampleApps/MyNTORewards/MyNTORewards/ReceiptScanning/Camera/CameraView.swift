@@ -45,7 +45,7 @@ struct CameraView: View {
                             .padding(10)
                             .foregroundColor(.white)
                     }
-					.accessibilityIdentifier(AppAccessibilty.receipts.closeCameraButton)
+					.accessibilityIdentifier(AppAccessibilty.Receipts.closeCameraButton)
                     .buttonStyle(CircularButtonStyle())
                     .padding(.leading, 20)
 
@@ -83,7 +83,7 @@ struct CameraView: View {
                             .cornerRadius(10, corners: .allCorners)
                             .padding(.all, 15)
                     }
-					.accessibilityIdentifier(AppAccessibilty.receipts.chooseFromPhotos)
+					.accessibilityIdentifier(AppAccessibilty.Receipts.chooseFromPhotos)
                     .padding(.leading, 20)
                     .sheet(isPresented: $showPhotoPicker) {
                         ImagePickerView(image: self.$capturedImage, showCapturedImage: self.$showCapturedImage, sourceType: .photoLibrary)
@@ -116,7 +116,7 @@ struct CameraView: View {
                         }
                         
                     }
-					.accessibilityIdentifier(AppAccessibilty.receipts.cameraShutterButton)
+					.accessibilityIdentifier(AppAccessibilty.Receipts.cameraShutterButton)
 
                     Spacer()
                     

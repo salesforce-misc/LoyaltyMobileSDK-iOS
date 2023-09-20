@@ -136,10 +136,10 @@ enum AppAccessibilty {
         static let description = "description"
     }
 	
-	enum receipts {
+	enum Receipts {
 		static let searchBar = "receipts_search_bar"
 		static let newButton = "new_button"
-		static let receiptsViewTitle = "receipts_view_title"
+		static let receiptsViewTitle = "receipts_title"
 		static let chooseFromPhotos = "choose_from_photos"
 		static let closeCameraButton = "close_camera_button"
 		static let cameraShutterButton = "camera_shutter_button"
