@@ -23,7 +23,8 @@ struct MoreView: View {
 //        MenuItem(icon: "ic-address", title: "Addresses", accessibilityIdentifier: AppAccessibilty.More.address),
 //        MenuItem(icon: "ic-card", title: "Payment Methods", accessibilityIdentifier: AppAccessibilty.More.paymentMethod),
 //        MenuItem(icon: "ic-orders", title: "Orders", accessibilityIdentifier: AppAccessibilty.More.orders),
-		MenuItem(icon: "ic-receipts", title: "Receipts", accessibilityIdentifier: AppAccessibilty.More.receipts)
+		MenuItem(icon: "ic-receipts", title: "Receipts", accessibilityIdentifier: AppAccessibilty.More.receipts),
+        MenuItem(icon: "ic-game", title: "Game Zone", accessibilityIdentifier: AppAccessibilty.More.game)
 //        MenuItem(icon: "ic-case", title: "Support", accessibilityIdentifier: AppAccessibilty.More.support),
 //        MenuItem(icon: "ic-heart", title: "Favorites", accessibilityIdentifier: AppAccessibilty.More.favourites)
     ]
@@ -49,6 +50,8 @@ struct MoreView: View {
                             switch menu.title {
                             case "Receipts":
                                 routerPath.navigate(to: .receipts)
+                            case "Game Zone":
+                                routerPath.navigate(to: .gameZone)
                             default:
                                 break
                             }
@@ -104,5 +107,6 @@ struct MoreView_Previews: PreviewProvider {
     static var previews: some View {
         MoreView()
             .environmentObject(dev.rootVM)
+            .environmentObject(dev.routerPath)
     }
 }

@@ -14,7 +14,10 @@ extension View {
 			switch destination {
 			case .receipts:
 				ReceiptsView()
+            case .gameZone:
+                GameZoneView()
 			}
+            
 		}
 	}
 	

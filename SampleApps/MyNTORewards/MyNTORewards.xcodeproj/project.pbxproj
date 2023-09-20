@@ -118,6 +118,10 @@
 		29AC2F0528F8B6E6003F56F6 /* AllRedeemPointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2F0428F8B6E6003F56F6 /* AllRedeemPointsView.swift */; };
 		29AC2F0728F8B70D003F56F6 /* AllBenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2F0628F8B70D003F56F6 /* AllBenefitsView.swift */; };
 		29AC2F0928F8B724003F56F6 /* AllBadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2F0828F8B724003F56F6 /* AllBadgesView.swift */; };
+		29AF68C72ABA4AA20021DC09 /* GameZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AF68C62ABA4AA20021DC09 /* GameZoneView.swift */; };
+		29AF68C92ABA4CEF0021DC09 /* GameZoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AF68C82ABA4CEF0021DC09 /* GameZoneViewModel.swift */; };
+		29AF68CB2ABA53130021DC09 /* GameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AF68CA2ABA53130021DC09 /* GameCardView.swift */; };
+		29AF68CD2ABA64A30021DC09 /* FortuneWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AF68CC2ABA64A30021DC09 /* FortuneWheelView.swift */; };
 		29B1CE432A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B1CE422A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift */; };
 		29B427D429109095009CC587 /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B427D329109095009CC587 /* TransactionViewModel.swift */; };
 		29B427D629109E60009CC587 /* PromotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B427D529109E60009CC587 /* PromotionViewModel.swift */; };
@@ -371,6 +375,10 @@
 		29AC2F0428F8B6E6003F56F6 /* AllRedeemPointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRedeemPointsView.swift; sourceTree = "<group>"; };
 		29AC2F0628F8B70D003F56F6 /* AllBenefitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBenefitsView.swift; sourceTree = "<group>"; };
 		29AC2F0828F8B724003F56F6 /* AllBadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBadgesView.swift; sourceTree = "<group>"; };
+		29AF68C62ABA4AA20021DC09 /* GameZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneView.swift; sourceTree = "<group>"; };
+		29AF68C82ABA4CEF0021DC09 /* GameZoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneViewModel.swift; sourceTree = "<group>"; };
+		29AF68CA2ABA53130021DC09 /* GameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCardView.swift; sourceTree = "<group>"; };
+		29AF68CC2ABA64A30021DC09 /* FortuneWheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneWheelView.swift; sourceTree = "<group>"; };
 		29B1CE422A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceRequest+PercentEncoding.swift"; sourceTree = "<group>"; };
 		29B427D329109095009CC587 /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
 		29B427D529109E60009CC587 /* PromotionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewModel.swift; sourceTree = "<group>"; };
@@ -584,6 +592,7 @@
 				296D393828DCE9890078C88E /* UICompnents */,
 				3F714D4B29FA0F6F00CD39E7 /* Checkout */,
 				3F667E072A85261B00267958 /* ReceiptScanning */,
+				29AF68C42ABA4A460021DC09 /* GameZone */,
 				216F219328B6186400DAA66D /* Views */,
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
 				3F3805B12A7A6D2400223808 /* RouterPath.swift */,
@@ -838,6 +847,25 @@
 				3F714D6E2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift */,
 			);
 			path = LoyaltyNavigationLink;
+			sourceTree = "<group>";
+		};
+		29AF68C42ABA4A460021DC09 /* GameZone */ = {
+			isa = PBXGroup;
+			children = (
+				29AF68C52ABA4A6D0021DC09 /* FortuneWheel */,
+				29AF68C62ABA4AA20021DC09 /* GameZoneView.swift */,
+				29AF68C82ABA4CEF0021DC09 /* GameZoneViewModel.swift */,
+				29AF68CA2ABA53130021DC09 /* GameCardView.swift */,
+			);
+			path = GameZone;
+			sourceTree = "<group>";
+		};
+		29AF68C52ABA4A6D0021DC09 /* FortuneWheel */ = {
+			isa = PBXGroup;
+			children = (
+				29AF68CC2ABA64A30021DC09 /* FortuneWheelView.swift */,
+			);
+			path = FortuneWheel;
 			sourceTree = "<group>";
 		};
 		3F16D95E2A9D9471003DA01A /* Components */ = {
@@ -1274,10 +1302,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29AF68C72ABA4AA20021DC09 /* GameZoneView.swift in Sources */,
 				29AC2EF928F8901A003F56F6 /* LoyaltyNavBarView.swift in Sources */,
 				293293CD2A13EDAC00244BE1 /* ExpiryDatePickerView.swift in Sources */,
 				2984C9482954F091009669EF /* Date+Extensions.swift in Sources */,
 				299B38DE28EB8D4900E45D97 /* CreateNewPasswordView.swift in Sources */,
+				29AF68CD2ABA64A30021DC09 /* FortuneWheelView.swift in Sources */,
 				3F16D9602A9D96A3003DA01A /* ProcessedReceiptListWithHeader.swift in Sources */,
 				3F714D4429FA0F4A00CD39E7 /* ProductHeaderView.swift in Sources */,
 				3F714D4929FA0F4A00CD39E7 /* ProductView.swift in Sources */,
@@ -1301,6 +1331,7 @@
 				3F5002B72A5FC82800E12AE4 /* ReceiptSearchBar.swift in Sources */,
 				292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */,
 				AFC75D3429D458DF003CC86A /* ShippingMethodModel.swift in Sources */,
+				29AF68CB2ABA53130021DC09 /* GameCardView.swift in Sources */,
 				292ADC72294C04AB00753541 /* VocherModel+VoucherValue.swift in Sources */,
 				3F2D8B702A651E46008F5AE0 /* ProcessedReceiptView.swift in Sources */,
 				292ADC6E294BFD7700753541 /* PreviewProvider.swift in Sources */,
@@ -1402,6 +1433,7 @@
 				298D5EF429CCF94D0062F16E /* Keychain.swift in Sources */,
 				293F643329DCDAF8001AC795 /* ForceClient+Image.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
+				29AF68C92ABA4CEF0021DC09 /* GameZoneViewModel.swift in Sources */,
 				3F714D4529FA0F4A00CD39E7 /* ProductReviewView.swift in Sources */,
 				2955346329E7809400CFA391 /* KeychainManagerProtocol.swift in Sources */,
 				2955346529E788C100CFA391 /* ForceConnectedAppKeychainManager.swift in Sources */,
