@@ -56,8 +56,8 @@ struct FortuneWheelView: View {
                         // Fortune Wheel Segments
                         ZStack {
                             ForEach(0..<colors.count, id: \.self) { index in
-                                let startAngle = 360.0 / Double(colors.count) * Double(index)
-                                let endAngle = 360.0 / Double(colors.count) * Double(index + 1)
+                                let startAngle = (360.0 / Double(colors.count) * Double(index)) - 90.0
+                                let endAngle = (360.0 / Double(colors.count) * Double(index + 1)) - 90.0
 
                                 WheelSegment(startAngle: startAngle,
                                              endAngle: endAngle,
@@ -68,11 +68,17 @@ struct FortuneWheelView: View {
                         .rotationEffect(Angle(degrees: rotationAngle))
                         
                         // Triangle Arrow Indicator
-                        Triangle()
-                            .fill(Color(hex: "#23475F"))
-                            .frame(width: 60, height: 60)
-                            .overlay(Triangle().stroke(Color.white, lineWidth: 5))
-                            .offset(y: -45)
+                        ZStack {
+                            Triangle()
+                                .fill(Color.white)
+                                .frame(width: 70, height: 70)  // Increase these dimensions by the stroke width
+                                .offset(y: -50)
+                                
+                            Triangle()
+                                .fill(Color(hex: "#23475F"))
+                                .frame(width: 60, height: 60)
+                                .offset(y: -45)
+                        }
                             
                         // Spin Button
                         Button {
