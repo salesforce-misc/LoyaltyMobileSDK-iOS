@@ -15,6 +15,7 @@ struct ReceiptSearchBar: View {
 			TextField(StringConstants.Receipts.searchPlaceholder, text: $fieldValue)
 				.font(.receiptSearchText)
 				.accessibilityIdentifier(AppAccessibilty.Receipts.searchBar)
+                .disableAutocorrection(true)
 			if !fieldValue.isEmpty {
 				Button {
 					fieldValue = ""

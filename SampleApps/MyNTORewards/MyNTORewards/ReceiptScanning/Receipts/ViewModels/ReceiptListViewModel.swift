@@ -21,7 +21,6 @@ class ReceiptListViewModel: ObservableObject {
 	@Published var searchText: String = "" {
 		didSet {
             if oldValue != searchText {
-                Logger.debug("Old Value: \(oldValue), New Value: \(searchText)")
                 filter(query: searchText)
             }
 		}
@@ -45,11 +44,14 @@ class ReceiptListViewModel: ObservableObject {
 		self.soqlManager = soqlManager ?? SOQLManager(forceClient: self.forceClient)
 	}
 	
-	func filter(query: String) {
+	private func filter(query: String) {
 		let trimmedQuery = query.trimmingCharacters(in: CharacterSet(charactersIn: " "))
-		filteredReceipts = trimmedQuery.isEmpty ? receipts : receipts.filter { $0.receiptId.lowercased().contains(trimmedQuery.lowercased()) }
-		Logger.debug("\(filteredReceipts.count) receipts found for search text of '\(query)'")
-	}
+		filteredReceipts = trimmedQuery.isEmpty 
+            ? receipts
+            : receipts.filter {
+                $0.processedAwsReceipt?.lowercased().contains(trimmedQuery.lowercased()) ?? false
+            }
+    }
 	
 	private func setReceipts(receipts: [Receipt]) {
 		self.receipts = receipts

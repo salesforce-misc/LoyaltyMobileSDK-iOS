@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Receipt: Identifiable, Codable {
+struct Receipt: Identifiable, Codable, Equatable {
 	let id: String
 	let receiptId: String
 	let name: String
