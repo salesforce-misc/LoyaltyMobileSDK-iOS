@@ -199,6 +199,7 @@ class DeveloperPreview {
     let camVM = CameraViewModel()
     let routerPath = RouterPath()
     let receiptVM = ReceiptViewModel()
+	let receiptListVM = ReceiptListViewModel()
     
     private init() {
         setMember(member: member)
