@@ -21,7 +21,7 @@ struct ProcessedReceiptView: View {
 				VStack {
 					header(receipt: processedReceipt)
 					ProcessedReceiptList(eligibleItems: viewModel.eligibleItems,
-										 inEligibleItems: viewModel.inEligibleItems)
+										 ineligibleItems: viewModel.inEligibleItems)
 					.padding()
 					Spacer()
 					submitButton(receipt: processedReceipt)

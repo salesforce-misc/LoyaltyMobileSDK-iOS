@@ -207,7 +207,7 @@ class DeveloperPreview {
 											  lineItemPrice: "$30",
 											  isEligible: true)
 	]
-	let inEligibleItems = [ProcessedReceiptItem(quantity: "4",
+	let ineligibleItems = [ProcessedReceiptItem(quantity: "4",
 												productName: "Nike Shoes",
 												price: "$20",
 												lineItemPrice: "$30",
@@ -238,7 +238,7 @@ class DeveloperPreview {
         promotionVM.promotions = [promotion]
 		processedReceiptVM.processedReceipt = processedReceipt
 		processedReceiptVM.eligibleItems = eligibleItems
-		processedReceiptVM.inEligibleItems = inEligibleItems
+		processedReceiptVM.inEligibleItems = ineligibleItems
     }
     
     func setMember(member: CommunityMemberModel) {
