@@ -21,7 +21,6 @@ class ReceiptListViewModel: ObservableObject {
 	@Published var searchText: String = "" {
 		didSet {
             if oldValue != searchText {
-                Logger.debug("Old Value: \(oldValue), New Value: \(searchText)")
                 filter(query: searchText)
             }
 		}
@@ -58,8 +57,7 @@ class ReceiptListViewModel: ObservableObject {
 	
 	func filter(query: String) {
 		let trimmedQuery = query.trimmingCharacters(in: CharacterSet(charactersIn: " "))
-		filteredReceipts = trimmedQuery.isEmpty ? receipts : receipts.filter { $0.receiptId.lowercased().contains(trimmedQuery.lowercased()) }
-		Logger.debug("\(filteredReceipts.count) receipts found for search text of '\(query)'")
+		filteredReceipts = trimmedQuery.isEmpty ? receipts : receipts.filter { $0.processedAwsReceipt?.lowercased().contains(trimmedQuery.lowercased()) ?? false }
 	}
 	
     func getQuery(membershipNumber: String) -> String {
