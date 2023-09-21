@@ -1,5 +1,5 @@
 //
-//  ProcessedReceiptListWithHeader.swift
+//  ProcessedReceiptList.swift
 //  MyNTORewards
 //
 //  Created by Vasanthkumar Velusamy on 29/08/23.
@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ProcessedReceiptList: View {
 	var eligibleItems: [ProcessedReceiptItem] = []
-	var inEligibleItems: [ProcessedReceiptItem] = []
+	var ineligibleItems: [ProcessedReceiptItem] = []
 	private let eligibleItemsTitle = "Eligible Items found in the receipt"
-	private let inEligibleItemsTitle = "Non Eligible Items found in the receipt"
+	private let ineligibleItemsTitle = "Non Eligible Items found in the receipt"
 	
 	var body: some View {
 		VStack {
@@ -21,8 +21,8 @@ struct ProcessedReceiptList: View {
 					table(items: eligibleItems, title: eligibleItemsTitle)
 				}
 				space
-				if !inEligibleItems.isEmpty  {
-					table(items: inEligibleItems, title: inEligibleItemsTitle)
+				if !ineligibleItems.isEmpty {
+					table(items: ineligibleItems, title: ineligibleItemsTitle)
 				}
 				space
 			}
@@ -67,7 +67,7 @@ struct ProcessedReceiptList_Previews: PreviewProvider {
 																  productName: "Converse shoes",
 																  price: "$599",
 																  lineItemPrice: "$599", isEligible: true)],
-							 inEligibleItems: [ProcessedReceiptItem(quantity: "1",
+							 ineligibleItems: [ProcessedReceiptItem(quantity: "1",
 																	productName: "Converse shoes",
 																	price: "$599",
 																	lineItemPrice: "$599", isEligible: true)]
@@ -77,7 +77,7 @@ struct ProcessedReceiptList_Previews: PreviewProvider {
 																  price: "$599",
 																  lineItemPrice: "$599", isEligible: true)]
 		)
-		ProcessedReceiptList(inEligibleItems: [ProcessedReceiptItem(quantity: "1",
+		ProcessedReceiptList(ineligibleItems: [ProcessedReceiptItem(quantity: "1",
 																	productName: "Converse shoes",
 																	price: "$599",
 																	lineItemPrice: "$599", isEligible: true)]

@@ -47,7 +47,7 @@ struct ReceiptDetailView: View {
 				TabView(selection: $tabIndex) {
 					if processedReceiptViewModel.processedAwsResponse != nil {
 						ProcessedReceiptList(eligibleItems: processedReceiptViewModel.eligibleItems,
-											 inEligibleItems: processedReceiptViewModel.inEligibleItems)
+											 ineligibleItems: processedReceiptViewModel.inEligibleItems)
 							.backgroundStyle(Color.theme.background)
 							.padding(20)
 							.tag(0)

@@ -8,7 +8,6 @@
 import Foundation
 import LoyaltyMobileSDK
 
-
 enum ReceiptStatus: String {
 	case manualReview = "Manual Review"
 	case draft = "Draft"
