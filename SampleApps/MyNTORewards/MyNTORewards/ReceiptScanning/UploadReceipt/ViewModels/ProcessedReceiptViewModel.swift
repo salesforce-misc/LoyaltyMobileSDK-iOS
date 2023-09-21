@@ -8,7 +8,6 @@
 import Foundation
 import LoyaltyMobileSDK
 
-
 enum ReceiptStatus: String {
 	case manualReview = "Manual Review"
 	case draft = "Draft"
@@ -29,15 +28,17 @@ final class ProcessedReceiptViewModel: ObservableObject {
     private let authManager: ForceAuthenticator
     private var forceClient: ForceClient
     private let localFileManager: FileManagerProtocol
+	private let soqlManager: SOQLManager
     
     init(
         localFileManager: FileManagerProtocol = LocalFileManager.instance,
         authManager: ForceAuthenticator = ForceAuthManager.shared,
-        forceClient: ForceClient? = nil
+        forceClient: ForceClient? = nil, soqlManager: SOQLManager? = nil
     ) {
         self.localFileManager = localFileManager
         self.authManager = authManager
         self.forceClient = forceClient ?? ForceClient(auth: authManager)
+		self.soqlManager = soqlManager ?? SOQLManager(forceClient: self.forceClient)
     }
     
     func clearProcessedReceipt() {
@@ -82,7 +83,9 @@ final class ProcessedReceiptViewModel: ObservableObject {
 		return (eligibleItems, inEligibleItems)
 	}
 	
-    func updateStatus(receiptId: String, status: ReceiptStatus, comments: String = "") async throws -> Bool {
+    func updateStatus(receiptId: String?, status: ReceiptStatus, comments: String = "") async throws -> Bool {
+		guard let receiptId = receiptId else { throw CommonError.requestFailed(message: "Receipt Id not found") }
+		
 		let body = [
 			"receiptId": receiptId,
 			"status": status.rawValue,
@@ -95,4 +98,24 @@ final class ProcessedReceiptViewModel: ObservableObject {
 		isSubmittedForManualReview = "Success" == response.status
 		return isSubmittedForManualReview
 	}
+	
+	func wait(
+		until status: ReceiptStatus,
+		forReceiptId receiptId: String,
+		membershipNumber: String,
+		delay seconds: Double,
+		retryCount: Int) async -> Receipt? {
+			var retryCount = retryCount
+			repeat {
+				retryCount -= 1
+				do {
+					try await Task.sleep(nanoseconds: UInt64(seconds * Double(NSEC_PER_SEC)))
+					let receipt = try await soqlManager.getReceipt(membershipNumber: membershipNumber, id: receiptId)
+					if receipt?.status == status.rawValue { return receipt }
+				} catch {
+					Logger.debug("Error: Unable to verify status, \(error)")
+				}
+			} while retryCount > 0
+			return nil
+		}
 }

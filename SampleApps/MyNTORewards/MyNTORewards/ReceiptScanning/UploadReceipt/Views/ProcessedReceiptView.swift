@@ -60,7 +60,23 @@ struct ProcessedReceiptView: View {
 		Text(StringConstants.Receipts.submitButton)
 			.onTapGesture {
 				Task {
-					await updateStatus(receipt: receipt, status: .inProgress)
+					do {
+						isLoading = true
+						let success = try await viewModel.updateStatus(receiptId: receipt.receiptSFDCId, status: .inProgress)
+						if success {
+							let receipt = await viewModel.wait(until: .processed,
+												 forReceiptId: receipt.receiptSFDCId ?? "",
+												 membershipNumber: rootViewModel.member?.membershipNumber ?? "",
+												 delay: 2,
+												 retryCount: 5)
+							viewModel.receiptState = .submitted(receipt?.totalPoints)
+							try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "",
+																	   forced: true)
+						}
+						isLoading = false
+					} catch {
+						isLoading = false
+					}
 				}
 			}
 			.longFlexibleButtonStyle()
@@ -71,7 +87,17 @@ struct ProcessedReceiptView: View {
 		Button(StringConstants.Receipts.tryAgainButton) {
 			Task {
 				routerPath.presentedSheet = nil
-				await updateStatus(receipt: receipt, status: .cancelled)
+				do {
+					isLoading = true
+					let success = try await viewModel.updateStatus(receiptId: receipt.receiptSFDCId, status: .cancelled)
+					if success {
+						try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "",
+																   forced: true)
+					}
+					isLoading = false
+				} catch {
+					isLoading = false
+				}
 			}
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 				cameraModel.showCamera = true
@@ -79,21 +105,6 @@ struct ProcessedReceiptView: View {
 		}
 		.foregroundColor(.black)
 		.accessibilityIdentifier(AppAccessibilty.Receipts.tryAgainButtonProcessedReceipt)
-	}
-	
-	private func updateStatus(receipt: ProcessedReceipt, status: ReceiptStatus) async {
-		do {
-			guard let receiptSFDCId = receipt.receiptSFDCId else { return }
-			isLoading = true
-			let success = try await viewModel.updateStatus(receiptId: receiptSFDCId, status: status)
-			if success {
-				viewModel.receiptState = .submitted
-				try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "", forced: true)
-			}
-			isLoading = false
-		} catch {
-			isLoading = false
-		}
 	}
 	
 	private var errorView: some View {

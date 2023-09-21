@@ -38,5 +38,5 @@ struct Receipt: Identifiable, Codable {
 enum ReceiptState {
 	case processing
 	case processed
-	case submitted
+	case submitted(Double?)
 }
