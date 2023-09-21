@@ -19,42 +19,13 @@ struct ProcessedReceiptView: View {
         if let processedReceipt = viewModel.processedReceipt {
 			ZStack {
 				VStack {
-					VStack(alignment: .leading, spacing: 20) {
-						Text("Receipt \(processedReceipt.receiptNumber)")
-							.font(.offerTitle)
-							.accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberLabel)
-						HStack {
-							Text("Store: \(processedReceipt.storeName)")
-								.accessibilityIdentifier(AppAccessibilty.Receipts.storeLabel)
-							Spacer()
-							Text("Date: \(processedReceipt.receiptDate)")
-								.accessibilityIdentifier(AppAccessibilty.Receipts.receiptDate)
-						}
-						.font(.offerText)
-					}
-					.padding(.horizontal)
-					ProcessedReceiptTableView(items: processedReceipt.lineItem)
+					header(receipt: processedReceipt)
+					ProcessedReceiptList(eligibleItems: viewModel.eligibleItems,
+										 ineligibleItems: viewModel.inEligibleItems)
+					.padding()
 					Spacer()
-					Text(StringConstants.Receipts.submitButton)
-						.onTapGesture {
-							Task {
-								await updateStatus(status: .inProgress, for: processedReceipt)
-							}
-						}
-						.longFlexibleButtonStyle()
-						.accessibilityIdentifier(AppAccessibilty.Receipts.submitReceiptButton)
-					Button(StringConstants.Receipts.tryAgainButton) {
-						// button action
-						Task {
-							routerPath.presentedSheet = nil
-							await updateStatus(status: .cancelled, for: processedReceipt)
-						}
-						DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-							cameraModel.showCamera = true
-						}
-					}
-					.foregroundColor(.black)
-					.accessibilityIdentifier(AppAccessibilty.Receipts.tryAgainButtonProcessedReceipt)
+					submitButton(receipt: processedReceipt)
+					tryAgainButton(receipt: processedReceipt)
 				}
 				.padding(.vertical, 20)
 				.background(Color.theme.background)
@@ -65,36 +36,52 @@ struct ProcessedReceiptView: View {
 						.opacity(0.7)
 				}
 			}
-        } else {
-            VStack {
-                Spacer()
-                ProcessingErrorView(message1: StringConstants.Receipts.processingErrorMessageLine1,
-                                    message2: StringConstants.Receipts.processingErrorMessageLine2)
-                Spacer()
-                Spacer()
-                Text(StringConstants.Receipts.tryAgainButton)
-                    .onTapGesture {
-                        // button action
-                        routerPath.presentedSheet = nil
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            cameraModel.showCamera = true
-                        }
-                    }
-                    .longFlexibleButtonStyle()
-                Button {
-                    routerPath.presentedSheet = nil
-                } label: {
-                    Text(StringConstants.Receipts.backButton)
-                        .foregroundColor(.black)
-                }
-                .padding(.bottom, 20)
-                .accessibilityIdentifier(AppAccessibilty.Receipts.backButton)
-            }
-            
-        }
+        } else { errorView }
 	}
 	
-	func updateStatus(status: ReceiptStatus, for receipt: ProcessedReceipt) async {
+	private func header(receipt: ProcessedReceipt) -> some View {
+		VStack(alignment: .leading, spacing: 20) {
+			Text("Receipt \(receipt.receiptNumber)")
+				.font(.offerTitle)
+				.accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberLabel)
+			HStack {
+				Text("Store: \(receipt.storeName)")
+					.accessibilityIdentifier(AppAccessibilty.Receipts.storeLabel)
+				Spacer()
+				Text("Date: \(receipt.receiptDate)")
+					.accessibilityIdentifier(AppAccessibilty.Receipts.receiptDate)
+			}
+			.font(.offerText)
+		}
+		.padding(.horizontal)
+	}
+	
+	private func submitButton(receipt: ProcessedReceipt) -> some View {
+		Text(StringConstants.Receipts.submitButton)
+			.onTapGesture {
+				Task {
+					await updateStatus(receipt: receipt, status: .inProgress)
+				}
+			}
+			.longFlexibleButtonStyle()
+			.accessibilityIdentifier(AppAccessibilty.Receipts.submitReceiptButton)
+	}
+	
+	private func tryAgainButton(receipt: ProcessedReceipt) -> some View {
+		Button(StringConstants.Receipts.tryAgainButton) {
+			Task {
+				routerPath.presentedSheet = nil
+				await updateStatus(receipt: receipt, status: .cancelled)
+			}
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+				cameraModel.showCamera = true
+			}
+		}
+		.foregroundColor(.black)
+		.accessibilityIdentifier(AppAccessibilty.Receipts.tryAgainButtonProcessedReceipt)
+	}
+	
+	private func updateStatus(receipt: ProcessedReceipt, status: ReceiptStatus) async {
 		do {
 			guard let receiptSFDCId = receipt.receiptSFDCId else { return }
 			isLoading = true
@@ -106,6 +93,33 @@ struct ProcessedReceiptView: View {
 			isLoading = false
 		} catch {
 			isLoading = false
+		}
+	}
+	
+	private var errorView: some View {
+		VStack {
+			Spacer()
+			ProcessingErrorView(message1: StringConstants.Receipts.processingErrorMessageLine1,
+								message2: StringConstants.Receipts.processingErrorMessageLine2)
+			Spacer()
+			Spacer()
+			Text(StringConstants.Receipts.tryAgainButton)
+				.onTapGesture {
+					// button action
+					routerPath.presentedSheet = nil
+					DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+						cameraModel.showCamera = true
+					}
+				}
+				.longFlexibleButtonStyle()
+			Button {
+				routerPath.presentedSheet = nil
+			} label: {
+				Text(StringConstants.Receipts.backButton)
+					.foregroundColor(.black)
+			}
+			.padding(.bottom, 20)
+			.accessibilityIdentifier(AppAccessibilty.Receipts.backButton)
 		}
 	}
 }
