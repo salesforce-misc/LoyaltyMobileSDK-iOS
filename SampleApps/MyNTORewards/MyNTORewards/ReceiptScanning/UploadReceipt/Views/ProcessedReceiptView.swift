@@ -25,7 +25,7 @@ struct ProcessedReceiptView: View {
 					.padding()
 					Spacer()
 					submitButton(receipt: processedReceipt)
-					tryAgainButton
+					tryAgainButton(receipt: processedReceipt)
 				}
 				.padding(.vertical, 20)
 				.background(Color.theme.background)
@@ -39,7 +39,7 @@ struct ProcessedReceiptView: View {
         } else { errorView }
 	}
 	
-	func header(receipt: ProcessedReceipt) -> some View {
+	private func header(receipt: ProcessedReceipt) -> some View {
 		VStack(alignment: .leading, spacing: 20) {
 			Text("Receipt \(receipt.receiptNumber)")
 				.font(.offerTitle)
@@ -56,11 +56,36 @@ struct ProcessedReceiptView: View {
 		.padding(.horizontal)
 	}
 	
-	private func submit(receipt: ProcessedReceipt) async {
+	private func submitButton(receipt: ProcessedReceipt) -> some View {
+		Text(StringConstants.Receipts.submitButton)
+			.onTapGesture {
+				Task {
+					await updateStatus(receipt: receipt, status: .inProgress)
+				}
+			}
+			.longFlexibleButtonStyle()
+			.accessibilityIdentifier(AppAccessibilty.Receipts.submitReceiptButton)
+	}
+	
+	private func tryAgainButton(receipt: ProcessedReceipt) -> some View {
+		Button(StringConstants.Receipts.tryAgainButton) {
+			Task {
+				routerPath.presentedSheet = nil
+				await updateStatus(receipt: receipt, status: .cancelled)
+			}
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+				cameraModel.showCamera = true
+			}
+		}
+		.foregroundColor(.black)
+		.accessibilityIdentifier(AppAccessibilty.Receipts.tryAgainButtonProcessedReceipt)
+	}
+	
+	private func updateStatus(receipt: ProcessedReceipt, status: ReceiptStatus) async {
 		do {
 			guard let receiptSFDCId = receipt.receiptSFDCId else { return }
 			isLoading = true
-			let success = try await viewModel.submitForProcessing(receiptId: receiptSFDCId)
+			let success = try await viewModel.updateStatus(receiptId: receiptSFDCId, status: status)
 			if success {
 				viewModel.receiptState = .submitted
 				try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "", forced: true)
@@ -71,34 +96,7 @@ struct ProcessedReceiptView: View {
 		}
 	}
 	
-	func submitButton(receipt: ProcessedReceipt) -> some View {
-		Text(StringConstants.Receipts.submitButton)
-			.onTapGesture {
-				Task {
-					await submit(receipt: receipt)
-				}
-			}
-			.longFlexibleButtonStyle()
-			.accessibilityIdentifier(AppAccessibilty.Receipts.submitReceiptButton)
-	}
-	
-	var tryAgainButton: some View {
-		Button(StringConstants.Receipts.tryAgainButton) {
-			Task {
-				routerPath.presentedSheet = nil
-				do {
-					try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "", forced: true)
-				}
-			}
-			DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-				cameraModel.showCamera = true
-			}
-		}
-		.foregroundColor(.black)
-		.accessibilityIdentifier(AppAccessibilty.Receipts.tryAgainButtonProcessedReceipt)
-	}
-	
-	var errorView: some View {
+	private var errorView: some View {
 		VStack {
 			Spacer()
 			ProcessingErrorView(message1: StringConstants.Receipts.processingErrorMessageLine1,
