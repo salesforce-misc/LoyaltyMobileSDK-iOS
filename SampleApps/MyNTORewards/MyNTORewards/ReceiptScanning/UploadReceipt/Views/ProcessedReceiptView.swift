@@ -20,7 +20,9 @@ struct ProcessedReceiptView: View {
 			ZStack {
 				VStack {
 					header(receipt: processedReceipt)
-					table(receipt: processedReceipt)
+					ProcessedReceiptList(eligibleItems: viewModel.eligibleItems,
+										 inEligibleItems: viewModel.inEligibleItems)
+					.padding()
 					Spacer()
 					submitButton(receipt: processedReceipt)
 					tryAgainButton
@@ -52,30 +54,6 @@ struct ProcessedReceiptView: View {
 			.font(.offerText)
 		}
 		.padding(.horizontal)
-	}
-	
-	func table(receipt: ProcessedReceipt) -> some View {
-		VStack(spacing: 0) {
-			dottedLine
-			ReceiptTableTitleRow()
-				.font(.receiptItemsTitleFont)
-			dottedLine
-			ScrollView {
-				ProcessedReceiptList(items: receipt.lineItem)
-				dottedLine
-			}
-			.frame(maxHeight: .infinity)
-		}
-		.background(.white)
-		.cornerRadius(4)
-		.padding()
-	}
-	
-	var dottedLine: some View {
-		Rectangle()
-			.strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [4, 6]))
-			.frame(height: 1)
-			.padding()
 	}
 	
 	private func submit(receipt: ProcessedReceipt) async {
