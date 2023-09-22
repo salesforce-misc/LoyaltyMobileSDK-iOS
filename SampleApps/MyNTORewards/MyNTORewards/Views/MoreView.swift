@@ -86,10 +86,10 @@ struct MoreView: View {
                 .listStyle(.plain)
                 .navigationBarHidden(true)
 				.withAppRouter()
-				.withSheetDestination(sheetDestination: $routerPath.presentedSheet)
 				.environmentObject(rootVM)
-				.environmentObject(routerPath)
             }
+			.environmentObject(routerPath)
+			.withSheetDestination(sheetDestination: $routerPath.presentedSheet)
             .navigationViewStyle(.stack)
             
             if rootVM.isInProgress {
