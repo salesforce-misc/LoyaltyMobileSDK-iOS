@@ -72,12 +72,12 @@ struct FortuneWheelView: View {
                             Triangle()
                                 .fill(Color.white)
                                 .frame(width: 70, height: 70)  // Increase these dimensions by the stroke width
-                                .offset(y: -50)
+                                .offset(y: -40)
                                 
                             Triangle()
                                 .fill(Color(hex: "#23475F"))
                                 .frame(width: 60, height: 60)
-                                .offset(y: -45)
+                                .offset(y: -35)
                         }
                             
                         // Spin Button
@@ -190,10 +190,20 @@ struct WheelSegment: View {
 struct Triangle: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
-        path.move(to: CGPoint(x: rect.midX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.midX, y: rect.minY))
+
+        let heightFactor: CGFloat = 0.8 // Reduce height by adjusting this factor (1.0 is full height)
+        let widthFactor: CGFloat = 1.02 // Increase width by adjusting this factor (1.0 is full width)
+
+        let midX = rect.midX
+        let minY = rect.minY + (rect.height * (1 - heightFactor) / 2)
+        let maxY = rect.maxY - (rect.height * (1 - heightFactor) / 2)
+        let minX = rect.minX + (rect.width * (1 - widthFactor) / 2)
+        let maxX = rect.maxX - (rect.width * (1 - widthFactor) / 2)
+
+        path.move(to: CGPoint(x: midX, y: minY))
+        path.addLine(to: CGPoint(x: minX, y: maxY))
+        path.addLine(to: CGPoint(x: maxX, y: maxY))
+        path.addLine(to: CGPoint(x: midX, y: minY))
         return path
     }
 }
