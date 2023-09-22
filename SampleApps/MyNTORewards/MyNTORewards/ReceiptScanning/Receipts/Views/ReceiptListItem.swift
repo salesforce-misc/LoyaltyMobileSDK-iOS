@@ -24,12 +24,12 @@ struct ReceiptListItem: View {
 
 				Spacer()
 				
-				if receipt.status == "Processed" {
-					Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points")
-				} else {
-					Text(receipt.status)
-						.foregroundColor(receiptVM.getColor(for: receipt.status))
-				}
+                if receipt.status == "Processed" {
+                    Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points").foregroundColor(Color("PointsColor"))
+                } else {
+                    Text(receipt.status == "Manual Review" ? "Submitted for manual review" : receipt.status )
+                        .foregroundColor(receiptVM.getColor(for: receipt.status))
+                }
 			}
 			.font(.transactionDate)
 		}
