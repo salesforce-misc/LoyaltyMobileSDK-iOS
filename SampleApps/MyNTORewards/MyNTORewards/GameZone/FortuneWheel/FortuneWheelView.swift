@@ -118,25 +118,25 @@ struct FortuneWheelView: View {
     }
     
     func spinWheel() {
-        if isSpinning { return } // Return early if already spinning
-                
+        if isSpinning { return }
+
         isSpinning = true
-        // Increase the range of random spins to, for example, 20 to 50 full circles
+
         let randomSpins = Double.random(in: 20...50)
-        
-        // Increase the duration of the spin to, for example, 5 to 10 seconds
         let randomDuration = Double.random(in: 5...10)
         
+        let segmentAngle = 360.0 / Double(colors.count)
         let newAngle = rotationAngle + 360 * randomSpins
+        let remainder = newAngle.truncatingRemainder(dividingBy: 360)
+        let adjustment = (segmentAngle / 2) - (remainder.truncatingRemainder(dividingBy: segmentAngle))
+        let adjustedAngle = newAngle + adjustment
+
         withAnimation(.easeOut(duration: randomDuration)) {
-            rotationAngle = newAngle
+            rotationAngle = adjustedAngle
         }
-        
-        let fullCircles = Int(newAngle / 360)
-        let remainder = newAngle - 360 * Double(fullCircles)
-        activeIndex = Int(remainder / (360.0 / Double(colors.count)))
-        
-        // Set a delay to enable the button again
+
+        activeIndex = Int((remainder + adjustment) / segmentAngle)
+
         DispatchQueue.main.asyncAfter(deadline: .now() + randomDuration) {
             self.isSpinning = false
         }
