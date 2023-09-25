@@ -66,11 +66,10 @@ struct CapturedImageView: View {
                                 do {
                                     try await viewModel.processImage(membershipNumber: rootVM.member?.membershipNumber ?? "", base64Image: base64String)
                                 } catch {
-                                    Logger.error("Failed to process the image")
+                                    Logger.error("Failed to process the image: \(error)")
                                 }
                                 
                             }
-                            // TODO: move to processing screen
                         }
                         
                         // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)

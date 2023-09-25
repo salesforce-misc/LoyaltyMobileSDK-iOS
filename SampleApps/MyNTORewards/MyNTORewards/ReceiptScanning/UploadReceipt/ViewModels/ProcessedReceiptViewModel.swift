@@ -20,6 +20,7 @@ enum ReceiptStatus: String {
 final class ProcessedReceiptViewModel: ObservableObject {
 	@Published var processedAwsResponse: ProcessedAwsResponse?
     @Published var processedReceipt: ProcessedReceipt?
+    @Published var processedError: Error?
 	@Published var isSubmittedForManualReview = false
 	@Published var receiptState: ReceiptState = .processing
 	@Published var eligibleItems = [ProcessedReceiptItem]()
@@ -41,6 +42,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
     
     func clearProcessedReceipt() {
         processedReceipt = nil
+        processedError = nil
     }
     
     func processImage(membershipNumber: String, base64Image: String) async throws {
@@ -62,6 +64,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
             }
         } catch {
 			receiptState = .processed
+            processedError = error
             throw error
         }
     }
