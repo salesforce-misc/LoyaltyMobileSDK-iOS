@@ -14,9 +14,10 @@ struct ProcessedReceiptView: View {
 	@EnvironmentObject var rootViewModel: AppRootViewModel
 	@EnvironmentObject var routerPath: RouterPath
 	@State private var isLoading = false
+	@State private var isError = false
 	
 	var body: some View {
-        if let processedReceipt = viewModel.processedReceipt {
+		if let processedReceipt = viewModel.processedReceipt, !isError {
 			ZStack {
 				VStack {
 					header(receipt: processedReceipt)
@@ -62,7 +63,7 @@ struct ProcessedReceiptView: View {
 				Task {
 					do {
 						isLoading = true
-						let success = try await viewModel.updateStatus(receiptId: receipt.receiptSFDCId, status: .inProgress)
+						let success = try await viewModel.updateStatus(receiptId: nil/* receipt.receiptSFDCId*/, status: .inProgress)
 						if success {
 							let receipt = await viewModel.wait(until: .processed,
 												 forReceiptId: receipt.receiptSFDCId ?? "",
@@ -72,10 +73,11 @@ struct ProcessedReceiptView: View {
 							viewModel.receiptState = .submitted(receipt?.totalPoints)
 							try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "",
 																	   forced: true)
-						}
+						} else { isError = true }
 						isLoading = false
 					} catch {
 						isLoading = false
+						isError = true
 					}
 				}
 			}
