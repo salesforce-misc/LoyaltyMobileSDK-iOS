@@ -15,7 +15,7 @@ struct ReceiptDetailView: View {
 	@State private var showManualReviewRequest = false
 	@State private var showPhotoDownloadedAlert = false
 	@State private var isTableLoading = true
-	var tabbarItems = ["Eligible Items", "Receipt Image"]
+	var tabbarItems = ["Items Detected", "Receipt Image"]
 	let receipt: Receipt
     var body: some View {
 		VStack {
@@ -45,8 +45,9 @@ struct ReceiptDetailView: View {
 			ZStack {
 				Color.theme.background
 				TabView(selection: $tabIndex) {
-					if let processedAwsResponse = processedReceiptViewModel.processedAwsResponse {
-						ProcessedReceiptListWithHeader(processedAwsResponse: processedAwsResponse)
+					if processedReceiptViewModel.processedAwsResponse != nil {
+						ProcessedReceiptList(eligibleItems: processedReceiptViewModel.eligibleItems,
+											 ineligibleItems: processedReceiptViewModel.inEligibleItems)
 							.backgroundStyle(Color.theme.background)
 							.padding(20)
 							.tag(0)

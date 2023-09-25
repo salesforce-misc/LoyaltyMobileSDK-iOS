@@ -43,11 +43,13 @@ struct ProcessedReceiptItem: Codable, Identifiable, Hashable {
     let productName: String
     let price: String?
     let lineItemPrice: String?
+	let isEligible: Bool
     
-    init(quantity: String, productName: String, price: String?, lineItemPrice: String?) {
+	init(quantity: String, productName: String, price: String?, lineItemPrice: String?, isEligible: Bool) {
         self.quantity = quantity
         self.productName = productName
         self.price = price
         self.lineItemPrice = lineItemPrice
+		self.isEligible = isEligible
     }
 }

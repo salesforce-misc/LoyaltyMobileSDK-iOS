@@ -20,7 +20,7 @@ struct ProfileView: View {
 
     var body: some View {
        
-        NavigationView {
+        NavigationStack {
             ZStack {
                 Color.white
                 
@@ -99,7 +99,6 @@ struct ProfileView: View {
             }
             .navigationBarHidden(true)
         }
-        .navigationViewStyle(.stack)
          
     }
     

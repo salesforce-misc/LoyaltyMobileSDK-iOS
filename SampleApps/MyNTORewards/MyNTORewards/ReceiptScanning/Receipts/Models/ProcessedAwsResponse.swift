@@ -8,7 +8,6 @@
 import Foundation
 
 struct ProcessedAwsResponse: Decodable {
-	let totalAmount: String
 	let storeName: String
 	let storeAddress: String
 	let receiptNumber: String

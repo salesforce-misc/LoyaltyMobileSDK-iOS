@@ -93,7 +93,6 @@ struct MoreView: View {
 				.environmentObject(rootVM)
 				.environmentObject(routerPath)
             }
-            .navigationViewStyle(.stack)
             
             if rootVM.isInProgress {
                 ProgressView()

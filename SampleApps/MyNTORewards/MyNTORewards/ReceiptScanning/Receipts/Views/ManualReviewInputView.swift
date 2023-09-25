@@ -70,7 +70,7 @@ struct ManualReviewInputView: View {
 						Task {
 							do {
 								isLoading = true
-								let success = try await processedReceiptViewModel.submitForManualReview(receiptId: receipt.id, comments: comment)
+								let success = try await processedReceiptViewModel.updateStatus(receiptId: receipt.id, status: .manualReview, comments: comment)
 								if success {
 									dismiss()
 									try await receiptListViewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: true)

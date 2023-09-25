@@ -50,6 +50,7 @@ struct ReceiptsView: View {
 			} else {
 				ZStack {
 					ReceiptList()
+						.animation(.default, value: receiptListViewModel.filteredReceipts)
 						.environmentObject(receiptListViewModel)
 						.refreshable {
 							await Task {

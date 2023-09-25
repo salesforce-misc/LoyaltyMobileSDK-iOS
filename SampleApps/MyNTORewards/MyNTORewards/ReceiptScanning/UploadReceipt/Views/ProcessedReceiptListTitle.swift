@@ -1,5 +1,5 @@
 //
-//  ReceiptTableTitleRow.swift
+//  ProcessedReceiptListTitle.swift
 //  MyNTORewards
 //
 //  Created by Vasanthkumar Velusamy on 17/07/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ReceiptTableTitleRow: View {
+struct ProcessedReceiptListTitle: View {
 	var body: some View {
 		HStack {
 			Text("Item")
@@ -29,6 +29,6 @@ struct ReceiptTableTitleRow: View {
 
 struct ReceiptTableTitleRow_Previews: PreviewProvider {
     static var previews: some View {
-        ReceiptTableTitleRow()
+        ProcessedReceiptListTitle()
     }
 }
