@@ -63,7 +63,7 @@ struct ProcessedReceiptView: View {
 				Task {
 					do {
 						isLoading = true
-						let success = try await viewModel.updateStatus(receiptId: nil/* receipt.receiptSFDCId*/, status: .inProgress)
+						let success = try await viewModel.updateStatus(receiptId: receipt.receiptSFDCId, status: .inProgress)
 						if success {
 							let receipt = await viewModel.wait(until: .processed,
 												 forReceiptId: receipt.receiptSFDCId ?? "",
