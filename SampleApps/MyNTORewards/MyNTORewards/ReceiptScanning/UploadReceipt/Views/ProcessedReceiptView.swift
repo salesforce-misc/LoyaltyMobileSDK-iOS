@@ -112,12 +112,18 @@ struct ProcessedReceiptView: View {
 	private var errorView: some View {
 		VStack {
 			Spacer()
-			ProcessingErrorView(message1: StringConstants.Receipts.processingErrorMessageLine1,
-								message2: StringConstants.Receipts.processingErrorMessageLine2)
+            if let error = viewModel.processedError {
+                ProcessingErrorView(message: "\(error.localizedDescription)")
+            } else {
+                ProcessingErrorView(message: StringConstants.Receipts.processingErrorMessage)
+            }
+			
 			Spacer()
 			Spacer()
 			Text(StringConstants.Receipts.tryAgainButton)
 				.onTapGesture {
+                    
+                    viewModel.processedError = nil
 					// button action
 					routerPath.presentedSheet = nil
 					DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -126,6 +132,7 @@ struct ProcessedReceiptView: View {
 				}
 				.longFlexibleButtonStyle()
 			Button {
+                viewModel.processedError = nil
 				routerPath.presentedSheet = nil
 			} label: {
 				Text(StringConstants.Receipts.backButton)

@@ -66,9 +66,8 @@ struct CapturedImageView: View {
                             } catch {
                                 Logger.error("Failed to process the image")
                             }
-                            
                         }
-                       
+                        
                         // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                         withAnimation {
                             showCapturedImage = false
