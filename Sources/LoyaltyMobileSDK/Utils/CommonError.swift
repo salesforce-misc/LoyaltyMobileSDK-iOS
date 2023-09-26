@@ -22,6 +22,7 @@ public enum CommonError: Error, Equatable {
     case unknownException
     case sessionExpired
     case urlEncodingFailed
+    case imageConversionError
 }
 
 extension CommonError: CustomStringConvertible, LocalizedError {
@@ -56,6 +57,8 @@ extension CommonError: CustomStringConvertible, LocalizedError {
             return "You sesssion has expired."
         case .urlEncodingFailed:
             return "Failed to encode the string."
+        case .imageConversionError:
+            return "Failed to convert UIImage to Data."
         }
     }
     
@@ -89,6 +92,8 @@ extension CommonError: CustomStringConvertible, LocalizedError {
             return NSLocalizedString("Your session has expired.", comment: "Session Expired Error")
         case .urlEncodingFailed:
             return NSLocalizedString("Failed to encode the string.", comment: "URL Encoding Error")
+        case .imageConversionError:
+            return NSLocalizedString("Failed to convert UIImage to Data.", comment: "Image Conversion Error")
         }
     }
 }
