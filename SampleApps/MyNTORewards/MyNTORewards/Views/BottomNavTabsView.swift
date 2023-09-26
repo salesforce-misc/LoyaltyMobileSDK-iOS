@@ -18,7 +18,7 @@ struct BottomNavTabsView: View {
 	@State var selectedTab: Int = Tab.home.rawValue
 	
 	var body: some View {
-		NavigationStack {
+		NavigationView {
 			ZStack(alignment: .bottomLeading) {
 				UITabView(selection: $selectedTab) {
 					HomeView(selectedTab: $selectedTab)
@@ -67,6 +67,7 @@ struct BottomNavTabsView: View {
 		.environmentObject(cameraVM)
 		.environmentObject(routerPath)
 		.environmentObject(receiptListViewModel)
+        .navigationViewStyle(.stack)
 	}
 }
 
