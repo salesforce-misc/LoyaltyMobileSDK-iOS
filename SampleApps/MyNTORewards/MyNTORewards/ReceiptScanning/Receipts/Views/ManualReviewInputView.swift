@@ -65,24 +65,27 @@ struct ManualReviewInputView: View {
 				}
 				CommentsInputView(comment: $comment)
 					.padding(8)
-				Text(StringConstants.Receipts.submitForManualReviewButton)
-					.onTapGesture {
-						Task {
-							do {
-								isLoading = true
-								let success = try await processedReceiptViewModel.updateStatus(receiptId: receipt.id, status: .manualReview, comments: comment)
-								if success {
-									dismiss()
-									try await receiptListViewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: true)
-								}
-								isLoading = false
-							} catch {
-								isLoading = false
-								// MARK: handle error
-							}
-						}
-					}
-					.longFlexibleButtonStyle(disabled: comment.isEmpty)
+                Button {
+                    Task {
+                        do {
+                            isLoading = true
+                            let success = try await processedReceiptViewModel.updateStatus(receiptId: receipt.id, status: .manualReview, comments: comment)
+                            if success {
+                                dismiss()
+                                try await receiptListViewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: true)
+                            }
+                            isLoading = false
+                        } catch {
+                            isLoading = false
+                            // MARK: handle error
+                        }
+                    }
+                } label: {
+                    Text(StringConstants.Receipts.submitForManualReviewButton)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .longFlexibleButtonStyle(disabled: comment.isEmpty)
 				Button {
 					dismiss()
 				} label: {
