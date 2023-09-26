@@ -18,88 +18,98 @@ struct ReceiptDetailView: View {
 	var tabbarItems = ["Items Detected", "Receipt Image"]
 	let receipt: Receipt
     var body: some View {
-		VStack {
-			HStack {
-				VStack(alignment: .leading, spacing: 8) {
-					Text("Receipt \(receipt.receiptId)")
-						.font(.transactionText)
-						.accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberText)
-					Text("Date: \(receipt.purchaseDate.toDateString() ?? " - ")")
-						.font(.transactionDate)
-						.accessibilityIdentifier(AppAccessibilty.Receipts.receiptDateText)
-				}
-				Spacer()
-				VStack(alignment: .trailing, spacing: 8) {
-					Text("\(receipt.totalAmount ?? "0")")
-						.font(.transactionText)
-						.accessibilityIdentifier(AppAccessibilty.Receipts.receiptAmountText)
-					Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points")
-						.font(.transactionDate)
-						.accessibilityIdentifier(AppAccessibilty.Receipts.receiptPointsText)
-				}
-				.padding(.trailing, 15)
-			}
-			.padding(.horizontal, 30)
-			.padding(.top, 10)
-			TopTabBar(barItems: tabbarItems, tabIndex: $tabIndex)
-			ZStack {
-				Color.theme.background
-				TabView(selection: $tabIndex) {
-					if processedReceiptViewModel.processedAwsResponse != nil {
-						ProcessedReceiptList(eligibleItems: processedReceiptViewModel.eligibleItems,
-											 ineligibleItems: processedReceiptViewModel.inEligibleItems)
-							.backgroundStyle(Color.theme.background)
-							.padding(20)
-							.tag(0)
-					} else {
-						if isTableLoading {
-							ProgressView()
-								.frame(maxWidth: .infinity, maxHeight: .infinity)
-								.background(Color.theme.background)
-						} else {
-							Text("No Data")
-						}
-					}
-						ZoomableScrollView {
-							LoyaltyAsyncImage(url: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg") { image in
-//							LoyaltyAsyncImage(url: receipt.imageUrl) { image in
-								image
-									.resizable()
-									.aspectRatio(contentMode: .fit)
-							} placeholder: {
-								ProgressView()
-									.frame(maxWidth: .infinity, maxHeight: .infinity)
-							}
-						}
-						.padding(20)
-						.tag(1)
-					
-				}
-				.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-			}
-			Button {
-				showManualReviewRequest = true
-			} label: {
-				Text(isManualReview() ? "Submitted for Manual Review" : "Request a Manual Review")
-					.foregroundColor(isManualReview() ? .gray : .black)
-			}
-			.disabled("Manual Review" == receipt.status)
-			.padding(.top, 10)
-			Button {
-				Task {
-					//TODO: Replace with url from response(receipt.imageURL).
-					let urlString = "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg"
-					await imageVM.getImage(url: urlString)
-					if let image = imageVM.images[urlString.MD5] {
-						UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-						showPhotoDownloadedAlert = true
-					}
-				}
-			} label: {
-				Text("Download Image")
-					.foregroundColor(.black)
-			}
-			.padding(.vertical, 20)
+        VStack {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Receipt \(receipt.receiptId)")
+                        .font(.transactionText)
+                        .accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberText)
+                    HStack {
+                        Text("Date: \(receipt.purchaseDate.toDateString() ?? " - ")")
+                            .font(.transactionDate)
+                            .accessibilityIdentifier(AppAccessibilty.Receipts.receiptDateText)
+                        Spacer()
+                        if(receipt.status == "Manual Review") {
+                            Text("Submitted for Manual Review")
+                                .foregroundColor(Color.theme.receiptStatusPending)
+                                .font(.transactionDate)
+                            
+                        } else {
+                            Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points")
+                                .font(.transactionDate)
+                                .accessibilityIdentifier(AppAccessibilty.Receipts.receiptPointsText)
+                                .foregroundColor(Color("PointsColor"))
+                        }
+
+                    }
+                    
+                }
+            .padding(.horizontal, 30)
+            .padding(.top, 10)
+            TopTabBar(barItems: tabbarItems, tabIndex: $tabIndex)
+            ZStack {
+                Color.theme.background
+                TabView(selection: $tabIndex) {
+                    if processedReceiptViewModel.processedAwsResponse != nil {
+                        ProcessedReceiptList(eligibleItems: processedReceiptViewModel.eligibleItems,
+                                             ineligibleItems: processedReceiptViewModel.inEligibleItems)
+                        .backgroundStyle(Color.theme.background)
+                        .padding(20)
+                        .tag(0)
+                    } else {
+                        if isTableLoading {
+                            ProgressView()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(Color.theme.background)
+                        } else {
+                            Text("No Data")
+                        }
+                    }
+                    ZoomableScrollView {
+                        LoyaltyAsyncImage(url: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg") { image in
+                            //							LoyaltyAsyncImage(url: receipt.imageUrl) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        } placeholder: {
+                            ProgressView()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        }
+                    }
+                    .padding(20)
+                    .tag(1)
+                    
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            }
+            if(tabIndex == 0){
+                Button {
+                showManualReviewRequest = true
+            } label: {
+                Text(isManualReview() ? "Submitted for Manual Review" : "Request a Manual Review")
+                    .foregroundColor(isManualReview() ? .gray : .black)
+            }
+            .padding(.top, 10)
+            .opacity("Manual Review" == receipt.status ? 0 : 1)
+            .padding(.vertical, 20)
+
+            } else {
+                Button {
+                    Task {
+                        //TODO: Replace with url from response(receipt.imageURL).
+                        let urlString = "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg"
+                        await imageVM.getImage(url: urlString)
+                        if let image = imageVM.images[urlString.MD5] {
+                            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                            showPhotoDownloadedAlert = true
+                        }
+                    }
+                } label: {
+                    Text("Download Image")
+                        .foregroundColor(.black)
+                }
+                .padding(.top, 10)
+                .padding(.vertical, 20)
+            }
 		}
 		.onAppear {
 			Task {
