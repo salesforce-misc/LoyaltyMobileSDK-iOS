@@ -82,15 +82,17 @@ struct ReceiptDetailView: View {
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             }
             if(tabIndex == 0){
-                Button {
-                showManualReviewRequest = true
-            } label: {
-                Text(isManualReview() ? "Submitted for Manual Review" : "Request a Manual Review")
-                    .foregroundColor(isManualReview() ? .gray : .black)
-            }
-            .padding(.top, 10)
-            .opacity("Manual Review" == receipt.status ? 0 : 1)
-            .padding(.vertical, 20)
+                if (!isManualReview()){
+                    Button {
+                        showManualReviewRequest = true
+                    } label: {
+                        Text(isManualReview() ? "Submitted for Manual Review" : "Request a Manual Review")
+                            .foregroundColor(isManualReview() ? .gray : .black)
+                    }
+                    .padding(.top, 20)
+                    .opacity("Manual Review" == receipt.status ? 0 : 1)
+                    .padding(.bottom, 20)
+                }
 
             } else {
                 Button {
@@ -107,8 +109,8 @@ struct ReceiptDetailView: View {
                     Text("Download Image")
                         .foregroundColor(.black)
                 }
-                .padding(.top, 10)
-                .padding(.vertical, 20)
+                .padding(.top, 20)
+                .padding(.bottom, 20)
             }
 		}
 		.onAppear {
