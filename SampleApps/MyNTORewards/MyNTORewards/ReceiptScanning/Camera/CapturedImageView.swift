@@ -59,20 +59,16 @@ struct CapturedImageView: View {
                     // Handle processing image
                     if let image = capturedImage {
                         
-                        if let base64String = image.base64String() {
-                            //print(base64String)
-                            viewModel.clearProcessedReceipt()
-                            Task {
-                                do {
-                                    try await viewModel.processImage(membershipNumber: rootVM.member?.membershipNumber ?? "", base64Image: base64String)
-                                } catch {
-                                    Logger.error("Failed to process the image")
-                                }
-                                
+                        viewModel.clearProcessedReceipt()
+                        Task {
+                            do {
+                                try await viewModel.processImage(membershipNumber: rootVM.member?.membershipNumber ?? "", image: image)
+                            } catch {
+                                Logger.error("Failed to process the image")
                             }
-                            // TODO: move to processing screen
+                            
                         }
-                        
+                       
                         // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                         withAnimation {
                             showCapturedImage = false

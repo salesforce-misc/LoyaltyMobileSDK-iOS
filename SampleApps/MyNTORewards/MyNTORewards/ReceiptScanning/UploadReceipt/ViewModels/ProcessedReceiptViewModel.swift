@@ -7,6 +7,7 @@
 
 import Foundation
 import LoyaltyMobileSDK
+import SwiftUI
 
 enum ReceiptStatus: String {
 	case manualReview = "Manual Review"
@@ -43,25 +44,34 @@ final class ProcessedReceiptViewModel: ObservableObject {
         processedReceipt = nil
     }
     
-    func processImage(membershipNumber: String, base64Image: String) async throws {
-        
-        let body = [
-            "memberShipNumber": membershipNumber,
-            "base64image": base64Image
+    func processImage(membershipNumber: String, image: UIImage) async throws {
+        guard let imageData = image.pngData() else {
+            Logger.error("Failed to convert image to data.")
+            throw CommonError.imageConversionError
+        }
+
+        let queryItems = [
+            "membershipnumber": membershipNumber
         ]
-        
+
+        let headers = ["Content-Type": "image/png"]
+
         do {
             let path = "/services/apexrest/AnalizeExpence/"
-            let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
-            let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(), path: path, method: "POST", body: bodyJsonData)
+            let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(),
+                                                  path: path,
+                                                  method: "PUT",
+                                                  queryItems: queryItems,
+                                                  headers: headers,
+                                                  body: imageData)
             processedReceipt = try await forceClient.fetch(type: ProcessedReceipt.self, with: request)
-			(eligibleItems, inEligibleItems) = split(lineItems: processedReceipt?.lineItem)
-			receiptState = .processed
+            (eligibleItems, inEligibleItems) = split(lineItems: processedReceipt?.lineItem)
+            receiptState = .processed
             if let processedReceipt = processedReceipt {
                 Logger.debug("\(processedReceipt)")
             }
         } catch {
-			receiptState = .processed
+            receiptState = .processed
             throw error
         }
     }
