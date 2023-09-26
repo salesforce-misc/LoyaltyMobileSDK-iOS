@@ -7,6 +7,7 @@
 
 import Foundation
 import LoyaltyMobileSDK
+import SwiftUI
 
 enum ReceiptStatus: String {
 	case manualReview = "Manual Review"
@@ -29,15 +30,17 @@ final class ProcessedReceiptViewModel: ObservableObject {
     private let authManager: ForceAuthenticator
     private var forceClient: ForceClient
     private let localFileManager: FileManagerProtocol
+	private let soqlManager: SOQLManager
     
     init(
         localFileManager: FileManagerProtocol = LocalFileManager.instance,
         authManager: ForceAuthenticator = ForceAuthManager.shared,
-        forceClient: ForceClient? = nil
+        forceClient: ForceClient? = nil, soqlManager: SOQLManager? = nil
     ) {
         self.localFileManager = localFileManager
         self.authManager = authManager
         self.forceClient = forceClient ?? ForceClient(auth: authManager)
+		self.soqlManager = soqlManager ?? SOQLManager(forceClient: self.forceClient)
     }
     
     func clearProcessedReceipt() {
@@ -45,26 +48,34 @@ final class ProcessedReceiptViewModel: ObservableObject {
         processedError = nil
     }
     
-    func processImage(membershipNumber: String, base64Image: String) async throws {
-        
-        let body = [
-            "memberShipNumber": membershipNumber,
-            "base64image": base64Image
+    func processImage(membershipNumber: String, image: UIImage) async throws {
+        guard let imageData = image.pngData() else {
+            Logger.error("Failed to convert image to data.")
+            throw CommonError.imageConversionError
+        }
+
+        let queryItems = [
+            "membershipnumber": membershipNumber
         ]
-        
+
+        let headers = ["Content-Type": "image/png"]
+
         do {
             let path = "/services/apexrest/AnalizeExpence/"
-            let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
-            let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(), path: path, method: "POST", body: bodyJsonData)
+            let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(),
+                                                  path: path,
+                                                  method: "PUT",
+                                                  queryItems: queryItems,
+                                                  headers: headers,
+                                                  body: imageData)
             processedReceipt = try await forceClient.fetch(type: ProcessedReceipt.self, with: request)
-			(eligibleItems, inEligibleItems) = split(lineItems: processedReceipt?.lineItem)
-			receiptState = .processed
+            (eligibleItems, inEligibleItems) = split(lineItems: processedReceipt?.lineItem)
+            receiptState = .processed
             if let processedReceipt = processedReceipt {
                 Logger.debug("\(processedReceipt)")
             }
         } catch {
-			receiptState = .processed
-            processedError = error
+            receiptState = .processed
             throw error
         }
     }
@@ -84,7 +95,9 @@ final class ProcessedReceiptViewModel: ObservableObject {
 		return (eligibleItems, inEligibleItems)
 	}
 	
-    func updateStatus(receiptId: String, status: ReceiptStatus, comments: String = "") async throws -> Bool {
+    func updateStatus(receiptId: String?, status: ReceiptStatus, comments: String = "") async throws -> Bool {
+		guard let receiptId = receiptId else { throw CommonError.requestFailed(message: "Receipt Id not found") }
+		
 		let body = [
 			"receiptId": receiptId,
 			"status": status.rawValue,
@@ -97,4 +110,24 @@ final class ProcessedReceiptViewModel: ObservableObject {
 		isSubmittedForManualReview = "Success" == response.status
 		return isSubmittedForManualReview
 	}
+	
+	func wait(
+		until status: ReceiptStatus,
+		forReceiptId receiptId: String,
+		membershipNumber: String,
+		delay seconds: Double,
+		retryCount: Int) async -> Receipt? {
+			var retryCount = retryCount
+			repeat {
+				retryCount -= 1
+				do {
+					try await Task.sleep(nanoseconds: UInt64(seconds * Double(NSEC_PER_SEC)))
+					let receipt = try await soqlManager.getReceipt(membershipNumber: membershipNumber, id: receiptId)
+					if receipt?.status == status.rawValue { return receipt }
+				} catch {
+					Logger.debug("Error: Unable to verify status, \(error)")
+				}
+			} while retryCount > 0
+			return nil
+		}
 }

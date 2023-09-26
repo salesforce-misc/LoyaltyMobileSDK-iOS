@@ -38,17 +38,17 @@ struct InfoNavigationLink<Content: View, Destination: View>: View {
                 Image(systemName: "info.circle")
                     .foregroundColor(Color.theme.accent)
             }
+            .navigationDestination(isPresented: $isNavigationActive) {
+                destination
+            }
         }
-        .overlay(
-            NavigationLink("", destination: destination, isActive: $isNavigationActive)
-                .opacity(0) // Hide the NavigationLink
-        )
+        
     }
 }
 
 struct ContentView: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 InfoNavigationLink(destination: InfoView(), action: {
                     Logger.debug("Tapped somewhere else")

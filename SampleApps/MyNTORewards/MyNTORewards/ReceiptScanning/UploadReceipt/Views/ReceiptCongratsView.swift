@@ -10,7 +10,7 @@ import SwiftUI
 struct ReceiptCongratsView: View {
 	@EnvironmentObject var routerPath: RouterPath
 	@EnvironmentObject var cameraModel: CameraViewModel
-	var points: Double
+	var points: Double?
 	var body: some View {
 		ZStack {
 			VStack {
@@ -28,8 +28,7 @@ struct ReceiptCongratsView: View {
 					.padding(.top, 30)
 					.padding(.bottom, 2)
 					.accessibilityIdentifier(AppAccessibilty.Receipts.receiptSubmittedCongrats)
-				
-				Text("We’ve credited \(points.truncate(to: 2)) points for the uploaded receipt")
+				Text(getMessage(for: points))
 					.font(.congratsText)
 					.lineSpacing(5)
 					.multilineTextAlignment(.center)
@@ -50,6 +49,14 @@ struct ReceiptCongratsView: View {
 				.foregroundColor(.black)
 				.accessibilityIdentifier(AppAccessibilty.Receipts.scanAnotherReceipt)
 			}
+		}
+	}
+	
+	func getMessage(for points: Double?) -> String {
+		if let points = points, points != 0 {
+			return "We’ve credited \(points.truncate(to: 2)) points for the uploaded receipt"
+		} else {
+			return "We will credit points for the uploaded receipt soon"
 		}
 	}
 }
