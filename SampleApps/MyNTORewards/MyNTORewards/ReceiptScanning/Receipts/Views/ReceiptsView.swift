@@ -16,6 +16,7 @@ struct ReceiptsView: View {
 	@StateObject var receiptViewModel = ReceiptViewModel()
 	@State var searchText = ""
 	@State var showCapturedImage: Bool = false
+    @State var showErrowView: Bool = false
 	@State var capturedImage: UIImage?
 	
 	var body: some View {
@@ -91,6 +92,17 @@ struct ReceiptsView: View {
 				.environmentObject(receiptListViewModel)
 			}
 		}
+        .fullScreenCover(isPresented: $cameraViewModel.showErrorView) {
+            Spacer()
+            ProcessingErrorView(message: StringConstants.Receipts.fileSizeErrorMessage)
+            Spacer()
+            Text(StringConstants.Receipts.backButton)
+                .onTapGesture {
+                    cameraViewModel.showErrorView = false
+                }
+                .longFlexibleButtonStyle()
+                .accessibilityIdentifier(AppAccessibilty.Receipts.errorBackButton)
+        }
 	}
 	
 	func getReceipts(forced: Bool = false) async {

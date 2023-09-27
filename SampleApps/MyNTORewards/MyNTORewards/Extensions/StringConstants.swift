@@ -26,5 +26,7 @@ struct StringConstants {
 		static let processingScreenSubtitle = "Hang in there! This may take a minute."
         static let processingErrorMessage = "Oops! Something went wrong while processing the request. Try again."
 		static let receiptSavedToPhotos = "Receipt saved to Photos"
+        // swiftlint:disable:next line_length
+        static let fileSizeErrorMessage = "Oops! The image size is over 5MB. Try uploading an image of smaller file size or try lowering your device camera resolution."
 	}
 }
