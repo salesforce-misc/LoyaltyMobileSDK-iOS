@@ -71,8 +71,6 @@ struct ProcessedReceiptView: View {
 												 delay: 2,
 												 retryCount: 5)
 							viewModel.receiptState = .submitted(receipt?.totalPoints)
-							try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "",
-																	   forced: true)
 						} else { isError = true }
 						isLoading = false
 					} catch {

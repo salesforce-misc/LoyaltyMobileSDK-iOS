@@ -74,7 +74,7 @@ struct CapturedImageView: View {
                             capturedImage = nil
 							dismiss()
 							viewModel.receiptState = .processing
-							routerPath.presentedSheet = .processingReceipt(receiptListViewModel: receiptListViewModel)
+							routerPath.presentSheet(destination: .processingReceipt(receiptListViewModel: receiptListViewModel))
                         }
                     }
                     

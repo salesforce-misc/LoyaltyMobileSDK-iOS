@@ -16,6 +16,8 @@ struct BottomNavTabsView: View {
 	@StateObject var routerPath = RouterPath()
 	@StateObject var receiptListViewModel = ReceiptListViewModel()
 	@State var selectedTab: Int = Tab.home.rawValue
+	@State var showCapturedImage: Bool = false
+	@State var capturedImage: UIImage?
 	
 	var body: some View {
 		NavigationView {
@@ -38,7 +40,8 @@ struct BottomNavTabsView: View {
 						.tabItem("More", image: UIImage(named: "ic-more"))
 				}
 				.onChange(of: selectedTab) { _ in
-					routerPath.path.removeAll()
+					routerPath.pathFromHome.removeAll()
+					routerPath.pathFromMore.removeAll()
 				}
 			}
 			.background {
@@ -60,6 +63,7 @@ struct BottomNavTabsView: View {
 				UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
 			} // To Fix Tab bar at the bottom of an app goes transparent when navigating back from another view
 		}
+		.withSheetDestination(sheetDestination: $routerPath.presentedSheet)
 		.environmentObject(promotionsVM)
 		.environmentObject(vouchersVM)
 		.environmentObject(profileVM)
@@ -68,6 +72,20 @@ struct BottomNavTabsView: View {
 		.environmentObject(routerPath)
 		.environmentObject(receiptListViewModel)
         .navigationViewStyle(.stack)
+		.fullScreenCover(isPresented: $cameraVM.showCamera) {
+			ZStack {
+				CameraView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
+					.zIndex(showCapturedImage ? 0 : 1)
+				if showCapturedImage {
+					CapturedImageView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
+						.transition(.move(edge: .trailing))
+						.zIndex(showCapturedImage ? 1 : 0)
+				}
+			}
+			.animation(.default, value: showCapturedImage)
+			.environmentObject(routerPath)
+			.environmentObject(receiptListViewModel)
+		}
 	}
 }
 

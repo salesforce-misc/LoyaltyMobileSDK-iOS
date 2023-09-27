@@ -10,6 +10,8 @@ import SwiftUI
 struct ReceiptCongratsView: View {
 	@EnvironmentObject var routerPath: RouterPath
 	@EnvironmentObject var cameraModel: CameraViewModel
+	@EnvironmentObject var receiptListViewModel: ReceiptListViewModel
+	@EnvironmentObject var rootViewModel: AppRootViewModel
 	var points: Double?
 	var body: some View {
 		ZStack {
@@ -37,10 +39,16 @@ struct ReceiptCongratsView: View {
 				Text("Done")
 					.onTapGesture {
 						routerPath.dismissSheets()
+						Task {
+							try await reloadReceipts()
+						}
 					}
 					.longFlexibleButtonStyle()
 				Button(StringConstants.Receipts.uploadAnotherReceiptButton) {
 					routerPath.dismissSheets()
+					Task {
+						try await reloadReceipts()
+					}
 					DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 						cameraModel.showCamera = true
 					}
@@ -52,12 +60,17 @@ struct ReceiptCongratsView: View {
 		}
 	}
 	
-	func getMessage(for points: Double?) -> String {
+	private func getMessage(for points: Double?) -> String {
 		if let points = points, points != 0 {
 			return "We’ve credited \(points.truncate(to: 2)) points for the uploaded receipt"
 		} else {
 			return "We will credit points for the uploaded receipt soon"
 		}
+	}
+	
+	private func reloadReceipts() async throws {
+		try await receiptListViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "",
+												   forced: true)
 	}
 }
 
