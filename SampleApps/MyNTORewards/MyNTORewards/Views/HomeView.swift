@@ -119,25 +119,7 @@ struct HomeView: View {
 				}
 				.navigationBarHidden(true)
 			}
-//			.withSheetDestination(sheetDestination: $routerPath.presentedSheet)
 		}
-//		.fullScreenCover(isPresented: $cameraVM.showCamera) {
-//			ZStack {
-//				ZStack {
-//					CameraView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
-//						.zIndex(showCapturedImage ? 0 : 1)
-//
-//					if showCapturedImage {
-//						CapturedImageView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
-//							.environmentObject(receiptListViewModel)
-//							.transition(.move(edge: .trailing))
-//							.zIndex(showCapturedImage ? 1 : 0)
-//					}
-//				}
-//				.animation(.default, value: showCapturedImage)
-//				.environmentObject(routerPath)
-//			}
-//		}
 	}
 }
 
