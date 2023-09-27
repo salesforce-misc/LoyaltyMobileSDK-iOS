@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AdminMenuView: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 List {
                     NavigationLink(destination: ConnectedAppsView()) {

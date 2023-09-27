@@ -90,7 +90,6 @@ struct MoreView: View {
             }
 			.environmentObject(routerPath)
 			.withSheetDestination(sheetDestination: $routerPath.presentedSheet)
-            .navigationViewStyle(.stack)
             
             if rootVM.isInProgress {
                 ProgressView()
@@ -104,5 +103,6 @@ struct MoreView_Previews: PreviewProvider {
     static var previews: some View {
         MoreView()
             .environmentObject(dev.rootVM)
+            .environmentObject(dev.routerPath)
     }
 }

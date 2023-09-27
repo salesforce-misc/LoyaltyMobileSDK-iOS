@@ -67,7 +67,7 @@ struct BottomNavTabsView: View {
 		.environmentObject(cameraVM)
 		.environmentObject(routerPath)
 		.environmentObject(receiptListViewModel)
-		.navigationViewStyle(.stack)
+        .navigationViewStyle(.stack)
 	}
 }
 

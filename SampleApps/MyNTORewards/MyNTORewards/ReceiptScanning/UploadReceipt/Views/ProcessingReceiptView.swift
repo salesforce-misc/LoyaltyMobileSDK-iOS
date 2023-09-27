@@ -17,8 +17,8 @@ struct ProcessingReceiptView: View {
 				ProcessingView()
 			case .processed:
 				ProcessedReceiptView()
-			case .submitted:
-				ReceiptCongratsView(points: 25)
+			case .submitted(let points):
+				ReceiptCongratsView(points: points)
 			}
 		}
 		.environmentObject(processedReceiptViewModel)

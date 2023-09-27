@@ -8,38 +8,27 @@
 import SwiftUI
 
 struct ProcessingErrorView: View {
-    let message1: String
-    let message2: String
-    
-    var body: some View {
-        VStack {
-            Image("img-astronaut")
-            VStack(alignment: .center, spacing: 6) {
-                ErrorTextView(message: message1)
-                    .padding(.horizontal, 60) // Increase padding to make it shorter
-                    
-                ErrorTextView(message: message2)
-                    .padding(.horizontal, 30) // Decrease padding to make it longer
-            }
-        }
-        
-    }
-}
-
-struct ErrorTextView: View {
     let message: String
     
     var body: some View {
-        Text(message)
-            .font(.errorMessageText)
-            .foregroundColor(Color(hex: "747474"))
-            .multilineTextAlignment(.center)
-            .frame(maxWidth: .infinity)
+        VStack(spacing: 15) {
+            Image("img-astronaut")
+            VStack(alignment: .center) {
+                Text(message)
+                    .font(.errorMessageText)
+                    .foregroundColor(Color(hex: "747474"))
+                    .multilineTextAlignment(.center)
+                    .lineSpacing(6)
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 30)
+            }
+        }
     }
+    
 }
 
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        ProcessingErrorView(message1: "Oops! Something went wrong", message2: "while processing the request. Try again.")
+        ProcessingErrorView(message: "Oops! Something went wrong while processing the request. Try again.")
     }
 }

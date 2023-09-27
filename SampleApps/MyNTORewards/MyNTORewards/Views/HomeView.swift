@@ -22,7 +22,7 @@ struct HomeView: View {
     @Binding var selectedTab: Int
     
 	var body: some View {
-		NavigationView {
+		NavigationStack {
 			VStack(spacing: 0) {
 				VStack(spacing: 0) {
 					HStack {
@@ -119,7 +119,6 @@ struct HomeView: View {
 				}
 				.navigationBarHidden(true)
 			}
-			.navigationViewStyle(.stack)
 //			.withSheetDestination(sheetDestination: $routerPath.presentedSheet)
 		}
 //		.fullScreenCover(isPresented: $cameraVM.showCamera) {
@@ -150,5 +149,7 @@ struct HomeView_Previews: PreviewProvider {
             .environmentObject(dev.promotionVM)
             .environmentObject(dev.voucherVM)
             .environmentObject(dev.imageVM)
+            .environmentObject(dev.routerPath)
+            .environmentObject(dev.camVM)
     }
 }

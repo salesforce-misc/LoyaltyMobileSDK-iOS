@@ -20,23 +20,20 @@ struct LoyaltyConditionalNavLink<Label: View, Destination: View>: View {
 	}
 	
 	var body: some View {
-		NavigationLink(
-			destination:
-				LoyaltyNavBarContainerView(content: {
-					destination
-				})
-				.navigationBarHidden(true),
-			isActive: $isActive,
-			label: {
-				label
-			})
+        label
+            .navigationDestination(isPresented: $isActive) {
+                LoyaltyNavBarContainerView(content: {
+                    destination
+                })
+                .navigationBarHidden(true)
+            }
 	}
 }
 
 struct LoyaltyConditionalNavLink_Previews: PreviewProvider {
 	static var previews: some View {
-		NavigationView {
-			LoyaltyNavLink {
+		NavigationStack {
+            LoyaltyConditionalNavLink(isActive: .constant(true)) {
 				Text("Destination")
 					.loytaltyNavigationTitle("Vouchers")
 					.loyaltyNavBarTabBar(TopTabBar(barItems: ["Available", "Redeemed", "Expired"], tabIndex: .constant(0)))

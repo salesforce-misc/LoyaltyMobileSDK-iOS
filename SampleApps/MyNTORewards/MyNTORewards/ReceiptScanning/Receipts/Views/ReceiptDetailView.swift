@@ -24,7 +24,7 @@ struct ReceiptDetailView: View {
 					Text("Receipt \(receipt.receiptId)")
 						.font(.transactionText)
 						.accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberText)
-					Text("Date: \(receipt.purchaseDate.toDateString() ?? " - ")")
+					Text("Date: \(receipt.purchaseDate ?? " - ")")
 						.font(.transactionDate)
 						.accessibilityIdentifier(AppAccessibilty.Receipts.receiptDateText)
 				}

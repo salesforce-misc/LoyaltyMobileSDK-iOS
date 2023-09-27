@@ -25,34 +25,23 @@ class ReceiptListViewModel: ObservableObject {
             }
 		}
 	}
-	let queryFields = ["Id",
-					   "Purchase_Date__c",
-					   "ReceiptId__c",
-					   "Name",
-					   "Status__c",
-					   "StoreName__c",
-					   "Total_Points__c",
-					   "CreatedDate",
-					   "TotalAmount__c",
-					   "ImageUrl__c",
-					   "Processed_AWS_Response__c"]
-	let recordName = "Receipts__c"
-    let whereClause = "Loyalty_Program_Member__r.MembershipNumber"
-	let orderByField = "CreatedDate"
-	let sortOrder = SortOrder.DESC
+	
 	private let authManager: ForceAuthenticator
 	private var forceClient: ForceClient
 	private let localFileManager: FileManagerProtocol
+	private let soqlManager: SOQLManager
 	private let receiptsListFolderName = "ReceiptsList"
 	
 	init(
 		localFileManager: FileManagerProtocol = LocalFileManager.instance,
 		authManager: ForceAuthenticator = ForceAuthManager.shared,
-		forceClient: ForceClient? = nil
+		forceClient: ForceClient? = nil,
+		soqlManager: SOQLManager? = nil
 	) {
 		self.localFileManager = localFileManager
 		self.authManager = authManager
 		self.forceClient = forceClient ?? ForceClient(auth: authManager)
+		self.soqlManager = soqlManager ?? SOQLManager(forceClient: self.forceClient)
 	}
 	
 	private func filter(query: String) {
@@ -63,10 +52,6 @@ class ReceiptListViewModel: ObservableObject {
                 $0.processedAwsReceipt?.lowercased().contains(trimmedQuery.lowercased()) ?? false
             }
     }
-	
-    private func getQuery(membershipNumber: String) -> String {
-		"SELECT \(queryFields.joined(separator: ",")) FROM \(recordName) WHERE \(whereClause) = '\(membershipNumber)' ORDER BY \(orderByField) \(sortOrder.rawValue)"
-	}
 	
 	private func setReceipts(receipts: [Receipt]) {
 		self.receipts = receipts
@@ -88,8 +73,8 @@ class ReceiptListViewModel: ObservableObject {
 			setReceipts(receipts: cached)
 		} else {
 			do {
-				let queryResult = try await forceClient.SOQL(type: Receipt.self, for: getQuery(membershipNumber: membershipNumber))
-				setReceipts(receipts: queryResult.records)
+				let receipts = try await soqlManager.getReceipts(membershipNumber: membershipNumber)
+				setReceipts(receipts: receipts)
 				localFileManager.saveData(item: receipts, id: membershipNumber, folderName: receiptsListFolderName, expiry: .never)
 			} catch {
 				Logger.error(error.localizedDescription)
