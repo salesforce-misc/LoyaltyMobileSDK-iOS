@@ -12,12 +12,13 @@ struct ReceiptsView: View {
 	@EnvironmentObject var rootVM: AppRootViewModel
 	@EnvironmentObject var routerPath: RouterPath
 	@EnvironmentObject var receiptListViewModel: ReceiptListViewModel
-	@EnvironmentObject var cameraViewModel: CameraViewModel
+	@EnvironmentObject var cameraVM: CameraViewModel
 	@StateObject var receiptViewModel = ReceiptViewModel()
 	@State var searchText = ""
-	@State var showCapturedImage: Bool = false
+	@State var isLoading = false
+    @State var showCapturedImage: Bool = false
     @State var showErrowView: Bool = false
-	@State var capturedImage: UIImage?
+    @State var capturedImage: UIImage?
 	
 	var body: some View {
 		VStack(spacing: 0) {
@@ -40,10 +41,10 @@ struct ReceiptsView: View {
 					.frame(width: 140)
 					.accessibilityIdentifier(AppAccessibilty.Receipts.newButton)
 					.onTapGesture {
-						cameraViewModel.showCamera = true
+						cameraVM.showCamera = true
 					}
 			}
-			if !receiptListViewModel.isLoading && (receiptListViewModel.receipts.isEmpty || receiptListViewModel.filteredReceipts.isEmpty) {
+			if !isLoading && (receiptListViewModel.receipts.isEmpty || receiptListViewModel.filteredReceipts.isEmpty) {
 				ScrollView {
 					EmptyStateView(title: "No Receipts")
 						.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -58,7 +59,7 @@ struct ReceiptsView: View {
 								await getReceipts(forced: true)
 							}.value
 						}
-					if receiptListViewModel.isLoading {
+					if isLoading {
 						ProgressView()
 							.frame(maxWidth: .infinity, maxHeight: .infinity)
 							.background(Color.theme.background)
@@ -68,37 +69,34 @@ struct ReceiptsView: View {
 		}
 		.navigationBarBackButtonHidden()
 		.environmentObject(routerPath)
-		.environmentObject(cameraViewModel)
+		.environmentObject(cameraVM)
 		.environmentObject(receiptViewModel)
 		.background(Color.theme.background)
 		.task {
 			await getReceipts()
 		}
 		.background(Color.theme.background)
-		.fullScreenCover(isPresented: $cameraViewModel.showCamera) {
-			ZStack {
-				ZStack {
-					CameraView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
-						.zIndex(showCapturedImage ? 0 : 1)
-					
-					if showCapturedImage {
-						CapturedImageView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
-							.transition(.move(edge: .trailing))
-							.zIndex(showCapturedImage ? 1 : 0)
-					}
-				}
-				.animation(.default, value: showCapturedImage)
-				.environmentObject(routerPath)
-				.environmentObject(receiptListViewModel)
-			}
-		}
-        .fullScreenCover(isPresented: $cameraViewModel.showErrorView) {
+        .fullScreenCover(isPresented: $cameraVM.showCamera) {
+            ZStack {
+                CameraView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
+                    .zIndex(showCapturedImage ? 0 : 1)
+                if showCapturedImage {
+                    CapturedImageView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
+                        .transition(.move(edge: .trailing))
+                        .zIndex(showCapturedImage ? 1 : 0)
+                }
+            }
+            .animation(.default, value: showCapturedImage)
+            .environmentObject(routerPath)
+            .environmentObject(receiptListViewModel)
+        }
+        .fullScreenCover(isPresented: $cameraVM.showErrorView) {
             Spacer()
             ProcessingErrorView(message: StringConstants.Receipts.fileSizeErrorMessage)
             Spacer()
             Text(StringConstants.Receipts.backButton)
                 .onTapGesture {
-                    cameraViewModel.showErrorView = false
+                    cameraVM.showErrorView = false
                 }
                 .longFlexibleButtonStyle()
                 .accessibilityIdentifier(AppAccessibilty.Receipts.errorBackButton)
@@ -107,8 +105,11 @@ struct ReceiptsView: View {
 	
 	func getReceipts(forced: Bool = false) async {
 		do {
+			isLoading = true
 			try await receiptListViewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: forced)
+			isLoading = false
 		} catch {
+			isLoading = false
 			Logger.error(error.localizedDescription)
 		}
 	}

@@ -78,13 +78,12 @@ struct CapturedImageView: View {
                             }
                         }
                         
-                        // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                         withAnimation {
                             showCapturedImage = false
                             capturedImage = nil
 							dismiss()
 							processedReceiptViewModel.receiptState = .processing
-							routerPath.presentedSheet = .processingReceipt(receiptListViewModel: receiptListViewModel)
+							routerPath.presentSheet(destination: .processingReceipt(receiptListViewModel: receiptListViewModel))
                         }
                     }
                     
