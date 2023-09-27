@@ -28,7 +28,7 @@ struct ReceiptDetailView: View {
                             .font(.transactionDate)
                             .accessibilityIdentifier(AppAccessibilty.Receipts.receiptDateText)
                         Spacer()
-                        if(receipt.status == "Manual Review") {
+                        if receipt.status == "Manual Review" {
                             Text("Submitted for Manual Review")
                                 .foregroundColor(Color.theme.receiptStatusPending)
                                 .font(.transactionDate)
@@ -81,8 +81,8 @@ struct ReceiptDetailView: View {
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             }
-            if(tabIndex == 0){
-                if (!isManualReview()){
+            if tabIndex == 0 {
+                if !isManualReview() {
                     Button {
                         showManualReviewRequest = true
                     } label: {
