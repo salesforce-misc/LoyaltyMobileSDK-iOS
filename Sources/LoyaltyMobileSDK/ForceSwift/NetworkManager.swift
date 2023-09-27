@@ -37,33 +37,32 @@ public class NetworkManager: NetworkManagerProtocol {
     /// - Throws: A CommonError if there's an issue with the response or data.
     internal func handleDataAndResponse(output: (data: Data, response: URLResponse)) throws -> Data {
         guard let httpResponse = output.response as? HTTPURLResponse else {
-            Logger.error(CommonError.requestFailed(message: "Invalid response").description)
-            throw CommonError.requestFailed(message: "Invalid response")
+            let error = CommonError.requestFailed(message: "Invalid response")
+            Logger.error(error.description)
+            throw error
         }
 
         Logger.debug("HTTP response code is: \(httpResponse.statusCode)")
-        switch httpResponse.statusCode {
-        case 200..<300:
-            break
-        default:
-            let errorMessage = "HTTP response status code \(httpResponse.statusCode)"
-            Logger.error(CommonError.responseUnsuccessful(message: errorMessage).description)
-            Logger.debug(httpResponse.description)
 
-            // Log JSON error response here
-            do {
-                if let json = try JSONSerialization.jsonObject(with: output.data, options: []) as? [String: Any] {
-                    Logger.error("Error JSON response: \(json)")
-                } else {
-                    if let jsonString = String(data: output.data, encoding: .utf8) {
-                        Logger.debug("Error response: \(jsonString)")
-                    } else {
-                        Logger.debug("Failed to convert error data to a string. Raw data: \(output.data)")
-                    }
-                }
-            } catch {
-                Logger.error("Failed to serialize error data to JSON: \(error)")
+        if !(200..<300).contains(httpResponse.statusCode) {
+            var errorMessage = "HTTP response status code \(httpResponse.statusCode)"
+            // Logger.debug(httpResponse.description)
+
+            // Attempt to decode JSON and append to errorMessage
+            if let json = try? JSONSerialization.jsonObject(with: output.data, options: []) as? [String: Any] {
+                // Logger.debug("Error JSON response: \(json)")
+                errorMessage += ". Error JSON: \(json)"
+            } else if let jsonString = String(data: output.data, encoding: .utf8) {
+                // Logger.debug("Error response: \(jsonString)")
+                errorMessage += ". Error response: \(jsonString)"
+            } else {
+                let rawDataDescription = "Failed to convert error data to a string. Raw data: \(output.data)"
+                // Logger.debug(rawDataDescription)
+                errorMessage += ". \(rawDataDescription)"
             }
+
+            // Log and throw the error
+            Logger.error(CommonError.responseUnsuccessful(message: errorMessage).description)
 
             // Throw appropriate error based on status code
             switch httpResponse.statusCode {

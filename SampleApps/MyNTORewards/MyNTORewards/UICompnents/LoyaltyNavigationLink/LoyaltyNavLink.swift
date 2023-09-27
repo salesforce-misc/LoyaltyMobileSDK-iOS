@@ -33,7 +33,7 @@ struct LoyaltyNavLink<Label: View, Destination: View>: View {
 
 struct LoyaltyNavLink_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             LoyaltyNavLink {
                 Text("Destination")
                     .loytaltyNavigationTitle("Vouchers")

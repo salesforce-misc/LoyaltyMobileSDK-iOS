@@ -24,7 +24,7 @@ struct ReceiptDetailView: View {
                         .font(.transactionText)
                         .accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberText)
                     HStack {
-                        Text("Date: \(receipt.purchaseDate.toDateString() ?? " - ")")
+                        Text("Date: \(receipt.purchaseDate ?? " - ")")
                             .font(.transactionDate)
                             .accessibilityIdentifier(AppAccessibilty.Receipts.receiptDateText)
                         Spacer()
