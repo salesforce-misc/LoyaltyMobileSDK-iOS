@@ -22,7 +22,7 @@ struct HomeView: View {
     @Binding var selectedTab: Int
     
 	var body: some View {
-		NavigationStack {
+		NavigationStack(path: $routerPath.pathFromHome) {
 			VStack(spacing: 0) {
 				VStack(spacing: 0) {
 					HStack {
@@ -34,7 +34,7 @@ struct HomeView: View {
 							.accessibilityIdentifier(AppAccessibilty.Receipts.receiptsIcon)
 							.onTapGesture {
 								routerPath.dismissSheets()
-								cameraVM.showCamera = true
+								routerPath.navigateFromHome(to: .receipts)
 							}
 					}
 					.frame(height: 44)
@@ -119,6 +119,7 @@ struct HomeView: View {
 				}
 				.navigationBarHidden(true)
 			}
+			.withAppRouter()
 		}
 	}
 }

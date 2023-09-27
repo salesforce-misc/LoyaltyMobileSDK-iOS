@@ -15,8 +15,7 @@ struct ReceiptsView: View {
 	@EnvironmentObject var cameraViewModel: CameraViewModel
 	@StateObject var receiptViewModel = ReceiptViewModel()
 	@State var searchText = ""
-	@State var showCapturedImage: Bool = false
-	@State var capturedImage: UIImage?
+	@State var isLoading = false
 	
 	var body: some View {
 		VStack(spacing: 0) {
@@ -42,7 +41,7 @@ struct ReceiptsView: View {
 						cameraViewModel.showCamera = true
 					}
 			}
-			if !receiptListViewModel.isLoading && (receiptListViewModel.receipts.isEmpty || receiptListViewModel.filteredReceipts.isEmpty) {
+			if !isLoading && (receiptListViewModel.receipts.isEmpty || receiptListViewModel.filteredReceipts.isEmpty) {
 				ScrollView {
 					EmptyStateView(title: "No Receipts")
 						.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -57,7 +56,7 @@ struct ReceiptsView: View {
 								await getReceipts(forced: true)
 							}.value
 						}
-					if receiptListViewModel.isLoading {
+					if isLoading {
 						ProgressView()
 							.frame(maxWidth: .infinity, maxHeight: .infinity)
 							.background(Color.theme.background)
@@ -74,29 +73,15 @@ struct ReceiptsView: View {
 			await getReceipts()
 		}
 		.background(Color.theme.background)
-		.fullScreenCover(isPresented: $cameraViewModel.showCamera) {
-			ZStack {
-				ZStack {
-					CameraView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
-						.zIndex(showCapturedImage ? 0 : 1)
-					
-					if showCapturedImage {
-						CapturedImageView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
-							.transition(.move(edge: .trailing))
-							.zIndex(showCapturedImage ? 1 : 0)
-					}
-				}
-				.animation(.default, value: showCapturedImage)
-				.environmentObject(routerPath)
-				.environmentObject(receiptListViewModel)
-			}
-		}
 	}
 	
 	func getReceipts(forced: Bool = false) async {
 		do {
+			isLoading = true
 			try await receiptListViewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: forced)
+			isLoading = false
 		} catch {
+			isLoading = false
 			Logger.error(error.localizedDescription)
 		}
 	}

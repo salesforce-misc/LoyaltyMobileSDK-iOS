@@ -29,7 +29,7 @@ struct MoreView: View {
     ]
     var body: some View {
         VStack {
-			NavigationStack(path: $routerPath.path) {
+			NavigationStack(path: $routerPath.pathFromMore) {
                 List {
                     VStack(alignment: .leading) {
                         HStack {
@@ -48,7 +48,7 @@ struct MoreView: View {
 						Button {
                             switch menu.title {
                             case "Receipts":
-                                routerPath.navigate(to: .receipts)
+								routerPath.navigateFromMore(to: .receipts)
                             default:
                                 break
                             }
@@ -89,7 +89,6 @@ struct MoreView: View {
 				.environmentObject(rootVM)
             }
 			.environmentObject(routerPath)
-			.withSheetDestination(sheetDestination: $routerPath.presentedSheet)
             
             if rootVM.isInProgress {
                 ProgressView()
