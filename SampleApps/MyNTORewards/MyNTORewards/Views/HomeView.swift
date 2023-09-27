@@ -138,6 +138,17 @@ struct HomeView: View {
 				.environmentObject(routerPath)
 			}
 		}
+        .fullScreenCover(isPresented: $cameraVM.showErrorView) {
+            Spacer()
+            ProcessingErrorView(message: StringConstants.Receipts.fileSizeErrorMessage)
+            Spacer()
+            Text(StringConstants.Receipts.backButton)
+                .onTapGesture {
+                    cameraVM.showErrorView = false
+                }
+                .longFlexibleButtonStyle()
+                .accessibilityIdentifier(AppAccessibilty.Receipts.errorBackButton)
+        }
 	}
 }
 
