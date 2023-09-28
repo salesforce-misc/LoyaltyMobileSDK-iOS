@@ -36,14 +36,17 @@ struct ReceiptCongratsView: View {
 					.multilineTextAlignment(.center)
 					.padding([.leading, .trailing], 40)
 				Spacer()
-				Text("Done")
-					.onTapGesture {
-						routerPath.dismissSheets()
-						Task {
-							try await reloadReceipts()
-						}
-					}
-					.longFlexibleButtonStyle()
+                Button {
+                    routerPath.dismissSheets()
+                    Task {
+                        try await reloadReceipts()
+                    }
+                } label: {
+                    Text("Done")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .longFlexibleButtonStyle()
 				Button(StringConstants.Receipts.uploadAnotherReceiptButton) {
 					routerPath.dismissSheets()
 					Task {
