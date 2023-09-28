@@ -65,8 +65,7 @@ struct ReceiptDetailView: View {
                         }
                     }
                     ZoomableScrollView {
-                        LoyaltyAsyncImage(url: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg") { image in
-                            //							LoyaltyAsyncImage(url: receipt.imageUrl) { image in
+						LoyaltyAsyncImage(url: receipt.imageUrl) { image in
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
@@ -133,7 +132,7 @@ struct ReceiptDetailView: View {
 				.presentationDetents(Set([ .height(524)]))
 		}
 		.alert(StringConstants.Receipts.receiptSavedToPhotos, isPresented: $showPhotoDownloadedAlert, actions: {
-			Text("")
+			Text("OK")
 		})
 		.environmentObject(processedReceiptViewModel)
     }
