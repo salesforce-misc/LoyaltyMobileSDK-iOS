@@ -83,7 +83,9 @@ struct CapturedImageView: View {
                             capturedImage = nil
 							dismiss()
 							processedReceiptViewModel.receiptState = .processing
-							routerPath.presentSheet(destination: .processingReceipt(receiptListViewModel: receiptListViewModel))
+							DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+								routerPath.presentSheet(destination: .processingReceipt(receiptListViewModel: receiptListViewModel))
+							}
                         }
                     }
                     
