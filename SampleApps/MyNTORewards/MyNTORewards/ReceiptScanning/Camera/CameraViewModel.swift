@@ -9,4 +9,5 @@ import SwiftUI
 
 class CameraViewModel: ObservableObject {
 	@Published var showCamera = false
+    @Published var showErrorView = false
 }

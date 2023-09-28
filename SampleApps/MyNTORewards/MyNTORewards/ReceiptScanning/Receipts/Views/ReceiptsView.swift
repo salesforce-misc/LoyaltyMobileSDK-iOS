@@ -12,10 +12,13 @@ struct ReceiptsView: View {
 	@EnvironmentObject var rootVM: AppRootViewModel
 	@EnvironmentObject var routerPath: RouterPath
 	@EnvironmentObject var receiptListViewModel: ReceiptListViewModel
-	@EnvironmentObject var cameraViewModel: CameraViewModel
+	@EnvironmentObject var cameraVM: CameraViewModel
 	@StateObject var receiptViewModel = ReceiptViewModel()
 	@State var searchText = ""
 	@State var isLoading = false
+    @State var showCapturedImage: Bool = false
+    @State var showErrowView: Bool = false
+    @State var capturedImage: UIImage?
 	
 	var body: some View {
 		VStack(spacing: 0) {
@@ -38,7 +41,7 @@ struct ReceiptsView: View {
 					.frame(width: 140)
 					.accessibilityIdentifier(AppAccessibilty.Receipts.newButton)
 					.onTapGesture {
-						cameraViewModel.showCamera = true
+						cameraVM.showCamera = true
 					}
 			}
 			if !isLoading && (receiptListViewModel.receipts.isEmpty || receiptListViewModel.filteredReceipts.isEmpty) {
@@ -66,13 +69,38 @@ struct ReceiptsView: View {
 		}
 		.navigationBarBackButtonHidden()
 		.environmentObject(routerPath)
-		.environmentObject(cameraViewModel)
+		.environmentObject(cameraVM)
 		.environmentObject(receiptViewModel)
 		.background(Color.theme.background)
 		.task {
 			await getReceipts()
 		}
 		.background(Color.theme.background)
+        .fullScreenCover(isPresented: $cameraVM.showCamera) {
+            ZStack {
+                CameraView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
+                    .zIndex(showCapturedImage ? 0 : 1)
+                if showCapturedImage {
+                    CapturedImageView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
+                        .transition(.move(edge: .trailing))
+                        .zIndex(showCapturedImage ? 1 : 0)
+                }
+            }
+            .animation(.default, value: showCapturedImage)
+            .environmentObject(routerPath)
+            .environmentObject(receiptListViewModel)
+        }
+        .fullScreenCover(isPresented: $cameraVM.showErrorView) {
+            Spacer()
+            ProcessingErrorView(message: StringConstants.Receipts.fileSizeErrorMessage)
+            Spacer()
+            Text(StringConstants.Receipts.backButton)
+                .onTapGesture {
+                    cameraVM.showErrorView = false
+                }
+                .longFlexibleButtonStyle()
+                .accessibilityIdentifier(AppAccessibilty.Receipts.errorBackButton)
+        }
 	}
 	
 	func getReceipts(forced: Bool = false) async {

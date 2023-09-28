@@ -10,13 +10,14 @@ import Photos
 import LoyaltyMobileSDK
 
 struct CapturedImageView: View {
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var rootVM: AppRootViewModel
-    @EnvironmentObject var viewModel: ProcessedReceiptViewModel
+    @EnvironmentObject var processedReceiptViewModel: ProcessedReceiptViewModel
 	@EnvironmentObject var receiptListViewModel: ReceiptListViewModel
+    @EnvironmentObject var routerPath: RouterPath
+    @EnvironmentObject var cameraViewModel: CameraViewModel
     @Binding var showCapturedImage: Bool
     @Binding var capturedImage: UIImage?
-	@EnvironmentObject var routerPath: RouterPath
-	@Environment(\.dismiss) private var dismiss
 
     var body: some View {
         ZStack {
@@ -28,6 +29,15 @@ struct CapturedImageView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: UIScreen.main.bounds.width * 0.75, height: UIScreen.main.bounds.height * 0.75)
                     .padding(.bottom, 50)
+                    .onAppear(perform: {
+                        // Check the size immediately after image appears
+                        guard let imageData = image.pngData(), imageData.count <= 5 * 1024 * 1024 else {
+                            showCapturedImage = false
+                            cameraViewModel.showErrorView = true
+                            dismiss()
+                            return
+                        }
+                    })
             }
             
             VStack {
@@ -59,21 +69,20 @@ struct CapturedImageView: View {
                     // Handle processing image
                     if let image = capturedImage {
                         
-                        viewModel.clearProcessedReceipt()
+                        processedReceiptViewModel.clearProcessedReceipt()
                         Task {
                             do {
-                                try await viewModel.processImage(membershipNumber: rootVM.member?.membershipNumber ?? "", image: image)
+                                try await processedReceiptViewModel.processImage(membershipNumber: rootVM.member?.membershipNumber ?? "", image: image)
                             } catch {
                                 Logger.error("Failed to process the image")
                             }
                         }
                         
-                        // UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                         withAnimation {
                             showCapturedImage = false
                             capturedImage = nil
 							dismiss()
-							viewModel.receiptState = .processing
+							processedReceiptViewModel.receiptState = .processing
 							routerPath.presentSheet(destination: .processingReceipt(receiptListViewModel: receiptListViewModel))
                         }
                     }
