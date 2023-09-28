@@ -8,12 +8,11 @@
 import Foundation
 import LoyaltyMobileSDK
 
-public class ForceAuthManager: ForceAuthenticator {
+public class ForceAuthManager: ForceAuthenticator, ObservableObject {
     
-    public var auth: ForceAuth?
-    private let defaults: UserDefaults
-    
+    @Published public var auth: ForceAuth?
     public static let shared = ForceAuthManager()
+    private let defaults: UserDefaults
     
     private init(defaults: UserDefaults = .shared) {
         self.defaults = defaults
