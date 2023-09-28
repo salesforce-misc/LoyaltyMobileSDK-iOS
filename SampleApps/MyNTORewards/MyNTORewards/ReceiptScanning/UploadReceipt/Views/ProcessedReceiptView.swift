@@ -58,29 +58,32 @@ struct ProcessedReceiptView: View {
 	}
 	
 	private func submitButton(receipt: ProcessedReceipt) -> some View {
-		Text(StringConstants.Receipts.submitButton)
-			.onTapGesture {
-				Task {
-					do {
-						isLoading = true
-						let success = try await viewModel.updateStatus(receiptId: receipt.receiptSFDCId, status: .inProgress)
-						if success {
-							let receipt = await viewModel.wait(until: .processed,
-												 forReceiptId: receipt.receiptSFDCId ?? "",
-												 membershipNumber: rootViewModel.member?.membershipNumber ?? "",
-												 delay: 2,
-												 retryCount: 5)
-							viewModel.receiptState = .submitted(receipt?.totalPoints)
-						} else { isError = true }
-						isLoading = false
-					} catch {
-						isLoading = false
-						isError = true
-					}
-				}
-			}
-			.longFlexibleButtonStyle()
-			.accessibilityIdentifier(AppAccessibilty.Receipts.submitReceiptButton)
+        Button {
+            Task {
+                do {
+                    isLoading = true
+                    let success = try await viewModel.updateStatus(receiptId: receipt.receiptSFDCId, status: .inProgress)
+                    if success {
+                        let receipt = await viewModel.wait(until: .processed,
+                                             forReceiptId: receipt.receiptSFDCId ?? "",
+                                             membershipNumber: rootViewModel.member?.membershipNumber ?? "",
+                                             delay: 2,
+                                             retryCount: 5)
+                        viewModel.receiptState = .submitted(receipt?.totalPoints)
+                    } else { isError = true }
+                    isLoading = false
+                } catch {
+                    isLoading = false
+                    isError = true
+                }
+            }
+        } label: {
+            Text(StringConstants.Receipts.submitButton)
+                .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.borderedProminent)
+        .longFlexibleButtonStyle()
+        .accessibilityIdentifier(AppAccessibilty.Receipts.submitReceiptButton)
 	}
 	
 	private func tryAgainButton(receipt: ProcessedReceipt) -> some View {
@@ -118,17 +121,19 @@ struct ProcessedReceiptView: View {
 			
 			Spacer()
 			Spacer()
-			Text(StringConstants.Receipts.tryAgainButton)
-				.onTapGesture {
-                    
-                    viewModel.processedError = nil
-					// button action
-					routerPath.presentedSheet = nil
-					DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-						cameraModel.showCamera = true
-					}
-				}
-				.longFlexibleButtonStyle()
+            Button {
+                viewModel.processedError = nil
+                // button action
+                routerPath.presentedSheet = nil
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                cameraModel.showCamera = true
+                }
+            } label: {
+                Text(StringConstants.Receipts.tryAgainButton)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .longFlexibleButtonStyle()
 			Button {
                 viewModel.processedError = nil
 				routerPath.presentedSheet = nil

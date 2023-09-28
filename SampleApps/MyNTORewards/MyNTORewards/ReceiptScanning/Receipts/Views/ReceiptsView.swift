@@ -94,12 +94,15 @@ struct ReceiptsView: View {
             Spacer()
             ProcessingErrorView(message: StringConstants.Receipts.fileSizeErrorMessage)
             Spacer()
-            Text(StringConstants.Receipts.backButton)
-                .onTapGesture {
-                    cameraVM.showErrorView = false
-                }
-                .longFlexibleButtonStyle()
-                .accessibilityIdentifier(AppAccessibilty.Receipts.errorBackButton)
+            Button {
+                cameraVM.showErrorView = false
+            } label: {
+                Text(StringConstants.Receipts.backButton)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .longFlexibleButtonStyle()
+            .accessibilityIdentifier(AppAccessibilty.Receipts.errorBackButton)
         }
 	}
 	
