@@ -15,7 +15,7 @@ struct ProcessedReceipt: Codable, Identifiable, Hashable {
     let storeName: String
     let storeAddress: String
     let receiptNumber: String
-    let receiptDate: String
+    let receiptDate: Date
     let lineItem: [ProcessedReceiptItem]
     
 	init(
@@ -24,7 +24,7 @@ struct ProcessedReceipt: Codable, Identifiable, Hashable {
 		storeName: String,
 		storeAddress: String,
 		receiptNumber: String,
-		receiptDate: String,
+		receiptDate: Date,
 		lineItem: [ProcessedReceiptItem]) {
 		self.receiptSFDCId = receiptSfdcId
 		self.totalAmount = totalAmount

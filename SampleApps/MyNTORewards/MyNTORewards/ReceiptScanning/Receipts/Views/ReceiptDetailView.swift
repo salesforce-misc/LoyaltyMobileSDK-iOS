@@ -97,18 +97,19 @@ struct ReceiptDetailView: View {
             } else {
                 Button {
                     Task {
-                        //TODO: Replace with url from response(receipt.imageURL).
-                        let urlString = "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg"
-                        await imageVM.getImage(url: urlString)
-                        if let image = imageVM.images[urlString.MD5] {
-                            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-                            showPhotoDownloadedAlert = true
+                        if let urlString = receipt.imageUrl {
+                            await imageVM.getImage(url: urlString)
+                            if let image = imageVM.images[urlString.MD5] {
+                                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                                showPhotoDownloadedAlert = true
+                            }
                         }
                     }
                 } label: {
                     Text("Download Image")
-                        .foregroundColor(.black)
+                        .foregroundColor(receipt.imageUrl == nil ? .gray : .black)
                 }
+                .disabled(receipt.imageUrl == nil)
                 .padding(.top, 20)
                 .padding(.bottom, 20)
             }
