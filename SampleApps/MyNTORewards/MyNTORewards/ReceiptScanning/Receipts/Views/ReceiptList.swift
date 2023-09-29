@@ -17,13 +17,13 @@ struct ReceiptList: View {
 				ReceiptListItem(receipt: receipt)
 					.padding(-3)
 					.background {
-					LoyaltyNavLink {
-						ReceiptDetailView(receipt: receipt)
-							.environmentObject(receiptListVM)
-					} label: {
-						EmptyView()
+						LoyaltyNavLink {
+							ReceiptDetailView(receipt: receipt)
+								.environmentObject(receiptListVM)
+						} label: {
+							EmptyView()
+						}
 					}
-				}
 			}
 			.listRowSeparator(.hidden)
 		}
