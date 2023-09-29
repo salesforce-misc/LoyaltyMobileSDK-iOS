@@ -13,17 +13,17 @@ struct ReceiptList: View {
     
     var body: some View {
 		List {
-            ForEach(receiptListVM.filteredReceipts) { receipt in
+			ForEach(receiptListVM.filteredReceipts) { receipt in
 				ReceiptListItem(receipt: receipt)
-				.padding(-3)
-				.background {
-					LoyaltyNavLink {
-						ReceiptDetailView(receipt: receipt)
-							.environmentObject(receiptListVM)
-					} label: {
-						EmptyView()
+					.padding(-3)
+					.background {
+						LoyaltyNavLink {
+							ReceiptDetailView(receipt: receipt)
+								.environmentObject(receiptListVM)
+						} label: {
+							EmptyView()
+						}
 					}
-				}
 			}
 			.listRowSeparator(.hidden)
 		}

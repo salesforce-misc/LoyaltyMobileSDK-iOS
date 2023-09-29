@@ -26,7 +26,7 @@ struct ReceiptListItem: View {
 				Spacer()
 				
                 if receipt.status == "Processed" {
-                    Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points").foregroundColor(Color("PointsColor"))
+					Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points").foregroundColor(Color("PointsColor")).fontWeight(.medium)
                 } else {
                     Text(receipt.status == "Manual Review" ? "Submitted for Manual Review" : receipt.status )
                         .foregroundColor(receiptVM.getColor(for: receipt.status))
