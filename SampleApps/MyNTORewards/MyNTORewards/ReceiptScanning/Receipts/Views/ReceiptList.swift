@@ -12,21 +12,22 @@ struct ReceiptList: View {
     @EnvironmentObject var receiptListVM: ReceiptListViewModel
     
     var body: some View {
-		ScrollView {
-			LazyVGrid(columns: [GridItem(.flexible())]) {
-				ForEach(receiptListVM.filteredReceipts) { receipt in
+		List {
+			ForEach(receiptListVM.filteredReceipts) { receipt in
+				ReceiptListItem(receipt: receipt)
+					.padding(-3)
+					.background {
 					LoyaltyNavLink {
 						ReceiptDetailView(receipt: receipt)
 							.environmentObject(receiptListVM)
 					} label: {
-						ReceiptListItem(receipt: receipt)
-							.padding(.horizontal)
-							.padding(.vertical, 3)
-							.foregroundColor(.black)
+						EmptyView()
 					}
 				}
 			}
+			.listRowSeparator(.hidden)
 		}
+		.listStyle(.plain)
     }
 }
 
