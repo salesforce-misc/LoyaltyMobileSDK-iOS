@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ReceiptDetailView: View {
 	@EnvironmentObject var routerPath: RouterPath
+    @EnvironmentObject var localeManager: LocaleManager
     @StateObject var processedReceiptViewModel = ProcessedReceiptViewModel()
 	@StateObject var imageVM = ImageViewModel()
 	@State private var tabIndex = 0
@@ -24,7 +25,7 @@ struct ReceiptDetailView: View {
                         .font(.transactionText)
                         .accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberText)
                     HStack {
-                        Text("Date: \(receipt.purchaseDate ?? " - ")")
+                        Text("Date: \(receipt.purchaseDate?.toString(withFormat: localeManager.currentDateFormat) ?? " - ")")
                             .font(.transactionDate)
                             .accessibilityIdentifier(AppAccessibilty.Receipts.receiptDateText)
                         Spacer()
@@ -149,7 +150,7 @@ struct ReceiptDetailView_Previews: PreviewProvider {
 										   name: "Receipt",
 										   status: "Draft",
 										   storeName: "Ratna cafe",
-										   purchaseDate: "08/09/2023",
+										   purchaseDate: Date(),
 										   totalAmount: "$4500",
 										   totalPoints: 50,
 										   createdDate: "03/05/2022",

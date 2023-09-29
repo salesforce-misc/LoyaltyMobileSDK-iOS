@@ -141,6 +141,7 @@
 		29BAF6FE28F63A5800A3F9EB /* RewardPointsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6FD28F63A5800A3F9EB /* RewardPointsCardView.swift */; };
 		29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */; };
 		29BAF70228F78FA400A3F9EB /* AllTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */; };
+		29BD48942AC696D400F10158 /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD48932AC696D400F10158 /* LocaleManager.swift */; };
 		29EC33242AAA962A00104363 /* ProcessingErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EC33232AAA962A00104363 /* ProcessingErrorView.swift */; };
 		29FEDDF2294293BF0014BEBA /* UITabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FEDDF1294293BF0014BEBA /* UITabView.swift */; };
 		3F0C4F792A827A0B00394CB0 /* ManualReviewInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C4F782A827A0B00394CB0 /* ManualReviewInputView.swift */; };
@@ -395,6 +396,7 @@
 		29BAF6FD28F63A5800A3F9EB /* RewardPointsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardPointsCardView.swift; sourceTree = "<group>"; };
 		29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsView.swift; sourceTree = "<group>"; };
+		29BD48932AC696D400F10158 /* LocaleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleManager.swift; sourceTree = "<group>"; };
 		29EC33232AAA962A00104363 /* ProcessingErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingErrorView.swift; sourceTree = "<group>"; };
 		29EC33252AAA999F00104363 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		29FEDDF1294293BF0014BEBA /* UITabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabView.swift; sourceTree = "<group>"; };
@@ -767,6 +769,7 @@
 				2984C93F2954F091009669EF /* LocalFileManager */,
 				2984C93E2954F091009669EF /* LoyaltyUtilities.swift */,
 				AF8AA4CC29E3ED54007E2F6F /* AppAccessibilityConstants.swift */,
+				29BD48932AC696D400F10158 /* LocaleManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1376,6 +1379,7 @@
 				3F874FD42A652A0A00F90C4D /* ProcessedReceipt.swift in Sources */,
 				299B38CA28E365AD00E45D97 /* HalfSheet.swift in Sources */,
 				298D5EF829CCFFD00062F16E /* UserDefaults.swift in Sources */,
+				29BD48942AC696D400F10158 /* LocaleManager.swift in Sources */,
 				3F714D4729FA0F4A00CD39E7 /* ProductDetailsView.swift in Sources */,
 				29BAF6E528F485DA00A3F9EB /* VouchersView.swift in Sources */,
 				298D5EF229CCF94D0062F16E /* WebAuthenticationSession.swift in Sources */,

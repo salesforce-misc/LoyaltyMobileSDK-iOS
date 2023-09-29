@@ -11,6 +11,7 @@ struct ManualReviewInputView: View {
 	@EnvironmentObject var processedReceiptViewModel: ProcessedReceiptViewModel
 	@EnvironmentObject var receiptListViewModel: ReceiptListViewModel
 	@EnvironmentObject var rootVM: AppRootViewModel
+    @EnvironmentObject var localeManager: LocaleManager
 	@Binding var showManualReviewRequest: Bool
 	@Environment(\.dismiss) var dismiss
 	@State private var comment: String = ""
@@ -45,7 +46,7 @@ struct ManualReviewInputView: View {
 							Text("Receipt \(receipt.receiptId)")
 								.font(.transactionText)
 								.accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberText)
-							Text("Date \(receipt.purchaseDate ?? "-")")
+                            Text("Date \(receipt.purchaseDate?.toString(withFormat: localeManager.currentDateFormat) ?? "-")")
 								.font(.transactionDate)
 								.accessibilityIdentifier(AppAccessibilty.Receipts.receiptDateText)
 						}
@@ -132,7 +133,7 @@ struct ManualReviewInputView_Previews: PreviewProvider {
 																						 name: "Receipt",
 																						 status: "Draft",
 																						 storeName: "Ratna cafe",
-																						 purchaseDate: "08/09/2023",
+																						 purchaseDate: Date(),
 																						 totalAmount: "$4500",
 																						 totalPoints: 50,
 																						 createdDate: "03/05/2022",
