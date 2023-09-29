@@ -36,6 +36,7 @@ struct ReceiptDetailView: View {
                         } else {
                             Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points")
                                 .font(.transactionDate)
+								.fontWeight(.medium)
                                 .accessibilityIdentifier(AppAccessibilty.Receipts.receiptPointsText)
                                 .foregroundColor(Color("PointsColor"))
                         }

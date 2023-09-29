@@ -73,7 +73,9 @@ struct ReceiptsView: View {
 		.environmentObject(receiptViewModel)
 		.background(Color.theme.background)
 		.task {
+			isLoading = true
 			await getReceipts()
+			isLoading = false
 		}
 		.background(Color.theme.background)
         .fullScreenCover(isPresented: $cameraVM.showCamera) {
@@ -108,11 +110,8 @@ struct ReceiptsView: View {
 	
 	func getReceipts(forced: Bool = false) async {
 		do {
-			isLoading = true
 			try await receiptListViewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: forced)
-			isLoading = false
 		} catch {
-			isLoading = false
 			Logger.error(error.localizedDescription)
 		}
 	}
