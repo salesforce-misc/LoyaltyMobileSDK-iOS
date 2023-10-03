@@ -21,14 +21,14 @@ struct ReceiptListItem: View {
 			}
 			.font(.transactionText )
 			HStack {
-                Text("Date \(receipt.purchaseDate?.toString(withFormat: localeManager.currentDateFormat) ?? " - ")")
+                Text(receipt.purchaseDate?.toString(withFormat: localeManager.currentDateFormat) ?? " - ")
 
 				Spacer()
 				
                 if receipt.status == "Processed" {
 					Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points").foregroundColor(Color("PointsColor")).fontWeight(.medium)
                 } else {
-                    Text(receipt.status == "Manual Review" ? "Submitted for Manual Review" : receipt.status )
+                    Text(receipt.status == "Manual Review" ? "In Manual Review" : receipt.status )
                         .foregroundColor(receiptVM.getColor(for: receipt.status))
                 }
 			}

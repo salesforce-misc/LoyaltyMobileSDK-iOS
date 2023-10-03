@@ -14,9 +14,10 @@ struct ReceiptDetailView: View {
 	@StateObject var imageVM = ImageViewModel()
 	@State private var tabIndex = 0
 	@State private var showManualReviewRequest = false
+	@State private var showManualReviewSubmittedAlert = false
 	@State private var showPhotoDownloadedAlert = false
 	@State private var isTableLoading = true
-	var tabbarItems = ["Items Detected", "Receipt Image"]
+	var tabbarItems = ["Receipt Items", "Receipt Image"]
 	let receipt: Receipt
     var body: some View {
         VStack {
@@ -30,7 +31,7 @@ struct ReceiptDetailView: View {
                             .accessibilityIdentifier(AppAccessibilty.Receipts.receiptDateText)
                         Spacer()
                         if receipt.status == "Manual Review" {
-                            Text("Submitted for Manual Review")
+                            Text("In Manual Review")
                                 .foregroundColor(Color.theme.receiptStatusPending)
                                 .font(.transactionDate)
                             
@@ -83,18 +84,17 @@ struct ReceiptDetailView: View {
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             }
             if tabIndex == 0 {
-                if !isManualReview() {
+                if "Manual Review" != receipt.status {
                     Button {
                         showManualReviewRequest = true
                     } label: {
-                        Text(isManualReview() ? "Submitted for Manual Review" : "Request a Manual Review")
-                            .foregroundColor(isManualReview() ? .gray : .black)
+                        Text("Request a Manual Review")
+                            .foregroundColor(.black)
                     }
                     .padding(.top, 20)
-                    .opacity("Manual Review" == receipt.status ? 0 : 1)
+                    .opacity(1)
                     .padding(.bottom, 20)
                 }
-
             } else {
                 Button {
                     Task {
@@ -107,7 +107,7 @@ struct ReceiptDetailView: View {
                         }
                     }
                 } label: {
-                    Text("Download Image")
+                    Text("Download Original Receipt")
                         .foregroundColor(receipt.imageUrl == nil ? .gray : .black)
                 }
                 .disabled(receipt.imageUrl == nil)
@@ -130,18 +130,21 @@ struct ReceiptDetailView: View {
 		.loytaltyNavigationTitle("Receipt Details")
 		.loyaltyNavBarSearchButtonHidden(true)
 		.sheet(isPresented: $showManualReviewRequest) {
-			ManualReviewInputView(showManualReviewRequest: $showManualReviewRequest, receipt: receipt)
+			ManualReviewInputView(showManualReviewRequest: $showManualReviewRequest, showManualReviewSubmittedAlert: $showManualReviewSubmittedAlert, receipt: receipt)
 				.interactiveDismissDisabled()
 				.presentationDetents(Set([ .height(524)]))
 		}
 		.alert(StringConstants.Receipts.receiptSavedToPhotos, isPresented: $showPhotoDownloadedAlert, actions: {
 			Text("OK")
 		})
+		.alert(getRequestSubmittedAlertMessage(), isPresented: $showManualReviewSubmittedAlert, actions: {
+			Text("OK")
+		})
 		.environmentObject(processedReceiptViewModel)
     }
 	
-	private func isManualReview() -> Bool {
-		"Manual Review" == receipt.status
+	private func getRequestSubmittedAlertMessage() -> String {
+		return "Receipt \(receipt.receiptId) was submitted for manual review."
 	}
 }
 
