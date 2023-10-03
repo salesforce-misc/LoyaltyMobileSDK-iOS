@@ -72,7 +72,7 @@ struct ConnectedAppSettingsView: View {
                 
             }
             
-            NavigationView {
+            NavigationStack {
                 
                 Form {
                     

@@ -16,6 +16,8 @@ struct MyNTORewardsApp: App {
 	@StateObject var profileVM = ProfileViewModel()
     @StateObject var imageVM = ImageViewModel()
     @StateObject var connectedAppVM = ConnectedAppsViewModel<ForceConnectedAppKeychainManager>()
+    @StateObject var processedReceiptVM = ProcessedReceiptViewModel()
+    @StateObject var localeManager = LocaleManager()
     
     init() {
         _ = AppSettings.shared
@@ -30,6 +32,8 @@ struct MyNTORewardsApp: App {
 				.environmentObject(profileVM)
                 .environmentObject(imageVM)
                 .environmentObject(connectedAppVM)
+                .environmentObject(processedReceiptVM)
+                .environmentObject(localeManager)
         }
     }
 }

@@ -17,18 +17,19 @@ struct MenuItem: Identifiable {
 struct MoreView: View {
     
     @EnvironmentObject private var rootVM: AppRootViewModel
-    
+	@EnvironmentObject private var routerPath: RouterPath
     let menuItems: [MenuItem] = [
-        MenuItem(icon: "ic-person", title: "Account", accessibilityIdentifier: AppAccessibilty.More.account),
-        MenuItem(icon: "ic-address", title: "Addresses", accessibilityIdentifier: AppAccessibilty.More.address),
-        MenuItem(icon: "ic-card", title: "Payment Methods", accessibilityIdentifier: AppAccessibilty.More.paymentMethod),
-        MenuItem(icon: "ic-orders", title: "Orders", accessibilityIdentifier: AppAccessibilty.More.orders),
-        MenuItem(icon: "ic-case", title: "Support", accessibilityIdentifier: AppAccessibilty.More.support),
-        MenuItem(icon: "ic-heart", title: "Favorites", accessibilityIdentifier: AppAccessibilty.More.favourites)
+//        MenuItem(icon: "ic-person", title: "Account", accessibilityIdentifier: AppAccessibilty.More.account),
+//        MenuItem(icon: "ic-address", title: "Addresses", accessibilityIdentifier: AppAccessibilty.More.address),
+//        MenuItem(icon: "ic-card", title: "Payment Methods", accessibilityIdentifier: AppAccessibilty.More.paymentMethod),
+//        MenuItem(icon: "ic-orders", title: "Orders", accessibilityIdentifier: AppAccessibilty.More.orders),
+		MenuItem(icon: "ic-receipts", title: "Receipts", accessibilityIdentifier: AppAccessibilty.More.receipts)
+//        MenuItem(icon: "ic-case", title: "Support", accessibilityIdentifier: AppAccessibilty.More.support),
+//        MenuItem(icon: "ic-heart", title: "Favorites", accessibilityIdentifier: AppAccessibilty.More.favourites)
     ]
     var body: some View {
         VStack {
-            NavigationView {
+			NavigationStack(path: $routerPath.pathFromMore) {
                 List {
                     VStack(alignment: .leading) {
                         HStack {
@@ -44,11 +45,24 @@ struct MoreView: View {
                     .frame(height: 85)
                     
                     ForEach(menuItems) { menu in
-						Label(menu.title, image: menu.icon)
-							.font(.menuText)
-							.frame(height: 65)
-							.listRowSeparatorTint(Color.theme.listSeparatorPink)
-                            .accessibilityIdentifier(menu.accessibilityIdentifier)
+						Button {
+                            switch menu.title {
+                            case "Receipts":
+								routerPath.navigateFromMore(to: .receipts)
+                            default:
+                                break
+                            }
+						} label: {
+							HStack {
+								Label(menu.title, image: menu.icon)
+									.font(.menuText)
+									.frame(height: 65)
+									.listRowSeparatorTint(Color.theme.listSeparatorPink)
+								.accessibilityIdentifier(menu.accessibilityIdentifier)
+								Spacer()
+								Image("chevron-right")
+							}
+						}
                     }
 
                     Button {
@@ -71,9 +85,10 @@ struct MoreView: View {
                 }
                 .listStyle(.plain)
                 .navigationBarHidden(true)
-                
+				.withAppRouter()
+				.environmentObject(rootVM)
             }
-            .navigationViewStyle(.stack)
+			.environmentObject(routerPath)
             
             if rootVM.isInProgress {
                 ProgressView()
@@ -87,5 +102,6 @@ struct MoreView_Previews: PreviewProvider {
     static var previews: some View {
         MoreView()
             .environmentObject(dev.rootVM)
+            .environmentObject(dev.routerPath)
     }
 }

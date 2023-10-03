@@ -14,7 +14,7 @@ struct AvailableColorsView: View {
     var body: some View {
 		VStack(alignment: .leading) {
 			HStack {
-				Text("Available Colors")
+				Text("Colors")
 					.font(.selectionTitleText)
 				Spacer()
 			}

@@ -190,14 +190,14 @@ struct OnboardingView: View {
                         
                     }
                     .onReceive(viewModel.$userState) { state in
-                        if state == UserState.signedIn {
-                            appViewRouter.signedIn = true
-                            appViewRouter.currentPage = .navTabsPage()
-                        }
-                        if state == UserState.signedInButNotJoined {
-                            signInPresented = false
-                            signUpPresented = true
-                        }
+						signInPresented = false
+						DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+							if state == UserState.signedIn {
+								appViewRouter.signedIn = true
+								appViewRouter.currentPage = .navTabsPage()
+							}
+							signUpPresented = state == UserState.signedInButNotJoined
+						}
                     }
                 }
                 

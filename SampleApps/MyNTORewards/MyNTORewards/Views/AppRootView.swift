@@ -51,7 +51,7 @@ struct AppRootView: View {
 			}
 		}
         .onChange(of: appViewRouter.isAuthenticated, perform: { newValue in
-            if !newValue {
+            if !newValue && rootVM.userState == .signedIn {
                 rootVM.signOutUser()
             }
         })

@@ -30,6 +30,7 @@ final class HomeViewHelper: XCTestCase {
         XCTAssertTrue(app.staticTexts["You have no Vouchers Available"].exists)
         XCTAssertTrue(app.staticTexts["View All"].exists)
         XCTAssertTrue(app.staticTexts["My Vouchers"].exists)
+		XCTAssert(app.buttons["receipts_icon"].exists)
     }
     
     static func testPromotionViewElements() throws {
