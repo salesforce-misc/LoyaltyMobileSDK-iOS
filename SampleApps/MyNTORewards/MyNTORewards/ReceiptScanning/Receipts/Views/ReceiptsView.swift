@@ -38,7 +38,7 @@ struct ReceiptsView: View {
 				Text(StringConstants.Receipts.uploadReceiptButton)
 					.font(.boldButtonText)
 					.longFlexibleButtonStyle()
-					.frame(width: 140)
+					.frame(width: 110)
 					.accessibilityIdentifier(AppAccessibilty.Receipts.newButton)
 					.onTapGesture {
 						cameraVM.showCamera = true

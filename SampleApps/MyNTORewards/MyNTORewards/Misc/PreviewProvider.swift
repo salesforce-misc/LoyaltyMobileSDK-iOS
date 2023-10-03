@@ -190,7 +190,7 @@ class DeveloperPreview {
 											storeName: "Costco",
 											storeAddress: "San Jose",
 											receiptNumber: "R-US-001",
-											receiptDate: "12/09/2023",
+											receiptDate: Date(),
 											lineItem: [ProcessedReceiptItem(quantity: "4",
 																			productName: "Nike Shoes",
 																			price: "$20",

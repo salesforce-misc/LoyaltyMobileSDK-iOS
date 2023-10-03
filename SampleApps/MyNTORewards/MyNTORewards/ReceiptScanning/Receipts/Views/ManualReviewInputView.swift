@@ -13,6 +13,7 @@ struct ManualReviewInputView: View {
 	@EnvironmentObject var rootVM: AppRootViewModel
     @EnvironmentObject var localeManager: LocaleManager
 	@Binding var showManualReviewRequest: Bool
+	@Binding var showManualReviewSubmittedAlert: Bool
 	@Environment(\.dismiss) var dismiss
 	@State private var comment: String = ""
 	@State private var isLoading = false
@@ -73,6 +74,9 @@ struct ManualReviewInputView: View {
                             let success = try await processedReceiptViewModel.updateStatus(receiptId: receipt.id, status: .manualReview, comments: comment)
                             if success {
                                 dismiss()
+								DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+									showManualReviewSubmittedAlert = true
+								}
                                 try await receiptListViewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: true)
                             }
                             isLoading = false
@@ -128,16 +132,18 @@ struct CommentsInputView: View {
 
 struct ManualReviewInputView_Previews: PreviewProvider {
     static var previews: some View {
-		ManualReviewInputView(showManualReviewRequest: .constant(true), receipt: Receipt(id: "Receipt 56g",
-																						 receiptId: "3453463",
-																						 name: "Receipt",
-																						 status: "Draft",
-																						 storeName: "Ratna cafe",
-																						 purchaseDate: Date(),
-																						 totalAmount: "$4500",
-																						 totalPoints: 50,
-																						 createdDate: "03/05/2022",
-																						 imageUrl: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg",
-																						 processedAwsReceipt: "{\n  \"totalAmount\" : \"$154.06\",\n  \"storeName\" : \"East Repair Inc.\"n}"))
-    }
+		ManualReviewInputView(showManualReviewRequest: .constant(true), 
+							  showManualReviewSubmittedAlert: .constant(false), 
+							  receipt: Receipt(id: "Receipt 56g",
+											   receiptId: "3453463",
+											   name: "Receipt",
+											   status: "Draft",
+											   storeName: "Ratna cafe",
+											   purchaseDate: Date(),
+											   totalAmount: "$4500",
+											   totalPoints: 50,
+											   createdDate: "03/05/2022",
+											   imageUrl: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg",
+											   processedAwsReceipt: "{\n  \"totalAmount\" : \"$154.06\",\n  \"storeName\" : \"East Repair Inc.\"n}"))
+	}
 }
