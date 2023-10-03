@@ -10,8 +10,8 @@ import SwiftUI
 struct ProcessedReceiptList: View {
 	var eligibleItems: [ProcessedReceiptItem] = []
 	var ineligibleItems: [ProcessedReceiptItem] = []
-	private let eligibleItemsTitle = "Eligible Items found in the receipt"
-	private let ineligibleItemsTitle = "Non Eligible Items found in the receipt"
+	private let eligibleItemsTitle = "Eligible Items"
+	private let ineligibleItemsTitle = "Ineligible Items"
 	
 	var body: some View {
 		VStack {
