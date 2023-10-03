@@ -87,6 +87,7 @@ struct CameraView: View {
                     .padding(.leading, 20)
                     .sheet(isPresented: $showPhotoPicker) {
                         ImagePickerView(image: self.$capturedImage, showCapturedImage: self.$showCapturedImage, sourceType: .photoLibrary)
+							.ignoresSafeArea(edges: .bottom)
                     }
                     
                     Spacer()
@@ -138,35 +139,32 @@ struct CameraView: View {
         }
     }
     
-    func fetchLatestPhoto() {
-        let requestOptions = PHImageRequestOptions()
-        requestOptions.isSynchronous = true
-        requestOptions.deliveryMode = .highQualityFormat
+	func fetchLatestPhoto() {
+		let requestOptions = PHImageRequestOptions()
+		requestOptions.isSynchronous = true
+		requestOptions.deliveryMode = .highQualityFormat
+		
+		let fetchOptions = PHFetchOptions()
+		fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
 
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-
-        let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
-        
-        // swiftlint:disable empty_count
-        if fetchResult.count > 0 {
-            if let lastAsset: PHAsset = fetchResult.firstObject {
-                PHImageManager.default().requestImage(for: lastAsset,
-                                                      targetSize: CGSize(width: 50, height: 50),
-                                                      contentMode: .default,
-                                                      options: requestOptions,
-                                                      resultHandler: { image, _ in
-                    if let image = image {
-                        DispatchQueue.main.async {
-                            self.latestPhoto = image
-                        }
-                    }
-                })
-            }
-        }
-        // swiftlint:enable empty_count
-    }
-
+		PHPhotoLibrary.requestAuthorization(for: .readWrite) { _ in
+			DispatchQueue.main.async {
+				if let lastAsset = PHAsset.fetchAssets(with: .image, options: fetchOptions).firstObject {
+					PHImageManager.default().requestImage(for: lastAsset,
+														  targetSize: CGSize(width: 50, height: 50),
+														  contentMode: .default,
+														  options: requestOptions,
+														  resultHandler: { image, _ in
+						if let image = image {
+							DispatchQueue.main.async {
+								self.latestPhoto = image
+							}
+						}
+					})
+				}
+			}
+		}
+	}
 }
 
 struct CameraPreview: UIViewRepresentable {

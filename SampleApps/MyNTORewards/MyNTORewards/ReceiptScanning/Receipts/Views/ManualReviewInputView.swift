@@ -11,6 +11,7 @@ struct ManualReviewInputView: View {
 	@EnvironmentObject var processedReceiptViewModel: ProcessedReceiptViewModel
 	@EnvironmentObject var receiptListViewModel: ReceiptListViewModel
 	@EnvironmentObject var rootVM: AppRootViewModel
+    @EnvironmentObject var localeManager: LocaleManager
 	@Binding var showManualReviewRequest: Bool
 	@Environment(\.dismiss) var dismiss
 	@State private var comment: String = ""
@@ -45,7 +46,7 @@ struct ManualReviewInputView: View {
 							Text("Receipt \(receipt.receiptId)")
 								.font(.transactionText)
 								.accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberText)
-							Text("Date \(receipt.purchaseDate.toDateString() ?? "-")")
+                            Text("Date \(receipt.purchaseDate?.toString(withFormat: localeManager.currentDateFormat) ?? "-")")
 								.font(.transactionDate)
 								.accessibilityIdentifier(AppAccessibilty.Receipts.receiptDateText)
 						}
@@ -65,24 +66,27 @@ struct ManualReviewInputView: View {
 				}
 				CommentsInputView(comment: $comment)
 					.padding(8)
-				Text(StringConstants.Receipts.submitForManualReviewButton)
-					.onTapGesture {
-						Task {
-							do {
-								isLoading = true
-								let success = try await processedReceiptViewModel.updateStatus(receiptId: receipt.id, status: .manualReview, comments: comment)
-								if success {
-									dismiss()
-									try await receiptListViewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: true)
-								}
-								isLoading = false
-							} catch {
-								isLoading = false
-								// MARK: handle error
-							}
-						}
-					}
-					.longFlexibleButtonStyle(disabled: comment.isEmpty)
+                Button {
+                    Task {
+                        do {
+                            isLoading = true
+                            let success = try await processedReceiptViewModel.updateStatus(receiptId: receipt.id, status: .manualReview, comments: comment)
+                            if success {
+                                dismiss()
+                                try await receiptListViewModel.getReceipts(membershipNumber: rootVM.member?.membershipNumber ?? "", forced: true)
+                            }
+                            isLoading = false
+                        } catch {
+                            isLoading = false
+                            // MARK: handle error
+                        }
+                    }
+                } label: {
+                    Text(StringConstants.Receipts.submitForManualReviewButton)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .longFlexibleButtonStyle(disabled: comment.isEmpty)
 				Button {
 					dismiss()
 				} label: {
@@ -129,7 +133,7 @@ struct ManualReviewInputView_Previews: PreviewProvider {
 																						 name: "Receipt",
 																						 status: "Draft",
 																						 storeName: "Ratna cafe",
-																						 purchaseDate: "08/09/2023",
+																						 purchaseDate: Date(),
 																						 totalAmount: "$4500",
 																						 totalPoints: 50,
 																						 createdDate: "03/05/2022",

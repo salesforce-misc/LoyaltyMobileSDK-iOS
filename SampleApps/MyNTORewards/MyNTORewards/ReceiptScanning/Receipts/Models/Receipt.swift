@@ -13,7 +13,7 @@ struct Receipt: Identifiable, Codable, Equatable {
 	let name: String
 	let status: String
 	let storeName: String
-	let purchaseDate: String
+	let purchaseDate: Date?
 	let totalAmount: String?
 	let totalPoints: Double?
 	let createdDate: String
@@ -38,5 +38,5 @@ struct Receipt: Identifiable, Codable, Equatable {
 enum ReceiptState {
 	case processing
 	case processed
-	case submitted
+	case submitted(Double?)
 }

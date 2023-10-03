@@ -10,7 +10,9 @@ import SwiftUI
 struct ReceiptCongratsView: View {
 	@EnvironmentObject var routerPath: RouterPath
 	@EnvironmentObject var cameraModel: CameraViewModel
-	var points: Double
+	@EnvironmentObject var receiptListViewModel: ReceiptListViewModel
+	@EnvironmentObject var rootViewModel: AppRootViewModel
+	var points: Double?
 	var body: some View {
 		ZStack {
 			VStack {
@@ -28,20 +30,28 @@ struct ReceiptCongratsView: View {
 					.padding(.top, 30)
 					.padding(.bottom, 2)
 					.accessibilityIdentifier(AppAccessibilty.Receipts.receiptSubmittedCongrats)
-				
-				Text("We’ve credited \(points.truncate(to: 2)) points for the uploaded receipt")
+				Text(getMessage(for: points))
 					.font(.congratsText)
 					.lineSpacing(5)
 					.multilineTextAlignment(.center)
 					.padding([.leading, .trailing], 40)
 				Spacer()
-				Text("Done")
-					.onTapGesture {
-						routerPath.dismissSheets()
-					}
-					.longFlexibleButtonStyle()
+                Button {
+                    routerPath.dismissSheets()
+                    Task {
+                        try await reloadReceipts()
+                    }
+                } label: {
+                    Text("Done")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .longFlexibleButtonStyle()
 				Button(StringConstants.Receipts.uploadAnotherReceiptButton) {
 					routerPath.dismissSheets()
+					Task {
+						try await reloadReceipts()
+					}
 					DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 						cameraModel.showCamera = true
 					}
@@ -51,6 +61,19 @@ struct ReceiptCongratsView: View {
 				.accessibilityIdentifier(AppAccessibilty.Receipts.scanAnotherReceipt)
 			}
 		}
+	}
+	
+	private func getMessage(for points: Double?) -> String {
+		if let points = points, points != 0 {
+			return "We’ve credited \(points.truncate(to: 2)) points for the uploaded receipt"
+		} else {
+			return "We will credit points for the uploaded receipt soon"
+		}
+	}
+	
+	private func reloadReceipts() async throws {
+		try await receiptListViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "",
+												   forced: true)
 	}
 }
 

@@ -48,6 +48,7 @@ struct AppSettings {
         static let storedInstanceURLKey = "LoyaltyMobileSDK.instanceURL"
         static let storedBaseURLKey = "LoyaltyMobileSDK.baseURL"
         static let adminMenuTapCountRequired = 6
+        static let displayDateFormat = "yyyy-MM-dd"
     }
     
     struct Vouchers {

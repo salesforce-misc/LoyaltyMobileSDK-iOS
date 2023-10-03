@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ReceiptListItem: View {
+    @EnvironmentObject var localeManager: LocaleManager
 	@StateObject private var receiptVM = ReceiptViewModel()
 	let receipt: Receipt
 
@@ -20,16 +21,16 @@ struct ReceiptListItem: View {
 			}
 			.font(.transactionText )
 			HStack {
-				Text("Date \(receipt.purchaseDate.toDateString() ?? " - ")")
+                Text("Date \(receipt.purchaseDate?.toString(withFormat: localeManager.currentDateFormat) ?? " - ")")
 
 				Spacer()
 				
-				if receipt.status == "Processed" {
-					Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points")
-				} else {
-					Text(receipt.status)
-						.foregroundColor(receiptVM.getColor(for: receipt.status))
-				}
+                if receipt.status == "Processed" {
+					Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points").foregroundColor(Color("PointsColor")).fontWeight(.medium)
+                } else {
+                    Text(receipt.status == "Manual Review" ? "Submitted for Manual Review" : receipt.status )
+                        .foregroundColor(receiptVM.getColor(for: receipt.status))
+                }
 			}
 			.font(.transactionDate)
 		}
@@ -48,7 +49,7 @@ struct ReceiptListItem_Previews: PreviewProvider {
 										 name: "Receipt",
 										 status: "Draft",
 										 storeName: "Ratna cafe",
-										 purchaseDate: "08/09/2023",
+										 purchaseDate: Date(),
 										 totalAmount: "$4500",
 										 totalPoints: 50,
 										 createdDate: "03/05/2022",

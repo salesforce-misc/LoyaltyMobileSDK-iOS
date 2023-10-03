@@ -22,7 +22,7 @@ struct HomeView: View {
     @Binding var selectedTab: Int
     
 	var body: some View {
-		NavigationStack {
+		NavigationStack(path: $routerPath.pathFromHome) {
 			VStack(spacing: 0) {
 				VStack(spacing: 0) {
 					HStack {
@@ -34,7 +34,7 @@ struct HomeView: View {
 							.accessibilityIdentifier(AppAccessibilty.Receipts.receiptsIcon)
 							.onTapGesture {
 								routerPath.dismissSheets()
-								cameraVM.showCamera = true
+								routerPath.navigateFromHome(to: .receipts)
 							}
 					}
 					.frame(height: 44)
@@ -119,25 +119,19 @@ struct HomeView: View {
 				}
 				.navigationBarHidden(true)
 			}
-			.withSheetDestination(sheetDestination: $routerPath.presentedSheet)
+			.withAppRouter()
 		}
-		.fullScreenCover(isPresented: $cameraVM.showCamera) {
-			ZStack {
-				ZStack {
-					CameraView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
-						.zIndex(showCapturedImage ? 0 : 1)
-					
-					if showCapturedImage {
-						CapturedImageView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
-							.environmentObject(receiptListViewModel)
-							.transition(.move(edge: .trailing))
-							.zIndex(showCapturedImage ? 1 : 0)
-					}
-				}
-				.animation(.default, value: showCapturedImage)
-				.environmentObject(routerPath)
-			}
-		}
+        .fullScreenCover(isPresented: $cameraVM.showErrorView) {
+            Spacer()
+            ProcessingErrorView(message: StringConstants.Receipts.fileSizeErrorMessage)
+            Spacer()
+            Text(StringConstants.Receipts.backButton)
+                .onTapGesture {
+                    cameraVM.showErrorView = false
+                }
+                .longFlexibleButtonStyle()
+                .accessibilityIdentifier(AppAccessibilty.Receipts.errorBackButton)
+        }
 	}
 }
 

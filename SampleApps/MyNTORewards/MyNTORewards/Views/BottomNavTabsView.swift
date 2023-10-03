@@ -18,7 +18,7 @@ struct BottomNavTabsView: View {
 	@State var selectedTab: Int = Tab.home.rawValue
 	
 	var body: some View {
-		NavigationStack {
+		NavigationView {
 			ZStack(alignment: .bottomLeading) {
 				UITabView(selection: $selectedTab) {
 					HomeView(selectedTab: $selectedTab)
@@ -38,7 +38,8 @@ struct BottomNavTabsView: View {
 						.tabItem("More", image: UIImage(named: "ic-more"))
 				}
 				.onChange(of: selectedTab) { _ in
-					routerPath.path.removeAll()
+					routerPath.pathFromHome.removeAll()
+					routerPath.pathFromMore.removeAll()
 				}
 			}
 			.background {
@@ -60,13 +61,15 @@ struct BottomNavTabsView: View {
 				UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
 			} // To Fix Tab bar at the bottom of an app goes transparent when navigating back from another view
 		}
-		.environmentObject(promotionsVM)
-		.environmentObject(vouchersVM)
-		.environmentObject(profileVM)
-		.environmentObject(transactionVM)
-		.environmentObject(cameraVM)
-		.environmentObject(routerPath)
-		.environmentObject(receiptListViewModel)
+		.withSheetDestination(sheetDestination: $routerPath.presentedSheet)
+        .environmentObject(promotionsVM)
+        .environmentObject(vouchersVM)
+        .environmentObject(profileVM)
+        .environmentObject(transactionVM)
+        .environmentObject(cameraVM)
+        .environmentObject(routerPath)
+        .environmentObject(receiptListViewModel)
+        .navigationViewStyle(.stack)
 	}
 }
 
