@@ -42,7 +42,7 @@ struct ScratchCardView: View {
                     
                     Spacer()
                     
-                    ScratchCardGame(cursorSize: 30, onFinish: $isFinished) {
+                    ScratchCardGame(cursorSize: 30, cardSize: cardSize, onFinish: $isFinished) {
                         ZStack {
                             // Purple background with postage stamp border
                             DottedBorderRectangle(width: backgroundSize.width,
@@ -54,7 +54,8 @@ struct ScratchCardView: View {
                                 .fill(Color(hex: "#D9D9D9"))
                                 .frame(width: cardSize.width, height: cardSize.height)
                                 .cornerRadius(10)
-                                
+                                .opacity(isFinished ? 0 : 1)
+   
                             Text(String(repeating: "SCRATCH TO WIN! ", count: 80))
                                 .font(Font.scratchText)
                                 .multilineTextAlignment(.center)
@@ -64,7 +65,9 @@ struct ScratchCardView: View {
                                     Rectangle()
                                         .frame(width: cardSize.width, height: cardSize.height)
                                         .cornerRadius(10)
+                                        .opacity(isFinished ? 0 : 1)
                                 }
+                                .opacity(isFinished ? 0 : 1)
                         }
                     } overlayView: {
                         // Reward text
@@ -103,6 +106,7 @@ struct ScratchCardView: View {
 struct ScratchCardGame<Content: View, OverlayView: View>: View {
     
     let cursorSize: CGFloat
+    let cardSize: CGSize
     @Binding var onFinish: Bool
     
     var content: Content
@@ -116,10 +120,12 @@ struct ScratchCardGame<Content: View, OverlayView: View>: View {
     @GestureState var gestureLocation: CGPoint = .zero
     
     init(cursorSize: CGFloat,
+         cardSize: CGSize,
          onFinish: Binding<Bool>,
          @ViewBuilder content: @escaping () -> Content,
          @ViewBuilder overlayView: @escaping () -> OverlayView) {
         self.cursorSize = cursorSize
+        self.cardSize = cardSize
         self._onFinish = onFinish
         self.content = content()
         self.overlayView = overlayView()
@@ -150,12 +156,25 @@ struct ScratchCardGame<Content: View, OverlayView: View>: View {
                                 // print(points)
                             }
                         })
-                        .onEnded({ _ in
-                            withAnimation {
-                                onFinish = true
+                        .onEnded({ value in
+                            // Consider both the points captured during dragging and the final value's start and end points
+                            let allPoints = points + [value.startLocation, value.location]
+
+                            // Calculate the scratched area, assuming each point covers an area equal to cursorSize^2
+                            let scratchedArea = CGFloat(allPoints.count) * pow(cursorSize, 2)
+                            
+                            // Calculate the total overlayView area
+                            let totalArea = cardSize.width * cardSize.height
+                            
+                            // Check if scratched area is closer to total area
+                            if scratchedArea >= totalArea {
+                                withAnimation(Animation.easeOut(duration: 1).delay(0.5)) {
+                                    self.onFinish = true
+                                }
+                                // print("You should see the whole rewards!")
                             }
                         })
-                
+                    
                 )
         }
     }
