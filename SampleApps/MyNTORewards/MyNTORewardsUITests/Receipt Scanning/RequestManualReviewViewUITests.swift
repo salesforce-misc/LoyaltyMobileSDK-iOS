@@ -40,6 +40,7 @@ final class RequestManualReviewViewUITests: XCTestCase {
 		XCTAssert(app.staticTexts["Submit"].waitForExistence(timeout: 3))
 		app.staticTexts["Submit"].tap()
 		XCTAssertFalse(app.staticTexts["Submit"].waitForExistence(timeout: 3))
+		
 	}
 	
 	func testBackButton() {

@@ -18,29 +18,29 @@ final class ProcessedReceiptViewUITests: XCTestCase {
 	
 	func testProcessedReceiptViewElements() {
 		ReceiptsViewHelper.goToProcessedReceiptView(app: app)
-		XCTAssert(app.staticTexts["submit_receipt"].exists)
 		XCTAssert(app.staticTexts["receipt_number_label"].exists)
 		XCTAssert(app.staticTexts["store_label"].exists)
 		XCTAssert(app.staticTexts["receipt_date"].exists)
-		XCTAssert(app.staticTexts["Item name"].exists)
-		XCTAssert(app.staticTexts["Qty"].exists)
-		XCTAssert(app.staticTexts["Price"].exists)
+		XCTAssert(app.staticTexts["Item"].exists)
+		XCTAssert(app.staticTexts["Quantity"].exists)
+		XCTAssert(app.staticTexts["Unit Price"].exists)
 		XCTAssert(app.staticTexts["Total"].exists)
 		XCTAssert(app.buttons["Try Again"].exists)
+		XCTAssert(app.buttons["submit_receipt"].exists)
 	}
 	
 	func testSubmitReceipt() {
 		ReceiptsViewHelper.goToProcessedReceiptView(app: app)
-		app.staticTexts["submit_receipt"].tap()
+		app.buttons["submit_receipt"].tap()
 		XCTAssert(app.staticTexts["receipt_submitted_congrats"].waitForExistence(timeout: 10))
-		XCTAssertFalse(app.staticTexts["submit_receipt"].exists)
+		XCTAssertFalse(app.buttons["submit_receipt"].exists)
 	}
 	
 	func testTryAgain() {
 		ReceiptsViewHelper.goToProcessedReceiptView(app: app)
 		app.buttons["Try Again"].tap()
 		XCTAssert(app.buttons["camera_shutter_button"].waitForExistence(timeout: 3))
-		XCTAssertFalse(app.staticTexts["submit_receipt"].exists)
+		XCTAssertFalse(app.buttons["submit_receipt"].exists)
 	}
 	
 }
