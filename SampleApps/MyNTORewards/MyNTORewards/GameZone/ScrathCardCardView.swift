@@ -1,38 +1,38 @@
 //
-//  GameCardView.swift
+//  ScrathCardCardView.swift
 //  MyNTORewards
 //
-//  Created by Leon Qi on 9/19/23.
+//  Created by Leon Qi on 10/3/23.
 //
 
 import SwiftUI
 
-struct GameCardView: View {
-    
-    @State var showFortuneWheel = false
+struct ScrathCardCardView: View {
+    @State var showScratchCard = false
     
     var body: some View {
         
         VStack {
-            Image("img-fortune-wheel")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 165, height: 90)
-                .cornerRadius(5, corners: [.topLeft, .topRight])
+            ZStack {
+                Color(hex: "#E5E5E5")
+                Image("img-scratch-card")
+            }
+            .frame(width: 165, height: 90)
+            .cornerRadius(5, corners: [.topLeft, .topRight])
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
-                    Text("Bonnie and Clyde Style Promotion")
+                    Text("Cat Scratch Fever")
                         .font(.gameTitle)
                         .foregroundColor(Color(hex: "#181818"))
                     Spacer()
                 }
                 Spacer()
-                Text("Spin a Wheel")
+                Text("Scratch Card")
                     .font(.redeemText)
                     .foregroundColor(Color(hex: "#444444"))
-                Text("Expiring today")
+                Text("Expiring tomorrow")
                     .font(.labelText)
-                    .frame(width: 92, height: 19)
+                    .frame(width: 111, height: 19)
                     .background(.black)
                     .foregroundColor(.white)
                     .cornerRadius(4)
@@ -55,16 +55,14 @@ struct GameCardView: View {
                  )
         )
         .onTapGesture {
-            showFortuneWheel.toggle()
+            showScratchCard.toggle()
         }
-        .fullScreenCover(isPresented: $showFortuneWheel) {
-            FortuneWheelView()
+        .fullScreenCover(isPresented: $showScratchCard) {
+            ScratchCardView()
         }
     }
 }
 
-struct GameCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameCardView()
-    }
+#Preview {
+    ScrathCardCardView()
 }

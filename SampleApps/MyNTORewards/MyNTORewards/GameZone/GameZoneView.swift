@@ -50,8 +50,8 @@ struct GameZoneView: View {
         
         ScrollView {
             HStack(spacing: 15) {
-                GameCardView()
-                GameCardView()
+                FortuneWheelCardView()
+                ScrathCardCardView()
             }
             .frame(maxWidth: .infinity)
             .padding(.top, 20)
@@ -64,8 +64,8 @@ struct GameZoneView: View {
         
         ScrollView {
             HStack(spacing: 15) {
-                GameCardView()
-                GameCardView()
+                FortuneWheelCardView()
+                ScrathCardCardView()
             }
             .frame(maxWidth: .infinity)
             .padding(.top, 20)

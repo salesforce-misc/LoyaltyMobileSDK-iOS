@@ -358,4 +358,8 @@ extension Font {
         return Font.custom("SFPro-Regular", size: 16)
     }
     
+    /// Scratch Card
+    static var scratchText: Font {
+        return Font.custom("SFProDisplay-Regular", size: 12)
+    }
 }
