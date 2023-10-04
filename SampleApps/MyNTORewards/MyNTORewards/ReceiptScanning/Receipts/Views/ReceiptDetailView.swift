@@ -34,7 +34,7 @@ struct ReceiptDetailView: View {
                             Text("In Manual Review")
                                 .foregroundColor(Color.theme.receiptStatusPending)
                                 .font(.transactionDate)
-                            
+                                .accessibilityIdentifier(AppAccessibilty.Receipts.receiptManualReviewText)
                         } else {
                             Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points")
                                 .font(.transactionDate)

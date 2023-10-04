@@ -158,6 +158,7 @@ enum AppAccessibilty {
 		static let receiptDateText = "receipt_date_text"
 		static let receiptAmountText = "receipt_amount_text"
 		static let receiptPointsText = "receipt_points_text"
+        static let receiptManualReviewText = "receipt_manual_review_text"
 		static let closeButton = "close_button"
 		static let submitForManualReviewButton = "submit_for_manual_review_button"
 		static let backButton = "back_button_in_manual_review"
