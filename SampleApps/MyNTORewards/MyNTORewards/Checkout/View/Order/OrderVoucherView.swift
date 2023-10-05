@@ -17,7 +17,7 @@ struct OrderVoucherView: View {
         VStack(alignment: .leading) {
             Text("Vouchers")
                 .font(.voucherHederText)
-                .foregroundColor(Color(hex: "#181818"))
+                .foregroundColor(Color.theme.lightText)
 			VoucherPickerView(selectedValue: $selectedValue, pickerViewInputValues: vouchersVM.availableVouchersTitles)
                 .frame(height: 44)
                 .padding([.top, .bottom])
