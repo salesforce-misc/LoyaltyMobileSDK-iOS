@@ -17,6 +17,7 @@ struct CameraView: View {
     @State private var flashMode: AVCaptureDevice.FlashMode = .off
     @Binding var showCapturedImage: Bool
     @Binding var capturedImage: UIImage?
+	@Binding var phAsset: PHAsset?
 
     var body: some View {
         ZStack {
@@ -86,7 +87,7 @@ struct CameraView: View {
 					.accessibilityIdentifier(AppAccessibilty.Receipts.chooseFromPhotos)
                     .padding(.leading, 20)
                     .sheet(isPresented: $showPhotoPicker) {
-                        ImagePickerView(image: self.$capturedImage, showCapturedImage: self.$showCapturedImage, sourceType: .photoLibrary)
+						ImagePickerView(image: self.$capturedImage, phAsset: self.$phAsset, showCapturedImage: self.$showCapturedImage, sourceType: .photoLibrary)
 							.ignoresSafeArea(edges: .bottom)
                     }
                     

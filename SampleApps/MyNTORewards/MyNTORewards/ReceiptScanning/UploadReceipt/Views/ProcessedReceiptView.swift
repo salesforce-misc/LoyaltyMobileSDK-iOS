@@ -50,7 +50,7 @@ struct ProcessedReceiptView: View {
 				Text("Store: \(receipt.storeName)")
 					.accessibilityIdentifier(AppAccessibilty.Receipts.storeLabel)
 				Spacer()
-				Text("Date: \(receipt.receiptDate.toString(withFormat: localeManager.currentDateFormat))")
+				Text("Date: \(receipt.receiptDate?.toString(withFormat: localeManager.currentDateFormat) ?? "-")")
 					.accessibilityIdentifier(AppAccessibilty.Receipts.receiptDate)
 			}
 			.font(.offerText)
@@ -115,7 +115,7 @@ struct ProcessedReceiptView: View {
 		VStack {
 			Spacer()
             if let error = viewModel.processedError {
-                ProcessingErrorView(message: "\(error.localizedDescription)")
+                ProcessingErrorView(message: "\(error)")
             } else {
                 ProcessingErrorView(message: StringConstants.Receipts.processingErrorMessage)
             }
@@ -123,11 +123,11 @@ struct ProcessedReceiptView: View {
 			Spacer()
 			Spacer()
             Button {
-                viewModel.processedError = nil
                 // button action
                 routerPath.presentedSheet = nil
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                cameraModel.showCamera = true
+					cameraModel.showCamera = true
+					viewModel.processedError = nil
                 }
             } label: {
                 Text(StringConstants.Receipts.tryAgainButton)
@@ -136,8 +136,10 @@ struct ProcessedReceiptView: View {
             .buttonStyle(.borderedProminent)
             .longFlexibleButtonStyle()
 			Button {
-                viewModel.processedError = nil
 				routerPath.presentedSheet = nil
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+					viewModel.processedError = nil
+				}
 			} label: {
 				Text(StringConstants.Receipts.backButton)
 					.foregroundColor(.black)

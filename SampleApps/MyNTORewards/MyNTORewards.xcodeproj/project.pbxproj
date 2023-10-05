@@ -206,6 +206,7 @@
 		3F9149652A7C0495009FADAB /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9149642A7C0495009FADAB /* CameraViewModel.swift */; };
 		3F9149692A7C1AE5009FADAB /* ProcessingReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9149682A7C1AE5009FADAB /* ProcessingReceiptView.swift */; };
 		3F9149A32A7DD6DC009FADAB /* ReceiptsViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9149A22A7DD6DC009FADAB /* ReceiptsViewUITests.swift */; };
+		3FA450E22ACF10D900961885 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA450E12ACF10D900961885 /* Photos.swift */; };
 		3FA6B0562A6967AD00E5878E /* IBMPlexMono-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FA6B0532A6967AD00E5878E /* IBMPlexMono-SemiBold.ttf */; };
 		3FB333932A1492A200C3A639 /* Reloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB333922A1492A200C3A639 /* Reloadable.swift */; };
 		3FB333972A18E33800C3A639 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB333962A18E33800C3A639 /* ProductViewModel.swift */; };
@@ -462,6 +463,7 @@
 		3F9149642A7C0495009FADAB /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		3F9149682A7C1AE5009FADAB /* ProcessingReceiptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingReceiptView.swift; sourceTree = "<group>"; };
 		3F9149A22A7DD6DC009FADAB /* ReceiptsViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsViewUITests.swift; sourceTree = "<group>"; };
+		3FA450E12ACF10D900961885 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		3FA6B0532A6967AD00E5878E /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
 		3FB333922A1492A200C3A639 /* Reloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reloadable.swift; sourceTree = "<group>"; };
 		3FB333962A18E33800C3A639 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
@@ -696,6 +698,7 @@
 				3F7EF5312A70D0E90005BA30 /* Double+round.swift */,
 				3F3805B52A7A6EF700223808 /* View+Destination.swift */,
 				29694EDB2A8D8BE800E5F2ED /* Base64.swift */,
+				3FA450E12ACF10D900961885 /* Photos.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1388,6 +1391,7 @@
 				29FEDDF2294293BF0014BEBA /* UITabView.swift in Sources */,
 				2944F88A28B9A7220098ED1B /* AppSettings.swift in Sources */,
 				298CAA0F2A6B4B48003F7F42 /* CircularButtonStyle.swift in Sources */,
+				3FA450E22ACF10D900961885 /* Photos.swift in Sources */,
 				3F714D6F2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift in Sources */,
 				296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */,
 				29BAF6DD28F3AE8B00A3F9EB /* String+StringWidth.swift in Sources */,

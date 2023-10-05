@@ -8,6 +8,7 @@
 import Foundation
 import LoyaltyMobileSDK
 import SwiftUI
+import Photos
 
 enum ReceiptStatus: String {
 	case manualReview = "Manual Review"
@@ -21,7 +22,7 @@ enum ReceiptStatus: String {
 final class ProcessedReceiptViewModel: ObservableObject {
 	@Published var processedAwsResponse: ProcessedAwsResponse?
     @Published var processedReceipt: ProcessedReceipt?
-    @Published var processedError: Error?
+    @Published var processedError: String?
 	@Published var isSubmittedForManualReview = false
 	@Published var receiptState: ReceiptState = .processing
 	@Published var eligibleItems = [ProcessedReceiptItem]()
@@ -47,14 +48,20 @@ final class ProcessedReceiptViewModel: ObservableObject {
         processedReceipt = nil
         processedError = nil
     }
-    
-    func processImage(membershipNumber: String, image: UIImage) async throws {
-        guard let imageData = image.pngData() else {
-            Logger.error("Failed to convert image to data.")
-            throw CommonError.imageConversionError
-        }
-
-        let queryItems = [
+	
+	func processAsset(membershipNumber: String, image: PHAsset) {
+		let manager = PHImageManager()
+		manager.requestImageDataAndOrientation(for: image, options: .none) { data, identifier, orientation, info in
+			Task {
+				if let data = data {
+					try await self.processImage(membershipNumber: membershipNumber, image: data)
+				}
+			}
+		}
+	}
+	
+    func processImage(membershipNumber: String, image: Data) async throws {
+		let queryItems = [
             "membershipnumber": membershipNumber
         ]
 
@@ -67,18 +74,20 @@ final class ProcessedReceiptViewModel: ObservableObject {
                                                   method: "PUT",
                                                   queryItems: queryItems,
                                                   headers: headers,
-                                                  body: imageData)
+                                                  body: image)
             processedReceipt = try await forceClient.fetch(type: ProcessedReceipt.self, with: request)
             (eligibleItems, inEligibleItems) = split(lineItems: processedReceipt?.lineItem)
             receiptState = .processed
             if let processedReceipt = processedReceipt {
                 Logger.debug("\(processedReceipt)")
             }
-        } catch {
+		} catch CommonError.responseUnsuccessful(_, let displayMessage), CommonError.unknownException(let displayMessage) {
             receiptState = .processed
-            processedError = error
-            throw error
-        }
+			processedError = displayMessage
+		} catch {
+			receiptState = .processed
+			processedError = error.localizedDescription
+		}
     }
 	
     func getProcessedReceiptItems(from receipt: Receipt) async throws {
@@ -92,7 +101,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
 	private func split(lineItems: [ProcessedReceiptItem]?) -> (eligible: [ProcessedReceiptItem], inEligible: [ProcessedReceiptItem]) {
 		var eligibleItems = [ProcessedReceiptItem]()
 		var inEligibleItems = [ProcessedReceiptItem]()
-		lineItems?.forEach { $0.isEligible ? eligibleItems.append($0) : inEligibleItems.append($0)}
+		lineItems?.forEach { $0.isEligible ?? false ? eligibleItems.append($0) : inEligibleItems.append($0)}
 		return (eligibleItems, inEligibleItems)
 	}
 	

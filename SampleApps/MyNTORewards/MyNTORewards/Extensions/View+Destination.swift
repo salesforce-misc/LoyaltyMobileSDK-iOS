@@ -45,10 +45,10 @@ extension View {
 	}
 	
 	func totalPriceFrame() -> some View {
-		self.frame(width: 45, alignment: .trailing)
+		self.frame(width: 60, alignment: .trailing)
 	}
 	
 	func productQuantitySpaceFrame() -> some View {
-		self.frame(width: 16)
+		self.frame(width: 2)
 	}
 }

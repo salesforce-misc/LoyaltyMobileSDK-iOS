@@ -7,6 +7,7 @@
 
 import SwiftUI
 import LoyaltyMobileSDK
+import Photos
 
 struct ReceiptsView: View {
 	@EnvironmentObject var rootVM: AppRootViewModel
@@ -19,6 +20,7 @@ struct ReceiptsView: View {
     @State var showCapturedImage: Bool = false
     @State var showErrowView: Bool = false
     @State var capturedImage: UIImage?
+	@State var phAsset: PHAsset?
 	
 	var body: some View {
 		VStack(spacing: 0) {
@@ -80,10 +82,10 @@ struct ReceiptsView: View {
 		.background(Color.theme.background)
         .fullScreenCover(isPresented: $cameraVM.showCamera) {
             ZStack {
-                CameraView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
+				CameraView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage, phAsset: $phAsset)
                     .zIndex(showCapturedImage ? 0 : 1)
                 if showCapturedImage {
-                    CapturedImageView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
+					CapturedImageView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage, phAsset: $phAsset)
                         .transition(.move(edge: .trailing))
                         .zIndex(showCapturedImage ? 1 : 0)
                 }

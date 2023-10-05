@@ -19,8 +19,8 @@ struct ProcessedReceiptList: View {
 				space
 				if !eligibleItems.isEmpty {
 					table(items: eligibleItems, title: eligibleItemsTitle)
+					space
 				}
-				space
 				if !ineligibleItems.isEmpty {
 					table(items: ineligibleItems, title: ineligibleItemsTitle)
 				}

@@ -8,10 +8,10 @@
 import Foundation
 
 struct ProcessedAwsResponse: Decodable {
-	let storeName: String
-	let storeAddress: String
-	let receiptNumber: String
-	let receiptDate: String
-	let memberShipNumber: String
-	let lineItem: [ProcessedReceiptItem]
+	let storeName: String?
+	let storeAddress: String?
+	let receiptNumber: String?
+	let receiptDate: String?
+	let memberShipNumber: String?
+	let lineItem: [ProcessedReceiptItem]?
 }

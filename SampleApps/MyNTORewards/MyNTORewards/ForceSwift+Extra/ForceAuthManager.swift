@@ -325,7 +325,7 @@ public class ForceAuthManager: ForceAuthenticator, ObservableObject {
                   let redirectUrl = response.url,
                   response.statusCode == 401 else {
                 Logger.debug("[requestAuthorizationCode] Error getting redirect URL")
-                throw CommonError.responseUnsuccessful(message: "Failed getting rediect URL for authorization code")
+				throw CommonError.responseUnsuccessful(message: "Failed getting rediect URL for authorization code", displayMessage: "")
             }
 
             guard let authCode = getAuthorizationCode(fromUrl: redirectUrl) else {

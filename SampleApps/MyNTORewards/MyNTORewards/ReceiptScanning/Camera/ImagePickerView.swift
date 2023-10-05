@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import Photos
 
 struct ImagePickerView: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var image: UIImage?
+	@Binding var phAsset: PHAsset?
     @Binding var showCapturedImage: Bool
     var sourceType: UIImagePickerController.SourceType
 
@@ -42,6 +44,11 @@ struct ImagePickerView: UIViewControllerRepresentable {
                 parent.image = uiImage
                 parent.showCapturedImage = true
             }
+			
+			if let phAsset = info[.phAsset] as? PHAsset {
+				parent.phAsset = phAsset
+				parent.showCapturedImage = true
+			}
 
             parent.presentationMode.wrappedValue.dismiss()
         }

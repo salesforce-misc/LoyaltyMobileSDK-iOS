@@ -18,6 +18,7 @@ struct CapturedImageView: View {
     @EnvironmentObject var cameraViewModel: CameraViewModel
     @Binding var showCapturedImage: Bool
     @Binding var capturedImage: UIImage?
+	@Binding var phAsset: PHAsset?
 
     var body: some View {
         ZStack {
@@ -31,12 +32,19 @@ struct CapturedImageView: View {
                     .padding(.bottom, 50)
                     .onAppear(perform: {
                         // Check the size immediately after image appears
-                        guard let imageData = image.pngData(), imageData.count <= 5 * 1024 * 1024 else {
-                            showCapturedImage = false
-                            cameraViewModel.showErrorView = true
-                            dismiss()
-                            return
-                        }
+//                        guard let imageData = image.pngData(), imageData.count <= 5 * 1024 * 1024 else {
+//
+//                            showCapturedImage = false
+//                            cameraViewModel.showErrorView = true
+//                            dismiss()
+//                            return
+//                        }
+						guard let size = phAsset?.assetSize, size <= 5 else {
+							showCapturedImage = false
+							cameraViewModel.showErrorView = true
+							dismiss()
+							return
+						}
                     })
             }
             
@@ -67,12 +75,12 @@ struct CapturedImageView: View {
 
                 Button("Upload") {
                     // Handle processing image
-                    if let image = capturedImage {
+                    if let image = phAsset {
                         
                         processedReceiptViewModel.clearProcessedReceipt()
                         Task {
                             do {
-                                try await processedReceiptViewModel.processImage(membershipNumber: rootVM.member?.membershipNumber ?? "", image: image)
+                                try await processedReceiptViewModel.processAsset(membershipNumber: rootVM.member?.membershipNumber ?? "", image: image)
                             } catch {
                                 Logger.error("Failed to process the image")
                             }
