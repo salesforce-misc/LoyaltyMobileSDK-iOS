@@ -76,6 +76,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
             }
         } catch {
             receiptState = .processed
+            processedError = error
             throw error
         }
     }
