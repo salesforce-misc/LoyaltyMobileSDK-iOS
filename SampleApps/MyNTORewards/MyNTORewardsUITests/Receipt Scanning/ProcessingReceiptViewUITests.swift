@@ -18,8 +18,8 @@ final class ProcessingReceiptViewUITests: XCTestCase {
 	
 	func testProcessingReceiptViewElements() {
 		ReceiptsViewHelper.goToProcessingReceiptView(app: app)
-		XCTAssert(app.staticTexts["scanning_receipt"].exists)
-		XCTAssert(app.staticTexts["scanning_receipt_subtitle"].exists)
+		XCTAssert(app.staticTexts["scanning_receipt"].waitForExistence(timeout: 1))
+		XCTAssert(app.staticTexts["scanning_receipt_subtitle"].waitForExistence(timeout: 1))
 		XCTAssert(app.buttons["Cancel"].waitForExistence(timeout: 1))
 	}
 	
@@ -32,6 +32,6 @@ final class ProcessingReceiptViewUITests: XCTestCase {
 	
 	func testProcessingCompletes() {
 		ReceiptsViewHelper.goToProcessingReceiptView(app: app)
-		XCTAssert(app.staticTexts["Submit Receipt"].waitForExistence(timeout: 15))
+		XCTAssert(app.buttons["Submit"].waitForExistence(timeout: 15))
 	}
 }
