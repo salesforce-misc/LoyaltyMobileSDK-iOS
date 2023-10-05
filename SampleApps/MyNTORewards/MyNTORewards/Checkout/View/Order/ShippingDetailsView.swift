@@ -36,7 +36,7 @@ struct ShippingDetailsView: View {
 			}
 			.buttonStyle(DarkFlexibleButton())
 		}
-		.background(Color(hex: "#FAFBFC"))
+        .background(Color.theme.shippingBackground)
 	}
 }
 
