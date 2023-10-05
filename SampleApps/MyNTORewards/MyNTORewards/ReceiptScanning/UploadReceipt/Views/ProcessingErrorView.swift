@@ -16,7 +16,7 @@ struct ProcessingErrorView: View {
             VStack(alignment: .center) {
                 Text(message)
                     .font(.errorMessageText)
-                    .foregroundColor(Color(hex: "747474"))
+                    .foregroundColor(Color.theme.textInactive)
                     .multilineTextAlignment(.center)
                     .lineSpacing(6)
                     .frame(maxWidth: .infinity)
