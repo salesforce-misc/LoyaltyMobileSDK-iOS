@@ -34,8 +34,8 @@ struct ReceiptDetailView: View {
                             Text("In Manual Review")
                                 .foregroundColor(Color.theme.receiptStatusPending)
                                 .font(.transactionDate)
-						} else if receipt.status == "In Progress" {
-							Text("In Progress")
+						} else if receipt.status == "In Progress" || receipt.status == "Draft" {
+							Text(receipt.status)
 								.foregroundColor(Color.theme.receiptStatusPending)
 								.font(.transactionDate)
 						} else {

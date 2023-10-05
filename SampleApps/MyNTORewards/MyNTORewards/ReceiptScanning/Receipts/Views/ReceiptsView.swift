@@ -48,7 +48,7 @@ struct ReceiptsView: View {
 			}
 			if !isLoading && (receiptListViewModel.receipts.isEmpty || receiptListViewModel.filteredReceipts.isEmpty) {
 				ScrollView {
-					EmptyStateView(title: "No Receipts")
+					EmptyStateView(title: "Got receipts from purchases at the loyalty store? Upload your receipts now and get loyalty points for eligible items.")
 						.frame(maxWidth: .infinity, maxHeight: .infinity)
 				}
 			} else {
