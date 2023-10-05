@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProcessedReceiptView: View {
+	@EnvironmentObject var localeManager: LocaleManager
     @EnvironmentObject var viewModel: ProcessedReceiptViewModel
 	@EnvironmentObject var cameraModel: CameraViewModel
 	@EnvironmentObject var receiptlistViewModel: ReceiptListViewModel
@@ -49,7 +50,7 @@ struct ProcessedReceiptView: View {
 				Text("Store: \(receipt.storeName)")
 					.accessibilityIdentifier(AppAccessibilty.Receipts.storeLabel)
 				Spacer()
-				Text("Date: \(receipt.receiptDate)")
+				Text("Date: \(receipt.receiptDate.toString(withFormat: localeManager.currentDateFormat))")
 					.accessibilityIdentifier(AppAccessibilty.Receipts.receiptDate)
 			}
 			.font(.offerText)
