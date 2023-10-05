@@ -29,12 +29,10 @@ final class ReceiptDetailsUITests: XCTestCase {
 	}
 	
 	func testRequestManualReviewButton() {
-		ReceiptsViewHelper.goToReceiptDetailsView(app: app)
-        if app.collectionViews.staticTexts["Request a Manual Review"].waitForExistence(timeout: 3) {
-            app.buttons["Request a Manual Review"].tap()
-            XCTAssert(app.staticTexts["Manual review"].waitForExistence(timeout: 3))
-            XCTAssertFalse(app.buttons["Submit"].waitForExistence(timeout: 3))
-        }		
+        ReceiptsViewHelper.goToReceiptDetailsViewWithStatus(app: app, isManualReview: true)
+        XCTAssert(app.buttons["Request a Manual Review"].waitForExistence(timeout: 3))
+        app.buttons["Request a Manual Review"].tap()
+        XCTAssert(app.staticTexts["Manual review"].waitForExistence(timeout: 3))
 	}
 
 	func testTab() {
@@ -48,11 +46,17 @@ final class ReceiptDetailsUITests: XCTestCase {
 		XCTAssert(app.staticTexts["Quantity"].exists)
 	}
     
-    func testtDownloadReceiptButton() {
+    func testDownloadReceiptButton() {
         ReceiptsViewHelper.goToReceiptDetailsView(app: app)
         XCTAssert(app.staticTexts["Receipt Image"].waitForExistence(timeout: 2))
         app.staticTexts["Receipt Image"].tap()
         XCTAssert(app.buttons["Download Original Receipt"].waitForExistence(timeout: 3))
+        app.buttons["Download Original Receipt"].tap()
     }
-	
+    
+    func testManualReviewStaus() {
+        ReceiptsViewHelper.goToReceiptDetailsViewWithStatus(app: app, isManualReview: false)
+        XCTAssertFalse(app.buttons["Request a Manual Review"].waitForExistence(timeout: 3))
+    }
+    	
 }

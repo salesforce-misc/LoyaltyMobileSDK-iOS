@@ -32,6 +32,7 @@ struct ReceiptListItem: View {
                 } else {
                     Text(receipt.status == "Manual Review" ? "In Manual Review" : receipt.status )
                         .foregroundColor(receiptVM.getColor(for: receipt.status))
+                        .accessibilityIdentifier(AppAccessibilty.Receipts.receiptManualReviewText)
                 }
 			}
 			.font(.transactionDate)
