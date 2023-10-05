@@ -47,5 +47,12 @@ final class ReceiptDetailsUITests: XCTestCase {
 		XCTAssert(app.staticTexts["Item"].waitForExistence(timeout: 2))
 		XCTAssert(app.staticTexts["Quantity"].exists)
 	}
+    
+    func testtDownloadReceiptButton() {
+        ReceiptsViewHelper.goToReceiptDetailsView(app: app)
+        XCTAssert(app.staticTexts["Receipt Image"].waitForExistence(timeout: 2))
+        app.staticTexts["Receipt Image"].tap()
+        XCTAssert(app.buttons["Download Original Receipt"].waitForExistence(timeout: 3))
+    }
 	
 }

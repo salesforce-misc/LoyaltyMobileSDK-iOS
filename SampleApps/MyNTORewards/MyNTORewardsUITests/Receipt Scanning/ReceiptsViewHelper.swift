@@ -51,7 +51,8 @@ final class ReceiptsViewHelper {
 	static func goToRequestManualReviewView(app: XCUIApplication) {
 		goToReceiptsView(app: app)
 		_ = app.cells.element.waitForExistence(timeout: 5)
-		app.cells.element(boundBy: 0).tap()
+        let cellWithOutManulaReviewCell = app.cells.containing(.staticText, identifier: "receipt_points_text").firstMatch
+        cellWithOutManulaReviewCell.tap()
 		_ = app.buttons["Request a Manual Review"].waitForExistence(timeout: 3)
 		app.buttons["Request a Manual Review"].tap()
 	}
