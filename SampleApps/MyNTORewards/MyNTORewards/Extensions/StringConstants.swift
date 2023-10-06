@@ -27,5 +27,7 @@ struct StringConstants {
         static let processingErrorMessage = "Something went wrong. Try again."
 		static let receiptSavedToPhotos = "Receipt saved to Photos"
         static let fileSizeErrorMessage = "Image size exceeds 5 MB. Either resize the image or recapture with a lower resolution."
+		static let emptyReceiptsViewTitle = "Looks like you haven’t uploaded any receipts yet"
+		static let emptyReceiptsViewBody = "Upload your receipts and get loyalty points for the eligible items."
 	}
 }
