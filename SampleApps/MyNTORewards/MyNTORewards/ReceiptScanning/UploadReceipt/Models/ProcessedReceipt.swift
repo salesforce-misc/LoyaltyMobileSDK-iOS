@@ -13,7 +13,7 @@ struct ProcessedReceipt: Codable, Identifiable, Hashable {
 	let receiptSFDCId: String?
     let totalAmount: String?
     let storeName: String
-    let storeAddress: String
+    let storeAddress: String?
     let receiptNumber: String
     let receiptDate: Date
     let lineItem: [ProcessedReceiptItem]
