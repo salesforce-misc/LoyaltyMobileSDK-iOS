@@ -47,11 +47,18 @@ final class ReceiptsViewHelper {
 		_ = app.cells.element.waitForExistence(timeout: 5)
 		app.cells.element(boundBy: 0).tap()
 	}
+    
+    static func goToReceiptDetailsViewBasedOnReviewStatus(app: XCUIApplication, isHavePoints: Bool) {
+        goToReceiptsView(app: app)
+        _ = app.cells.element.waitForExistence(timeout: 5)
+        app.cells.containing(.staticText, identifier: isHavePoints ? "receipt_points_text":"receipt_manual_review_text").firstMatch.tap()
+    }
 	
 	static func goToRequestManualReviewView(app: XCUIApplication) {
 		goToReceiptsView(app: app)
 		_ = app.cells.element.waitForExistence(timeout: 5)
-		app.cells.element(boundBy: 0).tap()
+        let cellWithOutManualReviewCell = app.cells.containing(.staticText, identifier: "receipt_points_text").firstMatch
+        cellWithOutManualReviewCell.tap()
 		_ = app.buttons["Request a Manual Review"].waitForExistence(timeout: 3)
 		app.buttons["Request a Manual Review"].tap()
 	}

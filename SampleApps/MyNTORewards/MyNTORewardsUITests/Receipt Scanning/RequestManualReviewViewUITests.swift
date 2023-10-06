@@ -23,7 +23,7 @@ final class RequestManualReviewViewUITests: XCTestCase {
 		XCTAssert(app.staticTexts["receipt_date_text"].exists)
 		XCTAssert(app.staticTexts["receipt_amount_text"].exists)
 		XCTAssert(app.staticTexts["receipt_points_text"].exists)
-		XCTAssert(app.staticTexts["Submit"].waitForExistence(timeout: 3))
+		XCTAssert(app.buttons["Submit"].waitForExistence(timeout: 3))
 		XCTAssert(app.buttons["close_button"].exists)
 		XCTAssert(app.buttons["Cancel"].exists)
 	}
@@ -37,8 +37,8 @@ final class RequestManualReviewViewUITests: XCTestCase {
 	
 	func testSubmitForManualReviewButton() {
 		ReceiptsViewHelper.goToRequestManualReviewView(app: app)
-		XCTAssert(app.staticTexts["Submit"].waitForExistence(timeout: 3))
-		app.staticTexts["Submit"].tap()
+		XCTAssert(app.buttons["Submit"].waitForExistence(timeout: 3))
+		app.buttons["Submit"].tap()
 		XCTAssertFalse(app.staticTexts["Submit"].waitForExistence(timeout: 3))
 		
 	}
