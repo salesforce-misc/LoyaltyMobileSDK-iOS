@@ -29,7 +29,7 @@ final class ReceiptDetailsUITests: XCTestCase {
 	}
 	
 	func testRequestManualReviewButton() {
-        ReceiptsViewHelper.goToReceiptDetailsViewWithStatus(app: app, isManualReview: true)
+        ReceiptsViewHelper.goToReceiptDetailsViewBasedOnReviewStatus(app: app, isHavePoints: true)
         XCTAssert(app.buttons["Request a Manual Review"].waitForExistence(timeout: 3))
         app.buttons["Request a Manual Review"].tap()
         XCTAssert(app.staticTexts["Manual review"].waitForExistence(timeout: 3))
@@ -52,10 +52,11 @@ final class ReceiptDetailsUITests: XCTestCase {
         app.staticTexts["Receipt Image"].tap()
         XCTAssert(app.buttons["Download Original Receipt"].waitForExistence(timeout: 3))
         app.buttons["Download Original Receipt"].tap()
+        XCTAssert(app.staticTexts["Receipt saved to Photos"].waitForExistence(timeout: 2))
     }
     
-    func testManualReviewStaus() {
-        ReceiptsViewHelper.goToReceiptDetailsViewWithStatus(app: app, isManualReview: false)
+    func testManualReviewStatus() {
+        ReceiptsViewHelper.goToReceiptDetailsViewBasedOnReviewStatus(app: app, isHavePoints: false)
         XCTAssertFalse(app.buttons["Request a Manual Review"].waitForExistence(timeout: 3))
     }
     	
