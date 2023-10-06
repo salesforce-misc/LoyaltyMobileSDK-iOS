@@ -49,9 +49,9 @@ final class ProcessedReceiptViewModel: ObservableObject {
         processedError = nil
     }
 	
-	func processAsset(membershipNumber: String, image: PHAsset) {
+	func processAsset(membershipNumber: String, image: PHAsset) async throws {
 		let manager = PHImageManager()
-		manager.requestImageDataAndOrientation(for: image, options: .none) { data, identifier, orientation, info in
+		manager.requestImageDataAndOrientation(for: image, options: .none) { data, _, _, _ in
 			Task {
 				if let data = data {
 					try await self.processImage(membershipNumber: membershipNumber, image: data)

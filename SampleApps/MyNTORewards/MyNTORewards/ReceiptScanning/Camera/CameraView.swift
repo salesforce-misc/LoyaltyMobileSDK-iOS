@@ -99,6 +99,10 @@ struct CameraView: View {
                                 print(error ?? "Image capture error")
                                 return
                             }
+                            
+                            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                            fetchLatestPhoto(camUsed: true)
+                            
                             DispatchQueue.main.async {
                                 self.capturedImage = image
                                 self.showCapturedImage = true
@@ -140,7 +144,7 @@ struct CameraView: View {
         }
     }
     
-	func fetchLatestPhoto() {
+    func fetchLatestPhoto(camUsed: Bool = false) {
 		let requestOptions = PHImageRequestOptions()
 		requestOptions.isSynchronous = true
 		requestOptions.deliveryMode = .highQualityFormat
@@ -162,6 +166,9 @@ struct CameraView: View {
 							}
 						}
 					})
+                    if camUsed {
+                        phAsset = lastAsset
+                    }
 				}
 			}
 		}

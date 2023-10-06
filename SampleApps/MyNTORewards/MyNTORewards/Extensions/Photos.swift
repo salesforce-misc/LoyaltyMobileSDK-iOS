@@ -8,6 +8,7 @@
 import Photos
 import Foundation
 
+// https://medium.com/idn-engineering/get-photo-exact-storage-size-in-swift-94bfef1e2afc
 public extension PHAsset {
 	var assetSize: Float {
 		let asset = PHAssetResource.assetResources(for: self)
