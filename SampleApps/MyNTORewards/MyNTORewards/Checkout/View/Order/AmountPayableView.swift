@@ -28,25 +28,22 @@ struct AmountPayableView: View {
                 CheckBoxView(checked: .constant(false))
                 Text("Use my points")
                     .font(.useMyPointsText)
-                    .foregroundColor(Color(hex: "#181818"))
                 Spacer()
 				Text("Available Points: \(Int(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0))")
                     .font(.useMyPointsText)
-                    .foregroundColor(Color(hex: "#181818"))
             }
             HStack {
                 Text("Pay:")
                     .font(.voucherHederText)
-                    .foregroundColor(Color(hex: "#181818"))
                 Spacer()
 				Text(" $\(productVM.getTotalAmount())")
 					.font(.totalAmountText)
-                    .foregroundColor(Color(hex: "#181818"))
             }
             .padding()
             .background(Color.white)
             .cornerRadius(16, corners: .allCorners)
         }
+        .foregroundColor(Color.theme.lightText)
     }
 }
 

@@ -38,9 +38,9 @@ struct VoucherPickerView: View {
                 .foregroundColor(.black)
                 .padding(.trailing, 16)
         }
-        .foregroundColor(Color(hex: "#747474"))
+        .foregroundColor(Color.theme.textInactive)
         .frame(height: 44)
-        .background(Color(hex: "#F4F6F9"))
+        .background(Color.theme.lightSilverBackground)
         .cornerRadius(16)
     }
 }
