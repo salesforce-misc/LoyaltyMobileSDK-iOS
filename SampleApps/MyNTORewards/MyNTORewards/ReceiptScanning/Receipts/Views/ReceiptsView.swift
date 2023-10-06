@@ -19,8 +19,7 @@ struct ReceiptsView: View {
 	@State var isLoading = false
     @State var showCapturedImage: Bool = false
     @State var showErrowView: Bool = false
-    @State var capturedImage: UIImage?
-	@State var phAsset: PHAsset?
+    @State var capturedImageData: Data?
 	
 	var body: some View {
 		VStack(spacing: 0) {
@@ -82,10 +81,10 @@ struct ReceiptsView: View {
 		.background(Color.theme.background)
         .fullScreenCover(isPresented: $cameraVM.showCamera) {
             ZStack {
-				CameraView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage, phAsset: $phAsset)
+				CameraView(showCapturedImage: $showCapturedImage, capturedImageData: $capturedImageData)
                     .zIndex(showCapturedImage ? 0 : 1)
                 if showCapturedImage {
-					CapturedImageView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage, phAsset: $phAsset)
+					CapturedImageView(showCapturedImage: $showCapturedImage, capturedImageData: $capturedImageData)
                         .transition(.move(edge: .trailing))
                         .zIndex(showCapturedImage ? 1 : 0)
                 }
@@ -94,12 +93,12 @@ struct ReceiptsView: View {
             .environmentObject(routerPath)
             .environmentObject(receiptListViewModel)
         }
-        .fullScreenCover(isPresented: $cameraVM.showErrorView) {
+        .fullScreenCover(isPresented: $cameraVM.showErrorView.showError) {
             Spacer()
-            ProcessingErrorView(message: StringConstants.Receipts.fileSizeErrorMessage)
+            ProcessingErrorView(message: cameraVM.showErrorView.errorMessage)
             Spacer()
             Button {
-                cameraVM.showErrorView = false
+                cameraVM.showErrorView = ErrorViewData()
             } label: {
                 Text(StringConstants.Receipts.backButton)
                     .frame(maxWidth: .infinity)

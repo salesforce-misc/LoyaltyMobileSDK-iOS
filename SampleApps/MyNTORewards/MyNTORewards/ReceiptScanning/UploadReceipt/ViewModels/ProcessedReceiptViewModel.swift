@@ -49,23 +49,12 @@ final class ProcessedReceiptViewModel: ObservableObject {
         processedError = nil
     }
 	
-	func processAsset(membershipNumber: String, image: PHAsset) async throws {
-		let manager = PHImageManager()
-		manager.requestImageDataAndOrientation(for: image, options: .none) { data, _, _, _ in
-			Task {
-				if let data = data {
-					try await self.processImage(membershipNumber: membershipNumber, image: data)
-				}
-			}
-		}
-	}
-	
-    func processImage(membershipNumber: String, image: Data) async throws {
+    func processImage(membershipNumber: String, imageData: Data) async throws {
 		let queryItems = [
             "membershipnumber": membershipNumber
         ]
 
-        let headers = ["Content-Type": "image/png"]
+        let headers = ["Content-Type": "image/jpeg"]
 
         do {
             let path = "/services/apexrest/AnalizeExpence/"
@@ -74,7 +63,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
                                                   method: "PUT",
                                                   queryItems: queryItems,
                                                   headers: headers,
-                                                  body: image)
+                                                  body: imageData)
             processedReceipt = try await forceClient.fetch(type: ProcessedReceipt.self, with: request)
             (eligibleItems, inEligibleItems) = split(lineItems: processedReceipt?.lineItem)
             receiptState = .processed
