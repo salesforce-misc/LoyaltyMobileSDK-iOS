@@ -8,6 +8,7 @@
 import AVFoundation
 import Photos
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct CameraView: View {
     @StateObject var camera = CameraController()
@@ -16,8 +17,7 @@ struct CameraView: View {
     @State private var latestPhoto: UIImage = UIImage()
     @State private var flashMode: AVCaptureDevice.FlashMode = .off
     @Binding var showCapturedImage: Bool
-    @Binding var capturedImage: UIImage?
-	@Binding var phAsset: PHAsset?
+    @Binding var capturedImageData: Data?
 
     var body: some View {
         ZStack {
@@ -25,7 +25,7 @@ struct CameraView: View {
                 .onAppear {
                     camera.prepare { error in
                         if let error = error {
-                            print(error)
+                            Logger.error("Camera preview error: \(error)")
                         }
                         try? camera.displayPreview(on: camera.previewView)
                     }
@@ -39,7 +39,7 @@ struct CameraView: View {
                 HStack {
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
-						print("camera close button tapped")
+                        // Logger.debug("Camera close button tapped")
                     }) {
                         Image(systemName: "xmark")
                             .font(.system(size: 25))
@@ -87,20 +87,20 @@ struct CameraView: View {
 					.accessibilityIdentifier(AppAccessibilty.Receipts.chooseFromPhotos)
                     .padding(.leading, 20)
                     .sheet(isPresented: $showPhotoPicker) {
-						ImagePickerView(image: self.$capturedImage, phAsset: self.$phAsset, showCapturedImage: self.$showCapturedImage, sourceType: .photoLibrary)
+						ImagePickerView(imageData: self.$capturedImageData, showCapturedImage: self.$showCapturedImage)
 							.ignoresSafeArea(edges: .bottom)
                     }
                     
                     Spacer()
 
                     Button(action: {
-                        camera.captureImage(flashMode: camera.flashMode) { image, error in
-                            guard let image = image else {
-                                print(error ?? "Image capture error")
-                                return
+                        camera.captureImage(flashMode: camera.flashMode) { data, error in
+                            if let error = error {
+                                Logger.error("Image capture error: \(error)")
                             }
+                            
                             DispatchQueue.main.async {
-                                self.capturedImage = image
+                                self.capturedImageData = data
                                 self.showCapturedImage = true
                             }
                         }
@@ -140,7 +140,7 @@ struct CameraView: View {
         }
     }
     
-	func fetchLatestPhoto() {
+    func fetchLatestPhoto() {
 		let requestOptions = PHImageRequestOptions()
 		requestOptions.isSynchronous = true
 		requestOptions.deliveryMode = .highQualityFormat
@@ -183,7 +183,7 @@ class CameraController: NSObject, ObservableObject, AVCapturePhotoCaptureDelegat
     let captureSession = AVCaptureSession()
     var previewView = UIView()
     private let photoOutput = AVCapturePhotoOutput()
-    private var captureCompletionBlock: ((UIImage?, Error?) -> Void)?
+    private var captureCompletionBlock: ((Data?, Error?) -> Void)?
     var flashMode: AVCaptureDevice.FlashMode = .off
     var focusSquare: CAShapeLayer?
     var previewLayer: AVCaptureVideoPreviewLayer?
@@ -218,8 +218,8 @@ class CameraController: NSObject, ObservableObject, AVCapturePhotoCaptureDelegat
             }
         }
     }
-    
-    func captureImage(flashMode: AVCaptureDevice.FlashMode, completion: @escaping (UIImage?, Error?) -> Void) {
+        
+    func captureImage(flashMode: AVCaptureDevice.FlashMode, completion: @escaping (Data?, Error?) -> Void) {
         let settings = AVCapturePhotoSettings()
         if photoOutput.supportedFlashModes.contains(flashMode) { // check if the selected mode is supported
             settings.flashMode = flashMode
@@ -239,7 +239,7 @@ class CameraController: NSObject, ObservableObject, AVCapturePhotoCaptureDelegat
         //previewView.layer.sublayers?.first?.frame = previewView.frame
         previewView.layer.sublayers?.first?.frame = previewView.bounds // Change frame to bounds to match the actual size of the preview view
     }
-
+    
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let error = error {
             captureCompletionBlock?(nil, error)
@@ -251,10 +251,9 @@ class CameraController: NSObject, ObservableObject, AVCapturePhotoCaptureDelegat
             return
         }
 
-        let uiImage = UIImage(data: imageData)
-        captureCompletionBlock?(uiImage, nil)
+        captureCompletionBlock?(imageData, nil)  // Directly pass the imageData to the completion block
     }
-    
+
     func setFocusPointToTapLocation(_ location: CGPoint) {
         // Create a square for the focus area
         let square = CGRect(x: location.x - 50, y: location.y - 50, width: 100, height: 100)
@@ -293,7 +292,7 @@ class CameraController: NSObject, ObservableObject, AVCapturePhotoCaptureDelegat
 
             device.unlockForConfiguration()
         } catch {
-            print("Failed to focus and expose with error: \(error)")
+            Logger.error("Failed to focus and expose with error: \(error)")
         }
     }
 

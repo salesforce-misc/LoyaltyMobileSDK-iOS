@@ -17,35 +17,31 @@ struct CapturedImageView: View {
     @EnvironmentObject var routerPath: RouterPath
     @EnvironmentObject var cameraViewModel: CameraViewModel
     @Binding var showCapturedImage: Bool
-    @Binding var capturedImage: UIImage?
-	@Binding var phAsset: PHAsset?
+    @Binding var capturedImageData: Data?
 
     var body: some View {
         ZStack {
             Color.black
             
-            if let image = capturedImage {
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: UIScreen.main.bounds.width * 0.75, height: UIScreen.main.bounds.height * 0.75)
-                    .padding(.bottom, 50)
-                    .onAppear(perform: {
-                        // Check the size immediately after image appears
-//                        guard let imageData = image.pngData(), imageData.count <= 5 * 1024 * 1024 else {
-//
-//                            showCapturedImage = false
-//                            cameraViewModel.showErrorView = true
-//                            dismiss()
-//                            return
-//                        }
-						guard let size = phAsset?.assetSize, size <= 5 else {
-							showCapturedImage = false
-							cameraViewModel.showErrorView = true
-							dismiss()
-							return
-						}
-                    })
+            if let imageData = capturedImageData {
+                if let image = UIImage(data: imageData) {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: UIScreen.main.bounds.width * 0.75, height: UIScreen.main.bounds.height * 0.75)
+                        .padding(.bottom, 50)
+                        .onAppear {
+                            if imageData.count > 5 * 1024 * 1024 {
+                                showCapturedImage = false
+                                cameraViewModel.showErrorView = ErrorViewData(showError: true, 
+                                                                              errorType: .sizeTooBig,
+                                                                              errorMessage: StringConstants.Receipts.fileSizeErrorMessage)
+                                cameraViewModel.showCamera = false
+                                dismiss()
+                                return
+                            }
+                        }
+                }
             }
             
             VStack {
@@ -54,7 +50,7 @@ struct CapturedImageView: View {
                     Button(action: {
                         withAnimation {
                             showCapturedImage = false
-                            capturedImage = nil
+                            capturedImageData = nil
                         }
                         
                     }) {
@@ -75,12 +71,12 @@ struct CapturedImageView: View {
 
                 Button("Upload") {
                     // Handle processing image
-                    if let image = phAsset {
+                    if let imageData = capturedImageData {
                         
                         processedReceiptViewModel.clearProcessedReceipt()
                         Task {
                             do {
-                                try await processedReceiptViewModel.processAsset(membershipNumber: rootVM.member?.membershipNumber ?? "", image: image)
+                                try await processedReceiptViewModel.processImage(membershipNumber: rootVM.member?.membershipNumber ?? "", imageData: imageData)
                             } catch {
                                 Logger.error("Failed to process the image")
                             }
@@ -88,7 +84,7 @@ struct CapturedImageView: View {
                         
                         withAnimation {
                             showCapturedImage = false
-                            capturedImage = nil
+                            capturedImageData = nil
 							dismiss()
 							processedReceiptViewModel.receiptState = .processing
 							DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -107,7 +103,7 @@ struct CapturedImageView: View {
                     .onTapGesture {
                         withAnimation {
                             showCapturedImage = false
-                            capturedImage = nil
+                            capturedImageData = nil
                         }
                     }
             }
