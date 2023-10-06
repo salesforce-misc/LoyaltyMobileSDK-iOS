@@ -28,5 +28,7 @@ struct StringConstants {
 		static let receiptSavedToPhotos = "Receipt saved to Photos"
         static let fileSizeErrorMessage = "Image size exceeds 5 MB. Either resize the image or recapture with a lower resolution."
         static let formatUnsupported = "File type is not supported. Files can only be in HEIC, JPEG and PNG format."
+		static let emptyReceiptsViewTitle = "Looks like you haven’t uploaded any receipts yet"
+		static let emptyReceiptsViewBody = "Upload your receipts and get loyalty points for the eligible items."
 	}
 }
