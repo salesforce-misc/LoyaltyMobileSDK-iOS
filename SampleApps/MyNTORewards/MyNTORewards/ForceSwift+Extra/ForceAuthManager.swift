@@ -81,7 +81,11 @@ public class ForceAuthManager: ForceAuthenticator, ObservableObject {
         } else {
             do {
                 let savedAuth = try retrieveAuth()
+                DispatchQueue.main.async {
+                    self.auth = savedAuth
+                }
                 self.auth = savedAuth
+                Logger.debug("We're here at \(Date())")
                 return savedAuth
             } catch {
                 Logger.debug("No auth found. Please login.")
@@ -94,13 +98,14 @@ public class ForceAuthManager: ForceAuthenticator, ObservableObject {
         guard let auth = self.auth else {
             return
         }
-        defer {
-            self.auth = nil
-        }
         Task {
             do {
                 let revokeURL = AppSettings.shared.getConnectedApp().instanceURL + AppSettings.Defaults.revokePath
                 try await self.revoke(url: revokeURL, token: auth.accessToken)
+                
+                DispatchQueue.main.async {
+                    self.auth = nil
+                }
             } catch {
                 Logger.error("Failed to revolk token")
             }
