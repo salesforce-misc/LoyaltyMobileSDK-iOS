@@ -55,11 +55,6 @@ struct ReceiptsView: View {
 					ReceiptList()
 						.animation(.default, value: receiptListViewModel.filteredReceipts)
 						.environmentObject(receiptListViewModel)
-						.refreshable {
-							await Task {
-								await getReceipts(forced: true)
-							}.value
-						}
 					if isLoading {
 						ProgressView()
 							.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -78,6 +73,11 @@ struct ReceiptsView: View {
 			await getReceipts()
 			isLoading = false
 		}
+        .refreshable {
+            await Task {
+                await getReceipts(forced: true)
+            }.value
+        }
 		.background(Color.theme.background)
         .fullScreenCover(isPresented: $cameraVM.showCamera) {
             ZStack {
