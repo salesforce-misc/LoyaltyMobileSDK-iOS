@@ -47,14 +47,17 @@ public class NetworkManager: NetworkManagerProtocol {
         if !(200..<300).contains(httpResponse.statusCode) {
             var errorMessage = "HTTP response status code \(httpResponse.statusCode)"
             // Logger.debug(httpResponse.description)
+			var displayMessage = ""
 
             // Attempt to decode JSON and append to errorMessage
             if let json = try? JSONSerialization.jsonObject(with: output.data, options: []) as? [String: Any] {
                 // Logger.debug("Error JSON response: \(json)")
                 errorMessage += ". Error JSON: \(json)"
+				displayMessage = (json["message"] as? String) ?? errorMessage
             } else if let jsonString = String(data: output.data, encoding: .utf8) {
                 // Logger.debug("Error response: \(jsonString)")
                 errorMessage += ". Error response: \(jsonString)"
+				displayMessage = jsonString
             } else {
                 let rawDataDescription = "Failed to convert error data to a string. Raw data: \(output.data)"
                 // Logger.debug(rawDataDescription)
@@ -62,7 +65,7 @@ public class NetworkManager: NetworkManagerProtocol {
             }
 
             // Log and throw the error
-            Logger.error(CommonError.responseUnsuccessful(message: errorMessage).description)
+            Logger.error(CommonError.responseUnsuccessful(message: errorMessage, displayMessage: displayMessage).description)
 
             // Throw appropriate error based on status code
             switch httpResponse.statusCode {
@@ -71,9 +74,9 @@ public class NetworkManager: NetworkManagerProtocol {
             case 403:
                 throw CommonError.functionalityNotEnabled
             case 500:
-                throw CommonError.unknownException
+                throw CommonError.unknownException(displayMessage: displayMessage)
             default:
-                throw CommonError.responseUnsuccessful(message: errorMessage)
+				throw CommonError.responseUnsuccessful(message: errorMessage, displayMessage: displayMessage)
             }
         }
 

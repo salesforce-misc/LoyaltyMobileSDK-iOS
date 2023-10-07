@@ -13,9 +13,9 @@ struct ProcessedReceipt: Codable, Identifiable, Hashable {
 	let receiptSFDCId: String?
     let totalAmount: String?
     let storeName: String
-    let storeAddress: String
+    let storeAddress: String?
     let receiptNumber: String
-    let receiptDate: Date
+    let receiptDate: Date?
     let lineItem: [ProcessedReceiptItem]
     
 	init(
@@ -24,7 +24,7 @@ struct ProcessedReceipt: Codable, Identifiable, Hashable {
 		storeName: String,
 		storeAddress: String,
 		receiptNumber: String,
-		receiptDate: Date,
+		receiptDate: Date?,
 		lineItem: [ProcessedReceiptItem]) {
 		self.receiptSFDCId = receiptSfdcId
 		self.totalAmount = totalAmount
@@ -39,13 +39,13 @@ struct ProcessedReceipt: Codable, Identifiable, Hashable {
 // MARK: - ProcessedReceiptItem
 struct ProcessedReceiptItem: Codable, Identifiable, Hashable {
     var id: UUID? = UUID()
-    let quantity: String
-    let productName: String
+    let quantity: String?
+    let productName: String?
     let price: String?
     let lineItemPrice: String?
-	let isEligible: Bool
+	let isEligible: Bool?
     
-	init(quantity: String, productName: String, price: String?, lineItemPrice: String?, isEligible: Bool) {
+	init(quantity: String, productName: String, price: String?, lineItemPrice: String?, isEligible: Bool?) {
         self.quantity = quantity
         self.productName = productName
         self.price = price

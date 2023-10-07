@@ -7,6 +7,7 @@
 
 import SwiftUI
 import LoyaltyMobileSDK
+import Photos
 
 struct ReceiptsView: View {
 	@EnvironmentObject var rootVM: AppRootViewModel
@@ -18,7 +19,7 @@ struct ReceiptsView: View {
 	@State var isLoading = false
     @State var showCapturedImage: Bool = false
     @State var showErrowView: Bool = false
-    @State var capturedImage: UIImage?
+    @State var capturedImageData: Data?
 	
 	var body: some View {
 		VStack(spacing: 0) {
@@ -46,7 +47,7 @@ struct ReceiptsView: View {
 			}
 			if !isLoading && (receiptListViewModel.receipts.isEmpty || receiptListViewModel.filteredReceipts.isEmpty) {
 				ScrollView {
-					EmptyStateView(title: "No Receipts")
+					EmptyStateView(title: StringConstants.Receipts.emptyReceiptsViewTitle, subTitle: StringConstants.Receipts.emptyReceiptsViewBody)
 						.frame(maxWidth: .infinity, maxHeight: .infinity)
 				}
 			} else {
@@ -54,11 +55,6 @@ struct ReceiptsView: View {
 					ReceiptList()
 						.animation(.default, value: receiptListViewModel.filteredReceipts)
 						.environmentObject(receiptListViewModel)
-						.refreshable {
-							await Task {
-								await getReceipts(forced: true)
-							}.value
-						}
 					if isLoading {
 						ProgressView()
 							.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -77,13 +73,18 @@ struct ReceiptsView: View {
 			await getReceipts()
 			isLoading = false
 		}
+        .refreshable {
+            await Task {
+                await getReceipts(forced: true)
+            }.value
+        }
 		.background(Color.theme.background)
         .fullScreenCover(isPresented: $cameraVM.showCamera) {
             ZStack {
-                CameraView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
+				CameraView(showCapturedImage: $showCapturedImage, capturedImageData: $capturedImageData)
                     .zIndex(showCapturedImage ? 0 : 1)
                 if showCapturedImage {
-                    CapturedImageView(showCapturedImage: $showCapturedImage, capturedImage: $capturedImage)
+					CapturedImageView(showCapturedImage: $showCapturedImage, capturedImageData: $capturedImageData)
                         .transition(.move(edge: .trailing))
                         .zIndex(showCapturedImage ? 1 : 0)
                 }
@@ -92,12 +93,12 @@ struct ReceiptsView: View {
             .environmentObject(routerPath)
             .environmentObject(receiptListViewModel)
         }
-        .fullScreenCover(isPresented: $cameraVM.showErrorView) {
+        .fullScreenCover(isPresented: $cameraVM.showErrorView.showError) {
             Spacer()
-            ProcessingErrorView(message: StringConstants.Receipts.fileSizeErrorMessage)
+            ProcessingErrorView(message: cameraVM.showErrorView.errorMessage)
             Spacer()
             Button {
-                cameraVM.showErrorView = false
+                cameraVM.showErrorView = ErrorViewData()
             } label: {
                 Text(StringConstants.Receipts.backButton)
                     .frame(maxWidth: .infinity)
