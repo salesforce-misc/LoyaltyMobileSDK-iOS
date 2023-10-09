@@ -75,7 +75,7 @@ struct FortuneWheelView: View {
                                 .offset(y: -40)
                                 
                             Triangle()
-                                .fill(Color(hex: "#23475F"))
+                                .fill(Color.theme.wheelIndicatorBackground)
                                 .frame(width: 60, height: 60)
                                 .offset(y: -35)
                         }
@@ -87,7 +87,7 @@ struct FortuneWheelView: View {
                             isSpinning ? Text("") : Text("Tap to **SPIN**").foregroundColor(.white)
                         }
                         .frame(width: 70, height: 70)
-                        .background(Color(hex: "#23475F"))
+                        .background(Color.theme.wheelIndicatorBackground)
                         .clipShape(Circle())
                         .overlay(Circle().stroke(Color.white, lineWidth: 5))
                         .disabled(isSpinning)  // Disable the button when spinning

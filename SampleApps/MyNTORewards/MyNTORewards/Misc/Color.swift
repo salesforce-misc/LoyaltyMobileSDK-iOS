@@ -82,6 +82,10 @@ struct ColorTheme {
     let productBackground = Color("ProductBackgroundColor") // #F1F3FB
     let paymentCardText = Color("PaymentCardTextColor") // #747B84
     let shippingBackground = Color("ShippingBackgroundColor") // #FAFBFC
+    let wheelIndicatorBackground = Color("DarkGreyColor") // #23475F
+    let scratchCardBackground = Color("LightGreyColor") // #D9D9D9
+    let scratchCardDotsBackground = Color("ScratchCardDotsColor") //#F8EFFF
+    let scratchCardText = Color("ScratchCardTextColor") // #939393
 }
 
 struct TierColor {

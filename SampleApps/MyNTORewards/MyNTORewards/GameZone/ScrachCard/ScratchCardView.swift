@@ -29,7 +29,7 @@ struct ScratchCardView: View {
                 Spacer()
             }
             ZStack {
-                Color(hex: "#F9F0FF")
+                Color.theme.backgroundPink
                 VStack {
                     VStack(spacing: 10) {
                         Text("Scratch and win!")
@@ -51,7 +51,7 @@ struct ScratchCardView: View {
                             
                             // Grey scratch card
                             Rectangle()
-                                .fill(Color(hex: "#D9D9D9"))
+                                .fill(Color.theme.scratchCardBackground)
                                 .frame(width: cardSize.width, height: cardSize.height)
                                 .cornerRadius(10)
                                 .opacity(isFinished ? 0 : 1)
@@ -59,7 +59,7 @@ struct ScratchCardView: View {
                             Text(String(repeating: "SCRATCH TO WIN! ", count: 80))
                                 .font(Font.scratchText)
                                 .multilineTextAlignment(.center)
-                                .foregroundColor(Color(hex: "#939393"))
+                                .foregroundColor(Color.theme.scratchCardText)
                                 .rotationEffect(Angle(degrees: -45))
                                 .mask {
                                     Rectangle()
@@ -94,7 +94,7 @@ struct ScratchCardView: View {
                     }
                     Spacer()
                 }
-                .foregroundColor(Color(hex: "#444444"))
+                .foregroundColor(Color.theme.superLightText)
             }
             .cornerRadius(15, corners: [.topLeft, .topRight])
             .edgesIgnoringSafeArea(.bottom)
@@ -214,7 +214,7 @@ struct DottedBorderRectangle: View {
             HStack(alignment: .top, spacing: spacing) {
                 ForEach(0..<Int(width / (dotSize.width + spacing)), id: \.self) { _ in
                     Capsule()
-                        .fill(Color(hex: "#F8EFFF"))
+                        .fill(Color.theme.scratchCardDotsBackground)
                         .frame(width: dotSize.width, height: dotSize.height)
                         .offset(y: -height / 2)
                 }
@@ -224,7 +224,7 @@ struct DottedBorderRectangle: View {
             HStack(alignment: .bottom, spacing: spacing) {
                 ForEach(0..<Int(width / (dotSize.width + spacing)), id: \.self) { _ in
                     Capsule()
-                        .fill(Color(hex: "#F8EFFF"))
+                        .fill(Color.theme.scratchCardDotsBackground)
                         .frame(width: dotSize.width, height: dotSize.height)
                         .offset(y: height / 2)
                 }
