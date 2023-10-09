@@ -9,7 +9,7 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 // App version number (1.0.0, 1.0.1, etc.)
-MARKETING_VERSION = 0.3.1
+MARKETING_VERSION = 0.4.0
 
 // Build version number (1, 2, 3, etc.)
-CURRENT_PROJECT_VERSION = 8
+CURRENT_PROJECT_VERSION = 9
