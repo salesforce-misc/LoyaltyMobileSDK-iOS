@@ -34,12 +34,12 @@ final class ReceiptsViewHelper {
 	
 	static func goToProcessedReceiptView(app: XCUIApplication) {
 		goToProcessingReceiptView(app: app)
-		_ = app.staticTexts["Submit Receipt"].waitForExistence(timeout: 15)
+		_ = app.buttons["submit_receipt"].waitForExistence(timeout: 15)
 	}
 	
 	static func goToReceiptCongratsView(app: XCUIApplication) {
 		goToProcessedReceiptView(app: app)
-		app.staticTexts["Submit Receipt"].tap()
+		app.buttons["submit_receipt"].tap()
 	}
 	
 	static func goToReceiptDetailsView(app: XCUIApplication) {
