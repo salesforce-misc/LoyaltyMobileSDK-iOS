@@ -11,10 +11,13 @@ import SwiftUI
 extension View {
 	func withAppRouter() -> some View {
 		navigationDestination(for: RouterDestination.self) { destination in
-			switch destination {
-			case .receipts:
-				ReceiptsView()
-			}
+            switch destination {
+            case .receipts:
+                ReceiptsView()
+            case .gameZone:
+                GameZoneView()
+            }
+            
 		}
 	}
 	
