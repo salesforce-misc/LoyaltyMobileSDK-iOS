@@ -30,7 +30,7 @@ struct ProductView: View {
 				OrderDetailsView()
 					.environmentObject(productViewModel)
 			} label: {
-				Text("Buy Now")
+				Text("Buy")
 					.longFlexibleButtonStyle()
 			}
 		}
@@ -39,7 +39,7 @@ struct ProductView: View {
 		.loyaltyNavigationSubtitle("Double points on Outdoor Product Category")
 		.loyaltyNavBarSearchButtonHidden(true)
 		.loyaltyNavBarTabBar(TopTabBar(barItems: tabbarItems, tabIndex: $tabIndex, tabAlignment: .center))
-		.background(Color(hex: "#F1F3FB"))
+        .background(Color.theme.productBackground)
 	}
 }
 

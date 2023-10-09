@@ -14,11 +14,11 @@ struct ShippingDetailsView: View {
 		VStack {
 			VStack {
 				HStack {
-					Text("Shipping Address")
+					Text("Address")
 						.font(.smallHeaderText)
 					Spacer()
 					Button {} label: {
-						Text("Add New Address")
+						Text("Add a New Address")
 							.font(.smallHeaderText)
 					}
 				}
@@ -29,14 +29,14 @@ struct ShippingDetailsView: View {
 					.padding(.horizontal, 24)
 			}
             Spacer()
-			Button("Deliver to This Address") {
+			Button("Deliver to this Address") {
 				withAnimation {
                     orderDetailsIndex = 1
 				}
 			}
 			.buttonStyle(DarkFlexibleButton())
 		}
-		.background(Color(hex: "#FAFBFC"))
+        .background(Color.theme.shippingBackground)
 	}
 }
 

@@ -12,6 +12,9 @@ struct BottomNavTabsView: View {
 	@StateObject var vouchersVM = VoucherViewModel()
 	@StateObject var profileVM = ProfileViewModel()
 	@StateObject var transactionVM = TransactionViewModel()
+	@StateObject var cameraVM = CameraViewModel()
+	@StateObject var routerPath = RouterPath()
+	@StateObject var receiptListViewModel = ReceiptListViewModel()
 	@State var selectedTab: Int = Tab.home.rawValue
 	
 	var body: some View {
@@ -34,6 +37,10 @@ struct BottomNavTabsView: View {
 					MoreView()
 						.tabItem("More", image: UIImage(named: "ic-more"))
 				}
+				.onChange(of: selectedTab) { _ in
+					routerPath.pathFromHome.removeAll()
+					routerPath.pathFromMore.removeAll()
+				}
 			}
 			.background {
 				LoyaltyConditionalNavLink(isActive: $promotionsVM.isCheckoutNavigationActive) {
@@ -54,11 +61,15 @@ struct BottomNavTabsView: View {
 				UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
 			} // To Fix Tab bar at the bottom of an app goes transparent when navigating back from another view
 		}
-		.environmentObject(promotionsVM)
-		.environmentObject(vouchersVM)
-		.environmentObject(profileVM)
-		.environmentObject(transactionVM)
-		.navigationViewStyle(.stack)
+		.withSheetDestination(sheetDestination: $routerPath.presentedSheet)
+        .environmentObject(promotionsVM)
+        .environmentObject(vouchersVM)
+        .environmentObject(profileVM)
+        .environmentObject(transactionVM)
+        .environmentObject(cameraVM)
+        .environmentObject(routerPath)
+        .environmentObject(receiptListViewModel)
+        .navigationViewStyle(.stack)
 	}
 }
 

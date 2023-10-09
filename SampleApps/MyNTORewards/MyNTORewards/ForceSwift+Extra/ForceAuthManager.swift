@@ -8,12 +8,11 @@
 import Foundation
 import LoyaltyMobileSDK
 
-public class ForceAuthManager: ForceAuthenticator {
+public class ForceAuthManager: ForceAuthenticator, ObservableObject {
     
-    public var auth: ForceAuth?
-    private let defaults: UserDefaults
-    
+    @Published public var auth: ForceAuth?
     public static let shared = ForceAuthManager()
+    private let defaults: UserDefaults
     
     private init(defaults: UserDefaults = .shared) {
         self.defaults = defaults
@@ -82,7 +81,11 @@ public class ForceAuthManager: ForceAuthenticator {
         } else {
             do {
                 let savedAuth = try retrieveAuth()
+                DispatchQueue.main.async {
+                    self.auth = savedAuth
+                }
                 self.auth = savedAuth
+                Logger.debug("We're here at \(Date())")
                 return savedAuth
             } catch {
                 Logger.debug("No auth found. Please login.")
@@ -95,13 +98,14 @@ public class ForceAuthManager: ForceAuthenticator {
         guard let auth = self.auth else {
             return
         }
-        defer {
-            self.auth = nil
-        }
         Task {
             do {
                 let revokeURL = AppSettings.shared.getConnectedApp().instanceURL + AppSettings.Defaults.revokePath
                 try await self.revoke(url: revokeURL, token: auth.accessToken)
+                
+                DispatchQueue.main.async {
+                    self.auth = nil
+                }
             } catch {
                 Logger.error("Failed to revolk token")
             }
@@ -326,7 +330,7 @@ public class ForceAuthManager: ForceAuthenticator {
                   let redirectUrl = response.url,
                   response.statusCode == 401 else {
                 Logger.debug("[requestAuthorizationCode] Error getting redirect URL")
-                throw CommonError.responseUnsuccessful(message: "Failed getting rediect URL for authorization code")
+				throw CommonError.responseUnsuccessful(message: "Failed getting rediect URL for authorization code", displayMessage: "")
             }
 
             guard let authCode = getAuthorizationCode(fromUrl: redirectUrl) else {

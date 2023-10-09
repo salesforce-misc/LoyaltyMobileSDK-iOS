@@ -18,6 +18,15 @@ public extension String {
         let date = dateFormatter.date(from: self)
         return date
     }
+	
+	func toDateString(withFormat format: String = "dd-MM-yyyy") -> String? {
+		let dateFormatter = DateFormatter()
+		dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+		dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+		dateFormatter.dateFormat = format
+		let date = dateFormatter.date(from: self)
+		return date?.toString(withFormat: format)
+	}
 }
 
 public extension Date {

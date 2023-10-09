@@ -20,7 +20,7 @@ struct QRCodeView: View {
             Color.theme.background
             VStack {
                 HStack {
-                    Text("My Membership Code")
+                    Text("Membership QR Code")
                         .font(.qrcodeTitle)
                         .accessibilityIdentifier(AppAccessibilty.QRCode.title)
                     Spacer()

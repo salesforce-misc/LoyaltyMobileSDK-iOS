@@ -21,6 +21,7 @@ final class MoreViewHelper {
         XCTAssertTrue(app.staticTexts["address_label"].exists)
         XCTAssertTrue(app.staticTexts["paymentMethod_label"].exists)
         XCTAssertTrue(app.staticTexts["orders_label"].exists)
+		XCTAssertTrue(app.staticTexts["receipts_label"].exists)
         XCTAssertTrue(app.staticTexts["support_label"].exists)
         XCTAssertTrue(app.staticTexts["favourites_label"].exists)
     }

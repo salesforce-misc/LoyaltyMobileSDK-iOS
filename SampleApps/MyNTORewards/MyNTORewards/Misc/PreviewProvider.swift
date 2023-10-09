@@ -184,7 +184,40 @@ class DeveloperPreview {
 						 VoucherTitle(id: "2", title: "Winter Jacket")]
     
     let checkoutVouchersCode = ["Trendy wear 25 off", "Trendy wear 50 off", "Trendy wear 15 off", "Trendy wear 75 off", "Trendy wear 100 off"]
-    
+	
+	let processedReceipt = ProcessedReceipt(receiptSfdcId: "sdgd3434345",
+											totalAmount: "$154.0",
+											storeName: "Costco",
+											storeAddress: "San Jose",
+											receiptNumber: "R-US-001",
+											receiptDate: Date(),
+											lineItem: [ProcessedReceiptItem(quantity: "4",
+																			productName: "Nike Shoes",
+																			price: "$20",
+																			lineItemPrice: "$30",
+																			isEligible: true)])
+	let eligibleItems = [ProcessedReceiptItem(quantity: "4",
+											  productName: "Nike Shoes",
+											  price: "$20",
+											  lineItemPrice: "$30",
+											  isEligible: true),
+						 ProcessedReceiptItem(quantity: "4",
+											  productName: "Nike Shoes",
+											  price: "$20",
+											  lineItemPrice: "$30",
+											  isEligible: true)
+	]
+	let ineligibleItems = [ProcessedReceiptItem(quantity: "4",
+												productName: "Nike Shoes",
+												price: "$20",
+												lineItemPrice: "$30",
+												isEligible: false),
+						   ProcessedReceiptItem(quantity: "4",
+												productName: "Nike Shoes",
+												price: "$20",
+												lineItemPrice: "$30",
+												isEligible: false)
+	]
     let rootVM = AppRootViewModel()
     let benefitVM = BenefitViewModel()
     let promotionVM = PromotionViewModel()
@@ -195,10 +228,18 @@ class DeveloperPreview {
 	let orderDetailsVM = OrderDetailsViewModel()
     let connectedAppVM = ConnectedAppsViewModel<ForceConnectedAppKeychainManager>()
     let productVM = ProductViewModel()
+    let processedReceiptVM = ProcessedReceiptViewModel()
+    let camVM = CameraViewModel()
+    let routerPath = RouterPath()
+    let receiptVM = ReceiptViewModel()
+	let receiptListVM = ReceiptListViewModel()
     
     private init() {
         setMember(member: member)
         promotionVM.promotions = [promotion]
+		processedReceiptVM.processedReceipt = processedReceipt
+		processedReceiptVM.eligibleItems = eligibleItems
+		processedReceiptVM.inEligibleItems = ineligibleItems
     }
     
     func setMember(member: CommunityMemberModel) {

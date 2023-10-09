@@ -17,7 +17,7 @@ struct PaymentCardView: View {
             VStack(alignment: .leading) {
                 Text("Card number")
                     .font(.voucherHederText)
-                    .foregroundColor(Color(hex: "#181818"))
+                    .foregroundColor(Color.theme.lightText)
                 HStack(spacing: 10) {
                     PaymentCardTextField(cardValue: .constant("0092"))
                     PaymentCardTextField(cardValue: .constant("0230"))
@@ -28,7 +28,7 @@ struct PaymentCardView: View {
             VStack(alignment: .leading) {
                 Text("Expiration Date")
                     .font(.voucherHederText)
-                    .foregroundColor(Color(hex: "#181818"))
+                    .foregroundColor(Color.theme.lightText)
                 HStack(spacing: 10) {
 					ExpiryDatePickerView(selectedValue: .constant(months[0]), pickerViewInputValues: months)
                         .frame(height: 16)
