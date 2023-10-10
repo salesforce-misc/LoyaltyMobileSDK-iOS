@@ -11,8 +11,8 @@ struct ProcessedReceiptListContent: View {
 	var items: [ProcessedReceiptItem]
 	var body: some View {
 		ForEach(items, id: \.self) { item in
-			ReceiptTableContentRow(itemName: item.productName,
-								   qty: item.quantity,
+			ReceiptTableContentRow(itemName: item.productName ?? "",
+								   qty: item.quantity ?? "",
 								   price: item.price ?? "",
 								   total: item.lineItemPrice ?? "")
 			.listRowSeparator(.hidden)

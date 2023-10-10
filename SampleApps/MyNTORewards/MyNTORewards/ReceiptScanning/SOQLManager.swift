@@ -17,17 +17,19 @@ final class SOQLManager {
 	
 	func getReceipts(membershipNumber: String) async throws -> [Receipt] {
 		let queryFields = ["Id",
-						   "Purchase_Date__c",
-						   "ReceiptId__c",
+						   "PurchaseDate__c",
+						   "ReceiptID__c",
 						   "Name",
 						   "Status__c",
 						   "StoreName__c",
-						   "Total_Points__c",
+						   "TotalRewardPoints__c",
 						   "CreatedDate",
 						   "TotalAmount__c",
 						   "ImageUrl__c",
-						   "Processed_AWS_Response__c"]
-		let whereClause = "Loyalty_Program_Member__r.MembershipNumber"
+						   "APIResponse__c",
+						   "ReceiptCurrency__c",
+						   "Comments__c"]
+		let whereClause = "LoyaltyProgramMember__r.MembershipNumber"
 		let orderByField = "CreatedDate"
 		let sortOrder = SortOrder.DESC
 		let operation = "SELECT \(queryFields.joined(separator: ","))"
@@ -46,14 +48,14 @@ final class SOQLManager {
 	
 	func getReceipt(membershipNumber: String, id: String) async throws -> Receipt? {
 		let queryFields = ["Id",
-						   "Purchase_Date__c",
-						   "ReceiptId__c",
+						   "PurchaseDate__c",
+						   "ReceiptID__c",
 						   "Name",
 						   "Status__c",
 						   "StoreName__c",
-						   "Total_Points__c",
+						   "TotalRewardPoints__c",
 						   "CreatedDate"]
-		let whereClauseMembershipNumber = "Loyalty_Program_Member__r.MembershipNumber"
+		let whereClauseMembershipNumber = "LoyaltyProgramMember__r.MembershipNumber"
 		let whereClauseId = "Id"
 		let operation = "SELECT \(queryFields.joined(separator: ","))"
 		let target = "FROM \(receiptsRecordName)"

@@ -85,7 +85,6 @@
 		298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298613C928CBBFA200BDC744 /* Archivo-Bold.ttf */; };
 		298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */; };
 		298CAA082A6743E0003F7F42 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298CAA072A6743E0003F7F42 /* CameraView.swift */; };
-		298CAA0A2A68A4CF003F7F42 /* ClearBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298CAA092A68A4CF003F7F42 /* ClearBackgroundView.swift */; };
 		298CAA0D2A6A3499003F7F42 /* CapturedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298CAA0C2A6A3499003F7F42 /* CapturedImageView.swift */; };
 		298CAA0F2A6B4B48003F7F42 /* CircularButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298CAA0E2A6B4B48003F7F42 /* CircularButtonStyle.swift */; };
 		298D5EEC29CCF5340062F16E /* ForceAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EE929CCF5340062F16E /* ForceAuthManager.swift */; };
@@ -346,7 +345,6 @@
 		298613C928CBBFA200BDC744 /* Archivo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Archivo-Bold.ttf"; sourceTree = "<group>"; };
 		298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		298CAA072A6743E0003F7F42 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		298CAA092A68A4CF003F7F42 /* ClearBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearBackgroundView.swift; sourceTree = "<group>"; };
 		298CAA0C2A6A3499003F7F42 /* CapturedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedImageView.swift; sourceTree = "<group>"; };
 		298CAA0E2A6B4B48003F7F42 /* CircularButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButtonStyle.swift; sourceTree = "<group>"; };
 		298D5EE929CCF5340062F16E /* ForceAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceAuthManager.swift; sourceTree = "<group>"; };
@@ -819,7 +817,6 @@
 			children = (
 				298CAA072A6743E0003F7F42 /* CameraView.swift */,
 				294EDB6C2A5F75C80047926A /* ImagePickerView.swift */,
-				298CAA092A68A4CF003F7F42 /* ClearBackgroundView.swift */,
 				298CAA0C2A6A3499003F7F42 /* CapturedImageView.swift */,
 				298CAA0E2A6B4B48003F7F42 /* CircularButtonStyle.swift */,
 				3F9149642A7C0495009FADAB /* CameraViewModel.swift */,
@@ -1381,7 +1378,6 @@
 				296D393328DBCE050078C88E /* OnboardingView.swift in Sources */,
 				3F5002AF2A5F9AB900E12AE4 /* ReceiptListItem.swift in Sources */,
 				2955345D29E621AC00CFA391 /* ConnectedAppSettingsView.swift in Sources */,
-				298CAA0A2A68A4CF003F7F42 /* ClearBackgroundView.swift in Sources */,
 				218A36B528B85E4C00FCEE39 /* BenefitView.swift in Sources */,
 				298D5EED29CCF5340062F16E /* ForceAuthKeychainManager.swift in Sources */,
 				290EA9BD2928ADB700BBF2F2 /* ViewAllView.swift in Sources */,
