@@ -14,7 +14,7 @@ struct ScrathCardCardView: View {
         
         VStack {
             ZStack {
-                Color(hex: "#E5E5E5")
+                Color.theme.expiredBackgroundText
                 Image("img-scratch-card")
             }
             .frame(width: 165, height: 90)
@@ -23,13 +23,13 @@ struct ScrathCardCardView: View {
                 HStack {
                     Text("Cat Scratch Fever")
                         .font(.gameTitle)
-                        .foregroundColor(Color(hex: "#181818"))
+                        .foregroundColor(Color.theme.lightText)
                     Spacer()
                 }
                 Spacer()
                 Text("Scratch Card")
                     .font(.redeemText)
-                    .foregroundColor(Color(hex: "#444444"))
+                    .foregroundColor(Color.theme.superLightText)
                 Text("Expiring tomorrow")
                     .font(.labelText)
                     .frame(width: 111, height: 19)

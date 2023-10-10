@@ -23,13 +23,13 @@ struct FortuneWheelCardView: View {
                 HStack {
                     Text("Bonnie and Clyde Style Promotion")
                         .font(.gameTitle)
-                        .foregroundColor(Color(hex: "#181818"))
+                        .foregroundColor(Color.theme.lightText)
                     Spacer()
                 }
                 Spacer()
                 Text("Spin a Wheel")
                     .font(.redeemText)
-                    .foregroundColor(Color(hex: "#444444"))
+                    .foregroundColor(Color.theme.superLightText)
                 Text("Expiring today")
                     .font(.labelText)
                     .frame(width: 92, height: 19)
