@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct GamificationCongratsView: View {
+    @Environment(\.dismiss) var dismiss
+    var offerText: String = "20% off"
+
     let imageSize = CGSize(width: 168, height: 167)
     var body: some View {
         VStack {
@@ -22,41 +25,36 @@ struct GamificationCongratsView: View {
                         .padding(.bottom, 29)
                         .padding(.top, -imageSize.height/2)
                     VStack(spacing: 5) {
-                        Text("Congratulations!!")
+                        Text(StringConstants.Gamification.sucessGreetingTitle)
                             .font(.congratsTitle)
                             .foregroundColor(Color.theme.lightText)
-                        Text("You have won A voucher for 20% off for your nextpurchase.Go to the voucher section to claim your reward!")
-                            .font(.congratsText)
-                            .foregroundColor(Color.theme.superLightText)
+                        Text(getAttributedStringForGreetingsBody())
                     }
                     .multilineTextAlignment(.center)
-                    .lineSpacing(4)
+                    .lineSpacing(5)
                     .padding(.horizontal, 16)
                     Spacer()
                 }
             }.diableBounceForScrollView()
-            Button("Back") {
+            Button(StringConstants.Gamification.backButtonTitle) {
+                dismiss()
             }
             .buttonStyle(DarkFlexibleButton())
             .padding(.bottom, 50)
         }.edgesIgnoringSafeArea(.top)
-        
     }
-}
-struct ScrollBounceModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        if #available(iOS 16.4, *) {
-            content
-                .scrollBounceBehavior(.basedOnSize)
-        } else {
-            content
+    
+    func getAttributedStringForGreetingsBody() -> AttributedString {
+        let greetingsText = StringConstants.Gamification.sucessGreetingBody
+        let replacedString = greetingsText.replacingOccurrences(of: StringConstants.Gamification.placeHolderOfferText, with: offerText)
+        var attributedString = AttributedString(replacedString)
+        attributedString.foregroundColor = Color.theme.superLightText
+        attributedString.font = .congratsText
+        if let range = attributedString.range(of: offerText) {
+            attributedString[range].foregroundColor = Color.theme.lightText
+            attributedString[range].font = .offerTitle
         }
-    }
-}
-
-extension View {
-    func diableBounceForScrollView() -> some View {
-        modifier(ScrollBounceModifier())
+        return attributedString
     }
 }
 

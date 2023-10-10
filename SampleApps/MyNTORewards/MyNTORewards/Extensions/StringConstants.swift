@@ -31,4 +31,14 @@ struct StringConstants {
 		static let emptyReceiptsViewTitle = "Looks like you haven’t uploaded any receipts yet"
 		static let emptyReceiptsViewBody = "Upload your receipts and get loyalty points for the eligible items."
 	}
+    
+    struct Gamification {
+        static let sucessGreetingTitle = "Congratulations!!!"
+        static let sucessGreetingBody = "You have won \n A voucher for 20% off for your nextpurchase. Go to the voucher section to claim your reward!"
+        static let placeHolderOfferText = "20% off"
+        static let backButtonTitle = "Back"
+        static let failureMessageTitle = "Better luck next time!"
+        static let failureBodyText = "Thank you for playing..."
+        static let failureBodySubText = "Keep a watch out for more such offers."
+    }
 }

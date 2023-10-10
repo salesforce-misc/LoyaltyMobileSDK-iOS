@@ -7,6 +7,7 @@
 
 import SwiftUI
 struct GamificationNoLuckView: View {
+    @Environment(\.dismiss) var dismiss
     let imageSize = CGSize(width: 165, height: 165)
 
     var body: some View {
@@ -18,27 +19,26 @@ struct GamificationNoLuckView: View {
                         .aspectRatio(imageSize.width/imageSize.height, contentMode: .fit)
                         .padding(.top, 77)
                         .clipped()
-
                     VStack(spacing: 5) {
-                        Text("Better luck next time!")
+                        Text(StringConstants.Gamification.failureMessageTitle)
                             .font(.betterLuckText)
                             .foregroundColor(Color.theme.lightText)
-                        
                         Group {
-                            Text("Thank you for playing...")
-                            Text("Keep a watch out for more such offers.")
+                            Text(StringConstants.Gamification.failureBodyText)
+                            Text(StringConstants.Gamification.failureBodySubText)
                                 .padding(.top, 29)
                         }
                         .font(.congratsText)
                         .foregroundColor(Color.theme.superLightText)
+                        .lineSpacing(5)
                     }.padding(.top, 45)
                     .multilineTextAlignment(.center)
-                    .lineSpacing(4)
                     .padding(.horizontal, 16)
                     Spacer()
                 }
             }.diableBounceForScrollView()
             Button("Back") {
+                dismiss()
             }
             .buttonStyle(DarkFlexibleButton())
             .padding([.bottom], 50)
