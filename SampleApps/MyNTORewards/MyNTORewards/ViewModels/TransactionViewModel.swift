@@ -13,7 +13,7 @@ class TransactionViewModel: ObservableObject, Reloadable {
     @Published var recentTransactions: [TransactionJournal] = []
     @Published var olderTransactions: [TransactionJournal] = []
     
-    private let transactionFolderName = "TransactionJournal"
+    private let transactionFolderName = AppSettings.cacheFolders.transactions
     private let authManager: ForceAuthenticator
     private let localFileManager: FileManagerProtocol
     private var loyaltyAPIManager: LoyaltyAPIManager
