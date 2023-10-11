@@ -56,7 +56,7 @@ struct PaymentDetailsView: View {
                             .environmentObject(orderDetailsVM)
                     }
 			}
-			.background(Color(hex: "#F1F3FB"))
+            .background(Color.theme.productBackground)
             
 			if isScreenLoading {
 				LoadingScreen()

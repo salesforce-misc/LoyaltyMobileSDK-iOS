@@ -25,8 +25,8 @@ class AppViewRouter: ObservableObject {
     
     init() {
         ForceAuthManager.shared.$auth
-            .map { $0 != nil }
             .receive(on: DispatchQueue.main)
+            .map { _ in ForceAuthManager.shared.getAuth() != nil }
             .assign(to: \.isAuthenticated, on: self)
             .store(in: &cancellables)
     }
