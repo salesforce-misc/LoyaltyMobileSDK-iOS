@@ -10,10 +10,11 @@ import SwiftUI
 struct GamificationCongratsView: View {
     @Environment(\.dismiss) var dismiss
     var offerText: String = "20% off"
-
     let imageSize = CGSize(width: 168, height: 167)
+    
     var body: some View {
         VStack {
+            // Scrollview  is for Dynamic font support
             ScrollView {
                 VStack {
                     Image("img-congrats")
@@ -39,7 +40,7 @@ struct GamificationCongratsView: View {
             Button(StringConstants.Gamification.backButtonTitle) {
                 dismiss()
             }
-            .buttonStyle(DarkFlexibleButton())
+            .buttonStyle(DarkFlexibleButton(buttonFont: .boldButtonText))
             .padding(.bottom, 50)
         }.edgesIgnoringSafeArea(.top)
     }

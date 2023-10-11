@@ -12,6 +12,7 @@ struct GamificationNoLuckView: View {
 
     var body: some View {
         VStack {
+            // Scrollview  is for Dynamic font support
             ScrollView {
                 VStack {
                     Image("img-game-raffle")
@@ -40,7 +41,7 @@ struct GamificationNoLuckView: View {
             Button("Back") {
                 dismiss()
             }
-            .buttonStyle(DarkFlexibleButton())
+            .buttonStyle(DarkFlexibleButton(buttonFont: .boldButtonText))
             .padding([.bottom], 50)
         }
         
