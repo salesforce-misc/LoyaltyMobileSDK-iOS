@@ -26,7 +26,7 @@ struct GamificationCongratsView: View {
                         .padding(.bottom, 29)
                         .padding(.top, -imageSize.height/2)
                     VStack(spacing: 5) {
-                        Text(StringConstants.Gamification.sucessGreetingTitle)
+                        Text(StringConstants.Gamification.successGreetingTitle)
                             .font(.congratsTitle)
                             .foregroundColor(Color.theme.lightText)
                         Text(getAttributedStringForGreetingsBody())
@@ -46,7 +46,7 @@ struct GamificationCongratsView: View {
     }
     
     func getAttributedStringForGreetingsBody() -> AttributedString {
-        let greetingsText = StringConstants.Gamification.sucessGreetingBody
+        let greetingsText = StringConstants.Gamification.successGreetingBody
         let replacedString = greetingsText.replacingOccurrences(of: StringConstants.Gamification.placeHolderOfferText, with: offerText)
         var attributedString = AttributedString(replacedString)
         attributedString.foregroundColor = Color.theme.superLightText
