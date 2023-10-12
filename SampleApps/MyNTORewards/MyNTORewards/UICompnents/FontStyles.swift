@@ -362,4 +362,9 @@ extension Font {
     static var scratchText: Font {
         return Font.custom("SFProDisplay-Regular", size: 12)
     }
+    
+    /// Game NoLuck View
+    static var betterLuckText: Font {
+        return Font.custom("SFProDisplay-Bold", size: 24)
+    }
 }
