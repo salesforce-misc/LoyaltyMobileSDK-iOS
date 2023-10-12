@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct OrderPlacedGameView: View {
+    
+    let game: GameType
+    
     var body: some View {
         VStack(spacing: 0) {
             VStack(spacing: 15) {
@@ -31,41 +34,83 @@ struct OrderPlacedGameView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 85)
                 
-                Text("Spin a Wheel Game Unlocked!")
-                    .font(.unlockedGameTitle)
-                    .padding(.top, 40)
-                Text("This is your 10th order of this month and has unlocked a one time chance to win instant rewards.")
-                    .font(.unlockedGameDescription)
-                    .lineSpacing(5)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 30)
+                if game == .spinAWheel {
+                    Text("Spin a Wheel Game Unlocked!")
+                        .font(.unlockedGameTitle)
+                        .padding(.top, 40)
+                    Text("This is your 10th order of this month and has unlocked a one time chance to win instant rewards.")
+                        .font(.unlockedGameDescription)
+                        .lineSpacing(5)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 30)
+                        
+                    Image("img-wheel")
                     
-                Image("img-wheel")
+                    Button {
+                        // Navigate to FortuneWheelView()
+                    } label: {
+                        Text("Play Now")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .longFlexibleButtonStyle()
+                    .padding(.top, 30)
+                        
+                    Button {
+                        // Navigate to GameZoneView()
+                    } label: {
+                        Text("Play Later in the Game Zone")
+                            .font(.footerButtonText)
+                    }
+                    .padding(.bottom, 20)
+                    .foregroundColor(Color.theme.accent)
+                } else if game == .scratchCard {
+                    Text("Scratch and Win Game Unlocked!")
+                        .font(.unlockedGameTitle)
+                        .padding(.top, 40)
+                    Text("Your spent of more than $200 this month has unlocked a one time chance to win instant rewards.")
+                        .font(.unlockedGameDescription)
+                        .lineSpacing(5)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 30)
+                        
+                    Image("img-card")
+                    
+                    Button {
+                        // Navigate to FortuneWheelView()
+                    } label: {
+                        Text("Play Now")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .longFlexibleButtonStyle()
+                    .padding(.top, 30)
+                        
+                    Button {
+                        // Navigate to GameZoneView()
+                    } label: {
+                        Text("Continue Shopping")
+                            .font(.footerButtonText)
+                    }
+                    .padding(.bottom, 20)
+                    .foregroundColor(Color.theme.accent)
+                }
                 
-                Button {
-                    // Navigate to FortuneWheelView()
-                } label: {
-                    Text("Play Now")
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.borderedProminent)
-                .longFlexibleButtonStyle()
-                .padding(.top, 30)
-                    
-                Button {
-                    // Navigate to GameZoneView()
-                } label: {
-                    Text("Play Later in the Game Zone")
-                        .font(.footerButtonText)
-                }
-                .padding(.bottom, 20)
-                .foregroundColor(Color.theme.accent)
             }
             Spacer()
         }
     }
 }
 
+enum GameType {
+    case spinAWheel
+    case scratchCard
+}
+
 #Preview {
-    OrderPlacedGameView()
+    OrderPlacedGameView(game: .spinAWheel)
+}
+
+#Preview {
+    OrderPlacedGameView(game: .scratchCard)
 }
