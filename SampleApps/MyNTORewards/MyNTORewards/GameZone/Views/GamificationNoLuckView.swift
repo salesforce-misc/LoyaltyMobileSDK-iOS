@@ -15,11 +15,13 @@ struct GamificationNoLuckView: View {
             // Scrollview  is for Dynamic font support
             ScrollView {
                 VStack {
-                    Image("img-game-raffle")
-                        .frame(width: imageSize.width, height: imageSize.height)
-                        .aspectRatio(imageSize.width/imageSize.height, contentMode: .fit)
-                        .padding(.top, 77)
-                        .clipped()
+                    ZStack(alignment: .center) {
+                        Rectangle().fill(Color.theme.noLuckViewLineColor).frame(width: 282, height: 1).rotationEffect(Angle(degrees: 32.0))
+                        Image("img-game-raffle")
+                            .frame(width: imageSize.width, height: imageSize.height)
+                            .aspectRatio(imageSize.width/imageSize.height, contentMode: .fit)
+                            .clipped()
+                    }.padding(.top, 77)
                     VStack(spacing: 5) {
                         Text(StringConstants.Gamification.failureMessageTitle)
                             .font(.betterLuckText)
