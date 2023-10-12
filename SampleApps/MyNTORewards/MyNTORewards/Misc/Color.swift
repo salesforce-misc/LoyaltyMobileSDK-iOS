@@ -86,6 +86,7 @@ struct ColorTheme {
     let scratchCardBackground = Color("LightGreyColor") // #D9D9D9
     let scratchCardDotsBackground = Color("ScratchCardDotsColor") //#F8EFFF
     let scratchCardText = Color("ScratchCardTextColor") // #939393
+    let noLuckViewLineColor = Color("NoLuckViewLineColor") // #FFCBC7
 }
 
 struct TierColor {

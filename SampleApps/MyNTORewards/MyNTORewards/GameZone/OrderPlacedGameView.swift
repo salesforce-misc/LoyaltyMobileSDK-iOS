@@ -52,7 +52,6 @@ struct OrderPlacedGameView: View {
                         Text("Play Now")
                             .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(.borderedProminent)
                     .longFlexibleButtonStyle()
                     .padding(.top, 30)
                         
@@ -77,17 +76,16 @@ struct OrderPlacedGameView: View {
                     Image("img-card")
                     
                     Button {
-                        // Navigate to FortuneWheelView()
+                        // Navigate to ScratchCardView()
                     } label: {
                         Text("Play Now")
                             .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(.borderedProminent)
                     .longFlexibleButtonStyle()
                     .padding(.top, 30)
                         
                     Button {
-                        // Navigate to GameZoneView()
+                        // Navigate to Continue Shopping
                     } label: {
                         Text("Continue Shopping")
                             .font(.footerButtonText)

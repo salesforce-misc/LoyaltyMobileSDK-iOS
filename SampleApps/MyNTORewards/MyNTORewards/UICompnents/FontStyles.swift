@@ -383,4 +383,9 @@ extension Font {
     static var footerButtonText: Font {
         return Font.custom("SFProDisplay-Regular", size: 16)
     }
+
+    /// Game NoLuck View
+    static var betterLuckText: Font {
+        return Font.custom("SFProDisplay-Bold", size: 24)
+    }
 }
