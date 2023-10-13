@@ -43,35 +43,14 @@ struct GameZoneView: View {
             }
         }
         .navigationBarBackButtonHidden()
-        
     }
     
     var activeView: some View {
-        
-        ScrollView {
-            HStack(spacing: 15) {
-                FortuneWheelCardView()
-                ScrathCardCardView()
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.top, 20)
-            
-        }
-        
+        GameZoneActiveView()
     }
     
     var expiredView: some View {
-        
-        ScrollView {
-            HStack(spacing: 15) {
-                FortuneWheelCardView()
-                ScrathCardCardView()
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.top, 20)
-            
-        }
-        
+        GameZoneInActiveView()
     }
 }
 
