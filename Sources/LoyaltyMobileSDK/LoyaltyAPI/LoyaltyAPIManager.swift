@@ -510,7 +510,5 @@ public class LoyaltyAPIManager {
             Logger.error(error.localizedDescription)
             throw error
         }
-    }
-    
-    
+    }    
 }

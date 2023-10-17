@@ -8,13 +8,19 @@
 import Foundation
 import LoyaltyMobileSDK
 
+enum LoadingState {
+       case idle
+       case loading
+       case failed(Error)
+       case loaded
+   }
+
 @MainActor
 class GameZoneViewModel: ObservableObject {
-    
+    @Published private(set) var state = LoadingState.idle
     @Published var playedGameDefinitions: [GameDefinition]?
     @Published var activeGameDefinitions: [GameDefinition]?
     @Published var expiredGameDefinitions: [GameDefinition]?
-    @Published var isLoading = false
     
     private let authManager: ForceAuthenticator
     private let localFileManager: FileManagerProtocol
@@ -30,25 +36,27 @@ class GameZoneViewModel: ObservableObject {
     }
     
     func getGames(memberId: String, reload: Bool = false, devMode: Bool = false) async throws {
-        isLoading = true
+        state = .loading
         do {
             try await fetchGames(memberId: memberId, devMode: devMode)
-            isLoading = false
         } catch {
+            self.state = .failed(error)
             throw error
         }
-        isLoading = false
     }
     
     func fetchGames(memberId: String, devMode: Bool = false) async throws {
         do {
-            
             let result = try await loyaltyAPIManager.getGames(membershipId: memberId, devMode: true)
             activeGameDefinitions = result.gameDefinitions.filter({$0.status == .active})
             playedGameDefinitions = result.gameDefinitions.filter({$0.status == .played})
             expiredGameDefinitions = result.gameDefinitions.filter({$0.status == .expired})
-
+            // To Do Need to Remove
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                self.state = .loaded
+            }
         } catch {
+            self.state = .failed(error)
             throw error
         }
     }

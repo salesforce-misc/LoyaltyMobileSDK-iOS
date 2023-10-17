@@ -226,6 +226,7 @@
 		4F7BD9872ADE7F88003B7ADA /* GameZoneCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9862ADE7F88003B7ADA /* GameZoneCardView.swift */; };
 		4F7BD9892ADE8D52003B7ADA /* GameZoneGridContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9882ADE8D52003B7ADA /* GameZoneGridContainerView.swift */; };
 		4F7BD98B2ADE94A9003B7ADA /* GameZoneExpiredCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD98A2ADE94A9003B7ADA /* GameZoneExpiredCardView.swift */; };
+		4F7BD98D2ADEB711003B7ADA /* GameZoneTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD98C2ADEB711003B7ADA /* GameZoneTabView.swift */; };
 		AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */; };
 		AF1691BC2A1B0D0C005A0EB3 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */; };
 		AF1691C02A1B2225005A0EB3 /* MockConnectedAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */; };
@@ -494,6 +495,7 @@
 		4F7BD9862ADE7F88003B7ADA /* GameZoneCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneCardView.swift; sourceTree = "<group>"; };
 		4F7BD9882ADE8D52003B7ADA /* GameZoneGridContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneGridContainerView.swift; sourceTree = "<group>"; };
 		4F7BD98A2ADE94A9003B7ADA /* GameZoneExpiredCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneExpiredCardView.swift; sourceTree = "<group>"; };
+		4F7BD98C2ADEB711003B7ADA /* GameZoneTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneTabView.swift; sourceTree = "<group>"; };
 		AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewHelper.swift; sourceTree = "<group>"; };
 		AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectedAppManager.swift; sourceTree = "<group>"; };
@@ -1115,6 +1117,7 @@
 				4F7BD9862ADE7F88003B7ADA /* GameZoneCardView.swift */,
 				4F7BD9882ADE8D52003B7ADA /* GameZoneGridContainerView.swift */,
 				4F7BD98A2ADE94A9003B7ADA /* GameZoneExpiredCardView.swift */,
+				4F7BD98C2ADEB711003B7ADA /* GameZoneTabView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1409,6 +1412,7 @@
 				4F7BD9852ADE417E003B7ADA /* GameZoneViewModel.swift in Sources */,
 				2955345F29E63BF500CFA391 /* ConnectedAppsView.swift in Sources */,
 				2941A23F28BE803F005026CF /* Color.swift in Sources */,
+				4F7BD98D2ADEB711003B7ADA /* GameZoneTabView.swift in Sources */,
 				296D393328DBCE050078C88E /* OnboardingView.swift in Sources */,
 				3F5002AF2A5F9AB900E12AE4 /* ReceiptListItem.swift in Sources */,
 				2955345D29E621AC00CFA391 /* ConnectedAppSettingsView.swift in Sources */,

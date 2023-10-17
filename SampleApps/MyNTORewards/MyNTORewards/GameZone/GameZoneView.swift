@@ -10,8 +10,6 @@ import LoyaltyMobileSDK
 
 struct GameZoneView: View {
     @State var tabSelected: Int = 0
-    @EnvironmentObject var rootVM: AppRootViewModel
-    @StateObject var gameViewModel = GameZoneViewModel()
     let barItems = ["Active", "Expired"]
     
     var body: some View {
@@ -31,35 +29,9 @@ struct GameZoneView: View {
             }
             ZStack {
                 Color.theme.background
-                TabView(selection: $tabSelected) {
-                    // views
-                    activeView
-                        .tag(0)
-                    expiredView
-                        .tag(1)
-                }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                GameZoneTabView(tabSelected: $tabSelected)
             }
-        }.task {
-            await getGames()
-        }
-        .navigationBarBackButtonHidden()
-    }
-    
-    var activeView: some View {
-        GameZoneActiveView(activeGames: gameViewModel.activeGameDefinitions)
-    }
-    
-    var expiredView: some View {
-        GameZoneExpiredView(expiredGames: gameViewModel.expiredGameDefinitions)
-    }
-    
-    func getGames() async {
-        do {
-            try await gameViewModel.fetchGames(memberId: rootVM.member?.membershipNumber ?? "")
-        } catch {
-            Logger.error(error.localizedDescription)
-        }
+        }.navigationBarHidden(true)
     }
 }
 

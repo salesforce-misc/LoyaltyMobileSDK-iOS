@@ -7,6 +7,7 @@
 
 import Foundation
 
+// To do Need to work on initialization of model
 // MARK: - GamesResponseModel
 public struct GamesResponseModel: Codable {
     public let errorMessage: String?
