@@ -34,6 +34,17 @@ struct GameZoneTabView: View {
                         .tag(1)
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .refreshable {
+                    Logger.debug("Reloading available Games...")
+                    do {
+                        try await gameViewModel.reload(id: rootVM.member?.membershipNumber ?? "", number: "")
+                        Logger.debug("loaded available Games...")
+
+                    } catch {
+                        Logger.error("Reload Available Games Error: \(error)")
+                    }
+                    
+                }
         }
     }
     

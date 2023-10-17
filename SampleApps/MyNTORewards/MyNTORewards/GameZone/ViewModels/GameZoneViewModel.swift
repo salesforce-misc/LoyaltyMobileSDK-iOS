@@ -16,7 +16,7 @@ enum LoadingState {
    }
 
 @MainActor
-class GameZoneViewModel: ObservableObject {
+class GameZoneViewModel: ObservableObject, Reloadable {
     @Published private(set) var state = LoadingState.idle
     @Published var playedGameDefinitions: [GameDefinition]?
     @Published var activeGameDefinitions: [GameDefinition]?
@@ -65,5 +65,14 @@ class GameZoneViewModel: ObservableObject {
         activeGameDefinitions = nil
         playedGameDefinitions = nil
         expiredGameDefinitions = nil
+    }
+    
+    func reload(id: String, number: String) async throws {
+        try await fetchGames(memberId: id)
+        // To Do Need to Remove
+        if let games = expiredGameDefinitions {
+            activeGameDefinitions?.append(contentsOf: games)
+
+        }
     }
 }
