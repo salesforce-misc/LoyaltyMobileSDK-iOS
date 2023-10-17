@@ -12,7 +12,7 @@ struct GameZoneActiveView: View {
     var activeGames: [GameDefinition]?
 
     var body: some View {
-        GameZoneGridContainerView(games: activeGames)
+        GameZoneGridContainerView(games: activeGames, isExpired: false)
     }
 }
 

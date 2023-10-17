@@ -1,5 +1,5 @@
 //
-//  GameZoneCardView.swift
+//  GameZoneExpiredCardView.swift
 //  MyNTORewards
 //
 //  Created by Damodaram Nandi on 17/10/23.
@@ -8,9 +8,8 @@
 import SwiftUI
 import LoyaltyMobileSDK
 
-struct GameZoneCardView: View {
+struct GameZoneExpiredCardView: View {
     let gameCardModel: GameDefinition
-    @State var showGameScreen = false
     
     var body: some View {
         
@@ -40,8 +39,8 @@ struct GameZoneCardView: View {
                     .font(.labelText)
                     .padding([.vertical], 2)
                     .padding([.horizontal], 12)
-                    .background(.black)
-                    .foregroundColor(.white)
+                    .background(Color.theme.expiredBackgroundText)
+                    .foregroundColor(Color.theme.lightText)
                     .cornerRadius(4)
             }
             .padding(.all, 6)
@@ -61,12 +60,6 @@ struct GameZoneCardView: View {
                     y: 0
                  )
         )
-        .onTapGesture {
-            showGameScreen.toggle()
-        }
-        .fullScreenCover(isPresented: $showGameScreen) {
-            navigationAction()
-        }
     }
     
     @ViewBuilder func navigationAction() -> some View {
@@ -79,7 +72,7 @@ struct GameZoneCardView: View {
     }
     
     func getFormatedExpiredLabel() -> String {
-        "Expiring today"
+        "Expired"
     }
     
     func getGameTypeText() -> String {
@@ -97,14 +90,14 @@ struct GameZoneCardView: View {
         var name: String
         switch gameCardModel.type {
         case .spinaWheel:
-            name = "img-fortune-wheel"
+            name = "img-fortune-wheel-expired"
         case .scratchCard:
-            name = "img-scratch-card"
+            name = "img-scratch-card-expired"
         }
         return name
     }
 }
 
 //#Preview {
-//    GameZoneCardView()
+//    GameZoneExpiredCardView()
 //}

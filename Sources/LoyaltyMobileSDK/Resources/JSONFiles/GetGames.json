@@ -4,7 +4,7 @@
    "gameDefinitions":[
       {
           "definitionId": "1",
-         "name":"Bonnie and Clyde Style Promotion123",
+         "name":"Billy the Kid Promotion",
          "description":"",
          "type":"spinaWheel",
          "startDate":"",
@@ -51,8 +51,8 @@
          }
       },
       {
-          "definitionId": "3",
-         "name":"Bonnie and Clyde Style Promotion",
+        "definitionId": "3",
+         "name":"Meow Scratch Mouse",
          "description":"",
          "type":"scratchCard",
          "startDate":"",
@@ -155,6 +155,54 @@
          "endDate":"",
          "timeoutDuration":"",
          "status":"active",
+         "gameRewards":{
+            "gameRewardReceived":[
+               {
+                  "name":"",
+                  "description":"",
+                  "rewardType":"",
+                  "rewardDefinitionID":"",
+                  "rewardValue":"",
+                  "color":"",
+                  "imageUrl":"",
+                  "expirationDate":""
+               }
+            ],
+            "gameRewardAvailable":[
+               {
+                  "name":"",
+                  "description":"",
+                  "rewardType":"",
+                  "rewardDefinitionID":"",
+                  "rewardValue":"",
+                  "color":"",
+                  "imageUrl":"",
+                  "expirationDate":""
+               }
+            ],
+            "gameRewardExpired":[
+               {
+                  "name":"",
+                  "description":"",
+                  "rewardType":"",
+                  "rewardDefinitionID":"",
+                  "rewardValue":"",
+                  "color":"",
+                  "imageUrl":"",
+                  "expirationDate":""
+               }
+            ]
+         }
+      },
+      {
+          "definitionId": "5",
+         "name":"Jesse James Bonanza",
+         "description":"",
+         "type":"spinaWheel",
+         "startDate":"",
+         "endDate":"",
+         "timeoutDuration":"",
+         "status":"expired",
          "gameRewards":{
             "gameRewardReceived":[
                {
