@@ -60,6 +60,8 @@ public class LoyaltyAPIManager {
         case enrollInPromotion(programName: String, version: String)
         case unenrollPromotion(programName: String, version: String)
         case getVouchers(programName: String, membershipNumber: String, version: String)
+        case getGames(memberId: String, version: String)
+
     }
     
     /// Get path for given API resource
@@ -84,6 +86,9 @@ public class LoyaltyAPIManager {
 			return ForceAPI.path(for: "connect/loyalty/programs/\(programName)/program-processes/OptOutOfPromotion", version: version)
         case .getVouchers(let programName, let membershipNumber, let version):
             return ForceAPI.path(for: "loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers", version: version)
+        case .getGames(memberId: let memberId, version: let version):
+            return ForceAPI.path(for: "game/definition/${definition}/Participant/\(memberId)/Play", version: version)
+        
         }
     
     }
@@ -482,4 +487,41 @@ public class LoyaltyAPIManager {
             return nil
         }
     }
+    
+    /// Get Games information for the loyalty member
+    /// - Parameters:
+    ///   - membershipNumber: The membership number of the loyalty program member whose issued vouchers are retrieved.
+    ///   - voucherStatus: The list of statuses for which you want to the get member's vouchers.
+    ///   - pageNumber: Number of the page you want returned. If you don’t specify a value, the first page is returned. Each page contains 200 vouchers and the vouchers are sorted based on the date on which the Voucher record was created.
+    ///   - productId: The ID of products that are related with the member vouchers you want to get. You can specify the ID of up to 20 products.
+    ///   - productCategoryId: The ID of product categories that are related with the member vouchers you want to get. You can specify the ID of up to 20 product categories.
+    ///   - productName: The product name
+    ///   - productCategoryName: The names of product categories that are related with the member vouchers you want to get. You can specify the ID of up to 20 product categories.
+    ///   - sortBy: Specifies the Voucher field that's used to sort the vouchers you want to get. The default value is ExpirationDate.
+    ///   - sortOrder: Specifies the sort order of the vouchers you want to get. The default value is Ascending.
+    ///   - version: The API version number
+    ///   - devMode: Whether it's in devMode
+    /// - Returns: A ``VoucherModel`` array
+    public func getGames(
+        membershipId: String,
+        version: String = LoyaltyAPIVersion.defaultVersion,
+        devMode: Bool = false) async throws -> GamesResponseModel {
+        do {
+            if devMode {
+                let result = try forceClient.fetchLocalJson(type: GamesResponseModel.self, file: "Vouchers")
+                return result
+            }
+            
+
+            let path = getPath(for: .getGames(memberId: membershipId, version: version))
+            let request = try ForceRequest.create(instanceURL: instanceURL, path: path, method: "GET")
+            let result = try await forceClient.fetch(type: GamesResponseModel.self, with: request)
+            return result
+        } catch {
+            Logger.error(error.localizedDescription)
+            throw error
+        }
+    }
+    
+    
 }

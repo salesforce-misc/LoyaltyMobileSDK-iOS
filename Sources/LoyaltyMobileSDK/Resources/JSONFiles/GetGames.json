@@ -1,0 +1,49 @@
+{
+    "message": null,
+    "status": true,
+    "GameDefinitions": [
+        {
+            "Name": "",
+            "Description": "",
+            "Type": "",
+            "Start Date": "",
+            "End Date": ""
+            "Timeout Duration" : "",
+            "Status":"",
+            "GameReward":{
+                "EligibleRewards": [
+                    {
+                        "Name": "",
+                        "Description": ""
+                        "Reward Type": "",
+                        "Reward Definition": ""
+                        "Reward Value": "",
+                        "Color": ""
+                        "Image": "",
+                    } ,
+                ]
+                "AssignedRewards": [
+                    {
+                        "Name": "",
+                        "Description": ""
+                        "Reward Type": "",
+                        "Reward Definition": ""
+                        "Reward Value": "",
+                        "Color": ""
+                        "Image": "",
+                        "Expiration Date":"",
+                        "Issued Reward Reference":"",
+                    }
+                ]
+                "ExpiredRewards": [
+                    {
+                        "Name": "",
+                        "Description": ""
+                        "Reward Type": "",
+                    }
+                ]
+            }
+            
+        }
+    ]
+}

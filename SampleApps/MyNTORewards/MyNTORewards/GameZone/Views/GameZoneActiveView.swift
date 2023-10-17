@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct GameZoneActiveView: View {
-    private var gridItems = [GridItem(.fixed(180)), GridItem(.fixed(180))]
+    var gridItems: [GridItem] = Array(repeating: .init(.adaptive(minimum: 165)), count: 2)
+
     var body: some View {
         ScrollView {
             LazyVGrid(columns: gridItems, spacing: 16) {
