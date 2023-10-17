@@ -55,7 +55,7 @@ struct GameZoneView: View {
     }
     
     var expiredView: some View {
-        GameZoneExpiredView(games: gameViewModel.expiredGameDefinitions)
+        GameZoneExpiredView(expiredGames: gameViewModel.expiredGameDefinitions)
     }
     
     func getGames() async {

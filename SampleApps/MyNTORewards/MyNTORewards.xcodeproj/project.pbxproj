@@ -118,7 +118,6 @@
 		29AC2F0728F8B70D003F56F6 /* AllBenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2F0628F8B70D003F56F6 /* AllBenefitsView.swift */; };
 		29AC2F0928F8B724003F56F6 /* AllBadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC2F0828F8B724003F56F6 /* AllBadgesView.swift */; };
 		29AF68C72ABA4AA20021DC09 /* GameZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AF68C62ABA4AA20021DC09 /* GameZoneView.swift */; };
-		29AF68CB2ABA53130021DC09 /* FortuneWheelCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AF68CA2ABA53130021DC09 /* FortuneWheelCardView.swift */; };
 		29AF68CD2ABA64A30021DC09 /* FortuneWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AF68CC2ABA64A30021DC09 /* FortuneWheelView.swift */; };
 		29B1CE432A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B1CE422A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift */; };
 		29B427D429109095009CC587 /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B427D329109095009CC587 /* TransactionViewModel.swift */; };
@@ -144,7 +143,6 @@
 		29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */; };
 		29BAF70228F78FA400A3F9EB /* AllTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */; };
 		29BD48942AC696D400F10158 /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD48932AC696D400F10158 /* LocaleManager.swift */; };
-		29BD48962ACCB3C700F10158 /* ScrathCardCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD48952ACCB3C700F10158 /* ScrathCardCardView.swift */; };
 		29BD48992ACCB42C00F10158 /* ScratchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD48982ACCB42C00F10158 /* ScratchCardView.swift */; };
 		29EC33242AAA962A00104363 /* ProcessingErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EC33232AAA962A00104363 /* ProcessingErrorView.swift */; };
 		29FEDDF2294293BF0014BEBA /* UITabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FEDDF1294293BF0014BEBA /* UITabView.swift */; };
@@ -225,6 +223,8 @@
 		4F18ED852AD94D50000F64D9 /* GameZoneActiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED842AD94D50000F64D9 /* GameZoneActiveView.swift */; };
 		4F18ED872AD958C6000F64D9 /* GameZoneExpiredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */; };
 		4F7BD9852ADE417E003B7ADA /* GameZoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9842ADE417E003B7ADA /* GameZoneViewModel.swift */; };
+		4F7BD9872ADE7F88003B7ADA /* GameZoneCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9862ADE7F88003B7ADA /* GameZoneCardView.swift */; };
+		4F7BD9892ADE8D52003B7ADA /* GameZoneGridContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9882ADE8D52003B7ADA /* GameZoneGridContainerView.swift */; };
 		AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */; };
 		AF1691BC2A1B0D0C005A0EB3 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */; };
 		AF1691C02A1B2225005A0EB3 /* MockConnectedAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */; };
@@ -383,7 +383,6 @@
 		29AC2F0628F8B70D003F56F6 /* AllBenefitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBenefitsView.swift; sourceTree = "<group>"; };
 		29AC2F0828F8B724003F56F6 /* AllBadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBadgesView.swift; sourceTree = "<group>"; };
 		29AF68C62ABA4AA20021DC09 /* GameZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneView.swift; sourceTree = "<group>"; };
-		29AF68CA2ABA53130021DC09 /* FortuneWheelCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneWheelCardView.swift; sourceTree = "<group>"; };
 		29AF68CC2ABA64A30021DC09 /* FortuneWheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneWheelView.swift; sourceTree = "<group>"; };
 		29B1CE422A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceRequest+PercentEncoding.swift"; sourceTree = "<group>"; };
 		29B427D329109095009CC587 /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
@@ -409,7 +408,6 @@
 		29BAF6FF28F756E500A3F9EB /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		29BAF70128F78FA300A3F9EB /* AllTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsView.swift; sourceTree = "<group>"; };
 		29BD48932AC696D400F10158 /* LocaleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleManager.swift; sourceTree = "<group>"; };
-		29BD48952ACCB3C700F10158 /* ScrathCardCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrathCardCardView.swift; sourceTree = "<group>"; };
 		29BD48982ACCB42C00F10158 /* ScratchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScratchCardView.swift; sourceTree = "<group>"; };
 		29EC33232AAA962A00104363 /* ProcessingErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingErrorView.swift; sourceTree = "<group>"; };
 		29EC33252AAA999F00104363 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
@@ -492,6 +490,8 @@
 		4F18ED842AD94D50000F64D9 /* GameZoneActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneActiveView.swift; sourceTree = "<group>"; };
 		4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneExpiredView.swift; sourceTree = "<group>"; };
 		4F7BD9842ADE417E003B7ADA /* GameZoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneViewModel.swift; sourceTree = "<group>"; };
+		4F7BD9862ADE7F88003B7ADA /* GameZoneCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneCardView.swift; sourceTree = "<group>"; };
+		4F7BD9882ADE8D52003B7ADA /* GameZoneGridContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneGridContainerView.swift; sourceTree = "<group>"; };
 		AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewHelper.swift; sourceTree = "<group>"; };
 		AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectedAppManager.swift; sourceTree = "<group>"; };
@@ -874,8 +874,6 @@
 				29AF68C52ABA4A6D0021DC09 /* FortuneWheel */,
 				29BD48972ACCB40900F10158 /* ScrachCard */,
 				29AF68C62ABA4AA20021DC09 /* GameZoneView.swift */,
-				29AF68CA2ABA53130021DC09 /* FortuneWheelCardView.swift */,
-				29BD48952ACCB3C700F10158 /* ScrathCardCardView.swift */,
 			);
 			path = GameZone;
 			sourceTree = "<group>";
@@ -1112,6 +1110,8 @@
 				4F18ED802AD52F2B000F64D9 /* GamificationNoLuckView.swift */,
 				4F18ED842AD94D50000F64D9 /* GameZoneActiveView.swift */,
 				4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */,
+				4F7BD9862ADE7F88003B7ADA /* GameZoneCardView.swift */,
+				4F7BD9882ADE8D52003B7ADA /* GameZoneGridContainerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1379,7 +1379,6 @@
 				3F5002B72A5FC82800E12AE4 /* ReceiptSearchBar.swift in Sources */,
 				292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */,
 				AFC75D3429D458DF003CC86A /* ShippingMethodModel.swift in Sources */,
-				29AF68CB2ABA53130021DC09 /* FortuneWheelCardView.swift in Sources */,
 				292ADC72294C04AB00753541 /* VocherModel+VoucherValue.swift in Sources */,
 				3F2D8B702A651E46008F5AE0 /* ProcessedReceiptView.swift in Sources */,
 				292ADC6E294BFD7700753541 /* PreviewProvider.swift in Sources */,
@@ -1440,6 +1439,7 @@
 				2963770F29C10D2400D45AB6 /* ForceClient+SOQL.swift in Sources */,
 				216F217F28B6141E00DAA66D /* MyNTORewardsApp.swift in Sources */,
 				29AC2F0528F8B6E6003F56F6 /* AllRedeemPointsView.swift in Sources */,
+				4F7BD9872ADE7F88003B7ADA /* GameZoneCardView.swift in Sources */,
 				29AC2F0128F89EBE003F56F6 /* LoyaltyNavLink.swift in Sources */,
 				298CAA0D2A6A3499003F7F42 /* CapturedImageView.swift in Sources */,
 				218A36AE28B85D6000FCEE39 /* FavoriteView.swift in Sources */,
@@ -1449,6 +1449,7 @@
 				299B38E428EE040900E45D97 /* UIApplication+DismissKeyboard.swift in Sources */,
 				298613AE28C9652300BDC744 /* FontStyles.swift in Sources */,
 				3F714D6329FA0FEB00CD39E7 /* PaymentCardView.swift in Sources */,
+				4F7BD9892ADE8D52003B7ADA /* GameZoneGridContainerView.swift in Sources */,
 				3FB333932A1492A200C3A639 /* Reloadable.swift in Sources */,
 				3F6270992ABB21B200C0E148 /* ProcessedReceiptListTitle.swift in Sources */,
 				2963771629C10D6200D45AB6 /* Record.swift in Sources */,
@@ -1497,7 +1498,6 @@
 				29A39BC529397B98005833C2 /* EmptyStateView.swift in Sources */,
 				29BAF6D328F103B600A3F9EB /* PromotionCarouselView.swift in Sources */,
 				29BAF6DF28F3ECA600A3F9EB /* TopTabBar.swift in Sources */,
-				29BD48962ACCB3C700F10158 /* ScrathCardCardView.swift in Sources */,
 				29A39BC12937C699005833C2 /* LoyaltyAsyncImage.swift in Sources */,
 				3F3805B42A7A6D8500223808 /* Destination.swift in Sources */,
 				3F714D5729FA0FC200CD39E7 /* StarRatingView.swift in Sources */,

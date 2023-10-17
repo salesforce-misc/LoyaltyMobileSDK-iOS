@@ -9,25 +9,15 @@ import SwiftUI
 import LoyaltyMobileSDK
 
 struct GameZoneExpiredView: View {
-    var gridItems: [GridItem] = Array(repeating: .init(.adaptive(minimum: 165)), count: 2)
-    var games: [GameDefinition]?
+    var expiredGames: [GameDefinition]?
 
     var body: some View {
-        ScrollView {
-            if games?.isEmpty ?? true {
-                EmptyStateView(title: "No Games yet", subTitle: "When you have Games available for Play, you’ll see them here.")
-            } else {
-                LazyVGrid(columns: gridItems, spacing: 16) {
-                    ForEach(games!, id: \.definitionId) { game in
-                        if game.type == .scratchCard {
-                            ScrathCardCardView()
-                        } else {
-                            FortuneWheelCardView()
-                        }
-                    }
-                }
-                .padding([.vertical], 24)
-            }
+        VStack(alignment: .leading) {
+            Text("Expired in the last 90 Days")
+                .font(Font.scratchText)
+                .foregroundColor(Color.theme.superLightText)
+                .padding([.horizontal, .top], 16)
+            GameZoneGridContainerView(games: expiredGames)
         }
     }
 }

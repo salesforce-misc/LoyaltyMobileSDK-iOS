@@ -4,13 +4,13 @@
    "gameDefinitions":[
       {
           "definitionId": "1",
-         "name":"Bonnie and Clyde Style Promotion",
+         "name":"Bonnie and Clyde Style Promotion123",
          "description":"",
          "type":"spinaWheel",
          "startDate":"",
          "endDate":"",
          "timeoutDuration":"",
-         "status":"active",
+         "status":"expired",
          "gameRewards":{
             "gameRewardReceived":[
                {
@@ -54,7 +54,7 @@
           "definitionId": "3",
          "name":"Bonnie and Clyde Style Promotion",
          "description":"",
-         "type":"spinaWheel",
+         "type":"scratchCard",
          "startDate":"",
          "endDate":"",
          "timeoutDuration":"",
@@ -103,6 +103,54 @@
          "name":"Cat Scratch Fever",
          "description":"",
          "type":"scratchCard",
+         "startDate":"",
+         "endDate":"",
+         "timeoutDuration":"",
+         "status":"active",
+         "gameRewards":{
+            "gameRewardReceived":[
+               {
+                  "name":"",
+                  "description":"",
+                  "rewardType":"",
+                  "rewardDefinitionID":"",
+                  "rewardValue":"",
+                  "color":"",
+                  "imageUrl":"",
+                  "expirationDate":""
+               }
+            ],
+            "gameRewardAvailable":[
+               {
+                  "name":"",
+                  "description":"",
+                  "rewardType":"",
+                  "rewardDefinitionID":"",
+                  "rewardValue":"",
+                  "color":"",
+                  "imageUrl":"",
+                  "expirationDate":""
+               }
+            ],
+            "gameRewardExpired":[
+               {
+                  "name":"",
+                  "description":"",
+                  "rewardType":"",
+                  "rewardDefinitionID":"",
+                  "rewardValue":"",
+                  "color":"",
+                  "imageUrl":"",
+                  "expirationDate":""
+               }
+            ]
+         }
+      },
+      {
+          "definitionId": "4",
+         "name":"Bonnie and Clyde Style Promotion",
+         "description":"",
+         "type":"spinaWheel",
          "startDate":"",
          "endDate":"",
          "timeoutDuration":"",

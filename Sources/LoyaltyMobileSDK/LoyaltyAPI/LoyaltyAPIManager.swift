@@ -489,7 +489,7 @@ public class LoyaltyAPIManager {
     
     /// Get Games information for the loyalty member
     /// - Parameters:
-    ///   - membershipNumber: The membership number of the loyalty program member whose issued vouchers are retrieved.
+    ///   - membershipId: The membership number of the loyalty program member whose issued vouchers are retrieved.
     ///   - version: The API version number
     ///   - devMode: Whether it's in devMode
     /// - Returns: A ``GamesResponseModel`` object
@@ -502,8 +502,6 @@ public class LoyaltyAPIManager {
                 let result = try forceClient.fetchLocalJson(type: GamesResponseModel.self, file: "GetGames")
                 return result
             }
-            
-
             let path = getPath(for: .getGames(memberId: membershipId, version: version))
             let request = try ForceRequest.create(instanceURL: instanceURL, path: path, method: "GET")
             let result = try await forceClient.fetch(type: GamesResponseModel.self, with: request)
