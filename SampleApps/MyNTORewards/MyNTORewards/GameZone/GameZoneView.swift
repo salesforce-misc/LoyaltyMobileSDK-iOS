@@ -12,7 +12,6 @@ struct GameZoneView: View {
     @State var tabSelected: Int = 0
     @EnvironmentObject var rootVM: AppRootViewModel
     @StateObject var gameViewModel = GameZoneViewModel()
-
     let barItems = ["Active", "Expired"]
     
     var body: some View {
@@ -32,17 +31,14 @@ struct GameZoneView: View {
             }
             ZStack {
                 Color.theme.background
-                
                 TabView(selection: $tabSelected) {
                     // views
                     activeView
                         .tag(0)
                     expiredView
                         .tag(1)
-                    
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                
             }
         }.task {
             await getGames()

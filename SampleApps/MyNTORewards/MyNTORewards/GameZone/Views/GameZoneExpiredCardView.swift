@@ -12,7 +12,6 @@ struct GameZoneExpiredCardView: View {
     let gameCardModel: GameDefinition
     
     var body: some View {
-        
         VStack {
             ZStack {
                 if gameCardModel.type == .scratchCard {
@@ -58,7 +57,7 @@ struct GameZoneExpiredCardView: View {
                     radius: 10,
                     x: 0,
                     y: 0
-                 )
+                )
         )
     }
     

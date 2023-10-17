@@ -11,7 +11,7 @@ import LoyaltyMobileSDK
 struct GameZoneGridContainerView: View {
     private let gridItems: [GridItem] = Array(repeating: .init(.adaptive(minimum: 165)), count: 2)
     var games: [GameDefinition]?
-    let isExpired: Bool
+    let isExpiredView: Bool
     
     var body: some View {
         ScrollView {
@@ -20,7 +20,7 @@ struct GameZoneGridContainerView: View {
             } else {
                 LazyVGrid(columns: gridItems, spacing: 16) {
                     ForEach(games!, id: \.definitionId) { gameModel in
-                        if isExpired {
+                        if isExpiredView {
                             GameZoneExpiredCardView(gameCardModel: gameModel)
                         } else {
                             GameZoneCardView(gameCardModel: gameModel)
@@ -34,5 +34,5 @@ struct GameZoneGridContainerView: View {
 }
 
 #Preview {
-    GameZoneGridContainerView(isExpired: false)
+    GameZoneGridContainerView(isExpiredView: false)
 }

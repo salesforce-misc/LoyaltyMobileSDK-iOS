@@ -13,7 +13,6 @@ struct GameZoneCardView: View {
     @State var showGameScreen = false
     
     var body: some View {
-        
         VStack {
             ZStack {
                 if gameCardModel.type == .scratchCard {
@@ -59,7 +58,7 @@ struct GameZoneCardView: View {
                     radius: 10,
                     x: 0,
                     y: 0
-                 )
+                )
         )
         .onTapGesture {
             showGameScreen.toggle()

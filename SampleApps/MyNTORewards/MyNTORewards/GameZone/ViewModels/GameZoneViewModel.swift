@@ -30,20 +30,16 @@ class GameZoneViewModel: ObservableObject {
     }
     
     func getGames(memberId: String, reload: Bool = false, devMode: Bool = false) async throws {
-        
         isLoading = true
-        
         do {
             try await fetchGames(memberId: memberId, devMode: devMode)
             isLoading = false
         } catch {
             throw error
         }
-        
         isLoading = false
     }
     
-    // Fetch Games from Salesforce
     func fetchGames(memberId: String, devMode: Bool = false) async throws {
         do {
             
@@ -62,9 +58,4 @@ class GameZoneViewModel: ObservableObject {
         playedGameDefinitions = nil
         expiredGameDefinitions = nil
     }
-    
-    func reload(id: String, number: String) async throws {
-        try await fetchGames(memberId: id)
-    }
-
 }
