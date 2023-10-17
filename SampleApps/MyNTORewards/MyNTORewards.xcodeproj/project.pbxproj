@@ -223,7 +223,8 @@
 		4F18ED812AD52F2B000F64D9 /* GamificationNoLuckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED802AD52F2B000F64D9 /* GamificationNoLuckView.swift */; };
 		4F18ED832AD5737B000F64D9 /* ScrollViewBounceModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED822AD5737B000F64D9 /* ScrollViewBounceModifier.swift */; };
 		4F18ED852AD94D50000F64D9 /* GameZoneActiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED842AD94D50000F64D9 /* GameZoneActiveView.swift */; };
-		4F18ED872AD958C6000F64D9 /* GameZoneInActiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED862AD958C6000F64D9 /* GameZoneInActiveView.swift */; };
+		4F18ED872AD958C6000F64D9 /* GameZoneExpiredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */; };
+		4F7BD9852ADE417E003B7ADA /* GameZoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9842ADE417E003B7ADA /* GameZoneViewModel.swift */; };
 		AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */; };
 		AF1691BC2A1B0D0C005A0EB3 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */; };
 		AF1691C02A1B2225005A0EB3 /* MockConnectedAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */; };
@@ -489,7 +490,8 @@
 		4F18ED802AD52F2B000F64D9 /* GamificationNoLuckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationNoLuckView.swift; sourceTree = "<group>"; };
 		4F18ED822AD5737B000F64D9 /* ScrollViewBounceModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewBounceModifier.swift; sourceTree = "<group>"; };
 		4F18ED842AD94D50000F64D9 /* GameZoneActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneActiveView.swift; sourceTree = "<group>"; };
-		4F18ED862AD958C6000F64D9 /* GameZoneInActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneInActiveView.swift; sourceTree = "<group>"; };
+		4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneExpiredView.swift; sourceTree = "<group>"; };
+		4F7BD9842ADE417E003B7ADA /* GameZoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneViewModel.swift; sourceTree = "<group>"; };
 		AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewHelper.swift; sourceTree = "<group>"; };
 		AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectedAppManager.swift; sourceTree = "<group>"; };
@@ -1109,7 +1111,7 @@
 				4F18ED7E2AD5150B000F64D9 /* GamificationCongratsView.swift */,
 				4F18ED802AD52F2B000F64D9 /* GamificationNoLuckView.swift */,
 				4F18ED842AD94D50000F64D9 /* GameZoneActiveView.swift */,
-				4F18ED862AD958C6000F64D9 /* GameZoneInActiveView.swift */,
+				4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1117,6 +1119,7 @@
 		4FBDAAC22ADD44650057C637 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				4F7BD9842ADE417E003B7ADA /* GameZoneViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1401,6 +1404,7 @@
 				3F714D6829FA0FEB00CD39E7 /* PaymentCardTextField.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
 				3F714D6229FA0FEB00CD39E7 /* AmountPayableView.swift in Sources */,
+				4F7BD9852ADE417E003B7ADA /* GameZoneViewModel.swift in Sources */,
 				2955345F29E63BF500CFA391 /* ConnectedAppsView.swift in Sources */,
 				2941A23F28BE803F005026CF /* Color.swift in Sources */,
 				296D393328DBCE050078C88E /* OnboardingView.swift in Sources */,
@@ -1499,7 +1503,7 @@
 				3F714D5729FA0FC200CD39E7 /* StarRatingView.swift in Sources */,
 				2963770E29C10D2400D45AB6 /* ForceClient+SOSL.swift in Sources */,
 				3F714D4829FA0F4A00CD39E7 /* ProductTermsAndConditionsView.swift in Sources */,
-				4F18ED872AD958C6000F64D9 /* GameZoneInActiveView.swift in Sources */,
+				4F18ED872AD958C6000F64D9 /* GameZoneExpiredView.swift in Sources */,
 				292453E82A1C4658002112B3 /* WebView.swift in Sources */,
 				290EA9C1292C0ACF00BBF2F2 /* VoucherViewModel.swift in Sources */,
 				3F714D6429FA0FEB00CD39E7 /* VoucherPickerView.swift in Sources */,

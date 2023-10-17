@@ -1,49 +1,150 @@
 {
-    "message": null,
-    "status": true,
-    "GameDefinitions": [
-        {
-            "Name": "",
-            "Description": "",
-            "Type": "",
-            "Start Date": "",
-            "End Date": ""
-            "Timeout Duration" : "",
-            "Status":"",
-            "GameReward":{
-                "EligibleRewards": [
-                    {
-                        "Name": "",
-                        "Description": ""
-                        "Reward Type": "",
-                        "Reward Definition": ""
-                        "Reward Value": "",
-                        "Color": ""
-                        "Image": "",
-                    } ,
-                ]
-                "AssignedRewards": [
-                    {
-                        "Name": "",
-                        "Description": ""
-                        "Reward Type": "",
-                        "Reward Definition": ""
-                        "Reward Value": "",
-                        "Color": ""
-                        "Image": "",
-                        "Expiration Date":"",
-                        "Issued Reward Reference":"",
-                    }
-                ]
-                "ExpiredRewards": [
-                    {
-                        "Name": "",
-                        "Description": ""
-                        "Reward Type": "",
-                    }
-                ]
-            }
-            
-        }
-    ]
+   "errorMessage":null,
+   "status":true,
+   "gameDefinitions":[
+      {
+          "definitionId": "1",
+         "name":"Bonnie and Clyde Style Promotion",
+         "description":"",
+         "type":"spinaWheel",
+         "startDate":"",
+         "endDate":"",
+         "timeoutDuration":"",
+         "status":"active",
+         "gameRewards":{
+            "gameRewardReceived":[
+               {
+                  "name":"",
+                  "description":"",
+                  "rewardType":"",
+                  "rewardDefinitionID":"",
+                  "rewardValue":"",
+                  "color":"",
+                  "imageUrl":"",
+                  "expirationDate":""
+               }
+            ],
+            "gameRewardAvailable":[
+               {
+                  "name":"",
+                  "description":"",
+                  "rewardType":"",
+                  "rewardDefinitionID":"",
+                  "rewardValue":"",
+                  "color":"",
+                  "imageUrl":"",
+                  "expirationDate":""
+               }
+            ],
+            "gameRewardExpired":[
+               {
+                  "name":"",
+                  "description":"",
+                  "rewardType":"",
+                  "rewardDefinitionID":"",
+                  "rewardValue":"",
+                  "color":"",
+                  "imageUrl":"",
+                  "expirationDate":""
+               }
+            ]
+         }
+      },
+      {
+          "definitionId": "3",
+         "name":"Bonnie and Clyde Style Promotion",
+         "description":"",
+         "type":"spinaWheel",
+         "startDate":"",
+         "endDate":"",
+         "timeoutDuration":"",
+         "status":"expired",
+         "gameRewards":{
+            "gameRewardReceived":[
+               {
+                  "name":"",
+                  "description":"",
+                  "rewardType":"",
+                  "rewardDefinitionID":"",
+                  "rewardValue":"",
+                  "color":"",
+                  "imageUrl":"",
+                  "expirationDate":""
+               }
+            ],
+            "gameRewardAvailable":[
+               {
+                  "name":"",
+                  "description":"",
+                  "rewardType":"",
+                  "rewardDefinitionID":"",
+                  "rewardValue":"",
+                  "color":"",
+                  "imageUrl":"",
+                  "expirationDate":""
+               }
+            ],
+            "gameRewardExpired":[
+               {
+                  "name":"",
+                  "description":"",
+                  "rewardType":"",
+                  "rewardDefinitionID":"",
+                  "rewardValue":"",
+                  "color":"",
+                  "imageUrl":"",
+                  "expirationDate":""
+               }
+            ]
+         }
+      },
+      {
+          "definitionId": "2",
+         "name":"Cat Scratch Fever",
+         "description":"",
+         "type":"scratchCard",
+         "startDate":"",
+         "endDate":"",
+         "timeoutDuration":"",
+         "status":"active",
+         "gameRewards":{
+            "gameRewardReceived":[
+               {
+                  "name":"",
+                  "description":"",
+                  "rewardType":"",
+                  "rewardDefinitionID":"",
+                  "rewardValue":"",
+                  "color":"",
+                  "imageUrl":"",
+                  "expirationDate":""
+               }
+            ],
+            "gameRewardAvailable":[
+               {
+                  "name":"",
+                  "description":"",
+                  "rewardType":"",
+                  "rewardDefinitionID":"",
+                  "rewardValue":"",
+                  "color":"",
+                  "imageUrl":"",
+                  "expirationDate":""
+               }
+            ],
+            "gameRewardExpired":[
+               {
+                  "name":"",
+                  "description":"",
+                  "rewardType":"",
+                  "rewardDefinitionID":"",
+                  "rewardValue":"",
+                  "color":"",
+                  "imageUrl":"",
+                  "expirationDate":""
+               }
+            ]
+         }
+      }
+   ]
 }
