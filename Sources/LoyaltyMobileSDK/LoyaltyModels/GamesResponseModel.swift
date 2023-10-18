@@ -21,7 +21,19 @@ public struct GameDefinition: Codable {
     public let endDate, timeoutDuration: String
     public let status: GameStatus
     public let type: GameType
-    public let gameRewards: GameRewards
+    public let gameRewards: GameRewards?
+    
+   public init(name: String, description: String, startDate: String, definitionId: String, endDate: String, timeoutDuration: String, status: GameStatus, type: GameType, gameRewards: GameRewards?) {
+        self.name = name
+        self.description = description
+        self.startDate = startDate
+        self.definitionId = definitionId
+        self.endDate = endDate
+        self.timeoutDuration = timeoutDuration
+        self.status = status
+        self.type = type
+        self.gameRewards = gameRewards
+    }
 }
 
 // MARK: - GameRewards

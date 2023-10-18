@@ -22,7 +22,7 @@ struct GameZoneExpiredView: View {
     }
 }
 
-struct GameZoneInActiveView_Previews: PreviewProvider {
+struct GameZoneExpiredView_Previews: PreviewProvider {
     static var previews: some View {
         GameZoneExpiredView()
     }

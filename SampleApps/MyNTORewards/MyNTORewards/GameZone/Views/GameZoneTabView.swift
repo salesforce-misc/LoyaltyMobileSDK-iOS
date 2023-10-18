@@ -26,25 +26,24 @@ struct GameZoneTabView: View {
                 .font(.congratsTitle)
                 .padding(.horizontal, 15)
         case .loaded:
-                TabView(selection: $tabSelected) {
-                    // views
-                    activeView
-                        .tag(0)
-                    expiredView
-                        .tag(1)
-                }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                .refreshable {
-                    Logger.debug("Reloading available Games...")
-                    do {
-                        try await gameViewModel.reload(id: rootVM.member?.membershipNumber ?? "", number: "")
-                        Logger.debug("loaded available Games...")
-
-                    } catch {
-                        Logger.error("Reload Available Games Error: \(error)")
-                    }
+            TabView(selection: $tabSelected) {
+                // views
+                activeView
+                    .tag(0)
+                expiredView
+                    .tag(1)
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .refreshable {
+                Logger.debug("Reloading available Games...")
+                do {
+                    try await gameViewModel.reload(id: rootVM.member?.membershipNumber ?? "", number: "")
+                    Logger.debug("loaded available Games...")
                     
+                } catch {
+                    Logger.error("Reload Available Games Error: \(error)")
                 }
+            }
         }
     }
     
@@ -68,6 +67,6 @@ struct GameZoneTabView: View {
     }
 }
 
-//#Preview {
-//    GameZoneTabView(tabSelected: 0)
-//}
+#Preview {
+    GameZoneTabView(tabSelected: .constant(0))
+}

@@ -97,7 +97,8 @@ struct GameZoneExpiredCardView: View {
     }
 }
 
-// To Do Need to Work on this
-//#Preview {
-//    GameZoneExpiredCardView()
-//}
+struct GameZoneExpiredCardView_Previews: PreviewProvider {
+    static var previews: some View {
+        GameZoneExpiredCardView(gameCardModel: dev.expiredGame)
+    }
+}
