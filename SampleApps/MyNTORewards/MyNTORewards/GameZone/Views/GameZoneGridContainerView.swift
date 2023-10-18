@@ -18,16 +18,20 @@ struct GameZoneGridContainerView: View {
             if games?.isEmpty ?? true {
                 EmptyStateView(title: "No Games yet", subTitle: "When you have Games available for Play, you’ll see them here.")
             } else {
-                LazyVGrid(columns: gridItems, spacing: 16) {
-                    ForEach(games!, id: \.definitionId) { gameModel in
-                        if isExpiredView {
-                            GameZoneExpiredCardView(gameCardModel: gameModel)
-                        } else {
-                            GameZoneCardView(gameCardModel: gameModel)
+                if let games = games, !games.isEmpty {
+                    LazyVGrid(columns: gridItems, spacing: 16) {
+                        ForEach(games, id: \.definitionId) { gameModel in
+                            if isExpiredView {
+                                GameZoneExpiredCardView(gameCardModel: gameModel)
+                            } else {
+                                GameZoneCardView(gameCardModel: gameModel)
+                            }
                         }
                     }
+                    .padding([.vertical], 24)
+                } else {
+                    EmptyStateView(title: "No Games yet")
                 }
-                .padding([.vertical], 24)
             }
         }
     }
