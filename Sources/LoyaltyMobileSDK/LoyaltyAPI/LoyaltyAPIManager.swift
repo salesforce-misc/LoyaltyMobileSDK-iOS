@@ -489,7 +489,7 @@ public class LoyaltyAPIManager {
     
     /// Get Games information for the loyalty member
     /// - Parameters:
-    ///   - membershipId: The membership number of the loyalty program member whose issued vouchers are retrieved.
+    ///   - membershipId: The membership number of the loyalty program member whose issued avialbele games are retrieved.
     ///   - version: The API version number
     ///   - devMode: Whether it's in devMode
     /// - Returns: A ``GamesResponseModel`` object

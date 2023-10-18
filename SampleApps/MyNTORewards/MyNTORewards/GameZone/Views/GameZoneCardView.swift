@@ -35,7 +35,7 @@ struct GameZoneCardView: View {
                 Text(getGameTypeText())
                     .font(.redeemText)
                     .foregroundColor(Color.theme.superLightText)
-                Text(getFormatedExpiredLabel())
+                Text(getFormattedExpiredLabel())
                     .font(.labelText)
                     .padding([.vertical], 2)
                     .padding([.horizontal], 12)
@@ -78,7 +78,7 @@ struct GameZoneCardView: View {
     }
     
     // To Do Need to Update based on Date
-    func getFormatedExpiredLabel() -> String {
+    func getFormattedExpiredLabel() -> String {
         "Expiring today"
     }
     

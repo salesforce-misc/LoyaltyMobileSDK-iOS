@@ -34,7 +34,7 @@ struct GameZoneExpiredCardView: View {
                 Text(getGameTypeText())
                     .font(.redeemText)
                     .foregroundColor(Color.theme.superLightText)
-                Text(getFormatedExpiredLabel())
+                Text(getFormattedExpiredLabel())
                     .font(.labelText)
                     .padding([.vertical], 2)
                     .padding([.horizontal], 12)
@@ -70,7 +70,7 @@ struct GameZoneExpiredCardView: View {
         }
     }
     
-    func getFormatedExpiredLabel() -> String {
+    func getFormattedExpiredLabel() -> String {
         "Expired"
     }
     

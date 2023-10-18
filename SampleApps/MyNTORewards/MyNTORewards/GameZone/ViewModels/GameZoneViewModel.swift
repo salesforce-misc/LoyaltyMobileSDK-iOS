@@ -39,6 +39,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
         state = .loading
         do {
             try await fetchGames(memberId: memberId, devMode: devMode)
+            self.state = .loaded
         } catch {
             self.state = .failed(error)
             throw error
