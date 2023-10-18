@@ -51,10 +51,6 @@ class GameZoneViewModel: ObservableObject, Reloadable {
             activeGameDefinitions = result.gameDefinitions.filter({$0.status == .active})
             playedGameDefinitions = result.gameDefinitions.filter({$0.status == .played})
             expiredGameDefinitions = result.gameDefinitions.filter({$0.status == .expired})
-            // To Do Need to Remove
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                self.state = .loaded
-            }
         } catch {
             self.state = .failed(error)
             throw error
@@ -69,10 +65,5 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     
     func reload(id: String, number: String) async throws {
         try await fetchGames(memberId: id)
-        // To Do Need to Remove
-        if let games = expiredGameDefinitions {
-            activeGameDefinitions?.append(contentsOf: games)
-
-        }
     }
 }
