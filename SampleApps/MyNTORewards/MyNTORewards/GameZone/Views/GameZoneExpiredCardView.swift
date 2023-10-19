@@ -20,6 +20,7 @@ struct GameZoneExpiredCardView: View {
                 Image(getImageName())
                     .resizable()
                     .aspectRatio(contentMode: .fill)
+                    .saturation(0)
             }
             .frame(width: 165, height: 90)
             .cornerRadius(5, corners: [.topLeft, .topRight])
@@ -89,9 +90,9 @@ struct GameZoneExpiredCardView: View {
         var name: String
         switch gameCardModel.type {
         case .spinaWheel:
-            name = "img-fortune-wheel-expired"
+            name = "img-fortune-wheel"
         case .scratchCard:
-            name = "img-scratch-card-expired"
+            name = "img-scratch-card"
         }
         return name
     }
