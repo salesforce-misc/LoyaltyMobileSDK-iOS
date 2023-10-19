@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 @main
 struct MyNTORewardsApp: App {
@@ -21,6 +22,15 @@ struct MyNTORewardsApp: App {
     
     init() {
         _ = AppSettings.shared
+
+        // delete all cached data to force reload data from server
+        // in case of reinit after app cold relaunch, crashes, updates, reboot or terminated in background
+        let folders = [AppSettings.cacheFolders.benefits,
+                       AppSettings.cacheFolders.images,
+                       AppSettings.cacheFolders.promotions,
+                       AppSettings.cacheFolders.transactions,
+                       AppSettings.cacheFolders.vouchers]
+        LocalFileManager.instance.removeDataFolders(folderNames: folders)
     }
 
     var body: some Scene {

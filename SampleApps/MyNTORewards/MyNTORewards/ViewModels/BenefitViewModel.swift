@@ -19,6 +19,7 @@ class BenefitViewModel: ObservableObject {
     private let authManager: ForceAuthenticator
     private let localFileManager: FileManagerProtocol
     private var loyaltyAPIManager: LoyaltyAPIManager
+    private let benefitsFolderName = AppSettings.cacheFolders.benefits
     
     init(authManager: ForceAuthenticator = ForceAuthManager.shared, localFileManager: FileManagerProtocol = LocalFileManager.instance) {
         self.authManager = authManager
@@ -35,7 +36,7 @@ class BenefitViewModel: ObservableObject {
         if !reload {
             if benefits.isEmpty {
                 // get from local cache
-                if let cached = localFileManager.getData(type: Benefits.self, id: memberId, folderName: nil) {
+                if let cached = localFileManager.getData(type: Benefits.self, id: memberId, folderName: benefitsFolderName) {
                     benefits = cached.memberBenefits
                     benefitsPreview = Array(benefits.prefix(5))
  
@@ -94,7 +95,7 @@ class BenefitViewModel: ObservableObject {
             // save to local cache
             let benefitsData = Benefits(memberBenefits: results)
             // LocalFileManager.instance.saveData(item: benefitsData, id: memberId, expiry: .date(Date().addingTimeInterval(60*60)))
-            localFileManager.saveData(item: benefitsData, id: memberId, folderName: nil, expiry: .never)
+            localFileManager.saveData(item: benefitsData, id: memberId, folderName: benefitsFolderName, expiry: .never)
         } catch {
             throw error
         }

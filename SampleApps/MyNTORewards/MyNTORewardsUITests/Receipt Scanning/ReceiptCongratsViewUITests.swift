@@ -18,19 +18,21 @@ final class ReceiptCongratsViewUITests: XCTestCase {
 	
 	func testCongratsViewElements() {
 		ReceiptsViewHelper.goToReceiptCongratsView(app: app)
-		XCTAssert(app.staticTexts["receipt_submitted_congrats"].waitForExistence(timeout: 3))
-		XCTAssert(app.staticTexts["Done"].exists)
+		XCTAssert(app.staticTexts["receipt_submitted_congrats"].waitForExistence(timeout: 10))
+		XCTAssert(app.buttons["Done"].exists)
 		XCTAssert(app.buttons["scan_another_receipt"].exists)
 	}
 	
 	func testDoneButton() {
 		ReceiptsViewHelper.goToReceiptCongratsView(app: app)
-		app.staticTexts["Done"].tap()
+        XCTAssert(app.staticTexts["receipt_submitted_congrats"].waitForExistence(timeout: 10))
+		app.buttons["Done"].tap()
 		XCTAssertFalse(app.staticTexts["receipt_submitted_congrats"].waitForExistence(timeout: 3))
 	}
 	
 	func testScanAnotherReceipt() {
 		ReceiptsViewHelper.goToReceiptCongratsView(app: app)
+        XCTAssert(app.staticTexts["receipt_submitted_congrats"].waitForExistence(timeout: 10))
 		app.buttons["scan_another_receipt"].tap()
 		XCTAssertFalse(app.staticTexts["receipt_submitted_congrats"].waitForExistence(timeout: 3))
 		XCTAssert(app.buttons["camera_shutter_button"].exists)

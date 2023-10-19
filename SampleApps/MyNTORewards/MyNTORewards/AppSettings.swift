@@ -51,6 +51,14 @@ struct AppSettings {
         static let displayDateFormat = "yyyy-MM-dd"
     }
     
+    struct cacheFolders {
+        static let vouchers = "Vouchers"
+        static let promotions = "Promotions"
+        static let benefits = "Benefits"
+        static let transactions = "Transactions"
+        static let images = "Images"
+    }
+    
     struct Vouchers {
         static let codeSuccessfullyCopied = "Code was copied!"
     }
