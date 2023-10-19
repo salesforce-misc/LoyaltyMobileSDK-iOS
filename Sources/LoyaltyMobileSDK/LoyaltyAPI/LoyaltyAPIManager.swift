@@ -60,6 +60,8 @@ public class LoyaltyAPIManager {
         case enrollInPromotion(programName: String, version: String)
         case unenrollPromotion(programName: String, version: String)
         case getVouchers(programName: String, membershipNumber: String, version: String)
+        case getGames(memberId: String, version: String)
+
     }
     
     /// Get path for given API resource
@@ -84,6 +86,8 @@ public class LoyaltyAPIManager {
 			return ForceAPI.path(for: "connect/loyalty/programs/\(programName)/program-processes/OptOutOfPromotion", version: version)
         case .getVouchers(let programName, let membershipNumber, let version):
             return ForceAPI.path(for: "loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers", version: version)
+        case .getGames(memberId: let memberId, version: let version):
+            return ForceAPI.path(for: "game/participant/\(memberId)/Games", version: version)
         }
     
     }
@@ -482,4 +486,29 @@ public class LoyaltyAPIManager {
             return nil
         }
     }
+    
+    /// Get Games information for the loyalty member
+    /// - Parameters:
+    ///   - membershipId: The membership number of the loyalty program member whose issued avialbele games are retrieved.
+    ///   - version: The API version number
+    ///   - devMode: Whether it's in devMode
+    /// - Returns: A ``GamesResponseModel`` object
+    public func getGames(
+        membershipId: String,
+        version: String = LoyaltyAPIVersion.defaultVersion,
+        devMode: Bool = false) async throws -> GamesResponseModel {
+        do {
+            if devMode {
+                let result = try forceClient.fetchLocalJson(type: GamesResponseModel.self, file: "GetGames")
+                return result
+            }
+            let path = getPath(for: .getGames(memberId: membershipId, version: version))
+            let request = try ForceRequest.create(instanceURL: instanceURL, path: path, method: "GET")
+            let result = try await forceClient.fetch(type: GamesResponseModel.self, with: request)
+            return result
+        } catch {
+            Logger.error(error.localizedDescription)
+            throw error
+        }
+    }    
 }

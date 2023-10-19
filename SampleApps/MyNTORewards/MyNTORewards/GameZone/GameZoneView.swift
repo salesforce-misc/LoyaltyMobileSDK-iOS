@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct GameZoneView: View {
-    
     @State var tabSelected: Int = 0
     let barItems = ["Active", "Expired"]
     
@@ -29,49 +29,9 @@ struct GameZoneView: View {
             }
             ZStack {
                 Color.theme.background
-                
-                TabView(selection: $tabSelected) {
-                    // views
-                    activeView
-                        .tag(0)
-                    expiredView
-                        .tag(1)
-                    
-                }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                
+                GameZoneTabView(tabSelected: $tabSelected)
             }
-        }
-        .navigationBarBackButtonHidden()
-        
-    }
-    
-    var activeView: some View {
-        
-        ScrollView {
-            HStack(spacing: 15) {
-                FortuneWheelCardView()
-                ScrathCardCardView()
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.top, 20)
-            
-        }
-        
-    }
-    
-    var expiredView: some View {
-        
-        ScrollView {
-            HStack(spacing: 15) {
-                FortuneWheelCardView()
-                ScrathCardCardView()
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.top, 20)
-            
-        }
-        
+        }.navigationBarHidden(true)
     }
 }
 
