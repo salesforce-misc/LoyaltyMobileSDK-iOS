@@ -30,7 +30,7 @@ class VoucherViewModel: ObservableObject, Reloadable {
         case None
     }
     
-	private let vouchersFolderName = "Vouchers"
+    private let vouchersFolderName = AppSettings.cacheFolders.vouchers
 	private let authManager: ForceAuthenticator
 	private let localFileManager: FileManagerProtocol
 	private var loyaltyAPIManager: LoyaltyAPIManager

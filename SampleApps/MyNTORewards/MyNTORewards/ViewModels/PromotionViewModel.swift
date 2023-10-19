@@ -24,6 +24,7 @@ class PromotionViewModel: ObservableObject {
     private let authManager: ForceAuthenticator
     private let localFileManager: FileManagerProtocol
     private var loyaltyAPIManager: LoyaltyAPIManager
+    private let promotionsFolderName = AppSettings.cacheFolders.promotions
     
     init(authManager: ForceAuthenticator = ForceAuthManager.shared, localFileManager: FileManagerProtocol = LocalFileManager.instance) {
         self.authManager = authManager
@@ -46,7 +47,7 @@ class PromotionViewModel: ObservableObject {
                 return result.memberEligibilityCategory != "Ineligible"
             }
             // save to local
-            localFileManager.saveData(item: eligible, id: membershipNumber, folderName: "Promotions", expiry: .never)
+            localFileManager.saveData(item: eligible, id: membershipNumber, folderName: promotionsFolderName, expiry: .never)
             
             await MainActor.run {
                 // update promotion list
@@ -76,7 +77,7 @@ class PromotionViewModel: ObservableObject {
         
         if promotions.isEmpty {
             // load from local cache
-            if let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
+            if let cached = LocalFileManager.instance.getData(type: [PromotionResult].self, id: membershipNumber, folderName: promotionsFolderName) {
                 await MainActor.run {
                     promotions = Array(cached.prefix(5))
                 }
@@ -110,7 +111,7 @@ class PromotionViewModel: ObservableObject {
 
         if allEligiblePromotions.isEmpty {
             // load from local cache
-            if let cached = localFileManager.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
+            if let cached = localFileManager.getData(type: [PromotionResult].self, id: membershipNumber, folderName: promotionsFolderName) {
                 await MainActor.run {
                     allEligiblePromotions = cached
                 }
@@ -146,7 +147,7 @@ class PromotionViewModel: ObservableObject {
         
         if activePromotions.isEmpty {
             // load from local cache
-            if let cached = localFileManager.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
+            if let cached = localFileManager.getData(type: [PromotionResult].self, id: membershipNumber, folderName: promotionsFolderName) {
                 let active = cached.filter { result in
                     return (result.memberEligibilityCategory == "Eligible" || result.promotionEnrollmentRqr == false)
                 }
@@ -184,7 +185,7 @@ class PromotionViewModel: ObservableObject {
         
         if unenrolledPromotions.isEmpty {
             // load from local cache
-            if let cached = localFileManager.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") {
+            if let cached = localFileManager.getData(type: [PromotionResult].self, id: membershipNumber, folderName: promotionsFolderName) {
                 let unenrolled = cached.filter { result in
                     return (result.memberEligibilityCategory == "EligibleButNotEnrolled" && result.promotionEnrollmentRqr == true)
                 }
@@ -238,7 +239,7 @@ class PromotionViewModel: ObservableObject {
     
     func updatePromotionsFromCache(membershipNumber: String, promotionId: String) async {
 
-        guard let cached = localFileManager.getData(type: [PromotionResult].self, id: membershipNumber, folderName: "Promotions") else {
+        guard let cached = localFileManager.getData(type: [PromotionResult].self, id: membershipNumber, folderName: promotionsFolderName) else {
             return
         }
         let active = cached.filter { result in

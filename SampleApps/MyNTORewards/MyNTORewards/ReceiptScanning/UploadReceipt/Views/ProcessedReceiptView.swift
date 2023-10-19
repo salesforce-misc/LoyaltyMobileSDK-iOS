@@ -81,10 +81,10 @@ struct ProcessedReceiptView: View {
         } label: {
             Text(StringConstants.Receipts.submitButton)
                 .frame(maxWidth: .infinity)
+				.accessibilityIdentifier(AppAccessibilty.Receipts.submitReceiptButton)
         }
         .buttonStyle(.borderedProminent)
         .longFlexibleButtonStyle()
-        .accessibilityIdentifier(AppAccessibilty.Receipts.submitReceiptButton)
 	}
 	
 	private func tryAgainButton(receipt: ProcessedReceipt) -> some View {
