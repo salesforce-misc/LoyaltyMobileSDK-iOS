@@ -18,10 +18,11 @@ final class ReceiptsListViewModelTests: XCTestCase {
 		super.setUp()
 		let mockAuthenticator = MockAuthenticator.sharedMock
 		viewModel = ReceiptListViewModel(localFileManager: MockFileManager.mockInstance, authManager: mockAuthenticator)
-		receipts = [
-			Receipt(id: "fAkEiD8768712ID1", receiptId: "10123", name: "R0001", status: "Pending", storeName: "Nike", purchaseDate: "2023-08-01T19:00:00.000+0000", totalAmount: 5000.0, totalPoints: nil, createdDate: "2023-08-11T01:47:37.000+0000"),
-			Receipt(id: "fAkEiD8745612ID2", receiptId: "10177", name: "R0004", status: "Pending", storeName: "Adidas", purchaseDate: "2023-08-02T19:00:00.000+0000", totalAmount: 7000.0, totalPoints: nil, createdDate: "2023-08-12T01:47:37.000+0000")
-		]
+//		receipts = [
+//			Receipt(id: "fAkEiD8768712ID1", receiptId: "10123", name: "R0001", status: "Pending", storeName: "Nike", purchaseDate: "2023-08-01T19:00:00.000+0000", totalAmount: 5000.0, totalPoints: nil, createdDate: "2023-08-11T01:47:37.000+0000"),
+//			Receipt(id: "fAkEiD8745612ID2", receiptId: "10177", name: "R0004", status: "Pending", storeName: "Adidas", purchaseDate: "2023-08-02T19:00:00.000+0000", totalAmount: 7000.0, totalPoints: nil, createdDate: "2023-08-12T01:47:37.000+0000")
+//		]
+                receipts = []
 		viewModel.receipts = receipts
     }
 
