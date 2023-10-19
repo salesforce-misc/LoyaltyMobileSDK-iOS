@@ -363,6 +363,27 @@ extension Font {
         return Font.custom("SFProDisplay-Regular", size: 12)
     }
     
+    /// Order Placed - Game Zone
+    static var orderPlacedTitle: Font {
+        return Font.custom("SFProDisplay-Regular", size: 22).weight(.bold)
+    }
+    
+    static var orderPlacedDescription: Font {
+        return Font.custom("SFProDisplay-Regular", size: 14)
+    }
+    
+    static var unlockedGameTitle: Font {
+        return Font.custom("SFProDisplay-Regular", size: 16).weight(.bold)
+    }
+    
+    static var unlockedGameDescription: Font {
+        return Font.custom("SFProDisplay-Regular", size: 12)
+    }
+    
+    static var footerButtonText: Font {
+        return Font.custom("SFProDisplay-Regular", size: 16)
+    }
+
     /// Game NoLuck View
     static var betterLuckText: Font {
         return Font.custom("SFProDisplay-Bold", size: 24)

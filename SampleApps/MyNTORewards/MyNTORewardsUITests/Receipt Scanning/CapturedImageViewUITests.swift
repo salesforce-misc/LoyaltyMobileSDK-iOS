@@ -21,7 +21,7 @@ final class CapturedImageViewUITests: XCTestCase {
 		ReceiptsViewHelper.goToCapturedImageView(app: app)
 		XCTAssert(app.buttons["process_button"].waitForExistence(timeout: 3))
 		XCTAssert(app.buttons["back_button_captured_image_view"].waitForExistence(timeout: 3))
-		XCTAssert(app.staticTexts["Try again"].waitForExistence(timeout: 3))
+		XCTAssert(app.staticTexts["Try Again"].waitForExistence(timeout: 3))
 	}
 	
 	func testProcessButton() {
@@ -33,7 +33,7 @@ final class CapturedImageViewUITests: XCTestCase {
 	
 	func testTryAgainButton() {
 		ReceiptsViewHelper.goToCapturedImageView(app: app)
-		app.staticTexts["Try again"].tap()
+		app.staticTexts["Try Again"].tap()
 		XCTAssertFalse(app.buttons["process_button"].waitForExistence(timeout: 3))
 		XCTAssert(app.buttons["camera_shutter_button"].exists)
 	}

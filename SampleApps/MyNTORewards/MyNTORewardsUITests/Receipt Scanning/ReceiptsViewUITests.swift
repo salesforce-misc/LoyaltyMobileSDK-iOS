@@ -27,9 +27,9 @@ final class ReceiptsViewUITests: XCTestCase {
 	
 	func testUIElements() {
 		ReceiptsViewHelper.goToReceiptsView(app: app)
-		XCTAssert(app.buttons["back_button"].exists)
+		XCTAssertFalse(app.buttons["back_button"].exists)
 		XCTAssert(app.textFields["receipts_search_bar"].exists)
-		XCTAssert(app.buttons["new_button"].exists)
+		XCTAssert(app.staticTexts["new_button"].exists)
 		XCTAssert(app.cells.element.waitForExistence(timeout: 5))
 		XCTAssert(app.staticTexts["Receipts"].exists)
 	}
@@ -37,7 +37,7 @@ final class ReceiptsViewUITests: XCTestCase {
 	/// Tapping 'New' and verifying if Flash button is appearing to confirm Camera view is open
 	func testNewButtonAction() {
 		ReceiptsViewHelper.goToReceiptsView(app: app)
-		app.buttons["new_button"].tap()
+		app.staticTexts["new_button"].tap()
 		XCTAssert(app.buttons["Flash Off"].waitForExistence(timeout: 5))
 	}
 	
@@ -50,14 +50,6 @@ final class ReceiptsViewUITests: XCTestCase {
 		searchField.typeText("000000")
 		app.keyboards.buttons["Return"].tap()
 		XCTAssertFalse(app.cells.element.exists)
-	}
-	
-	/// Tapping back button and verifying if receipt view elements are not present
-	func testBackButton() {
-		ReceiptsViewHelper.goToReceiptsView(app: app)
-		app.buttons["back_button"].tap()
-		XCTAssertFalse(app.buttons["new_button"].waitForExistence(timeout: 3))
-		XCTAssertFalse(app.buttons["receipts_search_bar"].waitForExistence(timeout: 3))
 	}
 	
 	func testShowCapturedImageView() {

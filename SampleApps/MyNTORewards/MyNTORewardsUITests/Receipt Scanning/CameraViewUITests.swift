@@ -30,7 +30,7 @@ final class CameraViewUITests: XCTestCase {
 		XCTAssert(app.buttons["Flash Off"].exists)
 		XCTAssert(app.buttons["camera_shutter_button"].exists)
 		XCTAssert(app.buttons["choose_from_photos"].exists)
-		XCTAssert(app.staticTexts["Take a photo of the receipt"].exists)
+		XCTAssert(app.staticTexts["Click or Upload the Receipt"].exists)
 	}
 	
 	func testFlash() {
@@ -54,7 +54,7 @@ final class CameraViewUITests: XCTestCase {
 	
 	func testCloseButton() {
 		ReceiptsViewHelper.goToCameraView(app: app)
-		
+		XCTAssert(app.buttons["close_camera_button"].waitForExistence(timeout: 3))
 		app.buttons["close_camera_button"].tap()
 		// TODO:- Camera view is not closing on tapping close button
 		XCTAssertFalse(app.buttons["camera_shutter_button"].waitForExistence(timeout: 3))
