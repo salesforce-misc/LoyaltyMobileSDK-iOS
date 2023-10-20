@@ -45,7 +45,7 @@ final class GameZoneViewUITests: XCTestCase {
         XCTAssert(app.staticTexts["Spin a wheel!"].waitForExistence(timeout: 1))
     }
     
-    func testExpiredTabnavigation() {
+    func testExpiredTabNavigation() {
         GameZoneViewHelper.goToGameZoneView(app: app)
         XCTAssert(app.staticTexts["Expired"].waitForExistence(timeout: 2))
         app.staticTexts["Expired"].tap()
