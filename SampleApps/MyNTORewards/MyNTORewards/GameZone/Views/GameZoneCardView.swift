@@ -29,6 +29,7 @@ struct GameZoneCardView: View {
                     Text(gameCardModel.name)
                         .font(.gameTitle)
                         .foregroundColor(Color.theme.lightText)
+                        .accessibilityIdentifier("game_zone_active_card_title")
                     Spacer()
                 }
                 Spacer()
