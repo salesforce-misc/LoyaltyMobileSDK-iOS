@@ -22,12 +22,17 @@ struct ProcessedReceiptView: View {
 			ZStack {
 				VStack {
 					header(receipt: processedReceipt)
-					ProcessedReceiptList(eligibleItems: viewModel.eligibleItems,
-										 ineligibleItems: viewModel.inEligibleItems)
-					.padding()
+                    if viewModel.receiptScanSatus == .receiptNotReadable || viewModel.receiptScanSatus == .receiptPartiallyReadable {
+                        ReceiptScanErrorView(scanStatus: viewModel.receiptScanSatus)
+                        .padding()
+
+                    } else {
+                        ProcessedReceiptList(eligibleItems: viewModel.eligibleItems,
+                                             ineligibleItems: viewModel.inEligibleItems)
+                        .padding()
+                    }
 					Spacer()
-					submitButton(receipt: processedReceipt)
-					tryAgainButton(receipt: processedReceipt)
+                    bottomButtonsView(receipt: processedReceipt)
 				}
 				.padding(.vertical, 20)
 				.background(Color.theme.background)
@@ -87,7 +92,7 @@ struct ProcessedReceiptView: View {
         .longFlexibleButtonStyle()
 	}
 	
-	private func tryAgainButton(receipt: ProcessedReceipt) -> some View {
+    private func tryAgainButton(receipt: ProcessedReceipt) -> some View {
 		Button(StringConstants.Receipts.tryAgainButton) {
 			Task {
 				routerPath.presentedSheet = nil
@@ -108,8 +113,56 @@ struct ProcessedReceiptView: View {
 			}
 		}
 		.foregroundColor(.black)
+        .padding([.horizontal], 16)
 		.accessibilityIdentifier(AppAccessibilty.Receipts.tryAgainButtonProcessedReceipt)
 	}
+        
+    private func requestManualReviewButton(receipt: ProcessedReceipt) -> some View {
+        Button(StringConstants.Receipts.requestForManualReviewButton) {
+            
+        }
+        .foregroundColor(.black)
+    }
+    
+    private func cancelButton() -> some View {
+        Button(StringConstants.Receipts.cancelButton) {
+            
+        }
+        .foregroundColor(.black)
+    }
+    
+    private func bottomButtonsView(receipt: ProcessedReceipt) -> some View {
+        Group {
+            switch viewModel.receiptScanSatus {
+            case .allEligibleItems:
+                VStack(alignment: .center, spacing: 20) {
+                    submitButton(receipt: receipt)
+                    tryAgainButton(receipt: receipt)
+                }
+            case .bothEligibleAndInEligibleItems:
+                VStack(alignment: .center, spacing: 20) {
+                    submitButton(receipt: receipt)
+                    tryAgainButton(receipt: receipt)
+                    requestManualReviewButton(receipt: receipt)
+                }
+            case .noEligibleItems:
+                VStack(alignment: .center, spacing: 20) {
+                    tryAgainButton(receipt: receipt)
+                    requestManualReviewButton(receipt: receipt)
+                }
+            case .receiptNotReadable:
+                VStack(alignment: .center, spacing: 20) {
+                    tryAgainButton(receipt: receipt)
+                    cancelButton()
+                }
+            case .receiptPartiallyReadable:
+                VStack(alignment: .center, spacing: 20) {
+                    tryAgainButton(receipt: receipt)
+                    requestManualReviewButton(receipt: receipt)
+                }
+            }
+        }
+    }
 	
 	private var errorView: some View {
 		VStack {

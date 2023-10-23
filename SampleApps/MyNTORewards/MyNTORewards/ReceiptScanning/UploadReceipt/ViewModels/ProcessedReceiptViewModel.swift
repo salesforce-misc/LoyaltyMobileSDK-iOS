@@ -18,6 +18,14 @@ enum ReceiptStatus: String {
 	case cancelled = "Cancelled"
 }
 
+enum ReceiptScanStatus {
+    case allEligibleItems
+    case bothEligibleAndInEligibleItems
+    case noEligibleItems
+    case receiptNotReadable
+    case receiptPartiallyReadable
+}
+
 @MainActor
 final class ProcessedReceiptViewModel: ObservableObject {
 	@Published var processedAwsResponse: ProcessedAwsResponse?
@@ -27,6 +35,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
 	@Published var receiptState: ReceiptState = .processing
 	@Published var eligibleItems = [ProcessedReceiptItem]()
 	@Published var inEligibleItems = [ProcessedReceiptItem]()
+    @Published var receiptScanSatus: ReceiptScanStatus = .bothEligibleAndInEligibleItems
 	
     private let authManager: ForceAuthenticator
     private var forceClient: ForceClient
