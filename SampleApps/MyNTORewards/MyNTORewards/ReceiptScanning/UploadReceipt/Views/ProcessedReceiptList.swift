@@ -21,7 +21,7 @@ struct ProcessedReceiptList: View {
 					table(items: eligibleItems, title: eligibleItemsTitle)
 					space
                 } else {
-                    Text("No Eligible Items found in the Receipt!")
+                    Text(StringConstants.Receipts.noEligibleItemsText)
                        .padding([.vertical], 45)
                 }
 				if !ineligibleItems.isEmpty {

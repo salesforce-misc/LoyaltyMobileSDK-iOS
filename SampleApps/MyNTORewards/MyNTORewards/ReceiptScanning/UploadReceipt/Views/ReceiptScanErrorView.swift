@@ -14,21 +14,21 @@ struct ReceiptScanErrorView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
-                Image("img-astronaut")
-                VStack(alignment: .center, spacing: 20) {
-                    Group {
-                        Text(getMessageText())
-                        Text(getBodyText())
-                    }.font(.errorMessageText)
-                        .foregroundColor(Color.theme.textInactive)
-                        .multilineTextAlignment(.center)
-                        .lineSpacing(6)
-                        .frame(maxWidth: .infinity)
-                        .padding(.horizontal, 30)
-                }
+            Image("img-astronaut")
+            VStack(alignment: .center, spacing: 20) {
+                Group {
+                    Text(getMessageText())
+                    Text(getBodyText())
+                }.font(.errorMessageText)
+                    .foregroundColor(Color.theme.textInactive)
+                    .multilineTextAlignment(.center)
+                    .lineSpacing(6)
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 30)
+            }
         }.frame(maxHeight: .infinity)
-        .background(.white)
-        .cornerRadius(4)
+            .background(.white)
+            .cornerRadius(4)
     }
     func getBodyText() -> String {
         if let bodyMessage = bodyText {
@@ -45,7 +45,7 @@ struct ReceiptScanErrorView: View {
         if let bodyMessage = message {
             return bodyMessage
         }
-       return  "Oops! Some items in the receipt could not be read and processed."
+        return  "Oops! Some items in the receipt could not be read and processed."
     }
 }
 
