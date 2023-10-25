@@ -92,27 +92,41 @@ struct ProcessedReceiptView: View {
         .longFlexibleButtonStyle()
     }
     
-    private func tryAgainButton(receipt: ProcessedReceipt) -> some View {
-        Button(StringConstants.Receipts.tryAgainButton) {
-            Task {
-                routerPath.presentedSheet = nil
-                do {
-                    isLoading = true
-                    let success = try await viewModel.updateStatus(receiptId: receipt.receiptSFDCId, status: .cancelled)
-                    if success {
-                        try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "",
-                                                                   forced: true)
-                    }
-                    isLoading = false
-                } catch {
-                    isLoading = false
+    func updateReceiptStatusForTryAgainAction(receipt: ProcessedReceipt) {
+        Task {
+            routerPath.presentedSheet = nil
+            do {
+                isLoading = true
+                let success = try await viewModel.updateStatus(receiptId: receipt.receiptSFDCId, status: .cancelled)
+                if success {
+                    try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "",
+                                                               forced: true)
                 }
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                cameraModel.showCamera = true
+                isLoading = false
+            } catch {
+                isLoading = false
             }
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            cameraModel.showCamera = true
+        }
+    }
+    
+    private func tryAgainButton(receipt: ProcessedReceipt) -> some View {
+        Button(StringConstants.Receipts.tryAgainButton) {
+            updateReceiptStatusForTryAgainAction(receipt: receipt)
+        }
         .foregroundColor(.black)
+        .padding([.horizontal], 16)
+        .accessibilityIdentifier(AppAccessibilty.Receipts.tryAgainButtonProcessedReceipt)
+    }
+    
+    private func tryAgainButtonWithCornerRadious(receipt: ProcessedReceipt) -> some View {
+        Button(StringConstants.Receipts.tryAgainButton) {
+            updateReceiptStatusForTryAgainAction(receipt: receipt)
+        }
+        .foregroundColor(.black)
+        .buttonStyle(DarkFlexibleButton())
         .padding([.horizontal], 16)
         .accessibilityIdentifier(AppAccessibilty.Receipts.tryAgainButtonProcessedReceipt)
     }
@@ -147,17 +161,17 @@ struct ProcessedReceiptView: View {
                 }
             case .noEligibleItems:
                 VStack(alignment: .center, spacing: 20) {
-                    tryAgainButton(receipt: receipt)
+                    tryAgainButtonWithCornerRadious(receipt: receipt)
                     requestManualReviewButton(receipt: receipt)
                 }
             case .receiptNotReadable:
                 VStack(alignment: .center, spacing: 20) {
-                    tryAgainButton(receipt: receipt)
+                    tryAgainButtonWithCornerRadious(receipt: receipt)
                     cancelButton()
                 }
             case .receiptPartiallyReadable:
                 VStack(alignment: .center, spacing: 20) {
-                    tryAgainButton(receipt: receipt)
+                    tryAgainButtonWithCornerRadious(receipt: receipt)
                     requestManualReviewButton(receipt: receipt)
                 }
             }
