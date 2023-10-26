@@ -139,7 +139,7 @@ struct ProcessedReceiptView: View {
     }
     
     private func cancelButton() -> some View {
-        Button(StringConstants.Receipts.cancelButton) {
+        Button(StringConstants.Receipts.backButton) {
             
         }
         .foregroundColor(.black)
