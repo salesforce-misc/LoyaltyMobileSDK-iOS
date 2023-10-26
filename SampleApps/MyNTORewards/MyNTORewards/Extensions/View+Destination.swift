@@ -16,6 +16,8 @@ extension View {
                 ReceiptsView()
             case .gameZone:
                 GameZoneView()
+            case .referrals:
+                MyReferralsView()
             }
             
 		}

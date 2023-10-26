@@ -85,6 +85,22 @@ struct LightShortPromotionButton: ButtonStyle {
     }
 }
 
+struct LightShortReferralsButton: ButtonStyle {
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.boldButtonText)
+            .foregroundColor(Color.theme.accent)
+            .frame(width: 280, height: 39)
+            .background(Color.white)
+            .cornerRadius(24)
+            .overlay(
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(Color.theme.accent, lineWidth: 1)
+            )
+    }
+}
+
 struct LightLongPromotionButton: ButtonStyle {
 	
 	func makeBody(configuration: Configuration) -> some View {

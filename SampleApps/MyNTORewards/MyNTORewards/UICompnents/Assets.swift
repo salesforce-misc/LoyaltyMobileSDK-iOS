@@ -77,4 +77,15 @@ struct Assets {
             return Color.white
         }
     }
+    
+    static func getReferralStatusIcon(status: ReferralStatus) -> Image {
+        switch status {
+        case .pending:
+            return Image("ic-defer")
+        case .signedUp:
+            return Image("ic-update-status")
+        case .purchaseCompleted:
+            return Image("ic-check")
+        }
+    }
 }

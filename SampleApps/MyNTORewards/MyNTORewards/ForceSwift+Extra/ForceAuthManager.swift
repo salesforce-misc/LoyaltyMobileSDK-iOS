@@ -85,7 +85,6 @@ public class ForceAuthManager: ForceAuthenticator, ObservableObject {
                     self.auth = savedAuth
                 }
                 self.auth = savedAuth
-                Logger.debug("We're here at \(Date())")
                 return savedAuth
             } catch {
                 Logger.debug("No auth found. Please login.")

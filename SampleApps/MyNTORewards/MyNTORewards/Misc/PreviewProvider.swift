@@ -254,6 +254,7 @@ class DeveloperPreview {
     let routerPath = RouterPath()
     let receiptVM = ReceiptViewModel()
     let receiptListVM = ReceiptListViewModel()
+    let localeManager = LocaleManager()
     
     private init() {
         setMember(member: member)

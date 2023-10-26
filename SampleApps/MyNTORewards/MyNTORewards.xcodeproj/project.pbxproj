@@ -51,7 +51,13 @@
 		293F86AE2A174FD800733A42 /* TestConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 293F86AC2A174FD800733A42 /* TestConfig.xcconfig */; };
 		2941A23F28BE803F005026CF /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941A23E28BE803F005026CF /* Color.swift */; };
 		2944F88A28B9A7220098ED1B /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2944F88928B9A7220098ED1B /* AppSettings.swift */; };
+		2945FFBE2AE8926A00D9C8C6 /* ReferAFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2945FFBD2AE8926A00D9C8C6 /* ReferAFriendView.swift */; };
+		2945FFC42AE9A37000D9C8C6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2945FFC32AE9A37000D9C8C6 /* Lato-Regular.ttf */; };
+		2945FFC62AE9A45200D9C8C6 /* Lato-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2945FFC52AE9A45200D9C8C6 /* Lato-Heavy.ttf */; };
+		2945FFC82AE9C4AB00D9C8C6 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2945FFC72AE9C4AB00D9C8C6 /* ActivityViewController.swift */; };
+		2947E40F2AE349FE005A0019 /* MyReferralsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2947E40E2AE349FE005A0019 /* MyReferralsView.swift */; };
 		294E341E293C39E6001F7F48 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E341D293C39E6001F7F48 /* ImageViewModel.swift */; };
+		294E6FEB2AE9E46A00DC10C2 /* Segoe UI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 294E6FEA2AE9E46A00DC10C2 /* Segoe UI.ttf */; };
 		294EDB6D2A5F75C80047926A /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294EDB6C2A5F75C80047926A /* ImagePickerView.swift */; };
 		2955345B29E6215A00CFA391 /* AdminMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2955345A29E6215A00CFA391 /* AdminMenuView.swift */; };
 		2955345D29E621AC00CFA391 /* ConnectedAppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2955345C29E621AC00CFA391 /* ConnectedAppSettingsView.swift */; };
@@ -318,7 +324,13 @@
 		293F86AC2A174FD800733A42 /* TestConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TestConfig.xcconfig; sourceTree = "<group>"; };
 		2941A23E28BE803F005026CF /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2944F88928B9A7220098ED1B /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		2945FFBD2AE8926A00D9C8C6 /* ReferAFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferAFriendView.swift; sourceTree = "<group>"; };
+		2945FFC32AE9A37000D9C8C6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		2945FFC52AE9A45200D9C8C6 /* Lato-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Heavy.ttf"; sourceTree = "<group>"; };
+		2945FFC72AE9C4AB00D9C8C6 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		2947E40E2AE349FE005A0019 /* MyReferralsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReferralsView.swift; sourceTree = "<group>"; };
 		294E341D293C39E6001F7F48 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
+		294E6FEA2AE9E46A00DC10C2 /* Segoe UI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Segoe UI.ttf"; sourceTree = "<group>"; };
 		294EDB6C2A5F75C80047926A /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		2955345A29E6215A00CFA391 /* AdminMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMenuView.swift; sourceTree = "<group>"; };
 		2955345C29E621AC00CFA391 /* ConnectedAppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedAppSettingsView.swift; sourceTree = "<group>"; };
@@ -609,13 +621,12 @@
 				2944F87F28B98C2C0098ED1B /* Extensions */,
 				2984C93D2954F091009669EF /* Utilities */,
 				290FBB41294A8C460038D47A /* Misc */,
-				2944F88228B98D420098ED1B /* Models */,
-				216A9CBF28BDD8A1007881FE /* ViewModels */,
 				296D393828DCE9890078C88E /* UICompnents */,
+				2947E4102AE7229C005A0019 /* Core */,
 				3F714D4B29FA0F6F00CD39E7 /* Checkout */,
 				3F667E072A85261B00267958 /* ReceiptScanning */,
 				29AF68C42ABA4A460021DC09 /* GameZone */,
-				216F219328B6186400DAA66D /* Views */,
+				2947E40D2AE349DC005A0019 /* Referral */,
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
 				3F3805B12A7A6D2400223808 /* RouterPath.swift */,
 				3F3805B32A7A6D8500223808 /* Destination.swift */,
@@ -744,6 +755,25 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		2947E40D2AE349DC005A0019 /* Referral */ = {
+			isa = PBXGroup;
+			children = (
+				2947E40E2AE349FE005A0019 /* MyReferralsView.swift */,
+				2945FFBD2AE8926A00D9C8C6 /* ReferAFriendView.swift */,
+			);
+			path = Referral;
+			sourceTree = "<group>";
+		};
+		2947E4102AE7229C005A0019 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2944F88228B98D420098ED1B /* Models */,
+				216A9CBF28BDD8A1007881FE /* ViewModels */,
+				216F219328B6186400DAA66D /* Views */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		2963770B29C10CFB00D45AB6 /* SOQL+SOSL */ = {
 			isa = PBXGroup;
 			children = (
@@ -787,6 +817,7 @@
 				2955346A29E93EF800CFA391 /* InfoNavigationLink.swift */,
 				292453E72A1C4658002112B3 /* WebView.swift */,
 				4F18ED822AD5737B000F64D9 /* ScrollViewBounceModifier.swift */,
+				2945FFC72AE9C4AB00D9C8C6 /* ActivityViewController.swift */,
 			);
 			path = UICompnents;
 			sourceTree = "<group>";
@@ -820,6 +851,9 @@
 				3F667DF32A829A3E00267958 /* SF-Pro-Display-Bold.otf */,
 				3FA6B0532A6967AD00E5878E /* IBMPlexMono-SemiBold.ttf */,
 				29EC33252AAA999F00104363 /* SF-Pro-Text-Regular.otf */,
+				2945FFC32AE9A37000D9C8C6 /* Lato-Regular.ttf */,
+				2945FFC52AE9A45200D9C8C6 /* Lato-Heavy.ttf */,
+				294E6FEA2AE9E46A00DC10C2 /* Segoe UI.ttf */,
 				3F874FDE2A69475500F90C4D /* IBMPlexMono-Regular.ttf */,
 				298613AF28C9698D00BDC744 /* SF-Pro.ttf */,
 				298613B128CA8A9600BDC744 /* Archivo-Regular.ttf */,
@@ -880,9 +914,6 @@
 				29AF68C52ABA4A6D0021DC09 /* FortuneWheel */,
 				29BD48972ACCB40900F10158 /* ScrachCard */,
 				29AF68C62ABA4AA20021DC09 /* GameZoneView.swift */,
-				29AF68C82ABA4CEF0021DC09 /* GameZoneViewModel.swift */,
-				29AF68CA2ABA53130021DC09 /* FortuneWheelCardView.swift */,
-				29BD48952ACCB3C700F10158 /* ScrathCardCardView.swift */,
 				29AE25282AD60613001EFE98 /* OrderPlacedGameView.swift */,
 			);
 			path = GameZone;
@@ -1297,6 +1328,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2945FFC62AE9A45200D9C8C6 /* Lato-Heavy.ttf in Resources */,
 				293F86AB2A174EE000733A42 /* ConnectedApp.xcconfig in Resources */,
 				2913FB482A1CA6560065F0D5 /* MasterConfig.xcconfig in Resources */,
 				3F874FDF2A69475500F90C4D /* IBMPlexMono-Regular.ttf in Resources */,
@@ -1305,9 +1337,11 @@
 				3FA6B0562A6967AD00E5878E /* IBMPlexMono-SemiBold.ttf in Resources */,
 				29AC2F0328F8B2D7003F56F6 /* Roboto-Regular.ttf in Resources */,
 				3F667DF72A829B9A00267958 /* SF-Pro-Display-Bold.otf in Resources */,
+				294E6FEB2AE9E46A00DC10C2 /* Segoe UI.ttf in Resources */,
 				218A36A828B85B7900FCEE39 /* Assets.xcassets in Resources */,
 				298613B228CA8A9600BDC744 /* Archivo-Regular.ttf in Resources */,
 				298613B028C9698D00BDC744 /* SF-Pro.ttf in Resources */,
+				2945FFC42AE9A37000D9C8C6 /* Lato-Regular.ttf in Resources */,
 				3F667DF62A829B9700267958 /* SF-Pro-Display-Regular.otf in Resources */,
 				2913FB4C2A1CA6B30065F0D5 /* AppVersion.xcconfig in Resources */,
 			);
@@ -1435,6 +1469,7 @@
 				299B38D828E796BC00E45D97 /* FullSheet.swift in Sources */,
 				3F714D6629FA0FEB00CD39E7 /* PaymentDetailsView.swift in Sources */,
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
+				2945FFC82AE9C4AB00D9C8C6 /* ActivityViewController.swift in Sources */,
 				29BAF70228F78FA400A3F9EB /* AllTransactionsView.swift in Sources */,
 				296D393528DBCFFB0078C88E /* OnboardingCardView.swift in Sources */,
 				29694EDC2A8D8BE800E5F2ED /* Base64.swift in Sources */,
@@ -1487,6 +1522,7 @@
 				3F7EF5322A70D0E90005BA30 /* Double+round.swift in Sources */,
 				3F714D6529FA0FEB00CD39E7 /* AddressView.swift in Sources */,
 				29BAF6E128F3EEA000A3F9EB /* MyPromotionCardView.swift in Sources */,
+				2945FFBE2AE8926A00D9C8C6 /* ReferAFriendView.swift in Sources */,
 				3FE8BFC62A6D8ED300ECD45B /* ReceiptListViewModel.swift in Sources */,
 				3F9149652A7C0495009FADAB /* CameraViewModel.swift in Sources */,
 				3F667DFE2A84E1EF00267958 /* StringConstants.swift in Sources */,
@@ -1503,6 +1539,7 @@
 				29BAF6EF28F4E27400A3F9EB /* BadgesView.swift in Sources */,
 				298D5EF429CCF94D0062F16E /* Keychain.swift in Sources */,
 				293F643329DCDAF8001AC795 /* ForceClient+Image.swift in Sources */,
+				2947E40F2AE349FE005A0019 /* MyReferralsView.swift in Sources */,
 				218A36B028B85D9200FCEE39 /* RedeemView.swift in Sources */,
 				3F714D4529FA0F4A00CD39E7 /* ProductReviewView.swift in Sources */,
 				2955346329E7809400CFA391 /* KeychainManagerProtocol.swift in Sources */,
@@ -1760,7 +1797,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 7EQ9RGBBQ2;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MyNTORewards/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "myNTO Rewards";
@@ -1800,7 +1837,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 7EQ9RGBBQ2;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MyNTORewards/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "myNTO Rewards";

@@ -388,4 +388,41 @@ extension Font {
     static var betterLuckText: Font {
         return Font.custom("SFProDisplay-Bold", size: 24)
     }
+    
+    /// Referrals
+    static var referralText: Font {
+        return Font.custom("SFProDisplay-Regular", size: 12)
+    }
+    
+    static var referralBoldText: Font {
+        return Font.custom("SFProDisplay-Regular", size: 18)
+    }
+    
+    static var referralTimeTitle: Font {
+        return Font.custom("Roboto-Regular", size: 14)
+    }
+    
+    static var referralCardText: Font {
+        return Font.custom("SFProDisplay-Regular", size: 13)
+    }
+    
+    static var referralStatus: Font {
+        return Font.custom("SFProDisplay-Regular", size: 14)
+    }
+    
+    static var referModalText: Font {
+        return Font.custom("SFProDisplay-Regular", size: 16)
+    }
+    
+    static var referralCode: Font {
+        return Font.custom("Lato-Heavy", size: 16)
+    }
+    
+    static var referralTapText: Font {
+        return Font.custom("Lato-Regular", size: 10)
+    }
+    
+    static var referralInfoDesc: Font {
+        return Font.custom("Segoe UI", size: 12)
+    }
 }

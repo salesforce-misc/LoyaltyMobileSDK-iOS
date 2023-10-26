@@ -22,4 +22,5 @@ enum RouterDestination: Identifiable {
 	
 	case receipts
     case gameZone
+    case referrals
 }
