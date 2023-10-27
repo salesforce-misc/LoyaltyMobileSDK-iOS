@@ -8,7 +8,6 @@
 import UIKit
 
 class EmitterView: UIView {
-    // main emitter layer
     var emitter: CAEmitterLayer!
     var timeDuration: Double = 2.0
     private var active: Bool!
@@ -27,7 +26,6 @@ class EmitterView: UIView {
         // initialization
         active = false
         emitter = CAEmitterLayer()
-
     }
     
     func startConfetti() {
@@ -40,6 +38,7 @@ class EmitterView: UIView {
         self.layer.addSublayer(emitter)
         perform(#selector(stopConfetti), with: nil, afterDelay: timeDuration)
     }
+    
     private func generateEmitterCells() -> [CAEmitterCell] {
         var cells: [CAEmitterCell] = [CAEmitterCell]()
         for index in 0..<15 {
@@ -72,26 +71,29 @@ class EmitterView: UIView {
                       UIColor.yellow,
                       UIColor.systemPink,
                       UIColor.brown,
-                      UIColor.white,
                       UIColor.purple,
                       UIColor.green,
                       UIColor.cyan,
                       UIColor.darkGray,
                       UIColor.orange,
-                      UIColor.red,
-                      UIColor.yellow,
                       UIColor.systemBlue,
                       UIColor.systemMint,
                       UIColor.systemTeal,
                       UIColor.systemIndigo]
-        return colors.randomElement()!.cgColor
+        if let randomColor = colors.randomElement() {
+            return randomColor.cgColor
+        }
+        return UIColor.systemIndigo.cgColor
     }
     
-    private func getNextImage(i: Int) -> CGImage {
+    private func getNextImage(i: Int) -> CGImage? {
         let images = [UIImage(named: "confetti1"),
                       UIImage(named: "confetti2"),
                       UIImage(named: "confetti3")]
-        return (images.randomElement()!!.cgImage)!
+        if let randomImage = images.randomElement(), let cgImage = randomImage?.cgImage {
+            return cgImage
+        }
+        return UIImage(named: "confetti1")?.cgImage
     }
     
    @objc func stopConfetti() {
