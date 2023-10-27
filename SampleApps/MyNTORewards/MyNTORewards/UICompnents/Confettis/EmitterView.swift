@@ -96,7 +96,7 @@ class EmitterView: UIView {
         return UIImage(named: "confetti1")?.cgImage
     }
     
-   @objc func stopConfetti() {
+    @objc func stopConfetti() {
         emitter?.birthRate = 0
         active = false
     }
