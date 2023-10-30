@@ -30,7 +30,7 @@ class EmitterView: UIView {
     
     func startConfetti() {
         active = true
-        emitter.emitterPosition = CGPoint(x: self.center.x, y: 0)
+        emitter.emitterPosition = CGPoint(x: UIScreen.main.bounds.width/2, y: 0)
         emitter.emitterShape = CAEmitterLayerEmitterShape.line
         emitter.birthRate = 1
         emitter.emitterCells = generateEmitterCells()
@@ -55,7 +55,7 @@ class EmitterView: UIView {
             cell.color = getNextColor(i: index)
             cell.contents = getNextImage(i: index)
             cell.scaleRange = 0.25
-            cell.scale = 0.1
+            cell.scale = 0.14
             cells.append(cell)
         }
         return cells
