@@ -21,6 +21,7 @@ struct ReceiptCongratsView: View {
 					.scaledToFit()
 				Spacer()
 			}
+            ConfettiView()
 			VStack {
 				Spacer()
 				Image("img-gift")
