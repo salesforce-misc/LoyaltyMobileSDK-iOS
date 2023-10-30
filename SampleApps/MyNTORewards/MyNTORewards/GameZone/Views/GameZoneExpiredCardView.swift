@@ -29,6 +29,7 @@ struct GameZoneExpiredCardView: View {
                     Text(gameCardModel.name)
                         .font(.gameTitle)
                         .foregroundColor(Color.theme.lightText)
+                        .accessibilityIdentifier("game_zone_expired_card_title")
                     Spacer()
                 }
                 Spacer()
