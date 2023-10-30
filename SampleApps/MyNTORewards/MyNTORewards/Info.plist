@@ -17,20 +17,20 @@
 	</array>
 	<key>ConnectedApp</key>
 	<dict>
+		<key>BASE_URL</key>
+		<string>https://$(BASE_URL)</string>
+		<key>CALLBACK_URL</key>
+		<string>https://$(CALLBACK_URL)</string>
+		<key>COMMUNITY_URL</key>
+		<string>https://$(COMMUNITY_URL)</string>
 		<key>CONNECTED_APP_NAME</key>
 		<string>$(CONNECTED_APP_NAME)</string>
 		<key>CONSUMER_KEY</key>
 		<string>$(CONSUMER_KEY)</string>
 		<key>CONSUMER_SECRET</key>
 		<string>$(CONSUMER_SECRET)</string>
-		<key>CALLBACK_URL</key>
-		<string>https://$(CALLBACK_URL)</string>
-		<key>BASE_URL</key>
-		<string>https://$(BASE_URL)</string>
 		<key>INSTANCE_URL</key>
 		<string>https://$(INSTANCE_URL)</string>
-		<key>COMMUNITY_URL</key>
-		<string>https://$(COMMUNITY_URL)</string>
 		<key>SELF_REGISTER_URL</key>
 		<string>https://$(SELF_REGISTER_URL)</string>
 	</dict>
