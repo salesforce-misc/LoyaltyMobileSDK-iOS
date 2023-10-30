@@ -44,11 +44,22 @@ struct ReferAFriendView: View {
                 Text("Invite your friends and get a voucher when they shop for the first time.")
                     .font(.referModalText)
                 
-                TextField("Friend's Email Address", text: $email)
-                    .textFieldStyle(RegularTextFieldStyle())
-                    .keyboardType(.emailAddress)
-                    .accessibilityIdentifier(AppAccessibilty.Referrals.email)
-                    .frame(height: 58)
+                ZStack(alignment: .trailing) {
+                    TextField("Friend's Email Address", text: $email)
+                        .textFieldStyle(RegularTextFieldStyle())
+                        .keyboardType(.emailAddress)
+                        .accessibilityIdentifier(AppAccessibilty.Referrals.email)
+                        .frame(height: 58)
+                    
+                    Button(action: {
+                        // TODO: Send email
+                    }) {
+                        Image("ic-forward")
+                            .frame(width: 40, height: 40)
+                    }
+                    .padding(.trailing, 20)
+                }
+                
                 Text("Separate emails with commas.")
                     .font(.referralInfoDesc)
                     .foregroundColor(Color(hex: "#747474"))

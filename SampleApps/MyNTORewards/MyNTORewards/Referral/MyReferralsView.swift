@@ -85,6 +85,38 @@ struct MyReferralsView: View {
                             }
                             .foregroundColor(Color.white)
                             .frame(width: 328, height: 204)
+                            .overlay(alignment: .topTrailing) {
+                                Image("ic-star-1")
+                                    .padding(.top, 6)
+                                    .padding(.trailing, 8)
+                                
+                            }
+                            .overlay(alignment: .topTrailing) {
+                                Image("ic-star-2")
+                                    .padding(.top, 13)
+                                    .padding(.trailing, 34)
+                            }
+                            .overlay(alignment: .topTrailing) {
+                                Image("ic-star-3")
+                                    .padding(.top, 44)
+                                    .padding(.trailing, 10)
+                            }
+                            .overlay(alignment: .topLeading) {
+                                Image("ic-star-4")
+                                    .padding(.top, 48)
+                                    .padding(.leading, 8)
+                            }
+                            .overlay(alignment: .topLeading) {
+                                Image("ic-star-5")
+                                    .padding(.top, 52)
+                                    .padding(.leading, 41)
+                            }
+                            .overlay(alignment: .topLeading) {
+                                Image("ic-star-6")
+                                    .padding(.top, 130)
+                                    .padding(.leading, 13)
+                            }
+                            
                         }
                         .padding()
                         
