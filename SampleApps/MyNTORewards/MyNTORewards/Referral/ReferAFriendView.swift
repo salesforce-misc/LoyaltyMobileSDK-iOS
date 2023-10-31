@@ -62,7 +62,7 @@ struct ReferAFriendView: View {
                 
                 Text("Separate emails with commas.")
                     .font(.referralInfoDesc)
-                    .foregroundColor(Color(hex: "#747474"))
+                    .foregroundColor(Color.theme.textInactive)
                     .padding(.leading, 30)
                     .padding(.top, -10)
             }
@@ -117,21 +117,21 @@ struct ReferAFriendView: View {
                     Text(referralCode)
                         .accessibilityIdentifier(AppAccessibilty.Referrals.referralCode)
                         .font(.referralCode)
-                        .foregroundColor(Color(hex: "#6A6A6A"))
+                        .foregroundColor(Color.theme.referralCodeColor)
                         .padding(.leading, 8)
                     Spacer()
                     Text("TAP TO COPY")
                         .font(.referralTapText)
-                        .foregroundColor(Color(hex: "#8C4B02"))
+                        .foregroundColor(Color.theme.referralCodeCopy)
                         .padding(.trailing, 8)
                 }
                 .frame(width: 360, height: 40)
-                .background(Color(hex: "#F5EDE2"))
+                .background(Color.theme.referralCodeBackground)
                 .cornerRadius(10)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(style: StrokeStyle(lineWidth: 1, dash: [2.0]))
-                        .foregroundColor(Color(hex: "#DC9F4B"))
+                        .foregroundColor(Color.theme.referralCodeBorder)
                 )
                 .padding(.top, 6)
                 .onTapGesture {
@@ -145,7 +145,7 @@ struct ReferAFriendView: View {
                 HStack {
                     Text("Share the referral code above in any other way.")
                         .font(.referralInfoDesc)
-                        .foregroundColor(Color(hex: "#747474"))
+                        .foregroundColor(Color.theme.textInactive)
                         .padding(.leading, 30)
                         .padding(.top, -10)
                     Spacer()

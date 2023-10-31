@@ -35,7 +35,7 @@ struct MyReferralsView: View {
                             Rectangle()
                                 .frame(width: 328, height: 204)
                                 .cornerRadius(10, corners: .allCorners)
-                                .foregroundColor(Color(hex: "5A1BA9"))
+                                .foregroundColor(Color.theme.referralCardBackground)
                             
                             VStack(alignment: .leading) {
                                 HStack {
@@ -220,7 +220,7 @@ struct ReferralCard: View {
                 Spacer()
                 Text("**\(status.rawValue)**")
                     .font(.referralStatus)
-                    .foregroundColor(status == .purchaseCompleted ? Color(hex: "2E844A") : .black)
+                    .foregroundColor(status == .purchaseCompleted ? Color.theme.purchaseCompleted : .black)
             }
             .padding(.leading, 44)
             .padding(.trailing, 10)

@@ -87,6 +87,12 @@ struct ColorTheme {
     let scratchCardDotsBackground = Color("ScratchCardDotsColor") //#F8EFFF
     let scratchCardText = Color("ScratchCardTextColor") // #939393
     let noLuckViewLineColor = Color("NoLuckViewLineColor") // #FFCBC7
+    let referralCardBackground = Color("ReferralCardBackgroundColor") // #5A1BA9
+    let purchaseCompleted = Color("VoucherCodeBorderColor") // #2E844A
+    let referralCodeColor = Color("ReferralCodeColor") // #6A6A6A
+    let referralCodeCopy = Color("TextRedeemButtonColor") // #8C4B02
+    let referralCodeBackground = Color("ReferralCodeBackgroundColor") // #F5EDE2
+    let referralCodeBorder = Color("ReferralCodeBorderColor") // #DC9F4B
 }
 
 struct TierColor {
