@@ -9,6 +9,7 @@ import SwiftUI
 
 @MainActor
 class RouterPath: ObservableObject {
+    @Published var path: [RouterDestination] = []
 	@Published var pathFromHome: [RouterDestination] = []
 	@Published var pathFromMore: [RouterDestination] = []
 	@Published var presentedSheet: SheetDestination?
@@ -16,6 +17,10 @@ class RouterPath: ObservableObject {
 	func dismissSheets() {
 		presentedSheet = nil
 	}
+    
+    func navigate(to destination: RouterDestination) {
+        path.append(destination)
+    }
 	
 	func navigateFromHome(to destination: RouterDestination) {
 		pathFromHome.append(destination)
