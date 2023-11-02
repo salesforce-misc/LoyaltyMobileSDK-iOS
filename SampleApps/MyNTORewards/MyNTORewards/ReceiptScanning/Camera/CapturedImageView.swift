@@ -76,7 +76,7 @@ struct CapturedImageView: View {
                         processedReceiptViewModel.clearProcessedReceipt()
                         Task {
                             do {
-                                try await processedReceiptViewModel.processImage(membershipNumber: rootVM.member?.membershipNumber ?? "", imageData: imageData)
+                                try await processedReceiptViewModel.uploadImage(membershipNumber: rootVM.member?.membershipNumber ?? "", imageData: imageData)
                             } catch {
                                 Logger.error("Failed to process the image")
                             }
