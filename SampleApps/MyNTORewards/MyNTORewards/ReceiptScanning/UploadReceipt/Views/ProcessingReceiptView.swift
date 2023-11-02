@@ -30,10 +30,21 @@ struct ProcessingView: View {
 	@EnvironmentObject var processedReceiptViewModel: ProcessedReceiptViewModel
 	
 	var body: some View {
-        ReceiptScanningProgressView(numberOfSteps: 2, 
-                                    currentStep: processedReceiptViewModel.currentStep,
-                                    title: processedReceiptViewModel.processedStepTitle,
-                                    subtitle: "Hang in there! This may take a minute.")
+        VStack {
+            Spacer()
+            ReceiptScanningProgressView(numberOfSteps: 2,
+                                        currentStep: processedReceiptViewModel.currentStep,
+                                        title: processedReceiptViewModel.processedStepTitle,
+                                        subtitle: "Hang in there! This may take a minute.")
+            Spacer()
+            Button(StringConstants.Receipts.cancelButton) {
+                processedReceiptViewModel.cancelUplloadTasks()
+                routerPath.presentedSheet = nil
+            }
+            .foregroundColor(.black)
+            .padding()
+        }.background(Color.theme.background)
+
 	}
 }
 

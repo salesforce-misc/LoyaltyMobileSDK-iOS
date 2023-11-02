@@ -39,8 +39,6 @@ struct ReceiptScanningProgressView: View {
 					.accessibilityIdentifier(AppAccessibilty.Receipts.scanningReceiptSubtitle)
 			}
 		}
-		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.background(Color.theme.background)
 	}
 	
 	func getFillColor(for step: Int) -> Color {
