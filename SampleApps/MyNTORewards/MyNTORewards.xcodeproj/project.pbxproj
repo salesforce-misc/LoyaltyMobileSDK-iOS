@@ -215,6 +215,8 @@
 		3FE8BFC62A6D8ED300ECD45B /* ReceiptListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE8BFC52A6D8ED300ECD45B /* ReceiptListViewModel.swift */; };
 		3FFCCC242A8F50500014823E /* ReceiptsListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFCCC232A8F50500014823E /* ReceiptsListViewModelTests.swift */; };
 		3FFCCC262A973B3E0014823E /* ReceiptDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFCCC252A973B3E0014823E /* ReceiptDetailView.swift */; };
+		4FECF86C2AEB7FC90070E89A /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FECF86A2AEB7FC80070E89A /* ConfettiView.swift */; };
+		4FECF86D2AEB7FC90070E89A /* EmitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FECF86B2AEB7FC90070E89A /* EmitterView.swift */; };
 		AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */; };
 		AF1691BC2A1B0D0C005A0EB3 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */; };
 		AF1691C02A1B2225005A0EB3 /* MockConnectedAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */; };
@@ -472,6 +474,8 @@
 		3FE8BFC52A6D8ED300ECD45B /* ReceiptListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListViewModel.swift; sourceTree = "<group>"; };
 		3FFCCC232A8F50500014823E /* ReceiptsListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsListViewModelTests.swift; sourceTree = "<group>"; };
 		3FFCCC252A973B3E0014823E /* ReceiptDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDetailView.swift; sourceTree = "<group>"; };
+		4FECF86A2AEB7FC80070E89A /* ConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
+		4FECF86B2AEB7FC90070E89A /* EmitterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmitterView.swift; sourceTree = "<group>"; };
 		AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewHelper.swift; sourceTree = "<group>"; };
 		AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectedAppManager.swift; sourceTree = "<group>"; };
@@ -740,6 +744,7 @@
 		296D393828DCE9890078C88E /* UICompnents */ = {
 			isa = PBXGroup;
 			children = (
+				4FECF8692AEB7F860070E89A /* Confettis */,
 				298613AD28C9652300BDC744 /* FontStyles.swift */,
 				296D393D28DE1EFF0078C88E /* ButtonStyles.swift */,
 				296D393F28DE59240078C88E /* TextFieldStyles.swift */,
@@ -1054,6 +1059,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		4FECF8692AEB7F860070E89A /* Confettis */ = {
+			isa = PBXGroup;
+			children = (
+				4FECF86A2AEB7FC80070E89A /* ConfettiView.swift */,
+				4FECF86B2AEB7FC90070E89A /* EmitterView.swift */,
+			);
+			path = Confettis;
+			sourceTree = "<group>";
+		};
 		AF141A282A02284200D953E2 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -1342,6 +1356,7 @@
 				290EA9BD2928ADB700BBF2F2 /* ViewAllView.swift in Sources */,
 				3F3805B62A7A6EF700223808 /* View+Destination.swift in Sources */,
 				298D5EEE29CCF5340062F16E /* ForceAuth.swift in Sources */,
+				4FECF86D2AEB7FC90070E89A /* EmitterView.swift in Sources */,
 				293F642F29D64E48001AC795 /* CommunityMemberModel.swift in Sources */,
 				3FFCCC262A973B3E0014823E /* ReceiptDetailView.swift in Sources */,
 				29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */,
@@ -1393,6 +1408,7 @@
 				29BAF6DD28F3AE8B00A3F9EB /* String+StringWidth.swift in Sources */,
 				2963771529C10D6200D45AB6 /* Address.swift in Sources */,
 				3F7EF5322A70D0E90005BA30 /* Double+round.swift in Sources */,
+				4FECF86C2AEB7FC90070E89A /* ConfettiView.swift in Sources */,
 				3F714D6529FA0FEB00CD39E7 /* AddressView.swift in Sources */,
 				29BAF6E128F3EEA000A3F9EB /* MyPromotionCardView.swift in Sources */,
 				3FE8BFC62A6D8ED300ECD45B /* ReceiptListViewModel.swift in Sources */,
@@ -1665,11 +1681,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 7EQ9RGBBQ2;
+				DEVELOPMENT_TEAM = 62J96EUJ9N;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MyNTORewards/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "myNTO Rewards";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to take photos";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to your photo library to save photos";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to select photos";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1681,7 +1701,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewards;
+				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobileapp.MyNTORewards;
 				PRODUCT_NAME = MyNTORewards;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1705,11 +1725,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 7EQ9RGBBQ2;
+				DEVELOPMENT_TEAM = 62J96EUJ9N;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MyNTORewards/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "myNTO Rewards";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to take photos";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need access to your photo library to save photos";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to select photos";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1721,7 +1745,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobile.MyNTORewards;
+				PRODUCT_BUNDLE_IDENTIFIER = com.salesforce.loyalty.mobileapp.MyNTORewards;
 				PRODUCT_NAME = MyNTORewards;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
