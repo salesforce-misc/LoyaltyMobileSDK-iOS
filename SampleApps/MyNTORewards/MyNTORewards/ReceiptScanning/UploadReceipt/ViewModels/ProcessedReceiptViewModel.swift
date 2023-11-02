@@ -58,6 +58,9 @@ final class ProcessedReceiptViewModel: ObservableObject {
     func clearProcessedReceipt() {
         processedReceipt = nil
         processedError = nil
+        currentStep = 1
+        receiptScanSatus = .bothEligibleAndInEligibleItems
+        processedStepTitle = "Uploading receipt image…"
     }
     
     func uploadImage(membershipNumber: String, imageData: Data) async throws {
@@ -111,10 +114,21 @@ final class ProcessedReceiptViewModel: ObservableObject {
             switch processedReceipt?.confidenceStatus {
             case .failure:
                 print("not Readble")
+                receiptScanSatus = .receiptNotReadable
             case .partial:
                 print("partial Readble")
+                receiptScanSatus = .receiptPartiallyReadable
             case .success:
-                print(" Readble")
+                print("Readble")
+                if inEligibleItems.isEmpty {
+                    receiptScanSatus = .allEligibleItems
+                }
+                if eligibleItems.isEmpty {
+                    receiptScanSatus = .allEligibleItems
+                }
+                if !eligibleItems.isEmpty && !inEligibleItems.isEmpty {
+                    receiptScanSatus = .bothEligibleAndInEligibleItems
+                }
             case .none:
                 print("none")
             }
@@ -153,7 +167,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
 			"status": status.rawValue,
 			"comments": comments
 		]
-		let path = "/services/apexrest/ReceiptStatusUpdate/"
+		let path = "/services/apexrest/receipt-status-updation/"
 		let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
 		let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(), path: path, method: "PUT", body: bodyJsonData)
 		let response = try await forceClient.fetch(type: ReceiptStatusUpdateResponse.self, with: request)

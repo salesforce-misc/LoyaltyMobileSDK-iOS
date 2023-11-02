@@ -19,28 +19,38 @@ struct ProcessedReceiptView: View {
     
     var body: some View {
         if let processedReceipt = viewModel.processedReceipt, !isError {
-            ZStack {
+            if viewModel.receiptScanSatus == .receiptNotReadable {
                 VStack {
-                    header(receipt: processedReceipt)
-                    if viewModel.receiptScanSatus == .receiptNotReadable || viewModel.receiptScanSatus == .receiptPartiallyReadable {
-                        ReceiptScanErrorView(scanStatus: viewModel.receiptScanSatus)
+                    ReceiptScanErrorView(scanStatus: viewModel.receiptScanSatus)
                             .padding()
-                        
-                    } else {
-                        ProcessedReceiptList(eligibleItems: viewModel.eligibleItems,
-                                             ineligibleItems: viewModel.inEligibleItems)
-                        .padding()
-                    }
                     Spacer()
                     bottomButtonsView(receipt: processedReceipt)
-                }
-                .padding(.vertical, 20)
-                .background(Color.theme.background)
-                if isLoading {
-                    ProgressView()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .background(Color.theme.progressBarBackground)
-                        .opacity(0.7)
+                }.background(Color.white)
+                
+            } else {
+                ZStack {
+                    VStack {
+                        header(receipt: processedReceipt)
+                        if  viewModel.receiptScanSatus == .receiptPartiallyReadable {
+                            ReceiptScanErrorView(scanStatus: viewModel.receiptScanSatus)
+                                .padding()
+                            
+                        } else {
+                            ProcessedReceiptList(eligibleItems: viewModel.eligibleItems,
+                                                 ineligibleItems: viewModel.inEligibleItems)
+                            .padding()
+                        }
+                        Spacer()
+                        bottomButtonsView(receipt: processedReceipt)
+                    }
+                    .padding(.vertical, 20)
+                    .background(Color.theme.background)
+                    if isLoading {
+                        ProgressView()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color.theme.progressBarBackground)
+                            .opacity(0.7)
+                    }
                 }
             }
         } else { errorView }
@@ -140,7 +150,7 @@ struct ProcessedReceiptView: View {
     
     private func cancelButton() -> some View {
         Button(StringConstants.Receipts.backButton) {
-            
+            routerPath.presentedSheet = nil
         }
         .foregroundColor(.black)
     }

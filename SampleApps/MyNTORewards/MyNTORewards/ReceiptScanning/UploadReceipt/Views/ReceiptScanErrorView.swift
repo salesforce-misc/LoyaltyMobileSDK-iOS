@@ -45,7 +45,11 @@ struct ReceiptScanErrorView: View {
         if let bodyMessage = message {
             return bodyMessage
         }
-        return  "Oops! Some items in the receipt could not be read and processed."
+        var titleText = "Oops! Some items in the receipt could not be read and processed."
+        if scanStatus == .receiptNotReadable {
+            titleText = "Oops! The required information in the receipt could not be read and processed."
+        }
+        return  titleText
     }
 }
 
