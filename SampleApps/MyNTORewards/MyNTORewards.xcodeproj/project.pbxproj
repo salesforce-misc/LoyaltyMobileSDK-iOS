@@ -96,10 +96,8 @@
 		298D5EF629CCFCE60062F16E /* ForceRequest+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EF529CCFCE60062F16E /* ForceRequest+Auth.swift */; };
 		298D5EF829CCFFD00062F16E /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EF729CCFFD00062F16E /* UserDefaults.swift */; };
 		298D5EFA29D4E5F00062F16E /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D5EF929D4E5F00062F16E /* String+Date.swift */; };
-		299B38CA28E365AD00E45D97 /* HalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38C928E365AD00E45D97 /* HalfSheet.swift */; };
 		299B38D028E3DECE00E45D97 /* AppRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38CF28E3DECE00E45D97 /* AppRootViewModel.swift */; };
 		299B38D428E5F78400E45D97 /* CongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D328E5F78400E45D97 /* CongratsView.swift */; };
-		299B38D828E796BC00E45D97 /* FullSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D728E796BC00E45D97 /* FullSheet.swift */; };
 		299B38DA28EB597700E45D97 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38D928EB597700E45D97 /* ResetPasswordView.swift */; };
 		299B38DC28EB7F7000E45D97 /* CheckYourEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38DB28EB7F7000E45D97 /* CheckYourEmailView.swift */; };
 		299B38DE28EB8D4900E45D97 /* CreateNewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38DD28EB8D4900E45D97 /* CreateNewPasswordView.swift */; };
@@ -352,10 +350,8 @@
 		298D5EF529CCFCE60062F16E /* ForceRequest+Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForceRequest+Auth.swift"; sourceTree = "<group>"; };
 		298D5EF729CCFFD00062F16E /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		298D5EF929D4E5F00062F16E /* String+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Date.swift"; sourceTree = "<group>"; };
-		299B38C928E365AD00E45D97 /* HalfSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSheet.swift; sourceTree = "<group>"; };
 		299B38CF28E3DECE00E45D97 /* AppRootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootViewModel.swift; sourceTree = "<group>"; };
 		299B38D328E5F78400E45D97 /* CongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratsView.swift; sourceTree = "<group>"; };
-		299B38D728E796BC00E45D97 /* FullSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullSheet.swift; sourceTree = "<group>"; };
 		299B38D928EB597700E45D97 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		299B38DB28EB7F7000E45D97 /* CheckYourEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckYourEmailView.swift; sourceTree = "<group>"; };
 		299B38DD28EB8D4900E45D97 /* CreateNewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPasswordView.swift; sourceTree = "<group>"; };
@@ -748,8 +744,6 @@
 				296D393F28DE59240078C88E /* TextFieldStyles.swift */,
 				AF27C5AB2981118D008C7D79 /* LoyaltyTextField.swift */,
 				296D394128DE76A40078C88E /* RevealableSecureField.swift */,
-				299B38C928E365AD00E45D97 /* HalfSheet.swift */,
-				299B38D728E796BC00E45D97 /* FullSheet.swift */,
 				29BAF6CE28F0FC3A00A3F9EB /* CornerRadiusStyle.swift */,
 				29BAF6D028F1032800A3F9EB /* Carousel.swift */,
 				29BAF6DE28F3ECA600A3F9EB /* TopTabBar.swift */,
@@ -1358,7 +1352,6 @@
 				29BAF70028F756E500A3F9EB /* QRCodeView.swift in Sources */,
 				3F714D6929FA0FEB00CD39E7 /* OrderDetailsView.swift in Sources */,
 				3F5002B12A5FA07100E12AE4 /* ReceiptList.swift in Sources */,
-				299B38D828E796BC00E45D97 /* FullSheet.swift in Sources */,
 				3F714D6629FA0FEB00CD39E7 /* PaymentDetailsView.swift in Sources */,
 				216F219728B618AD00DAA66D /* SignUpView.swift in Sources */,
 				29BAF70228F78FA400A3F9EB /* AllTransactionsView.swift in Sources */,
@@ -1388,7 +1381,6 @@
 				3F6270992ABB21B200C0E148 /* ProcessedReceiptListTitle.swift in Sources */,
 				2963771629C10D6200D45AB6 /* Record.swift in Sources */,
 				3F874FD42A652A0A00F90C4D /* ProcessedReceipt.swift in Sources */,
-				299B38CA28E365AD00E45D97 /* HalfSheet.swift in Sources */,
 				298D5EF829CCFFD00062F16E /* UserDefaults.swift in Sources */,
 				29BD48942AC696D400F10158 /* LocaleManager.swift in Sources */,
 				3F714D4729FA0F4A00CD39E7 /* ProductDetailsView.swift in Sources */,
