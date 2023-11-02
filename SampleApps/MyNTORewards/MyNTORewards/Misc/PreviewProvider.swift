@@ -195,7 +195,7 @@ class DeveloperPreview {
 																			productName: "Nike Shoes",
 																			price: "$20",
 																			lineItemPrice: "$30",
-																			isEligible: true)])
+                                                                            isEligible: true)], confidenceStatus: .success)
 	let eligibleItems = [ProcessedReceiptItem(quantity: "4",
 											  productName: "Nike Shoes",
 											  price: "$20",

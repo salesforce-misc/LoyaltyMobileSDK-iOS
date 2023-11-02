@@ -27,6 +27,8 @@ final class ProcessedReceiptViewModel: ObservableObject {
 	@Published var receiptState: ReceiptState = .processing
 	@Published var eligibleItems = [ProcessedReceiptItem]()
 	@Published var inEligibleItems = [ProcessedReceiptItem]()
+    @Published var processedStepTitle: String = "Uploading receipt image…"
+    @Published var currentStep: Int = 1
 	
     private let authManager: ForceAuthenticator
     private var forceClient: ForceClient
@@ -48,25 +50,65 @@ final class ProcessedReceiptViewModel: ObservableObject {
         processedReceipt = nil
         processedError = nil
     }
-	
-    func processImage(membershipNumber: String, imageData: Data) async throws {
-		let queryItems = [
+    
+    func uploadImage(membershipNumber: String, imageData: Data) async throws {
+        let queryItems = [
             "membershipnumber": membershipNumber
         ]
 
         let headers = ["Content-Type": "image/jpeg"]
 
         do {
-            let path = "/services/apexrest/AnalizeExpence/"
+            let path = "/services/apexrest/upload-receipt/"
             let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(),
                                                   path: path,
                                                   method: "PUT",
                                                   queryItems: queryItems,
                                                   headers: headers,
                                                   body: imageData)
+           let  processedReceipt = try await forceClient.fetch(type: ReceiptStatusUpdateResponse.self, with: request)
+            if processedReceipt.status == "Success", !processedReceipt.message.isEmpty {
+                // call Api
+                processedStepTitle = "Processing receipt information..."
+                currentStep = 2
+                try await processImage(membershipNumber: membershipNumber, imageInfo: processedReceipt.message)
+            }
+           
+        } catch CommonError.responseUnsuccessful(_, let displayMessage), CommonError.unknownException(let displayMessage) {
+            receiptState = .processed
+            processedError = displayMessage
+        } catch {
+            receiptState = .processed
+            processedError = error.localizedDescription
+        }
+    }
+	
+    func processImage(membershipNumber: String, imageInfo: String) async throws {
+        let queryItems = [
+            "membershipnumber": membershipNumber,
+            "filename": imageInfo
+        ]
+
+        do {
+            let path = "/services/apexrest/expense-analysis/"
+            let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(),
+                                                  path: path,
+                                                  method: "POST",
+                                                  queryItems: queryItems
+                                                  )
             processedReceipt = try await forceClient.fetch(type: ProcessedReceipt.self, with: request)
             (eligibleItems, inEligibleItems) = split(lineItems: processedReceipt?.lineItem)
             receiptState = .processed
+            switch processedReceipt?.confidenceStatus {
+            case .failure:
+                print("not Readble")
+            case .partial:
+                print("partial Readble")
+            case .success:
+                print(" Readble")
+            case .none:
+                print("none")
+            }
             if let processedReceipt = processedReceipt {
                 Logger.debug("\(processedReceipt)")
             }
