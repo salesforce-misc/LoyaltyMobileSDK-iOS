@@ -122,10 +122,10 @@ final class ProcessedReceiptViewModel: ObservableObject {
             switch processedReceipt?.confidenceStatus {
             case .failure:
                 receiptScanSatus = .receiptNotReadable
-                Logger.debug("Processed receipt is not readble")
+                Logger.debug("Processed receipt is not readable")
             case .partial:
                 receiptScanSatus = .receiptPartiallyReadable
-                Logger.debug("Processed receipt is partially readble")
+                Logger.debug("Processed receipt is partially readable")
             case .success:
                 Logger.debug("Processed receipt with success")
                 if inEligibleItems.isEmpty {
