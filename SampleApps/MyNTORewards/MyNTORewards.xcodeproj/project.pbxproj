@@ -155,6 +155,7 @@
 		3F5002B12A5FA07100E12AE4 /* ReceiptList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */; };
 		3F5002B72A5FC82800E12AE4 /* ReceiptSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */; };
 		3F5002B92A5FE65200E12AE4 /* ReceiptsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B82A5FE65100E12AE4 /* ReceiptsView.swift */; };
+		3F620E8D2AE905BC009D6444 /* ReceiptScanningProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F620E8C2AE905BC009D6444 /* ReceiptScanningProgressView.swift */; };
 		3F6270962ABB104200C0E148 /* ProcessedReceiptList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6270952ABB104200C0E148 /* ProcessedReceiptList.swift */; };
 		3F6270992ABB21B200C0E148 /* ProcessedReceiptListTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6270972ABB21B200C0E148 /* ProcessedReceiptListTitle.swift */; };
 		3F62709A2ABB21B200C0E148 /* ProcessedReceiptListContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6270982ABB21B200C0E148 /* ProcessedReceiptListContent.swift */; };
@@ -212,6 +213,7 @@
 		3FE8BFC62A6D8ED300ECD45B /* ReceiptListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE8BFC52A6D8ED300ECD45B /* ReceiptListViewModel.swift */; };
 		3FFCCC242A8F50500014823E /* ReceiptsListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFCCC232A8F50500014823E /* ReceiptsListViewModelTests.swift */; };
 		3FFCCC262A973B3E0014823E /* ReceiptDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFCCC252A973B3E0014823E /* ReceiptDetailView.swift */; };
+		4F7BD9942AE66534003B7ADA /* ReceiptScanErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9932AE66534003B7ADA /* ReceiptScanErrorView.swift */; };
 		4FECF86C2AEB7FC90070E89A /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FECF86A2AEB7FC80070E89A /* ConfettiView.swift */; };
 		4FECF86D2AEB7FC90070E89A /* EmitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FECF86B2AEB7FC90070E89A /* EmitterView.swift */; };
 		AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */; };
@@ -410,6 +412,7 @@
 		3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptList.swift; sourceTree = "<group>"; };
 		3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptSearchBar.swift; sourceTree = "<group>"; };
 		3F5002B82A5FE65100E12AE4 /* ReceiptsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptsView.swift; sourceTree = "<group>"; };
+		3F620E8C2AE905BC009D6444 /* ReceiptScanningProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptScanningProgressView.swift; sourceTree = "<group>"; };
 		3F6270952ABB104200C0E148 /* ProcessedReceiptList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessedReceiptList.swift; sourceTree = "<group>"; };
 		3F6270972ABB21B200C0E148 /* ProcessedReceiptListTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessedReceiptListTitle.swift; sourceTree = "<group>"; };
 		3F6270982ABB21B200C0E148 /* ProcessedReceiptListContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessedReceiptListContent.swift; sourceTree = "<group>"; };
@@ -468,6 +471,7 @@
 		3FE8BFC52A6D8ED300ECD45B /* ReceiptListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListViewModel.swift; sourceTree = "<group>"; };
 		3FFCCC232A8F50500014823E /* ReceiptsListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsListViewModelTests.swift; sourceTree = "<group>"; };
 		3FFCCC252A973B3E0014823E /* ReceiptDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDetailView.swift; sourceTree = "<group>"; };
+		4F7BD9932AE66534003B7ADA /* ReceiptScanErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptScanErrorView.swift; sourceTree = "<group>"; };
 		4FECF86A2AEB7FC80070E89A /* ConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		4FECF86B2AEB7FC90070E89A /* EmitterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmitterView.swift; sourceTree = "<group>"; };
 		AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewHelper.swift; sourceTree = "<group>"; };
@@ -926,7 +930,9 @@
 				3F874FDB2A655E3300F90C4D /* ReceiptTableContentRow.swift */,
 				3F7EF52F2A70CED70005BA30 /* ReceiptCongratsView.swift */,
 				3F9149682A7C1AE5009FADAB /* ProcessingReceiptView.swift */,
+				3F620E8C2AE905BC009D6444 /* ReceiptScanningProgressView.swift */,
 				29EC33232AAA962A00104363 /* ProcessingErrorView.swift */,
+				4F7BD9932AE66534003B7ADA /* ReceiptScanErrorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1325,6 +1331,7 @@
 				216F219B28B618C700DAA66D /* HomeView.swift in Sources */,
 				3F16D95D2A9D8E85003DA01A /* ZoomableScrollView.swift in Sources */,
 				3F714D5329FA0FC200CD39E7 /* AvailableColorsView.swift in Sources */,
+				3F620E8D2AE905BC009D6444 /* ReceiptScanningProgressView.swift in Sources */,
 				298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */,
 				2984C9442954F091009669EF /* LoyaltyUtilities.swift in Sources */,
 				3F7EF5302A70CED70005BA30 /* ReceiptCongratsView.swift in Sources */,
@@ -1366,6 +1373,7 @@
 				298613A628C7D3B400BDC744 /* MoreView.swift in Sources */,
 				3F714D6729FA0FEB00CD39E7 /* OrderPlacedView.swift in Sources */,
 				3F714D6D29FA104F00CD39E7 /* OrderDetailsViewModel.swift in Sources */,
+				4F7BD9942AE66534003B7ADA /* ReceiptScanErrorView.swift in Sources */,
 				2963770F29C10D2400D45AB6 /* ForceClient+SOQL.swift in Sources */,
 				216F217F28B6141E00DAA66D /* MyNTORewardsApp.swift in Sources */,
 				29AC2F0528F8B6E6003F56F6 /* AllRedeemPointsView.swift in Sources */,

@@ -6,6 +6,11 @@
 //
 
 import Foundation
+enum ProcessedReceiptConfidenceStatus: String, Codable {
+    case partial = "Partial"
+    case success = "Success"
+    case failure = "Failure"
+}
 
 // MARK: - ProcessedReceipt
 struct ProcessedReceipt: Codable, Identifiable, Hashable {
@@ -17,23 +22,26 @@ struct ProcessedReceipt: Codable, Identifiable, Hashable {
     let receiptNumber: String
     let receiptDate: Date?
     let lineItem: [ProcessedReceiptItem]
+    let confidenceStatus: ProcessedReceiptConfidenceStatus
     
-	init(
-		receiptSfdcId: String?,
-		totalAmount: String?,
-		storeName: String,
-		storeAddress: String,
-		receiptNumber: String,
-		receiptDate: Date?,
-		lineItem: [ProcessedReceiptItem]) {
-		self.receiptSFDCId = receiptSfdcId
-		self.totalAmount = totalAmount
-		self.storeName = storeName
-		self.storeAddress = storeAddress
-		self.receiptNumber = receiptNumber
-		self.receiptDate = receiptDate
-		self.lineItem = lineItem
-	}
+    init(
+        receiptSfdcId: String?,
+        totalAmount: String?,
+        storeName: String,
+        storeAddress: String,
+        receiptNumber: String,
+        receiptDate: Date?,
+        lineItem: [ProcessedReceiptItem],
+        confidenceStatus: ProcessedReceiptConfidenceStatus) {
+            self.receiptSFDCId = receiptSfdcId
+            self.totalAmount = totalAmount
+            self.storeName = storeName
+            self.storeAddress = storeAddress
+            self.receiptNumber = receiptNumber
+            self.receiptDate = receiptDate
+            self.lineItem = lineItem
+            self.confidenceStatus = confidenceStatus
+        }
 }
 
 // MARK: - ProcessedReceiptItem

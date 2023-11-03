@@ -30,11 +30,7 @@ struct ReceiptDetailView: View {
                             .font(.transactionDate)
                             .accessibilityIdentifier(AppAccessibilty.Receipts.receiptDateText)
                         Spacer()
-                        if receipt.status == "Manual Review" {
-                            Text("In Manual Review")
-                                .foregroundColor(Color.theme.receiptStatusPending)
-                                .font(.transactionDate)
-						} else if receipt.status == "In Progress" || receipt.status == "Draft" {
+                        if receipt.status == "In Progress" || receipt.status == "Draft" {
 							Text(receipt.status)
 								.foregroundColor(Color.theme.receiptStatusPending)
 								.font(.transactionDate)
@@ -45,9 +41,15 @@ struct ReceiptDetailView: View {
                                 .accessibilityIdentifier(AppAccessibilty.Receipts.receiptPointsText)
                                 .foregroundColor(Color("PointsColor"))
                         }
-
                     }
-                    
+                    if receipt.status == "Manual Review" {
+                        HStack {
+                            Spacer()
+                            Text("In Manual Review")
+                                .foregroundColor(Color.theme.receiptStatusPending)
+                                .font(.transactionDate)
+                        }
+                    }
                 }
             .padding(.horizontal, 30)
             .padding(.top, 10)
