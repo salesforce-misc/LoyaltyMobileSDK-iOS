@@ -1146,6 +1146,8 @@
 				4F7BD9842ADE417E003B7ADA /* GameZoneViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		4FECF8692AEB7F860070E89A /* Confettis */ = {
 			isa = PBXGroup;
 			children = (
