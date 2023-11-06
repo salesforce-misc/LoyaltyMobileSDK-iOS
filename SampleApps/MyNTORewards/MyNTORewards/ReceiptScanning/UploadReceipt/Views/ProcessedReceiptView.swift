@@ -14,8 +14,11 @@ struct ProcessedReceiptView: View {
     @EnvironmentObject var receiptlistViewModel: ReceiptListViewModel
     @EnvironmentObject var rootViewModel: AppRootViewModel
     @EnvironmentObject var routerPath: RouterPath
+	@Environment(\.dismiss) var dismiss
     @State private var isLoading = false
     @State private var isError = false
+	@State private var showManualReview = false
+	@State private var showManualReviewSubmittedAlert = false
     
     var body: some View {
         if let processedReceipt = viewModel.processedReceipt, !isError {
@@ -30,6 +33,24 @@ struct ProcessedReceiptView: View {
             } else {
                 ZStack {
                     VStack {
+						HStack {
+							Button {
+								dismiss()
+								Task {
+									try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "",
+																			   forced: true)
+								}
+								DispatchQueue.main.async {
+									cameraModel.showCamera = true
+								}
+							} label: {
+								Image("ic-backarrow")
+							}
+							Spacer()
+						}
+						.padding([.bottom, .leading], 16)
+						.padding(.top, 48)
+						.background(.white)
                         header(receipt: processedReceipt)
                         if  viewModel.receiptScanSatus == .receiptPartiallyReadable {
                             ReceiptScanErrorView(scanStatus: viewModel.receiptScanSatus)
@@ -52,6 +73,26 @@ struct ProcessedReceiptView: View {
                             .opacity(0.7)
                     }
                 }
+				.edgesIgnoringSafeArea(.top)
+				.sheet(isPresented: $showManualReview, content: {
+					ManualReviewInputView(showManualReviewRequest: $showManualReview,
+										  showManualReviewSubmittedAlert: $showManualReviewSubmittedAlert,
+										  receiptId: processedReceipt.receiptSFDCId,
+										  receiptNumber: processedReceipt.receiptNumber,
+										  purchaseDate: processedReceipt.receiptDate,
+										  totalAmount: processedReceipt.totalAmount,
+										  totalPoints: nil)
+					.interactiveDismissDisabled()
+					.presentationDetents(Set([ .height(524)]))
+				})
+				.alert("Receipt was submitted for manual review.", isPresented: $showManualReviewSubmittedAlert, actions: {
+					Text("OK")
+				})
+				.onChange(of: showManualReview) { newValue in
+					if !newValue {
+						routerPath.dismissSheets()
+					}
+				}
             }
         } else { errorView }
     }
@@ -71,6 +112,7 @@ struct ProcessedReceiptView: View {
             .font(.offerText)
         }
         .padding(.horizontal)
+		.padding(.top, 8)
     }
     
     private func submitButton(receipt: ProcessedReceipt) -> some View {
@@ -143,7 +185,7 @@ struct ProcessedReceiptView: View {
     
     private func requestManualReviewButton(receipt: ProcessedReceipt) -> some View {
         Button(StringConstants.Receipts.requestForManualReviewButton) {
-            
+			showManualReview = true
         }
         .foregroundColor(.black)
     }
