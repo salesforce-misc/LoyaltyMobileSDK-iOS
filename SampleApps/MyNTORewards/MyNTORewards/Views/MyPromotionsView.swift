@@ -16,62 +16,70 @@ struct MyPromotionsView: View {
     let barItems = ["All", "Opted In", "Available to Opt In"]
     
     var body: some View {
-        VStack(spacing: 0) {
+        NavigationStack {
             VStack(spacing: 0) {
-                HStack {
-                    Text("My Promotions")
-                        .font(.congratsTitle)
-                        .padding(.leading, 15)
-                        .accessibilityIdentifier(AppAccessibilty.Promotion.header)
-                    Spacer()
-                    Image("ic-search")
-                        .padding(.trailing, 15)
-                        .accessibilityIdentifier(AppAccessibilty.Promotion.searchImage)
+                VStack(spacing: 0) {
+                    HStack {
+                        Text("My Promotions")
+                            .font(.congratsTitle)
+                            .padding(.leading, 15)
+                            .accessibilityIdentifier(AppAccessibilty.Promotion.header)
+                        Spacer()
+                        Image("ic-search")
+                            .padding(.trailing, 15)
+                            .accessibilityIdentifier(AppAccessibilty.Promotion.searchImage)
+                    }
+                    .frame(height: 44)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.white)
+                    TopTabBar(barItems: barItems, tabIndex: $offerTabSelected)
                 }
-                .frame(height: 44)
-                .frame(maxWidth: .infinity)
-                .background(Color.white)
-                TopTabBar(barItems: barItems, tabIndex: $offerTabSelected)
-            }
-            ZStack {
-                Color.theme.background
-                
-                TabView(selection: $offerTabSelected) {
+                ZStack {
+                    Color.theme.background
                     
-                    allView
-                        .tag(0)
-                    activeView
-                        .tag(1)
-                    unenrolledView
-                        .tag(2)
+                    TabView(selection: $offerTabSelected) {
+                        
+                        allView
+                            .tag(0)
+                        activeView
+                            .tag(1)
+                        unenrolledView
+                            .tag(2)
+                        
+                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     
                 }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                
-            }
-            .task {
-                do {
-                    try await promotionVM.loadUnenrolledPromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
-                } catch {
-                    Logger.error("Load Unenrolled Promotions Error: \(error)")
+                .task {
+                    do {
+                        try await promotionVM.loadUnenrolledPromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
+                    } catch {
+                        Logger.error("Load Unenrolled Promotions Error: \(error)")
+                    }
+                }
+                .task {
+                    do {
+                        try await promotionVM.loadActivePromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
+                    } catch {
+                        Logger.error("Reload Active Promotions Error: \(error)")
+                    }
+                }
+                .task {
+                    do {
+                        try await promotionVM.loadAllPromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
+                    } catch {
+                        Logger.error("Load All Promotions Error: \(error)")
+                    }
                 }
             }
-            .task {
-                do {
-                    try await promotionVM.loadActivePromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
-                } catch {
-                    Logger.error("Reload Active Promotions Error: \(error)")
-                }
-            }
-            .task {
-                do {
-                    try await promotionVM.loadAllPromotions(membershipNumber: rootVM.member?.membershipNumber ?? "")
-                } catch {
-                    Logger.error("Load All Promotions Error: \(error)")
+            .background {
+                LoyaltyConditionalNavLink(isActive: $promotionVM.isCheckoutNavigationActive) {
+                    ProductView()
+                } label: {
+                    EmptyView()
                 }
             }
         }
-        
     }
     
     var unenrolledView: some View {
