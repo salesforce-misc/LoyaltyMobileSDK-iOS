@@ -132,7 +132,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
                     receiptScanSatus = .allEligibleItems
                 }
                 if eligibleItems.isEmpty {
-                    receiptScanSatus = .allEligibleItems
+                    receiptScanSatus = .noEligibleItems
                 }
                 if !eligibleItems.isEmpty && !inEligibleItems.isEmpty {
                     receiptScanSatus = .bothEligibleAndInEligibleItems
