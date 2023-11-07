@@ -7,49 +7,45 @@
 
 import Foundation
 
-// To do Need to work on initialization of model
-// MARK: - GamesResponseModel
-public struct GamesResponseModel: Codable {
-    public let errorMessage: String?
+// MARK: - GameModel
+public struct GameModel: Codable {
+    public let message: String?
     public let status: Bool
     public let gameDefinitions: [GameDefinition]
 }
 
 // MARK: - GameDefinition
 public struct GameDefinition: Codable {
-    public let name, description, startDate, definitionId: String
-    public let endDate, timeoutDuration: String
-    public let status: GameStatus
+    public let name, definitionID, description: String
     public let type: GameType
-    public let gameRewards: GameRewards?
-    
-   public init(name: String, description: String, startDate: String, definitionId: String, endDate: String, timeoutDuration: String, status: GameStatus, type: GameType, gameRewards: GameRewards?) {
-        self.name = name
-        self.description = description
-        self.startDate = startDate
-        self.definitionId = definitionId
-        self.endDate = endDate
-        self.timeoutDuration = timeoutDuration
-        self.status = status
-        self.type = type
-        self.gameRewards = gameRewards
-    }
-}
+    public let startDate, endDate: Date
+    public let timeoutDuration: String
+    public let status: GameStatus
+    public let eligibleRewards: [GameReward]
+    public let wonRewards: [GameWinningReward]
 
-// MARK: - GameRewards
-public struct GameRewards: Codable {
-    public let gameRewardReceived, gameRewardAvailable, gameRewardExpired: [GameReward]
+    enum CodingKeys: String, CodingKey {
+        case name
+        case definitionID = "definitionId"
+        case description, type, startDate, endDate, timeoutDuration, status, eligibleRewards, wonRewards
+    }
 }
 
 // MARK: - GameReward
 public struct GameReward: Codable {
-    public let name, description, rewardType, rewardDefinitionID: String
-    public let rewardValue, color, imageURL, expirationDate: String
+    public let name, description, rewardType, rewardDefinition: String
+    public let rewardValue, color, image: String
+}
+
+// MARK: - GameWinningReward
+public struct GameWinningReward: Codable {
+    public let gameParticipantRewardID, name, description, rewardType: String
+    public let rewardDefinition, rewardValue, expirationDate, issuedRewardReference: String
+    public let status: String
 
     enum CodingKeys: String, CodingKey {
-        case name, description, rewardType, rewardDefinitionID, rewardValue, color
-        case imageURL = "imageUrl"
-        case expirationDate
+        case gameParticipantRewardID = "gameParticipantRewardId"
+        case name, description, rewardType, rewardDefinition, rewardValue, expirationDate, issuedRewardReference, status
     }
 }
 
