@@ -28,7 +28,7 @@ struct ReceiptScanningProgressView: View {
 					
 				}
 			}
-			.padding(16)
+			.padding(48)
 			VStack(spacing: 8) {
 				Text(title)
 					.font(.scanningReceiptTitleFont)
