@@ -35,9 +35,7 @@ struct ProcessedReceiptView: View {
                     VStack {
 						HStack {
                             Button {
-                                if let processedReceipt = viewModel.processedReceipt {
-                                    updateReceiptStatusForTryAgainAction(receipt: processedReceipt)
-                            }
+                                updateReceiptStatusForTryAgainAction(receipt: processedReceipt)
 								dismiss()
 								Task {
 									try await receiptlistViewModel.getReceipts(membershipNumber: rootViewModel.member?.membershipNumber ?? "",
