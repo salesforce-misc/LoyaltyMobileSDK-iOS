@@ -142,10 +142,10 @@ struct ReceiptDetailView: View {
 				.presentationDetents(Set([ .height(524)]))
 		}
 		.alert(StringConstants.Receipts.receiptSavedToPhotos, isPresented: $showPhotoDownloadedAlert, actions: {
-			Text("OK")
+			Button("OK") {}
 		})
 		.alert(getRequestSubmittedAlertMessage(), isPresented: $showManualReviewSubmittedAlert, actions: {
-			Text("OK")
+			Button("OK") {}
 		})
 		.environmentObject(processedReceiptViewModel)
     }
