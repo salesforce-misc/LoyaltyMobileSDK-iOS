@@ -219,25 +219,25 @@ class DeveloperPreview {
 												isEligible: false)
 	]
     
-    let activeGame = GameDefinition(name: "Bonnie and Clyde Style Promotion",
-                                    description: "",
-                                    startDate: "",
-                                    definitionId: "1", 
-                                    endDate: "",
-                                    timeoutDuration: "",
-                                    status: .active,
-                                    type: .spinaWheel,
-                                    gameRewards: nil)
-    
-    let expiredGame = GameDefinition(name: "Bonnie and Clyde Style Promotion",
-                                      description: "",
-                                      startDate: "",
-                                      definitionId: "1",
-                                      endDate: "",
-                                      timeoutDuration: "",
-                                      status: .expired,
-                                      type: .spinaWheel,
-                                      gameRewards: nil)
+//    let activeGame = GameDefinition(name: "Bonnie and Clyde Style Promotion",
+//                                    description: "",
+//                                    startDate: "",
+//                                    definitionId: "1", 
+//                                    endDate: "",
+//                                    timeoutDuration: "",
+//                                    status: .active,
+//                                    type: .spinaWheel,
+//                                    gameRewards: nil)
+//    
+//    let expiredGame = GameDefinition(name: "Bonnie and Clyde Style Promotion",
+//                                      description: "",
+//                                      startDate: "",
+//                                      definitionId: "1",
+//                                      endDate: "",
+//                                      timeoutDuration: "",
+//                                      status: .expired,
+//                                      type: .spinaWheel,
+//                                      gameRewards: nil)
 
     let rootVM = AppRootViewModel()
     let benefitVM = BenefitViewModel()

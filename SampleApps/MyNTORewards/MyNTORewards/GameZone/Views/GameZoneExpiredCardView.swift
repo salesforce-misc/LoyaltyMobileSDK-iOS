@@ -99,8 +99,8 @@ struct GameZoneExpiredCardView: View {
     }
 }
 
-struct GameZoneExpiredCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameZoneExpiredCardView(gameCardModel: dev.expiredGame)
-    }
-}
+//struct GameZoneExpiredCardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GameZoneExpiredCardView(gameCardModel: dev.expiredGame)
+//    }
+//}

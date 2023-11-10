@@ -20,7 +20,7 @@ struct GameZoneGridContainerView: View {
             } else {
                 if let games = games, !games.isEmpty {
                     LazyVGrid(columns: gridItems, spacing: 16) {
-                        ForEach(games, id: \.definitionId) { gameModel in
+                        ForEach(games, id: \.definitionID) { gameModel in
                             if isExpiredView {
                                 GameZoneExpiredCardView(gameCardModel: gameModel)
                             } else {

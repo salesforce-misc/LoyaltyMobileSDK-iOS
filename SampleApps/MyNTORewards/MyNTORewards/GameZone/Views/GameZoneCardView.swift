@@ -106,8 +106,8 @@ struct GameZoneCardView: View {
     }
 }
 
-struct GameZoneCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameZoneCardView(gameCardModel: dev.activeGame)
-    }
-}
+//struct GameZoneCardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GameZoneCardView(gameCardModel: dev.activeGame)
+//    }
+//}
