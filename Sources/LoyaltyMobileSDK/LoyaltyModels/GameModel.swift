@@ -16,36 +16,54 @@ public struct GameModel: Codable {
 
 // MARK: - GameDefinition
 public struct GameDefinition: Codable {
-    public let name, definitionID, description: String
+    public let name, gameDefinitionId, description: String
     public let type: GameType
-    public let startDate, endDate: Date
+    public let startDate: Date
+    public let endDate: Date?
     public let timeoutDuration: String
     public let status: GameStatus
-    public let eligibleRewards: [GameReward]
-    public let wonRewards: [GameWinningReward]
-
-    enum CodingKeys: String, CodingKey {
-        case name
-        case definitionID = "definitionId"
-        case description, type, startDate, endDate, timeoutDuration, status, eligibleRewards, wonRewards
+    public let gameRewards: [GameReward]
+    public let participantGameRewards: [ParticipantGameReward]
+    
+    public init(name: String, 
+                gameDefinitionId: String,
+                description: String,
+                type: GameType,
+                startDate: Date,
+                endDate: Date?,
+                timeoutDuration: String,
+                status: GameStatus,
+                gameRewards: [GameReward],
+                participantGameRewards: [ParticipantGameReward]) {
+        self.name = name
+        self.gameDefinitionId = gameDefinitionId
+        self.description = description
+        self.type = type
+        self.startDate = startDate
+        self.endDate = endDate
+        self.timeoutDuration = timeoutDuration
+        self.status = status
+        self.gameRewards = gameRewards
+        self.participantGameRewards = participantGameRewards
     }
 }
 
 // MARK: - GameReward
 public struct GameReward: Codable {
     public let name, description, rewardType, rewardDefinition: String
-    public let rewardValue, color, image: String
+    public let rewardValue, color, imageUrl: String
+    public let expirationDate: Date
 }
 
-// MARK: - GameWinningReward
-public struct GameWinningReward: Codable {
+// MARK: - ParticipantGameReward
+public struct ParticipantGameReward: Codable {
     public let gameParticipantRewardID, name, description, rewardType: String
-    public let rewardDefinition, rewardValue, expirationDate, issuedRewardReference: String
-    public let status: String
+    public let rewardDefinitionId, rewardValue, issuedRewardReference, status: String
+    public let expirationDate: Date
 
     enum CodingKeys: String, CodingKey {
         case gameParticipantRewardID = "gameParticipantRewardId"
-        case name, description, rewardType, rewardDefinition, rewardValue, expirationDate, issuedRewardReference, status
+        case name, description, rewardType, rewardDefinitionId, rewardValue, expirationDate, issuedRewardReference, status
     }
 }
 
