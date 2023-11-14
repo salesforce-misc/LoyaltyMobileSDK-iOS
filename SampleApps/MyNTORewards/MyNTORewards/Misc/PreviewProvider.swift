@@ -219,25 +219,27 @@ class DeveloperPreview {
 												isEligible: false)
 	]
     
-    let activeGame = GameDefinition(name: "Bonnie and Clyde Style Promotion",
+    let activeGame = GameDefinition(name: "Barney and Clyde Style Promotion",
+                                    gameDefinitionId: "1",
                                     description: "",
-                                    startDate: "",
-                                    definitionId: "1", 
-                                    endDate: "",
+                                    type: .spinaWheel,
+                                    startDate: Date(),
+                                    endDate: nil,
                                     timeoutDuration: "",
                                     status: .active,
-                                    type: .spinaWheel,
-                                    gameRewards: nil)
+                                    gameRewards: [],
+                                    participantGameRewards: [])
     
-    let expiredGame = GameDefinition(name: "Bonnie and Clyde Style Promotion",
+    let expiredGame = GameDefinition(name: "Barney and Clyde Style Promotion",
+                                      gameDefinitionId: "2",
                                       description: "",
-                                      startDate: "",
-                                      definitionId: "1",
-                                      endDate: "",
+                                      type: .spinaWheel,
+                                      startDate: Date(),
+                                      endDate: nil,
                                       timeoutDuration: "",
                                       status: .expired,
-                                      type: .spinaWheel,
-                                      gameRewards: nil)
+                                      gameRewards: [],
+                                      participantGameRewards: [])
 
     let rootVM = AppRootViewModel()
     let benefitVM = BenefitViewModel()

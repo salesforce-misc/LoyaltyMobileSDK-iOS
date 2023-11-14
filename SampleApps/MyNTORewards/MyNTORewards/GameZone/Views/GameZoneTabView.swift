@@ -58,7 +58,7 @@ struct GameZoneTabView: View {
     func getGames() {
         Task {
             do {
-                try await gameViewModel.getGames(memberId: rootVM.member?.membershipNumber ?? "")
+                try await gameViewModel.getGames(participantId: rootVM.member?.membershipNumber ?? "")
                 
             } catch {
                 Logger.error(error.localizedDescription)

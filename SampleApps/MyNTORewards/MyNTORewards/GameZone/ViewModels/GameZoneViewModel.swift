@@ -35,10 +35,10 @@ class GameZoneViewModel: ObservableObject, Reloadable {
                                               forceClient: ForceClient(auth: authManager))
     }
     
-    func getGames(memberId: String, reload: Bool = false, devMode: Bool = false) async throws {
+    func getGames(participantId: String, reload: Bool = false, devMode: Bool = false) async throws {
         state = .loading
         do {
-            try await fetchGames(memberId: memberId, devMode: devMode)
+            try await fetchGames(participantId: participantId, devMode: devMode)
             self.state = .loaded
         } catch {
             self.state = .failed(error)
@@ -46,9 +46,9 @@ class GameZoneViewModel: ObservableObject, Reloadable {
         }
     }
     
-    func fetchGames(memberId: String, devMode: Bool = false) async throws {
+    func fetchGames(participantId: String, devMode: Bool = false) async throws {
         do {
-            let result = try await loyaltyAPIManager.getGames(membershipId: memberId, devMode: true)
+            let result = try await loyaltyAPIManager.getGames(participantId: participantId, devMode: true)
             activeGameDefinitions = result.gameDefinitions.filter({$0.status == .active})
             playedGameDefinitions = result.gameDefinitions.filter({$0.status == .played})
             expiredGameDefinitions = result.gameDefinitions.filter({$0.status == .expired})
@@ -65,6 +65,6 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     }
     
     func reload(id: String, number: String) async throws {
-        try await fetchGames(memberId: id)
+        try await fetchGames(participantId: id)
     }
 }

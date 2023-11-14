@@ -60,7 +60,7 @@ public class LoyaltyAPIManager {
         case enrollInPromotion(programName: String, version: String)
         case unenrollPromotion(programName: String, version: String)
         case getVouchers(programName: String, membershipNumber: String, version: String)
-        case getGames(memberId: String, version: String)
+        case getGames(participantId: String, version: String)
 
     }
     
@@ -86,8 +86,8 @@ public class LoyaltyAPIManager {
 			return ForceAPI.path(for: "connect/loyalty/programs/\(programName)/program-processes/OptOutOfPromotion", version: version)
         case .getVouchers(let programName, let membershipNumber, let version):
             return ForceAPI.path(for: "loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers", version: version)
-        case .getGames(memberId: let memberId, version: let version):
-            return ForceAPI.path(for: "game/participant/\(memberId)/Games", version: version)
+        case .getGames(participantId: let participantId, version: let version):
+            return ForceAPI.path(for: "game/participant/\(participantId)/games", version: version)
         }
     
     }
@@ -492,19 +492,19 @@ public class LoyaltyAPIManager {
     ///   - membershipId: The membership number of the loyalty program member whose issued avialbele games are retrieved.
     ///   - version: The API version number
     ///   - devMode: Whether it's in devMode
-    /// - Returns: A ``GamesResponseModel`` object
+    /// - Returns: A ``GameModel`` object
     public func getGames(
-        membershipId: String,
+        participantId: String,
         version: String = LoyaltyAPIVersion.defaultVersion,
-        devMode: Bool = false) async throws -> GamesResponseModel {
+        devMode: Bool = false) async throws -> GameModel {
         do {
             if devMode {
-                let result = try forceClient.fetchLocalJson(type: GamesResponseModel.self, file: "GetGames")
+                let result = try forceClient.fetchLocalJson(type: GameModel.self, file: "GetGames")
                 return result
             }
-            let path = getPath(for: .getGames(memberId: membershipId, version: version))
+            let path = getPath(for: .getGames(participantId: participantId, version: version))
             let request = try ForceRequest.create(instanceURL: instanceURL, path: path, method: "GET")
-            let result = try await forceClient.fetch(type: GamesResponseModel.self, with: request)
+            let result = try await forceClient.fetch(type: GameModel.self, with: request)
             return result
         } catch {
             Logger.error(error.localizedDescription)
