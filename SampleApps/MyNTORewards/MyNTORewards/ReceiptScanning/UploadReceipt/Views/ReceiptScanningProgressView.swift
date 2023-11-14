@@ -36,6 +36,7 @@ struct ReceiptScanningProgressView: View {
 					
 				}
 			}
+			.accessibilityIdentifier(AppAccessibilty.Receipts.scanningProgressView)
 			.padding(48)
 			VStack(spacing: 8) {
 				Text(title)

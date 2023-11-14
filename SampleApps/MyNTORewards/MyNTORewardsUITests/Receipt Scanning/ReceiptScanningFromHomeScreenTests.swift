@@ -32,7 +32,10 @@ final class ReceiptScanningFromHomeScreenTests: XCTestCase {
 		XCTAssert(app.buttons["camera_shutter_button"].exists)
 		app.buttons["choose_from_photos"].tap()
         _ = app.staticTexts["photos"].waitForExistence(timeout: 3)
-        app.tap()
+		let predicate = NSPredicate(format: "label BEGINSWITH 'Photo, 05 October, 4:00 PM'")
+		let receipt = app.scrollViews.otherElements.images.containing(predicate).element
+		XCTAssert(receipt.waitForExistence(timeout: 4))
+		receipt.tap()
 		_ = app.buttons["process_button"].waitForExistence(timeout: 3)
 		app.buttons["process_button"].tap()
 		_ = app.buttons["submit_receipt"].waitForExistence(timeout: 30)
