@@ -19,16 +19,24 @@ struct ReceiptScanningProgressView: View {
 					Circle()
 						.strokeBorder(getStrokeColor(for: step), lineWidth: 5)
 						.background(Circle().fill(getFillColor(for: step)))
-						.frame(width: 30, height: 30)
+						.frame(width: 35, height: 35)
 					if step < numberOfSteps {
 						Rectangle()
 							.foregroundColor(getLineColor(step: step))
-							.frame(height: 3)
+							.shimmer(.init(tint: getLineColor(step: step).opacity(0.9),
+											highlight: .white,
+											blur: 0,
+											highlightOpacity: 2,
+										   speed: 1.5
+										   ),
+									 enabled: step == currentStep - 1
+							)
+							.frame(height: 5)
 					}
 					
 				}
 			}
-			.padding(16)
+			.padding(48)
 			VStack(spacing: 8) {
 				Text(title)
 					.font(.scanningReceiptTitleFont)

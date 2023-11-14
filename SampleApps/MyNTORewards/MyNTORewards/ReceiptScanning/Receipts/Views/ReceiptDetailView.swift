@@ -131,15 +131,21 @@ struct ReceiptDetailView: View {
 		.loytaltyNavigationTitle("Receipt Details")
 		.loyaltyNavBarSearchButtonHidden(true)
 		.sheet(isPresented: $showManualReviewRequest) {
-			ManualReviewInputView(showManualReviewRequest: $showManualReviewRequest, showManualReviewSubmittedAlert: $showManualReviewSubmittedAlert, receipt: receipt)
+			ManualReviewInputView(showManualReviewRequest: $showManualReviewRequest, 
+								  showManualReviewSubmittedAlert: $showManualReviewSubmittedAlert,
+								  receiptId: receipt.id,
+								  receiptNumber: receipt.receiptId,
+								  purchaseDate: receipt.purchaseDate,
+								  totalAmount: receipt.totalAmount,
+								  totalPoints: receipt.totalPoints)
 				.interactiveDismissDisabled()
 				.presentationDetents(Set([ .height(524)]))
 		}
 		.alert(StringConstants.Receipts.receiptSavedToPhotos, isPresented: $showPhotoDownloadedAlert, actions: {
-			Text("OK")
+			Button("OK") {}
 		})
 		.alert(getRequestSubmittedAlertMessage(), isPresented: $showManualReviewSubmittedAlert, actions: {
-			Text("OK")
+			Button("OK") {}
 		})
 		.environmentObject(processedReceiptViewModel)
     }
