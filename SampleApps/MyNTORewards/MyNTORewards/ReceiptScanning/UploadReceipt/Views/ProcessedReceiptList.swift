@@ -23,6 +23,7 @@ struct ProcessedReceiptList: View {
                 } else {
                     Text(StringConstants.Receipts.noEligibleItemsText)
                        .padding([.vertical], 45)
+					   .accessibilityIdentifier(AppAccessibilty.Receipts.noEligibleItemsFound)
                 }
 				if !ineligibleItems.isEmpty {
 					table(items: ineligibleItems, title: ineligibleItemsTitle)
