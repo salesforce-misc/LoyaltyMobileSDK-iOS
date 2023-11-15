@@ -147,6 +147,7 @@ enum AppAccessibilty {
 		static let processButton = "process_button"
 		static let backButtonCapturedImageView = "back_button_captured_image_view"
 		static let scanningReceiptLabel = "scanning_receipt"
+		static let scanningProgressView = "scanning_receipt_progress_view"
 		static let scanningReceiptSubtitle = "scanning_receipt_subtitle"
 		static let submitReceiptButton = "submit_receipt"
 		static let receiptNumberLabel = "receipt_number_label"
@@ -165,6 +166,9 @@ enum AppAccessibilty {
 		static let backButton = "back_button_in_manual_review"
 		static let receiptsIcon = "receipts_icon"
         static let errorBackButton = "back_button_in_error_view"
+		static let noEligibleItemsFound = "no_eligible_items_found"
+		static let eligibleItemsTitle = "eligible_items_title"
+		static let ineligibleItemsTitle = "ineligible_items_title"
 	}
     
     enum GameZone {

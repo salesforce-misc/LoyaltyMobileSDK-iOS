@@ -82,6 +82,8 @@ struct ColorTheme {
     let productBackground = Color("ProductBackgroundColor") // #F1F3FB
     let paymentCardText = Color("PaymentCardTextColor") // #747B84
     let shippingBackground = Color("ShippingBackgroundColor") // #FAFBFC
+	let vibrantViolet = Color("VibrantViolet") // #BA01FF
+	let lightGray = Color("LightGray") // #E0E0E0
     let wheelIndicatorBackground = Color("DarkGreyColor") // #23475F
     let scratchCardBackground = Color("LightGreyColor") // #D9D9D9
     let scratchCardDotsBackground = Color("ScratchCardDotsColor") //#F8EFFF

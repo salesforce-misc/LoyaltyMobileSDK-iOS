@@ -30,6 +30,8 @@ struct StringConstants {
         static let formatUnsupported = "File type is not supported. Files can only be in HEIC, JPEG and PNG format."
 		static let emptyReceiptsViewTitle = "Looks like you haven’t uploaded any receipts yet"
 		static let emptyReceiptsViewBody = "Upload your receipts and get loyalty points for the eligible items."
+        static let requestForManualReviewButton = "Request a Manual Review"
+        static let noEligibleItemsText = "No Eligible Items found in the Receipt!"
 	}
     
     struct Gamification {

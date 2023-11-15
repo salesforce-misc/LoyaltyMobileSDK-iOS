@@ -76,7 +76,7 @@ struct CapturedImageView: View {
                         processedReceiptViewModel.clearProcessedReceipt()
                         Task {
                             do {
-                                try await processedReceiptViewModel.processImage(membershipNumber: rootVM.member?.membershipNumber ?? "", imageData: imageData)
+                                try await processedReceiptViewModel.uploadImage(membershipNumber: rootVM.member?.membershipNumber ?? "", imageData: imageData)
                             } catch {
                                 Logger.error("Failed to process the image")
                             }
@@ -87,7 +87,7 @@ struct CapturedImageView: View {
                             capturedImageData = nil
 							dismiss()
 							processedReceiptViewModel.receiptState = .processing
-							DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+							DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
 								routerPath.presentSheet(destination: .processingReceipt(receiptListViewModel: receiptListViewModel))
 							}
                         }

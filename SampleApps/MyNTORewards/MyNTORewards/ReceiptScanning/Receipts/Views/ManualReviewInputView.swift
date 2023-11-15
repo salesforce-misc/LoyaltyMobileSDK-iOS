@@ -17,7 +17,11 @@ struct ManualReviewInputView: View {
 	@Environment(\.dismiss) var dismiss
 	@State private var comment: String = ""
 	@State private var isLoading = false
-	let receipt: Receipt
+	let receiptId: String?
+	let receiptNumber: String?
+	let purchaseDate: Date?
+	let totalAmount: String?
+	let totalPoints: Double?
 	
     var body: some View {
 		ZStack {
@@ -44,19 +48,20 @@ struct ManualReviewInputView: View {
 					}
 					HStack {
 						VStack(alignment: .leading, spacing: 8) {
-							Text("Receipt \(receipt.receiptId)")
+							Text("Receipt \(receiptNumber ?? "--")")
 								.font(.transactionText)
 								.accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberText)
-                            Text("Date \(receipt.purchaseDate?.toString(withFormat: localeManager.currentDateFormat) ?? "-")")
+                            Text("Date \(purchaseDate?.toString(withFormat: localeManager.currentDateFormat) ?? "-")")
 								.font(.transactionDate)
 								.accessibilityIdentifier(AppAccessibilty.Receipts.receiptDateText)
 						}
 						Spacer()
+						Spacer()
 						VStack(alignment: .trailing, spacing: 8) {
-							Text("\(receipt.totalAmount ?? "0")")
+							Text("\(totalAmount ?? "0")")
 								.font(.transactionText)
 								.accessibilityIdentifier(AppAccessibilty.Receipts.receiptAmountText)
-							Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points")
+							Text("\(totalPoints?.truncate(to: 2) ?? "0") Points")
 								.font(.transactionDate)
 								.accessibilityIdentifier(AppAccessibilty.Receipts.receiptPointsText)
 						}
@@ -71,7 +76,7 @@ struct ManualReviewInputView: View {
                     Task {
                         do {
                             isLoading = true
-                            let success = try await processedReceiptViewModel.updateStatus(receiptId: receipt.id, status: .manualReview, comments: comment)
+                            let success = try await processedReceiptViewModel.updateStatus(receiptId: receiptId, status: .manualReview, comments: comment)
                             if success {
                                 dismiss()
 								DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -134,16 +139,10 @@ struct ManualReviewInputView_Previews: PreviewProvider {
     static var previews: some View {
 		ManualReviewInputView(showManualReviewRequest: .constant(true), 
 							  showManualReviewSubmittedAlert: .constant(false), 
-							  receipt: Receipt(id: "Receipt 56g",
-											   receiptId: "3453463",
-											   name: "Receipt",
-											   status: "Draft",
-											   storeName: "Ratna cafe",
-											   purchaseDate: Date(),
-											   totalAmount: "$4500",
-											   totalPoints: 50,
-											   createdDate: "03/05/2022",
-											   imageUrl: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg",
-											   processedAwsReceipt: "{\n  \"totalAmount\" : \"$154.06\",\n  \"storeName\" : \"East Repair Inc.\"n}"))
+							  receiptId: "Receipt 56g",
+							  receiptNumber: "afd3473840001", 
+							  purchaseDate: Date(),
+							  totalAmount: "$4500",
+							  totalPoints: 50)
 	}
 }

@@ -47,7 +47,6 @@ struct CameraView: View {
                             .foregroundColor(.white)
                     }
 					.accessibilityIdentifier(AppAccessibilty.Receipts.closeCameraButton)
-                    .buttonStyle(CircularButtonStyle())
                     .padding(.leading, 20)
 
                     Spacer()

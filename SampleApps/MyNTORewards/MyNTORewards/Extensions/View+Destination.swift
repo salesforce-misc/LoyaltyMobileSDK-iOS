@@ -22,7 +22,7 @@ extension View {
 	}
 	
 	func withSheetDestination(sheetDestination: Binding<SheetDestination?>) -> some View {
-		sheet(item: sheetDestination) { sheet in
+		fullScreenCover(item: sheetDestination) { sheet in
 			switch sheet {
 			case .processingReceipt(let receiptListViewModel):
 				ProcessingReceiptView()
