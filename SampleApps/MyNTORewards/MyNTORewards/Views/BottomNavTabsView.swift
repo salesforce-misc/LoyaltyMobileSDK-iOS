@@ -19,28 +19,45 @@ struct BottomNavTabsView: View {
 	
 	var body: some View {
         ZStack(alignment: .bottomLeading) {
-            UITabView(selection: $selectedTab) {
-                HomeView(selectedTab: $selectedTab)
-                    .tabItem("Home", image: UIImage(named: "ic-home"))
-                
+            TabView(selection: $selectedTab) {
+                HomeView(selectedTab: $selectedTab).tabItem({
+                    Label("Home", image: "ic-home")
+                }).tag(Tab.home.rawValue)
+                                    
                 MyPromotionsView()
-                    .tabItem("My Promotions", image: UIImage(named: "ic-rewards"))
-                
+                    .tabItem({
+                        Label("My Promotions", image: "ic-rewards")
+
+                    }).tag(Tab.offers.rawValue)
                 ProfileView()
-                    .tabItem("My Profile", image: UIImage(named: "ic-profile"))
+                    .tabItem({
+                        Label("My Profile", image: "ic-profile")
+                    }).tag(Tab.profile.rawValue)
+
                 /* Post MVP
                  RedeemView()
                  .tabItem("Redeem", image: UIImage(named: "ic-book"))
                  */
                 
                 MoreView()
-                    .tabItem("More", image: UIImage(named: "ic-more"))
+                    .tabItem({
+                        Label("More", image: "ic-more")
+                    }).tag(Tab.more.rawValue)
+
             }
             .onChange(of: selectedTab) { _ in
                 routerPath.pathFromHome.removeAll()
                 routerPath.pathFromMore.removeAll()
             }
         }
+        .background {
+            LoyaltyConditionalNavLink(isActive: $promotionsVM.isCheckoutNavigationActive) {
+                ProductView()
+            } label: {
+                EmptyView()
+            }
+        }
+        .navigationBarHidden(true)
         .onAppear {
             // correct the transparency bug for Tab bars
             let tabBarAppearance = UITabBarAppearance()
@@ -51,7 +68,7 @@ struct BottomNavTabsView: View {
             navigationBarAppearance.configureWithOpaqueBackground()
             UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
         } // To Fix Tab bar at the bottom of an app goes transparent when navigating back from another view
-        .withSheetDestination(sheetDestination: $routerPath.presentedSheet)
+		.withSheetDestination(sheetDestination: $routerPath.presentedSheet)
         .environmentObject(promotionsVM)
         .environmentObject(vouchersVM)
         .environmentObject(profileVM)

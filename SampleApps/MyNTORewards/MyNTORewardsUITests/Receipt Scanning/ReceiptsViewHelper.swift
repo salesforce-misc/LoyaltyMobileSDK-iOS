@@ -8,6 +8,28 @@
 import XCTest
 
 final class ReceiptsViewHelper {
+	
+	enum ReceiptType {
+		case eligibleAndIneligible
+		case onlyEligible
+		case onlyIneligible
+		case invalidDateFormat
+	}
+	
+	static var receiptType: ReceiptType = .eligibleAndIneligible
+	
+	static private func getImageLabel() -> String {
+		switch receiptType {
+		case .eligibleAndIneligible:
+			return "Photo, 05 October, 4:00 PM"
+		case .invalidDateFormat:
+			return "Photo, 14 November, 5:38 PM"
+		case .onlyIneligible:
+			return "Photo, 14 November, 4:56 PM"
+		default:
+			return "Photo, 05 October, 4:00 PM"
+		}
+	}
 
 	static func goToReceiptsView(app: XCUIApplication) {
 		app.tabBars.buttons["More"].tap()
@@ -22,8 +44,10 @@ final class ReceiptsViewHelper {
 	static func goToCapturedImageView(app: XCUIApplication) {
 		goToCameraView(app: app)
 		app.buttons["choose_from_photos"].tap()
-		XCTAssert(app.collectionViews.cells.element(boundBy: 0).waitForExistence(timeout: 4))
-		app.collectionViews.cells.element(boundBy: 0).tap()
+		let predicate = NSPredicate(format: "label BEGINSWITH '\(getImageLabel())'")
+		let receipt = app.scrollViews.otherElements.images.containing(predicate).element
+		XCTAssert(receipt.waitForExistence(timeout: 4))
+		receipt.tap()
 	}
 	
 	static func goToProcessingReceiptView(app: XCUIApplication) {

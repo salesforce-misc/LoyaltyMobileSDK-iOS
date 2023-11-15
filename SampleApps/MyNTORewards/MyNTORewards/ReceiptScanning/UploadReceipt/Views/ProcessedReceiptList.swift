@@ -20,7 +20,11 @@ struct ProcessedReceiptList: View {
 				if !eligibleItems.isEmpty {
 					table(items: eligibleItems, title: eligibleItemsTitle)
 					space
-				}
+                } else {
+                    Text(StringConstants.Receipts.noEligibleItemsText)
+                       .padding([.vertical], 45)
+					   .accessibilityIdentifier(AppAccessibilty.Receipts.noEligibleItemsFound)
+                }
 				if !ineligibleItems.isEmpty {
 					table(items: ineligibleItems, title: ineligibleItemsTitle)
 				}
@@ -63,10 +67,7 @@ struct ProcessedReceiptList: View {
 
 struct ProcessedReceiptList_Previews: PreviewProvider {
 	static var previews: some View {
-		ProcessedReceiptList(eligibleItems: [ProcessedReceiptItem(quantity: "1",
-																  productName: "Converse shoes",
-																  price: "$599",
-																  lineItemPrice: "$599", isEligible: true)],
+		ProcessedReceiptList(eligibleItems: [],
 							 ineligibleItems: [ProcessedReceiptItem(quantity: "1",
 																	productName: "Converse shoes",
 																	price: "$599",

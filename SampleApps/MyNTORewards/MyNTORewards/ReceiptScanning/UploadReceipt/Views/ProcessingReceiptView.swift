@@ -30,31 +30,21 @@ struct ProcessingView: View {
 	@EnvironmentObject var processedReceiptViewModel: ProcessedReceiptViewModel
 	
 	var body: some View {
-		VStack {
-			Spacer()
-			VStack(spacing: 40) {
-				ProgressView()
-				VStack(spacing: 8) {
-					Text(StringConstants.Receipts.processingScreenTitle)
-						.font(.scanningReceiptTitleFont)
-						.fontWeight(.heavy)
-						.accessibilityIdentifier(AppAccessibilty.Receipts.scanningReceiptLabel)
-					Text(StringConstants.Receipts.processingScreenSubtitle)
-						.font(.scanningReceiptCaptionFont)
-						.accessibilityIdentifier(AppAccessibilty.Receipts.scanningReceiptSubtitle)
-				}
-			}
-			Spacer()
-			Button {
-				routerPath.dismissSheets()
-				// Todo:- cancel the processing api call
-			} label: {
-				Text(StringConstants.Receipts.cancelButton)
-					.foregroundColor(.black)
-					.font(.scanningReceiptCancelFont)
-			}
-			.padding(.bottom, 20)
-		}
+        VStack {
+            Spacer()
+            ReceiptScanningProgressView(numberOfSteps: 2,
+                                        currentStep: processedReceiptViewModel.currentStep,
+                                        title: processedReceiptViewModel.processedStepTitle,
+                                        subtitle: "Hang in there! This may take a minute.")
+            Spacer()
+            Button(StringConstants.Receipts.cancelButton) {
+                processedReceiptViewModel.cancelUplloadTasks()
+                routerPath.presentedSheet = nil
+            }
+            .foregroundColor(.black)
+            .padding()
+        }.background(Color.theme.background)
+
 	}
 }
 
