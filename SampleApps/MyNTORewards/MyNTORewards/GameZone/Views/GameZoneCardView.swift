@@ -79,7 +79,7 @@ struct GameZoneCardView: View {
     }
     
     func getFormattedExpiredLabel() -> String {
-        guard let expiredDate = gameCardModel.endDate else { return "" }
+        guard let expiredDate = gameCardModel.participantGameRewards.first?.expirationDate else { return "" }
         if Calendar.current.isDateInToday(expiredDate) {
             return "Expiring today"
         }
