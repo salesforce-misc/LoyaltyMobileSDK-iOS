@@ -115,7 +115,7 @@ struct ScratchCardGame<Content: View, OverlayView: View>: View {
     // For scratch efffect
     @State var startingPoint: CGPoint = .zero
     @State var points: [CGPoint] = []
-    
+    @EnvironmentObject private var routerPath: RouterPath
     // For gesture update
     @GestureState var gestureLocation: CGPoint = .zero
     
@@ -171,6 +171,10 @@ struct ScratchCardGame<Content: View, OverlayView: View>: View {
                                 withAnimation(Animation.easeOut(duration: 1).delay(0.5)) {
                                     self.onFinish = true
                                 }
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3.0, execute: {
+                                    self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: "30% Off"))
+//                                    self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
+                                })
                                 // print("You should see the whole rewards!")
                             }
                         })

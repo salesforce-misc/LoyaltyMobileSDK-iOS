@@ -16,8 +16,11 @@ extension View {
                 ReceiptsView()
             case .gameZone:
                 GameZoneView()
+            case .gameZoneBetterLuck:
+                GamificationNoLuckView().toolbar(.hidden, for: .tabBar, .navigationBar)
+            case .gameZoneCongrats(let offerText):
+                GamificationCongratsView(offerText: offerText).toolbar(.hidden, for: .tabBar, .navigationBar)
             }
-            
 		}
 	}
 	

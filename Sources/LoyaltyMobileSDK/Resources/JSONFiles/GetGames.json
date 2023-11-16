@@ -4,13 +4,13 @@
     {
       "gameDefinitionId":"1",
       "description": "Play Spin The Wheel to Get Amazing Rewards",
-      "endDate": "2023-11-15T19:00:00.000Z",
+      "endDate": "2023-11-23T19:00:00.000Z",
       "gameRewards": [
         {
           "gameRewardId": "501",
           "rewardDefinitionId": "101",
-          "color": "FF5733",
-          "description": "Get 10%  Off Voucher",
+          "color": "01CD6C",
+          "description":"Win\n $12 \n Off",
           "expirationDate": "2023-10-31T19:00:00.000Z",
           "imageUrl": null,
           "name": "10 % Off",
@@ -20,8 +20,8 @@
         {
           "rewardDefinitionId": "102",
           "gameRewardId": "501",
-          "color": "000000",
-          "description": "Get 50%  Off Voucher",
+          "color": "#0099DD",
+          "description": "Win 20% Off",
           "expirationDate": "2023-10-31T19:00:00.000Z",
           "imageUrl": null,
           "name": "50 % Off",
@@ -31,8 +31,85 @@
         {
          "rewardDefinitionId": "103",
          "gameRewardId": "501",
-          "color": "762E2E",
+          "color": "#FF4B3A",
           "description": "Better Luck Next Time",
+          "expirationDate": "2023-11-15T19:00:00.000Z",
+          "imageUrl": null,
+          "name": "No Reward",
+          "rewardType": "NoReward",
+          "rewardValue": null
+        },
+        {
+          "rewardDefinitionId": "102",
+          "gameRewardId": "501",
+          "color": "#0099DD",
+          "description": "Win1000 Bonus Points",
+          "expirationDate": "2023-10-31T19:00:00.000Z",
+          "imageUrl": null,
+          "name": "50 % Off",
+          "rewardType": "Voucher",
+          "rewardValue": null
+        },
+        {
+          "rewardDefinitionId": "102",
+          "gameRewardId": "501",
+          "color": "#0099DD",
+          "description": "Win 20% Off",
+          "expirationDate": "2023-10-31T19:00:00.000Z",
+          "imageUrl": null,
+          "name": "50 % Off",
+          "rewardType": "Voucher",
+          "rewardValue": null
+        },
+        {
+         "rewardDefinitionId": "103",
+         "gameRewardId": "501",
+          "color": "#FF4B3A",
+          "description": "Better Luck Next Time",
+          "expirationDate": "2023-11-15T19:00:00.000Z",
+          "imageUrl": null,
+          "name": "No Reward",
+          "rewardType": "NoReward",
+          "rewardValue": null
+        },
+        {
+          "gameRewardId": "501",
+          "rewardDefinitionId": "101",
+          "color": "01CD6C",
+          "description":"Win $15 Off",
+          "expirationDate": "2023-10-31T19:00:00.000Z",
+          "imageUrl": null,
+          "name": "10 % Off",
+          "rewardType": "Voucher",
+          "rewardValue": null
+        },
+        {
+          "rewardDefinitionId": "102",
+          "gameRewardId": "501",
+          "color": "#0099DD",
+          "description": "Win300 Bonus Points",
+          "expirationDate": "2023-10-31T19:00:00.000Z",
+          "imageUrl": null,
+          "name": "50 % Off",
+          "rewardType": "Voucher",
+          "rewardValue": null
+        },
+        {
+         "rewardDefinitionId": "103",
+         "gameRewardId": "501",
+          "color": "#FF4B3A",
+          "description": "Better Luck Next Time",
+          "expirationDate": "2023-11-15T19:00:00.000Z",
+          "imageUrl": null,
+          "name": "No Reward",
+          "rewardType": "NoReward",
+          "rewardValue": null
+        },
+        {
+         "rewardDefinitionId": "103",
+         "gameRewardId": "501",
+          "color": "#FFC501",
+          "description": "ChancetowinFreeEarPod",
           "expirationDate": "2023-11-15T19:00:00.000Z",
           "imageUrl": null,
           "name": "No Reward",
@@ -45,7 +122,7 @@
             "gameRewardId": "501",
             "gameParticipantRewardId": "201",
             "sourceActivityId": "201",
-            "expirationDate": "2023-11-01T19:00:00.000Z",
+            "expirationDate": "2023-11-23T19:00:00.000Z",
             "issuedRewardReference": "12344",
             "status": "active",
         }

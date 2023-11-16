@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct FortuneWheelView: View {
     
@@ -13,17 +14,7 @@ struct FortuneWheelView: View {
     @State private var rotationAngle: Double = 0.0
     @State private var activeIndex: Int?
     @State private var isSpinning: Bool = false
-    
-    let colors: [Color] = [.green, .red, .blue, .yellow, .green, .red, .blue, .red, .blue]
-    let labels: [String] = ["Win $20 Off",
-                            "Better Luck Next Time",
-                            "Win 300 Bonus Points",
-                            "Chance to win Free EarPod",
-                            "Win 1000 Bonus Points",
-                            "Better Luck Next Time",
-                            "Win 20% Off",
-                            "Better Luck Next Time",
-                            "Win 300 Bonus Points"]
+    var gameDefinitionModel: GameDefinition?
     
     var body: some View {
         VStack {
@@ -55,14 +46,17 @@ struct FortuneWheelView: View {
                     ZStack {
                         // Fortune Wheel Segments
                         ZStack {
-                            ForEach(0..<colors.count, id: \.self) { index in
-                                let startAngle = (360.0 / Double(colors.count) * Double(index)) - 90.0
-                                let endAngle = (360.0 / Double(colors.count) * Double(index + 1)) - 90.0
-
-                                WheelSegment(startAngle: startAngle,
-                                             endAngle: endAngle,
-                                             color: colors[index],
-                                             label: labels[index])
+                            if let colors: [Color] = gameDefinitionModel?.gameRewards.map({Color(hex: $0.color)}),
+                               let labels: [String] = gameDefinitionModel?.gameRewards.map({$0.description}) {
+                                ForEach(0..<colors.count, id: \.self) { index in
+                                    let startAngle = (360.0 / Double(colors.count) * Double(index)) - 90.0
+                                    let endAngle = (360.0 / Double(colors.count) * Double(index + 1)) - 90.0
+                                    
+                                    WheelSegment(startAngle: startAngle,
+                                                 endAngle: endAngle,
+                                                 color: colors[index],
+                                                 label: labels[index])
+                                }
                             }
                         }
                         .rotationEffect(Angle(degrees: rotationAngle))
@@ -119,6 +113,7 @@ struct FortuneWheelView: View {
     
     func spinWheel() {
         if isSpinning { return }
+        guard let colors: [Color] = gameDefinitionModel?.gameRewards.map({Color(hex: $0.color)}) else { return }
 
         isSpinning = true
 
@@ -208,8 +203,8 @@ struct Triangle: Shape {
     }
 }
 
-struct FortuneWheelView_Previews: PreviewProvider {
-    static var previews: some View {
-        FortuneWheelView()
-    }
-}
+//struct FortuneWheelView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FortuneWheelView(gameDefinitionModel: [])
+//    }
+//}
