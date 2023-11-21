@@ -14,6 +14,7 @@ struct FortuneWheelView: View {
     @State private var rotationAngle: Double = 0.0
     @State private var activeIndex: Int?
     @State private var isSpinning: Bool = false
+    @ObservedObject var viewModel = PlayGameViewModel()
     var gameDefinitionModel: GameDefinition?
     
     var body: some View {
@@ -76,7 +77,7 @@ struct FortuneWheelView: View {
                             
                         // Spin Button
                         Button {
-                            spinWheel()
+                            playGame()
                         } label: {
                             isSpinning ? Text("") : Text("Tap to **SPIN**").foregroundColor(.white)
                         }
@@ -109,6 +110,25 @@ struct FortuneWheelView: View {
             .edgesIgnoringSafeArea(.bottom)
         }
         
+    }
+    
+    func playGame() {
+        Task {
+            guard let gameParticipantRewardId = gameDefinitionModel?.participantGameRewards.first?.gameParticipantRewardID else {return}
+            spinWheel()
+            await viewModel.playGame(gameParticipantRewardId: gameParticipantRewardId)
+            if let rewardId = viewModel.issuedRewardId {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    guard let colors: [Color] = gameDefinitionModel?.gameRewards.map({Color(hex: $0.color)}) else { return }
+                    if let index = gameDefinitionModel?.gameRewards.firstIndex(where: {$0.gameRewardId == rewardId}) {
+                        let segmentAngle = 360.0 / Double(colors.count)
+                        let stopLocationAngle = segmentAngle * (Double(index)+1.0) - (segmentAngle / 2)
+                        rotationAngle = -stopLocationAngle
+                    }
+                }
+            }
+            
+        }
     }
     
     func spinWheel() {

@@ -19,7 +19,7 @@
         },
         {
           "rewardDefinitionId": "102",
-          "gameRewardId": "501",
+          "gameRewardId": "502",
           "color": "#0099DD",
           "description": "Win 20% Off",
           "expirationDate": "2023-10-31T19:00:00.000Z",
@@ -30,7 +30,7 @@
         },
         {
          "rewardDefinitionId": "103",
-         "gameRewardId": "501",
+         "gameRewardId": "503",
           "color": "#FF4B3A",
           "description": "Better Luck Next Time",
           "expirationDate": "2023-11-15T19:00:00.000Z",
@@ -41,7 +41,7 @@
         },
         {
           "rewardDefinitionId": "102",
-          "gameRewardId": "501",
+          "gameRewardId": "504",
           "color": "#0099DD",
           "description": "Win1000 Bonus Points",
           "expirationDate": "2023-10-31T19:00:00.000Z",
@@ -52,7 +52,7 @@
         },
         {
           "rewardDefinitionId": "102",
-          "gameRewardId": "501",
+          "gameRewardId": "505",
           "color": "#0099DD",
           "description": "Win 20% Off",
           "expirationDate": "2023-10-31T19:00:00.000Z",
@@ -63,7 +63,7 @@
         },
         {
          "rewardDefinitionId": "103",
-         "gameRewardId": "501",
+         "gameRewardId": "506",
           "color": "#FF4B3A",
           "description": "Better Luck Next Time",
           "expirationDate": "2023-11-15T19:00:00.000Z",
@@ -73,7 +73,7 @@
           "rewardValue": null
         },
         {
-          "gameRewardId": "501",
+          "gameRewardId": "507",
           "rewardDefinitionId": "101",
           "color": "01CD6C",
           "description":"Win $15 Off",
@@ -85,7 +85,7 @@
         },
         {
           "rewardDefinitionId": "102",
-          "gameRewardId": "501",
+          "gameRewardId": "508",
           "color": "#0099DD",
           "description": "Win300 Bonus Points",
           "expirationDate": "2023-10-31T19:00:00.000Z",
@@ -96,7 +96,7 @@
         },
         {
          "rewardDefinitionId": "103",
-         "gameRewardId": "501",
+         "gameRewardId": "509",
           "color": "#FF4B3A",
           "description": "Better Luck Next Time",
           "expirationDate": "2023-11-15T19:00:00.000Z",
@@ -107,7 +107,7 @@
         },
         {
          "rewardDefinitionId": "103",
-         "gameRewardId": "501",
+         "gameRewardId": "510",
           "color": "#FFC501",
           "description": "ChancetowinFreeEarPod",
           "expirationDate": "2023-11-15T19:00:00.000Z",

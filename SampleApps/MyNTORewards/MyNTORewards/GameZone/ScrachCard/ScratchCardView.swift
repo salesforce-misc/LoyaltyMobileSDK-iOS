@@ -173,7 +173,6 @@ struct ScratchCardGame<Content: View, OverlayView: View>: View {
                                 }
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+3.0, execute: {
                                     self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: "30% Off"))
-//                                    self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
                                 })
                                 // print("You should see the whole rewards!")
                             }
