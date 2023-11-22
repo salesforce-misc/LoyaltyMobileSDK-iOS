@@ -11,6 +11,7 @@ import LoyaltyMobileSDK
 struct FortuneWheelView: View {
     
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject private var routerPath: RouterPath
     @State private var rotationAngle: Double = 0.0
     @State private var activeIndex: Int?
     @State private var isSpinning: Bool = false
@@ -61,6 +62,9 @@ struct FortuneWheelView: View {
                             }
                         }
                         .rotationEffect(Angle(degrees: rotationAngle))
+                        .animation(isSpinning ? Animation.easeOut(duration: 7)
+                            .delay(0)
+                            .repeatForever(autoreverses: false) : .default, value: isSpinning)
                         
                         // Triangle Arrow Indicator
                         ZStack {
@@ -118,16 +122,33 @@ struct FortuneWheelView: View {
             spinWheel()
             await viewModel.playGame(gameParticipantRewardId: gameParticipantRewardId)
             if let rewardId = viewModel.issuedRewardId {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
                     guard let colors: [Color] = gameDefinitionModel?.gameRewards.map({Color(hex: $0.color)}) else { return }
                     if let index = gameDefinitionModel?.gameRewards.firstIndex(where: {$0.gameRewardId == rewardId}) {
                         let segmentAngle = 360.0 / Double(colors.count)
                         let stopLocationAngle = segmentAngle * (Double(index)+1.0) - (segmentAngle / 2)
                         rotationAngle = -stopLocationAngle
+                        activeIndex = index + 1
                     }
+                    stopWheel()
                 }
             }
-            
+        }
+    }
+    
+    func stopWheel() {
+        self.isSpinning = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            if let rewardId = viewModel.issuedRewardId {
+                if let rewardObject = gameDefinitionModel?.gameRewards.first(where: {$0.gameRewardId == rewardId}) {
+                    // TO DO Need to update this Logic
+                    if rewardObject.rewardType == "" {
+                        self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
+
+                    }
+                    self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: rewardObject.name))
+                }
+            }
         }
     }
     
@@ -145,18 +166,9 @@ struct FortuneWheelView: View {
         let remainder = newAngle.truncatingRemainder(dividingBy: 360)
         let adjustment = (segmentAngle / 2) - (remainder.truncatingRemainder(dividingBy: segmentAngle))
         let adjustedAngle = newAngle + adjustment
-
-        withAnimation(.easeOut(duration: randomDuration)) {
-            rotationAngle = adjustedAngle
-        }
-
+        rotationAngle = adjustedAngle
         activeIndex = Int((remainder + adjustment) / segmentAngle)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + randomDuration) {
-            self.isSpinning = false
-        }
     }
-
 }
 
 struct WheelSegment: View {
