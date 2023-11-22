@@ -144,7 +144,6 @@ struct FortuneWheelView: View {
                     // TO DO Need to update this Logic
                     if rewardObject.rewardType == "" {
                         self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
-
                     }
                     self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: rewardObject.name))
                 }
@@ -234,9 +233,3 @@ struct Triangle: Shape {
         return path
     }
 }
-
-//struct FortuneWheelView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FortuneWheelView(gameDefinitionModel: [])
-//    }
-//}

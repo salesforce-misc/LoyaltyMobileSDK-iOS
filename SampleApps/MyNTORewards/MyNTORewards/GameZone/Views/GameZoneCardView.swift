@@ -79,7 +79,7 @@ struct GameZoneCardView: View {
             return "Expiring today"
         }
         if Calendar.current.isDateInTomorrow(expiredDate) {
-            return "Expiring today"
+            return "Expiring tomorrow"
         }
         return "Expiry \(expiredDate.toString(withFormat: "dd MMM yyyy"))"
     }
