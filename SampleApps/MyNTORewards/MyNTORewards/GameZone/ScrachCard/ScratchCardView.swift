@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ScratchCardView: View {
 	@StateObject var playGameViewModel = PlayGameViewModel()
+	@EnvironmentObject private var routerPath: RouterPath
 	@Environment(\.dismiss) var dismiss
 	@State private var finishedScratching = false
 	@State private var finishedPlaying = false
-	
+	@State var timer: Timer?
 	let cardSize = CGSize(width: 289, height: 115)
 	let backgroundSize = CGSize(width: 343, height: 199)
 	
@@ -36,21 +37,43 @@ struct ScratchCardView: View {
 				}
 				.cornerRadius(15, corners: [.topLeft, .topRight])
 				.edgesIgnoringSafeArea(.bottom)
-				.onChange(of: playGameViewModel.state, perform: { isLoaded in
-					withAnimation(Animation.easeOut(duration: 1)) {
-						self.finishedScratching = (isLoaded == .loaded)
-					}
-					DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-						finishedPlaying = (isLoaded == .loaded)
+				.onChange(of: playGameViewModel.state, perform: { state in
+					switch state {
+					case .loaded:
+						eraseWrapperView()
+						guard let reward = playGameViewModel.playedGameRewards?[1] else { return }
+						// Using timer instead of asyncAfter in order to have control to invalidate the timer to avoid navigation
+						timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
+							reward.rewardType == "NoReward" ? showBetterLuckNextTime() : showCongrats(offerText: reward.name)
+						}
+					default:
+						// TODO: Handle failed loading scenario
+						break
 					}
 				})
 			}
 		}
 	}
 	
+	private func showCongrats(offerText: String) {
+		self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: offerText))
+	}
+	
+	private func showBetterLuckNextTime() {
+		self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
+	}
+	
+	private func eraseWrapperView() {
+		withAnimation(Animation.easeOut(duration: 1)) {
+			self.finishedScratching = true
+		}
+	}
+	
 	private var backButton: some View {
 		HStack {
 			Button {
+				// Invalidating the timer to avoid unintended navigation because of the timer
+				timer?.invalidate()
 				dismiss()
 			} label: {
 				Image("ic-backarrow")
@@ -83,7 +106,7 @@ struct ScratchCardView: View {
 	}
 	
 	private var rewardText: some View {
-		Text(playGameViewModel.reward?.description ?? "--")
+		Text(playGameViewModel.playedGameRewards?[1].name ?? "--")
 			.font(.largeTitle)
 			.bold()
 			.foregroundStyle(.white)

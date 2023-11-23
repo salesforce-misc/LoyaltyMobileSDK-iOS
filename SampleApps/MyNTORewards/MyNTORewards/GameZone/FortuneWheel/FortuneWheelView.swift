@@ -15,13 +15,17 @@ struct FortuneWheelView: View {
     @State private var rotationAngle: Double = 0.0
     @State private var activeIndex: Int?
     @State private var isSpinning: Bool = false
+	@State private var userStartedSpinning = false
+	@State var timer: Timer?
     @ObservedObject var viewModel = PlayGameViewModel()
     var gameDefinitionModel: GameDefinition?
-    
+	
     var body: some View {
         VStack {
             HStack {
                 Button {
+					// Invalidating the timer to avoid unintended navigation because of the timer
+					timer?.invalidate()
                     isSpinning ? nil : dismiss()
                 } label: {
                     Image("ic-backarrow")
@@ -83,13 +87,13 @@ struct FortuneWheelView: View {
                         Button {
                             playGame()
                         } label: {
-                            isSpinning ? Text("") : Text(StringConstants.Gamification.tapSpinButtonLabel).foregroundColor(.white)
+							userStartedSpinning ? Text("") : Text(StringConstants.Gamification.tapSpinButtonLabel).foregroundColor(.white)
                         }
                         .frame(width: 70, height: 70)
                         .background(Color.theme.wheelIndicatorBackground)
                         .clipShape(Circle())
                         .overlay(Circle().stroke(Color.white, lineWidth: 5))
-                        .disabled(isSpinning)  // Disable the button when spinning
+                        .disabled(userStartedSpinning)  // Disable the button when spinning
                         
                     }
                     .frame(width: 300, height: 300)
@@ -115,6 +119,7 @@ struct FortuneWheelView: View {
     }
     
     func playGame() {
+		userStartedSpinning = true
         Task {
             guard let gameParticipantRewardId = gameDefinitionModel?.participantGameRewards.first?.gameParticipantRewardID else {return}
             spinWheel()
@@ -136,14 +141,16 @@ struct FortuneWheelView: View {
     
     func stopWheel() {
         self.isSpinning = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            if let reward = viewModel.playedGameRewards?.first, let offerText = reward.rewardValue {
-                    if reward.rewardType == "No Reward" {
-                        self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
-                    }
-                    self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: offerText))
-            }
-        }
+		// Using timer instead of asyncAfter in order to have control to invalidate the timer to avoid navigation
+		timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
+			if let reward = viewModel.playedGameRewards?.first {
+				if reward.rewardType == "NoReward" {
+					self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
+				} else {
+					self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: reward.name))
+				}
+			}
+		}
     }
     
     func spinWheel() {

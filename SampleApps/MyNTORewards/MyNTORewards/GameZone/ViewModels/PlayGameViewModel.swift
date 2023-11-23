@@ -13,7 +13,6 @@ class PlayGameViewModel: ObservableObject {
     @Published private(set) var state = LoadingState.idle
     @Published var playedGameRewards: [PlayGameReward]?
     @Published var issuedRewardId: String?
-	@Published var reward: PlayGameReward?
 
     private let authManager: ForceAuthenticator
     private let localFileManager: FileManagerProtocol
@@ -44,7 +43,7 @@ class PlayGameViewModel: ObservableObject {
         do {
             let result = try await loyaltyAPIManager.playGame(gameParticipantRewardId: gameParticipantRewardId, devMode: devMode)
             issuedRewardId = result.gameReward.first?.issuedRewardReference
-			self.reward = result.gameReward.first
+			self.playedGameRewards = result.gameReward
         } catch {
             self.state = .failed(error)
             throw error

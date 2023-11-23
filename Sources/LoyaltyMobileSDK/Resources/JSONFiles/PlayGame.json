@@ -5,14 +5,26 @@
         "rewardDefinitionId": "102",
         "gameRewardId": "508",
         "color": "#0099DD",
-        "description": "Win300 Bonus Points",
+        "description": "Win 300 Bonus Points",
         "expirationDate": "2023-10-31T19:00:00.000Z",
         "issuedRewardReference": "508",
         "imageUrl": null,
-        "name": "50 % Off",
+        "name": "50% Off",
         "rewardType": "Voucher",
         "rewardValue": null
-      }
+      },
+	  {
+		  "rewardDefinitionId": "102",
+		  "gameRewardId": "508",
+		  "color": "#0099DD",
+		  "description": "Win 300 Bonus Points",
+		  "expirationDate": "2023-10-31T19:00:00.000Z",
+		  "issuedRewardReference": "508",
+		  "imageUrl": null,
+		  "name": "Better Luck Next Time!",
+		  "rewardType": "NoReward",
+		  "rewardValue": null
+	  }
   ],
   "status": true
 }
