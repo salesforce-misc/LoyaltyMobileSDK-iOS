@@ -42,5 +42,19 @@ struct StringConstants {
         static let failureMessageTitle = "Better luck next time!"
         static let failureBodyText = "Thank you for playing..."
         static let failureBodySubText = "Keep a watch out for more such offers."
+        static let gameZoneHeader = "Game Zone"
+        static let activeTab = "Active"
+        static let expiredTab = "Expired"
+        static let expiringToday = "Expiring today"
+        static let expiringTomorrow = "Expiring tomorrow"
+        static let expiryLabel = "Expiry"
+        static let expiredTabHeaderLabel = "Expired in the last 90 Days"
+        static let spinaWheelHeaderLabel = "Spin a wheel!"
+        static let spinaWheelSubHeaderLabel = "Get a chance to win instant rewards!"
+        // swiftlint:disable line_length
+        static let spinaWheelBodyLabel = "This is a one time offer exclusively for you. This offer if declined may not be repeated. Please refer to the terms and conditions for more information."
+        // swiftlint:enable line_length
+        static let tapSpinaWheeltoPlayLabel = "Tap ‘Spin’ to play."
+        static let tapSpinButtonLabel = "Tap to SPIN"
     }
 }

@@ -36,10 +36,10 @@ struct FortuneWheelView: View {
                 Color.theme.accent
                 VStack {
                     VStack(spacing: 10) {
-                        Text("Spin a wheel!")
+                        Text(StringConstants.Gamification.spinaWheelHeaderLabel)
                             .font(.gameHeaderTitle)
                             
-                        Text("Get a chance to win instant rewards!")
+                        Text(StringConstants.Gamification.spinaWheelSubHeaderLabel)
                             .font(.gameHeaderSubTitle)
                     }
                     .padding(30)
@@ -83,7 +83,7 @@ struct FortuneWheelView: View {
                         Button {
                             playGame()
                         } label: {
-                            isSpinning ? Text("") : Text("Tap to **SPIN**").foregroundColor(.white)
+                            isSpinning ? Text("") : Text(StringConstants.Gamification.tapSpinButtonLabel).foregroundColor(.white)
                         }
                         .frame(width: 70, height: 70)
                         .background(Color.theme.wheelIndicatorBackground)
@@ -97,14 +97,12 @@ struct FortuneWheelView: View {
                     Spacer()
                     
                     VStack(spacing: 20) {
-                        Text("Tap 'Spin' to play.")
+                        Text((StringConstants.Gamification.tapSpinaWheeltoPlayLabel))
                             .font(.gameDescTitle)
-                        // swiftlint:disable line_length
-                        Text("This is a one time offer exclusively for you. This offer if declined may not be repeated. Please refer to the terms and conditions for more information.")
+                        Text(StringConstants.Gamification.spinaWheelBodyLabel)
                             .font(.gameDescText)
                             .multilineTextAlignment(.center)
                             .frame(width: 258)
-                        // swiftlint:enable line_length
                     }
                     Spacer()
                 }
@@ -138,11 +136,11 @@ struct FortuneWheelView: View {
     
     func stopWheel() {
         self.isSpinning = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             if let rewardId = viewModel.issuedRewardId {
                 if let rewardObject = gameDefinitionModel?.gameRewards.first(where: {$0.gameRewardId == rewardId}) {
                     // TO DO Need to update this Logic
-                    if rewardObject.rewardType == "" {
+                    if rewardObject.rewardType == "No Reward" {
                         self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
                     }
                     self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: rewardObject.name))
@@ -158,8 +156,6 @@ struct FortuneWheelView: View {
         isSpinning = true
 
         let randomSpins = Double.random(in: 20...50)
-        let randomDuration = Double.random(in: 5...10)
-        
         let segmentAngle = 360.0 / Double(colors.count)
         let newAngle = rotationAngle + 360 * randomSpins
         let remainder = newAngle.truncatingRemainder(dividingBy: 360)

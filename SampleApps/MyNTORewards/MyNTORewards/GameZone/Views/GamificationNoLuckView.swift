@@ -40,7 +40,7 @@ struct GamificationNoLuckView: View {
                     Spacer()
                 }
             }.diableBounceForScrollView()
-            Button("Back") {
+            Button(StringConstants.Gamification.backButtonTitle) {
                 dismiss()
             }
             .buttonStyle(DarkFlexibleButton(buttonFont: .boldButtonText))
