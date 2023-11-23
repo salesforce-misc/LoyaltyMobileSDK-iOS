@@ -137,14 +137,11 @@ struct FortuneWheelView: View {
     func stopWheel() {
         self.isSpinning = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            if let rewardId = viewModel.issuedRewardId {
-                if let rewardObject = gameDefinitionModel?.gameRewards.first(where: {$0.gameRewardId == rewardId}) {
-                    // TO DO Need to update this Logic
-                    if rewardObject.rewardType == "No Reward" {
+            if let reward = viewModel.playedGameRewards?.first, let offerText = reward.rewardValue {
+                    if reward.rewardType == "No Reward" {
                         self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
                     }
-                    self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: rewardObject.name))
-                }
+                    self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: offerText))
             }
         }
     }
