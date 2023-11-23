@@ -12,7 +12,6 @@ struct GameZoneTabView: View {
     @Binding var tabSelected: Int
     @EnvironmentObject var rootVM: AppRootViewModel
     @ObservedObject var gameViewModel = GameZoneViewModel()
-    let barItems = ["Active", "Expired"]
     
     var body: some View {
         switch gameViewModel.state {

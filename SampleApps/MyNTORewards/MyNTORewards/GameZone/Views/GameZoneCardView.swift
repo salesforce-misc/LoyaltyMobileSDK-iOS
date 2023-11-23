@@ -76,12 +76,12 @@ struct GameZoneCardView: View {
     func getFormattedExpiredLabel() -> String {
         guard let expiredDate = gameCardModel.participantGameRewards.first?.expirationDate else { return "" }
         if Calendar.current.isDateInToday(expiredDate) {
-            return "Expiring today"
+            return StringConstants.Gamification.expiringToday
         }
         if Calendar.current.isDateInTomorrow(expiredDate) {
-            return "Expiring today"
+            return StringConstants.Gamification.expiringTomorrow
         }
-        return "Expiry \(expiredDate.toString(withFormat: "dd MMM yyyy"))"
+        return "\(StringConstants.Gamification.expiryLabel) \(expiredDate.toString(withFormat: "dd MMM yyyy"))"
     }
     
     func getGameTypeText() -> String {

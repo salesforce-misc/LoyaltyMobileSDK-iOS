@@ -10,13 +10,13 @@ import LoyaltyMobileSDK
 
 struct GameZoneView: View {
     @State var tabSelected: Int = 0
-    let barItems = ["Active", "Expired"]
+    let barItems = [StringConstants.Gamification.activeTab, StringConstants.Gamification.expiredTab]
     
     var body: some View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
                 HStack {
-                    Text("Game Zone")
+                    Text(StringConstants.Gamification.gameZoneHeader)
                         .font(.congratsTitle)
                         .padding(.leading, 15)
                         .accessibilityIdentifier(AppAccessibilty.GameZone.header)

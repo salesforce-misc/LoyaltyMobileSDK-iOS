@@ -73,7 +73,7 @@ struct GameZoneExpiredCardView: View {
     }
     
     func getFormattedExpiredLabel() -> String {
-        "Expired"
+        StringConstants.Gamification.expiredTab
     }
     
     func getGameTypeText() -> String {

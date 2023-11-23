@@ -3,11 +3,11 @@
   "gameReward": [
       {
         "rewardDefinitionId": "102",
-        "gameRewardId": "507",
+        "gameRewardId": "508",
         "color": "#0099DD",
-        "description": "Win 20% Off",
+        "description": "Win300 Bonus Points",
         "expirationDate": "2023-10-31T19:00:00.000Z",
-        "issuedRewardReference": "507",
+        "issuedRewardReference": "508",
         "imageUrl": null,
         "name": "50 % Off",
         "rewardType": "Voucher",

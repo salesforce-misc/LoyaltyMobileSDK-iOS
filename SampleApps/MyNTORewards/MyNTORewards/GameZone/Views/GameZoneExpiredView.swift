@@ -13,7 +13,7 @@ struct GameZoneExpiredView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Expired in the last 90 Days")
+            Text(StringConstants.Gamification.expiredTabHeaderLabel)
                 .font(Font.scratchText)
                 .foregroundColor(Color.theme.superLightText)
                 .padding([.horizontal, .top], 16)
