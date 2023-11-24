@@ -16,6 +16,7 @@ struct FortuneWheelView: View {
     @State private var activeIndex: Int?
     @State private var isSpinning: Bool = false
 	@State private var userStartedSpinning = false
+    @State private var showAlertForError = false
 	@State var timer: Timer?
     @ObservedObject var viewModel = PlayGameViewModel()
     var gameDefinitionModel: GameDefinition?
@@ -24,8 +25,8 @@ struct FortuneWheelView: View {
         VStack {
             HStack {
                 Button {
-					// Invalidating the timer to avoid unintended navigation because of the timer
-					timer?.invalidate()
+                    // Invalidating the timer to avoid unintended navigation because of the timer
+                    timer?.invalidate()
                     isSpinning ? nil : dismiss()
                 } label: {
                     Image("ic-backarrow")
@@ -42,7 +43,7 @@ struct FortuneWheelView: View {
                     VStack(spacing: 10) {
                         Text(StringConstants.Gamification.spinaWheelHeaderLabel)
                             .font(.gameHeaderTitle)
-                            
+                        
                         Text(StringConstants.Gamification.spinaWheelSubHeaderLabel)
                             .font(.gameHeaderSubTitle)
                     }
@@ -76,18 +77,18 @@ struct FortuneWheelView: View {
                                 .fill(Color.white)
                                 .frame(width: 70, height: 70)  // Increase these dimensions by the stroke width
                                 .offset(y: -40)
-                                
+                            
                             Triangle()
                                 .fill(Color.theme.wheelIndicatorBackground)
                                 .frame(width: 60, height: 60)
                                 .offset(y: -35)
                         }
-                            
+                        
                         // Spin Button
                         Button {
                             playGame()
                         } label: {
-							userStartedSpinning ? Text("") : Text(StringConstants.Gamification.tapSpinButtonLabel).foregroundColor(.white)
+                            userStartedSpinning ? Text("") : Text(StringConstants.Gamification.tapSpinButtonLabel).foregroundColor(.white)
                         }
                         .frame(width: 70, height: 70)
                         .background(Color.theme.wheelIndicatorBackground)
@@ -114,8 +115,10 @@ struct FortuneWheelView: View {
             }
             .cornerRadius(15, corners: [.topLeft, .topRight])
             .edgesIgnoringSafeArea(.bottom)
+            .alert(isPresented: $showAlertForError) {
+                Alert(title: Text("Error"), message: Text("Something went wrong. Please try again"), dismissButton: .default(Text("OK")))
+            }
         }
-        
     }
     
     func playGame() {
@@ -124,8 +127,7 @@ struct FortuneWheelView: View {
             spinWheel()
             userStartedSpinning = true
             await viewModel.playGame(gameParticipantRewardId: gameParticipantRewardId)
-            if let rewardId = viewModel.issuedRewardId {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+            if viewModel.state == .loaded, let rewardId = viewModel.issuedRewardId {
                     guard let colors: [Color] = gameDefinitionModel?.gameRewards.map({Color(hex: $0.color)}) else { return }
                     if let index = gameDefinitionModel?.gameRewards.firstIndex(where: {$0.gameRewardId == rewardId}) {
                         let segmentAngle = 360.0 / Double(colors.count)
@@ -133,7 +135,28 @@ struct FortuneWheelView: View {
                         rotationAngle = -stopLocationAngle
                         activeIndex = index + 1
                     }
-                    stopWheel()
+                stopWheel()
+                showNextScreenBasedonReward()
+            } else {
+                // handle Error
+                rotationAngle = 0
+                activeIndex =  1
+                stopWheel()
+                userStartedSpinning = false
+                try await Task.sleep(nanoseconds: 500_000_000)
+                showAlertForError = true
+            }
+        }
+    }
+    
+    func showNextScreenBasedonReward() {
+        // Using timer instead of asyncAfter in order to have control to invalidate the timer to avoid navigation
+        timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
+            if let reward = viewModel.playedGameRewards?.first {
+                if reward.rewardType == "NoReward" {
+                    self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
+                } else {
+                    self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: reward.name))
                 }
             }
         }
@@ -141,16 +164,6 @@ struct FortuneWheelView: View {
     
     func stopWheel() {
         self.isSpinning = false
-		// Using timer instead of asyncAfter in order to have control to invalidate the timer to avoid navigation
-		timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
-			if let reward = viewModel.playedGameRewards?.first {
-				if reward.rewardType == "NoReward" {
-					self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
-				} else {
-					self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: reward.name))
-				}
-			}
-		}
     }
     
     func spinWheel() {
