@@ -30,7 +30,7 @@ struct GameZoneCardView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                 }
-                .frame(width: 165, height: 90)
+				.frame(minWidth: 165, minHeight: 90)
                 .cornerRadius(5, corners: [.topLeft, .topRight])
                 VStack(alignment: .leading, spacing: 4) {
                     HStack {
@@ -55,7 +55,7 @@ struct GameZoneCardView: View {
                 .padding(.all, 6)
                 Spacer()
             }
-            .frame(width: 165, height: 203)
+            .frame(minWidth: 165, minHeight: 203)
             .background(Color.white)
             .cornerRadius(10)
             .background(
