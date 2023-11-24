@@ -21,7 +21,7 @@ struct GameZoneCardView: View {
                 ScratchCardView().toolbar(.hidden, for: .tabBar, .navigationBar)
             }
         } label: {
-            VStack {
+			VStack(alignment: .leading, spacing: 0) {
                 ZStack {
                     if gameCardModel.type == .scratchCard {
                         Color.theme.expiredBackgroundText
@@ -30,32 +30,35 @@ struct GameZoneCardView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                 }
-				.frame(minWidth: 165, minHeight: 90)
+				.frame(minWidth: 165)
+				.frame(height: 90)
                 .cornerRadius(5, corners: [.topLeft, .topRight])
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text(gameCardModel.name)
-                            .font(.gameTitle)
-                            .foregroundColor(Color.theme.lightText)
-                            .accessibilityIdentifier("game_zone_active_card_title")
-                        Spacer()
-                    }
-                    Spacer()
+                VStack(alignment: .leading, spacing: 8) {
+					VStack {
+						Text(gameCardModel.name)
+							.font(.gameTitle)
+							.lineLimit(2)
+							.multilineTextAlignment(.leading)
+							.foregroundColor(Color.theme.lightText)
+							.accessibilityIdentifier("game_zone_active_card_title")
+						Spacer()
+					}
+					.frame(height: 44)
                     Text(getGameTypeText())
                         .font(.redeemText)
                         .foregroundColor(Color.theme.superLightText)
                     Text(getFormattedExpiredLabel())
                         .font(.labelText)
-                        .padding([.vertical], 2)
+                        .padding([.vertical], 3)
                         .padding([.horizontal], 12)
                         .background(.black)
                         .foregroundColor(.white)
                         .cornerRadius(4)
                 }
-                .padding(.all, 6)
-                Spacer()
+                .padding(10)
             }
-            .frame(minWidth: 165, minHeight: 203)
+            .frame(minWidth: 165)
+			.frame(height: 203)
             .background(Color.white)
             .cornerRadius(10)
             .background(
