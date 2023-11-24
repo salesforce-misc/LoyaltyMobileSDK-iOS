@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct StringConstants {
 	struct Receipts {
@@ -55,6 +56,6 @@ struct StringConstants {
         static let spinaWheelBodyLabel = "This is a one time offer exclusively for you. This offer if declined may not be repeated. Please refer to the terms and conditions for more information."
         // swiftlint:enable line_length
         static let tapSpinaWheeltoPlayLabel = "Tap ‘Spin’ to play."
-        static let tapSpinButtonLabel = "Tap to SPIN"
+		static let tapSpinButtonLabel: LocalizedStringKey = "Tap to **SPIN**"
     }
 }
