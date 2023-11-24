@@ -30,6 +30,7 @@ class PlayGameViewModel: ObservableObject {
     func playGame(gameParticipantRewardId: String) async {
         state = .loading
         do {
+			try await Task.sleep(nanoseconds: 3_000_000_000)
             try await getPlayedGameRewards(gameParticipantRewardId: gameParticipantRewardId, devMode: true)
             self.state = .loaded
         } catch {
@@ -42,6 +43,7 @@ class PlayGameViewModel: ObservableObject {
         do {
             let result = try await loyaltyAPIManager.playGame(gameParticipantRewardId: gameParticipantRewardId, devMode: devMode)
             issuedRewardId = result.gameReward.first?.issuedRewardReference
+			self.playedGameRewards = result.gameReward
         } catch {
             self.state = .failed(error)
             throw error
