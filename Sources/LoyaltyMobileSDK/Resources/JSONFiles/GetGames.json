@@ -130,7 +130,7 @@
       "name": "Bonnie and Clyde Style Promotion",
       "startDate": "2023-10-01T19:00:00.000Z",
       "status": "active",
-      "timeoutDuration": 10,
+      "timeoutDuration": 20,
       "type": "SpintheWheel"
     },
     

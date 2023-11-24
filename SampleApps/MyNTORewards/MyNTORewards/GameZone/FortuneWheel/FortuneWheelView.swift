@@ -66,7 +66,7 @@ struct FortuneWheelView: View {
                             }
                         }
                         .rotationEffect(Angle(degrees: rotationAngle))
-                        .animation(isSpinning ? Animation.easeOut(duration: 7)
+                        .animation(isSpinning ? Animation.easeOut(duration: gameDefinitionModel?.timeoutDuration ?? 15)
                             .delay(0)
                             .repeatForever(autoreverses: false) : .default, value: isSpinning)
                         
@@ -119,10 +119,10 @@ struct FortuneWheelView: View {
     }
     
     func playGame() {
-		userStartedSpinning = true
         Task {
             guard let gameParticipantRewardId = gameDefinitionModel?.participantGameRewards.first?.gameParticipantRewardID else {return}
             spinWheel()
+            userStartedSpinning = true
             await viewModel.playGame(gameParticipantRewardId: gameParticipantRewardId)
             if let rewardId = viewModel.issuedRewardId {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
