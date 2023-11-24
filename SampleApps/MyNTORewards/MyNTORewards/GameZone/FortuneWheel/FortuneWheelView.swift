@@ -134,18 +134,26 @@ struct FortuneWheelView: View {
                         let stopLocationAngle = segmentAngle * (Double(index)+1.0) - (segmentAngle / 2)
                         rotationAngle = -stopLocationAngle
                         activeIndex = index + 1
+                        stopWheel()
+                        showNextScreenBasedonReward()
+                    } else {
+                        // No matching reward found handle Error
+                        handleErrorCase()
                     }
-                stopWheel()
-                showNextScreenBasedonReward()
             } else {
                 // handle Error
-                rotationAngle = 0
-                activeIndex =  1
-                stopWheel()
-                userStartedSpinning = false
-                try await Task.sleep(nanoseconds: 500_000_000)
-                showAlertForError = true
+                handleErrorCase()
             }
+        }
+    }
+    
+    func handleErrorCase() {
+        rotationAngle = 0
+        activeIndex =  1
+        stopWheel()
+        userStartedSpinning = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            showAlertForError = true
         }
     }
     
