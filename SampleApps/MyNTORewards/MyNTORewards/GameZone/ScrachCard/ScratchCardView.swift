@@ -41,7 +41,7 @@ struct ScratchCardView: View {
 					switch state {
 					case .loaded:
 						eraseWrapperView()
-						guard let reward = playGameViewModel.playedGameRewards?[1] else { return }
+                        guard let reward = playGameViewModel.playedGameRewards?.first else { return }
 						// Using timer instead of asyncAfter in order to have control to invalidate the timer to avoid navigation
 						timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
 							reward.rewardType == "NoReward" ? showBetterLuckNextTime() : showCongrats(offerText: reward.name)
@@ -106,7 +106,7 @@ struct ScratchCardView: View {
 	}
 	
 	private var rewardText: some View {
-		Text(playGameViewModel.playedGameRewards?[1].name ?? "--")
+        Text(playGameViewModel.playedGameRewards?.first?.name ?? "--")
 			.font(.largeTitle)
 			.bold()
 			.foregroundStyle(.white)
