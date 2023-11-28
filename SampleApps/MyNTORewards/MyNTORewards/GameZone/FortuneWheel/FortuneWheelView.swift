@@ -54,7 +54,7 @@ struct FortuneWheelView: View {
                         // Fortune Wheel Segments
                         ZStack {
                             if let colors: [Color] = gameDefinitionModel?.gameRewards.map({Color(hex: $0.color)}),
-                               let labels: [String] = gameDefinitionModel?.gameRewards.map({$0.description}) {
+							   let labels: [LocalizedStringKey] = gameDefinitionModel?.gameRewards.map({LocalizedStringKey($0.description)}) {
                                 ForEach(0..<colors.count, id: \.self) { index in
                                     let startAngle = (360.0 / Double(colors.count) * Double(index)) - 90.0
                                     let endAngle = (360.0 / Double(colors.count) * Double(index + 1)) - 90.0
@@ -66,6 +66,16 @@ struct FortuneWheelView: View {
                                 }
                             }
                         }
+						.overlay {
+							ZStack {
+								Circle()
+									.strokeBorder(Color.theme.fortuneWheelStrokeColor, lineWidth: 5)
+									.frame(width: 316, height: 316)
+								Circle()
+									.strokeBorder(Color.theme.fortuneWheelSecondaryStrokeColor, lineWidth: 1)
+									.frame(width: 307, height: 307)
+							}
+						}
                         .rotationEffect(Angle(degrees: rotationAngle))
                         .animation(isSpinning ? Animation.easeOut(duration: gameDefinitionModel?.timeoutDuration ?? 15)
                             .delay(0)
@@ -195,7 +205,7 @@ struct WheelSegment: View {
     var startAngle: Double
     var endAngle: Double
     var color: Color
-    var label: String
+    var label: LocalizedStringKey
     
     var body: some View {
         let p = Path { path in
