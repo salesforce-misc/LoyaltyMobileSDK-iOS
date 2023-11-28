@@ -54,8 +54,7 @@ struct FortuneWheelView: View {
                         // Fortune Wheel Segments
                         ZStack {
                             if let colors: [Color] = gameDefinitionModel?.gameRewards.map({Color(hex: $0.color)}),
-							   let labels: [LocalizedStringKey] = gameDefinitionModel?.gameRewards.map({LocalizedStringKey($0.description)})
-							{
+							   let labels: [LocalizedStringKey] = gameDefinitionModel?.gameRewards.map({LocalizedStringKey($0.description)}) {
                                 ForEach(0..<colors.count, id: \.self) { index in
                                     let startAngle = (360.0 / Double(colors.count) * Double(index)) - 90.0
                                     let endAngle = (360.0 / Double(colors.count) * Double(index + 1)) - 90.0
