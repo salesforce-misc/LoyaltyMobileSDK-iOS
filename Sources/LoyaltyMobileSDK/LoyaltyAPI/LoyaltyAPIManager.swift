@@ -61,6 +61,7 @@ public class LoyaltyAPIManager {
         case unenrollPromotion(programName: String, version: String)
         case getVouchers(programName: String, membershipNumber: String, version: String)
         case getGames(participantId: String, version: String)
+        case playGame(gameParticipantRewardId: String, version: String)
 
     }
     
@@ -88,8 +89,9 @@ public class LoyaltyAPIManager {
             return ForceAPI.path(for: "loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers", version: version)
         case .getGames(participantId: let participantId, version: let version):
             return ForceAPI.path(for: "game/participant/\(participantId)/games", version: version)
+        case .playGame(gameParticipantRewardId: let gameParticipantRewardId, version: let version):
+            return ForceAPI.path(for: "game/gameParticipantReward/\(gameParticipantRewardId)/game-reward", version: version)
         }
-    
     }
     
     /// Get Member Benefits - Makes an asynchronous request for data from the Salesforce
@@ -510,5 +512,30 @@ public class LoyaltyAPIManager {
             Logger.error(error.localizedDescription)
             throw error
         }
-    }    
+    }   
+    
+    /// Play Game information for the loyalty member
+    /// - Parameters:
+    ///   - gameParticipantRewardId: The game of the reward that participant has recieved for playing the game.
+    ///   - version: The API version number
+    ///   - devMode: Whether it's in devMode
+    /// - Returns: A ``PlayGameModel`` object
+    public func playGame(
+        gameParticipantRewardId: String,
+        version: String = LoyaltyAPIVersion.defaultVersion,
+        devMode: Bool = false) async throws -> PlayGameModel {
+        do {
+            if devMode {
+                let result = try forceClient.fetchLocalJson(type: PlayGameModel.self, file: "PlayGame")
+                return result
+            }
+            let path = getPath(for: .playGame(gameParticipantRewardId: gameParticipantRewardId, version: version))
+            let request = try ForceRequest.create(instanceURL: instanceURL, path: path, method: "GET")
+            let result = try await forceClient.fetch(type: PlayGameModel.self, with: request)
+            return result
+        } catch {
+            Logger.error(error.localizedDescription)
+            throw error
+        }
+    }
 }

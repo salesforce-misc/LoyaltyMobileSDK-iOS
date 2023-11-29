@@ -24,6 +24,10 @@ class RouterPath: ObservableObject {
 	func navigateFromMore(to destination: RouterDestination) {
 		pathFromMore.append(destination)
 	}
+    
+    func navigateFromGameZone(to destination: RouterDestination) {
+        pathFromMore.append(destination)
+    }
 	
 	func presentSheet(destination: SheetDestination) {
 		dismissSheets()

@@ -226,7 +226,7 @@ class DeveloperPreview {
                                     type: .spinaWheel,
                                     startDate: Date(),
                                     endDate: nil,
-                                    timeoutDuration: "",
+                                    timeoutDuration: 10,
                                     status: .active,
                                     gameRewards: [],
                                     participantGameRewards: [])
@@ -237,7 +237,7 @@ class DeveloperPreview {
                                       type: .spinaWheel,
                                       startDate: Date(),
                                       endDate: nil,
-                                      timeoutDuration: "",
+                                      timeoutDuration: 10,
                                       status: .expired,
                                       gameRewards: [],
                                       participantGameRewards: [])

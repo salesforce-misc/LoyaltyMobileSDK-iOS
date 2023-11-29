@@ -20,7 +20,7 @@ public struct GameDefinition: Codable {
     public let type: GameType
     public let startDate: Date
     public let endDate: Date?
-    public let timeoutDuration: String
+    public let timeoutDuration: Double
     public let status: GameStatus
     public let gameRewards: [GameReward]
     public let participantGameRewards: [ParticipantGameReward]
@@ -31,7 +31,7 @@ public struct GameDefinition: Codable {
                 type: GameType,
                 startDate: Date,
                 endDate: Date?,
-                timeoutDuration: String,
+                timeoutDuration: Double,
                 status: GameStatus,
                 gameRewards: [GameReward],
                 participantGameRewards: [ParticipantGameReward]) {
@@ -50,27 +50,28 @@ public struct GameDefinition: Codable {
 
 // MARK: - GameReward
 public struct GameReward: Codable {
-    public let name, description, rewardType, rewardDefinition: String
-    public let rewardValue, color, imageUrl: String
+    public let name, description, rewardType, rewardDefinitionId, gameRewardId: String
+    public let color: String
     public let expirationDate: Date
+    public let rewardValue, imageUrl: String?
 }
 
 // MARK: - ParticipantGameReward
 public struct ParticipantGameReward: Codable {
-    public let gameParticipantRewardID, name, description, rewardType: String
-    public let rewardDefinitionId, rewardValue, issuedRewardReference, status: String
+    public let gameParticipantRewardID, gameRewardId, sourceActivityId: String
+    public let issuedRewardReference, status: String
     public let expirationDate: Date
 
     enum CodingKeys: String, CodingKey {
         case gameParticipantRewardID = "gameParticipantRewardId"
-        case name, description, rewardType, rewardDefinitionId, rewardValue, expirationDate, issuedRewardReference, status
+        case expirationDate, issuedRewardReference, status, gameRewardId, sourceActivityId
     }
 }
 
 // MARK: - GameType
 public enum GameType: String, Codable {
     case scratchCard
-    case spinaWheel
+    case spinaWheel = "SpintheWheel"
 }
 
 // MARK: - GameStatus
