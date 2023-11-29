@@ -11,7 +11,7 @@ import LoyaltyMobileSDK
 struct GameZoneTabView: View {
     @Binding var tabSelected: Int
     @EnvironmentObject var rootVM: AppRootViewModel
-    @ObservedObject var gameViewModel = GameZoneViewModel()
+    @EnvironmentObject var gameViewModel: GameZoneViewModel
     
     var body: some View {
         switch gameViewModel.state {
@@ -68,4 +68,6 @@ struct GameZoneTabView: View {
 
 #Preview {
     GameZoneTabView(tabSelected: .constant(0))
+        .environmentObject(AppRootViewModel())
+        .environmentObject(GameZoneViewModel())
 }

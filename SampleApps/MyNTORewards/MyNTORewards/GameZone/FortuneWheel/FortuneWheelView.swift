@@ -98,7 +98,10 @@ struct FortuneWheelView: View {
                         Button {
                             playGame()
                         } label: {
-                            userStartedSpinning ? Text("") : Text(StringConstants.Gamification.tapSpinButtonLabel).foregroundColor(.white)
+                            userStartedSpinning ?
+                            Text(StringConstants.Gamification.tapSpinButtonLabel).foregroundColor(Color.theme.wheelIndicatorBackground) :
+                            Text(StringConstants.Gamification.tapSpinButtonLabel).foregroundColor(.white)
+                            
                         }
                         .frame(width: 70, height: 70)
                         .background(Color.theme.wheelIndicatorBackground)

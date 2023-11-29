@@ -15,6 +15,7 @@ struct BottomNavTabsView: View {
 	@StateObject var cameraVM = CameraViewModel()
 	@StateObject var routerPath = RouterPath()
 	@StateObject var receiptListViewModel = ReceiptListViewModel()
+    @StateObject var gameZoneVM = GameZoneViewModel()
 	@State var selectedTab: Int = Tab.home.rawValue
 	
 	var body: some View {
@@ -76,6 +77,7 @@ struct BottomNavTabsView: View {
         .environmentObject(cameraVM)
         .environmentObject(routerPath)
         .environmentObject(receiptListViewModel)
+        .environmentObject(gameZoneVM)
 	}
 }
 
