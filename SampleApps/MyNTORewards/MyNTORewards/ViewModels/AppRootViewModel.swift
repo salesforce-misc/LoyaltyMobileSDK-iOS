@@ -179,7 +179,7 @@ class AppRootViewModel: ObservableObject {
 														  loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
                                                           instanceURL: AppSettings.shared.getInstanceURL(),
                                                           forceClient: ForceClient(auth: authManager))
-				let profile = try await loyaltyAPIManager.getCommunityMemberProfile()
+				let profile = try await loyaltyAPIManager.getCommunityMemberProfile(devMode: true)
 				
 				let member = CommunityMemberModel(firstName: profile.associatedContact.firstName,
 												  lastName: profile.associatedContact.lastName,

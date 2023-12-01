@@ -7,12 +7,15 @@
 
 import Foundation
 import LoyaltyMobileSDK
+import SwiftUI
 
 @MainActor
 class PlayGameViewModel: ObservableObject {
     @Published private(set) var state = LoadingState.idle
     @Published var playedGameRewards: [PlayGameReward]?
     @Published var issuedRewardId: String?
+    let defaultColors: [String] = ["01CD6C", "#0099DD", "#FF4B3A", "#0099DD", "#0099DD", "#FF4B3A", "01CD6C", "#0099DD", "#FF4B3A", "#FFC501" ]
+    @Published var wheelColors: [Color]?
 
     private let authManager: ForceAuthenticator
     private let localFileManager: FileManagerProtocol
@@ -43,13 +46,24 @@ class PlayGameViewModel: ObservableObject {
         do {
             let result = try await loyaltyAPIManager.playGame(gameParticipantRewardId: gameParticipantRewardId, devMode: devMode)
             issuedRewardId = result.gameReward.first?.issuedRewardReference
-			self.playedGameRewards = result.gameReward
+            self.playedGameRewards = result.gameReward
         } catch {
             self.state = .failed(error)
             throw error
         }
     }
     
+    func getWheelColors(gameModel: GameDefinition?) -> [Color]? {
+        if wheelColors != nil {
+            return wheelColors
+        }
+        if let colors: [Color] = gameModel?.gameRewards.map({(Color(hex: ($0.color ?? defaultColors.randomElement() ?? "01CD6C")))}) {
+            wheelColors = colors
+            return wheelColors
+        }
+        return nil
+    }
+        
     func clear() {
         playedGameRewards = nil
     }

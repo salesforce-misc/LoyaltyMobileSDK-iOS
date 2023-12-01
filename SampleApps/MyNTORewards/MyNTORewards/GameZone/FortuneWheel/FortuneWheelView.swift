@@ -53,8 +53,8 @@ struct FortuneWheelView: View {
                     ZStack {
                         // Fortune Wheel Segments
                         ZStack {
-                            if let colors: [Color] = gameDefinitionModel?.gameRewards.map({Color(hex: $0.color)}),
-							   let labels: [LocalizedStringKey] = gameDefinitionModel?.gameRewards.map({LocalizedStringKey($0.description)}) {
+                            if let colors: [Color] = viewModel.getWheelColors(gameModel: gameDefinitionModel),
+							   let labels: [LocalizedStringKey] = gameDefinitionModel?.gameRewards.map({LocalizedStringKey($0.name)}) {
                                 ForEach(0..<colors.count, id: \.self) { index in
                                     let startAngle = (360.0 / Double(colors.count) * Double(index)) - 90.0
                                     let endAngle = (360.0 / Double(colors.count) * Double(index + 1)) - 90.0
@@ -141,8 +141,8 @@ struct FortuneWheelView: View {
             userStartedSpinning = true
             await viewModel.playGame(gameParticipantRewardId: gameParticipantRewardId)
             if viewModel.state == .loaded, let rewardId = viewModel.issuedRewardId {
-                    guard let colors: [Color] = gameDefinitionModel?.gameRewards.map({Color(hex: $0.color)}) else { return }
-                    if let index = gameDefinitionModel?.gameRewards.firstIndex(where: {$0.gameRewardId == rewardId}) {
+                guard let colors: [Color] = viewModel.getWheelColors(gameModel: gameDefinitionModel) else { return }
+                    if let index = gameDefinitionModel?.gameRewards.firstIndex(where: {$0.rewardId == rewardId}) {
                         let segmentAngle = 360.0 / Double(colors.count)
                         let stopLocationAngle = segmentAngle * (Double(index)+1.0) - (segmentAngle / 2)
                         rotationAngle = -stopLocationAngle
@@ -189,7 +189,7 @@ struct FortuneWheelView: View {
     
     func spinWheel() {
         if isSpinning { return }
-        guard let colors: [Color] = gameDefinitionModel?.gameRewards.map({Color(hex: $0.color)}) else { return }
+        guard let colors: [Color] = viewModel.getWheelColors(gameModel: gameDefinitionModel) else { return }
 
         isSpinning = true
 

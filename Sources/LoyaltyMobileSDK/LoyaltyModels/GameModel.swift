@@ -16,18 +16,19 @@ public struct GameModel: Codable {
 
 // MARK: - GameDefinition
 public struct GameDefinition: Codable {
-    public let name, gameDefinitionId, description: String
+    public let name: String
+    public let gameDefinitionId, description: String?
     public let type: GameType
     public let startDate: Date
     public let endDate: Date?
-    public let timeoutDuration: Double
-    public let status: GameStatus
+    public let timeoutDuration: Double?
+    public let status: GameStatus?
     public let gameRewards: [GameReward]
     public let participantGameRewards: [ParticipantGameReward]
     
-    public init(name: String, 
-                gameDefinitionId: String,
-                description: String,
+    public init(name: String,
+                gameDefinitionId: String?,
+                description: String?,
                 type: GameType,
                 startDate: Date,
                 endDate: Date?,
@@ -50,21 +51,21 @@ public struct GameDefinition: Codable {
 
 // MARK: - GameReward
 public struct GameReward: Codable {
-    public let name, description, rewardType, rewardDefinitionId, gameRewardId: String
-    public let color: String
-    public let expirationDate: Date
-    public let rewardValue, imageUrl: String?
+    public let name, rewardType, rewardId: String
+    public let color: String?
+    public let expirationDate: Date?
+    public let rewardValue, imageUrl, description: String?
 }
 
 // MARK: - ParticipantGameReward
 public struct ParticipantGameReward: Codable {
-    public let gameParticipantRewardID, gameRewardId, sourceActivityId: String
-    public let issuedRewardReference, status: String
+    public let gameParticipantRewardID, status: String
+    public let issuedRewardReference, gameRewardId, sourceActivity: String?
     public let expirationDate: Date
 
     enum CodingKeys: String, CodingKey {
         case gameParticipantRewardID = "gameParticipantRewardId"
-        case expirationDate, issuedRewardReference, status, gameRewardId, sourceActivityId
+        case expirationDate, issuedRewardReference, status, gameRewardId, sourceActivity
     }
 }
 
@@ -80,3 +81,4 @@ public enum GameStatus: String, Codable {
     case expired
     case played
 }
+

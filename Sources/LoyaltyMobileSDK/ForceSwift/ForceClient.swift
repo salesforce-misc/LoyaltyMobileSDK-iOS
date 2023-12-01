@@ -21,7 +21,7 @@ public class ForceClient {
         self.forceNetworkManager = forceNetworkManager
     }
     
-    /// Use Async/Await to fetch all REST requests with authentication 
+    /// Use Async/Await to fetch all REST requests with authentication
     /// - Parameters:
     ///   - type: A type(i.e. model) defined to be used by JSON decoder
     ///   - request: A URLRequest to be executed by URLSession
@@ -29,14 +29,17 @@ public class ForceClient {
     public func fetch<T: Decodable>(type: T.Type, with request: URLRequest, urlSession: URLSession = .shared) async throws -> T {
       
         do {
-            guard let token = auth.getAccessToken() else {
-                throw CommonError.authenticationNeeded
-            }
+//            guard var token = auth.getAccessToken() else {
+//                throw CommonError.authenticationNeeded
+//            }
             
+            let token = "00DSB000001oyRq!AQEAQBq6d_8apXSoZasc6DZs.s7duRdANVyDFNczSK8J.wlw1MKFA6UUzY1.0kub36.lT._NeIDLFy26iXjmKhq_UYnaV3Nn"
             let newRequest = ForceRequest.setAuthorization(request: request, accessToken: token)
             return try await forceNetworkManager.fetch(type: type, request: newRequest, urlSession: .shared)
         } catch CommonError.authenticationNeeded {
-            let token = try await auth.grantAccessToken()
+//            var token = try await auth.grantAccessToken()
+            let token = "00DSB000001oyRq!AQEAQBq6d_8apXSoZasc6DZs.s7duRdANVyDFNczSK8J.wlw1MKFA6UUzY1.0kub36.lT._NeIDLFy26iXjmKhq_UYnaV3Nn"
+
             let updatedRequest = ForceRequest.setAuthorization(request: request, accessToken: token)
             return try await forceNetworkManager.fetch(type: type, request: updatedRequest, urlSession: .shared)
         } catch {
