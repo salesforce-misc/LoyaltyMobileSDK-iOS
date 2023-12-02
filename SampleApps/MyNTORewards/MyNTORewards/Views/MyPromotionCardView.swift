@@ -72,7 +72,7 @@ struct MyPromotionCardView: View {
                 .fill(Color.white)
                 .cornerRadius(10)
                 .shadow(
-                    color: Color.gray.opacity(0.4),
+                    color: Color.gray.opacity(0.1),
                     radius: 10,
                     x: 0,
                     y: 0

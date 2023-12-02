@@ -84,19 +84,20 @@ struct MyPromotionsView: View {
     
     var unenrolledView: some View {
         
-        ScrollView {
-            LazyVStack(spacing: 15) {
-                if promotionVM.unenrolledPromotions.isEmpty {
-                    EmptyStateView(title: "No promotions yet",
-                                   subTitle: "When you have eligible promotions to opt for, you’ll see them here.")
-                }
-                ForEach(Array(promotionVM.unenrolledPromotions.enumerated()), id: \.offset) { index, promotion in
-                    MyPromotionCardView(accessibilityID: "promotion_\(index)", promotion: promotion)
-                }
+        List {
+            if promotionVM.unenrolledPromotions.isEmpty {
+                EmptyStateView(title: "No promotions yet",
+                               subTitle: "When you have eligible promotions to opt for, you’ll see them here.")
+            }
+            ForEach(Array(promotionVM.unenrolledPromotions.enumerated()), id: \.offset) { index, promotion in
+                MyPromotionCardView(accessibilityID: "promotion_\(index)", promotion: promotion)
             }
             .frame(maxWidth: .infinity)
-            .padding(.top, 20)
+            .listRowBackground(Color.theme.background)
+            .listRowSeparator(.hidden)
         }
+        .padding(.top, -20)
+        .scrollContentBackground(.hidden)
         .refreshable {
             Logger.debug("Reloading unenrolled...")
             do {
@@ -109,20 +110,19 @@ struct MyPromotionsView: View {
     
     var activeView: some View {
         
-        ScrollView {
-            LazyVStack(spacing: 15) {
-                if promotionVM.activePromotions.isEmpty {
-                    EmptyStateView(title: "No Promotions, yet.",
-                                   subTitle: "After you opt for promotions, you’ll see them here.")
-                }
-                ForEach(Array(promotionVM.activePromotions.enumerated()), id: \.offset) { index, promotion in
-                    MyPromotionCardView(accessibilityID: "promotion_\(index)", promotion: promotion)
-                }
+        List {
+            if promotionVM.activePromotions.isEmpty {
+                EmptyStateView(title: "No Promotions, yet.",
+                               subTitle: "After you opt for promotions, you’ll see them here.")
             }
-            .frame(maxWidth: .infinity)
-            .padding(.top, 20)
-            
+            ForEach(Array(promotionVM.activePromotions.enumerated()), id: \.offset) { index, promotion in
+                MyPromotionCardView(accessibilityID: "promotion_\(index)", promotion: promotion)
+            }
+            .listRowBackground(Color.theme.background)
+            .listRowSeparator(.hidden)
         }
+        .padding(.top, -20)
+        .scrollContentBackground(.hidden)
         .refreshable {
             Logger.debug("Reloading active...")
             do {
@@ -136,20 +136,19 @@ struct MyPromotionsView: View {
     
     var allView: some View {
         
-        ScrollView {
-            LazyVStack(spacing: 15) {
-                if promotionVM.allEligiblePromotions.isEmpty {
-                    EmptyStateView(title: "No promotions yet",
-                                   subTitle: "When you opt for promotions or have eligible promotions to opt for, you’ll see them here.")
-                }
-                ForEach(Array(promotionVM.allEligiblePromotions.enumerated()), id: \.offset) { index, promotion in
-                    MyPromotionCardView(accessibilityID: "promotion_\(index)", promotion: promotion)
-                }
+        List {
+            if promotionVM.allEligiblePromotions.isEmpty {
+                EmptyStateView(title: "No promotions yet",
+                               subTitle: "When you opt for promotions or have eligible promotions to opt for, you’ll see them here.")
             }
-            .frame(maxWidth: .infinity)
-            .padding(.top, 20)
-            
+            ForEach(Array(promotionVM.allEligiblePromotions.enumerated()), id: \.offset) { index, promotion in
+                MyPromotionCardView(accessibilityID: "promotion_\(index)", promotion: promotion)
+            }
+            .listRowBackground(Color.theme.background)
+            .listRowSeparator(.hidden)
         }
+        .padding(.top, -20)
+        .scrollContentBackground(.hidden)
         .refreshable {
             Logger.debug("Reloading all...")
             do {
@@ -167,5 +166,6 @@ struct MyPromotionsView_Previews: PreviewProvider {
         MyPromotionsView()
             .environmentObject(dev.rootVM)
             .environmentObject(dev.promotionVM)
+            .environmentObject(dev.imageVM)
     }
 }

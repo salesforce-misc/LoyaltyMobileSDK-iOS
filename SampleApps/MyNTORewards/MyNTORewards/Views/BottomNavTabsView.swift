@@ -50,13 +50,6 @@ struct BottomNavTabsView: View {
                 routerPath.pathFromMore.removeAll()
             }
         }
-        .background {
-            LoyaltyConditionalNavLink(isActive: $promotionsVM.isCheckoutNavigationActive) {
-                ProductView()
-            } label: {
-                EmptyView()
-            }
-        }
         .navigationBarHidden(true)
         .onAppear {
             // correct the transparency bug for Tab bars
