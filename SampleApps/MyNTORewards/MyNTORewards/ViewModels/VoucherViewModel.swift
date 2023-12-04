@@ -130,12 +130,6 @@ class VoucherViewModel: ObservableObject, Reloadable {
         }
         
     }
-	
-	func getTitlesOfAvailableVouchers(membershipNumber: String) async throws {
-		availableVouchersTitles = try await loadFilteredVouchers(membershipNumber: membershipNumber, filter: .Issued).map {
-			VoucherTitle(id: $0.id, title: $0.voucherDefinition)
-		}
-	}
     
     func reloadFilteredVouchers(membershipNumber: String, filter: StatusFilter, devMode: Bool = false) async throws -> [VoucherModel] {
         do {
@@ -165,6 +159,7 @@ class VoucherViewModel: ObservableObject, Reloadable {
                 availableVochers = try await loadFilteredVouchers(membershipNumber: membershipNumber, filter: .Issued, devMode: devMode)
             }
         }
+        availableVouchersTitles = availableVochers.map { VoucherTitle(id: $0.id, title: $0.voucherDefinition) }
     }
     
 	func loadRedeemedVouchers(membershipNumber: String, reload: Bool = false, devMode: Bool = false) async throws {
