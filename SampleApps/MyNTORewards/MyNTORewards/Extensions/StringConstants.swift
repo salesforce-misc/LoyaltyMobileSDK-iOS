@@ -31,6 +31,6 @@ struct StringConstants {
 		static let emptyReceiptsViewTitle = "Looks like you haven’t uploaded any receipts yet"
 		static let emptyReceiptsViewBody = "Upload your receipts and get loyalty points for the eligible items."
         static let requestForManualReviewButton = "Request a Manual Review"
-        static let noEligibleItemsText = "No Eligible Items found in the Receipt!"
+        static let noEligibleItemsText = "We couldn’t find any eligible items in the receipt."
 	}
 }

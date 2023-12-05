@@ -30,24 +30,21 @@ struct ReceiptScanErrorView: View {
             .background(.white)
             .cornerRadius(4)
     }
+	
     func getBodyText() -> String {
         if let bodyMessage = bodyText {
             return bodyMessage
         }
-        var subTitleText = "Try scanning the receipt again or submit it for a manual review."
-        if scanStatus == .receiptNotReadable {
-            subTitleText = "Try scanning the receipt again."
-        }
-        return subTitleText
+        return ""
     }
     
     func getMessageText() -> String {
         if let bodyMessage = message {
             return bodyMessage
         }
-        var titleText = "Oops! Some items in the receipt could not be read and processed."
+        var titleText = "We couldn’t process some items in the receipt."
         if scanStatus == .receiptNotReadable {
-            titleText = "Oops! The required information in the receipt could not be read and processed."
+            titleText = "We couldn’t process the receipt."
         }
         return  titleText
     }
