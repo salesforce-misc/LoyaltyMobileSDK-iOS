@@ -15,7 +15,7 @@ class PlayGameViewModel: ObservableObject {
     @Published var playedGameRewards: [PlayGameReward]?
     @Published var issuedRewardId: String?
     let defaultColors: [String] = ["01CD6C", "#0099DD", "#FF4B3A", "#0099DD", "#0099DD", "#FF4B3A", "01CD6C", "#0099DD", "#FF4B3A", "#FFC501" ]
-    @Published var wheelColors: [Color]?
+    var wheelColors: [Color]?
 
     private let authManager: ForceAuthenticator
     private let localFileManager: FileManagerProtocol
@@ -53,7 +53,7 @@ class PlayGameViewModel: ObservableObject {
     }
     
     func getWheelColors(gameModel: GameDefinition?) -> [Color]? {
-        if wheelColors != nil {
+        if let wheelColors = wheelColors {
             return wheelColors
         }
         if let colors: [Color] = gameModel?.gameRewards.map({(Color(hex: ($0.color ?? "#FFFFFF")))}) {

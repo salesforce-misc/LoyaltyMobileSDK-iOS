@@ -60,7 +60,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     
     func fetchGames(participantId: String, devMode: Bool = false) async throws {
         do {
-            let result = try await loyaltyAPIManager.getGames(participantId: participantId, devMode: false)
+            let result = try await loyaltyAPIManager.getGames(participantId: participantId)
             activeGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
                 if let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate {
                     return expirationDate >= Date() && gameDefinition.participantGameRewards.first?.status == .yetToReward

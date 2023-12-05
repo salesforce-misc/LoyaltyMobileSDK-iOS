@@ -53,7 +53,6 @@ public struct GameDefinition: Codable {
 public struct GameReward: Codable {
     public let name, rewardType, rewardId: String
     public let color: String?
-    public let expirationDate: Date?
     public let rewardValue, imageUrl, description: String?
 }
 

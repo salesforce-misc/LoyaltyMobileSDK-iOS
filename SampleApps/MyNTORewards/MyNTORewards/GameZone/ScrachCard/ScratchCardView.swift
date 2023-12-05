@@ -271,10 +271,8 @@ struct ScratchCardGame<Content: View, OverlayView: View>: View {
 								// Update starting point and add user drag locations
 								if startingPoint == .zero {
                                     Task {
-                                        if playGameViewModel.state != .loaded {
-                                            guard let gameParticipantRewardId = gameModel?.participantGameRewards.first?.gameParticipantRewardID else {return}
-                                            await playGameViewModel.playGame(gameParticipantRewardId: gameParticipantRewardId)
-                                        }
+                                    guard let gameParticipantRewardId = gameModel?.participantGameRewards.first?.gameParticipantRewardID else {return}
+                                    await playGameViewModel.playGame(gameParticipantRewardId: gameParticipantRewardId)
                                     }
 									startingPoint = value.location
 								}
