@@ -21,7 +21,7 @@ struct ReceiptListItem: View {
 			}
 			.font(.transactionText )
 			HStack {
-                Text("Date \(receipt.purchaseDate?.toString(withFormat: localeManager.currentDateFormat) ?? " - ")")
+                Text(receipt.purchaseDate?.toString(withFormat: localeManager.currentDateFormat) ?? " - ")
 
 				Spacer()
 				
