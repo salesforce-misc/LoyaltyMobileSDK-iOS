@@ -33,8 +33,7 @@ class PlayGameViewModel: ObservableObject {
     func playGame(gameParticipantRewardId: String) async {
         state = .loading
         do {
-			try await Task.sleep(nanoseconds: 3_000_000_000)
-            try await getPlayedGameRewards(gameParticipantRewardId: gameParticipantRewardId, devMode: true)
+            try await getPlayedGameRewards(gameParticipantRewardId: gameParticipantRewardId, devMode: false)
             self.state = .loaded
         } catch {
             self.state = .failed(error)
@@ -45,7 +44,7 @@ class PlayGameViewModel: ObservableObject {
     func getPlayedGameRewards(gameParticipantRewardId: String, devMode: Bool = false) async throws {
         do {
             let result = try await loyaltyAPIManager.playGame(gameParticipantRewardId: gameParticipantRewardId, devMode: devMode)
-            issuedRewardId = result.gameReward.first?.issuedRewardReference
+            issuedRewardId = result.gameReward.first?.gameRewardId
             self.playedGameRewards = result.gameReward
         } catch {
             self.state = .failed(error)
@@ -57,7 +56,7 @@ class PlayGameViewModel: ObservableObject {
         if wheelColors != nil {
             return wheelColors
         }
-        if let colors: [Color] = gameModel?.gameRewards.map({(Color(hex: ($0.color ?? defaultColors.randomElement() ?? "01CD6C")))}) {
+        if let colors: [Color] = gameModel?.gameRewards.map({(Color(hex: ($0.color ?? "#FFFFFF")))}) {
             wheelColors = colors
             return wheelColors
         }

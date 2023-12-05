@@ -10,7 +10,7 @@ import LoyaltyMobileSDK
 
 struct GameZoneView: View {
     @State var tabSelected: Int = 0
-    let barItems = [StringConstants.Gamification.activeTab, StringConstants.Gamification.expiredTab]
+    let barItems = [StringConstants.Gamification.activeTab, StringConstants.Gamification.expiredTab, "Played"]
     
     var body: some View {
         VStack(spacing: 0) {

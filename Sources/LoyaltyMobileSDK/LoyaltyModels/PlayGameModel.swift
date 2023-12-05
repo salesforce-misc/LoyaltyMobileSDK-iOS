@@ -16,8 +16,8 @@ public struct PlayGameModel: Codable {
 
 // MARK: - PlayGameReward
 public struct PlayGameReward: Codable {
-    public let name, description, rewardType, rewardDefinitionId, gameRewardId: String
-    public let color: String
-    public let expirationDate: Date
+    public let name, rewardType: String
+    public let color, description,rewardDefinitionId,gameRewardId: String?
+    public let expirationDate: Date?
     public let rewardValue, imageUrl, issuedRewardReference: String?
 }

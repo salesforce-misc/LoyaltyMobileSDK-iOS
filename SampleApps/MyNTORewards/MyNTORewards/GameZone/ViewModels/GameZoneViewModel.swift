@@ -50,7 +50,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     func getGames(participantId: String, reload: Bool = false, devMode: Bool = false) async throws {
         state = .loading
         do {
-            try await fetchGames(participantId: "0lMSB00000001wz2AA", devMode: false)
+            try await fetchGames(participantId: participantId)
             self.state = .loaded
         } catch {
             self.state = .failed(error)
@@ -63,9 +63,9 @@ class GameZoneViewModel: ObservableObject, Reloadable {
             let result = try await loyaltyAPIManager.getGames(participantId: participantId, devMode: false)
             activeGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
                 guard let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate else { return false }
-                return expirationDate >= Date()
+                return expirationDate >= Date() && gameDefinition.participantGameRewards.first?.status == .yetToReward
             })
-            playedGameDefinitions = result.gameDefinitions.filter({$0.participantGameRewards.first?.gameRewardId != nil})
+            playedGameDefinitions = result.gameDefinitions.filter({$0.participantGameRewards.first?.status == .rewarded})
             expiredGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
                 guard let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate else { return true }
                 return expirationDate < Date()

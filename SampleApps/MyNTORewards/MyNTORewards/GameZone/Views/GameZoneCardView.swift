@@ -18,7 +18,7 @@ struct GameZoneCardView: View {
             case .spinaWheel:
                 FortuneWheelView(gameDefinitionModel: gameCardModel).toolbar(.hidden, for: .tabBar, .navigationBar)
             case .scratchCard:
-                ScratchCardView().toolbar(.hidden, for: .tabBar, .navigationBar)
+                ScratchCardView(gameDefinitionModel: gameCardModel).toolbar(.hidden, for: .tabBar, .navigationBar)
             }
         } label: {
 			VStack(alignment: .leading, spacing: 0) {

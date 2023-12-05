@@ -59,9 +59,10 @@ public struct GameReward: Codable {
 
 // MARK: - ParticipantGameReward
 public struct ParticipantGameReward: Codable {
-    public let gameParticipantRewardID, status: String
+    public let gameParticipantRewardID: String
+    public let status: RewardStatus
     public let issuedRewardReference, gameRewardId, sourceActivity: String?
-    public let expirationDate: Date
+    public let expirationDate: Date?
 
     enum CodingKeys: String, CodingKey {
         case gameParticipantRewardID = "gameParticipantRewardId"
@@ -71,7 +72,7 @@ public struct ParticipantGameReward: Codable {
 
 // MARK: - GameType
 public enum GameType: String, Codable {
-    case scratchCard
+    case scratchCard = "Scratchcard"
     case spinaWheel = "SpintheWheel"
 }
 
@@ -80,5 +81,12 @@ public enum GameStatus: String, Codable {
     case active
     case expired
     case played
+}
+
+public enum RewardStatus: String, Codable {
+    case yetToReward = "YetToReward"
+    case rewarded = "Rewarded"
+    case noRewrd = "No Reward"
+    case expired
 }
 

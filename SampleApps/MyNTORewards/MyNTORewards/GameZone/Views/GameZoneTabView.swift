@@ -31,12 +31,15 @@ struct GameZoneTabView: View {
                     .tag(0)
                 expiredView
                     .tag(1)
+                playedView
+                    .tag(2)
+
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .refreshable {
                 Logger.debug("Reloading available Games...")
                 do {
-                    try await gameViewModel.reload(id: rootVM.member?.membershipNumber ?? "", number: "")
+                    try await gameViewModel.reload(id: "0lMSB00000001wz2AA", number: "")
                     Logger.debug("loaded available Games...")
                     
                 } catch {
@@ -48,6 +51,10 @@ struct GameZoneTabView: View {
     
     var activeView: some View {
         GameZoneActiveView(activeGames: gameViewModel.activeGameDefinitions)
+    }
+    
+    var playedView: some View {
+        GameZoneActiveView(activeGames: gameViewModel.playedGameDefinitions)
     }
     
     var expiredView: some View {

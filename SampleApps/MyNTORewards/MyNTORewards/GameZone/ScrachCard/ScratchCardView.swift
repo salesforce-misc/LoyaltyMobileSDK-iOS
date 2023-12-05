@@ -6,17 +6,19 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct ScratchCardView: View {
 	@StateObject var playGameViewModel = PlayGameViewModel()
 	@EnvironmentObject private var routerPath: RouterPath
+    @EnvironmentObject var gameViewModel: GameZoneViewModel
 	@Environment(\.dismiss) var dismiss
 	@State private var finishedScratching = false
 	@State private var finishedPlaying = false
 	@State var timer: Timer?
 	let cardSize = CGSize(width: 289, height: 115)
 	let backgroundSize = CGSize(width: 343, height: 199)
-	
+    var gameDefinitionModel: GameDefinition?
 	var body: some View {
 		if finishedPlaying {
 			GamificationCongratsView()
@@ -46,6 +48,16 @@ struct ScratchCardView: View {
 						timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
 							reward.rewardType == "NoReward" ? showBetterLuckNextTime() : showCongrats(offerText: reward.name)
 						}
+                        Task {
+                            Logger.debug("Reloading available Games...")
+                            do {
+                                try await gameViewModel.reload(id: "0lMSB00000001wz2AA", number: "")
+                                Logger.debug("loaded available Games...")
+                                
+                            } catch {
+                                Logger.error("Reload Available Games Error: \(error)")
+                            }
+                        }
 					default:
 						// TODO: Handle failed loading scenario
 						break
@@ -150,8 +162,8 @@ struct ScratchCardView: View {
 	}
 	
 	private var scratchCardGame: some View {
-		ScratchCardGame(cursorSize: 30, cardSize: cardSize, onFinish: $finishedScratching) {
-			scratchCardContentView
+        ScratchCardGame(cursorSize: 30, cardSize: cardSize, gameModel: gameDefinitionModel, onFinish: $finishedScratching) {
+            scratchCardContentView
 		} overlayView: {
 			// Reward text
 			switch playGameViewModel.state {
@@ -183,6 +195,7 @@ struct ScratchCardGame<Content: View, OverlayView: View>: View {
 	@EnvironmentObject var playGameViewModel: PlayGameViewModel
 	let cursorSize: CGFloat
 	let cardSize: CGSize
+    let gameModel: GameDefinition?
 	@Binding var onFinish: Bool
 	
 	var content: Content
@@ -198,17 +211,19 @@ struct ScratchCardGame<Content: View, OverlayView: View>: View {
 	// For gesture update
 	@GestureState var gestureLocation: CGPoint = .zero
 	
-	init(
-		cursorSize: CGFloat,
-		cardSize: CGSize,
-		onFinish: Binding<Bool>,
-		@ViewBuilder content: @escaping () -> Content,
-		@ViewBuilder overlayView: @escaping () -> OverlayView) {
+    init(
+        cursorSize: CGFloat,
+        cardSize: CGSize,
+        gameModel: GameDefinition?,
+        onFinish: Binding<Bool>,
+        @ViewBuilder content: @escaping () -> Content,
+        @ViewBuilder overlayView: @escaping () -> OverlayView) {
 			self.cursorSize = cursorSize
 			self.cardSize = cardSize
 			self._onFinish = onFinish
 			self.content = content()
 			self.overlayView = overlayView()
+            self.gameModel = gameModel
 	}
 	
 	var body: some View {
@@ -222,22 +237,23 @@ struct ScratchCardGame<Content: View, OverlayView: View>: View {
 					DragGesture()
 						.updating($gestureLocation, body: { value, out, _ in
 							out = value.location
-							Task {
-								if playGameViewModel.state != .loaded {
-									await playGameViewModel.playGame(gameParticipantRewardId: "")
-								}
-							}
 							DispatchQueue.main.async {
 								
 								// Update starting point and add user drag locations
 								if startingPoint == .zero {
+                                    Task {
+                                        if playGameViewModel.state != .loaded {
+                                            guard let gameParticipantRewardId = gameModel?.participantGameRewards.first?.gameParticipantRewardID else {return}
+                                            await playGameViewModel.playGame(gameParticipantRewardId: gameParticipantRewardId)
+                                        }
+                                    }
 									startingPoint = value.location
 								}
 								
 								points.append(value.location)
 								// print(points)
 							}
-						})
+                        })
 						.onEnded({ value in
 							// Consider both the points captured during dragging and the final value's start and end points
 							let allPoints = points + [value.startLocation, value.location]

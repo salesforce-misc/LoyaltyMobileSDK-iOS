@@ -12,13 +12,14 @@ struct FortuneWheelView: View {
     
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var routerPath: RouterPath
+    @EnvironmentObject var gameViewModel: GameZoneViewModel
     @State private var rotationAngle: Double = 0.0
     @State private var activeIndex: Int?
     @State private var isSpinning: Bool = false
 	@State private var userStartedSpinning = false
     @State private var showAlertForError = false
 	@State var timer: Timer?
-    @ObservedObject var viewModel = PlayGameViewModel()
+    var viewModel = PlayGameViewModel()
     var gameDefinitionModel: GameDefinition?
 	
     var body: some View {
@@ -179,6 +180,16 @@ struct FortuneWheelView: View {
                 } else {
                     self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: reward.name))
                 }
+            }
+        }
+        Task {
+            Logger.debug("Reloading available Games...")
+            do {
+                try await gameViewModel.reload(id: "0lMSB00000001wz2AA", number: "")
+                Logger.debug("loaded available Games...")
+                
+            } catch {
+                Logger.error("Reload Available Games Error: \(error)")
             }
         }
     }
