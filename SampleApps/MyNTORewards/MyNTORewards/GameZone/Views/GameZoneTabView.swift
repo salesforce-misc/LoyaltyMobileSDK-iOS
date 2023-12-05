@@ -39,7 +39,7 @@ struct GameZoneTabView: View {
             .refreshable {
                 Logger.debug("Reloading available Games...")
                 do {
-                    try await gameViewModel.reload(id: "0lMSB00000001wz2AA", number: "")
+                    try await gameViewModel.reload(id: rootVM.member?.membershipNumber ?? "", number: "")
                     Logger.debug("loaded available Games...")
                     
                 } catch {

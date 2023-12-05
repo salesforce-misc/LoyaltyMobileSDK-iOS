@@ -62,12 +62,15 @@ class GameZoneViewModel: ObservableObject, Reloadable {
         do {
             let result = try await loyaltyAPIManager.getGames(participantId: participantId, devMode: false)
             activeGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
-                guard let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate else { return false }
-                return expirationDate >= Date() && gameDefinition.participantGameRewards.first?.status == .yetToReward
+                if let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate {
+                    return expirationDate >= Date() && gameDefinition.participantGameRewards.first?.status == .yetToReward
+                } else {
+                    return gameDefinition.participantGameRewards.first?.status == .yetToReward
+                }
             })
             playedGameDefinitions = result.gameDefinitions.filter({$0.participantGameRewards.first?.status == .rewarded})
             expiredGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
-                guard let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate else { return true }
+                guard let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate else { return false }
                 return expirationDate < Date()
             })
         } catch {

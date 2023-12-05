@@ -13,6 +13,7 @@ struct FortuneWheelView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var routerPath: RouterPath
     @EnvironmentObject var gameViewModel: GameZoneViewModel
+    @EnvironmentObject var rootVM: AppRootViewModel
     @State private var rotationAngle: Double = 0.0
     @State private var activeIndex: Int?
     @State private var isSpinning: Bool = false
@@ -130,8 +131,14 @@ struct FortuneWheelView: View {
             .cornerRadius(15, corners: [.topLeft, .topRight])
             .edgesIgnoringSafeArea(.bottom)
             .alert(isPresented: $showAlertForError) {
-                Alert(title: Text("Error"), message: Text("Something went wrong. Please try again"), dismissButton: .default(Text("OK")))
-            }
+                   Alert(
+                       title: Text("Error"),
+                       message: Text("Something went wrong. Please try again"),
+                       dismissButton: .default(
+                           Text("Dismiss")
+                       )
+                   )
+               }
         }
     }
     
@@ -185,7 +192,7 @@ struct FortuneWheelView: View {
         Task {
             Logger.debug("Reloading available Games...")
             do {
-                try await gameViewModel.reload(id: "0lMSB00000001wz2AA", number: "")
+                try await gameViewModel.reload(id: rootVM.member?.membershipNumber ?? "", number: "")
                 Logger.debug("loaded available Games...")
                 
             } catch {

@@ -12,9 +12,11 @@ struct ScratchCardView: View {
 	@StateObject var playGameViewModel = PlayGameViewModel()
 	@EnvironmentObject private var routerPath: RouterPath
     @EnvironmentObject var gameViewModel: GameZoneViewModel
+    @EnvironmentObject var rootVM: AppRootViewModel
 	@Environment(\.dismiss) var dismiss
 	@State private var finishedScratching = false
 	@State private var finishedPlaying = false
+    @State private var showAlertForError = false
 	@State var timer: Timer?
 	let cardSize = CGSize(width: 289, height: 115)
 	let backgroundSize = CGSize(width: 343, height: 199)
@@ -40,33 +42,60 @@ struct ScratchCardView: View {
 				.cornerRadius(15, corners: [.topLeft, .topRight])
 				.edgesIgnoringSafeArea(.bottom)
 				.onChange(of: playGameViewModel.state, perform: { state in
-					switch state {
-					case .loaded:
-						eraseWrapperView()
-                        guard let reward = playGameViewModel.playedGameRewards?.first else { return }
-						// Using timer instead of asyncAfter in order to have control to invalidate the timer to avoid navigation
-						timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
-							reward.rewardType == "NoReward" ? showBetterLuckNextTime() : showCongrats(offerText: reward.name)
-						}
+                    switch state {
+                    case .loaded:
+                        eraseWrapperView()
+                        guard let reward = playGameViewModel.playedGameRewards?.first else {
+                            handleErrorCase()
+                            return
+                        }
+                        // Using timer instead of asyncAfter in order to have control to invalidate the timer to avoid navigation
+                        timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
+                            reward.rewardType == "NoReward" ? showBetterLuckNextTime() : showCongrats(offerText: reward.name)
+                        }
                         Task {
                             Logger.debug("Reloading available Games...")
                             do {
-                                try await gameViewModel.reload(id: "0lMSB00000001wz2AA", number: "")
+                                try await gameViewModel.reload(id: rootVM.member?.membershipNumber ?? "", number: "")
                                 Logger.debug("loaded available Games...")
                                 
                             } catch {
                                 Logger.error("Reload Available Games Error: \(error)")
                             }
                         }
-					default:
-						// TODO: Handle failed loading scenario
-						break
-					}
+                    case .idle:
+                        Logger.debug("ScratchCardView Idle state")
+                    case .loading:
+                        Logger.debug("ScratchCardView loading state")
+                    case .failed(let error ):
+                        Logger.debug("ScratchCardView error state\(error)")
+                        handleErrorCase()
+                    }
 				})
-			}
+			}.alert(isPresented: $showAlertForError) {
+                   Alert(
+                       title: Text("Error"),
+                       message: Text("Something went wrong. Please try again"),
+                       dismissButton: .default(
+                           Text("Dismiss"),
+                           action: goBack
+                       )
+                   )
+               }
 		}
 	}
+    
+    func goBack() {
+        timer?.invalidate()
+        dismiss()
+    }
 	
+    private func handleErrorCase() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            showAlertForError = true
+        }
+    }
+    
 	private func showCongrats(offerText: String) {
 		self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: offerText))
 	}
