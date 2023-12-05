@@ -35,7 +35,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
     @Published var receiptState: ReceiptState = .processing
     @Published var eligibleItems = [ProcessedReceiptItem]()
     @Published var inEligibleItems = [ProcessedReceiptItem]()
-    @Published var processedStepTitle: String = "Uploading receipt image…"
+    @Published var processedStepTitle: String = "Uploading receipt…"
     @Published var currentStep: Int = 1
     @Published var receiptScanSatus: ReceiptScanStatus = .bothEligibleAndInEligibleItems
     
@@ -61,7 +61,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
         processedError = nil
         currentStep = 1
         receiptScanSatus = .bothEligibleAndInEligibleItems
-        processedStepTitle = "Uploading receipt image…"
+        processedStepTitle = "Uploading receipt..."
     }
     
     func cancelUplloadTasks() {
@@ -88,7 +88,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
                 let  processedReceipt = try await forceClient.fetch(type: ReceiptStatusUpdateResponse.self, with: request)
                 if processedReceipt.status == "Success", !processedReceipt.message.isEmpty {
                     // call Api
-                    processedStepTitle = "Processing receipt information..."
+                    processedStepTitle = "Processing receipt..."
                     currentStep = 2
                     try await processImage(membershipNumber: membershipNumber, imageInfo: processedReceipt.message)
                 }
