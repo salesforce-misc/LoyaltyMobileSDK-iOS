@@ -42,9 +42,9 @@ struct ReceiptScanErrorView: View {
         if let bodyMessage = message {
             return bodyMessage
         }
-        var titleText = "We couldn’t process some items in the receipt."
+		var titleText = StringConstants.Receipts.unableToProcessSomeItems
         if scanStatus == .receiptNotReadable {
-            titleText = "We couldn’t process the receipt."
+            titleText = StringConstants.Receipts.unableToProcessReceipt
         }
         return  titleText
     }
