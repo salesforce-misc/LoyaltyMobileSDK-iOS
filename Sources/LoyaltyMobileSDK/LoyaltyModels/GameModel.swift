@@ -82,8 +82,8 @@ public enum RewardStatus: String, Codable {
 
 public enum RewardType: String, Codable {
     case voucher = "Voucher"
-    case loyaltyPoints = "Loyalty Points"
+    case loyaltyPoints = "LoyaltyPoints"
     case raffle = "Raffle"
-    case noReward = "No Reward"
-    case customReward = "Custom Reward"
+    case noReward = "NoReward"
+    case customReward = "CustomReward"
 }

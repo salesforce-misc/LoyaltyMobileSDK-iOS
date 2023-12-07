@@ -130,15 +130,19 @@ struct FortuneWheelView: View {
             }
             .cornerRadius(15, corners: [.topLeft, .topRight])
             .edgesIgnoringSafeArea(.bottom)
-            .alert(isPresented: $showAlertForError) {
-                   Alert(
-                       title: Text("Error"),
-                       message: Text("Something went wrong. Please try again"),
-                       dismissButton: .default(
-                           Text("Dismiss")
-                       )
-                   )
-               }
+        }.fullScreenCover(isPresented: $showAlertForError) {
+            Spacer()
+            ProcessingErrorView(message: "Oops! Something went wrong while processing the request. Try again.")
+            Spacer()
+            Button {
+                timer?.invalidate()
+                isSpinning ? nil : dismiss()
+            } label: {
+                Text(StringConstants.Receipts.tryAgainButton)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .longFlexibleButtonStyle()
         }
     }
     

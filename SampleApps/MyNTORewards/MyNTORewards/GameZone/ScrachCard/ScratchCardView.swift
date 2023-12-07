@@ -72,17 +72,21 @@ struct ScratchCardView: View {
                         handleErrorCase()
                     }
 				})
-			}.alert(isPresented: $showAlertForError) {
-                   Alert(
-                       title: Text("Error"),
-                       message: Text("Something went wrong. Please try again"),
-                       dismissButton: .default(
-                           Text("Dismiss"),
-                           action: goBack
-                       )
-                   )
-               }
-		}
+			}.fullScreenCover(isPresented: $showAlertForError) {
+                Spacer()
+                ProcessingErrorView(message: "Oops! Something went wrong while processing the request. Try again.")
+                Spacer()
+                Button {
+                    timer?.invalidate()
+                    dismiss()
+                } label: {
+                    Text(StringConstants.Receipts.tryAgainButton)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .longFlexibleButtonStyle()
+            }
+        }
 	}
     
     func goBack() {
