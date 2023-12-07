@@ -227,7 +227,6 @@ class DeveloperPreview {
                                     startDate: Date(),
                                     endDate: nil,
                                     timeoutDuration: 10,
-                                    status: .active,
                                     gameRewards: [],
                                     participantGameRewards: [])
     
@@ -238,7 +237,6 @@ class DeveloperPreview {
                                       startDate: Date(),
                                       endDate: nil,
                                       timeoutDuration: 10,
-                                      status: .expired,
                                       gameRewards: [],
                                       participantGameRewards: [])
 

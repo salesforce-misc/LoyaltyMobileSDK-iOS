@@ -22,7 +22,6 @@ public struct GameDefinition: Codable {
     public let startDate: Date
     public let endDate: Date?
     public let timeoutDuration: Double?
-    public let status: GameStatus?
     public let gameRewards: [GameReward]
     public let participantGameRewards: [ParticipantGameReward]
     
@@ -33,7 +32,6 @@ public struct GameDefinition: Codable {
                 startDate: Date,
                 endDate: Date?,
                 timeoutDuration: Double,
-                status: GameStatus,
                 gameRewards: [GameReward],
                 participantGameRewards: [ParticipantGameReward]) {
         self.name = name
@@ -43,7 +41,6 @@ public struct GameDefinition: Codable {
         self.startDate = startDate
         self.endDate = endDate
         self.timeoutDuration = timeoutDuration
-        self.status = status
         self.gameRewards = gameRewards
         self.participantGameRewards = participantGameRewards
     }
@@ -51,9 +48,10 @@ public struct GameDefinition: Codable {
 
 // MARK: - GameReward
 public struct GameReward: Codable {
-    public let name, rewardType, rewardId: String
+    public let name: String
     public let color: String?
-    public let rewardValue, imageUrl, description: String?
+    public let rewardType: RewardType?
+    public let rewardValue, imageUrl, description, gameRewardId: String?
 }
 
 // MARK: - ParticipantGameReward
@@ -75,13 +73,6 @@ public enum GameType: String, Codable {
     case spinaWheel = "SpintheWheel"
 }
 
-// MARK: - GameStatus
-public enum GameStatus: String, Codable {
-    case active
-    case expired
-    case played
-}
-
 public enum RewardStatus: String, Codable {
     case yetToReward = "YetToReward"
     case rewarded = "Rewarded"
@@ -89,3 +80,10 @@ public enum RewardStatus: String, Codable {
     case expired
 }
 
+public enum RewardType: String, Codable {
+    case voucher = "Voucher"
+    case loyaltyPoints = "Loyalty Points"
+    case raffle = "Raffle"
+    case noReward = "No Reward"
+    case customReward = "Custom Reward"
+}

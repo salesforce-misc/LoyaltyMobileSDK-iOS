@@ -29,18 +29,14 @@ public class ForceClient {
     public func fetch<T: Decodable>(type: T.Type, with request: URLRequest, urlSession: URLSession = .shared) async throws -> T {
       
         do {
-            // Temporary Changes
-//            guard var token = auth.getAccessToken() else {
-//                throw CommonError.authenticationNeeded
-//            }
+            guard var token = auth.getAccessToken() else {
+                throw CommonError.authenticationNeeded
+            }
             
-            let token = "00DSB000001oyRq!AQEAQAC_WD.O1hGzR5Pjdzk8l_JqjHP9okgdHrXT1vgZ1WTDrPf93vQVWHpv9_yF8CluesWacvaSDG5NnIoEXtj.9g3Tueou"
             let newRequest = ForceRequest.setAuthorization(request: request, accessToken: token)
             return try await forceNetworkManager.fetch(type: type, request: newRequest, urlSession: .shared)
         } catch CommonError.authenticationNeeded {
-//            var token = try await auth.grantAccessToken()
-            let token = "00DSB000001oyRq!AQEAQAC_WD.O1hGzR5Pjdzk8l_JqjHP9okgdHrXT1vgZ1WTDrPf93vQVWHpv9_yF8CluesWacvaSDG5NnIoEXtj.9g3Tueou"
-
+            var token = try await auth.grantAccessToken()
             let updatedRequest = ForceRequest.setAuthorization(request: request, accessToken: token)
             return try await forceNetworkManager.fetch(type: type, request: updatedRequest, urlSession: .shared)
         } catch {

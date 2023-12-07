@@ -113,6 +113,9 @@ public class NetworkManager: NetworkManagerProtocol {
         do {
             let output = try await urlSession.data(for: request)
             let data = try handleDataAndResponse(output: output)
+            if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                 Logger.debug("JSON response: \(json)")
+            }
             return try decoder.decode(type, from: data)
         } catch {
             Logger.error("NetworkManager fetch/decode error: \(error)")

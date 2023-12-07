@@ -150,7 +150,7 @@ struct FortuneWheelView: View {
             await viewModel.playGame(gameParticipantRewardId: gameParticipantRewardId)
             if viewModel.state == .loaded, let rewardId = viewModel.issuedRewardId {
                 guard let colors: [Color] = viewModel.getWheelColors(gameModel: gameDefinitionModel) else { return }
-                    if let index = gameDefinitionModel?.gameRewards.firstIndex(where: {$0.rewardId == rewardId}) {
+                    if let index = gameDefinitionModel?.gameRewards.firstIndex(where: {$0.gameRewardId == rewardId}) {
                         let segmentAngle = 360.0 / Double(colors.count)
                         let stopLocationAngle = segmentAngle * (Double(index)+1.0) - (segmentAngle / 2)
                         rotationAngle = -stopLocationAngle
