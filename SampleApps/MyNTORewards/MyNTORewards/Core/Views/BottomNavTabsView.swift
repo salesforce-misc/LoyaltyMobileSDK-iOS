@@ -19,7 +19,7 @@ struct BottomNavTabsView: View {
 	
 	var body: some View {
         ZStack(alignment: .bottomLeading) {
-            TabView(selection: $selectedTab) {
+            TabView(selection: tabSelection()) {
                 HomeView(selectedTab: $selectedTab).tabItem({
                     Label("Home", image: "ic-home")
                 }).tag(Tab.home.rawValue)
@@ -70,6 +70,31 @@ struct BottomNavTabsView: View {
         .environmentObject(routerPath)
         .environmentObject(receiptListViewModel)
 	}
+}
+extension BottomNavTabsView {
+    
+    private func tabSelection() -> Binding<Int> {
+        Binding { //this is the get block
+            self.selectedTab
+        } set: { tappedTab in
+            if tappedTab == self.selectedTab {
+                //User tapped on the tab twice == Pop to root view for Home tab
+                if routerPath.pathFromHome.isEmpty {
+                    //User already on home view, scroll to top
+                } else {
+                    routerPath.pathFromHome = []
+                }
+                //User tapped on the tab twice == Pop to root view for More tab
+                if routerPath.pathFromMore.isEmpty {
+                    //User already on home view, scroll to top
+                } else {
+                    routerPath.pathFromMore = []
+                }
+            }
+            //Set the tab to the tabbed tab
+            self.selectedTab = tappedTab
+        }
+    }
 }
 
 struct BottomNavTabsView_Previews: PreviewProvider {
