@@ -71,10 +71,10 @@ struct MyPromotionsView: View {
                         Logger.error("Load All Promotions Error: \(error)")
                     }
                 }
-            }
+            }.navigationBarBackButtonHidden()
             .background {
                 LoyaltyConditionalNavLink(isActive: $promotionVM.isCheckoutNavigationActive) {
-                    ProductView()
+                    ProductView().toolbar(.hidden, for: .tabBar, .navigationBar)
                 } label: {
                     EmptyView()
                 }
