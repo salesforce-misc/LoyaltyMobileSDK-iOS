@@ -15,6 +15,8 @@ struct BottomNavTabsView: View {
 	@StateObject var cameraVM = CameraViewModel()
 	@StateObject var routerPath = RouterPath()
 	@StateObject var receiptListViewModel = ReceiptListViewModel()
+    @StateObject var appViewRouter = AppViewRouter()
+    @StateObject var rootVM = AppRootViewModel()
 	@State var selectedTab: Int = Tab.home.rawValue
 	
 	var body: some View {
@@ -61,6 +63,11 @@ struct BottomNavTabsView: View {
             navigationBarAppearance.configureWithOpaqueBackground()
             UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
         } // To Fix Tab bar at the bottom of an app goes transparent when navigating back from another view
+        .onChange(of: appViewRouter.isAuthenticated, perform: { newValue in
+            if !newValue && rootVM.userState == .signedIn {
+                rootVM.signOutUser()
+            }
+        })
 		.withSheetDestination(sheetDestination: $routerPath.presentedSheet)
         .environmentObject(promotionsVM)
         .environmentObject(vouchersVM)
