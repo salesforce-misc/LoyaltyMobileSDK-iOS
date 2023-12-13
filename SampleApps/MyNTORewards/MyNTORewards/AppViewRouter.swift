@@ -19,14 +19,14 @@ class AppViewRouter: ObservableObject {
     // used for managing the signIn state.
     @Published var signedIn = false
     // check if the user is authenticated
-    @Published var isAuthenticated: Bool = ForceAuthManager.shared.getAuth() != nil
+    @Published var isAuthenticated: Bool = ForceAuthManager.shared.auth != nil
     
     private var cancellables = Set<AnyCancellable>()
     
     init() {
         ForceAuthManager.shared.$auth
             .receive(on: DispatchQueue.main)
-            .map { _ in ForceAuthManager.shared.getAuth() != nil }
+            .map { $0 != nil }
             .assign(to: \.isAuthenticated, on: self)
             .store(in: &cancellables)
     }

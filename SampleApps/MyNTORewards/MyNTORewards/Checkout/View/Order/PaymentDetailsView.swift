@@ -34,7 +34,6 @@ struct PaymentDetailsView: View {
                 Text("Confirm Order")
                     .onTapGesture {
                         Task {
-                            let memberId = profileVM.profile?.loyaltyProgramMemberID
                             let membershipNumber = profileVM.profile?.membershipNumber
                             isScreenLoading = true
                             do {

@@ -12,10 +12,9 @@ public class ForceAuthManager: ForceAuthenticator, ObservableObject {
     
     @Published public var auth: ForceAuth?
     public static let shared = ForceAuthManager()
-    private let defaults: UserDefaults
     
-    private init(defaults: UserDefaults = .shared) {
-        self.defaults = defaults
+    private init() {
+        self.auth = getAuth()
     }
     
     public func getAccessToken() -> String? {
@@ -65,16 +64,6 @@ public class ForceAuthManager: ForceAuthenticator, ObservableObject {
         }
     }
     
-    /// Unique identifier for current Salesforce user.
-    public var userIdentifier: ForceUserIdentifier? {
-        get {
-            return defaults.userIdentifier
-        }
-        set {
-            self.defaults.userIdentifier = newValue
-        }
-    }
-    
     public func getAuth() -> ForceAuth? {
         if let auth = self.auth {
             return auth
@@ -84,11 +73,9 @@ public class ForceAuthManager: ForceAuthenticator, ObservableObject {
                 DispatchQueue.main.async {
                     self.auth = savedAuth
                 }
-                self.auth = savedAuth
-                Logger.debug("We're here at \(Date())")
                 return savedAuth
             } catch {
-                Logger.debug("No auth found. Please login.")
+                Logger.error("No auth found. Please login.")
             }
         }
         return nil
@@ -405,7 +392,7 @@ public class ForceAuthManager: ForceAuthenticator, ObservableObject {
     public func saveAuth<KeychainManagerType: KeychainManagerProtocol>(for auth: ForceAuth, using keychainManagerType: KeychainManagerType.Type) throws where KeychainManagerType.T == ForceAuth {
         do {
             try keychainManagerType.save(item: auth)
-            defaults.userIdentifier = auth.identityURL
+            UserDefaults.shared.userIdentifier = auth.identityURL
         } catch {
             throw error
         }
@@ -417,7 +404,7 @@ public class ForceAuthManager: ForceAuthenticator, ObservableObject {
     
     /// Delete Auth from Keychain
     public func deleteAuth<KeychainManagerType: KeychainManagerProtocol>(using keychainManagerType: KeychainManagerType.Type) throws where KeychainManagerType.T == ForceAuth {
-        if let id = self.userIdentifier {
+        if let id = UserDefaults.shared.userIdentifier {
             try? KeychainManagerType.delete(for: id)
         }
     }
@@ -428,7 +415,7 @@ public class ForceAuthManager: ForceAuthenticator, ObservableObject {
     
     /// Retrieve Auth from Keychain
     public func retrieveAuth<KeychainManagerType: KeychainManagerProtocol>(using keychainManagerType: KeychainManagerType.Type) throws -> ForceAuth where KeychainManagerType.T == ForceAuth {
-        guard let id = ForceAuthManager.shared.userIdentifier else {
+        guard let id = UserDefaults.shared.userIdentifier else {
             throw CommonError.userIdentityUnknown
         }
         guard let auth = try KeychainManagerType.retrieve(for: id) else {
