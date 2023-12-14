@@ -34,7 +34,6 @@ struct PaymentDetailsView: View {
                 Text("Confirm Order")
                     .onTapGesture {
                         Task {
-                            let memberId = profileVM.profile?.loyaltyProgramMemberID
                             let membershipNumber = profileVM.profile?.membershipNumber
                             isScreenLoading = true
                             do {
@@ -42,7 +41,6 @@ struct PaymentDetailsView: View {
                                     reloadables: [transactionVM, vouchersVM, profileVM],
                                     productVM: productVM,
                                     profileVM: profileVM,
-                                    memberId: memberId,
                                     membershipNumber: membershipNumber)
                             } catch {
                                 Logger.error("Unable to create order: \(error.localizedDescription)")

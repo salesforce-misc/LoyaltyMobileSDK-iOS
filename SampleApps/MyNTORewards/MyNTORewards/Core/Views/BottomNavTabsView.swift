@@ -16,11 +16,14 @@ struct BottomNavTabsView: View {
 	@StateObject var routerPath = RouterPath()
 	@StateObject var receiptListViewModel = ReceiptListViewModel()
     @StateObject var gameZoneVM = GameZoneViewModel()
+    @StateObject var appViewRouter = AppViewRouter()
+    @StateObject var rootVM = AppRootViewModel()
+
 	@State var selectedTab: Int = Tab.home.rawValue
 	
 	var body: some View {
         ZStack(alignment: .bottomLeading) {
-            TabView(selection: $selectedTab) {
+            TabView(selection: tabSelection()) {
                 HomeView(selectedTab: $selectedTab).tabItem({
                     Label("Home", image: "ic-home")
                 }).tag(Tab.home.rawValue)
@@ -51,13 +54,6 @@ struct BottomNavTabsView: View {
                 routerPath.pathFromMore.removeAll()
             }
         }
-        .background {
-            LoyaltyConditionalNavLink(isActive: $promotionsVM.isCheckoutNavigationActive) {
-                ProductView()
-            } label: {
-                EmptyView()
-            }
-        }
         .navigationBarHidden(true)
         .onAppear {
             // correct the transparency bug for Tab bars
@@ -69,6 +65,11 @@ struct BottomNavTabsView: View {
             navigationBarAppearance.configureWithOpaqueBackground()
             UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
         } // To Fix Tab bar at the bottom of an app goes transparent when navigating back from another view
+        .onChange(of: appViewRouter.isAuthenticated, perform: { newValue in
+            if !newValue && rootVM.userState == .signedIn {
+                rootVM.signOutUser()
+            }
+        })
 		.withSheetDestination(sheetDestination: $routerPath.presentedSheet)
         .environmentObject(promotionsVM)
         .environmentObject(vouchersVM)
@@ -79,6 +80,31 @@ struct BottomNavTabsView: View {
         .environmentObject(receiptListViewModel)
         .environmentObject(gameZoneVM)
 	}
+}
+extension BottomNavTabsView {
+    
+    private func tabSelection() -> Binding<Int> {
+        Binding { //this is the get block
+            self.selectedTab
+        } set: { tappedTab in
+            if tappedTab == self.selectedTab {
+                //User tapped on the tab twice == Pop to root view for Home tab
+                if routerPath.pathFromHome.isEmpty {
+                    //User already on home view, scroll to top
+                } else {
+                    routerPath.pathFromHome = []
+                }
+                //User tapped on the tab twice == Pop to root view for More tab
+                if routerPath.pathFromMore.isEmpty {
+                    //User already on home view, scroll to top
+                } else {
+                    routerPath.pathFromMore = []
+                }
+            }
+            //Set the tab to the tabbed tab
+            self.selectedTab = tappedTab
+        }
+    }
 }
 
 struct BottomNavTabsView_Previews: PreviewProvider {

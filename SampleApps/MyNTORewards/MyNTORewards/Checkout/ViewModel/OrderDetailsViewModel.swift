@@ -9,7 +9,6 @@ import Foundation
 import LoyaltyMobileSDK
 
 @MainActor
-
 class OrderDetailsViewModel: ObservableObject {
 	@Published var isOrderPlacedNavigationActive = false
     @Published var shippingAddress: ShippingAddress?
@@ -33,7 +32,6 @@ class OrderDetailsViewModel: ObservableObject {
 		reloadables: [Reloadable],
 		productVM: ProductViewModel,
 		profileVM: ProfileViewModel,
-		memberId: String?,
 		membershipNumber: String?) async throws {
 		do {
 			let productPrice = Double(productVM.basePrice)
@@ -44,17 +42,24 @@ class OrderDetailsViewModel: ObservableObject {
 										   orderTotal: orderTotal,
 										   pointsBalance: pointsBalance,
 										   membershipNumber: membershipNumber ?? "")
-			try await Task.sleep(nanoseconds: 1_000_000_000)
-			// Reloading data when the order is placed. Adding 1 sec delay to wait for point balance to be updated in the backend.
-			for reloadable in reloadables {
-				try await reloadable.reload(id: memberId ?? "", number: membershipNumber ?? "")
-			}
 			isOrderPlacedNavigationActive = true
 		} catch {
             Logger.error("Unable to place order: \(error.localizedDescription)")
             throw error
 		}
 	}
+    
+    func reloadAfterOrderPlaced(reloadables: [Reloadable], memberId: String?, membershipNumber: String?) async throws {
+        do {
+            for reloadable in reloadables {
+                try await reloadable.reload(id: memberId ?? "", number: membershipNumber ?? "")
+            }
+        } catch {
+            Logger.error("Unable to reload: \(error.localizedDescription)")
+            throw error
+        }
+        
+    }
 	
 	private func placeOrder(
 		productName: String = "Men's Rainier L4 Windproof Soft Shell Hoodie",

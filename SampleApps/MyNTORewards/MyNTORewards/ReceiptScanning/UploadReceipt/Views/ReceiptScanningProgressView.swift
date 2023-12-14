@@ -72,6 +72,6 @@ struct ReceiptScanningProgressView: View {
 #Preview {
 	ReceiptScanningProgressView(numberOfSteps: 2,
 								currentStep: 2,
-								title: "Uploading receipt image...",
+								title: StringConstants.Receipts.uploadingReceiptTitle,
 								subtitle: StringConstants.Receipts.processingScreenSubtitle)
 }
