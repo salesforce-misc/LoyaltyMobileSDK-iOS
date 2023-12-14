@@ -121,7 +121,7 @@ struct HomeView: View {
 			}
             .background {
                 LoyaltyConditionalNavLink(isActive: $promotionVM.isCheckoutNavigationActive) {
-                    ProductView()
+                    ProductView().toolbar(.hidden, for: .tabBar, .navigationBar)
                 } label: {
                     EmptyView()
                 }
