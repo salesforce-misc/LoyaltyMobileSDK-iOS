@@ -119,6 +119,13 @@ struct HomeView: View {
 				}
 				.navigationBarHidden(true)
 			}
+            .background {
+                LoyaltyConditionalNavLink(isActive: $promotionVM.isCheckoutNavigationActive) {
+                    ProductView().toolbar(.hidden, for: .tabBar, .navigationBar)
+                } label: {
+                    EmptyView()
+                }
+            }
 			.withAppRouter()
 		}
 	}

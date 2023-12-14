@@ -22,32 +22,30 @@ struct ReceiptDetailView: View {
     var body: some View {
         VStack {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Receipt \(receipt.receiptId)")
-                        .font(.transactionText)
-                        .accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberText)
+                    HStack {
+                        Text("Receipt \(receipt.receiptId)")
+                            .font(.transactionText)
+                            .accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberText)
+                        Spacer()
+                        if receipt.status == "Processed" {
+                            Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points")
+                                .font(.transactionDate)
+                                .fontWeight(.medium)
+                                .accessibilityIdentifier(AppAccessibilty.Receipts.receiptPointsText)
+                                .foregroundColor(Color("PointsColor"))
+                        }
+                    }
                     HStack {
                         Text("Date: \(receipt.purchaseDate?.toString(withFormat: localeManager.currentDateFormat) ?? " - ")")
                             .font(.transactionDate)
                             .accessibilityIdentifier(AppAccessibilty.Receipts.receiptDateText)
                         Spacer()
-                        if receipt.status == "Manual Review" {
-                            Text("In Manual Review")
-                                .foregroundColor(Color.theme.receiptStatusPending)
-                                .font(.transactionDate)
-						} else if receipt.status == "In Progress" || receipt.status == "Draft" {
-							Text(receipt.status)
+                        if receipt.status != "Processed" {
+                            Text(receipt.status == "Manual Review" ? "In Manual Review": receipt.status)
 								.foregroundColor(Color.theme.receiptStatusPending)
 								.font(.transactionDate)
-						} else {
-                            Text("\(receipt.totalPoints?.truncate(to: 2) ?? "0") Points")
-                                .font(.transactionDate)
-								.fontWeight(.medium)
-                                .accessibilityIdentifier(AppAccessibilty.Receipts.receiptPointsText)
-                                .foregroundColor(Color("PointsColor"))
-                        }
-
+						}
                     }
-                    
                 }
             .padding(.horizontal, 30)
             .padding(.top, 10)
@@ -133,15 +131,21 @@ struct ReceiptDetailView: View {
 		.loytaltyNavigationTitle("Receipt Details")
 		.loyaltyNavBarSearchButtonHidden(true)
 		.sheet(isPresented: $showManualReviewRequest) {
-			ManualReviewInputView(showManualReviewRequest: $showManualReviewRequest, showManualReviewSubmittedAlert: $showManualReviewSubmittedAlert, receipt: receipt)
+			ManualReviewInputView(showManualReviewRequest: $showManualReviewRequest, 
+								  showManualReviewSubmittedAlert: $showManualReviewSubmittedAlert,
+								  receiptId: receipt.id,
+								  receiptNumber: receipt.receiptId,
+								  purchaseDate: receipt.purchaseDate,
+								  totalAmount: receipt.totalAmount,
+								  totalPoints: receipt.totalPoints)
 				.interactiveDismissDisabled()
 				.presentationDetents(Set([ .height(524)]))
 		}
 		.alert(StringConstants.Receipts.receiptSavedToPhotos, isPresented: $showPhotoDownloadedAlert, actions: {
-			Text("OK")
+			Button("OK") {}
 		})
 		.alert(getRequestSubmittedAlertMessage(), isPresented: $showManualReviewSubmittedAlert, actions: {
-			Text("OK")
+			Button("OK") {}
 		})
 		.environmentObject(processedReceiptViewModel)
     }

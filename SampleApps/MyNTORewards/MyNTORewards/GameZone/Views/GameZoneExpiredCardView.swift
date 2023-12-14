@@ -63,17 +63,8 @@ struct GameZoneExpiredCardView: View {
         )
     }
     
-    @ViewBuilder func navigationAction() -> some View {
-        switch gameCardModel.type {
-        case .spinaWheel:
-            FortuneWheelView()
-        case .scratchCard:
-            ScratchCardView()
-        }
-    }
-    
     func getFormattedExpiredLabel() -> String {
-        "Expired"
+        StringConstants.Gamification.expiredTab
     }
     
     func getGameTypeText() -> String {

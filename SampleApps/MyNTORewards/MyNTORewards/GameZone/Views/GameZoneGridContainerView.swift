@@ -9,7 +9,8 @@ import SwiftUI
 import LoyaltyMobileSDK
 
 struct GameZoneGridContainerView: View {
-    private let gridItems: [GridItem] = Array(repeating: .init(.adaptive(minimum: 165)), count: 2)
+    private let gridItems: [GridItem] = Array(repeating: .init(.adaptive(minimum: 165), spacing: 13), count: 2)
+
     var games: [GameDefinition]?
     let isExpiredView: Bool
     
@@ -19,8 +20,8 @@ struct GameZoneGridContainerView: View {
                 EmptyStateView(title: "No Games yet", subTitle: "When you have Games available for Play, you’ll see them here.")
             } else {
                 if let games = games, !games.isEmpty {
-                    LazyVGrid(columns: gridItems, spacing: 16) {
-                        ForEach(games, id: \.definitionId) { gameModel in
+                    LazyVGrid(columns: gridItems, spacing: 13) {
+                        ForEach(Array(games.enumerated()), id: \.offset) { _, gameModel in
                             if isExpiredView {
                                 GameZoneExpiredCardView(gameCardModel: gameModel)
                             } else {
@@ -28,7 +29,8 @@ struct GameZoneGridContainerView: View {
                             }
                         }
                     }
-                    .padding([.vertical], 24)
+                    .padding(.vertical, 24)
+					.padding(.horizontal, 16)
                 } else {
                     EmptyStateView(title: "No Games yet")
                 }

@@ -195,7 +195,8 @@ class DeveloperPreview {
 																			productName: "Nike Shoes",
 																			price: "$20",
 																			lineItemPrice: "$30",
-																			isEligible: true)])
+                                                                            isEligible: true)], 
+                                                                            confidenceStatus: .success)
 	let eligibleItems = [ProcessedReceiptItem(quantity: "4",
 											  productName: "Nike Shoes",
 											  price: "$20",
@@ -219,25 +220,25 @@ class DeveloperPreview {
 												isEligible: false)
 	]
     
-    let activeGame = GameDefinition(name: "Bonnie and Clyde Style Promotion",
+    let activeGame = GameDefinition(name: "Barney and Clyde Style Promotion",
+                                    gameDefinitionId: "1",
                                     description: "",
-                                    startDate: "",
-                                    definitionId: "1", 
-                                    endDate: "",
-                                    timeoutDuration: "",
-                                    status: .active,
                                     type: .spinaWheel,
-                                    gameRewards: nil)
+                                    startDate: Date(),
+                                    endDate: nil,
+                                    timeoutDuration: 10,
+                                    gameRewards: [],
+                                    participantGameRewards: [])
     
-    let expiredGame = GameDefinition(name: "Bonnie and Clyde Style Promotion",
+    let expiredGame = GameDefinition(name: "Barney and Clyde Style Promotion",
+                                      gameDefinitionId: "2",
                                       description: "",
-                                      startDate: "",
-                                      definitionId: "1",
-                                      endDate: "",
-                                      timeoutDuration: "",
-                                      status: .expired,
                                       type: .spinaWheel,
-                                      gameRewards: nil)
+                                      startDate: Date(),
+                                      endDate: nil,
+                                      timeoutDuration: 10,
+                                      gameRewards: [],
+                                      participantGameRewards: [])
 
     let rootVM = AppRootViewModel()
     let benefitVM = BenefitViewModel()

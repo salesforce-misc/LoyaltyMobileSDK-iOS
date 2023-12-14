@@ -16,15 +16,18 @@ extension View {
                 ReceiptsView()
             case .gameZone:
                 GameZoneView()
+            case .gameZoneBetterLuck:
+                GamificationNoLuckView().toolbar(.hidden, for: .tabBar, .navigationBar)
+            case .gameZoneCongrats(let offerText):
+                GamificationCongratsView(offerText: offerText).toolbar(.hidden, for: .tabBar, .navigationBar)
             case .referrals:
                 MyReferralsView()
             }
-            
 		}
 	}
 	
 	func withSheetDestination(sheetDestination: Binding<SheetDestination?>) -> some View {
-		sheet(item: sheetDestination) { sheet in
+		fullScreenCover(item: sheetDestination) { sheet in
 			switch sheet {
 			case .processingReceipt(let receiptListViewModel):
 				ProcessingReceiptView()

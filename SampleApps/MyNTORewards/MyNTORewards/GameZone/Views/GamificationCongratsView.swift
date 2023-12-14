@@ -37,6 +37,9 @@ struct GamificationCongratsView: View {
                     Spacer()
                 }
             }.diableBounceForScrollView()
+            .overlay {
+               ConfettiView()
+            }
             Button(StringConstants.Gamification.backButtonTitle) {
                 dismiss()
             }
