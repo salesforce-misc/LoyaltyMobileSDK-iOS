@@ -12,13 +12,15 @@ struct FortuneWheelView: View {
     
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var routerPath: RouterPath
+    @EnvironmentObject var gameViewModel: GameZoneViewModel
+    @EnvironmentObject var rootVM: AppRootViewModel
     @State private var rotationAngle: Double = 0.0
     @State private var activeIndex: Int?
     @State private var isSpinning: Bool = false
 	@State private var userStartedSpinning = false
     @State private var showAlertForError = false
 	@State var timer: Timer?
-    @ObservedObject var viewModel = PlayGameViewModel()
+    var viewModel = PlayGameViewModel()
     var gameDefinitionModel: GameDefinition?
 	
     var body: some View {
@@ -53,8 +55,8 @@ struct FortuneWheelView: View {
                     ZStack {
                         // Fortune Wheel Segments
                         ZStack {
-                            if let colors: [Color] = gameDefinitionModel?.gameRewards.map({Color(hex: $0.color)}),
-							   let labels: [LocalizedStringKey] = gameDefinitionModel?.gameRewards.map({LocalizedStringKey($0.description)}) {
+                            if let colors: [Color] = viewModel.getWheelColors(gameModel: gameDefinitionModel),
+							   let labels: [LocalizedStringKey] = gameDefinitionModel?.gameRewards.map({LocalizedStringKey($0.name)}) {
                                 ForEach(0..<colors.count, id: \.self) { index in
                                     let startAngle = (360.0 / Double(colors.count) * Double(index)) - 90.0
                                     let endAngle = (360.0 / Double(colors.count) * Double(index + 1)) - 90.0
@@ -128,9 +130,19 @@ struct FortuneWheelView: View {
             }
             .cornerRadius(15, corners: [.topLeft, .topRight])
             .edgesIgnoringSafeArea(.bottom)
-            .alert(isPresented: $showAlertForError) {
-                Alert(title: Text("Error"), message: Text("Something went wrong. Please try again"), dismissButton: .default(Text("OK")))
+        }.fullScreenCover(isPresented: $showAlertForError) {
+            Spacer()
+            ProcessingErrorView(message: "Oops! Something went wrong while processing the request. Try again.")
+            Spacer()
+            Button {
+                timer?.invalidate()
+                isSpinning ? nil : dismiss()
+            } label: {
+                Text(StringConstants.Receipts.tryAgainButton)
+                    .frame(maxWidth: .infinity)
             }
+            .buttonStyle(.borderedProminent)
+            .longFlexibleButtonStyle()
         }
     }
     
@@ -141,7 +153,7 @@ struct FortuneWheelView: View {
             userStartedSpinning = true
             await viewModel.playGame(gameParticipantRewardId: gameParticipantRewardId)
             if viewModel.state == .loaded, let rewardId = viewModel.issuedRewardId {
-                    guard let colors: [Color] = gameDefinitionModel?.gameRewards.map({Color(hex: $0.color)}) else { return }
+                guard let colors: [Color] = viewModel.getWheelColors(gameModel: gameDefinitionModel) else { return }
                     if let index = gameDefinitionModel?.gameRewards.firstIndex(where: {$0.gameRewardId == rewardId}) {
                         let segmentAngle = 360.0 / Double(colors.count)
                         let stopLocationAngle = segmentAngle * (Double(index)+1.0) - (segmentAngle / 2)
@@ -181,6 +193,16 @@ struct FortuneWheelView: View {
                 }
             }
         }
+        Task {
+            Logger.debug("Reloading available Games...")
+            do {
+                try await gameViewModel.reload(id: rootVM.member?.membershipNumber ?? "", number: "")
+                Logger.debug("loaded available Games...")
+                
+            } catch {
+                Logger.error("Reload Available Games Error: \(error)")
+            }
+        }
     }
     
     func stopWheel() {
@@ -189,7 +211,7 @@ struct FortuneWheelView: View {
     
     func spinWheel() {
         if isSpinning { return }
-        guard let colors: [Color] = gameDefinitionModel?.gameRewards.map({Color(hex: $0.color)}) else { return }
+        guard let colors: [Color] = viewModel.getWheelColors(gameModel: gameDefinitionModel) else { return }
 
         isSpinning = true
 

@@ -31,6 +31,9 @@ struct GameZoneTabView: View {
                     .tag(0)
                 expiredView
                     .tag(1)
+                playedView
+                    .tag(2)
+
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .refreshable {
@@ -48,6 +51,10 @@ struct GameZoneTabView: View {
     
     var activeView: some View {
         GameZoneActiveView(activeGames: gameViewModel.activeGameDefinitions)
+    }
+    
+    var playedView: some View {
+        GameZoneActiveView(activeGames: gameViewModel.playedGameDefinitions)
     }
     
     var expiredView: some View {

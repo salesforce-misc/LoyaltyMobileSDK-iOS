@@ -21,7 +21,7 @@ public class ForceClient {
         self.forceNetworkManager = forceNetworkManager
     }
     
-    /// Use Async/Await to fetch all REST requests with authentication 
+    /// Use Async/Await to fetch all REST requests with authentication
     /// - Parameters:
     ///   - type: A type(i.e. model) defined to be used by JSON decoder
     ///   - request: A URLRequest to be executed by URLSession

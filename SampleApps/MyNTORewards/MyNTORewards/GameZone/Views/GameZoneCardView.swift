@@ -18,7 +18,7 @@ struct GameZoneCardView: View {
             case .spinaWheel:
                 FortuneWheelView(gameDefinitionModel: gameCardModel).toolbar(.hidden, for: .tabBar, .navigationBar)
             case .scratchCard:
-                ScratchCardView().toolbar(.hidden, for: .tabBar, .navigationBar)
+                ScratchCardView(gameDefinitionModel: gameCardModel).toolbar(.hidden, for: .tabBar, .navigationBar)
             }
         } label: {
 			VStack(alignment: .leading, spacing: 0) {
@@ -77,7 +77,7 @@ struct GameZoneCardView: View {
     }
     
     func getFormattedExpiredLabel() -> String {
-        guard let expiredDate = gameCardModel.participantGameRewards.first?.expirationDate else { return "" }
+        guard let expiredDate = gameCardModel.participantGameRewards.first?.expirationDate else { return "Never Expires" }
         if Calendar.current.isDateInToday(expiredDate) {
             return StringConstants.Gamification.expiringToday
         }

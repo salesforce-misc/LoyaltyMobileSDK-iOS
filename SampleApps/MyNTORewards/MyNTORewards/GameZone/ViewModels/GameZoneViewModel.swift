@@ -50,7 +50,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     func getGames(participantId: String, reload: Bool = false, devMode: Bool = false) async throws {
         state = .loading
         do {
-            try await fetchGames(participantId: participantId, devMode: devMode)
+            try await fetchGames(participantId: participantId)
             self.state = .loaded
         } catch {
             self.state = .failed(error)
@@ -60,14 +60,17 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     
     func fetchGames(participantId: String, devMode: Bool = false) async throws {
         do {
-            let result = try await loyaltyAPIManager.getGames(participantId: participantId, devMode: true)
+            let result = try await loyaltyAPIManager.getGames(participantId: participantId)
             activeGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
-                guard let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate else { return false }
-                return expirationDate >= Date()
+                if let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate {
+                    return expirationDate >= Date() && gameDefinition.participantGameRewards.first?.status == .yetToReward
+                } else {
+                    return gameDefinition.participantGameRewards.first?.status == .yetToReward
+                }
             })
-            playedGameDefinitions = result.gameDefinitions.filter({$0.participantGameRewards.first?.gameRewardId != nil})
+            playedGameDefinitions = result.gameDefinitions.filter({$0.participantGameRewards.first?.status == .rewarded})
             expiredGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
-                guard let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate else { return true }
+                guard let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate else { return false }
                 return expirationDate < Date()
             })
         } catch {
