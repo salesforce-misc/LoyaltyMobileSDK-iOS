@@ -11,8 +11,7 @@ import LoyaltyMobileSDK
 struct GameZoneTabView: View {
     @Binding var tabSelected: Int
     @EnvironmentObject var rootVM: AppRootViewModel
-    @ObservedObject var gameViewModel = GameZoneViewModel()
-    let barItems = ["Active", "Expired"]
+    @EnvironmentObject var gameViewModel: GameZoneViewModel
     
     var body: some View {
         switch gameViewModel.state {
@@ -32,6 +31,9 @@ struct GameZoneTabView: View {
                     .tag(0)
                 expiredView
                     .tag(1)
+                playedView
+                    .tag(2)
+
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .refreshable {
@@ -51,6 +53,10 @@ struct GameZoneTabView: View {
         GameZoneActiveView(activeGames: gameViewModel.activeGameDefinitions)
     }
     
+    var playedView: some View {
+        GameZoneActiveView(activeGames: gameViewModel.playedGameDefinitions)
+    }
+    
     var expiredView: some View {
         GameZoneExpiredView(expiredGames: gameViewModel.expiredGameDefinitions)
     }
@@ -58,7 +64,7 @@ struct GameZoneTabView: View {
     func getGames() {
         Task {
             do {
-                try await gameViewModel.getGames(memberId: rootVM.member?.membershipNumber ?? "")
+                try await gameViewModel.getGames(participantId: rootVM.member?.membershipNumber ?? "")
                 
             } catch {
                 Logger.error(error.localizedDescription)
@@ -69,4 +75,6 @@ struct GameZoneTabView: View {
 
 #Preview {
     GameZoneTabView(tabSelected: .constant(0))
+        .environmentObject(AppRootViewModel())
+        .environmentObject(GameZoneViewModel())
 }

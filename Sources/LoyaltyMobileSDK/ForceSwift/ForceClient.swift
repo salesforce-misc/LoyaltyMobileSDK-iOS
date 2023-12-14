@@ -21,7 +21,7 @@ public class ForceClient {
         self.forceNetworkManager = forceNetworkManager
     }
     
-    /// Use Async/Await to fetch all REST requests with authentication 
+    /// Use Async/Await to fetch all REST requests with authentication
     /// - Parameters:
     ///   - type: A type(i.e. model) defined to be used by JSON decoder
     ///   - request: A URLRequest to be executed by URLSession
@@ -51,12 +51,24 @@ public class ForceClient {
     /// - Returns: A decoded JSON response result
 
     public func fetchLocalJson<T: Decodable>(type: T.Type, file: String, bundle: Bundle = Bundle.publicModule) throws -> T {
-            
+        
         guard let fileURL = bundle.url(forResource: file, withExtension: "json") else {
             throw URLError(.badURL, userInfo: [NSURLErrorFailingURLStringErrorKey: "\(file).json"])
         }
-      
-        return try JSONDecoder().decode(T.self, from: try Data(contentsOf: fileURL))
+        
+        let dateFormatters = DateFormatter.forceFormatters()
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom { decoder -> Date in
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
+            
+            for dateFormatter in dateFormatters {
+                if let date = dateFormatter.date(from: dateString) {
+                    return date
+                }
+            }
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "NetworkManager cannot decode date string \(dateString)")
+        }
+        return try decoder.decode(T.self, from: try Data(contentsOf: fileURL))
     }
-    
 }

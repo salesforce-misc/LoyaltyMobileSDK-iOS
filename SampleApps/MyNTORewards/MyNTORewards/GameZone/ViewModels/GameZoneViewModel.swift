@@ -8,12 +8,24 @@
 import Foundation
 import LoyaltyMobileSDK
 
-enum LoadingState {
-       case idle
-       case loading
-       case failed(Error)
-       case loaded
-   }
+protocol ReflectiveEquatable: Equatable {}
+
+extension ReflectiveEquatable {
+	var reflectedValue: String { String(reflecting: self) }
+	
+	// Explicitly implement the required `==` function
+	// (The compiler will synthesize `!=` for us implicitly)
+	static func == (lhs: Self, rhs: Self) -> Bool {
+		return lhs.reflectedValue == rhs.reflectedValue
+	}
+}
+
+enum LoadingState: ReflectiveEquatable {
+	case idle
+	case loading
+	case failed(Error)
+	case loaded
+}
 
 @MainActor
 class GameZoneViewModel: ObservableObject, Reloadable {
@@ -35,10 +47,10 @@ class GameZoneViewModel: ObservableObject, Reloadable {
                                               forceClient: ForceClient(auth: authManager))
     }
     
-    func getGames(memberId: String, reload: Bool = false, devMode: Bool = false) async throws {
+    func getGames(participantId: String, reload: Bool = false, devMode: Bool = false) async throws {
         state = .loading
         do {
-            try await fetchGames(memberId: memberId, devMode: devMode)
+            try await fetchGames(participantId: participantId)
             self.state = .loaded
         } catch {
             self.state = .failed(error)
@@ -46,12 +58,21 @@ class GameZoneViewModel: ObservableObject, Reloadable {
         }
     }
     
-    func fetchGames(memberId: String, devMode: Bool = false) async throws {
+    func fetchGames(participantId: String, devMode: Bool = false) async throws {
         do {
-            let result = try await loyaltyAPIManager.getGames(membershipId: memberId, devMode: true)
-            activeGameDefinitions = result.gameDefinitions.filter({$0.status == .active})
-            playedGameDefinitions = result.gameDefinitions.filter({$0.status == .played})
-            expiredGameDefinitions = result.gameDefinitions.filter({$0.status == .expired})
+            let result = try await loyaltyAPIManager.getGames(participantId: participantId)
+            activeGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
+                if let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate {
+                    return expirationDate >= Date() && gameDefinition.participantGameRewards.first?.status == .yetToReward
+                } else {
+                    return gameDefinition.participantGameRewards.first?.status == .yetToReward
+                }
+            })
+            playedGameDefinitions = result.gameDefinitions.filter({$0.participantGameRewards.first?.status == .rewarded})
+            expiredGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
+                guard let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate else { return false }
+                return expirationDate < Date()
+            })
         } catch {
             self.state = .failed(error)
             throw error
@@ -65,6 +86,6 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     }
     
     func reload(id: String, number: String) async throws {
-        try await fetchGames(memberId: id)
+        try await fetchGames(participantId: id)
     }
 }

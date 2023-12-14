@@ -118,45 +118,32 @@ struct OnboardingView: View {
                 .accessibility(identifier: AppAccessibilty.Onboarding.joinButton)
                 .buttonStyle(LightLongButton())
                 .sheet(isPresented: $signUpPresented) {
-                    FullSheet {
-                        SignUpView(signInPresented: $signInPresented, signUpPresented: $signUpPresented)
-                    }
-
+                    SignUpView(signInPresented: $signInPresented, signUpPresented: $signUpPresented)
+                        .interactiveDismissDisabled()
+                        .presentationDetents([.large])
                 }
                 .sheet(isPresented: $showSelfRegister) {
-                    FullSheet {
-                        VStack {
-                            SheetHeader(title: "Register", onDismiss: {
-                                showSelfRegister = false
+                    VStack {
+                        SheetHeader(title: "Register", onDismiss: {
+                            showSelfRegister = false
+                        })
+                        if let url = URL(string: AppSettings.shared.getConnectedApp().selfRegisterURL) {
+                            WebView(url: url,
+                                    redirectUrlString: "\(AppSettings.shared.getConnectedApp().communityURL)/apex/CommunitiesLanding",
+                                    onDismiss: {
+                                        showSelfRegister = false
+                                        welcomePresented = true
                             })
-//                            {
-//                                Alert(
-//                                    title: Text("Confirm"),
-//                                    message: Text("Are you sure you want to quit?"),
-//                                    primaryButton: .destructive(Text("Quit")) {
-//                                        showSelfRegister = false
-//                                    },
-//                                    secondaryButton: .cancel()
-//                                )
-//                            }
-                            if let url = URL(string: AppSettings.shared.getConnectedApp().selfRegisterURL) {
-                                WebView(url: url,
-                                        redirectUrlString: "\(AppSettings.shared.getConnectedApp().communityURL)/apex/CommunitiesLanding",
-                                        onDismiss: {
-                                            showSelfRegister = false
-                                            welcomePresented = true
-                                })
-                                .interactiveDismissDisabled()
-                                // .edgesIgnoringSafeArea(.all)
-                            } else {
-                                EmptyStateView(
-                                    title: "Self Registration Not Available",
-                                    subTitle: "Sorry, we're having some technical difficulties and self registration is not available.")
-                            }
-                            Spacer()
+                        } else {
+                            EmptyStateView(
+                                title: "Self Registration Not Available",
+                                subTitle: "Sorry, we're having some technical difficulties and self registration is not available.")
                         }
-
+                        Spacer()
                     }
+                    .interactiveDismissDisabled()
+                    .presentationDetents([.large])
+
                 }
                 .onReceive(viewModel.$userState) { state in
                     if state == UserState.signedUp {
@@ -182,12 +169,11 @@ struct OnboardingView: View {
                     .font(.buttonText)
                     .offset(x: -20)
                     .sheet(isPresented: $signInPresented) {
-                        HalfSheet {
-                            SignInView(signInPresented: $signInPresented,
-                                       showSelfRegister: $showSelfRegister,
-                                       showResetPassword: $showResetPassword)
-                        }
-                        
+                        SignInView(signInPresented: $signInPresented,
+                                   showSelfRegister: $showSelfRegister,
+                                   showResetPassword: $showResetPassword)
+                            .interactiveDismissDisabled()
+                            .presentationDetents([.medium])
                     }
                     .onReceive(viewModel.$userState) { state in
 						signInPresented = false

@@ -43,4 +43,23 @@ final class ProcessedReceiptViewUITests: XCTestCase {
 		XCTAssertFalse(app.buttons["submit_receipt"].exists)
 	}
 	
+	func testRequestForManualReview() {
+		ReceiptsViewHelper.goToProcessedReceiptView(app: app)
+		XCTAssert(app.buttons["Request a Manual Review"].waitForExistence(timeout: 3))
+		app.buttons["Request a Manual Review"].tap()
+		XCTAssert(app.staticTexts["Manual review"].waitForExistence(timeout: 3))
+	}
+	
+	func testReceiptWithInvalidDateFormat() {
+		ReceiptsViewHelper.receiptType = .invalidDateFormat
+		ReceiptsViewHelper.goToProcessedReceiptView(app: app)
+		XCTAssert(app.staticTexts["Specify the COSTCO SAL’s date format in the Accepted Date Format custom metadata type."].waitForExistence(timeout: 4))
+	}
+	
+	func testReceiptWithOnlyIneligibleItems() {
+		ReceiptsViewHelper.receiptType = .onlyIneligible
+		ReceiptsViewHelper.goToProcessedReceiptView(app: app)
+		XCTAssert(app.staticTexts["no_eligible_items_found"].waitForExistence(timeout: 4))
+		XCTAssert(app.staticTexts["Ineligible Items"].waitForExistence(timeout: 4))
+	}
 }

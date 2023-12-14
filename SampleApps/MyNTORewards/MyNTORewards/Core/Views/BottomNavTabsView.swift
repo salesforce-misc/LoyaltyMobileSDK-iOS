@@ -15,52 +15,60 @@ struct BottomNavTabsView: View {
 	@StateObject var cameraVM = CameraViewModel()
 	@StateObject var routerPath = RouterPath()
 	@StateObject var receiptListViewModel = ReceiptListViewModel()
+    @StateObject var gameZoneVM = GameZoneViewModel()
 	@State var selectedTab: Int = Tab.home.rawValue
 	
 	var body: some View {
-		NavigationView {
-			ZStack(alignment: .bottomLeading) {
-				UITabView(selection: $selectedTab) {
-					HomeView(selectedTab: $selectedTab)
-						.tabItem("Home", image: UIImage(named: "ic-home"))
-					
-					MyPromotionsView()
-						.tabItem("My Promotions", image: UIImage(named: "ic-rewards"))
-					
-					ProfileView()
-						.tabItem("My Profile", image: UIImage(named: "ic-profile"))
-					/* Post MVP
-					 RedeemView()
-					 .tabItem("Redeem", image: UIImage(named: "ic-book"))
-					 */
-					
-					MoreView()
-						.tabItem("More", image: UIImage(named: "ic-more"))
-				}
-				.onChange(of: selectedTab) { _ in
-					routerPath.pathFromHome.removeAll()
-					routerPath.pathFromMore.removeAll()
-				}
-			}
-			.background {
-				LoyaltyConditionalNavLink(isActive: $promotionsVM.isCheckoutNavigationActive) {
-					ProductView()
-				} label: {
-					EmptyView()
-				}
-			}
-            .navigationBarHidden(true)
-			.onAppear {
-				// correct the transparency bug for Tab bars
-				let tabBarAppearance = UITabBarAppearance()
-				tabBarAppearance.configureWithOpaqueBackground()
-				UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-				// correct the transparency bug for Navigation bars
-				let navigationBarAppearance = UINavigationBarAppearance()
-				navigationBarAppearance.configureWithOpaqueBackground()
-				UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
-			} // To Fix Tab bar at the bottom of an app goes transparent when navigating back from another view
-		}
+        ZStack(alignment: .bottomLeading) {
+            TabView(selection: $selectedTab) {
+                HomeView(selectedTab: $selectedTab).tabItem({
+                    Label("Home", image: "ic-home")
+                }).tag(Tab.home.rawValue)
+                                    
+                MyPromotionsView()
+                    .tabItem({
+                        Label("My Promotions", image: "ic-rewards")
+
+                    }).tag(Tab.offers.rawValue)
+                ProfileView()
+                    .tabItem({
+                        Label("My Profile", image: "ic-profile")
+                    }).tag(Tab.profile.rawValue)
+
+                /* Post MVP
+                 RedeemView()
+                 .tabItem("Redeem", image: UIImage(named: "ic-book"))
+                 */
+                
+                MoreView()
+                    .tabItem({
+                        Label("More", image: "ic-more")
+                    }).tag(Tab.more.rawValue)
+
+            }
+            .onChange(of: selectedTab) { _ in
+                routerPath.pathFromHome.removeAll()
+                routerPath.pathFromMore.removeAll()
+            }
+        }
+        .background {
+            LoyaltyConditionalNavLink(isActive: $promotionsVM.isCheckoutNavigationActive) {
+                ProductView()
+            } label: {
+                EmptyView()
+            }
+        }
+        .navigationBarHidden(true)
+        .onAppear {
+            // correct the transparency bug for Tab bars
+            let tabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.configureWithOpaqueBackground()
+            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+            // correct the transparency bug for Navigation bars
+            let navigationBarAppearance = UINavigationBarAppearance()
+            navigationBarAppearance.configureWithOpaqueBackground()
+            UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+        } // To Fix Tab bar at the bottom of an app goes transparent when navigating back from another view
 		.withSheetDestination(sheetDestination: $routerPath.presentedSheet)
         .environmentObject(promotionsVM)
         .environmentObject(vouchersVM)
@@ -69,7 +77,7 @@ struct BottomNavTabsView: View {
         .environmentObject(cameraVM)
         .environmentObject(routerPath)
         .environmentObject(receiptListViewModel)
-        .navigationViewStyle(.stack)
+        .environmentObject(gameZoneVM)
 	}
 }
 
