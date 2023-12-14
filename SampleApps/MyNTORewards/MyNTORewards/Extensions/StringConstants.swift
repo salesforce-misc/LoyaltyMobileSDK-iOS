@@ -24,6 +24,10 @@ struct StringConstants {
 		static let receiptUploadedText = "Your receipt is uploaded!"
 		static let uploadAnotherReceiptButton = "Upload Another Receipt"
 		static let processingScreenTitle = "Generating preview..."
+		static let uploadingReceiptTitle = "Uploading receipt..."
+		static let processingReceiptTitle = "Processing receipt..."
+		static let unableToProcessSomeItems = "We couldn’t process some items in the receipt."
+		static let unableToProcessReceipt = "We couldn’t process the receipt."
 		static let processingScreenSubtitle = "Hang in there! This may take a minute."
         static let processingErrorMessage = "Something went wrong. Try again."
 		static let receiptSavedToPhotos = "Receipt saved to Photos"
@@ -32,7 +36,7 @@ struct StringConstants {
 		static let emptyReceiptsViewTitle = "Looks like you haven’t uploaded any receipts yet"
 		static let emptyReceiptsViewBody = "Upload your receipts and get loyalty points for the eligible items."
         static let requestForManualReviewButton = "Request a Manual Review"
-        static let noEligibleItemsText = "No Eligible Items found in the Receipt!"
+        static let noEligibleItemsText = "We couldn’t find any eligible items in the receipt."
 	}
     
     struct Gamification {

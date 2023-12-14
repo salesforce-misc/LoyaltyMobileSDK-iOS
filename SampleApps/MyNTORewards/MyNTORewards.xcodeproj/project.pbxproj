@@ -637,6 +637,7 @@
 				3F667E072A85261B00267958 /* ReceiptScanning */,
 				29AF68C42ABA4A460021DC09 /* GameZone */,
 				2947E40D2AE349DC005A0019 /* Referral */,
+				2931558E2B1E59F500899DDF /* Core */,
 				216F218E28B6148800DAA66D /* AppViewRouter.swift */,
 				3F3805B12A7A6D2400223808 /* RouterPath.swift */,
 				3F3805B32A7A6D8500223808 /* Destination.swift */,
@@ -729,6 +730,16 @@
 				2920609329523C0B006B20C1 /* LoyaltyMobileSDK-iOS */,
 			);
 			name = Packages;
+			sourceTree = "<group>";
+		};
+		2931558E2B1E59F500899DDF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2944F88228B98D420098ED1B /* Models */,
+				216A9CBF28BDD8A1007881FE /* ViewModels */,
+				216F219328B6186400DAA66D /* Views */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		2944F87F28B98C2C0098ED1B /* Extensions */ = {
