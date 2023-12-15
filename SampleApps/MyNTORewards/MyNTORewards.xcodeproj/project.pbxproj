@@ -632,7 +632,6 @@
 				2984C93D2954F091009669EF /* Utilities */,
 				290FBB41294A8C460038D47A /* Misc */,
 				296D393828DCE9890078C88E /* UICompnents */,
-				2947E4102AE7229C005A0019 /* Core */,
 				3F714D4B29FA0F6F00CD39E7 /* Checkout */,
 				3F667E072A85261B00267958 /* ReceiptScanning */,
 				29AF68C42ABA4A460021DC09 /* GameZone */,
@@ -784,16 +783,6 @@
 				2945FFBD2AE8926A00D9C8C6 /* ReferAFriendView.swift */,
 			);
 			path = Referral;
-			sourceTree = "<group>";
-		};
-		2947E4102AE7229C005A0019 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				2944F88228B98D420098ED1B /* Models */,
-				216A9CBF28BDD8A1007881FE /* ViewModels */,
-				216F219328B6186400DAA66D /* Views */,
-			);
-			path = Core;
 			sourceTree = "<group>";
 		};
 		2963770B29C10CFB00D45AB6 /* SOQL+SOSL */ = {
@@ -1844,7 +1833,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = "";
 				DEVELOPMENT_TEAM = 62J96EUJ9N;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MyNTORewards/Info.plist;
@@ -1889,7 +1877,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = "";
 				DEVELOPMENT_TEAM = 62J96EUJ9N;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MyNTORewards/Info.plist;
