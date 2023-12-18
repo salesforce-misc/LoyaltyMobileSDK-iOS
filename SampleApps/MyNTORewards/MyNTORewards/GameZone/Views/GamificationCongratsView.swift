@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct GamificationCongratsView: View {
     @Environment(\.dismiss) var dismiss
     var offerText: String = "20% off"
+    var rewardType: RewardType = .voucher
     let imageSize = CGSize(width: 168, height: 167)
     
     var body: some View {
@@ -40,7 +42,7 @@ struct GamificationCongratsView: View {
             .overlay {
                ConfettiView()
             }
-            Button(StringConstants.Gamification.backButtonTitle) {
+            Button(StringConstants.Gamification.successBackButtonTitle) {
                 dismiss()
             }
             .buttonStyle(DarkFlexibleButton(buttonFont: .boldButtonText))
@@ -48,9 +50,26 @@ struct GamificationCongratsView: View {
         }.edgesIgnoringSafeArea(.top)
     }
     
+    func getRewrdsMessage() -> String {
+        var message = ""
+        switch rewardType {
+        case .voucher:
+            message = StringConstants.Gamification.successVoucherGreeting
+        case .loyaltyPoints:
+            message = StringConstants.Gamification.successPointsGreeting
+        case .raffle:
+            message = ""
+        case .noReward:
+            message = StringConstants.Gamification.successNoRewardGreeting
+        case .customReward:
+            message = StringConstants.Gamification.successCustomRewardGreeting
+        }
+        return message
+    }
+    
     func getAttributedStringForGreetingsBody() -> AttributedString {
-        let greetingsText = StringConstants.Gamification.successGreetingBody
-        let replacedString = greetingsText.replacingOccurrences(of: StringConstants.Gamification.placeHolderOfferText, with: offerText)
+        let greetingsText = getRewrdsMessage()
+        let replacedString = greetingsText.replacingOccurrences(of: "{n}", with: offerText)
         var attributedString = AttributedString(replacedString)
         attributedString.foregroundColor = Color.theme.superLightText
         attributedString.font = .congratsText

@@ -39,7 +39,7 @@ struct GameZoneTabView: View {
             .refreshable {
                 Logger.debug("Reloading available Games...")
                 do {
-                    try await gameViewModel.reload(id: rootVM.member?.membershipNumber ?? "", number: "")
+                    try await gameViewModel.reload(id: rootVM.member?.loyaltyProgramMemberId ?? "", number: "")
                     Logger.debug("loaded available Games...")
                     
                 } catch {
@@ -64,7 +64,7 @@ struct GameZoneTabView: View {
     func getGames() {
         Task {
             do {
-                try await gameViewModel.getGames(participantId: rootVM.member?.membershipNumber ?? "")
+                try await gameViewModel.getGames(participantId: rootVM.member?.loyaltyProgramMemberId ?? "")
                 
             } catch {
                 Logger.error(error.localizedDescription)

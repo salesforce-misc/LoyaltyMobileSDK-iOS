@@ -51,18 +51,9 @@ struct ScratchCardView: View {
                         }
                         // Using timer instead of asyncAfter in order to have control to invalidate the timer to avoid navigation
                         timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
-                            reward.rewardType == "NoReward" ? showBetterLuckNextTime() : showCongrats(offerText: reward.name)
+                            reward.rewardType == RewardType.noReward.rawValue ? showBetterLuckNextTime() : showCongrats(reward: reward)
                         }
-                        Task {
-                            Logger.debug("Reloading available Games...")
-                            do {
-                                try await gameViewModel.reload(id: rootVM.member?.membershipNumber ?? "", number: "")
-                                Logger.debug("loaded available Games...")
-                                
-                            } catch {
-                                Logger.error("Reload Available Games Error: \(error)")
-                            }
-                        }
+                        reloadAllGames()
                     case .idle:
                         Logger.debug("ScratchCardView Idle state")
                     case .loading:
@@ -93,6 +84,19 @@ struct ScratchCardView: View {
         timer?.invalidate()
         dismiss()
     }
+    
+    func reloadAllGames() {
+        Task {
+            Logger.debug("Reloading available Games...")
+            do {
+                try await gameViewModel.reload(id: rootVM.member?.loyaltyProgramMemberId ?? "", number: "")
+                Logger.debug("loaded available Games...")
+                
+            } catch {
+                Logger.error("Reload Available Games Error: \(error)")
+            }
+        }
+    }
 	
     private func handleErrorCase() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -100,8 +104,8 @@ struct ScratchCardView: View {
         }
     }
     
-	private func showCongrats(offerText: String) {
-		self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: offerText))
+    private func showCongrats(reward: PlayGameReward) {
+        self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: reward.rewardValue ?? "", rewardType: reward.rewardType))
 	}
 	
 	private func showBetterLuckNextTime() {
@@ -133,10 +137,10 @@ struct ScratchCardView: View {
 	
 	private var titleView: some View {
 		VStack(spacing: 10) {
-			Text("Scratch and win!")
+			Text(StringConstants.Gamification.scratchCardTitleLabel)
 				.font(.gameHeaderTitle)
 			
-			Text("Get a chance to win instant rewards!")
+			Text(StringConstants.Gamification.scratchCardSubTitleLabel)
 				.font(.gameHeaderSubTitle)
 		}
 		.padding(30)
@@ -161,7 +165,7 @@ struct ScratchCardView: View {
 	}
 	
 	private var scratchCardWrapperText: some View {
-		Text(String(repeating: "SCRATCH TO WIN! ", count: 80))
+		Text(String(repeating: (StringConstants.Gamification.scratchCardLabel), count: 70))
 			.font(Font.scratchText)
 			.multilineTextAlignment(.center)
 			.foregroundColor(Color.theme.scratchCardText)
@@ -212,14 +216,10 @@ struct ScratchCardView: View {
 	
 	private var descriptionView: some View {
 		VStack(spacing: 20) {
-			Text("Scratch coupon to play")
-				.font(.gameDescTitle)
-			// swiftlint:disable line_length
-			Text("This is a one time offer exclusively for you. This offer if declined may not be repeated. Please refer to the terms and conditions for more information.")
+			Text((StringConstants.Gamification.scratchCardBodyLabel))
 				.font(.gameDescText)
 				.multilineTextAlignment(.center)
 				.frame(width: 258)
-			// swiftlint:enable line_length
 		}
 	}
 }

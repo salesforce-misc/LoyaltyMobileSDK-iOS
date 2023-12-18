@@ -182,26 +182,30 @@ struct FortuneWheelView: View {
         }
     }
     
-    func showNextScreenBasedonReward() {
-        // Using timer instead of asyncAfter in order to have control to invalidate the timer to avoid navigation
-        timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
-            if let reward = viewModel.playedGameRewards?.first {
-                if reward.rewardType == "NoReward" {
-                    self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
-                } else {
-                    self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: reward.name))
-                }
-            }
-        }
+    func reloadAllGames() {
         Task {
             Logger.debug("Reloading available Games...")
             do {
-                try await gameViewModel.reload(id: rootVM.member?.membershipNumber ?? "", number: "")
+                try await gameViewModel.reload(id: rootVM.member?.loyaltyProgramMemberId ?? "", number: "")
                 Logger.debug("loaded available Games...")
                 
             } catch {
                 Logger.error("Reload Available Games Error: \(error)")
             }
+        }
+    }
+    
+    func showNextScreenBasedonReward() {
+        // Using timer instead of asyncAfter in order to have control to invalidate the timer to avoid navigation
+        timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
+            if let reward = viewModel.playedGameRewards?.first {
+                if reward.rewardType == RewardType.noReward.rawValue {
+                    self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
+                } else {
+                    self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: reward.rewardValue ?? "", rewardType: reward.rewardType))
+                }
+            }
+            reloadAllGames()
         }
     }
     
