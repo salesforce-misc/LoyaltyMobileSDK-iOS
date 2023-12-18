@@ -189,14 +189,14 @@ struct FortuneWheelView: View {
                 if reward.rewardType == "NoReward" {
                     self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
                 } else {
-                    self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: reward.name))
+                    self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: reward.rewardValue ?? "", rewardType: reward.rewardType))
                 }
             }
         }
         Task {
             Logger.debug("Reloading available Games...")
             do {
-                try await gameViewModel.reload(id: rootVM.member?.membershipNumber ?? "", number: "")
+                try await gameViewModel.reload(id: rootVM.member?.loyaltyProgramMemberId ?? "", number: "")
                 Logger.debug("loaded available Games...")
                 
             } catch {

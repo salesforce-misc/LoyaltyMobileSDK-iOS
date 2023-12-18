@@ -51,12 +51,12 @@ struct ScratchCardView: View {
                         }
                         // Using timer instead of asyncAfter in order to have control to invalidate the timer to avoid navigation
                         timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
-                            reward.rewardType == "NoReward" ? showBetterLuckNextTime() : showCongrats(offerText: reward.name)
+                            reward.rewardType == "NoReward" ? showBetterLuckNextTime() : showCongrats(reward: reward)
                         }
                         Task {
                             Logger.debug("Reloading available Games...")
                             do {
-                                try await gameViewModel.reload(id: rootVM.member?.membershipNumber ?? "", number: "")
+                                try await gameViewModel.reload(id: rootVM.member?.loyaltyProgramMemberId ?? "", number: "")
                                 Logger.debug("loaded available Games...")
                                 
                             } catch {
@@ -100,8 +100,8 @@ struct ScratchCardView: View {
         }
     }
     
-	private func showCongrats(offerText: String) {
-		self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: offerText))
+    private func showCongrats(reward: PlayGameReward) {
+        self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: reward.rewardValue ?? "", rewardType: reward.rewardType))
 	}
 	
 	private func showBetterLuckNextTime() {

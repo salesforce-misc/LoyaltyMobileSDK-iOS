@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 @MainActor
 extension View {
@@ -18,8 +19,8 @@ extension View {
                 GameZoneView()
             case .gameZoneBetterLuck:
                 GamificationNoLuckView().toolbar(.hidden, for: .tabBar, .navigationBar)
-            case .gameZoneCongrats(let offerText):
-                GamificationCongratsView(offerText: offerText).toolbar(.hidden, for: .tabBar, .navigationBar)
+            case .gameZoneCongrats(let offerText, let reward):
+                GamificationCongratsView(offerText: offerText, rewardType: RewardType(rawValue: reward) ?? .voucher).toolbar(.hidden, for: .tabBar, .navigationBar)
             }
 		}
 	}

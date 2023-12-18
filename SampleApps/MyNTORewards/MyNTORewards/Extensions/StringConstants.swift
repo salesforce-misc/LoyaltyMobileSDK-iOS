@@ -41,7 +41,12 @@ struct StringConstants {
     
     struct Gamification {
         static let successGreetingTitle = "Congratulations!"
-        static let successGreetingBody = "You have won \n A voucher of 20% off for your next purchase. \nGo to the voucher section to claim your reward!"
+        static let successVoucherGreeting = "You've won a {n} discount voucher for your next purchase. To redeem your reward, go to the Voucher section."
+        static let successPointsGreeting = "You've won {n} loyalty points that you can redeem on your next purchase."
+        static let successNoRewardGreeting = "Better luck next time!"
+        static let successCustomRewardGreeting = "You’ve won a reward."
+
+
         static let placeHolderOfferText = "20% off"
         static let backButtonTitle = "Back"
         static let successBackButtonTitle = "Play More"
