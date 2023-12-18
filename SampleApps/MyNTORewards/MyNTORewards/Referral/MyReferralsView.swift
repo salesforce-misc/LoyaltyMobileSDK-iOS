@@ -63,6 +63,12 @@ struct MyReferralsView: View {
                                         Text("**12**")
                                             .font(.referralBoldText)
                                             .padding(.bottom)
+                                        Text("POINTS EARNED")
+                                            .font(.referralText)
+                                            .opacity(0)
+                                        Text("**1200**")
+                                            .font(.referralBoldText)
+                                            .opacity(0)
                                     }
                                 }
                                 .padding(.leading, 30)
