@@ -182,6 +182,19 @@ struct FortuneWheelView: View {
         }
     }
     
+    func reloadAllGames() {
+        Task {
+            Logger.debug("Reloading available Games...")
+            do {
+                try await gameViewModel.reload(id: rootVM.member?.loyaltyProgramMemberId ?? "", number: "")
+                Logger.debug("loaded available Games...")
+                
+            } catch {
+                Logger.error("Reload Available Games Error: \(error)")
+            }
+        }
+    }
+    
     func showNextScreenBasedonReward() {
         // Using timer instead of asyncAfter in order to have control to invalidate the timer to avoid navigation
         timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
@@ -192,16 +205,7 @@ struct FortuneWheelView: View {
                     self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: reward.rewardValue ?? "", rewardType: reward.rewardType))
                 }
             }
-        }
-        Task {
-            Logger.debug("Reloading available Games...")
-            do {
-                try await gameViewModel.reload(id: rootVM.member?.loyaltyProgramMemberId ?? "", number: "")
-                Logger.debug("loaded available Games...")
-                
-            } catch {
-                Logger.error("Reload Available Games Error: \(error)")
-            }
+            reloadAllGames()
         }
     }
     

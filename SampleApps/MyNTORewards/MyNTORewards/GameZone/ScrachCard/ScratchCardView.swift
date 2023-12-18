@@ -53,16 +53,7 @@ struct ScratchCardView: View {
                         timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
                             reward.rewardType == RewardType.noReward.rawValue ? showBetterLuckNextTime() : showCongrats(reward: reward)
                         }
-                        Task {
-                            Logger.debug("Reloading available Games...")
-                            do {
-                                try await gameViewModel.reload(id: rootVM.member?.loyaltyProgramMemberId ?? "", number: "")
-                                Logger.debug("loaded available Games...")
-                                
-                            } catch {
-                                Logger.error("Reload Available Games Error: \(error)")
-                            }
-                        }
+                        reloadAllGames()
                     case .idle:
                         Logger.debug("ScratchCardView Idle state")
                     case .loading:
@@ -92,6 +83,19 @@ struct ScratchCardView: View {
     func goBack() {
         timer?.invalidate()
         dismiss()
+    }
+    
+    func reloadAllGames() {
+        Task {
+            Logger.debug("Reloading available Games...")
+            do {
+                try await gameViewModel.reload(id: rootVM.member?.loyaltyProgramMemberId ?? "", number: "")
+                Logger.debug("loaded available Games...")
+                
+            } catch {
+                Logger.error("Reload Available Games Error: \(error)")
+            }
+        }
     }
 	
     private func handleErrorCase() {
