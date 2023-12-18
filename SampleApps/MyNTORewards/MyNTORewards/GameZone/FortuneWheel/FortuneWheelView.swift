@@ -186,7 +186,7 @@ struct FortuneWheelView: View {
         // Using timer instead of asyncAfter in order to have control to invalidate the timer to avoid navigation
         timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
             if let reward = viewModel.playedGameRewards?.first {
-                if reward.rewardType == "NoReward" {
+                if reward.rewardType == RewardType.noReward.rawValue {
                     self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
                 } else {
                     self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: reward.rewardValue ?? "", rewardType: reward.rewardType))

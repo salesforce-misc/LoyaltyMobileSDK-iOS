@@ -51,7 +51,7 @@ struct ScratchCardView: View {
                         }
                         // Using timer instead of asyncAfter in order to have control to invalidate the timer to avoid navigation
                         timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
-                            reward.rewardType == "NoReward" ? showBetterLuckNextTime() : showCongrats(reward: reward)
+                            reward.rewardType == RewardType.noReward.rawValue ? showBetterLuckNextTime() : showCongrats(reward: reward)
                         }
                         Task {
                             Logger.debug("Reloading available Games...")
