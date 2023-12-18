@@ -40,7 +40,7 @@ struct GamificationCongratsView: View {
             .overlay {
                ConfettiView()
             }
-            Button(StringConstants.Gamification.backButtonTitle) {
+            Button(StringConstants.Gamification.successBackButtonTitle) {
                 dismiss()
             }
             .buttonStyle(DarkFlexibleButton(buttonFont: .boldButtonText))

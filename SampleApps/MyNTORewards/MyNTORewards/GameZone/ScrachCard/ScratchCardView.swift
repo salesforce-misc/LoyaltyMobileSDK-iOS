@@ -133,10 +133,10 @@ struct ScratchCardView: View {
 	
 	private var titleView: some View {
 		VStack(spacing: 10) {
-			Text("Scratch and win!")
+			Text(StringConstants.Gamification.scratchCardTitleLabel)
 				.font(.gameHeaderTitle)
 			
-			Text("Get a chance to win instant rewards!")
+			Text(StringConstants.Gamification.scratchCardSubTitleLabel)
 				.font(.gameHeaderSubTitle)
 		}
 		.padding(30)
@@ -161,7 +161,7 @@ struct ScratchCardView: View {
 	}
 	
 	private var scratchCardWrapperText: some View {
-		Text(String(repeating: "SCRATCH TO WIN! ", count: 80))
+		Text(String(repeating: (StringConstants.Gamification.scratchCardLabel), count: 70))
 			.font(Font.scratchText)
 			.multilineTextAlignment(.center)
 			.foregroundColor(Color.theme.scratchCardText)
@@ -212,14 +212,10 @@ struct ScratchCardView: View {
 	
 	private var descriptionView: some View {
 		VStack(spacing: 20) {
-			Text("Scratch coupon to play")
-				.font(.gameDescTitle)
-			// swiftlint:disable line_length
-			Text("This is a one time offer exclusively for you. This offer if declined may not be repeated. Please refer to the terms and conditions for more information.")
+			Text((StringConstants.Gamification.scratchCardBodyLabel))
 				.font(.gameDescText)
 				.multilineTextAlignment(.center)
 				.frame(width: 258)
-			// swiftlint:enable line_length
 		}
 	}
 }
