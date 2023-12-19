@@ -13,8 +13,8 @@ public class ReferralAPIManager {
     /// An instance of `ForceAuthenticator` for authentication
     public var auth: ForceAuthenticator
     
-    /// The default version to be used for the loyalty program API requests.
-    public static let defaultVersion = "58.0"
+    /// The name of the referral program
+    public var referralProgramName: String
     
     /// The base URL of the loyalty program API
     public var instanceURL: String
@@ -23,53 +23,85 @@ public class ReferralAPIManager {
     private var forceClient: ForceClient
     
     /// Initializes a `ReferralAPIManager` with the necessary parameters.
-    public init(auth: ForceAuthenticator, instanceURL: String, forceClient: ForceClient) {
+    public init(auth: ForceAuthenticator, referralProgramName: String, instanceURL: String, forceClient: ForceClient) {
         self.auth = auth
+        self.referralProgramName = referralProgramName
         self.instanceURL = instanceURL
         self.forceClient = forceClient
     }
     
-//    /// Enumeration for identifying the type of resource to request.
-//    public enum Resource {
-//        case individualEnrollment(programName: String, version: String)
-//        case getMemberBenefits(memberId: String, version: String)
-//        case getMemberProfile(programName: String, version: String)
-//        case getTransactionHistory(programName: String, memberId: String, version: String)
-//        case getPromotions(programName: String, version: String)
-//        case enrollInPromotion(programName: String, version: String)
-//        case unenrollPromotion(programName: String, version: String)
-//        case getVouchers(programName: String, membershipNumber: String, version: String)
-//        case getGames(participantId: String, version: String)
-//        case playGame(gameParticipantRewardId: String, version: String)
-//    }
-//    
-//    /// Get path for given API resource
-//    /// - Parameter resource: A ``Resource``
-//    /// - Returns: A string represents URL path of the resource
-//    public func getPath(for resource: Resource) -> String {
-//        
-//        switch resource {
-//        case .individualEnrollment(let programName, let version):
-//            return ForceAPI.path(for: "loyalty-programs/\(programName)/individual-member-enrollments", version: version)
-//        case .getMemberBenefits(let memberId, let version):
-//            return ForceAPI.path(for: "connect/loyalty/member/\(memberId)/memberbenefits", version: version)
-//        case .getMemberProfile(let programName, let version):
-//            return ForceAPI.path(for: "loyalty-programs/\(programName)/members", version: version)
-//        case .getTransactionHistory(let programName, let memberId, let version):
-//            return ForceAPI.path(for: "loyalty/programs/\(programName)/members/\(memberId)/transaction-ledger-summary", version: version)
-//        case .getPromotions(let programName, let version):
-//            return ForceAPI.path(for: "connect/loyalty/programs/\(programName)/program-processes/GetMemberPromotions", version: version)
-//        case .enrollInPromotion(let programName, let version):
-//            return ForceAPI.path(for: "connect/loyalty/programs/\(programName)/program-processes/EnrollInPromotion", version: version)
-//        case .unenrollPromotion(let programName, let version):
-//			return ForceAPI.path(for: "connect/loyalty/programs/\(programName)/program-processes/OptOutOfPromotion", version: version)
-//        case .getVouchers(let programName, let membershipNumber, let version):
-//            return ForceAPI.path(for: "loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers", version: version)
-//        case .getGames(participantId: let participantId, version: let version):
-//            return ForceAPI.path(for: "game/participant/\(participantId)/games", version: version)
-//        case .playGame(gameParticipantRewardId: let gameParticipantRewardId, version: let version):
-//            return ForceAPI.path(for: "game/gameParticipantReward/\(gameParticipantRewardId)/game-reward", version: version)
-//        }
-//    }
+    /// Enumeration for identifying the type of resource to request.
+    public enum Resource {
+        case referralEnrollment(referralProgramName: String, promotionCode: String, version: String)
+    }
+    
+    /// Get path for given API resource
+    /// - Parameter resource: A ``Resource``
+    /// - Returns: A string represents URL path of the resource
+    public func getPath(for resource: Resource) -> String {
+        
+        switch resource {
+        case .referralEnrollment(let referralProgramName, let promotionCode, let version):
+            return ForceAPI.path(for: "/referral-programs/\(referralProgramName)/promotions/\(promotionCode)/member-enrollments", version: version)
+        }
+    }
+    
+    public func referralEnrollment(membershipNumber: String,
+                                   with promotionCode: String,
+                                   version: String = ReferralAPIVersion.defaultVersion,
+                                   devMode: Bool = false) async throws -> ReferralEnrollmentOutputModel {
+        
+        let body = [
+            "membershipNumber": membershipNumber
+        ]
+        
+        do {
+            let path = getPath(for: .referralEnrollment(referralProgramName: referralProgramName, promotionCode: promotionCode, version: version))
+            let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
+            let request = try ForceRequest.create(instanceURL: instanceURL, path: path, method: "POST", body: bodyJsonData)
+            return try await forceClient.fetch(type: ReferralEnrollmentOutputModel.self, with: request)
+        } catch {
+            throw error
+        }
+    }
+
+    public func referralEnrollment(contactID: String,
+                                   with promotionCode: String,
+                                   version: String = ReferralAPIVersion.defaultVersion,
+                                   devMode: Bool = false) async throws -> ReferralEnrollmentOutputModel {
+
+        let body = [
+            "contactId": contactID
+        ]
+        
+        do {
+            let path = getPath(for: .referralEnrollment(referralProgramName: referralProgramName, promotionCode: promotionCode, version: version))
+            let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
+            let request = try ForceRequest.create(instanceURL: instanceURL, path: path, method: "POST", body: bodyJsonData)
+            return try await forceClient.fetch(type: ReferralEnrollmentOutputModel.self, with: request)
+        } catch {
+            throw error
+        }
+    }
+    
+    public func referralEnrollment(associatedAccountInfo: ReferralEnrollmentInputModel,
+                                   with promotionCode: String,
+                                   version: String = ReferralAPIVersion.defaultVersion,
+                                   devMode: Bool = false) async throws -> ReferralEnrollmentOutputModel {
+
+        do {
+            // Convert associatedAccountInfo to json data
+            let encoder = JSONEncoder()
+            let jsonData = try encoder.encode(associatedAccountInfo)
+
+            // Prepare and execute the network request
+            let path = getPath(for: .referralEnrollment(referralProgramName: referralProgramName, promotionCode: promotionCode, version: version))
+            let request = try ForceRequest.create(instanceURL: instanceURL, path: path, method: "POST", body: jsonData)
+            return try await forceClient.fetch(type: ReferralEnrollmentOutputModel.self, with: request)
+        } catch {
+            // Handle any errors from encoding or network request
+            throw error
+        }
+    }
 
 }
