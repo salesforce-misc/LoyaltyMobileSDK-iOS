@@ -46,7 +46,6 @@ struct StringConstants {
         static let successNoRewardGreeting = "Better luck next time!"
         static let successCustomRewardGreeting = "You’ve won a reward."
 
-
         static let placeHolderOfferText = "20% off"
         static let backButtonTitle = "Back"
         static let successBackButtonTitle = "Play More"

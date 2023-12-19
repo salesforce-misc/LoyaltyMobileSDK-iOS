@@ -54,7 +54,7 @@ class PlayGameViewModel: ObservableObject {
     
     func getPlayedGameRewards(gameParticipantRewardId: String) async throws {
         do {
-            let result = try await loyaltyAPIManager.playGame(gameParticipantRewardId: gameParticipantRewardId, devMode: true, mockFileName: mockFileName)
+            let result = try await loyaltyAPIManager.playGame(gameParticipantRewardId: gameParticipantRewardId, devMode: devMode, mockFileName: mockFileName)
             issuedRewardId = result.gameReward.first?.gameRewardId
             self.playedGameRewards = result.gameReward
         } catch {

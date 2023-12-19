@@ -28,7 +28,7 @@ struct BottomNavTabsView: View {
 																	  mockFileName: UITestingHelper.getGamesMockFileName
 																	 ))
 		} else {
-			_gameZoneVM = StateObject(wrappedValue: GameZoneViewModel(devMode: true))
+			_gameZoneVM = StateObject(wrappedValue: GameZoneViewModel())
 		}
 		#else
 			_gameZoneVM = StateObject(wrappedValue: GameZoneViewModel())
