@@ -16,8 +16,6 @@ struct GameZoneActiveView: View {
     }
 }
 
-struct GameZoneActiveView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameZoneActiveView()
-    }
+#Preview {
+	GameZoneActiveView()
 }

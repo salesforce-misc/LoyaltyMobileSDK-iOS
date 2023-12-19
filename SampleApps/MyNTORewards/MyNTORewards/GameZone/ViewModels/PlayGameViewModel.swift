@@ -20,8 +20,19 @@ class PlayGameViewModel: ObservableObject {
     private let authManager: ForceAuthenticator
     private let localFileManager: FileManagerProtocol
     private var loyaltyAPIManager: LoyaltyAPIManager
+	let devMode: Bool
+	let mockFileName: String
     
-    init(authManager: ForceAuthenticator = ForceAuthManager.shared, localFileManager: FileManagerProtocol = LocalFileManager.instance) {
+    init(
+		authManager: ForceAuthenticator = ForceAuthManager.shared,
+		localFileManager: FileManagerProtocol = LocalFileManager.instance,
+		devMode: Bool = false,
+		mockFileName: String = "PlayGame_Success",
+		wheelColors: [Color]? = nil
+	) {
+		self.devMode = devMode
+		self.wheelColors = wheelColors
+		self.mockFileName = mockFileName
         self.authManager = authManager
         self.localFileManager = localFileManager
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
@@ -33,7 +44,7 @@ class PlayGameViewModel: ObservableObject {
     func playGame(gameParticipantRewardId: String) async {
         state = .loading
         do {
-            try await getPlayedGameRewards(gameParticipantRewardId: gameParticipantRewardId, devMode: false)
+            try await getPlayedGameRewards(gameParticipantRewardId: gameParticipantRewardId)
             self.state = .loaded
         } catch {
             self.state = .failed(error)
@@ -41,9 +52,9 @@ class PlayGameViewModel: ObservableObject {
         }
     }
     
-    func getPlayedGameRewards(gameParticipantRewardId: String, devMode: Bool = false) async throws {
+    func getPlayedGameRewards(gameParticipantRewardId: String) async throws {
         do {
-            let result = try await loyaltyAPIManager.playGame(gameParticipantRewardId: gameParticipantRewardId, devMode: devMode)
+            let result = try await loyaltyAPIManager.playGame(gameParticipantRewardId: gameParticipantRewardId, devMode: devMode, mockFileName: mockFileName)
             issuedRewardId = result.gameReward.first?.gameRewardId
             self.playedGameRewards = result.gameReward
         } catch {

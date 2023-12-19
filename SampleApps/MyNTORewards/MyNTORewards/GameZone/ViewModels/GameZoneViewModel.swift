@@ -8,18 +8,6 @@
 import Foundation
 import LoyaltyMobileSDK
 
-protocol ReflectiveEquatable: Equatable {}
-
-extension ReflectiveEquatable {
-	var reflectedValue: String { String(reflecting: self) }
-	
-	// Explicitly implement the required `==` function
-	// (The compiler will synthesize `!=` for us implicitly)
-	static func == (lhs: Self, rhs: Self) -> Bool {
-		return lhs.reflectedValue == rhs.reflectedValue
-	}
-}
-
 enum LoadingState: ReflectiveEquatable {
 	case idle
 	case loading
@@ -37,8 +25,17 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     private let authManager: ForceAuthenticator
     private let localFileManager: FileManagerProtocol
     private var loyaltyAPIManager: LoyaltyAPIManager
+	private var devMode: Bool
+	private var mockFileName: String
     
-    init(authManager: ForceAuthenticator = ForceAuthManager.shared, localFileManager: FileManagerProtocol = LocalFileManager.instance) {
+	init(
+		authManager: ForceAuthenticator = ForceAuthManager.shared,
+		localFileManager: FileManagerProtocol = LocalFileManager.instance,
+		devMode: Bool = false,
+		mockFileName: String = "GetGames_Success"
+	) {
+		self.devMode = devMode
+		self.mockFileName = mockFileName
         self.authManager = authManager
         self.localFileManager = localFileManager
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
@@ -47,7 +44,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
                                               forceClient: ForceClient(auth: authManager))
     }
     
-    func getGames(participantId: String, reload: Bool = false, devMode: Bool = false) async throws {
+    func getGames(participantId: String, reload: Bool = false) async throws {
         state = .loading
         do {
             try await fetchGames(participantId: participantId)
@@ -58,9 +55,12 @@ class GameZoneViewModel: ObservableObject, Reloadable {
         }
     }
     
-    func fetchGames(participantId: String, devMode: Bool = false) async throws {
+    func fetchGames(participantId: String) async throws {
         do {
-            let result = try await loyaltyAPIManager.getGames(participantId: participantId)
+            let result = try await loyaltyAPIManager.getGames(participantId: participantId,
+															  devMode: devMode,
+															  mockFileName: mockFileName
+			)
             activeGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
                 if let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate {
                     return expirationDate >= Date() && gameDefinition.participantGameRewards.first?.status == .yetToReward

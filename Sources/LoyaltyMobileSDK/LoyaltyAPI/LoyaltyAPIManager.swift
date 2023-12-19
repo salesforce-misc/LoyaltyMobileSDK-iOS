@@ -498,10 +498,12 @@ public class LoyaltyAPIManager {
     public func getGames(
         participantId: String,
         version: String = LoyaltyAPIVersion.defaultVersion,
-        devMode: Bool = false) async throws -> GameModel {
+        devMode: Bool = false,
+		mockFileName: String = "GetGames"
+	) async throws -> GameModel {
         do {
             if devMode {
-                let result = try forceClient.fetchLocalJson(type: GameModel.self, file: "GetGames")
+                let result = try forceClient.fetchLocalJson(type: GameModel.self, file: mockFileName)
                 return result
             }
             let path = getPath(for: .getGames(participantId: participantId, version: version))
@@ -523,10 +525,13 @@ public class LoyaltyAPIManager {
     public func playGame(
         gameParticipantRewardId: String,
         version: String = LoyaltyAPIVersion.defaultVersion,
-        devMode: Bool = false) async throws -> PlayGameModel {
+        devMode: Bool = false,
+		mockFileName: String = "PlayGame_Success"
+	) async throws -> PlayGameModel {
         do {
             if devMode {
-                let result = try forceClient.fetchLocalJson(type: PlayGameModel.self, file: "PlayGame")
+				try await Task.sleep(nanoseconds: 1_000_000_000)
+                let result = try forceClient.fetchLocalJson(type: PlayGameModel.self, file: mockFileName)
                 return result
             }
             let path = getPath(for: .playGame(gameParticipantRewardId: gameParticipantRewardId, version: version))

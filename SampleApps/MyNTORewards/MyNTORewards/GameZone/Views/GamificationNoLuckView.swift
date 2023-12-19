@@ -50,8 +50,6 @@ struct GamificationNoLuckView: View {
     }
 }
 
-struct GamificationNoLuckView_Previews: PreviewProvider {
-    static var previews: some View {
-        GamificationNoLuckView()
-    }
+#Preview {
+	GamificationNoLuckView()
 }

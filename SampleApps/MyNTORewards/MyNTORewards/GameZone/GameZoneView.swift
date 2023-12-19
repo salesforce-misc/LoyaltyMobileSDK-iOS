@@ -35,10 +35,8 @@ struct GameZoneView: View {
     }
 }
 
-struct GameZoneView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameZoneView()
-            .environmentObject(dev.rootVM)
-            .environmentObject(GameZoneViewModel())
-    }
+#Preview {
+	GameZoneView()
+		.environmentObject(DeveloperPreview.instance.rootVM)
+		.environmentObject(GameZoneViewModel())
 }

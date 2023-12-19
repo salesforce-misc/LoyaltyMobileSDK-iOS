@@ -66,10 +66,14 @@ struct GamificationCongratsView: View {
         }
         return message
     }
-    
+	
+	private func getOfferTextWithSpacing(for offerText: String) -> String {
+		offerText.isEmpty ? " " : " \(offerText) "
+	}
+	
     func getAttributedStringForGreetingsBody() -> AttributedString {
         let greetingsText = getRewrdsMessage()
-        let replacedString = greetingsText.replacingOccurrences(of: "{n}", with: offerText)
+        let replacedString = greetingsText.replacingOccurrences(of: "{n}", with: getOfferTextWithSpacing(for: offerText))
         var attributedString = AttributedString(replacedString)
         attributedString.foregroundColor = Color.theme.superLightText
         attributedString.font = .congratsText
@@ -81,8 +85,6 @@ struct GamificationCongratsView: View {
     }
 }
 
-struct GamificationCongratsView_Previews: PreviewProvider {
-    static var previews: some View {
-        GamificationCongratsView()
-    }
+#Preview {
+	GamificationCongratsView()
 }

@@ -15,11 +15,25 @@ struct BottomNavTabsView: View {
 	@StateObject var cameraVM = CameraViewModel()
 	@StateObject var routerPath = RouterPath()
 	@StateObject var receiptListViewModel = ReceiptListViewModel()
-    @StateObject var gameZoneVM = GameZoneViewModel()
     @StateObject var appViewRouter = AppViewRouter()
     @StateObject var rootVM = AppRootViewModel()
-
-	@State var selectedTab: Int = Tab.home.rawValue
+	@StateObject var gameZoneVM: GameZoneViewModel
+	@State var selectedTab: Int
+	
+	init(selectedTab: Int = Tab.home.rawValue) {
+		_selectedTab = State(wrappedValue: selectedTab)
+		#if DEBUG
+		if UITestingHelper.isUITesting {
+			_gameZoneVM = StateObject(wrappedValue: GameZoneViewModel(devMode: true,
+																	  mockFileName: UITestingHelper.getGamesMockFileName
+																	 ))
+		} else {
+			_gameZoneVM = StateObject(wrappedValue: GameZoneViewModel())
+		}
+		#else
+			_gameZoneVM = StateObject(wrappedValue: GameZoneViewModel())
+		#endif
+	}
 	
 	var body: some View {
         ZStack(alignment: .bottomLeading) {

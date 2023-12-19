@@ -9,7 +9,7 @@ import SwiftUI
 import LoyaltyMobileSDK
 
 struct ScratchCardView: View {
-	@StateObject var playGameViewModel = PlayGameViewModel()
+	@StateObject var playGameViewModel: PlayGameViewModel
 	@EnvironmentObject private var routerPath: RouterPath
     @EnvironmentObject var gameViewModel: GameZoneViewModel
     @EnvironmentObject var rootVM: AppRootViewModel
@@ -21,6 +21,21 @@ struct ScratchCardView: View {
 	let cardSize = CGSize(width: 289, height: 115)
 	let backgroundSize = CGSize(width: 343, height: 199)
     var gameDefinitionModel: GameDefinition?
+	
+	init(gameDefinitionModel: GameDefinition?) {
+		self.gameDefinitionModel = gameDefinitionModel
+		
+		#if DEBUG
+		if UITestingHelper.isUITesting {
+			_playGameViewModel = StateObject(wrappedValue: PlayGameViewModel(devMode: true, mockFileName: UITestingHelper.playGamesMockFileName))
+		} else {
+			_playGameViewModel = StateObject(wrappedValue: PlayGameViewModel())
+		}
+		#else
+		_playGameViewModel = StateObject(wrappedValue: PlayGameViewModel())
+		#endif
+	}
+	
 	var body: some View {
 		if finishedPlaying {
 			GamificationCongratsView()
@@ -147,9 +162,10 @@ struct ScratchCardView: View {
 	}
 	
 	private var loadingView: some View {
-		ProgressView()
-			.tint(.white)
-			.controlSize(.large)
+		Text("Loading...")
+			.foregroundStyle(.white)
+			.font(.system(size: 24))
+			.fontWeight(.bold)
 			.frame(width: cardSize.width, height: cardSize.height)
 			.background(Color.theme.accent)
 	}
@@ -374,5 +390,5 @@ struct DottedBorderRectangle: View {
 }
 
 #Preview {
-	ScratchCardView()
+	ScratchCardView(gameDefinitionModel: DeveloperPreview.instance.activeGame)
 }
