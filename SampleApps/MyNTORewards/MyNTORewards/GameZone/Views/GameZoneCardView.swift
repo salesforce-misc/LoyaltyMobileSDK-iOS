@@ -9,8 +9,31 @@ import SwiftUI
 import LoyaltyMobileSDK
 
 struct GameZoneCardView: View {
-    let gameCardModel: GameDefinition
     @State var showGameScreen = false
+	let gameCardModel: GameDefinition
+	let isDateInToday: (Date) -> Bool
+	let isDateInTomorrow: (Date) -> Bool
+	
+	init(
+		gameCardModel: GameDefinition,
+		isDateInToday: @escaping (Date) -> Bool = Calendar.current.isDateInToday,
+		isDateInTomorrow: @escaping (Date) -> Bool = Calendar.current.isDateInTomorrow
+	) {
+		self.gameCardModel = gameCardModel
+		
+		#if DEBUG
+		if UITestingHelper.isUITesting {
+			self.isDateInToday = { _ in UITestingHelper.isExpiringToday }
+			self.isDateInTomorrow = { _ in UITestingHelper.isExpiringTomorrow }
+		} else {
+			self.isDateInToday = isDateInToday
+			self.isDateInTomorrow = isDateInTomorrow
+		}
+		#else
+		self.isDateInToday = isDateInToday
+		self.isDateInTomorrow = isDateInTomorrow
+		#endif
+	}
     
     var body: some View {
         NavigationLink {
@@ -57,6 +80,7 @@ struct GameZoneCardView: View {
                 }
                 .padding(10)
             }
+			.accessibilityIdentifier(gameCardModel.type == .scratchCard ? "scratch_card_item" : "spin_a_wheel_item")
             .frame(minWidth: 165)
 			.frame(height: 203)
             .background(Color.white)
@@ -77,14 +101,14 @@ struct GameZoneCardView: View {
     }
     
     func getFormattedExpiredLabel() -> String {
-        guard let expiredDate = gameCardModel.participantGameRewards.first?.expirationDate else { return "Never Expires" }
-        if Calendar.current.isDateInToday(expiredDate) {
+        guard let expirationDate = gameCardModel.participantGameRewards.first?.expirationDate else { return "Never Expires" }
+        if isDateInToday(expirationDate) {
             return StringConstants.Gamification.expiringToday
         }
-        if Calendar.current.isDateInTomorrow(expiredDate) {
+        if isDateInTomorrow(expirationDate) {
             return StringConstants.Gamification.expiringTomorrow
         }
-        return "\(StringConstants.Gamification.expiryLabel) \(expiredDate.toString(withFormat: "dd MMM yyyy"))"
+        return "\(StringConstants.Gamification.expiryLabel) \(expirationDate.toString(withFormat: "dd MMM yyyy"))"
     }
     
     func getGameTypeText() -> String {
@@ -110,8 +134,6 @@ struct GameZoneCardView: View {
     }
 }
 
-struct GameZoneCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameZoneCardView(gameCardModel: dev.activeGame)
-    }
+#Preview {
+	GameZoneCardView(gameCardModel: DeveloperPreview.instance.activeGame)
 }

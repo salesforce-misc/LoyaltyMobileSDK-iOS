@@ -20,8 +20,22 @@ struct FortuneWheelView: View {
 	@State private var userStartedSpinning = false
     @State private var showAlertForError = false
 	@State var timer: Timer?
-    var viewModel = PlayGameViewModel()
+	let viewModel: PlayGameViewModel
     var gameDefinitionModel: GameDefinition?
+	
+	init(gameDefinitionModel: GameDefinition) {
+		self.gameDefinitionModel = gameDefinitionModel
+		
+	#if DEBUG
+		if UITestingHelper.isUITesting {
+			viewModel = PlayGameViewModel(devMode: true, mockFileName: UITestingHelper.playGamesMockFileName)
+		} else {
+			viewModel = PlayGameViewModel()
+		}
+	#else
+		viewModel = PlayGameViewModel()
+	#endif
+	}
 	
     var body: some View {
         VStack {

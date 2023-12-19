@@ -41,7 +41,7 @@ struct StringConstants {
     
     struct Gamification {
         static let successGreetingTitle = "Congratulations!"
-        static let successVoucherGreeting = "You've won a {n} discount voucher for your next purchase. To redeem your reward, go to the Voucher section."
+        static let successVoucherGreeting = "You've won a{n}discount voucher for your next purchase. To redeem your reward, go to the Voucher section."
         static let successPointsGreeting = "You've won {n} loyalty points that you can redeem on your next purchase."
         static let successNoRewardGreeting = "Better luck next time!"
         static let successCustomRewardGreeting = "You’ve won a reward."
@@ -63,7 +63,7 @@ struct StringConstants {
         static let spinaWheelHeaderLabel = "Spin a wheel"
         static let spinaWheelSubHeaderLabel = "Spin the wheel and unlock instant rewards!"
         // swiftlint:disable line_length
-        static let spinaWheelBodyLabel = "Grab this exclusive onetime offer and win some exciting rewards.For more information, refer to the terms and conditions."
+        static let spinaWheelBodyLabel = "Grab this exclusive onetime offer and win some exciting rewards. For more information, refer to the terms and conditions."
         // swiftlint:enable line_length
         static let tapSpinaWheeltoPlayLabel = ""
 		static let tapSpinButtonLabel: LocalizedStringKey = "**SPIN**"

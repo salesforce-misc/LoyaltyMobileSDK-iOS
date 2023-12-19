@@ -118,7 +118,7 @@ import Foundation
 public struct ProfileModel: Codable {
     public let additionalLoyaltyProgramMemberFields: AdditionalLoyaltyProgramMemberFields
     public let associatedAccount: AssociatedAccount?
-    public let associatedContact: AssociatedContact
+    public let associatedContact: AssociatedContact?
     public let canReceivePartnerPromotions, canReceivePromotions: Bool
     public let enrollmentChannel, enrollmentDate: String
     public let groupCreatedByMember, groupName, lastActivityDate: String?
@@ -178,7 +178,8 @@ public struct AssociatedAccount: Codable {
 
 // MARK: - AssociatedContact
 public struct AssociatedContact: Codable {
-    public let contactID, email, firstName, lastName: String
+    public let contactID, firstName, lastName: String
+	public let email: String?
 
     enum CodingKeys: String, CodingKey {
         case contactID = "contactId"
