@@ -57,7 +57,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     
     func fetchGames(participantId: String) async throws {
         do {
-            let result = try await loyaltyAPIManager.getGames(participantId: "0lMSB000000021p2AA",
+            let result = try await loyaltyAPIManager.getGames(participantId: participantId,
 															  devMode: devMode,
 															  mockFileName: mockFileName
 			)
