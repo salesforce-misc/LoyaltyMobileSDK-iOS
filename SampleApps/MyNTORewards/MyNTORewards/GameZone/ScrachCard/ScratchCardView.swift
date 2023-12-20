@@ -27,7 +27,7 @@ struct ScratchCardView: View {
 		
 		#if DEBUG
 		if UITestingHelper.isUITesting {
-			_playGameViewModel = StateObject(wrappedValue: PlayGameViewModel(devMode: true))
+			_playGameViewModel = StateObject(wrappedValue: PlayGameViewModel(devMode: true, mockFileName: UITestingHelper.playGamesMockFileName))
 		} else {
 			_playGameViewModel = StateObject(wrappedValue: PlayGameViewModel())
 		}

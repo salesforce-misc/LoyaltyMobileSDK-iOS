@@ -20,16 +20,19 @@ class PlayGameViewModel: ObservableObject {
     private let authManager: GamificationForceAuthenticator
     private var loyaltyAPIManager: APIManager
     private var devMode: Bool
-    
+    let mockFileName: String
+
     init(
         authManager: GamificationForceAuthenticator = GamificationForceAuthManager.shared,
-        devMode: Bool = false) {
-        self.devMode = devMode
-        self.authManager = authManager
-        loyaltyAPIManager = APIManager(auth: authManager,
-                                              instanceURL: AppSettings.shared.getInstanceURL(),
-                                              forceClient: GamificationForceClient(auth: authManager))
-    }
+        devMode: Bool = false,
+        mockFileName: String = "PlayGame_Success") {
+            self.mockFileName = mockFileName
+            self.devMode = devMode
+            self.authManager = authManager
+            loyaltyAPIManager = APIManager(auth: authManager,
+                                           instanceURL: AppSettings.shared.getInstanceURL(),
+                                           forceClient: GamificationForceClient(auth: authManager))
+        }
     
     func playGame(gameParticipantRewardId: String) async {
         state = .loading

@@ -7,16 +7,8 @@
 
 import Foundation
 import GamificationMobileSDK_iOS
+
 public class GamificationForceAuthManager: GamificationForceAuthenticator, ObservableObject {
-    public func grantAccessToken() async throws -> String {
-        let app = AppSettings.shared.getConnectedApp()
-        _ = app.baseURL + AppSettings.Defaults.tokenPath
-        
-        let savedAuth = try retrieveAuth()
-        self.auth = savedAuth
-        return savedAuth.accessToken
-    }
-    
     @Published public var auth: ForceAuth?
     public static let shared = GamificationForceAuthManager()
     
@@ -49,6 +41,16 @@ public class GamificationForceAuthManager: GamificationForceAuthenticator, Obser
         return nil
     }
     
+    public func grantAccessToken() async throws -> String {
+        let app = AppSettings.shared.getConnectedApp()
+        _ = app.baseURL + AppSettings.Defaults.tokenPath
+        
+        let savedAuth = try retrieveAuth()
+        self.auth = savedAuth
+        return savedAuth.accessToken
+    }
+    
+    // swiftlint:disable line_length
     /// Retrieve Auth from Keychain
     public func retrieveAuth<KeychainManagerType: KeychainManagerProtocol>(using keychainManagerType: KeychainManagerType.Type) throws -> ForceAuth where KeychainManagerType.T == ForceAuth {
         guard let id = UserDefaults.shared.userIdentifier else {
@@ -59,6 +61,7 @@ public class GamificationForceAuthManager: GamificationForceAuthenticator, Obser
         }
         return auth
     }
+    // swiftlint:enable line_length
     
     public func retrieveAuth() throws -> ForceAuth {
         try retrieveAuth(using: ForceAuthKeychainManager.self)

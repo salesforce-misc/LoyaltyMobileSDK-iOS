@@ -28,7 +28,7 @@ struct FortuneWheelView: View {
 		
 	#if DEBUG
 		if UITestingHelper.isUITesting {
-			viewModel = PlayGameViewModel(devMode: true)
+			viewModel = PlayGameViewModel(devMode: true, mockFileName: UITestingHelper.playGamesMockFileName)
 		} else {
 			viewModel = PlayGameViewModel()
 		}

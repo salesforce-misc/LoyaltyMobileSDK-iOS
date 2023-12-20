@@ -26,16 +26,19 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     private let authManager: GamificationForceAuthenticator
     private var loyaltyAPIManager: APIManager
 	private var devMode: Bool
+    private var mockFileName: String
     
-	init(
-		authManager: GamificationForceAuthenticator = GamificationForceAuthManager.shared,
-		devMode: Bool = false) {
-		self.devMode = devMode
-        self.authManager = authManager
-        loyaltyAPIManager = APIManager(auth: authManager,
-                                              instanceURL: AppSettings.shared.getInstanceURL(),
-                                              forceClient: GamificationForceClient(auth: authManager))
-    }
+    init(
+        authManager: GamificationForceAuthenticator = GamificationForceAuthManager.shared,
+        devMode: Bool = false,
+        mockFileName: String = "GetGames_Success") {
+            self.mockFileName = mockFileName
+            self.devMode = devMode
+            self.authManager = authManager
+            loyaltyAPIManager = APIManager(auth: authManager,
+                                           instanceURL: AppSettings.shared.getInstanceURL(),
+                                           forceClient: GamificationForceClient(auth: authManager))
+        }
     
     func getGames(participantId: String, reload: Bool = false) async throws {
         state = .loading
