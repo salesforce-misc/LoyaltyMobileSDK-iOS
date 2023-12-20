@@ -7,6 +7,7 @@
 
 import Foundation
 import LoyaltyMobileSDK
+import GamificationMobileSDK_iOS
 
 enum LoadingState: ReflectiveEquatable {
 	case idle
@@ -22,26 +23,18 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     @Published var activeGameDefinitions: [GameDefinition]?
     @Published var expiredGameDefinitions: [GameDefinition]?
     
-    private let authManager: ForceAuthenticator
-    private let localFileManager: FileManagerProtocol
-    private var loyaltyAPIManager: LoyaltyAPIManager
+    private let authManager: GamificationForceAuthenticator
+    private var loyaltyAPIManager: APIManager
 	private var devMode: Bool
-	private var mockFileName: String
     
 	init(
-		authManager: ForceAuthenticator = ForceAuthManager.shared,
-		localFileManager: FileManagerProtocol = LocalFileManager.instance,
-		devMode: Bool = false,
-		mockFileName: String = "GetGames_Success"
-	) {
+		authManager: GamificationForceAuthenticator = GamificationForceAuthManager.shared,
+		devMode: Bool = false) {
 		self.devMode = devMode
-		self.mockFileName = mockFileName
         self.authManager = authManager
-        self.localFileManager = localFileManager
-        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
-                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+        loyaltyAPIManager = APIManager(auth: authManager,
                                               instanceURL: AppSettings.shared.getInstanceURL(),
-                                              forceClient: ForceClient(auth: authManager))
+                                              forceClient: GamificationForceClient(auth: authManager))
     }
     
     func getGames(participantId: String, reload: Bool = false) async throws {
@@ -58,9 +51,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     func fetchGames(participantId: String) async throws {
         do {
             let result = try await loyaltyAPIManager.getGames(participantId: participantId,
-															  devMode: devMode,
-															  mockFileName: mockFileName
-			)
+															  devMode: devMode)
             activeGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
                 if let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate {
                     return expirationDate >= Date() && gameDefinition.participantGameRewards.first?.status == .yetToReward

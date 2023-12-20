@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK_iOS
 
 struct GameZoneActiveView: View {
     var activeGames: [GameDefinition]?

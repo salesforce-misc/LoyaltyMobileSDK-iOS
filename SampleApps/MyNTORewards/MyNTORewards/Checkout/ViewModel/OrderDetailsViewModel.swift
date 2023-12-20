@@ -85,7 +85,7 @@ class OrderDetailsViewModel: ObservableObject {
 						  membershipNumber: membershipNumber)
 		do {
 			let encoder = JSONEncoder()
-			encoder.dateEncodingStrategy = .formatted(.forceFormatter())
+//			encoder.dateEncodingStrategy = .formatted(.forceFormatter())
 			let requestBody = try encoder.encode(order)
             let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(),
 												  path: self.orderApiEndpoint,

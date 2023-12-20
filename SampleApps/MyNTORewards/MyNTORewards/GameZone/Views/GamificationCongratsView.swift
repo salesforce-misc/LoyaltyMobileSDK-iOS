@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK_iOS
 
 struct GamificationCongratsView: View {
     @Environment(\.dismiss) var dismiss

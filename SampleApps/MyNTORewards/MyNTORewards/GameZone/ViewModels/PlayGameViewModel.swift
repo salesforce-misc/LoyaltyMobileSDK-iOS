@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import LoyaltyMobileSDK
+import GamificationMobileSDK_iOS
 import SwiftUI
 
 @MainActor
@@ -17,28 +17,18 @@ class PlayGameViewModel: ObservableObject {
     let defaultColors: [String] = ["01CD6C", "#0099DD", "#FF4B3A", "#0099DD", "#0099DD", "#FF4B3A", "01CD6C", "#0099DD", "#FF4B3A", "#FFC501" ]
     var wheelColors: [Color]?
 
-    private let authManager: ForceAuthenticator
-    private let localFileManager: FileManagerProtocol
-    private var loyaltyAPIManager: LoyaltyAPIManager
-	let devMode: Bool
-	let mockFileName: String
+    private let authManager: GamificationForceAuthenticator
+    private var loyaltyAPIManager: APIManager
+    private var devMode: Bool
     
     init(
-		authManager: ForceAuthenticator = ForceAuthManager.shared,
-		localFileManager: FileManagerProtocol = LocalFileManager.instance,
-		devMode: Bool = false,
-		mockFileName: String = "PlayGame_Success",
-		wheelColors: [Color]? = nil
-	) {
-		self.devMode = devMode
-		self.wheelColors = wheelColors
-		self.mockFileName = mockFileName
+        authManager: GamificationForceAuthenticator = GamificationForceAuthManager.shared,
+        devMode: Bool = false) {
+        self.devMode = devMode
         self.authManager = authManager
-        self.localFileManager = localFileManager
-        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
-                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+        loyaltyAPIManager = APIManager(auth: authManager,
                                               instanceURL: AppSettings.shared.getInstanceURL(),
-                                              forceClient: ForceClient(auth: authManager))
+                                              forceClient: GamificationForceClient(auth: authManager))
     }
     
     func playGame(gameParticipantRewardId: String) async {
@@ -48,13 +38,12 @@ class PlayGameViewModel: ObservableObject {
             self.state = .loaded
         } catch {
             self.state = .failed(error)
-            Logger.error(error.localizedDescription)
         }
     }
     
     func getPlayedGameRewards(gameParticipantRewardId: String) async throws {
         do {
-            let result = try await loyaltyAPIManager.playGame(gameParticipantRewardId: gameParticipantRewardId, devMode: devMode, mockFileName: mockFileName)
+            let result = try await loyaltyAPIManager.playGame(gameParticipantRewardId: gameParticipantRewardId, devMode: devMode)
             issuedRewardId = result.gameReward.first?.gameRewardId
             self.playedGameRewards = result.gameReward
         } catch {

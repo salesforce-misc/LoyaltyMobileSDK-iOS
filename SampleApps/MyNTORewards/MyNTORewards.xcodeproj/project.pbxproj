@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -235,6 +235,7 @@
 		4F18ED832AD5737B000F64D9 /* ScrollViewBounceModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED822AD5737B000F64D9 /* ScrollViewBounceModifier.swift */; };
 		4F18ED852AD94D50000F64D9 /* GameZoneActiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED842AD94D50000F64D9 /* GameZoneActiveView.swift */; };
 		4F18ED872AD958C6000F64D9 /* GameZoneExpiredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */; };
+		4F3F630E2B32C662008954FB /* GamificationForceAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F630D2B32C662008954FB /* GamificationForceAuthManager.swift */; };
 		4F7BD9852ADE417E003B7ADA /* GameZoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9842ADE417E003B7ADA /* GameZoneViewModel.swift */; };
 		4F7BD9872ADE7F88003B7ADA /* GameZoneCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9862ADE7F88003B7ADA /* GameZoneCardView.swift */; };
 		4F7BD9892ADE8D52003B7ADA /* GameZoneGridContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9882ADE8D52003B7ADA /* GameZoneGridContainerView.swift */; };
@@ -244,6 +245,7 @@
 		4F7BD9922AE1326D003B7ADA /* GameZoneViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9912AE1326D003B7ADA /* GameZoneViewHelper.swift */; };
 		4F7BD9942AE66534003B7ADA /* ReceiptScanErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9932AE66534003B7ADA /* ReceiptScanErrorView.swift */; };
 		4F8F7FC52B0C7EA80058F64B /* PlayGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F7FC42B0C7EA80058F64B /* PlayGameViewModel.swift */; };
+		4FB04BB52B32B1C000363B24 /* GamificationMobileSDK-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = 4FB04BB42B32B1C000363B24 /* GamificationMobileSDK-iOS */; };
 		4FECF86C2AEB7FC90070E89A /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FECF86A2AEB7FC80070E89A /* ConfettiView.swift */; };
 		4FECF86D2AEB7FC90070E89A /* EmitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FECF86B2AEB7FC90070E89A /* EmitterView.swift */; };
 		AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */; };
@@ -523,6 +525,7 @@
 		4F18ED822AD5737B000F64D9 /* ScrollViewBounceModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewBounceModifier.swift; sourceTree = "<group>"; };
 		4F18ED842AD94D50000F64D9 /* GameZoneActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneActiveView.swift; sourceTree = "<group>"; };
 		4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneExpiredView.swift; sourceTree = "<group>"; };
+		4F3F630D2B32C662008954FB /* GamificationForceAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationForceAuthManager.swift; sourceTree = "<group>"; };
 		4F7BD9842ADE417E003B7ADA /* GameZoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneViewModel.swift; sourceTree = "<group>"; };
 		4F7BD9862ADE7F88003B7ADA /* GameZoneCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneCardView.swift; sourceTree = "<group>"; };
 		4F7BD9882ADE8D52003B7ADA /* GameZoneGridContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneGridContainerView.swift; sourceTree = "<group>"; };
@@ -573,6 +576,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FB04BB52B32B1C000363B24 /* GamificationMobileSDK-iOS in Frameworks */,
 				2920609529523C9C006B20C1 /* LoyaltyMobileSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -850,6 +854,7 @@
 				298D5EF129CCF94D0062F16E /* WebAuthenticationSession.swift */,
 				298D5EF529CCFCE60062F16E /* ForceRequest+Auth.swift */,
 				29B1CE422A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift */,
+				4F3F630D2B32C662008954FB /* GamificationForceAuthManager.swift */,
 			);
 			path = "ForceSwift+Extra";
 			sourceTree = "<group>";
@@ -1297,6 +1302,7 @@
 			name = MyNTORewards;
 			packageProductDependencies = (
 				2920609429523C9C006B20C1 /* LoyaltyMobileSDK */,
+				4FB04BB42B32B1C000363B24 /* GamificationMobileSDK-iOS */,
 			);
 			productName = LoyaltyStarter;
 			productReference = 216F217B28B6141E00DAA66D /* MyNTORewards.app */;
@@ -1371,6 +1377,7 @@
 			);
 			mainGroup = 216F217228B6141E00DAA66D;
 			packageReferences = (
+				4FB04BB32B32B1C000363B24 /* XCLocalSwiftPackageReference "../../../../GamificationMobileSDK-iOS" */,
 			);
 			productRefGroup = 216F217C28B6141E00DAA66D /* Products */;
 			projectDirPath = "";
@@ -1621,6 +1628,7 @@
 				2984C9462954F091009669EF /* Entry.swift in Sources */,
 				296D393128DBCB530078C88E /* OnboardingModel.swift in Sources */,
 				298CAA082A6743E0003F7F42 /* CameraView.swift in Sources */,
+				4F3F630E2B32C662008954FB /* GamificationForceAuthManager.swift in Sources */,
 				AF8AA4CD29E3ED54007E2F6F /* AppAccessibilityConstants.swift in Sources */,
 				29BAF6CF28F0FC3A00A3F9EB /* CornerRadiusStyle.swift in Sources */,
 				3FE71D222B3199CD006E6BF5 /* ProfileView.swift in Sources */,
@@ -2083,10 +2091,21 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		4FB04BB32B32B1C000363B24 /* XCLocalSwiftPackageReference "../../../../GamificationMobileSDK-iOS" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../../../GamificationMobileSDK-iOS";
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		2920609429523C9C006B20C1 /* LoyaltyMobileSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LoyaltyMobileSDK;
+		};
+		4FB04BB42B32B1C000363B24 /* GamificationMobileSDK-iOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "GamificationMobileSDK-iOS";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

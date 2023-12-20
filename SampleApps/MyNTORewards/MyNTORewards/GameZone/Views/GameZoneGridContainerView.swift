@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK_iOS
 
 struct GameZoneGridContainerView: View {
     private let gridItems: [GridItem] = Array(repeating: .init(.adaptive(minimum: 165), spacing: 13), count: 2)

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK_iOS
 
 struct FortuneWheelView: View {
     
@@ -28,7 +28,7 @@ struct FortuneWheelView: View {
 		
 	#if DEBUG
 		if UITestingHelper.isUITesting {
-			viewModel = PlayGameViewModel(devMode: true, mockFileName: UITestingHelper.playGamesMockFileName)
+			viewModel = PlayGameViewModel(devMode: true)
 		} else {
 			viewModel = PlayGameViewModel()
 		}

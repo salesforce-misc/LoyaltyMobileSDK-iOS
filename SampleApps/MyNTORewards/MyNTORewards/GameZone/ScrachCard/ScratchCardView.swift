@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK_iOS
 
 struct ScratchCardView: View {
 	@StateObject var playGameViewModel: PlayGameViewModel
@@ -27,7 +27,7 @@ struct ScratchCardView: View {
 		
 		#if DEBUG
 		if UITestingHelper.isUITesting {
-			_playGameViewModel = StateObject(wrappedValue: PlayGameViewModel(devMode: true, mockFileName: UITestingHelper.playGamesMockFileName))
+			_playGameViewModel = StateObject(wrappedValue: PlayGameViewModel(devMode: true))
 		} else {
 			_playGameViewModel = StateObject(wrappedValue: PlayGameViewModel())
 		}
