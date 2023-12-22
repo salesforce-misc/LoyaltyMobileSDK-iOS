@@ -7,12 +7,17 @@
 
 import SwiftUI
 import LoyaltyMobileSDK
+enum GameCardType {
+    case active
+    case played
+    case expired
+}
 
 struct GameZoneGridContainerView: View {
     private let gridItems: [GridItem] = Array(repeating: .init(.adaptive(minimum: 165), spacing: 13), count: 2)
 
     var games: [GameDefinition]?
-    let isExpiredView: Bool
+    let cardType: GameCardType?
     
     var body: some View {
         ScrollView {
@@ -22,11 +27,16 @@ struct GameZoneGridContainerView: View {
                 if let games = games, !games.isEmpty {
                     LazyVGrid(columns: gridItems, spacing: 13) {
                         ForEach(Array(games.enumerated()), id: \.offset) { index, gameModel in
-                            if isExpiredView {
-                                GameZoneExpiredCardView(gameCardModel: gameModel)
-                            } else {
+                            switch cardType {
+                            case .active:
                                 GameZoneCardView(gameCardModel: gameModel)
-									.accessibilityIdentifier("#\(index + 1)_active_game")
+                                    .accessibilityIdentifier("#\(index + 1)_active_game")
+                            case .played:
+                                GameZonePlayedCardView(gameCardModel: gameModel)
+                            case .expired:
+                                GameZoneExpiredCardView(gameCardModel: gameModel)
+                            case .none:
+                                EmptyView()
                             }
                         }
                     }
@@ -42,5 +52,5 @@ struct GameZoneGridContainerView: View {
 }
 
 #Preview {
-    GameZoneGridContainerView(isExpiredView: false)
+    GameZoneGridContainerView(cardType: .active)
 }

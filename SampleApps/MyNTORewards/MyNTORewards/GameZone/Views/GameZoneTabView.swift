@@ -29,9 +29,9 @@ struct GameZoneTabView: View {
                 // views
                 activeView
                     .tag(0)
-                expiredView
-                    .tag(1)
                 playedView
+                    .tag(1)
+                expiredView
                     .tag(2)
 
             }
@@ -54,7 +54,7 @@ struct GameZoneTabView: View {
     }
     
     var playedView: some View {
-        GameZoneActiveView(activeGames: gameViewModel.playedGameDefinitions)
+        GameZonePlayedView(playedGames: gameViewModel.playedGameDefinitions)
     }
     
     var expiredView: some View {

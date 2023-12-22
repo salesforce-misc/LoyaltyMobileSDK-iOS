@@ -45,7 +45,6 @@ struct StringConstants {
         static let successPointsGreeting = "You've won {n} loyalty points that you can redeem on your next purchase."
         static let successNoRewardGreeting = "Better luck next time!"
         static let successCustomRewardGreeting = "You’ve won a reward."
-
         static let placeHolderOfferText = "20% off"
         static let backButtonTitle = "Back"
         static let successBackButtonTitle = "Play More"
@@ -55,10 +54,12 @@ struct StringConstants {
         static let gameZoneHeader = "Game Zone"
         static let activeTab = "Active"
         static let expiredTab = "Expired"
+        static let playedTab = "Played"
         static let expiringToday = "Expiring today"
         static let expiringTomorrow = "Expiring tomorrow"
         static let expiryLabel = "Expiry"
         static let expiredTabHeaderLabel = "Expired in the last 90 Days"
+        static let playedTabHeaderLabel = "Played in the last 90 Days"
         static let spinaWheelHeaderLabel = "Spin a wheel"
         static let spinaWheelSubHeaderLabel = "Spin the wheel and unlock instant rewards!"
         // swiftlint:disable line_length
@@ -70,6 +71,7 @@ struct StringConstants {
         static let scratchCardSubTitleLabel = "Unlock instant rewards!"
         static let scratchCardLabel = " SCRATCH & WIN "
         static let scratchCardBodyLabel = "Grab this exclusive onetime offer and win some exciting rewards."
-
+        static let wonLabel = "Won"
+        static let noWonLabel = "Won"
     }
 }
