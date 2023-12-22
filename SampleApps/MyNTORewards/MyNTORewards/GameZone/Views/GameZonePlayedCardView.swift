@@ -73,7 +73,7 @@ struct GameZonePlayedCardView: View {
         .sheet(isPresented: $showRewardsInfoScreen) {
             if let rewardId = gameCardModel.participantGameRewards.first?.gameRewardId,
                let reward = gameCardModel.gameRewards.first(where: {$0.gameRewardId == rewardId}) {
-                PlayedGameCongratsView(offerText: reward.rewardValue ?? "",
+                PlayedGameCongratsView(offerText: reward.name,
                                        rewardType: reward.rewardType ?? .voucher).presentationDetents([.fraction(0.80)])
             }
         }

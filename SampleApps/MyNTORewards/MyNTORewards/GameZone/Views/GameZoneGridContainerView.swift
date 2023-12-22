@@ -18,11 +18,12 @@ struct GameZoneGridContainerView: View {
 
     var games: [GameDefinition]?
     let cardType: GameCardType?
-    
+	let emptyViewSubtitle: String
+	
     var body: some View {
         ScrollView {
             if games?.isEmpty ?? true {
-                EmptyStateView(title: "No Games yet", subTitle: "When you have Games available for Play, you’ll see them here.")
+				EmptyStateView(subTitle: emptyViewSubtitle)
             } else {
                 if let games = games, !games.isEmpty {
                     LazyVGrid(columns: gridItems, spacing: 13) {
@@ -52,5 +53,5 @@ struct GameZoneGridContainerView: View {
 }
 
 #Preview {
-    GameZoneGridContainerView(cardType: .active)
+    GameZoneGridContainerView(cardType: .active, emptyViewSubtitle: "No Games")
 }

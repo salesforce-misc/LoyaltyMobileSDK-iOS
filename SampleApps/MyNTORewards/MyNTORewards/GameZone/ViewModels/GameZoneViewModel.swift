@@ -78,6 +78,14 @@ class GameZoneViewModel: ObservableObject, Reloadable {
             throw error
         }
     }
+	
+	func fetchGame(for participantId: String, gameParticipantRewardId: String) async throws -> GameDefinition? {
+		let result = try await loyaltyAPIManager.getGame(participantId: participantId,
+														 gameParticipantRewardId: gameParticipantRewardId,
+														 devMode: devMode,
+														 mockFileName: mockFileName)
+		return result
+	}
     
     func clear() {
         activeGameDefinitions = nil

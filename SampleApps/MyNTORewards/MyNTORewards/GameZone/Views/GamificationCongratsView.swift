@@ -13,6 +13,7 @@ struct GamificationCongratsView: View {
     var offerText: String = "20% off"
     var rewardType: RewardType = .voucher
     let imageSize = CGSize(width: 168, height: 167)
+	var backToRoot: (() -> Void)?
     
     var body: some View {
         VStack {
@@ -43,7 +44,7 @@ struct GamificationCongratsView: View {
                ConfettiView()
             }
             Button(StringConstants.Gamification.successBackButtonTitle) {
-                dismiss()
+				backToRoot?()
             }
             .buttonStyle(DarkFlexibleButton(buttonFont: .boldButtonText))
             .padding(.bottom, 50)

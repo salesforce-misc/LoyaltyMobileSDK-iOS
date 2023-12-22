@@ -17,7 +17,9 @@ struct GameZoneExpiredView: View {
                 .font(Font.scratchText)
                 .foregroundColor(Color.theme.superLightText)
                 .padding([.horizontal, .top], 16)
-            GameZoneGridContainerView(games: expiredGames, cardType: .expired)
+			GameZoneGridContainerView(games: expiredGames, 
+                                      cardType: .expired,
+									  emptyViewSubtitle: StringConstants.Gamification.emptySubtitleForExpiredView)
         }
     }
 }

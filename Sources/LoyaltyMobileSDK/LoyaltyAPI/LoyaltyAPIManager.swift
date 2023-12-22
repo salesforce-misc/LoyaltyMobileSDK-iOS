@@ -499,7 +499,7 @@ public class LoyaltyAPIManager {
         participantId: String,
         version: String = LoyaltyAPIVersion.defaultVersion,
         devMode: Bool = false,
-		mockFileName: String = "GetGames"
+		mockFileName: String = "GetGames_Success"
 	) async throws -> GameModel {
         do {
             if devMode {
@@ -514,7 +514,30 @@ public class LoyaltyAPIManager {
             Logger.error(error.localizedDescription)
             throw error
         }
-    }   
+    } 
+	
+	public func getGame(
+		participantId: String,
+		gameParticipantRewardId: String,
+		version: String = LoyaltyAPIVersion.defaultVersion,
+		devMode: Bool = false,
+		mockFileName: String = "GetGames_Success"
+	) async throws -> GameDefinition? {
+		do {
+			if devMode {
+				let result = try forceClient.fetchLocalJson(type: GameModel.self, file: mockFileName)
+				return result.gameDefinitions.first
+			}
+			let path = getPath(for: .getGames(participantId: participantId, version: version))
+			let queryItems = ["gameParticipantRewardId": gameParticipantRewardId]
+			let request = try ForceRequest.create(instanceURL: instanceURL, path: path, method: "GET", queryItems: queryItems)
+			let result = try await forceClient.fetch(type: GameModel.self, with: request)
+			return result.gameDefinitions.first
+		} catch {
+			Logger.error(error.localizedDescription)
+			throw error
+		}
+	}
     
     /// Play Game information for the loyalty member
     /// - Parameters:

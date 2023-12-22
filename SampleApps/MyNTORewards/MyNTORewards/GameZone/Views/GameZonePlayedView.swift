@@ -17,7 +17,7 @@ struct GameZonePlayedView: View {
                 .font(Font.scratchText)
                 .foregroundColor(Color.theme.superLightText)
                 .padding([.horizontal, .top], 16)
-            GameZoneGridContainerView(games: playedGames, cardType: .played)
+            GameZoneGridContainerView(games: playedGames, cardType: .played, emptyViewSubtitle: StringConstants.Gamification.emptySubtitleForPlayedView)
         }
     }
 }

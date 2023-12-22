@@ -11,6 +11,8 @@ import LoyaltyMobileSDK
 struct GameZoneView: View {
     @State var tabSelected: Int = 0
     let barItems = [StringConstants.Gamification.activeTab, StringConstants.Gamification.playedTab, StringConstants.Gamification.expiredTab]
+	@EnvironmentObject var gameViewModel: GameZoneViewModel
+	@EnvironmentObject var rootVM: AppRootViewModel
     
     var body: some View {
         VStack(spacing: 0) {
@@ -32,7 +34,21 @@ struct GameZoneView: View {
                 GameZoneTabView(tabSelected: $tabSelected)
             }
         }.navigationBarHidden(true)
+			.onWillAppear {
+				getGames()
+			}
     }
+	
+	func getGames() {
+		Task {
+			do {
+				try await gameViewModel.getGames(participantId: rootVM.member?.loyaltyProgramMemberId ?? "")
+				
+			} catch {
+				Logger.error(error.localizedDescription)
+			}
+		}
+	}
 }
 
 #Preview {
