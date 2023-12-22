@@ -10,6 +10,9 @@ import LoyaltyMobileSDK
 
 struct GameZonePlayedCardView: View {
     let gameCardModel: GameDefinition
+    @State private var showNoLuckScreen = false
+    @State private var showCongratsScreen = false
+    @State private var popupDetent = PresentationDetent.fraction(0.80)
     
     var body: some View {
         VStack {
@@ -62,7 +65,37 @@ struct GameZonePlayedCardView: View {
                     x: 0,
                     y: 0
                 )
-        )
+        ).onTapGesture(perform: {
+            if let rewardId = gameCardModel.participantGameRewards.first?.gameRewardId,
+               let rewardType = gameCardModel.gameRewards.first(where: {$0.gameRewardId == rewardId})?.rewardType {
+                if rewardType == .noReward {
+                    showNoLuckScreen = true
+                    
+                } else {
+                    showCongratsScreen = true
+                }
+            } else {
+                showNoLuckScreen = true
+            }
+        })
+        .sheet(isPresented: $showNoLuckScreen) {
+            PlayedGameNoLuckView()
+                .presentationDetents(
+                    [.fraction(0.80)],
+                    selection: $popupDetent
+                )
+        }
+        .sheet(isPresented: $showCongratsScreen) {
+            if let rewardId = gameCardModel.participantGameRewards.first?.gameRewardId,
+               let reward = gameCardModel.gameRewards.first(where: {$0.gameRewardId == rewardId}) {
+                PlayedGameCongratsView(offerText: reward.rewardValue ?? "",
+                                         rewardType: reward.rewardType ?? .voucher)
+                .presentationDetents(
+                    [.fraction(0.80)],
+                    selection: $popupDetent
+                )
+            }
+        }
     }
     
     func getFormattedplayedLabel() -> String {

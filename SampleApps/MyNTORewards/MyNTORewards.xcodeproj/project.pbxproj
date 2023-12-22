@@ -237,6 +237,8 @@
 		4F18ED872AD958C6000F64D9 /* GameZoneExpiredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */; };
 		4F6809F52B35511E0001E175 /* GameZonePlayedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6809F42B35511E0001E175 /* GameZonePlayedView.swift */; };
 		4F6809F72B3552560001E175 /* GameZonePlayedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6809F62B3552560001E175 /* GameZonePlayedCardView.swift */; };
+		4F6809F92B3564190001E175 /* PlayedGameNoLuckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6809F82B3564190001E175 /* PlayedGameNoLuckView.swift */; };
+		4F6809FB2B3569380001E175 /* PlayedGameCongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6809FA2B3569380001E175 /* PlayedGameCongratsView.swift */; };
 		4F7BD9852ADE417E003B7ADA /* GameZoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9842ADE417E003B7ADA /* GameZoneViewModel.swift */; };
 		4F7BD9872ADE7F88003B7ADA /* GameZoneCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9862ADE7F88003B7ADA /* GameZoneCardView.swift */; };
 		4F7BD9892ADE8D52003B7ADA /* GameZoneGridContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9882ADE8D52003B7ADA /* GameZoneGridContainerView.swift */; };
@@ -527,6 +529,8 @@
 		4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneExpiredView.swift; sourceTree = "<group>"; };
 		4F6809F42B35511E0001E175 /* GameZonePlayedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZonePlayedView.swift; sourceTree = "<group>"; };
 		4F6809F62B3552560001E175 /* GameZonePlayedCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZonePlayedCardView.swift; sourceTree = "<group>"; };
+		4F6809F82B3564190001E175 /* PlayedGameNoLuckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayedGameNoLuckView.swift; sourceTree = "<group>"; };
+		4F6809FA2B3569380001E175 /* PlayedGameCongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayedGameCongratsView.swift; sourceTree = "<group>"; };
 		4F7BD9842ADE417E003B7ADA /* GameZoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneViewModel.swift; sourceTree = "<group>"; };
 		4F7BD9862ADE7F88003B7ADA /* GameZoneCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneCardView.swift; sourceTree = "<group>"; };
 		4F7BD9882ADE8D52003B7ADA /* GameZoneGridContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneGridContainerView.swift; sourceTree = "<group>"; };
@@ -1185,6 +1189,8 @@
 			isa = PBXGroup;
 			children = (
 				4F18ED7E2AD5150B000F64D9 /* GamificationCongratsView.swift */,
+				4F6809F82B3564190001E175 /* PlayedGameNoLuckView.swift */,
+				4F6809FA2B3569380001E175 /* PlayedGameCongratsView.swift */,
 				4F18ED802AD52F2B000F64D9 /* GamificationNoLuckView.swift */,
 				4F18ED842AD94D50000F64D9 /* GameZoneActiveView.swift */,
 				4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */,
@@ -1582,6 +1588,7 @@
 				3F19C2E12AFB4BE4003AECDC /* UIView+Shimmer.swift in Sources */,
 				2963771529C10D6200D45AB6 /* Address.swift in Sources */,
 				3F7EF5322A70D0E90005BA30 /* Double+round.swift in Sources */,
+				4F6809FB2B3569380001E175 /* PlayedGameCongratsView.swift in Sources */,
 				4FECF86C2AEB7FC90070E89A /* ConfettiView.swift in Sources */,
 				3F714D6529FA0FEB00CD39E7 /* AddressView.swift in Sources */,
 				3FE8BFC62A6D8ED300ECD45B /* ReceiptListViewModel.swift in Sources */,
@@ -1624,6 +1631,7 @@
 				290EA9C1292C0ACF00BBF2F2 /* VoucherViewModel.swift in Sources */,
 				3F714D6429FA0FEB00CD39E7 /* VoucherPickerView.swift in Sources */,
 				3FE71D0E2B3199CD006E6BF5 /* VoucherCardView.swift in Sources */,
+				4F6809F92B3564190001E175 /* PlayedGameNoLuckView.swift in Sources */,
 				296D393E28DE1EFF0078C88E /* ButtonStyles.swift in Sources */,
 				3F714D5529FA0FC200CD39E7 /* NavigationBarView.swift in Sources */,
 				2984C9462954F091009669EF /* Entry.swift in Sources */,
