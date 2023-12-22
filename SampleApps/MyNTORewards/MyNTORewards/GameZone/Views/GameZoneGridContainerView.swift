@@ -18,7 +18,7 @@ struct GameZoneGridContainerView: View {
     var body: some View {
         ScrollView {
             if games?.isEmpty ?? true {
-				EmptyStateView(title: "", subTitle: emptyViewSubtitle)
+				EmptyStateView(subTitle: emptyViewSubtitle)
             } else {
                 if let games = games, !games.isEmpty {
                     LazyVGrid(columns: gridItems, spacing: 13) {
