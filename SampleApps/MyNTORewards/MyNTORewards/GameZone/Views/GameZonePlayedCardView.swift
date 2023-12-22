@@ -10,9 +10,8 @@ import LoyaltyMobileSDK
 
 struct GameZonePlayedCardView: View {
     let gameCardModel: GameDefinition
-    @State private var showNoLuckScreen = false
-    @State private var showCongratsScreen = false
-    @State private var popupDetent = PresentationDetent.fraction(0.80)
+    @State private var showNoRewardsScreen = false
+    @State private var showRewardsInfoScreen = false
     
     var body: some View {
         VStack {
@@ -32,13 +31,13 @@ struct GameZonePlayedCardView: View {
                     Text(gameCardModel.name)
                         .font(.gameTitle)
                         .foregroundColor(Color.theme.lightText)
-                        .accessibilityIdentifier("game_zone_expired_card_title")
+                        .accessibilityIdentifier("game_zone_played_card_title")
                     Spacer()
                 }
                 Text(getGameTypeText())
                     .font(.redeemText)
                     .foregroundColor(Color.theme.superLightText)
-                Text(getFormattedplayedLabel())
+                Text(getFormattedPlayedLabel())
                     .font(.labelText)
                     .padding([.vertical], 2)
                     .padding([.horizontal], 12)
@@ -66,39 +65,35 @@ struct GameZonePlayedCardView: View {
                     y: 0
                 )
         ).onTapGesture(perform: {
-            if let rewardId = gameCardModel.participantGameRewards.first?.gameRewardId,
-               let rewardType = gameCardModel.gameRewards.first(where: {$0.gameRewardId == rewardId})?.rewardType {
-                if rewardType == .noReward {
-                    showNoLuckScreen = true
-                    
-                } else {
-                    showCongratsScreen = true
-                }
-            } else {
-                showNoLuckScreen = true
-            }
+            handleNavigation()
         })
-        .sheet(isPresented: $showNoLuckScreen) {
-            PlayedGameNoLuckView()
-                .presentationDetents(
-                    [.fraction(0.80)],
-                    selection: $popupDetent
-                )
+        .sheet(isPresented: $showNoRewardsScreen) {
+            PlayedGameNoLuckView().presentationDetents([.fraction(0.80)])
         }
-        .sheet(isPresented: $showCongratsScreen) {
+        .sheet(isPresented: $showRewardsInfoScreen) {
             if let rewardId = gameCardModel.participantGameRewards.first?.gameRewardId,
                let reward = gameCardModel.gameRewards.first(where: {$0.gameRewardId == rewardId}) {
                 PlayedGameCongratsView(offerText: reward.rewardValue ?? "",
-                                         rewardType: reward.rewardType ?? .voucher)
-                .presentationDetents(
-                    [.fraction(0.80)],
-                    selection: $popupDetent
-                )
+                                       rewardType: reward.rewardType ?? .voucher).presentationDetents([.fraction(0.80)])
             }
         }
     }
     
-    func getFormattedplayedLabel() -> String {
+    func handleNavigation() {
+        if let rewardId = gameCardModel.participantGameRewards.first?.gameRewardId,
+           let rewardType = gameCardModel.gameRewards.first(where: {$0.gameRewardId == rewardId})?.rewardType {
+            if rewardType == .noReward {
+                showNoRewardsScreen = true
+            } else {
+                showRewardsInfoScreen = true
+            }
+        } else {
+            showNoRewardsScreen = true
+        }
+    }
+    
+    func getFormattedPlayedLabel() -> String {
+        // To Do need to update to game played date
         guard let expirationDate = gameCardModel.participantGameRewards.first?.expirationDate else { return "Never Played" }
         return "\(StringConstants.Gamification.playedTab) \(expirationDate.toString(withFormat: "dd MMM yyyy"))"
     }
