@@ -15,7 +15,7 @@ struct BottomNavTabsView: View {
 	@StateObject var cameraVM = CameraViewModel()
 	@StateObject var routerPath = RouterPath()
 	@StateObject var receiptListViewModel = ReceiptListViewModel()
-    @StateObject var appViewRouter = AppViewRouter()
+	@EnvironmentObject var appViewRouter: AppViewRouter
     @StateObject var rootVM = AppRootViewModel()
 	@StateObject var gameZoneVM: GameZoneViewModel
 	@State var selectedTab: Int
@@ -38,7 +38,7 @@ struct BottomNavTabsView: View {
 	var body: some View {
         ZStack(alignment: .bottomLeading) {
             TabView(selection: tabSelection()) {
-                HomeView(selectedTab: $selectedTab).tabItem({
+				HomeView(selectedTab: $appViewRouter.selectedTab).tabItem({
                     Label("Home", image: "ic-home")
                 }).tag(Tab.home.rawValue)
                                     
@@ -63,7 +63,7 @@ struct BottomNavTabsView: View {
                     }).tag(Tab.more.rawValue)
 
             }
-            .onChange(of: selectedTab) { _ in
+			.onChange(of: appViewRouter.selectedTab) { _ in
                 routerPath.pathFromHome.removeAll()
                 routerPath.pathFromMore.removeAll()
             }
@@ -95,30 +95,31 @@ struct BottomNavTabsView: View {
         .environmentObject(gameZoneVM)
 	}
 }
+
 extension BottomNavTabsView {
-    
-    private func tabSelection() -> Binding<Int> {
-        Binding { //this is the get block
-            self.selectedTab
-        } set: { tappedTab in
-            if tappedTab == self.selectedTab {
-                //User tapped on the tab twice == Pop to root view for Home tab
-                if routerPath.pathFromHome.isEmpty {
-                    //User already on home view, scroll to top
-                } else {
-                    routerPath.pathFromHome = []
-                }
-                //User tapped on the tab twice == Pop to root view for More tab
-                if routerPath.pathFromMore.isEmpty {
-                    //User already on home view, scroll to top
-                } else {
-                    routerPath.pathFromMore = []
-                }
-            }
-            //Set the tab to the tabbed tab
-            self.selectedTab = tappedTab
-        }
-    }
+	
+	private func tabSelection() -> Binding<Int> {
+		Binding { //this is the get block
+			appViewRouter.selectedTab
+		} set: { tappedTab in
+			if tappedTab == appViewRouter.selectedTab {
+				//User tapped on the tab twice == Pop to root view for Home tab
+				if routerPath.pathFromHome.isEmpty {
+					//User already on home view, scroll to top
+				} else {
+					routerPath.pathFromHome = []
+				}
+				//User tapped on the tab twice == Pop to root view for More tab
+				if routerPath.pathFromMore.isEmpty {
+					//User already on home view, scroll to top
+				} else {
+					routerPath.pathFromMore = []
+				}
+			}
+			//Set the tab to the tabbed tab
+			appViewRouter.selectedTab = tappedTab
+		}
+	}
 }
 
 struct BottomNavTabsView_Previews: PreviewProvider {

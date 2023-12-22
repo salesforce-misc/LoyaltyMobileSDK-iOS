@@ -10,9 +10,11 @@ import LoyaltyMobileSDK
 
 struct GameZoneActiveView: View {
     var activeGames: [GameDefinition]?
-
+	
     var body: some View {
-        GameZoneGridContainerView(games: activeGames, isExpiredView: false)
+        GameZoneGridContainerView(games: activeGames, 
+								  isExpiredView: false,
+								  emptyViewSubtitle: StringConstants.Gamification.emptySubtitleForActiveView)
     }
 }
 

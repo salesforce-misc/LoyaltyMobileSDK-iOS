@@ -28,7 +28,7 @@ final class ProfileViewModelTests: XCTestCase {
         try await viewModel.fetchProfile(memberId: "1234", devMode: true)
         XCTAssertEqual((viewModel.profile?.loyaltyProgramMemberID ?? ""), "0lM4x000000LECAEA4")
         XCTAssertEqual(viewModel.profile?.loyaltyProgramName ?? "", "NTO Insider")
-        XCTAssertEqual(viewModel.profile?.membershipNumber ?? "", "Member1")
+        XCTAssertEqual(viewModel.profile?.membershipNumber ?? "", "0lMSB00000001wz2AA")
         XCTAssertEqual(viewModel.profile?.memberStatus ?? "", "Active")
     }
     
@@ -44,7 +44,7 @@ final class ProfileViewModelTests: XCTestCase {
         try await viewModel.getProfileData(memberId: "1234",reload: false, devMode: true)
         XCTAssertEqual((viewModel.profile?.loyaltyProgramMemberID ?? ""), "0lM4x000000LECAEA4")
         XCTAssertEqual(viewModel.profile?.loyaltyProgramName ?? "", "NTO Insider")
-        XCTAssertEqual(viewModel.profile?.membershipNumber ?? "", "Member1")
+        XCTAssertEqual(viewModel.profile?.membershipNumber ?? "", "0lMSB00000001wz2AA")
         XCTAssertEqual(viewModel.profile?.memberStatus ?? "", "Active")
         
         /// clear profile and reload false scenerio

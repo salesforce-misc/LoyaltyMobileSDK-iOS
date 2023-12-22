@@ -41,8 +41,8 @@ struct StringConstants {
     
     struct Gamification {
         static let successGreetingTitle = "Congratulations!"
-        static let successVoucherGreeting = "You've won a{n}discount voucher for your next purchase. To redeem your reward, go to the Voucher section."
-        static let successPointsGreeting = "You've won {n} loyalty points that you can redeem on your next purchase."
+        static let successVoucherGreeting = "You've won a{n}for your next purchase. To redeem your reward, go to the Voucher section."
+        static let successPointsGreeting = "You've won{n}that you can redeem on your next purchase."
         static let successNoRewardGreeting = "Better luck next time!"
         static let successCustomRewardGreeting = "You’ve won a reward."
 
@@ -71,5 +71,9 @@ struct StringConstants {
         static let scratchCardLabel = " SCRATCH & WIN "
         static let scratchCardBodyLabel = "Grab this exclusive onetime offer and win some exciting rewards."
 
+		// Empty State
+		static let emptySubtitleForActiveView = "When you have games available, you’ll see them here."
+		static let emptySubtitleForExpiredView = "When your games expire, you’ll see them here."
+		static let emptySubtitleForPlayedView = "When you have played games, you’ll see them here."
     }
 }
