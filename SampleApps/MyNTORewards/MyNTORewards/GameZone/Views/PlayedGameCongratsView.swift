@@ -1,34 +1,41 @@
 //
-//  GamificationCongratsView.swift
+//  PlayedGameCongratsView.swift
 //  MyNTORewards
 //
-//  Created by Damodaram Nandi on 10/10/23.
+//  Created by Damodaram Nandi on 22/12/23.
 //
 
 import SwiftUI
 import LoyaltyMobileSDK
 
-struct GamificationCongratsView: View {
+struct PlayedGameCongratsView: View {
     @Environment(\.dismiss) var dismiss
+    let imageSize = CGSize(width: 165, height: 165)
     var offerText: String = "20% off"
     var rewardType: RewardType = .voucher
-    let imageSize = CGSize(width: 168, height: 167)
-	var backToRoot: (() -> Void)?
     
     var body: some View {
         VStack {
+            HStack {
+                Spacer()
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.gray)
+                }
+                .padding(.trailing, 10)
+            }
+            .padding(.top, 12)
             // Scrollview  is for Dynamic font support
             ScrollView {
                 VStack {
-                    Image("img-congrats")
-                        .resizable()
-                        .scaledToFit()
-                    Image("img-gifts-color-art")
-                        .frame(width: imageSize.width, height: imageSize.height)
-                        .aspectRatio(imageSize.width/imageSize.height, contentMode: .fit)
-                        .padding(.bottom, 29)
-                        .padding(.top, -imageSize.height/2)
-                    VStack(spacing: 5) {
+                    ZStack(alignment: .center) {
+                        Image("img-game-gift")
+                            .frame(width: imageSize.width, height: imageSize.height)
+                            .aspectRatio(imageSize.width/imageSize.height, contentMode: .fit)
+                    }.padding(.top, 20)
+                    VStack(spacing: 10) {
                         Text(StringConstants.Gamification.successGreetingTitle)
                             .font(.congratsTitle)
                             .foregroundColor(Color.theme.lightText)
@@ -37,18 +44,18 @@ struct GamificationCongratsView: View {
                     .multilineTextAlignment(.center)
                     .lineSpacing(5)
                     .padding(.horizontal, 16)
+                    .padding(.top, 40)
+
                     Spacer()
                 }
             }.diableBounceForScrollView()
-            .overlay {
-               ConfettiView()
-            }
-            Button(StringConstants.Gamification.successBackButtonTitle) {
-				backToRoot?()
+            Button(StringConstants.Gamification.backButtonTitle) {
+                dismiss()
             }
             .buttonStyle(DarkFlexibleButton(buttonFont: .boldButtonText))
-            .padding(.bottom, 50)
-        }.edgesIgnoringSafeArea(.top)
+            .padding([.bottom], 50)
+        }
+        
     }
     
     func getRewrdsMessage() -> String {
@@ -67,11 +74,11 @@ struct GamificationCongratsView: View {
         }
         return message
     }
-	
-	private func getOfferTextWithSpacing(for offerText: String) -> String {
-		offerText.isEmpty ? " " : " \(offerText) "
-	}
-	
+    
+    private func getOfferTextWithSpacing(for offerText: String) -> String {
+        offerText.isEmpty ? " " : " \(offerText) "
+    }
+    
     func getAttributedStringForGreetingsBody() -> AttributedString {
         let greetingsText = getRewrdsMessage()
         let replacedString = greetingsText.replacingOccurrences(of: "{n}", with: getOfferTextWithSpacing(for: offerText))
@@ -87,5 +94,5 @@ struct GamificationCongratsView: View {
 }
 
 #Preview {
-	GamificationCongratsView()
+    PlayedGameCongratsView()
 }

@@ -86,6 +86,14 @@ struct MoreView: View {
                         .foregroundColor(Color.theme.textInactive)
                     
                 }
+				.onAppear {
+					if routerPath.startWithGameZoneInMore {
+						DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+							routerPath.startWithGameZoneInMore = false
+							routerPath.navigateFromMore(to: .gameZone)
+						}
+					}
+				}
                 .listStyle(.plain)
                 .navigationBarHidden(true)
 				.withAppRouter()

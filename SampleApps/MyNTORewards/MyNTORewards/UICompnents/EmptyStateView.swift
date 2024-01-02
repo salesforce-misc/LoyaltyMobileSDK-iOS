@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct EmptyStateView: View {
-    let title: String
+    let title: String?
     let subTitle: String?
     
-    init(title: String, subTitle: String? = nil) {
+    init(title: String? = nil, subTitle: String? = nil) {
         self.title = title
         self.subTitle = subTitle
     }
@@ -21,9 +21,11 @@ struct EmptyStateView: View {
             Image("img-empty-state")
             
             VStack(spacing: 8) {
-                Text(title)
-                    .accessibility(identifier: title)
-                    .font(.emptyStateTitle)
+				if let title = title {
+					Text(title)
+						.accessibility(identifier: title)
+						.font(.emptyStateTitle)
+				}
                 if let subTitle = subTitle {
                     Text(subTitle)
                         .font(.emptyStateSubTitle)

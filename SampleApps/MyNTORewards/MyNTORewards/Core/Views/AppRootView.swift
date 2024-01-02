@@ -12,27 +12,14 @@ struct AppRootView: View {
 	
 	@EnvironmentObject private var appViewRouter: AppViewRouter
 	@EnvironmentObject private var rootVM: AppRootViewModel
-    @EnvironmentObject private var benefitVM: BenefitViewModel
-    @EnvironmentObject private var profileVM: ProfileViewModel
-    @EnvironmentObject private var imageVM: ImageViewModel
+	@EnvironmentObject private var benefitVM: BenefitViewModel
+	@EnvironmentObject private var profileVM: ProfileViewModel
+	@EnvironmentObject private var imageVM: ImageViewModel
 	
 	var body: some View {
 		Group {
 			if appViewRouter.signedIn {
-				switch appViewRouter.currentPage {
-				case .navTabsPage(selectedTab: Tab.home.rawValue):
-					BottomNavTabsView(selectedTab: Tab.home.rawValue)
-				case .navTabsPage(selectedTab: Tab.offers.rawValue):
-					BottomNavTabsView(selectedTab: Tab.offers.rawValue)
-				case .navTabsPage(selectedTab: Tab.profile.rawValue):
-					BottomNavTabsView(selectedTab: Tab.profile.rawValue)
-				case .navTabsPage(selectedTab: Tab.redeem.rawValue):
-					BottomNavTabsView(selectedTab: Tab.redeem.rawValue)
-				case .navTabsPage(selectedTab: Tab.more.rawValue):
-					BottomNavTabsView(selectedTab: Tab.more.rawValue)
-				default:
-					BottomNavTabsView()
-				}
+				BottomNavTabsView()
 			} else {
 				switch appViewRouter.currentPage {
 				case .onboardingPage:
@@ -50,25 +37,41 @@ struct AppRootView: View {
 				rootVM.member = LocalFileManager.instance.getData(type: CommunityMemberModel.self, id: rootVM.email)
 			}
 		}
-        .onChange(of: appViewRouter.isAuthenticated, perform: { newValue in
-            if !newValue && rootVM.userState == .signedIn {
-                rootVM.signOutUser()
-            }
-        })
+		.onChange(of: appViewRouter.isAuthenticated, perform: { newValue in
+			if !newValue && rootVM.userState == .signedIn {
+				rootVM.signOutUser()
+			}
+		})
+		.onChange(of: appViewRouter.currentPage, perform: { _ in
+			switch appViewRouter.currentPage {
+			case .navTabsPage(selectedTab: Tab.home.rawValue):
+				appViewRouter.selectedTab = Tab.home.rawValue
+			case .navTabsPage(selectedTab: Tab.offers.rawValue):
+				appViewRouter.selectedTab = Tab.offers.rawValue
+			case .navTabsPage(selectedTab: Tab.profile.rawValue):
+				appViewRouter.selectedTab = Tab.profile.rawValue
+			case .navTabsPage(selectedTab: Tab.redeem.rawValue):
+				appViewRouter.selectedTab = Tab.redeem.rawValue
+			case .navTabsPage(selectedTab: Tab.more.rawValue):
+				appViewRouter.selectedTab = Tab.more.rawValue
+			default:
+				appViewRouter.selectedTab = Tab.home.rawValue
+			}
+		})
 		.onOpenURL { url in
 			Logger.debug(url.absoluteString)
 			redirectDeeplink(url: url)
 		}
-        .onReceive(rootVM.$userState) { state in
-            if state == UserState.signedOut {
-                appViewRouter.signedIn = false
-                appViewRouter.currentPage = .onboardingPage
-                
-                benefitVM.clear()
-                profileVM.clear()
-                imageVM.clear()
-            }
-        }
+		.onReceive(rootVM.$userState) { state in
+			if state == UserState.signedOut {
+				appViewRouter.signedIn = false
+				appViewRouter.currentPage = .onboardingPage
+				
+				benefitVM.clear()
+				profileVM.clear()
+				imageVM.clear()
+			}
+		}
 	}
 	
 	/// Sample reset password email link:
