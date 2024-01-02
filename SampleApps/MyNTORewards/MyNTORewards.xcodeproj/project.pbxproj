@@ -183,6 +183,7 @@
 		3FB333972A18E33800C3A639 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB333962A18E33800C3A639 /* ProductViewModel.swift */; };
 		3FB5E6A02B35595F0057C46B /* View+LifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5E69F2B35595F0057C46B /* View+LifeCycle.swift */; };
 		3FBEFDEE2A0D1CB400685BAF /* TestDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBEFDED2A0D1CB400685BAF /* TestDataStore.swift */; };
+		3FC37C8E2B444534005A3E2C /* PlayedTabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC37C8D2B444534005A3E2C /* PlayedTabUITests.swift */; };
 		3FC92C612A0AA9E30081BFEC /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC92C602A0AA9E30081BFEC /* Order.swift */; };
 		3FE71CF82B3199CD006E6BF5 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CCD2B3199C9006E6BF5 /* MoreView.swift */; };
 		3FE71CF92B3199CD006E6BF5 /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CCE2B3199C9006E6BF5 /* OnboardingCardView.swift */; };
@@ -476,6 +477,7 @@
 		3FB5E69F2B35595F0057C46B /* View+LifeCycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+LifeCycle.swift"; sourceTree = "<group>"; };
 		3FBEFDEC2A0D1C3C00685BAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3FBEFDED2A0D1CB400685BAF /* TestDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataStore.swift; sourceTree = "<group>"; };
+		3FC37C8D2B444534005A3E2C /* PlayedTabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayedTabUITests.swift; sourceTree = "<group>"; };
 		3FC92C602A0AA9E30081BFEC /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		3FE71CCD2B3199C9006E6BF5 /* MoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		3FE71CCE2B3199C9006E6BF5 /* OnboardingCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
@@ -1217,6 +1219,7 @@
 				3F8A88292B2CAF27009D05A3 /* FortuneWheel */,
 				3F8A88262B2C92EB009D05A3 /* ScratchCard */,
 				4F7BD9912AE1326D003B7ADA /* GameZoneViewHelper.swift */,
+				3FC37C8D2B444534005A3E2C /* PlayedTabUITests.swift */,
 			);
 			path = GameZone;
 			sourceTree = "<group>";
@@ -1716,6 +1719,7 @@
 				AFCDDAAD29E54621006B00EB /* OnBoardingViewUITests.swift in Sources */,
 				AFE960E129EE4B9D00C888C0 /* SignInViewHelper.swift in Sources */,
 				AFCDDAA629E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift in Sources */,
+				3FC37C8E2B444534005A3E2C /* PlayedTabUITests.swift in Sources */,
 				3F7DAFA32A81E6D900A521E2 /* ReceiptsViewHelper.swift in Sources */,
 				3F8A88212B2BF633009D05A3 /* ScratchCardViewRewardedUITests.swift in Sources */,
 				AFE960DD29EE47A700C888C0 /* OnBoardingViewHelper.swift in Sources */,

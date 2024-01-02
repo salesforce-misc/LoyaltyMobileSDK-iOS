@@ -64,4 +64,10 @@ final class GameZoneViewUITests: XCTestCase {
         gameZoneCard.tap()
         XCTAssertFalse(app.staticTexts["Scratch and win!"].waitForExistence(timeout: 2))
     }
+
+	func testPlayedTabNavigation() {
+		XCTAssert(app.staticTexts["Played"].waitForExistence(timeout: 2))
+		app.staticTexts["Played"].tap()
+		XCTAssert(app.staticTexts["game_zone_played_card_title"].waitForExistence(timeout: 5))
+	}
 }

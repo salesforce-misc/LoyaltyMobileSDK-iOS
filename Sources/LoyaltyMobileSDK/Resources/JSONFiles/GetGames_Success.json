@@ -294,7 +294,73 @@
       "startDate": "2023-10-01T19:00:00.000Z",
       "timeoutDuration": 10,
       "type": "Scratchcard"
-    }
+    },
+	{
+		"gameDefinitionId":"9",
+		"description": "Play Spin The Wheel to Get Amazing Rewards",
+		"endDate": "2023-10-31T19:00:00.000Z",
+		"gameRewards": [
+			{
+				"gameRewardId": "501",
+				"rewardDefinitionId": "101",
+				"color": "FF5733",
+				"description": "Get 10% Off Voucher",
+				"expirationDate": "2023-10-31T19:00:00.000Z",
+				"imageUrl": null,
+				"name": "10% Off Voucher",
+				"rewardType": "Voucher",
+				"rewardValue": null
+			}
+		],
+		"participantGameRewards":[
+			{
+				"gameRewardId": "501",
+				"gameParticipantRewardId": "201",
+				"sourceActivityId": "201",
+				"expirationDate": "2023-11-15T19:00:00.000Z",
+				"issuedRewardReference": "12344",
+				"status": "Rewarded",
+			}
+		],
+		"name": "Meow Scratch Mouse",
+		"startDate": "2023-10-01T19:00:00.000Z",
+		"status": "expired",
+		"timeoutDuration": 10,
+		"type": "Scratchcard"
+	},
+	{
+		"gameDefinitionId":"9",
+		"description": "Play Spin The Wheel to Get Amazing Rewards",
+		"endDate": "2023-10-31T19:00:00.000Z",
+		"gameRewards": [
+			{
+				"rewardDefinitionId": "103",
+				"gameRewardId": "501",
+				"color": "762E2E",
+				"description": "Better Luck Next Time",
+				"expirationDate": "2023-11-15T19:00:00.000Z",
+				"imageUrl": null,
+				"name": "Better Luck Next Time",
+				"rewardType": "NoReward",
+				"rewardValue": null
+			}
+		],
+		"participantGameRewards":[
+			{
+				"gameRewardId": "501",
+				"gameParticipantRewardId": "201",
+				"sourceActivityId": "201",
+				"expirationDate": "2023-11-15T19:00:00.000Z",
+				"issuedRewardReference": "12344",
+				"status": "Rewarded",
+			}
+		],
+		"name": "Meow Scratch Mouse",
+		"startDate": "2023-10-01T19:00:00.000Z",
+		"status": "expired",
+		"timeoutDuration": 10,
+		"type": "Scratchcard"
+	}
   ],
   "status": true
 }
