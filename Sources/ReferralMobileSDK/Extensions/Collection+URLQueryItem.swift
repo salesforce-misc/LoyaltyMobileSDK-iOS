@@ -10,7 +10,7 @@ import Foundation
 /// An extension of Collection for handling URLQueryItem objects.
 /// This extension simplifies the process of extracting the values of query items from a URL.
 /// For more information, visit: https://www.avanderlee.com/swift/url-components/
-public extension Collection where Element == URLQueryItem {
+extension Collection where Element == URLQueryItem {
     
     /// Provides a convenient subscript to access the value of a URLQueryItem by its name.
     /// - Parameter name: The name of the URLQueryItem whose value you want to retrieve.

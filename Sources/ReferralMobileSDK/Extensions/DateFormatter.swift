@@ -8,7 +8,7 @@
 import Foundation
 
 /// An extension of DateFormatter to provide custom date formats for the Salesforce API.
-public extension DateFormatter {
+extension DateFormatter {
     
     /// Enumeration for representing the length of the date format.
     enum Length: String, CaseIterable {

@@ -9,9 +9,9 @@ import Foundation
 
 // MARK: - ReferralEnrollmentOutputModel
 public struct ReferralEnrollmentOutputModel: Codable {
-    let contactID, memberID, membershipNumber, programName: String
-    let promotionReferralCode: String
-    let transactionJournals: [EnrollmentTransactionJournal]
+    public let contactID, memberID, membershipNumber, programName: String
+    public let promotionReferralCode: String
+    public let transactionJournals: [EnrollmentTransactionJournal]
 
     enum CodingKeys: String, CodingKey {
         case contactID = "contactId"
@@ -22,8 +22,8 @@ public struct ReferralEnrollmentOutputModel: Codable {
 
 // MARK: - EnrollmentTransactionJournal
 public struct EnrollmentTransactionJournal: Codable {
-    let activityDate, journalSubType, journalType, membershipNumber: String
-    let programName, status, transactionJournalID: String
+    public let activityDate, journalSubType, journalType, membershipNumber: String
+    public let programName, status, transactionJournalID: String
 
     enum CodingKeys: String, CodingKey {
         case activityDate, journalSubType, journalType, membershipNumber, programName, status

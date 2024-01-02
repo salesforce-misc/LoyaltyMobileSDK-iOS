@@ -8,7 +8,7 @@
 import Foundation
 
 /// Extension to check if a Data object is valid JSON
-public extension Data {
+extension Data {
     var isValidJSON: Bool {
         do {
             try JSONSerialization.jsonObject(with: self)

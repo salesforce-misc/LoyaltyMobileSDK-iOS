@@ -33,6 +33,7 @@ public class ReferralAPIManager {
     /// Enumeration for identifying the type of resource to request.
     public enum Resource {
         case referralEnrollment(referralProgramName: String, promotionCode: String, version: String)
+        case referralEvent(version: String)
     }
     
     /// Get path for given API resource
@@ -43,6 +44,8 @@ public class ReferralAPIManager {
         switch resource {
         case .referralEnrollment(let referralProgramName, let promotionCode, let version):
             return ForceAPI.path(for: "/referral-programs/\(referralProgramName)/promotions/\(promotionCode)/member-enrollments", version: version)
+        case .referralEvent(let version):
+            return ForceAPI.path(for: "/referral-program/referral-event", version: version)
         }
     }
     
@@ -100,6 +103,34 @@ public class ReferralAPIManager {
             return try await forceClient.fetch(type: ReferralEnrollmentOutputModel.self, with: request)
         } catch {
             // Handle any errors from encoding or network request
+            throw error
+        }
+    }
+    
+    public func referralEvent(email: String,
+                              version: String = ReferralAPIVersion.defaultVersion,
+                              devMode: Bool = false) async throws -> ReferralEventOutputModel {
+        do {
+            //TODO: construct a post body with email
+            
+            let path = getPath(for: .referralEvent(version: version))
+            let request = try ForceRequest.create(instanceURL: instanceURL, path: path, method: "GET")
+            return try await forceClient.fetch(type: ReferralEventOutputModel.self, with: request)
+        } catch {
+            throw error
+        }
+    }
+    
+    public func referralEvent(emails: [String],
+                              version: String = ReferralAPIVersion.defaultVersion,
+                              devMode: Bool = false) async throws -> ReferralEventOutputModel {
+        do {
+            //TODO: construct a post body with email array
+            
+            let path = getPath(for: .referralEvent(version: version))
+            let request = try ForceRequest.create(instanceURL: instanceURL, path: path, method: "GET")
+            return try await forceClient.fetch(type: ReferralEventOutputModel.self, with: request)
+        } catch {
             throw error
         }
     }
