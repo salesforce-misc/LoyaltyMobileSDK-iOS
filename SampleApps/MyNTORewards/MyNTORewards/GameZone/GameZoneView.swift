@@ -33,10 +33,11 @@ struct GameZoneView: View {
                 Color.theme.background
                 GameZoneTabView(tabSelected: $tabSelected)
             }
-        }.navigationBarHidden(true)
-			.onWillAppear {
-				getGames()
-			}
+        }
+        .navigationBarHidden(true)
+        .onWillAppear {
+            getGames()
+        }
     }
 	
 	func getGames() {
