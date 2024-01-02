@@ -21,17 +21,28 @@ struct GameZoneTabView: View {
             ProgressView()
         case .failed(let error):
             // To Do Need to Design Error View
-            Text(error.localizedDescription)
-                .font(.congratsTitle)
-                .padding(.horizontal, 15)
+            VStack {
+                Spacer()
+                ProcessingErrorView(message: "Oops! Something went wrong while processing the request. Try again.")
+                Spacer()
+                Button {
+                    Logger.debug("get games Error \(error.localizedDescription)")
+                    getGames()
+                } label: {
+                    Text(StringConstants.Receipts.tryAgainButton)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .longFlexibleButtonStyle()
+            }
         case .loaded:
             TabView(selection: $tabSelected) {
                 // views
                 activeView
                     .tag(0)
-                expiredView
-                    .tag(1)
                 playedView
+                    .tag(1)
+                expiredView
                     .tag(2)
 
             }
@@ -39,7 +50,7 @@ struct GameZoneTabView: View {
             .refreshable {
                 Logger.debug("Reloading available Games...")
                 do {
-                    try await gameViewModel.reload(id: rootVM.member?.membershipNumber ?? "", number: "")
+                    try await gameViewModel.reload(id: rootVM.member?.loyaltyProgramMemberId ?? "", number: "")
                     Logger.debug("loaded available Games...")
                     
                 } catch {
@@ -54,7 +65,7 @@ struct GameZoneTabView: View {
     }
     
     var playedView: some View {
-        GameZoneActiveView(activeGames: gameViewModel.playedGameDefinitions)
+        GameZonePlayedView(playedGames: gameViewModel.playedGameDefinitions)
     }
     
     var expiredView: some View {
@@ -64,7 +75,7 @@ struct GameZoneTabView: View {
     func getGames() {
         Task {
             do {
-                try await gameViewModel.getGames(participantId: rootVM.member?.membershipNumber ?? "")
+                try await gameViewModel.getGames(participantId: rootVM.member?.loyaltyProgramMemberId ?? "")
                 
             } catch {
                 Logger.error(error.localizedDescription)

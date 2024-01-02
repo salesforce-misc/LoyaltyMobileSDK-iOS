@@ -14,15 +14,13 @@ final class GameZoneViewHelper: XCTestCase {
         app.buttons["Game Zone"].tap()
     }
     
-    static func goToScarthCardView(app: XCUIApplication) {
-        goToGameZoneView(app: app)
+    static func goToScratchCardView(app: XCUIApplication) {
         _ = app.cells.element.waitForExistence(timeout: 5)
        let element = app.images["img-scratch-card"]
         element.tap()
     }
     
-    static func goToSpinaWheelView(app: XCUIApplication) {
-        goToGameZoneView(app: app)
+    static func goToSpinAWheelView(app: XCUIApplication) {
         _ = app.cells.element.waitForExistence(timeout: 5)
         let gameZoneCard = app.images["img-fortune-wheel"].firstMatch
        gameZoneCard.tap()

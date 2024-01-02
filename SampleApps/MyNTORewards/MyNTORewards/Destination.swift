@@ -23,6 +23,6 @@ enum RouterDestination: Identifiable, Hashable {
 	case receipts
     case gameZone
     case gameZoneBetterLuck
-    case gameZoneCongrats(offerText: String)
+    case gameZoneCongrats(offerText: String, rewardType: String)
     case referrals
 }

@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct GamificationCongratsView: View {
     @Environment(\.dismiss) var dismiss
     var offerText: String = "20% off"
+    var rewardType: RewardType = .voucher
     let imageSize = CGSize(width: 168, height: 167)
+	var backToRoot: (() -> Void)?
     
     var body: some View {
         VStack {
@@ -40,17 +43,38 @@ struct GamificationCongratsView: View {
             .overlay {
                ConfettiView()
             }
-            Button(StringConstants.Gamification.backButtonTitle) {
-                dismiss()
+            Button(StringConstants.Gamification.successBackButtonTitle) {
+				backToRoot?()
             }
             .buttonStyle(DarkFlexibleButton(buttonFont: .boldButtonText))
             .padding(.bottom, 50)
         }.edgesIgnoringSafeArea(.top)
     }
     
+    func getRewrdsMessage() -> String {
+        var message = ""
+        switch rewardType {
+        case .voucher:
+            message = StringConstants.Gamification.successVoucherGreeting
+        case .loyaltyPoints:
+            message = StringConstants.Gamification.successPointsGreeting
+        case .raffle:
+            message = ""
+        case .noReward:
+            message = StringConstants.Gamification.successNoRewardGreeting
+        case .customReward:
+            message = StringConstants.Gamification.successCustomRewardGreeting
+        }
+        return message
+    }
+	
+	private func getOfferTextWithSpacing(for offerText: String) -> String {
+		offerText.isEmpty ? " " : " \(offerText) "
+	}
+	
     func getAttributedStringForGreetingsBody() -> AttributedString {
-        let greetingsText = StringConstants.Gamification.successGreetingBody
-        let replacedString = greetingsText.replacingOccurrences(of: StringConstants.Gamification.placeHolderOfferText, with: offerText)
+        let greetingsText = getRewrdsMessage()
+        let replacedString = greetingsText.replacingOccurrences(of: "{n}", with: getOfferTextWithSpacing(for: offerText))
         var attributedString = AttributedString(replacedString)
         attributedString.foregroundColor = Color.theme.superLightText
         attributedString.font = .congratsText
@@ -62,8 +86,6 @@ struct GamificationCongratsView: View {
     }
 }
 
-struct GamificationCongratsView_Previews: PreviewProvider {
-    static var previews: some View {
-        GamificationCongratsView()
-    }
+#Preview {
+	GamificationCongratsView()
 }

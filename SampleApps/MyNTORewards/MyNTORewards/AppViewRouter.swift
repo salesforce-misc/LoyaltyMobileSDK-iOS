@@ -19,8 +19,9 @@ class AppViewRouter: ObservableObject {
     // used for managing the signIn state.
     @Published var signedIn = false
     // check if the user is authenticated
-    @Published var isAuthenticated: Bool = ForceAuthManager.shared.auth != nil
-    
+	@Published var isAuthenticated: Bool = ForceAuthManager.shared.auth != nil
+	@Published var selectedTab: Int = Tab.home.rawValue
+	
     private var cancellables = Set<AnyCancellable>()
     
     init() {

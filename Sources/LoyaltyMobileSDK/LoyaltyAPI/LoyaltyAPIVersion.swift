@@ -10,5 +10,5 @@ import Foundation
 /// A struct containing the API version information for the loyalty program.
 public struct LoyaltyAPIVersion {
     /// The default version to be used for the loyalty program API requests.
-    public static let defaultVersion = "58.0"
+    public static let defaultVersion = "60.0"
 }
