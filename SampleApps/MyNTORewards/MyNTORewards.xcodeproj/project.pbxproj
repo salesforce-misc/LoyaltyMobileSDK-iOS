@@ -1216,10 +1216,10 @@
 				3F2B758D2B2E17E600B2AA9C /* GameZoneViewFailUITests.swift */,
 				3F2B758F2B2EB14700B2AA9C /* GameZoneExpiredTabUITests.swift */,
 				3F2B75912B2ED14600B2AA9C /* GameZoneExpiryLabelTests.swift */,
+				3FC37C8D2B444534005A3E2C /* PlayedTabUITests.swift */,
 				3F8A88292B2CAF27009D05A3 /* FortuneWheel */,
 				3F8A88262B2C92EB009D05A3 /* ScratchCard */,
 				4F7BD9912AE1326D003B7ADA /* GameZoneViewHelper.swift */,
-				3FC37C8D2B444534005A3E2C /* PlayedTabUITests.swift */,
 			);
 			path = GameZone;
 			sourceTree = "<group>";
