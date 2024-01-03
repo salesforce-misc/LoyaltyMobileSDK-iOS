@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import GamificationMobileSDK_iOS
+import GamificationMobileSDK
 import SwiftUI
 
 @MainActor

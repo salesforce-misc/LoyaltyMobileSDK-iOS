@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import GamificationMobileSDK_iOS
+import GamificationMobileSDK
 
 public class GamificationForceAuthManager: GamificationForceAuthenticator, ObservableObject {
     @Published public var auth: ForceAuth?

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import LoyaltyMobileSDK
-import GamificationMobileSDK_iOS
+import GamificationMobileSDK
 
 extension PreviewProvider {
     

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import GamificationMobileSDK_iOS
+import GamificationMobileSDK
 enum GameCardType {
     case active
     case played

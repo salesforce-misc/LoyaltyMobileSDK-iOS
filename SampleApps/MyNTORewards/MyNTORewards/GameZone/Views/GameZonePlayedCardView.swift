@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import GamificationMobileSDK_iOS
+import GamificationMobileSDK
 
 struct GameZonePlayedCardView: View {
     let gameCardModel: GameDefinition

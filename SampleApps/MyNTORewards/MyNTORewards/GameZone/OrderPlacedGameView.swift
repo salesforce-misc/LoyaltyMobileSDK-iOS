@@ -7,7 +7,7 @@
 
 import SwiftUI
 import LoyaltyMobileSDK
-import GamificationMobileSDK_iOS
+import GamificationMobileSDK
 
 struct OrderPlacedGameView: View {
 	@EnvironmentObject private var promotionVM: PromotionViewModel

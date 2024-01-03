@@ -6,8 +6,7 @@
 //
 
 import Foundation
-import LoyaltyMobileSDK
-import GamificationMobileSDK_iOS
+import GamificationMobileSDK
 
 enum LoadingState: ReflectiveEquatable {
 	case idle
