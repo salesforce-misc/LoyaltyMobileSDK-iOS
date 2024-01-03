@@ -26,6 +26,8 @@ final class GameZoneExpiredTabUITests: XCTestCase {
 		XCTAssertTrue(app.staticTexts["Expired in the last 90 Days"].exists)
 		let scratchCardItems = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Scratch Card'"))
 		XCTAssertEqual(scratchCardItems.count, 1)
+		let spinAWheelItems = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Spin a Wheel'"))
+		XCTAssertEqual(spinAWheelItems.count, 1)
 	}
 	
 }

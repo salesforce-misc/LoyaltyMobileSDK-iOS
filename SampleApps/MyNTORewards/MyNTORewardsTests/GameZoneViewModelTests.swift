@@ -24,9 +24,9 @@ final class GameZoneViewModelTests: XCTestCase {
 	
 	@MainActor func test_getGamesTest() async throws {
 		try await viewModel.getGames(participantId: "faKeParticiPaNtId007")
-		XCTAssertEqual(viewModel.activeGameDefinitions?.count, 3)
-		XCTAssertEqual(viewModel.playedGameDefinitions?.count, 0)
-		XCTAssertEqual(viewModel.expiredGameDefinitions?.count, 1)
+		XCTAssertEqual(viewModel.activeGameDefinitions?.count, 2)
+		XCTAssertEqual(viewModel.playedGameDefinitions?.count, 2)
+		XCTAssertEqual(viewModel.expiredGameDefinitions?.count, 2)
 	}
 	
 	@MainActor func test_getGamesFailTest() async throws {
@@ -40,11 +40,17 @@ final class GameZoneViewModelTests: XCTestCase {
 		}
 	}
 	
+	@MainActor func test_getGameTest() async throws {
+		let game = try await viewModel.fetchGame(for: "faKeParticiPaNtId007", gameParticipantRewardId: "faKeGamEParticiPaNtReWArdId007")
+		XCTAssertEqual(game?.name, "Bonnie and Clyde Style Promotion")
+		XCTAssertEqual(game?.type.rawValue, "SpintheWheel")
+	}
+	
 	@MainActor func test_reloadAndClear() async throws {
 		try await viewModel.reload(id: "faKeParticiPaNtId007", number: "7")
-		XCTAssertEqual(viewModel.activeGameDefinitions?.count, 3)
-		XCTAssertEqual(viewModel.playedGameDefinitions?.count, 0)
-		XCTAssertEqual(viewModel.expiredGameDefinitions?.count, 1)
+		XCTAssertEqual(viewModel.activeGameDefinitions?.count, 2)
+		XCTAssertEqual(viewModel.playedGameDefinitions?.count, 2)
+		XCTAssertEqual(viewModel.expiredGameDefinitions?.count, 2)
 		viewModel.clear()
 		XCTAssertNil(viewModel.activeGameDefinitions)
 		XCTAssertNil(viewModel.playedGameDefinitions)

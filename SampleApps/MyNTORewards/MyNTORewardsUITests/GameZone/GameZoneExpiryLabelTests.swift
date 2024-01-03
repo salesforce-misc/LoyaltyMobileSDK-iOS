@@ -39,13 +39,13 @@ final class GameZoneExpiryLabelTests: XCTestCase {
 		let grid = app.otherElements["game_grid"]
 		XCTAssertTrue(grid.waitForExistence(timeout: 3), "Game lazy grid should be visible")
 		
-		let items = grid.buttons
-		XCTAssertEqual(items.count, 3, "There should be 3 games on the screen")
+		let activeGames = grid.images.containing(NSPredicate(format: "identifier CONTAINS 'active_game'"))
+		XCTAssertEqual(activeGames.count, 2, "There should be 2 games on the screen")
 		
 		let cardsExpiringToday = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Expiring today'"))
 		let cardsNeverExpire = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Never Expires'"))
 		// Testing 2 items are expiring today and 1 Never Expiring.
-		XCTAssertEqual(cardsExpiringToday.count, 2, "2 games should show 'Expiring today'")
+		XCTAssertEqual(cardsExpiringToday.count, 1, "1 games should show 'Expiring today'")
 		XCTAssertEqual(cardsNeverExpire.count, 1, "1 game should show 'Never Expires'")
 	}
 	
@@ -56,13 +56,13 @@ final class GameZoneExpiryLabelTests: XCTestCase {
 		let grid = app.otherElements["game_grid"]
 		XCTAssertTrue(grid.waitForExistence(timeout: 3), "Game lazy grid should be visible")
 		
-		let items = grid.buttons
-		XCTAssertEqual(items.count, 3, "There should be 3 games on the screen")
+		let activeGames = grid.images.containing(NSPredicate(format: "identifier CONTAINS 'active_game'"))
+		XCTAssertEqual(activeGames.count, 2, "There should be 2 games on the screen")
 		
 		let cardsExpiringTomorrow = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Expiring tomorrow'"))
 		let cardsNeverExpire = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Never Expires'"))
 		// Testing 2 items are expiring tomorrow and 1 Never Expiring.
-		XCTAssertEqual(cardsExpiringTomorrow.count, 2, "2 games should show 'Expiring tomorrow'")
+		XCTAssertEqual(cardsExpiringTomorrow.count, 1, "1 games should show 'Expiring tomorrow'")
 		XCTAssertEqual(cardsNeverExpire.count, 1, "1 game should show 'Never Expires'")
 	}
 	
@@ -73,11 +73,10 @@ final class GameZoneExpiryLabelTests: XCTestCase {
 		let grid = app.otherElements["game_grid"]
 		XCTAssertTrue(grid.waitForExistence(timeout: 3), "Game lazy grid should be visible")
 		
-		let items = grid.buttons
-		XCTAssertEqual(items.count, 3, "There should be 3 games on the screen")
+		let activeGames = grid.images.containing(NSPredicate(format: "identifier CONTAINS 'active_game'"))
+		XCTAssertEqual(activeGames.count, 2, "There should be 2 games on the screen")
 		
-		XCTAssertTrue(app.staticTexts["Expiry 23 Dec 2023"].exists)
-		XCTAssertTrue(app.staticTexts["Expiry 01 Nov 2024"].exists)
+		XCTAssertTrue(app.staticTexts["Never Expires"].exists)
 		XCTAssertTrue(app.staticTexts["Expiry 01 Nov 2024"].exists)
 	}
 }

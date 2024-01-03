@@ -71,7 +71,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
             playedGameDefinitions = result.gameDefinitions.filter({$0.participantGameRewards.first?.status == .rewarded})
             expiredGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
                 guard let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate else { return false }
-                return expirationDate < Date()
+                return expirationDate < Date() && gameDefinition.participantGameRewards.first?.status == .yetToReward
             })
         } catch {
             self.state = .failed(error)

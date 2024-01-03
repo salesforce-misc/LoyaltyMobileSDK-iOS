@@ -31,12 +31,8 @@ struct UITestingHelper {
 		ProcessInfo.processInfo.environment["play_scratch_card"] == "fail"
 	}
 	
-	static var isSpinAWheelPlayGameRewardedWithPoints: Bool {
-		ProcessInfo.processInfo.environment["play_spin_a_wheel"] == "rewarded_with_points"
-	}
-	
-	static var isSpinAWheelPlayGameRewardedWithoutPoints: Bool {
-		ProcessInfo.processInfo.environment["play_spin_a_wheel"] == "rewarded_without_points"
+	static var isSpinAWheelPlayGameRewarded: Bool {
+		ProcessInfo.processInfo.environment["play_spin_a_wheel"] == "rewarded"
 	}
 	
 	static var isSpinAWheelPlayGameNoReward: Bool {
@@ -56,10 +52,8 @@ struct UITestingHelper {
 	}
 	
 	static var playGamesMockFileName: String {
-		if isScratchCardPlayGameRewarded || isSpinAWheelPlayGameRewardedWithPoints {
+		if isScratchCardPlayGameRewarded || isSpinAWheelPlayGameRewarded{
 			return "PlayGame_Success"
-		} else if isSpinAWheelPlayGameRewardedWithoutPoints {
-			return "PlayGame_Success_WithoutRewardValue"
 		} else if isScratchCardPlayGameNoReward || isSpinAWheelPlayGameNoReward {
 			return "PlayGame_NoReward"
 		} else if isScratchCardPlayGameFail || isSpinAWheelPlayGameFail {
