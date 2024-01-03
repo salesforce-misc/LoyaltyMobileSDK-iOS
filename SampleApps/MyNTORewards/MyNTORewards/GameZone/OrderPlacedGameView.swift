@@ -111,15 +111,12 @@ struct OrderPlacedGameView: View {
     }
 }
 
-//enum GameType {
-//    case spinAWheel
-//    case scratchCard
-//}
-
 #Preview {
     OrderPlacedGameView(game: .spinaWheel)
+        .environmentObject(OrderDetailsViewModel())
 }
 
 #Preview {
     OrderPlacedGameView(game: .scratchCard)
+        .environmentObject(OrderDetailsViewModel())
 }
