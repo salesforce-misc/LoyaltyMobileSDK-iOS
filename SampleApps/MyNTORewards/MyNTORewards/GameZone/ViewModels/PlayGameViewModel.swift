@@ -18,7 +18,7 @@ class PlayGameViewModel: ObservableObject {
     var wheelColors: [Color]?
 
     private let authManager: GamificationForceAuthenticator
-    private var loyaltyAPIManager: APIManager
+    private var gamificationAPIManager: APIManager
     private var devMode: Bool
     let mockFileName: String
 
@@ -29,7 +29,7 @@ class PlayGameViewModel: ObservableObject {
             self.mockFileName = mockFileName
             self.devMode = devMode
             self.authManager = authManager
-            loyaltyAPIManager = APIManager(auth: authManager,
+            gamificationAPIManager = APIManager(auth: authManager,
                                            instanceURL: AppSettings.shared.getInstanceURL(),
                                            forceClient: GamificationForceClient(auth: authManager))
         }
@@ -46,7 +46,7 @@ class PlayGameViewModel: ObservableObject {
     
     func getPlayedGameRewards(gameParticipantRewardId: String) async throws {
         do {
-            let result = try await loyaltyAPIManager.playGame(gameParticipantRewardId: gameParticipantRewardId, devMode: devMode)
+            let result = try await gamificationAPIManager.playGame(gameParticipantRewardId: gameParticipantRewardId, devMode: devMode)
             issuedRewardId = result.gameReward.first?.gameRewardId
             self.playedGameRewards = result.gameReward
         } catch {

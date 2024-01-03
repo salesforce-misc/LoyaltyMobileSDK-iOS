@@ -23,7 +23,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     @Published var expiredGameDefinitions: [GameDefinition]?
     
     private let authManager: GamificationForceAuthenticator
-    private var loyaltyAPIManager: APIManager
+    private var gamificationAPIManager: APIManager
 	private var devMode: Bool
     private var mockFileName: String
     
@@ -34,7 +34,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
             self.mockFileName = mockFileName
             self.devMode = devMode
             self.authManager = authManager
-            loyaltyAPIManager = APIManager(auth: authManager,
+            gamificationAPIManager = APIManager(auth: authManager,
                                            instanceURL: AppSettings.shared.getInstanceURL(),
                                            forceClient: GamificationForceClient(auth: authManager))
         }
@@ -52,7 +52,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     
     func fetchGames(participantId: String) async throws {
         do {
-            let result = try await loyaltyAPIManager.getGames(participantId: participantId,
+            let result = try await gamificationAPIManager.getGames(participantId: participantId,
 															  devMode: devMode)
             activeGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
                 if let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate {
@@ -73,7 +73,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     }
 	
 	func fetchGame(for participantId: String, gameParticipantRewardId: String) async throws -> GameDefinition? {
-		let result = try await loyaltyAPIManager.getGame(participantId: participantId,
+		let result = try await gamificationAPIManager.getGame(participantId: participantId,
 														 gameParticipantRewardId: gameParticipantRewardId,
 														 devMode: devMode,
 														 mockFileName: mockFileName)
