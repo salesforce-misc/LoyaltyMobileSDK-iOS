@@ -10,9 +10,11 @@ import GamificationMobileSDK_iOS
 
 struct GameZoneActiveView: View {
     var activeGames: [GameDefinition]?
-
+	
     var body: some View {
-        GameZoneGridContainerView(games: activeGames, isExpiredView: false)
+        GameZoneGridContainerView(games: activeGames,
+                                  cardType: .active,
+								  emptyViewSubtitle: StringConstants.Gamification.emptySubtitleForActiveView)
     }
 }
 

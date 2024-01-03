@@ -35,7 +35,7 @@ public class GamificationForceAuthManager: GamificationForceAuthenticator, Obser
                 }
                 return savedAuth
             } catch {
-                Logger.error("No auth found. Please login.")
+                GamificationLogger.error("No auth found. Please login.")
             }
         }
         return nil

@@ -18,12 +18,17 @@ struct ScratchCardView: View {
 	@State private var finishedPlaying = false
     @State private var showAlertForError = false
 	@State var timer: Timer?
+	@State private var wonReward: String? = ""
+	@State private var rewardType: RewardType = .voucher
+	
 	let cardSize = CGSize(width: 289, height: 115)
 	let backgroundSize = CGSize(width: 343, height: 199)
     var gameDefinitionModel: GameDefinition?
+	var backToRoot: (() -> Void)?
 	
-	init(gameDefinitionModel: GameDefinition?) {
+	init(gameDefinitionModel: GameDefinition?, backToRoot: (() -> Void)?) {
 		self.gameDefinitionModel = gameDefinitionModel
+		self.backToRoot = backToRoot
 		
 		#if DEBUG
 		if UITestingHelper.isUITesting {
@@ -38,7 +43,14 @@ struct ScratchCardView: View {
 	
 	var body: some View {
 		if finishedPlaying {
-			GamificationCongratsView()
+			if let rewardText = wonReward {
+				GamificationCongratsView(offerText: rewardText, rewardType: rewardType) {
+					backToRoot?()
+				}
+			} else {
+				GamificationNoLuckView()
+					.toolbar(.hidden, for: .tabBar, .navigationBar)
+			}
 		} else {
 			VStack {
 				backButton
@@ -65,16 +77,19 @@ struct ScratchCardView: View {
                             return
                         }
                         // Using timer instead of asyncAfter in order to have control to invalidate the timer to avoid navigation
-                        timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
-                            reward.rewardType == RewardType.noReward.rawValue ? showBetterLuckNextTime() : showCongrats(reward: reward)
-                        }
-                        reloadAllGames()
+						timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
+							//							showBetterLuckNextTime = reward.rewardType == "NoReward" ? showBetterLuckNextTime() : showCongrats(offerText: reward.name)
+							finishedPlaying = true
+							wonReward = reward.rewardType != "NoReward" ? reward.name : nil
+							rewardType = RewardType(rawValue: reward.rewardType) ?? .voucher
+//							reloadAllGames()
+						}
                     case .idle:
-                        Logger.debug("ScratchCardView Idle state")
+                        GamificationLogger.debug("ScratchCardView Idle state")
                     case .loading:
-                        Logger.debug("ScratchCardView loading state")
+                        GamificationLogger.debug("ScratchCardView loading state")
                     case .failed(let error ):
-                        Logger.debug("ScratchCardView error state\(error)")
+                        GamificationLogger.debug("ScratchCardView error state\(error)")
                         handleErrorCase()
                     }
 				})
@@ -102,13 +117,13 @@ struct ScratchCardView: View {
     
     func reloadAllGames() {
         Task {
-            Logger.debug("Reloading available Games...")
+            GamificationLogger.debug("Reloading available Games...")
             do {
                 try await gameViewModel.reload(id: rootVM.member?.loyaltyProgramMemberId ?? "", number: "")
-                Logger.debug("loaded available Games...")
+                GamificationLogger.debug("loaded available Games...")
                 
             } catch {
-                Logger.error("Reload Available Games Error: \(error)")
+                GamificationLogger.error("Reload Available Games Error: \(error)")
             }
         }
     }
@@ -119,13 +134,13 @@ struct ScratchCardView: View {
         }
     }
     
-    private func showCongrats(reward: PlayGameReward) {
-        self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: reward.rewardValue ?? "", rewardType: reward.rewardType))
-	}
-	
-	private func showBetterLuckNextTime() {
-		self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
-	}
+//	private func showCongrats(offerText: String) {
+//		self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: offerText))
+//	}
+//	
+//	private func showBetterLuckNextTime() {
+//		self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
+//	}
 	
 	private func eraseWrapperView() {
 		withAnimation(Animation.easeOut(duration: 1)) {
@@ -390,5 +405,5 @@ struct DottedBorderRectangle: View {
 }
 
 #Preview {
-	ScratchCardView(gameDefinitionModel: DeveloperPreview.instance.activeGame)
+	ScratchCardView(gameDefinitionModel: DeveloperPreview.instance.activeGame, backToRoot: nil)
 }

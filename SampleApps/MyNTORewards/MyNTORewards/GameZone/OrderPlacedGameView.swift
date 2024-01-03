@@ -6,11 +6,19 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
+import GamificationMobileSDK_iOS
 
 struct OrderPlacedGameView: View {
-    
+	@EnvironmentObject private var promotionVM: PromotionViewModel
+	@EnvironmentObject private var orderDetailsVM: OrderDetailsViewModel
+	@EnvironmentObject private var appViewRouter: AppViewRouter
+	@EnvironmentObject private var routerPath: RouterPath
+	@EnvironmentObject private var gameZoneViewModel: GameZoneViewModel
+	
+	@State private var orderNumber = ""
     let game: GameType
-    
+	
     var body: some View {
         VStack(spacing: 0) {
             VStack(spacing: 15) {
@@ -26,68 +34,64 @@ struct OrderPlacedGameView: View {
                 Image("img-checked")
                     .padding(.top, 15)
                 
-                Text("Order Placed!")
+                Text("Your Order \(orderNumber) is Placed.")
                     .font(.orderPlacedTitle)
-                Text("Your payment is complete, please check the deliver details at the tracking page.")
+					.multilineTextAlignment(.center)
+                Text("You can view the delivery status on the tracking page.")
                     .font(.orderPlacedDescription)
                     .lineSpacing(5)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 85)
                 
-                if game == .spinAWheel {
-                    Text("Spin a Wheel Game Unlocked!")
+                if game == .spinaWheel {
+                    Text("Congratulations! You’ve unlocked a reward. Give it a spin!")
                         .font(.unlockedGameTitle)
                         .padding(.top, 40)
-                    Text("This is your 10th order of this month and has unlocked a one time chance to win instant rewards.")
-                        .font(.unlockedGameDescription)
-                        .lineSpacing(5)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 30)
                         
                     Image("img-wheel")
-                    
-                    Button {
-                        // Navigate to FortuneWheelView()
-                    } label: {
-                        Text("Play Now")
-                            .frame(maxWidth: .infinity)
-                    }
-                    .longFlexibleButtonStyle()
-                    .padding(.top, 30)
+					
+					NavigationLink {
+						FortuneWheelView(gameDefinitionModel: orderDetailsVM.gameDefinition)
+							.navigationBarBackButtonHidden()
+					} label: {
+						Text("Play")
+							.longFlexibleButtonStyle()
+					}
+					.padding(.top, 30)
                         
                     Button {
                         // Navigate to GameZoneView()
+						promotionVM.isCheckoutNavigationActive = false
                     } label: {
-                        Text("Play Later in the Game Zone")
+                        Text("Play later in the Game Zone")
                             .font(.footerButtonText)
                     }
                     .padding(.bottom, 20)
                     .foregroundColor(Color.theme.accent)
                 } else if game == .scratchCard {
-                    Text("Scratch and Win Game Unlocked!")
+                    Text("Congratulations! You’ve unlocked a scratch card.")
                         .font(.unlockedGameTitle)
                         .padding(.top, 40)
-                    Text("Your spent of more than $200 this month has unlocked a one time chance to win instant rewards.")
-                        .font(.unlockedGameDescription)
-                        .lineSpacing(5)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 30)
                         
                     Image("img-card")
                     
-                    Button {
-                        // Navigate to ScratchCardView()
-                    } label: {
-                        Text("Play Now")
-                            .frame(maxWidth: .infinity)
-                    }
-                    .longFlexibleButtonStyle()
-                    .padding(.top, 30)
+					NavigationLink {
+						ScratchCardView(gameDefinitionModel: orderDetailsVM.gameDefinition, backToRoot: {
+							routerPath.startWithGameZoneInMore = true
+							appViewRouter.selectedTab = Tab.more.rawValue
+							promotionVM.isCheckoutNavigationActive = false
+						})
+							.navigationBarBackButtonHidden()
+					} label: {
+						Text("Play")
+							.longFlexibleButtonStyle()
+					}
+					.padding(.top, 30)
                         
                     Button {
-                        // Navigate to Continue Shopping
+						promotionVM.isCheckoutNavigationActive = false
                     } label: {
-                        Text("Continue Shopping")
+                        Text("Play later in the Game Zone")
                             .font(.footerButtonText)
                     }
                     .padding(.bottom, 20)
@@ -97,18 +101,23 @@ struct OrderPlacedGameView: View {
             }
             Spacer()
         }
+		.task {
+			do {
+				let orderDetails = try await orderDetailsVM.getOrderDetails()
+				orderNumber = orderDetails.orderNumber
+			} catch {
+				Logger.error("Error fetching order details..")
+			}
+		}
     }
 }
 
-enum GameType {
-    case spinAWheel
-    case scratchCard
-}
-
 #Preview {
-    OrderPlacedGameView(game: .spinAWheel)
+    OrderPlacedGameView(game: .spinaWheel)
+        .environmentObject(OrderDetailsViewModel())
 }
 
 #Preview {
     OrderPlacedGameView(game: .scratchCard)
+        .environmentObject(OrderDetailsViewModel())
 }
