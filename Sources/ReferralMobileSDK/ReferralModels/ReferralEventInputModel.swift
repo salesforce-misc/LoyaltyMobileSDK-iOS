@@ -14,7 +14,7 @@ struct ReferralEventInputModel: Codable {
     public let email, joiningDate, eventType, productID: String
     public let purchaseAmount: Double
     public let purchaseQuantity: Int
-    public let additionalAttributes: AdditionalAttributes
+    public let referralAdditionalAttributes: ReferralAdditionalAttributes
     public let transactionJournalAdditionalAttributes: TransactionJournalAdditionalAttributes
     public let orderReferenceID: String
 
@@ -23,13 +23,13 @@ struct ReferralEventInputModel: Codable {
         case contactID = "contactId"
         case firstName, lastName, email, joiningDate, eventType
         case productID = "productId"
-        case purchaseAmount, purchaseQuantity, additionalAttributes, transactionJournalAdditionalAttributes
+        case purchaseAmount, purchaseQuantity, referralAdditionalAttributes, transactionJournalAdditionalAttributes
         case orderReferenceID = "orderReferenceId"
     }
 }
 
 // MARK: - AdditionalAttributes
-public struct AdditionalAttributes: Codable {
+public struct ReferralAdditionalAttributes: Codable {
     public let attributes: Attributes
 }
 

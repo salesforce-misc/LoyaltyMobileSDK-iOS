@@ -49,6 +49,7 @@ public class ReferralAPIManager {
         }
     }
     
+    /// Use Case 3: Existing Referral Advocate enrolling to a Promotion with Membership number
     public func referralEnrollment(membershipNumber: String,
                                    with promotionCode: String,
                                    version: String = ReferralAPIVersion.defaultVersion,
@@ -68,6 +69,7 @@ public class ReferralAPIManager {
         }
     }
 
+    /// Use Case 2: Existing Referral Advocate enrolling to a Promotion with Contact Id
     public func referralEnrollment(contactID: String,
                                    with promotionCode: String,
                                    version: String = ReferralAPIVersion.defaultVersion,
@@ -87,6 +89,7 @@ public class ReferralAPIManager {
         }
     }
     
+    /// Use case 1: New Member (No contact or membership id i.e. not a loyalty member)
     public func referralEnrollment(associatedAccountInfo: ReferralEnrollmentInputModel,
                                    with promotionCode: String,
                                    version: String = ReferralAPIVersion.defaultVersion,
