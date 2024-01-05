@@ -39,7 +39,7 @@ struct SignUpView: View {
                     VStack {
                         VStack(spacing: 15) {
                             
-                            if viewModel.userState != .signedInButNotJoined {
+                            if viewModel.userState == .none {
                                 SignUpCredentialFields(
                                     firstName: $firstName,
                                     lastName: $lastName,
@@ -85,7 +85,7 @@ struct SignUpView: View {
                                     }
                                     .accessibilityIdentifier(AppAccessibilty.Signup.loginButton)
                                 }
-                            } else {
+                            } else if viewModel.userState == .signedInButNotJoined {
                                 // swiftlint:disable line_length
                                 Text("Currently you are not in our rewards program. You are welcome to join. We have made easy for you by simply clicking Join button below.")
                                     .font(.congratsText)
