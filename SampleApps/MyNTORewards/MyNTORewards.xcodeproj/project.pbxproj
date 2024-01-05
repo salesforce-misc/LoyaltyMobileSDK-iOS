@@ -185,6 +185,7 @@
 		3FBEFDEE2A0D1CB400685BAF /* TestDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBEFDED2A0D1CB400685BAF /* TestDataStore.swift */; };
 		3FC37C8E2B444534005A3E2C /* PlayedTabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC37C8D2B444534005A3E2C /* PlayedTabUITests.swift */; };
 		3FC92C612A0AA9E30081BFEC /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC92C602A0AA9E30081BFEC /* Order.swift */; };
+		3FE082DC2B47FC080034BF93 /* GameCardViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE082DB2B47FC080034BF93 /* GameCardViewProtocol.swift */; };
 		3FE71CF82B3199CD006E6BF5 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CCD2B3199C9006E6BF5 /* MoreView.swift */; };
 		3FE71CF92B3199CD006E6BF5 /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CCE2B3199C9006E6BF5 /* OnboardingCardView.swift */; };
 		3FE71CFA2B3199CD006E6BF5 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CCF2B3199C9006E6BF5 /* QRCodeView.swift */; };
@@ -479,6 +480,7 @@
 		3FBEFDED2A0D1CB400685BAF /* TestDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataStore.swift; sourceTree = "<group>"; };
 		3FC37C8D2B444534005A3E2C /* PlayedTabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayedTabUITests.swift; sourceTree = "<group>"; };
 		3FC92C602A0AA9E30081BFEC /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		3FE082DB2B47FC080034BF93 /* GameCardViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCardViewProtocol.swift; sourceTree = "<group>"; };
 		3FE71CCD2B3199C9006E6BF5 /* MoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		3FE71CCE2B3199C9006E6BF5 /* OnboardingCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
 		3FE71CCF2B3199C9006E6BF5 /* QRCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
@@ -884,10 +886,6 @@
 			children = (
 				4FBDAAC22ADD44650057C637 /* ViewModels */,
 				4F18ED7D2AD5144B000F64D9 /* Views */,
-				29AF68C52ABA4A6D0021DC09 /* FortuneWheel */,
-				29BD48972ACCB40900F10158 /* ScrachCard */,
-				29AF68C62ABA4AA20021DC09 /* GameZoneView.swift */,
-				29AE25282AD60613001EFE98 /* OrderPlacedGameView.swift */,
 				3F75ABC82B307C370018CB2B /* ReflectiveEquatable.swift */,
 			);
 			path = GameZone;
@@ -1140,6 +1138,28 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		3FE082DD2B47FC300034BF93 /* GameCards */ = {
+			isa = PBXGroup;
+			children = (
+				4F7BD9862ADE7F88003B7ADA /* GameZoneCardView.swift */,
+				3FE082DB2B47FC080034BF93 /* GameCardViewProtocol.swift */,
+				4F7BD98A2ADE94A9003B7ADA /* GameZoneExpiredCardView.swift */,
+				4F6809F62B3552560001E175 /* GameZonePlayedCardView.swift */,
+			);
+			path = GameCards;
+			sourceTree = "<group>";
+		};
+		3FE082DE2B47FC7F0034BF93 /* GameResultViews */ = {
+			isa = PBXGroup;
+			children = (
+				4F18ED7E2AD5150B000F64D9 /* GamificationCongratsView.swift */,
+				4F6809F82B3564190001E175 /* PlayedGameNoLuckView.swift */,
+				4F6809FA2B3569380001E175 /* PlayedGameCongratsView.swift */,
+				4F18ED802AD52F2B000F64D9 /* GamificationNoLuckView.swift */,
+			);
+			path = GameResultViews;
+			sourceTree = "<group>";
+		};
 		3FE71D232B3199D9006E6BF5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1193,18 +1213,17 @@
 		4F18ED7D2AD5144B000F64D9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4F18ED7E2AD5150B000F64D9 /* GamificationCongratsView.swift */,
-				4F6809F82B3564190001E175 /* PlayedGameNoLuckView.swift */,
-				4F6809FA2B3569380001E175 /* PlayedGameCongratsView.swift */,
-				4F18ED802AD52F2B000F64D9 /* GamificationNoLuckView.swift */,
+				3FE082DE2B47FC7F0034BF93 /* GameResultViews */,
+				3FE082DD2B47FC300034BF93 /* GameCards */,
+				29AF68C52ABA4A6D0021DC09 /* FortuneWheel */,
+				29BD48972ACCB40900F10158 /* ScrachCard */,
 				4F18ED842AD94D50000F64D9 /* GameZoneActiveView.swift */,
 				4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */,
 				4F6809F42B35511E0001E175 /* GameZonePlayedView.swift */,
-				4F7BD9862ADE7F88003B7ADA /* GameZoneCardView.swift */,
 				4F7BD9882ADE8D52003B7ADA /* GameZoneGridContainerView.swift */,
-				4F7BD98A2ADE94A9003B7ADA /* GameZoneExpiredCardView.swift */,
-				4F6809F62B3552560001E175 /* GameZonePlayedCardView.swift */,
 				4F7BD98C2ADEB711003B7ADA /* GameZoneTabView.swift */,
+				29AF68C62ABA4AA20021DC09 /* GameZoneView.swift */,
+				29AE25282AD60613001EFE98 /* OrderPlacedGameView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1477,6 +1496,7 @@
 				293293CD2A13EDAC00244BE1 /* ExpiryDatePickerView.swift in Sources */,
 				3FE71D052B3199CD006E6BF5 /* ResetPasswordView.swift in Sources */,
 				2984C9482954F091009669EF /* Date+Extensions.swift in Sources */,
+				3FE082DC2B47FC080034BF93 /* GameCardViewProtocol.swift in Sources */,
 				29AF68CD2ABA64A30021DC09 /* FortuneWheelView.swift in Sources */,
 				3F714D4429FA0F4A00CD39E7 /* ProductHeaderView.swift in Sources */,
 				3F714D4929FA0F4A00CD39E7 /* ProductView.swift in Sources */,
