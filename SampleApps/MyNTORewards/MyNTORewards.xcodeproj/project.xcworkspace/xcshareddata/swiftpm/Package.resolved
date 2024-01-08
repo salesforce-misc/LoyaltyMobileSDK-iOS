@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "gamificationmobilesdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:loyaltysampleapp/GamificationMobileSDK-iOS.git",
+      "state" : {
+        "branch" : "enhancement/gamification_sdk_latest",
+        "revision" : "7c905e2d0a6ba54c6f5df069d2e7f85eeb91584c"
+      }
+    }
+  ],
+  "version" : 2
+}
