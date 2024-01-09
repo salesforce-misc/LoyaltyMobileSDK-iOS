@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "git@github.com:loyaltysampleapp/GamificationMobileSDK-iOS.git",
       "state" : {
-        "branch" : "enhancement/gamification_sdk_latest",
-        "revision" : "a99879e0f684af09d91442ba7f430b0fe72b498a"
+        "branch" : "release-246.patch",
+        "revision" : "b8d934ff3a4862ea0a3c4303f1316412f670df14"
       }
     }
   ],
