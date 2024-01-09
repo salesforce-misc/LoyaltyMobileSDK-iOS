@@ -5,7 +5,7 @@
 //  Created by Vasanthkumar Velusamy on 05/01/24.
 //
 import Foundation
-import LoyaltyMobileSDK
+import GamificationMobileSDK
 
 protocol GameCardView {
 	var gameCardModel: GameDefinition { get }
