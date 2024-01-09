@@ -52,7 +52,7 @@ struct UITestingHelper {
 	}
 	
 	static var playGamesMockFileName: String {
-		if isScratchCardPlayGameRewarded || isSpinAWheelPlayGameRewarded{
+		if isScratchCardPlayGameRewarded || isSpinAWheelPlayGameRewarded {
 			return "PlayGame_Success"
 		} else if isScratchCardPlayGameNoReward || isSpinAWheelPlayGameNoReward {
 			return "PlayGame_NoReward"

@@ -43,7 +43,7 @@ final class GameZoneViewUITests: XCTestCase {
         XCTAssertFalse(app.staticTexts["Expired in the last 90 Days"].waitForExistence(timeout: 2))
         app.staticTexts["Expired"].tap()
         XCTAssert(app.staticTexts["game_zone_expired_card_title"].waitForExistence(timeout: 1))
-        XCTAssert(app.staticTexts["Expired in the last 90 Days"].waitForExistence(timeout: 2))
+        XCTAssert(app.staticTexts["No longer available"].waitForExistence(timeout: 2))
     }
     
     func testScratchCardNavigation() {

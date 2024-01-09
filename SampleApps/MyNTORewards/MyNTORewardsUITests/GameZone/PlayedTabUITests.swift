@@ -34,7 +34,7 @@ final class PlayedTabUITests: XCTestCase {
 		let playedGames = grid.staticTexts.containing(NSPredicate(format: "identifier CONTAINS 'game_zone_played_card_title'"))
 		playedGames.element(boundBy: 0).tap()
 		let congratsTitle = app.staticTexts["Congratulations!"]
-		let congratsSubtitle = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'won a 10% Off Voucher'")).firstMatch
+		let congratsSubtitle = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Here’s your reward: 10% Off Voucher'")).firstMatch
 		XCTAssertTrue(congratsTitle.waitForExistence(timeout: 2))
 		XCTAssertTrue(congratsSubtitle.exists)
 	}
@@ -44,7 +44,7 @@ final class PlayedTabUITests: XCTestCase {
 		let playedGames = grid.staticTexts.containing(NSPredicate(format: "identifier CONTAINS 'game_zone_played_card_title'"))
 		playedGames.element(boundBy: 1).tap()
 		let betterLuckTitle = app.staticTexts["Better luck next time!"]
-		let betterLuckSubtitle = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'did not win'")).firstMatch
+		let betterLuckSubtitle = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Thank you for playing'")).firstMatch
 		XCTAssertTrue(betterLuckTitle.waitForExistence(timeout: 2))
 		XCTAssertTrue(betterLuckSubtitle.exists)
 	}
