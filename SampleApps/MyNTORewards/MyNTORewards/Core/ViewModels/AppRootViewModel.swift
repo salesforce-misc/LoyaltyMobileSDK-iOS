@@ -215,7 +215,7 @@ class AppRootViewModel: ObservableObject {
         Task {
             do {
                 let forceClient = ForceClient(auth: authManager)
-                let contactQuery = "SELECT FirstName, LastName, Phone FROM Contact WHERE Email = '\(email)'"
+                let contactQuery = "SELECT FirstName, LastName, Phone FROM Contact"
                 let queryResult = try await forceClient.SOQL(type: Record.self, for: contactQuery)
                 let contact = queryResult.records.first
                 

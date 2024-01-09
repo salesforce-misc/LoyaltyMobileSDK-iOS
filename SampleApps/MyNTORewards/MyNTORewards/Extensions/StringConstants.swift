@@ -42,6 +42,7 @@ struct StringConstants {
     struct Gamification {
         static let successGreetingTitle = "Congratulations!"
         static let successVoucherGreeting = "You've won a{n}for your next purchase. To redeem your reward, go to the Voucher section."
+		static let playedGameSuccessGreeting = "Here’s your reward: {n}\nTo redeem your reward, go to Vouchers."
         static let successPointsGreeting = "You've won{n}that you can redeem on your next purchase."
         static let successNoRewardGreeting = "Better luck next time!"
         static let successCustomRewardGreeting = "You’ve won a reward."
@@ -59,8 +60,8 @@ struct StringConstants {
         static let expiringToday = "Expiring today"
         static let expiringTomorrow = "Expiring tomorrow"
         static let expiryLabel = "Expiry"
-        static let expiredTabHeaderLabel = "Expired in the last 90 Days"
-        static let playedTabHeaderLabel = "Played in the last 90 Days"
+        static let expiredTabHeaderLabel = "No longer available"
+        static let playedTabHeaderLabel = "Games Played in Last 90 Days"
         static let spinaWheelHeaderLabel = "Spin a wheel"
         static let spinaWheelSubHeaderLabel = "Spin the wheel and unlock instant rewards!"
         // swiftlint:disable line_length
@@ -78,6 +79,6 @@ struct StringConstants {
 		// Empty State
 		static let emptySubtitleForActiveView = "When you have games available, you’ll see them here."
 		static let emptySubtitleForExpiredView = "When your games expire, you’ll see them here."
-		static let emptySubtitleForPlayedView = "When you have played games, you’ll see them here."
+		static let emptySubtitleForPlayedView = "After you play a game, you’ll see it here."
     }
 }

@@ -19,21 +19,12 @@ struct GameZoneTabView: View {
             Color.theme.background.onAppear(perform: getGames)
         case .loading:
             ProgressView()
-        case .failed(let error):
+        case .failed:
             // To Do Need to Design Error View
             VStack {
                 Spacer()
                 ProcessingErrorView(message: "Oops! Something went wrong while processing the request. Try again.")
                 Spacer()
-                Button {
-                    Logger.debug("get games Error \(error.localizedDescription)")
-                    getGames()
-                } label: {
-                    Text(StringConstants.Receipts.tryAgainButton)
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.borderedProminent)
-                .longFlexibleButtonStyle()
             }
         case .loaded:
             TabView(selection: $tabSelected) {

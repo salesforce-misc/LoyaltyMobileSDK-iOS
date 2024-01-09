@@ -23,8 +23,7 @@ final class FortuneWheelWithRewardUITests: XCTestCase {
 	
 	func test_fortuneWheelUIElements() {
 		app.launchArguments = ["ui_test"]
-		app.launchEnvironment = ["get_games": "success",
-								 "play_spin_a_wheel": "rewarded_with_points"]
+		app.launchEnvironment = ["get_games": "success"]
 		app.launch()
 		GameZoneViewHelper.goToGameZoneView(app: app)
 		GameZoneViewHelper.goToSpinAWheelView(app: app)
@@ -34,13 +33,10 @@ final class FortuneWheelWithRewardUITests: XCTestCase {
 		let subtitle = app.staticTexts["Spin the wheel and unlock instant rewards!"]
 		XCTAssertTrue(subtitle.exists)
 
-		XCTAssertTrue(app.staticTexts["Win \n $12 \n Off"].exists)
-		XCTAssertTrue(app.staticTexts["Win \n 20% \n Off"].exists)
-		XCTAssertTrue(app.staticTexts["Win \n $15\n Off"].exists)
-		XCTAssertTrue(app.staticTexts["Win \n1000 Bonus Points"].exists)
-		XCTAssertTrue(app.staticTexts["Chance to win \n Free EarPod"].exists)
+		XCTAssertTrue(app.staticTexts["Get 10% Off Voucher"].exists)
+		XCTAssertTrue(app.staticTexts["Get 50% Off Voucher"].exists)
 		let betterLuckNextTimeLabels = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Better Luck Next Time'"))
-		XCTAssertEqual(betterLuckNextTimeLabels.count, 3)
+		XCTAssertEqual(betterLuckNextTimeLabels.count, 1)
 		let footerBodyString = "Grab this exclusive onetime offer and win some exciting rewards. For more information, refer to the terms and conditions."
 		XCTAssertTrue(app.staticTexts[footerBodyString].exists)
 		
@@ -51,28 +47,14 @@ final class FortuneWheelWithRewardUITests: XCTestCase {
 	func test_playGame_shouldShowCongratsScreenWithRewardValue_whenRewarded() {
 		app.launchArguments = ["ui_test"]
 		app.launchEnvironment = ["get_games": "success",
-								 "play_spin_a_wheel": "rewarded_with_points"]
+								 "play_spin_a_wheel": "rewarded"]
 		app.launch()
 		GameZoneViewHelper.goToGameZoneView(app: app)
 		GameZoneViewHelper.goToSpinAWheelView(app: app)
 		spinTheWheel()
 		
 		XCTAssertTrue(app.staticTexts["Congratulations!"].waitForExistence(timeout: 10))
-		XCTAssertTrue(app.staticTexts["You've won a 50% off discount voucher for your next purchase. To redeem your reward, go to the Voucher section."].exists)
-		XCTAssertTrue(app.buttons["Play More"].exists)
-	}
-	
-	func test_playGame_shouldShowCongratsScreen_whenRewarded() {
-		app.launchArguments = ["ui_test"]
-		app.launchEnvironment = ["get_games": "success",
-								 "play_spin_a_wheel": "rewarded_without_points"]
-		app.launch()
-		GameZoneViewHelper.goToGameZoneView(app: app)
-		GameZoneViewHelper.goToSpinAWheelView(app: app)
-		spinTheWheel()
-		
-		XCTAssertTrue(app.staticTexts["Congratulations!"].waitForExistence(timeout: 10))
-		XCTAssertTrue(app.staticTexts["You've won a discount voucher for your next purchase. To redeem your reward, go to the Voucher section."].exists)
+		XCTAssertTrue(app.staticTexts["You've won 50% Off that you can redeem on your next purchase."].exists)
 		XCTAssertTrue(app.buttons["Play More"].exists)
 	}
 }

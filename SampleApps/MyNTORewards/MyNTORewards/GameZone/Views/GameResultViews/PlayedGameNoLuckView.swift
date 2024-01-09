@@ -37,7 +37,7 @@ struct PlayedGameNoLuckView: View {
                             .font(.betterLuckText)
                             .foregroundColor(Color.theme.lightText)
                         Group {
-                            Text("You did not win anything in this game.")
+                            Text("Thank you for playing! Stay tuned for more offers.")
                                 .padding(.top, 10)
                         }
                         .font(.congratsText)

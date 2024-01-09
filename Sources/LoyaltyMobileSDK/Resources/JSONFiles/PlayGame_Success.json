@@ -3,7 +3,7 @@
   "gameReward": [
       {
         "rewardDefinitionId": "102",
-        "gameRewardId": "508",
+        "gameRewardId": "501",
         "color": "#0099DD",
         "description": "Win 300 Bonus Points",
         "expirationDate": "2023-10-31T19:00:00.000Z",
@@ -15,7 +15,7 @@
       },
 	  {
 		  "rewardDefinitionId": "102",
-		  "gameRewardId": "508",
+		  "gameRewardId": "501",
 		  "color": "#0099DD",
 		  "description": "Win 300 Bonus Points",
 		  "expirationDate": "2023-10-31T19:00:00.000Z",
