@@ -12,14 +12,13 @@ struct StringConstants {
 		static let receiptsListTitle = "Receipts"
 		static let uploadReceiptButton = "New"
 		static let searchPlaceholder = "Search receipts..."
-		static let submitForManualReviewButton = "Submit"
+		static let submitButton = "Submit"
 		static let manualReviewTitle = "Manual review"
 		static let cancelButton = "Cancel"
         static let backButton = "Back"
 		static let commentsHeader = "Comments"
 		static let enterCommentsPlaceholder = "Enter the reason for manual request...."
 		static let tryAgainButton = "Try Again"
-		static let submitButton = "Submit"
 		static let receiptUploadedText = "Your receipt is uploaded!"
 		static let uploadAnotherReceiptButton = "Upload Another Receipt"
 		static let processingScreenTitle = "Generating preview..."
@@ -35,6 +34,7 @@ struct StringConstants {
 		static let emptyReceiptsViewTitle = "Looks like you haven’t uploaded any receipts yet"
 		static let emptyReceiptsViewBody = "Upload your receipts and get loyalty points for the eligible items."
         static let requestForManualReviewButton = "Request a Manual Review"
+		static let submitForManualReviewButton = "Submit for Manual Review"
         static let noEligibleItemsText = "We couldn’t find any eligible items in the receipt."
 	}
 }

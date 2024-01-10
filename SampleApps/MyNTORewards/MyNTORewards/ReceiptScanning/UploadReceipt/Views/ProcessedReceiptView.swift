@@ -185,7 +185,7 @@ struct ProcessedReceiptView: View {
     }
     
     private func requestManualReviewButton(receipt: ProcessedReceipt) -> some View {
-        Button(StringConstants.Receipts.requestForManualReviewButton) {
+        Button(StringConstants.Receipts.submitForManualReviewButton) {
 			showManualReview = true
         }
         .foregroundColor(.black)
