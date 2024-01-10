@@ -7,6 +7,7 @@
 
 import Foundation
 import LoyaltyMobileSDK
+import GamificationMobileSDK
 
 @MainActor
 class OrderDetailsViewModel: ObservableObject {

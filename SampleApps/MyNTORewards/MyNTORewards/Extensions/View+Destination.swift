@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GamificationMobileSDK
 import LoyaltyMobileSDK
 
 @MainActor

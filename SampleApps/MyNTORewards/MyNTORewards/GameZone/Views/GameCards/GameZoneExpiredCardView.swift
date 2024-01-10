@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK
 
 struct GameZoneExpiredCardView: View, GameCardView {
     let gameCardModel: GameDefinition

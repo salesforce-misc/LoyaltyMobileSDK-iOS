@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK
 
 struct GameZoneCardView: View, GameCardView {
 	@State var shouldShowGameScreen = false
