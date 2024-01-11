@@ -49,6 +49,9 @@ struct AppSettings {
         static let storedBaseURLKey = "LoyaltyMobileSDK.baseURL"
         static let adminMenuTapCountRequired = 6
         static let displayDateFormat = "yyyy-MM-dd"
+        
+        // Referral settings
+        static let referralProgramName = "NTO Insider"
     }
     
     struct cacheFolders {
