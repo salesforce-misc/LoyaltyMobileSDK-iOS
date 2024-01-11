@@ -22,7 +22,7 @@ final class FortuneWheelPlayGameFailUITests: XCTestCase {
 	}
 	
 	private final func spinTheWheel() {
-		app.buttons["Tap to SPIN"].tap()
+		app.buttons["SPIN"].tap()
 	}
 	
 	func test_playGame_shouldShowErrorScreen_whenApiFails() {

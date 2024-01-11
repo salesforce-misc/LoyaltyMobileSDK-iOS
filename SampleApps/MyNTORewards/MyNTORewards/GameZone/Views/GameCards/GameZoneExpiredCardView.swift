@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK
 
-struct GameZoneExpiredCardView: View {
+struct GameZoneExpiredCardView: View, GameCardView {
     let gameCardModel: GameDefinition
     
     var body: some View {
@@ -66,28 +66,7 @@ struct GameZoneExpiredCardView: View {
     func getFormattedExpiredLabel() -> String {
         StringConstants.Gamification.expiredTab
     }
-    
-    func getGameTypeText() -> String {
-        var gameType: String
-        switch gameCardModel.type {
-        case .spinaWheel:
-            gameType = "Spin a Wheel"
-        case .scratchCard:
-            gameType = "Scratch Card"
-        }
-        return gameType
-    }
-    
-    func getImageName() -> String {
-        var name: String
-        switch gameCardModel.type {
-        case .spinaWheel:
-            name = "img-fortune-wheel"
-        case .scratchCard:
-            name = "img-scratch-card"
-        }
-        return name
-    }
+	
 }
 
 #Preview {

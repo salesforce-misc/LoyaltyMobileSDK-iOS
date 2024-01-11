@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK
 
-struct GameZoneCardView: View {
+struct GameZoneCardView: View, GameCardView {
 	@State var shouldShowGameScreen = false
 	let gameCardModel: GameDefinition
 	let isDateInToday: (Date) -> Bool
@@ -139,28 +139,6 @@ struct GameZoneCardView: View {
 			return StringConstants.Gamification.expiringTomorrow
 		}
 		return "\(StringConstants.Gamification.expiryLabel) \(expirationDate.toString(withFormat: "dd MMM yyyy"))"
-	}
-	
-	private func getGameTypeText() -> String {
-		var gameType: String
-		switch gameCardModel.type {
-		case .spinaWheel:
-			gameType = "Spin a Wheel"
-		case .scratchCard:
-			gameType = "Scratch Card"
-		}
-		return gameType
-	}
-	
-	private func getImageName() -> String {
-		var name: String
-		switch gameCardModel.type {
-		case .spinaWheel:
-			name = "img-fortune-wheel"
-		case .scratchCard:
-			name = "img-scratch-card"
-		}
-		return name
 	}
 }
 

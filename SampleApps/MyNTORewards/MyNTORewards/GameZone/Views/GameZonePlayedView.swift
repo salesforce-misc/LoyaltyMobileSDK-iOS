@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK
 
 struct GameZonePlayedView: View {
     var playedGames: [GameDefinition]?
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(StringConstants.Gamification.playedTabHeaderLabel)
-                .font(Font.scratchText)
-                .foregroundColor(Color.theme.superLightText)
-                .padding([.horizontal, .top], 16)
+			HStack {
+				Text(StringConstants.Gamification.playedTabHeaderLabel)
+					.font(Font.scratchText)
+					.foregroundColor(Color.theme.superLightText)
+				.padding([.horizontal, .top], 16)
+				Spacer()
+			}
             GameZoneGridContainerView(games: playedGames, cardType: .played, emptyViewSubtitle: StringConstants.Gamification.emptySubtitleForPlayedView)
         }
     }

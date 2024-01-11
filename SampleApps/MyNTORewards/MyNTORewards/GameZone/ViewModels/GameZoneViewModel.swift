@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import LoyaltyMobileSDK
+import GamificationMobileSDK
 
 enum LoadingState: ReflectiveEquatable {
 	case idle
@@ -22,27 +22,22 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     @Published var activeGameDefinitions: [GameDefinition]?
     @Published var expiredGameDefinitions: [GameDefinition]?
     
-    private let authManager: ForceAuthenticator
-    private let localFileManager: FileManagerProtocol
-    private var loyaltyAPIManager: LoyaltyAPIManager
+    private let authManager: GamificationForceAuthenticator
+    private var gamificationAPIManager: APIManager
 	private var devMode: Bool
-	private var mockFileName: String
+    private var mockFileName: String
     
-	init(
-		authManager: ForceAuthenticator = ForceAuthManager.shared,
-		localFileManager: FileManagerProtocol = LocalFileManager.instance,
-		devMode: Bool = false,
-		mockFileName: String = "GetGames_Success"
-	) {
-		self.devMode = devMode
-		self.mockFileName = mockFileName
-        self.authManager = authManager
-        self.localFileManager = localFileManager
-        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
-                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                              instanceURL: AppSettings.shared.getInstanceURL(),
-                                              forceClient: ForceClient(auth: authManager))
-    }
+    init(
+        authManager: GamificationForceAuthenticator = GamificationForceAuthManager.shared,
+        devMode: Bool = false,
+        mockFileName: String = "GetGames_Success") {
+            self.mockFileName = mockFileName
+            self.devMode = devMode
+            self.authManager = authManager
+            gamificationAPIManager = APIManager(auth: authManager,
+                                           instanceURL: AppSettings.shared.getInstanceURL(),
+                                           forceClient: GamificationForceClient(auth: authManager))
+        }
     
     func getGames(participantId: String, reload: Bool = false) async throws {
         state = .loading
@@ -57,10 +52,8 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     
     func fetchGames(participantId: String) async throws {
         do {
-            let result = try await loyaltyAPIManager.getGames(participantId: participantId,
-															  devMode: devMode,
-															  mockFileName: mockFileName
-			)
+            let result = try await gamificationAPIManager.getGames(participantId: participantId,
+															  devMode: devMode)
             activeGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
                 if let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate {
                     return expirationDate >= Date() && gameDefinition.participantGameRewards.first?.status == .yetToReward
@@ -71,7 +64,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
             playedGameDefinitions = result.gameDefinitions.filter({$0.participantGameRewards.first?.status == .rewarded})
             expiredGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
                 guard let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate else { return false }
-                return expirationDate < Date()
+                return expirationDate < Date() && gameDefinition.participantGameRewards.first?.status == .yetToReward
             })
         } catch {
             self.state = .failed(error)
@@ -80,7 +73,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     }
 	
 	func fetchGame(for participantId: String, gameParticipantRewardId: String) async throws -> GameDefinition? {
-		let result = try await loyaltyAPIManager.getGame(participantId: participantId,
+		let result = try await gamificationAPIManager.getGame(participantId: participantId,
 														 gameParticipantRewardId: gameParticipantRewardId,
 														 devMode: devMode,
 														 mockFileName: mockFileName)

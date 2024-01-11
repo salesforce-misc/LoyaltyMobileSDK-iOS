@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK
 
 struct FortuneWheelView: View {
     
@@ -214,13 +214,13 @@ struct FortuneWheelView: View {
     
     func reloadAllGames() {
         Task {
-            Logger.debug("Reloading available Games...")
+            GamificationLogger.debug("Reloading available Games...")
             do {
                 try await gameViewModel.reload(id: rootVM.member?.loyaltyProgramMemberId ?? "", number: "")
-                Logger.debug("loaded available Games...")
+                GamificationLogger.debug("loaded available Games...")
                 
             } catch {
-                Logger.error("Reload Available Games Error: \(error)")
+                GamificationLogger.error("Reload Available Games Error: \(error)")
             }
         }
     }

@@ -22,14 +22,14 @@ final class FortuneWheelWithoutRewardUITests: XCTestCase {
 	}
 	
 	private final func spinTheWheel() {
-		app.buttons["Tap to SPIN"].tap()
+		app.buttons["SPIN"].tap()
 	}
 	
 	func test_playGame_shouldShowBetterLuckNextTimeScreen_whenNotRewarded() {
 		GameZoneViewHelper.goToSpinAWheelView(app: app)
 		spinTheWheel()
 		
-		XCTAssertTrue(app.staticTexts["Thank you for playing..."].waitForExistence(timeout: 10))
+		XCTAssertTrue(app.staticTexts["Thank you for playing! Stay tuned for more offers."].waitForExistence(timeout: 10))
 	}
 	
 }
