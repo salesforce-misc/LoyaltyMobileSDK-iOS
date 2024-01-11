@@ -75,6 +75,8 @@
 		298613D028CBC12A00BDC744 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */; };
 		29889A9A2B46369B0037BD94 /* JoinAndReferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29889A992B46369B0037BD94 /* JoinAndReferView.swift */; };
 		2988B5B82B4CD9D900C2D74C /* Referral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2988B5B72B4CD9D900C2D74C /* Referral.swift */; };
+		2988B5BC2B4E220300C2D74C /* UnifiedAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2988B5BB2B4E220300C2D74C /* UnifiedAuthenticator.swift */; };
+		2988B5BE2B4F2ACB00C2D74C /* ReferralForceClient+SOQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2988B5BD2B4F2ACB00C2D74C /* ReferralForceClient+SOQL.swift */; };
 		298CAA082A6743E0003F7F42 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298CAA072A6743E0003F7F42 /* CameraView.swift */; };
 		298CAA0D2A6A3499003F7F42 /* CapturedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298CAA0C2A6A3499003F7F42 /* CapturedImageView.swift */; };
 		298CAA0F2A6B4B48003F7F42 /* CircularButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298CAA0E2A6B4B48003F7F42 /* CircularButtonStyle.swift */; };
@@ -375,6 +377,8 @@
 		298613CF28CBC12A00BDC744 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		29889A992B46369B0037BD94 /* JoinAndReferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinAndReferView.swift; sourceTree = "<group>"; };
 		2988B5B72B4CD9D900C2D74C /* Referral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Referral.swift; sourceTree = "<group>"; };
+		2988B5BB2B4E220300C2D74C /* UnifiedAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedAuthenticator.swift; sourceTree = "<group>"; };
+		2988B5BD2B4F2ACB00C2D74C /* ReferralForceClient+SOQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReferralForceClient+SOQL.swift"; sourceTree = "<group>"; };
 		298CAA072A6743E0003F7F42 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		298CAA0C2A6A3499003F7F42 /* CapturedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedImageView.swift; sourceTree = "<group>"; };
 		298CAA0E2A6B4B48003F7F42 /* CircularButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButtonStyle.swift; sourceTree = "<group>"; };
@@ -805,6 +809,7 @@
 			children = (
 				2963771029C10D4000D45AB6 /* Models */,
 				2963770D29C10D2400D45AB6 /* ForceClient+SOQL.swift */,
+				2988B5BD2B4F2ACB00C2D74C /* ReferralForceClient+SOQL.swift */,
 				2963770C29C10D2400D45AB6 /* ForceClient+SOSL.swift */,
 			);
 			path = "SOQL+SOSL";
@@ -922,6 +927,7 @@
 				298D5EF129CCF94D0062F16E /* WebAuthenticationSession.swift */,
 				298D5EF529CCFCE60062F16E /* ForceRequest+Auth.swift */,
 				29B1CE422A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift */,
+				2988B5BB2B4E220300C2D74C /* UnifiedAuthenticator.swift */,
 			);
 			path = "ForceSwift+Extra";
 			sourceTree = "<group>";
@@ -1547,6 +1553,7 @@
 				3F874FDC2A655E3300F90C4D /* ReceiptTableContentRow.swift in Sources */,
 				29AC2EFB28F8959E003F56F6 /* LoyaltyNavBarContainerView.swift in Sources */,
 				2963771429C10D6200D45AB6 /* QueryResult.swift in Sources */,
+				2988B5BC2B4E220300C2D74C /* UnifiedAuthenticator.swift in Sources */,
 				3F3805B22A7A6D2400223808 /* RouterPath.swift in Sources */,
 				3FE71D142B3199CD006E6BF5 /* RedeemView.swift in Sources */,
 				3FE71CFC2B3199CD006E6BF5 /* BadgesView.swift in Sources */,
@@ -1690,6 +1697,7 @@
 				29A39BC529397B98005833C2 /* EmptyStateView.swift in Sources */,
 				3FB5E6A02B35595F0057C46B /* View+LifeCycle.swift in Sources */,
 				3FE71D192B3199CD006E6BF5 /* SignInView.swift in Sources */,
+				2988B5BE2B4F2ACB00C2D74C /* ReferralForceClient+SOQL.swift in Sources */,
 				29AE25292AD60613001EFE98 /* OrderPlacedGameView.swift in Sources */,
 				3FE71D252B319A12006E6BF5 /* TransactionCardView.swift in Sources */,
 				3FE71D1F2B3199CD006E6BF5 /* ConnectedAppSettingsView.swift in Sources */,
