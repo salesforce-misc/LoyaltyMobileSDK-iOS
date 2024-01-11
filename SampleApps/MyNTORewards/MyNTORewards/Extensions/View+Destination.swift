@@ -21,9 +21,11 @@ extension View {
             case .gameZoneBetterLuck:
                 GamificationNoLuckView().toolbar(.hidden, for: .tabBar, .navigationBar)
             case .gameZoneCongrats(let offerText, let reward):
-                GamificationCongratsView(offerText: offerText,
-                                         rewardType: RewardType(rawValue: reward) ?? .voucher)
-                .toolbar(.hidden, for: .tabBar, .navigationBar)
+                GamificationCongratsView(offerText: offerText, 
+										 rewardType: RewardType(rawValue: reward) ?? .voucher)
+				.toolbar(.hidden, for: .tabBar, .navigationBar)
+            case .vouchers:
+                GameZoneVoucherView()
             case .referrals:
                 MyReferralsView()
             }

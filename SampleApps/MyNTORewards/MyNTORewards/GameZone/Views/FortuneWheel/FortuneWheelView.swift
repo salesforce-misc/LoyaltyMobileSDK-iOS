@@ -232,13 +232,7 @@ struct FortuneWheelView: View {
 				finishedPlaying = true
 				wonReward = reward.rewardType != "NoReward" ? reward.name : nil
 				rewardType = RewardType(rawValue: reward.rewardType) ?? .voucher
-//                if reward.rewardType == "NoReward" {
-//                    self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
-//                } else {
-//                    self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: reward.name))
-//                }
             }
-//            reloadAllGames()
         }
     }
     
