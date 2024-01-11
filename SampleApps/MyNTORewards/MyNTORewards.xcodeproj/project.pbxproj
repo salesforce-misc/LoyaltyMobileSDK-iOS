@@ -1466,6 +1466,7 @@
 			mainGroup = 216F217228B6141E00DAA66D;
 			packageReferences = (
 				4FD635E12B4BDD0C004E4696 /* XCRemoteSwiftPackageReference "GamificationMobileSDK-iOS" */,
+				2988B5BF2B5078DA00C2D74C /* XCRemoteSwiftPackageReference "ReferralMobileSDK-iOS" */,
 			);
 			productRefGroup = 216F217C28B6141E00DAA66D /* Products */;
 			projectDirPath = "";
@@ -2195,6 +2196,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2988B5BF2B5078DA00C2D74C /* XCRemoteSwiftPackageReference "ReferralMobileSDK-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:loyaltysampleapp/ReferralMobileSDK-iOS.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 		4FD635E12B4BDD0C004E4696 /* XCRemoteSwiftPackageReference "GamificationMobileSDK-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:loyaltysampleapp/GamificationMobileSDK-iOS.git";
