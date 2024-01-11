@@ -24,6 +24,8 @@ extension View {
                 GamificationCongratsView(offerText: offerText, 
 										 rewardType: RewardType(rawValue: reward) ?? .voucher)
 				.toolbar(.hidden, for: .tabBar, .navigationBar)
+            case .vouchers:
+                GameZoneVoucherView()
             }
 		}
 	}

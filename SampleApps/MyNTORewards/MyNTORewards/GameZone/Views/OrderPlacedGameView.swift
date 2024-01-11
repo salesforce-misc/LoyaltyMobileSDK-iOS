@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
 import GamificationMobileSDK
 
 struct OrderPlacedGameView: View {
@@ -106,7 +105,7 @@ struct OrderPlacedGameView: View {
 				let orderDetails = try await orderDetailsVM.getOrderDetails()
 				orderNumber = orderDetails.orderNumber
 			} catch {
-				Logger.error("Error fetching order details..")
+				GamificationLogger.error("Error fetching order details..")
 			}
 		}
     }

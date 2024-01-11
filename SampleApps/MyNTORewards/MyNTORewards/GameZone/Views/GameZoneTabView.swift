@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK
 
 struct GameZoneTabView: View {
     @Binding var tabSelected: Int
@@ -20,11 +20,18 @@ struct GameZoneTabView: View {
         case .loading:
             ProgressView()
         case .failed:
-            // To Do Need to Design Error View
-            VStack {
-                Spacer()
-                ProcessingErrorView(message: "Oops! Something went wrong while processing the request. Try again.")
-                Spacer()
+            GeometryReader { geometry in
+                ScrollView(.vertical) {
+                    VStack {
+                        ProcessingErrorView(message: "Oops! Something went wrong while processing the request. Try again.")
+                            .frame(maxWidth: 500)
+                    }
+                    .padding()
+                    .frame(width: geometry.size.width)
+                    .frame(minHeight: geometry.size.height)
+                }.refreshable {
+                    await refreshGames()
+                }
             }
         case .loaded:
             TabView(selection: $tabSelected) {
@@ -39,14 +46,7 @@ struct GameZoneTabView: View {
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .refreshable {
-                Logger.debug("Reloading available Games...")
-                do {
-                    try await gameViewModel.reload(id: rootVM.member?.loyaltyProgramMemberId ?? "", number: "")
-                    Logger.debug("loaded available Games...")
-                    
-                } catch {
-                    Logger.error("Reload Available Games Error: \(error)")
-                }
+                await refreshGames()
             }
         }
     }
@@ -63,13 +63,24 @@ struct GameZoneTabView: View {
         GameZoneExpiredView(expiredGames: gameViewModel.expiredGameDefinitions)
     }
     
+    func refreshGames() async {
+           GamificationLogger.debug("Reloading available Games...")
+            do {
+                try await gameViewModel.reload(id: rootVM.member?.loyaltyProgramMemberId ?? "", number: "")
+                GamificationLogger.debug("loaded available Games...")
+                
+            } catch {
+                GamificationLogger.error("Reload Available Games Error: \(error)")
+            }
+    }
+    
     func getGames() {
         Task {
             do {
                 try await gameViewModel.getGames(participantId: rootVM.member?.loyaltyProgramMemberId ?? "")
                 
             } catch {
-                Logger.error(error.localizedDescription)
+                GamificationLogger.error(error.localizedDescription)
             }
         }
     }

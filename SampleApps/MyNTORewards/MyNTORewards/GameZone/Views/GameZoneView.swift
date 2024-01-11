@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK
 
 struct GameZoneView: View {
     @State var tabSelected: Int = 0
@@ -46,7 +46,7 @@ struct GameZoneView: View {
 				try await gameViewModel.getGames(participantId: rootVM.member?.loyaltyProgramMemberId ?? "")
 				
 			} catch {
-				Logger.error(error.localizedDescription)
+				GamificationLogger.error(error.localizedDescription)
 			}
 		}
 	}

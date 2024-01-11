@@ -133,14 +133,6 @@ struct ScratchCardView: View {
             showAlertForError = true
         }
     }
-    
-//	private func showCongrats(offerText: String) {
-//		self.routerPath.navigateFromGameZone(to: .gameZoneCongrats(offerText: offerText))
-//	}
-//	
-//	private func showBetterLuckNextTime() {
-//		self.routerPath.navigateFromGameZone(to: .gameZoneBetterLuck)
-//	}
 	
 	private func eraseWrapperView() {
 		withAnimation(Animation.easeOut(duration: 1)) {

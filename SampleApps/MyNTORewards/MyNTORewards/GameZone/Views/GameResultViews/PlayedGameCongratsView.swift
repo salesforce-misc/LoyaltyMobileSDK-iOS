@@ -9,6 +9,7 @@ import SwiftUI
 import GamificationMobileSDK
 
 struct PlayedGameCongratsView: View {
+    let onVoucherTapAction: () -> Void
     @Environment(\.dismiss) var dismiss
     let imageSize = CGSize(width: 165, height: 165)
     var offerText: String = "20% off"
@@ -45,17 +46,29 @@ struct PlayedGameCongratsView: View {
                     .lineSpacing(5)
                     .padding(.horizontal, 16)
                     .padding(.top, 40)
-
                     Spacer()
                 }
             }.diableBounceForScrollView()
-            Button(StringConstants.Gamification.backButtonTitle) {
-                dismiss()
-            }
-            .buttonStyle(DarkFlexibleButton(buttonFont: .boldButtonText))
-            .padding([.bottom], 50)
+            VStack(spacing: 20) {
+                Button(StringConstants.Gamification.backButtonTitle) {
+                    dismiss()
+                }
+                .buttonStyle(DarkFlexibleButton(buttonFont: .boldButtonText))
+                if rewardType == .voucher {
+                    Button {
+                        dismiss()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            onVoucherTapAction()
+                        }
+                    } label: {
+                        Text(StringConstants.Gamification.voucherSectionButton)
+                            .foregroundColor(Color.theme.lightText)
+                            .font(.scanningReceiptCancelFont)
+                    }
+                }
+
+            }.padding([.bottom], 40)
         }
-        
     }
     
     private func getOfferTextWithSpacing(for offerText: String) -> String {
@@ -81,5 +94,5 @@ struct PlayedGameCongratsView: View {
 }
 
 #Preview {
-    PlayedGameCongratsView()
+    PlayedGameCongratsView(onVoucherTapAction: {})
 }

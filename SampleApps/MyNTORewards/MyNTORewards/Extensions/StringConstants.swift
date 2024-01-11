@@ -75,6 +75,7 @@ struct StringConstants {
         static let scratchCardBodyLabel = "Grab this exclusive onetime offer and win some exciting rewards."
         static let wonLabel = "Won"
         static let noWonLabel = "Won"
+        static let voucherSectionButton = "Go to the Voucher Section"
 
 		// Empty State
 		static let emptySubtitleForActiveView = "When you have games available, you’ll see them here."
