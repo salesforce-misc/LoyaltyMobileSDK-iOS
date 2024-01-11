@@ -54,17 +54,20 @@ struct PlayedGameCongratsView: View {
                     dismiss()
                 }
                 .buttonStyle(DarkFlexibleButton(buttonFont: .boldButtonText))
-                Button {
-                    dismiss()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        onVoucherTapAction()
+                if rewardType == .voucher {
+                    Button {
+                        dismiss()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            onVoucherTapAction()
+                        }
+                    } label: {
+                        Text(StringConstants.Gamification.voucherSectionButton)
+                            .foregroundColor(Color.theme.lightText)
+                            .font(.scanningReceiptCancelFont)
                     }
-                } label: {
-                    Text(StringConstants.Gamification.voucherSectionButton)
-                        .foregroundColor(Color.theme.lightText)
-                        .font(.scanningReceiptCancelFont)
                 }
-            }.padding([.bottom], 50)
+
+            }.padding([.bottom], 40)
         }
     }
     

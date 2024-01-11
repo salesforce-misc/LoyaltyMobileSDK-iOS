@@ -25,7 +25,7 @@ extension View {
 										 rewardType: RewardType(rawValue: reward) ?? .voucher)
 				.toolbar(.hidden, for: .tabBar, .navigationBar)
             case .vouchers:
-                AllVouchersView()
+                GameZoneVoucherView()
             }
 		}
 	}
