@@ -66,6 +66,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
                 guard let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate else { return false }
                 return expirationDate < Date() && gameDefinition.participantGameRewards.first?.status == .yetToReward
             })
+            self.state = .loaded
         } catch {
             self.state = .failed(error)
             throw error

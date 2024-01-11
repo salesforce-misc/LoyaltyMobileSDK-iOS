@@ -9,6 +9,7 @@ import SwiftUI
 import GamificationMobileSDK
 
 struct GameZonePlayedCardView: View, GameCardView {
+    @EnvironmentObject var routerPath: RouterPath
     let gameCardModel: GameDefinition
     @State private var showNoRewardsScreen = false
     @State private var showRewardsInfoScreen = false
@@ -76,10 +77,14 @@ struct GameZonePlayedCardView: View, GameCardView {
         .sheet(isPresented: $showRewardsInfoScreen) {
             if let rewardId = gameCardModel.participantGameRewards.first?.gameRewardId,
                let reward = gameCardModel.gameRewards.first(where: {$0.gameRewardId == rewardId}) {
-                PlayedGameCongratsView(offerText: reward.name,
+                PlayedGameCongratsView(onVoucherTapAction: handleVoucherNavigation, offerText: reward.name,
                                        rewardType: reward.rewardType ?? .voucher).presentationDetents([.fraction(0.80)])
             }
         }
+    }
+    
+    func handleVoucherNavigation() {
+        self.routerPath.navigateFromGameZone(to: .vouchers)
     }
     
     func handleNavigation() {
