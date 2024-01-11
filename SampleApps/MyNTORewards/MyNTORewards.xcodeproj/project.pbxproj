@@ -2213,6 +2213,7 @@
 		292104962B336F71005A6754 /* ReferralMobileSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ReferralMobileSDK;
+		};
 		4FD635E22B4BDD0C004E4696 /* GamificationMobileSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4FD635E12B4BDD0C004E4696 /* XCRemoteSwiftPackageReference "GamificationMobileSDK-iOS" */;
