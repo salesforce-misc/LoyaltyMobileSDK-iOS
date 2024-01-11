@@ -52,7 +52,7 @@ final class ScratchCardViewRewardedUITests: XCTestCase {
 		XCTAssertTrue(app.staticTexts["50% Off"].exists)
 		
 		XCTAssertTrue(app.staticTexts["Congratulations!"].waitForExistence(timeout: 10))
-		XCTAssertTrue(app.staticTexts["You've won a 50% off discount voucher for your next purchase. To redeem your reward, go to the Voucher section."].exists)
+		XCTAssertTrue(app.staticTexts["You've won 50% Off that you can redeem on your next purchase."].exists)
 		XCTAssertTrue(app.buttons["Play More"].exists)
 	}
 	

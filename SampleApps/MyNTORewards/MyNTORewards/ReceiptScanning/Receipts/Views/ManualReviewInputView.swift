@@ -91,7 +91,7 @@ struct ManualReviewInputView: View {
                         }
                     }
                 } label: {
-                    Text(StringConstants.Receipts.submitForManualReviewButton)
+                    Text(StringConstants.Receipts.submitButton)
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)

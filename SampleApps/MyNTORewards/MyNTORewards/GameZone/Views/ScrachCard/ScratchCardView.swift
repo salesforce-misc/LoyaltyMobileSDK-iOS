@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK
 
 struct ScratchCardView: View {
 	@StateObject var playGameViewModel: PlayGameViewModel
@@ -85,11 +85,11 @@ struct ScratchCardView: View {
 //							reloadAllGames()
 						}
                     case .idle:
-                        Logger.debug("ScratchCardView Idle state")
+                        GamificationLogger.debug("ScratchCardView Idle state")
                     case .loading:
-                        Logger.debug("ScratchCardView loading state")
+                        GamificationLogger.debug("ScratchCardView loading state")
                     case .failed(let error ):
-                        Logger.debug("ScratchCardView error state\(error)")
+                        GamificationLogger.debug("ScratchCardView error state\(error)")
                         handleErrorCase()
                     }
 				})
@@ -117,13 +117,13 @@ struct ScratchCardView: View {
     
     func reloadAllGames() {
         Task {
-            Logger.debug("Reloading available Games...")
+            GamificationLogger.debug("Reloading available Games...")
             do {
                 try await gameViewModel.reload(id: rootVM.member?.loyaltyProgramMemberId ?? "", number: "")
-                Logger.debug("loaded available Games...")
+                GamificationLogger.debug("loaded available Games...")
                 
             } catch {
-                Logger.error("Reload Available Games Error: \(error)")
+                GamificationLogger.error("Reload Available Games Error: \(error)")
             }
         }
     }

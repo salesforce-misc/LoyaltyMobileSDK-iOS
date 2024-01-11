@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK
 
-struct GameZonePlayedCardView: View {
+struct GameZonePlayedCardView: View, GameCardView {
     let gameCardModel: GameDefinition
     @State private var showNoRewardsScreen = false
     @State private var showRewardsInfoScreen = false
@@ -44,11 +44,14 @@ struct GameZonePlayedCardView: View {
                     .background(Color.theme.expiredBackgroundText)
                     .foregroundColor(Color.theme.lightText)
                     .cornerRadius(4)
-                Text(getRewardLabel())
-                    .font(.redeemText)
-                    .foregroundColor(Color.theme.superLightText)
+				if let rewardLabel = getRewardLabel() {
+					Text(rewardLabel)
+						.font(.redeemText)
+						.foregroundColor(Color.theme.superLightText)
+				}
             }
-            .padding(.all, 6)
+            .padding(.vertical, 8)
+			.padding(.leading, 10)
             Spacer()
         }
         .frame(width: 165, height: 203)
@@ -98,37 +101,11 @@ struct GameZonePlayedCardView: View {
         return "\(StringConstants.Gamification.playedTab) \(expirationDate.toString(withFormat: "dd MMM yyyy"))"
     }
     
-    func getRewardLabel() -> String {
+    func getRewardLabel() -> String? {
         guard let rewardId = gameCardModel.participantGameRewards.first?.gameRewardId,
               let reward = gameCardModel.gameRewards.first(where: {$0.gameRewardId == rewardId})
-        else {return StringConstants.Gamification.noWonLabel}
-        if reward.rewardType == .noReward {
-            return StringConstants.Gamification.noWonLabel
-        } else {
-            return "\(StringConstants.Gamification.wonLabel):\(reward.name)"
-        }
-    }
-
-    func getGameTypeText() -> String {
-        var gameType: String
-        switch gameCardModel.type {
-        case .spinaWheel:
-            gameType = "Spin a Wheel"
-        case .scratchCard:
-            gameType = "Scratch Card"
-        }
-        return gameType
-    }
-    
-    func getImageName() -> String {
-        var name: String
-        switch gameCardModel.type {
-        case .spinaWheel:
-            name = "img-fortune-wheel"
-        case .scratchCard:
-            name = "img-scratch-card"
-        }
-        return name
+        else { return nil }
+        return reward.name
     }
 }
 

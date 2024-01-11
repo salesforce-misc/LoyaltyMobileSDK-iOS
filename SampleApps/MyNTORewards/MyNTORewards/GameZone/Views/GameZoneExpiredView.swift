@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
+import GamificationMobileSDK
 
 struct GameZoneExpiredView: View {
     var expiredGames: [GameDefinition]?
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(StringConstants.Gamification.expiredTabHeaderLabel)
-                .font(Font.scratchText)
-                .foregroundColor(Color.theme.superLightText)
-                .padding([.horizontal, .top], 16)
+			HStack {
+				Text(StringConstants.Gamification.expiredTabHeaderLabel)
+					.font(Font.scratchText)
+					.foregroundColor(Color.theme.superLightText)
+				.padding([.horizontal, .top], 16)
+				Spacer()
+			}
 			GameZoneGridContainerView(games: expiredGames, 
                                       cardType: .expired,
 									  emptyViewSubtitle: StringConstants.Gamification.emptySubtitleForExpiredView)
