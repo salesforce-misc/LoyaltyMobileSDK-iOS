@@ -44,6 +44,7 @@ struct MyNTORewardsApp: App {
                 .environmentObject(connectedAppVM)
                 .environmentObject(processedReceiptVM)
                 .environmentObject(localeManager)
+                .autoSignOutOnSessionTimeout()
         }
     }
 }
