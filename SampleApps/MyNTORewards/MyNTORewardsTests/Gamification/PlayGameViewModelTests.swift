@@ -8,7 +8,7 @@
 import XCTest
 import SwiftUI
 @testable import MyNTORewards
-@testable import LoyaltyMobileSDK
+@testable import GamificationMobileSDK
 
 final class PlayGameViewModelTests: XCTestCase {
 
@@ -16,7 +16,7 @@ final class PlayGameViewModelTests: XCTestCase {
 	
 	@MainActor override func setUp() {
 		super.setUp()
-		viewModel = PlayGameViewModel(authManager: MockAuthenticator.sharedMock, localFileManager: MockFileManager.mockInstance, devMode: true)
+		viewModel = PlayGameViewModel(authManager: GamificationMockAuthenticator.sharedMock, devMode: true)
 	}
 	
 	override func tearDown() {
@@ -37,7 +37,9 @@ final class PlayGameViewModelTests: XCTestCase {
 	}
 
 	@MainActor func test_playGame_shouldSetFailedStatus() async {
-		viewModel = PlayGameViewModel(authManager: MockAuthenticator.sharedMock, localFileManager: MockFileManager.mockInstance, devMode: true, mockFileName: "PlayGame_Fail")
+		viewModel = PlayGameViewModel(authManager: GamificationMockAuthenticator.sharedMock,
+									  devMode: true,
+									  mockFileName: "PlayGame_Fail")
 		await viewModel.playGame(gameParticipantRewardId: "ABCD0001")
 		XCTAssertNil(viewModel.playedGameRewards)
 	}
@@ -80,15 +82,13 @@ final class PlayGameViewModelTests: XCTestCase {
 	}
 	
 	@MainActor func test_getWheelColors_shouldReturnColors() {
-		let playGameViewModel = PlayGameViewModel(authManager: MockAuthenticator.sharedMock,
-												  localFileManager: MockFileManager.mockInstance,
+		let playGameViewModel = PlayGameViewModel(authManager: GamificationMockAuthenticator.sharedMock, 
 												  devMode: true,
-												  wheelColors: [Color(hex: "#01AB3C")]
-		)
+												  mockFileName: "PlayGame_Success")
 		let gameDefinition = getGameModel()
 		let wheelColorsArray = playGameViewModel.getWheelColors(gameModel: gameDefinition)
 		XCTAssertTrue(wheelColorsArray?.first is Color)
-		XCTAssertEqual(wheelColorsArray?.first?.description, "#01AB3CFF")
+		XCTAssertEqual(wheelColorsArray?.first?.description, "white")
 	}
 	
 	@MainActor func test_getWheelColors_shouldReturnWhiteWhenGameHasNoColor() {

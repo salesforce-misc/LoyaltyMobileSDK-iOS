@@ -87,10 +87,6 @@ struct PlayedGameCongratsView: View {
         }
         return attributedString
     }
-	
-	func getRewardBody() -> String {
-		return "Here’s your reward: \(offerText)\nTo redeem your reward, go to Vouchers."
-	}
 }
 
 #Preview {
