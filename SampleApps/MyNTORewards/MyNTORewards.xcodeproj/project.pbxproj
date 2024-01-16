@@ -2156,7 +2156,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:loyaltysampleapp/GamificationMobileSDK-iOS.git";
 			requirement = {
-				branch = "enhancement/add-played-games-in-mock";
+				branch = "release-246.patch";
 				kind = branch;
 			};
 		};
