@@ -51,7 +51,8 @@ struct AppSettings {
         static let displayDateFormat = "yyyy-MM-dd"
         
         // Referral settings
-        static let referralProgramName = "NTO Insider"
+        static let referralProgramName = "Referral Program"
+        static let referralDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
     }
     
     struct cacheFolders {
