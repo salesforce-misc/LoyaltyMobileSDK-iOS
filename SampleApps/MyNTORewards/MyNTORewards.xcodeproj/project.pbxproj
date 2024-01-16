@@ -167,6 +167,7 @@
 		3F7DAFA92A825F9600A521E2 /* ReceiptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7DAFA82A825F9600A521E2 /* ReceiptViewModel.swift */; };
 		3F7EF5302A70CED70005BA30 /* ReceiptCongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7EF52F2A70CED70005BA30 /* ReceiptCongratsView.swift */; };
 		3F7EF5322A70D0E90005BA30 /* Double+round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7EF5312A70D0E90005BA30 /* Double+round.swift */; };
+		3F8381F92B50CD7D00D2BBAB /* GamificationMockFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8381F82B50CD7D00D2BBAB /* GamificationMockFileManager.swift */; };
 		3F874FD42A652A0A00F90C4D /* ProcessedReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F874FD32A652A0A00F90C4D /* ProcessedReceipt.swift */; };
 		3F874FD62A652A6B00F90C4D /* ProcessedReceiptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F874FD52A652A6B00F90C4D /* ProcessedReceiptViewModel.swift */; };
 		3F874FDC2A655E3300F90C4D /* ReceiptTableContentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F874FDB2A655E3300F90C4D /* ReceiptTableContentRow.swift */; };
@@ -464,6 +465,7 @@
 		3F7DAFA82A825F9600A521E2 /* ReceiptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptViewModel.swift; sourceTree = "<group>"; };
 		3F7EF52F2A70CED70005BA30 /* ReceiptCongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptCongratsView.swift; sourceTree = "<group>"; };
 		3F7EF5312A70D0E90005BA30 /* Double+round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+round.swift"; sourceTree = "<group>"; };
+		3F8381F82B50CD7D00D2BBAB /* GamificationMockFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationMockFileManager.swift; sourceTree = "<group>"; };
 		3F874FD32A652A0A00F90C4D /* ProcessedReceipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedReceipt.swift; sourceTree = "<group>"; };
 		3F874FD52A652A6B00F90C4D /* ProcessedReceiptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedReceiptViewModel.swift; sourceTree = "<group>"; };
 		3F874FDB2A655E3300F90C4D /* ReceiptTableContentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptTableContentRow.swift; sourceTree = "<group>"; };
@@ -1088,6 +1090,16 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		3F8381FA2B50CDE400D2BBAB /* Gamification */ = {
+			isa = PBXGroup;
+			children = (
+				3F75ABC62B3049CB0018CB2B /* GameZoneViewModelTests.swift */,
+				3F75ABCA2B308CC30018CB2B /* PlayGameViewModelTests.swift */,
+				3F8381F82B50CD7D00D2BBAB /* GamificationMockFileManager.swift */,
+			);
+			path = Gamification;
+			sourceTree = "<group>";
+		};
 		3F874FDD2A655E8800F90C4D /* UploadReceipt */ = {
 			isa = PBXGroup;
 			children = (
@@ -1293,8 +1305,7 @@
 				AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */,
 				AFCE106D2A20BA2A00602E35 /* MockAuthManager.swift */,
 				3FFCCC232A8F50500014823E /* ReceiptsListViewModelTests.swift */,
-				3F75ABC62B3049CB0018CB2B /* GameZoneViewModelTests.swift */,
-				3F75ABCA2B308CC30018CB2B /* PlayGameViewModelTests.swift */,
+				3F8381FA2B50CDE400D2BBAB /* Gamification */,
 			);
 			path = MyNTORewardsTests;
 			sourceTree = "<group>";
@@ -1728,6 +1739,7 @@
 				AF1691BC2A1B0D0C005A0EB3 /* StringExtensionTests.swift in Sources */,
 				3FBEFDEE2A0D1CB400685BAF /* TestDataStore.swift in Sources */,
 				3F75ABC72B3049CB0018CB2B /* GameZoneViewModelTests.swift in Sources */,
+				3F8381F92B50CD7D00D2BBAB /* GamificationMockFileManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

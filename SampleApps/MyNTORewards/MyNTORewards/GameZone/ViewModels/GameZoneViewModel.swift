@@ -53,7 +53,8 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     func fetchGames(participantId: String) async throws {
         do {
             let result = try await gamificationAPIManager.getGames(participantId: participantId,
-															  devMode: devMode)
+																   devMode: devMode,
+																   mockFileName: mockFileName)
             activeGameDefinitions = result.gameDefinitions.filter({ gameDefinition in
                 if let expirationDate = gameDefinition.participantGameRewards.first?.expirationDate {
                     return expirationDate >= Date() && gameDefinition.participantGameRewards.first?.status == .yetToReward

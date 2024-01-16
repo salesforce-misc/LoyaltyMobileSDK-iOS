@@ -14,7 +14,8 @@ final class GameZoneViewModelTests: XCTestCase {
 	
 	@MainActor override func setUp() {
 		super.setUp()
-		viewModel = GameZoneViewModel(authManager: MockAuthenticator.sharedMock, localFileManager: MockFileManager.mockInstance, devMode: true)
+		viewModel = GameZoneViewModel(authManager: GamificationMockAuthenticator.sharedMock, 
+									  devMode: true)
 	}
 	
 	override func tearDown() {
@@ -30,7 +31,9 @@ final class GameZoneViewModelTests: XCTestCase {
 	}
 	
 	@MainActor func test_getGamesFailTest() async throws {
-		viewModel = GameZoneViewModel(authManager: MockAuthenticator.sharedMock, localFileManager: MockFileManager.mockInstance, devMode: true, mockFileName: "GetGames_Fail")
+		viewModel = GameZoneViewModel(authManager: GamificationMockAuthenticator.sharedMock,
+									  devMode: true,
+									  mockFileName: "GetGames_Fail")
 		do {
 			try await viewModel.getGames(participantId: "faKeParticiPaNtId007")
 			XCTAssert(false)
