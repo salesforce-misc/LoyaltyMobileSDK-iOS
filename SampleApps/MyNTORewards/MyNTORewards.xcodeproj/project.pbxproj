@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,6 +32,7 @@
 		292ADC72294C04AB00753541 /* VocherModel+VoucherValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC71294C04AB00753541 /* VocherModel+VoucherValue.swift */; };
 		292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */; };
 		292ADC76294C064600753541 /* ProfileModel+CurrencyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC75294C064600753541 /* ProfileModel+CurrencyPoints.swift */; };
+		2930A3F22B50C65B006D5571 /* ReferralMobileSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2930A3F12B50C65B006D5571 /* ReferralMobileSDK */; };
 		293293CD2A13EDAC00244BE1 /* ExpiryDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293293CC2A13EDAC00244BE1 /* ExpiryDatePickerView.swift */; };
 		293F642F29D64E48001AC795 /* CommunityMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F642E29D64E48001AC795 /* CommunityMemberModel.swift */; };
 		293F643129D6C5AD001AC795 /* ForceConnectedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */; };
@@ -92,6 +93,7 @@
 		299B38D028E3DECE00E45D97 /* AppRootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38CF28E3DECE00E45D97 /* AppRootViewModel.swift */; };
 		299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38E128ED24B900E45D97 /* PasswordResetModel.swift */; };
 		299B38E428EE040900E45D97 /* UIApplication+DismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */; };
+		29A31F182B5794FE0081D876 /* ReferralStatusMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A31F172B5794FE0081D876 /* ReferralStatusMapping.swift */; };
 		29A39BC12937C699005833C2 /* LoyaltyAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A39BC02937C699005833C2 /* LoyaltyAsyncImage.swift */; };
 		29A39BC32937F46D005833C2 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A39BC22937F46D005833C2 /* String+MD5.swift */; };
 		29A39BC529397B98005833C2 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A39BC429397B98005833C2 /* EmptyStateView.swift */; };
@@ -399,6 +401,7 @@
 		299B38CF28E3DECE00E45D97 /* AppRootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootViewModel.swift; sourceTree = "<group>"; };
 		299B38E128ED24B900E45D97 /* PasswordResetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetModel.swift; sourceTree = "<group>"; };
 		299B38E328EE040900E45D97 /* UIApplication+DismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+DismissKeyboard.swift"; sourceTree = "<group>"; };
+		29A31F172B5794FE0081D876 /* ReferralStatusMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralStatusMapping.swift; sourceTree = "<group>"; };
 		29A39BC02937C699005833C2 /* LoyaltyAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyAsyncImage.swift; sourceTree = "<group>"; };
 		29A39BC22937F46D005833C2 /* String+MD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
 		29A39BC429397B98005833C2 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
@@ -617,6 +620,7 @@
 			files = (
 				292104972B336F71005A6754 /* ReferralMobileSDK in Frameworks */,
 				4FD635E32B4BDD0C004E4696 /* GamificationMobileSDK in Frameworks */,
+				2930A3F22B50C65B006D5571 /* ReferralMobileSDK in Frameworks */,
 				2920609529523C9C006B20C1 /* LoyaltyMobileSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -810,6 +814,7 @@
 				2988B5B62B4CD9C600C2D74C /* Models */,
 				292104922B336E09005A6754 /* ViewModels */,
 				292104932B336E17005A6754 /* Views */,
+				29A31F172B5794FE0081D876 /* ReferralStatusMapping.swift */,
 			);
 			path = Referral;
 			sourceTree = "<group>";
@@ -1411,6 +1416,7 @@
 				2920609429523C9C006B20C1 /* LoyaltyMobileSDK */,
 				292104962B336F71005A6754 /* ReferralMobileSDK */,
 				4FD635E22B4BDD0C004E4696 /* GamificationMobileSDK */,
+				2930A3F12B50C65B006D5571 /* ReferralMobileSDK */,
 			);
 			productName = LoyaltyStarter;
 			productReference = 216F217B28B6141E00DAA66D /* MyNTORewards.app */;
@@ -1460,7 +1466,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					216F217A28B6141E00DAA66D = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -1486,7 +1492,7 @@
 			mainGroup = 216F217228B6141E00DAA66D;
 			packageReferences = (
 				4FD635E12B4BDD0C004E4696 /* XCRemoteSwiftPackageReference "GamificationMobileSDK-iOS" */,
-				2988B5BF2B5078DA00C2D74C /* XCRemoteSwiftPackageReference "ReferralMobileSDK-iOS" */,
+				2930A3F02B50C65B006D5571 /* XCLocalSwiftPackageReference "../../../ReferralMobileSDK-iOS" */,
 			);
 			productRefGroup = 216F217C28B6141E00DAA66D /* Products */;
 			projectDirPath = "";
@@ -1605,6 +1611,7 @@
 				3FE71D1A2B3199CD006E6BF5 /* CongratsView.swift in Sources */,
 				292ADC74294C055200753541 /* TransactionHistory+CurrencyPoints.swift in Sources */,
 				AFC75D3429D458DF003CC86A /* ShippingMethodModel.swift in Sources */,
+				29A31F182B5794FE0081D876 /* ReferralStatusMapping.swift in Sources */,
 				292ADC72294C04AB00753541 /* VocherModel+VoucherValue.swift in Sources */,
 				3F2D8B702A651E46008F5AE0 /* ProcessedReceiptView.swift in Sources */,
 				292ADC6E294BFD7700753541 /* PreviewProvider.swift in Sources */,
@@ -2219,15 +2226,14 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		2988B5BF2B5078DA00C2D74C /* XCRemoteSwiftPackageReference "ReferralMobileSDK-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:loyaltysampleapp/ReferralMobileSDK-iOS.git";
-			requirement = {
-				branch = develop;
-				kind = branch;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		2930A3F02B50C65B006D5571 /* XCLocalSwiftPackageReference "../../../ReferralMobileSDK-iOS" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../../ReferralMobileSDK-iOS";
 		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
 		4FD635E12B4BDD0C004E4696 /* XCRemoteSwiftPackageReference "GamificationMobileSDK-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:loyaltysampleapp/GamificationMobileSDK-iOS.git";
@@ -2244,6 +2250,10 @@
 			productName = LoyaltyMobileSDK;
 		};
 		292104962B336F71005A6754 /* ReferralMobileSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ReferralMobileSDK;
+		};
+		2930A3F12B50C65B006D5571 /* ReferralMobileSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ReferralMobileSDK;
 		};

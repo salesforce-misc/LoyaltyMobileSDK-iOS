@@ -53,6 +53,7 @@ struct AppSettings {
         // Referral settings
         static let referralProgramName = "Referral Program"
         static let referralDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        static let referralDateFormatWithoutTime = "yyyy-MM-dd"
     }
     
     struct cacheFolders {
@@ -61,6 +62,7 @@ struct AppSettings {
         static let benefits = "Benefits"
         static let transactions = "Transactions"
         static let images = "Images"
+        static let referrals = "Referrals"
     }
     
     struct Vouchers {

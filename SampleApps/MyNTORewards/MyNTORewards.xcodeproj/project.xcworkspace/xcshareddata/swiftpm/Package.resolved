@@ -8,15 +8,6 @@
         "branch" : "release-246.patch",
         "revision" : "b8d934ff3a4862ea0a3c4303f1316412f670df14"
       }
-    },
-    {
-      "identity" : "referralmobilesdk-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "git@github.com:loyaltysampleapp/ReferralMobileSDK-iOS.git",
-      "state" : {
-        "branch" : "develop",
-        "revision" : "ce677bb9c7afdba861858318891c0ce2459a988e"
-      }
     }
   ],
   "version" : 2

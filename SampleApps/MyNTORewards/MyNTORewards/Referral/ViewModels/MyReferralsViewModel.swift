@@ -12,25 +12,84 @@ import ReferralMobileSDK
 @MainActor
 class MyReferralsViewModel: ObservableObject {
     
-    @Published var referrals: [Record] = []
+    @Published var promotionStageCounts: [PromotionStageType: Int] = [:]
+    @Published var recentReferralsSuccess: [Referral] = []
+    @Published var oneMonthAgoReferralsSuccess: [Referral] = []
+    @Published var threeMonthsAgoReferralsSuccess: [Referral] = []
+    @Published var recentReferralsInProgress: [Referral] = []
+    @Published var oneMonthAgoReferralsInProgress: [Referral] = []
+    @Published var threeMonthsAgoReferralsInProgress: [Referral] = []
+    @Published var referralCode: String {
+        didSet {
+            UserDefaults.standard.setValue(referralCode, forKey: "referralCode")
+        }
+    }
     private let authManager: ForceAuthenticator
-    private var forceClient: ForceClient
-    
-    let defaultPromotionCode = "TESTRM"
+    private let forceClient: ForceClient
+    private let referralAPIManager: ReferralAPIManager
+    private let localFileManager: FileManagerProtocol
+    private let referralsFolderName = AppSettings.cacheFolders.referrals
+    private let defaultPromotionCode = "TESTRM"
     
     init(
         authManager: ForceAuthenticator = ForceAuthManager.shared,
-        forceClient: ForceClient? = nil
+        forceClient: ForceClient? = nil,
+        localFileManager: FileManagerProtocol = LocalFileManager.instance
     ) {
         self.authManager = authManager
         self.forceClient = forceClient ?? ForceClient(auth: authManager)
+        self.referralAPIManager = ReferralAPIManager(auth: self.authManager,
+                                                     referralProgramName: AppSettings.Defaults.referralProgramName,
+                                                     instanceURL: AppSettings.shared.getInstanceURL(),
+                                                     forceClient: self.forceClient)
+        self.localFileManager = localFileManager
+        self.referralCode = UserDefaults.standard.string(forKey: "referralCode") ?? ""
     }
     
-    func getAllReferrals() async throws -> [Referral] {
+    func loadAllReferrals(reload: Bool = false, devMode: Bool = false) async throws {
+        if !reload {
+            if let cached = localFileManager.getData(type: [Referral].self, id: defaultPromotionCode, folderName: referralsFolderName) {
+                promotionStageCounts = calculatePromotionStageCounts(in: cached)
+                filterReferrals(referrals: cached)
+                return
+            } else {
+                do {
+                    let result = try await fetchAllReferrals(devMode: devMode)
+                    promotionStageCounts = calculatePromotionStageCounts(in: result)
+                    filterReferrals(referrals: result)
+                    
+                    // save to local
+                    localFileManager.saveData(item: result, id: defaultPromotionCode, folderName: referralsFolderName, expiry: .never)
+                } catch {
+                    Logger.error(error.localizedDescription)
+                    throw error
+                }
+            }
+            
+        } else {
+            do {
+                let result = try await fetchAllReferrals(devMode: devMode)
+                promotionStageCounts = calculatePromotionStageCounts(in: result)
+                filterReferrals(referrals: result)
+                
+                // save to local
+                localFileManager.saveData(item: result, id: defaultPromotionCode, folderName: referralsFolderName, expiry: .never)
+            } catch {
+                Logger.error(error.localizedDescription)
+                throw error
+            }
+        }
+    }
+    
+    func fetchAllReferrals(devMode: Bool = false) async throws -> [Referral] {
         // swiftlint:disable:next line_length
         let query = "SELECT ReferrerId, Id, ClientEmail, ReferrerEmail, ReferralDate, CurrentPromotionStage.Type FROM Referral WHERE ReferralDate = LAST_90_DAYS ORDER BY ReferralDate DESC"
         
         do {
+            if devMode {
+                let result = try forceClient.fetchLocalJson(type: [Referral].self, file: "Referrals")
+                return result
+            }
             let queryResult = try await forceClient.SOQL(type: Referral.self, for: query)
             return queryResult.records
         } catch {
@@ -39,7 +98,34 @@ class MyReferralsViewModel: ObservableObject {
         }
     }
     
-    func getReferralCode(for membershipNumber: String) async throws -> String? {
+    func loadReferralCode(membershipNumber: String) async {
+        let notFound = "NOTFOUND"
+        do {
+            if let code = try await getReferralCode(for: membershipNumber) {
+                referralCode = "\(defaultPromotionCode)-\(code)"
+            } else {
+                referralCode = "\(defaultPromotionCode)-\(notFound)"
+            }
+        } catch {
+            referralCode = "\(defaultPromotionCode)-\(notFound)"
+        }
+    }
+    
+    func sendReferral(email: String) async throws {
+        let emailArray = emailStringToArray(emailString: email)
+        do {
+            _ = try await referralAPIManager.referralEvent(emails: emailArray, referralCode: referralCode)
+        } catch {
+            Logger.error(error.localizedDescription)
+            throw error
+        }
+    }
+    
+    private func emailStringToArray(emailString: String) -> [String] {
+        return emailString.split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+    }
+    
+    private func getReferralCode(for membershipNumber: String) async throws -> String? {
         let query = "SELECT Id, ReferralCode FROM LoyaltyProgramMember WHERE MembershipNumber = '\(membershipNumber)'"
         
         do {
@@ -51,5 +137,71 @@ class MyReferralsViewModel: ObservableObject {
             throw error
         }
     }
+
+    private func calculatePromotionStageCounts(in referrals: [Referral]) -> [PromotionStageType: Int] {
+        var counts = [PromotionStageType: Int]()
+
+        for referral in referrals {
+            if let stageType = PromotionStageType(rawValue: referral.currentPromotionStage.type) {
+                counts[stageType, default: 0] += 1
+            }
+        }
+        return counts
+    }
     
+    private func filterReferrals(referrals: [Referral]) {
+        recentReferralsSuccess = referrals.filter { referral in
+            guard let date = referral.referralDate.toDate(withFormat: AppSettings.Defaults.referralDateFormatWithoutTime) else {
+                return false
+            }
+            
+            return date >= Date().monthBefore && referral.currentPromotionStage.type == PromotionStageType.voucherEarned.rawValue
+        }
+        
+        recentReferralsSuccess = referrals.filter { referral in
+            guard let date = referral.referralDate.toDate(withFormat: AppSettings.Defaults.referralDateFormatWithoutTime) else {
+                return false
+            }
+            
+            return date >= Date().monthBefore && referral.currentPromotionStage.type != PromotionStageType.voucherEarned.rawValue
+        }
+        
+        oneMonthAgoReferralsSuccess = referrals.filter { referral in
+            guard let date = referral.referralDate.toDate(withFormat: AppSettings.Defaults.referralDateFormatWithoutTime) else {
+                return false
+            }
+            
+            return date < Date().monthBefore && 
+                date >= Date().threeMonthsBefore &&
+                referral.currentPromotionStage.type == PromotionStageType.voucherEarned.rawValue
+        }
+        
+        oneMonthAgoReferralsInProgress = referrals.filter { referral in
+            guard let date = referral.referralDate.toDate(withFormat: AppSettings.Defaults.referralDateFormatWithoutTime) else {
+                return false
+            }
+            
+            return date < Date().monthBefore && 
+                date >= Date().threeMonthsBefore &&
+                referral.currentPromotionStage.type != PromotionStageType.voucherEarned.rawValue
+        }
+        
+        threeMonthsAgoReferralsSuccess = referrals.filter { referral in
+            guard let date = referral.referralDate.toDate(withFormat: AppSettings.Defaults.referralDateFormatWithoutTime) else {
+                return false
+            }
+            
+            return date < Date().threeMonthsBefore && referral.currentPromotionStage.type == PromotionStageType.voucherEarned.rawValue
+        }
+        
+        threeMonthsAgoReferralsInProgress = referrals.filter { referral in
+            guard let date = referral.referralDate.toDate(withFormat: AppSettings.Defaults.referralDateFormatWithoutTime) else {
+                return false
+            }
+            
+            return date < Date().threeMonthsBefore && referral.currentPromotionStage.type != PromotionStageType.voucherEarned.rawValue
+        }
+            
+    }
+
 }

@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import ReferralMobileSDK
 
 struct MyReferralsView: View {
     
+    @StateObject var viewModel = MyReferralsViewModel()
     @State private var tabIndex = 0
     @State var showReferAFriendView = false
     var tabbarItems = ["Success", "In Progress"]
@@ -49,18 +51,18 @@ struct MyReferralsView: View {
                                     VStack(alignment: .leading) {
                                         Text("SENT")
                                             .font(.referralText)
-                                        Text("**18**")
+                                        Text("**\(viewModel.promotionStageCounts[.sent] ?? 0)**")
                                             .font(.referralBoldText)
                                             .padding(.bottom)
                                         Text("VOUCHERS EARNED")
                                             .font(.referralText)
-                                        Text("**12**")
+                                        Text("**\(viewModel.promotionStageCounts[.voucherEarned] ?? 0)**")
                                             .font(.referralBoldText)
                                     }
                                     VStack(alignment: .leading) {
                                         Text("ACCEPTED")
                                             .font(.referralText)
-                                        Text("**12**")
+                                        Text("**\(viewModel.promotionStageCounts[.accepted] ?? 0)**")
                                             .font(.referralBoldText)
                                             .padding(.bottom)
                                         Text("POINTS EARNED")
@@ -126,8 +128,10 @@ struct MyReferralsView: View {
                         
                         TabView(selection: $tabIndex) {
                             SuccessView()
+                                .environmentObject(viewModel)
                                 .tag(0)
                             InProcessView()
+                                .environmentObject(viewModel)
                                 .tag(1)
                         }
                         .frame(height: 1000)
@@ -140,84 +144,106 @@ struct MyReferralsView: View {
         .navigationBarBackButtonHidden()
         .sheet(isPresented: $showReferAFriendView) {
             ReferAFriendView()
+                .environmentObject(viewModel)
+        }
+        .task {
+            do {
+                try await viewModel.loadAllReferrals(devMode: true)
+            } catch {
+                Logger.error(error.localizedDescription)
+            }
+        }
+        .refreshable {
+            do {
+                try await viewModel.loadAllReferrals(reload: true, devMode: true)
+            } catch {
+                Logger.error(error.localizedDescription)
+            }
         }
     }
 }
 
 struct SuccessView: View {
+    @EnvironmentObject var viewModel: MyReferralsViewModel
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Recent Referrals")
                 .font(.referralTimeTitle)
                 .padding(.vertical, 5)
-            ReferralCard(status: .purchaseCompleted, email: "strawberry.sheikh@yahoo.com", referralDate: Date())
-            ReferralCard(status: .purchaseCompleted, email: "strawberry.sheikh@yahoo.com", referralDate: Date())
-            ReferralCard(status: .purchaseCompleted, email: "strawberry.sheikh@yahoo.com", referralDate: Date())
+            ForEach(viewModel.recentReferralsSuccess) { referral in
+                ReferralCard(status: .purchaseCompleted, email: referral.clientEmail, referralDate: referral.referralDate)
+            }
             Text("Referrals one month ago")
                 .font(.referralTimeTitle)
                 .padding(.vertical, 5)
-            ReferralCard(status: .purchaseCompleted, email: "strawberry.sheikh@yahoo.com", referralDate: Date())
-            ReferralCard(status: .purchaseCompleted, email: "strawberry.sheikh@yahoo.com", referralDate: Date())
-            ReferralCard(status: .purchaseCompleted, email: "strawberry.sheikh@yahoo.com", referralDate: Date())
+            ForEach(viewModel.oneMonthAgoReferralsSuccess) { referral in
+                ReferralCard(status: .purchaseCompleted, email: referral.clientEmail, referralDate: referral.referralDate)
+            }
             Text("Referrals older than three month")
                 .font(.referralTimeTitle)
                 .padding(.vertical, 5)
-            ReferralCard(status: .purchaseCompleted, email: "strawberry.sheikh@yahoo.com", referralDate: Date())
-            ReferralCard(status: .purchaseCompleted, email: "strawberry.sheikh@yahoo.com", referralDate: Date())
-            ReferralCard(status: .purchaseCompleted, email: "strawberry.sheikh@yahoo.com", referralDate: Date())
+            ForEach(viewModel.threeMonthsAgoReferralsSuccess) { referral in
+                ReferralCard(status: .purchaseCompleted, email: referral.clientEmail, referralDate: referral.referralDate)
+            }
             Spacer()
         }
     }
 }
 
 struct InProcessView: View {
+    @EnvironmentObject var viewModel: MyReferralsViewModel
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Recent Referrals")
                 .font(.referralTimeTitle)
                 .padding(.vertical, 5)
-            ReferralCard(status: .signedUp, email: "strawberry.sheikh@yahoo.com", referralDate: Date())
-            ReferralCard(status: .pending, email: "shah.verma@gmail.com", referralDate: Date())
-            ReferralCard(status: .signedUp, email: "shah.verma@gmail.com", referralDate: Date())
+            ForEach(viewModel.recentReferralsInProgress) { referral in
+                ReferralCard(status: PromotionStageType(rawValue: referral.currentPromotionStage.type)?.correspondingReferralStatus ?? .unknown,
+                             email: referral.clientEmail,
+                             referralDate: referral.referralDate)
+            }
             Text("Referrals one month ago")
                 .font(.referralTimeTitle)
                 .padding(.vertical, 5)
-            ReferralCard(status: .signedUp, email: "strawberry.sheikh@yahoo.com", referralDate: Date())
-            ReferralCard(status: .pending, email: "shah.verma@gmail.com", referralDate: Date())
-            ReferralCard(status: .signedUp, email: "shah.verma@gmail.com", referralDate: Date())
+            ForEach(viewModel.oneMonthAgoReferralsInProgress) { referral in
+                ReferralCard(status: PromotionStageType(rawValue: referral.currentPromotionStage.type)?.correspondingReferralStatus ?? .unknown,
+                             email: referral.clientEmail,
+                             referralDate: referral.referralDate)
+            }
             Text("Referrals older than three month")
                 .font(.referralTimeTitle)
                 .padding(.vertical, 5)
-            ReferralCard(status: .signedUp, email: "strawberry.sheikh@yahoo.com", referralDate: Date())
-            ReferralCard(status: .pending, email: "shah.verma@gmail.com", referralDate: Date())
-            ReferralCard(status: .signedUp, email: "shah.verma@gmail.com", referralDate: Date())
+            ForEach(viewModel.threeMonthsAgoReferralsInProgress) { referral in
+                ReferralCard(status: PromotionStageType(rawValue: referral.currentPromotionStage.type)?.correspondingReferralStatus ?? .unknown,
+                             email: referral.clientEmail,
+                             referralDate: referral.referralDate)
+            }
             Spacer()
         }
     }
 }
 
-enum ReferralStatus: String {
-    case pending = "Pending"
-    case signedUp = "Signed-up"
-    case purchaseCompleted = "Purchase Completed"
-}
-
 struct ReferralCard: View {
     let status: ReferralStatus
     let email: String
-    let referralDate: Date
+    let referralDate: String
     
     var body: some View {
         VStack {
             HStack {
                 Assets.getReferralStatusIcon(status: status)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 24, height: 24)
                 Text("**\(email)**")
                     .font(.referralCardText)
                 Spacer()
             }
             .padding(.horizontal, 10)
             HStack {
-                Text(referralDate.toString())
+                Text(referralDate)
                     .font(.referralCardText)
                 Spacer()
                 Text("**\(status.rawValue)**")

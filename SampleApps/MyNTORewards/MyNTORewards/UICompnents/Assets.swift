@@ -86,6 +86,8 @@ struct Assets {
             return Image("ic-update-status")
         case .purchaseCompleted:
             return Image("ic-check")
+        case .unknown:
+            return Image(systemName: "questionmark.circle.fill")
         }
     }
 }
