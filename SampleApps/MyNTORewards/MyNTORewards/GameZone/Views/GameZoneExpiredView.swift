@@ -13,12 +13,14 @@ struct GameZoneExpiredView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-			HStack {
-				Text(StringConstants.Gamification.expiredTabHeaderLabel)
-					.font(Font.scratchText)
-					.foregroundColor(Color.theme.superLightText)
-				.padding([.horizontal, .top], 16)
-				Spacer()
+			if !(expiredGames?.isEmpty ?? true) {
+				HStack {
+					Text(StringConstants.Gamification.expiredTabHeaderLabel)
+						.font(Font.scratchText)
+						.foregroundColor(Color.theme.superLightText)
+						.padding([.horizontal, .top], 16)
+					Spacer()
+				}
 			}
 			GameZoneGridContainerView(games: expiredGames, 
                                       cardType: .expired,

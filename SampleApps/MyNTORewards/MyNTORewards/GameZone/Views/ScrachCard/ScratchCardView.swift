@@ -159,10 +159,9 @@ struct ScratchCardView: View {
 	
 	private var titleView: some View {
 		VStack(spacing: 10) {
-			Text(StringConstants.Gamification.scratchCardTitleLabel)
+			Text(gameDefinitionModel?.name ?? StringConstants.Gamification.scratchCardTitleLabel)
 				.font(.gameHeaderTitle)
-			
-			Text(StringConstants.Gamification.scratchCardSubTitleLabel)
+			Text(gameDefinitionModel?.description ?? StringConstants.Gamification.scratchCardSubTitleLabel)
 				.font(.gameHeaderSubTitle)
 		}
 		.padding(30)
