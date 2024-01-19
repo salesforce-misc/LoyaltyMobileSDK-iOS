@@ -72,10 +72,10 @@ struct FortuneWheelView: View {
 					Color.theme.accent
 					VStack {
 						VStack(spacing: 10) {
-							Text(StringConstants.Gamification.spinaWheelHeaderLabel)
+							Text(gameDefinitionModel?.name ?? StringConstants.Gamification.spinaWheelHeaderLabel)
 								.font(.gameHeaderTitle)
 							
-							Text(StringConstants.Gamification.spinaWheelSubHeaderLabel)
+							Text(gameDefinitionModel?.description ?? StringConstants.Gamification.spinaWheelSubHeaderLabel)
 								.font(.gameHeaderSubTitle)
 						}
 						.padding(30)
