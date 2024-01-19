@@ -8,39 +8,58 @@
 import SwiftUI
 
 struct JoinAndReferView: View {
+    @EnvironmentObject private var rootVM: AppRootViewModel
+    @EnvironmentObject private var referralVM: ReferralViewModel
+    @State private var processing: Bool = false
+    
     var body: some View {
-        VStack {
-            GeometryReader { geometry in
-                Image("img-join")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(maxWidth: geometry.size.width, maxHeight: 160)
-                    .clipped()
-            }
-            .frame(maxHeight: 160)
-            
-            VStack(alignment: .leading, spacing: 20) {
-                Text("**Refer a Friend and Earn**")
-                    .font(.referModalText)
-                    .accessibilityIdentifier(AppAccessibilty.Referrals.referAFriendTitle)
-                Text("Invite your friends and get a voucher when they shop for the first time. Join the referral program to start.")
-                    .lineSpacing(5)
-                    .font(.referModalText)
-                Text("Tap 'Join and Refer' to participate. By joining you agree to the terms and conditions.")
-                    .lineSpacing(5)
-                    .font(.referModalText)
+        ZStack {
+            VStack {
+                GeometryReader { geometry in
+                    Image("img-join")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(maxWidth: geometry.size.width, maxHeight: 160)
+                        .clipped()
+                }
+                .frame(maxHeight: 160)
                 
-            }
-            .padding()
-            
-            Button("Join and Refer") {
+                VStack(alignment: .leading, spacing: 20) {
+                    Text("**Refer a Friend and Earn**")
+                        .font(.referModalText)
+                        .accessibilityIdentifier(AppAccessibilty.Referrals.referAFriendTitle)
+                    Text("Invite your friends and get a voucher when they shop for the first time. Join the referral program to start.")
+                        .lineSpacing(5)
+                        .font(.referModalText)
+                    Text("Tap 'Join and Refer' to participate. By joining you agree to the terms and conditions.")
+                        .lineSpacing(5)
+                        .font(.referModalText)
+                    
+                }
+                .padding()
                 
-            }
-            .buttonStyle(DarkLongButton())
+                Button("Join and Refer") {
+                    processing = true
+                    Task {
+                        await referralVM.enroll(membershipNumber: rootVM.member?.membershipNumber ?? "")
+                        processing = false
+                    }
+                }
+                .buttonStyle(DarkLongButton())
+                .disabled(processing)
+                .opacity(processing ? 0.5 : 1)
+                .accessibilityIdentifier(AppAccessibilty.Referrals.joinAndReferButton)
 
-            Spacer()
+                Spacer()
+            }
+            .ignoresSafeArea()
+            .navigationBarBackButtonHidden()
+            
+            if processing {
+                ProgressView()
+            }
         }
-        .ignoresSafeArea()
+        
     }
 }
 

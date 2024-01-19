@@ -24,7 +24,7 @@
 		2913FB4D2A1CA6B30065F0D5 /* AppVersion.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2913FB4B2A1CA6B30065F0D5 /* AppVersion.xcconfig */; };
 		2913FB4E2A1CA6B30065F0D5 /* AppVersion.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2913FB4B2A1CA6B30065F0D5 /* AppVersion.xcconfig */; };
 		2920609529523C9C006B20C1 /* LoyaltyMobileSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2920609429523C9C006B20C1 /* LoyaltyMobileSDK */; };
-		292104952B336E65005A6754 /* MyReferralsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292104942B336E65005A6754 /* MyReferralsViewModel.swift */; };
+		292104952B336E65005A6754 /* ReferralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292104942B336E65005A6754 /* ReferralViewModel.swift */; };
 		292104972B336F71005A6754 /* ReferralMobileSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 292104962B336F71005A6754 /* ReferralMobileSDK */; };
 		292453E62A185D75002112B3 /* Bundle+Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292453E52A185D75002112B3 /* Bundle+Info.swift */; };
 		292453E82A1C4658002112B3 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292453E72A1C4658002112B3 /* WebView.swift */; };
@@ -64,6 +64,7 @@
 		296D393E28DE1EFF0078C88E /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393D28DE1EFF0078C88E /* ButtonStyles.swift */; };
 		296D394028DE59240078C88E /* TextFieldStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D393F28DE59240078C88E /* TextFieldStyles.swift */; };
 		296D394228DE76A40078C88E /* RevealableSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D394128DE76A40078C88E /* RevealableSecureField.swift */; };
+		297F109F2B59DEF60058105C /* ReferralsGatewayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F109E2B59DEF60058105C /* ReferralsGatewayView.swift */; };
 		2984C9442954F091009669EF /* LoyaltyUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984C93E2954F091009669EF /* LoyaltyUtilities.swift */; };
 		2984C9452954F091009669EF /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984C9402954F091009669EF /* LocalFileManager.swift */; };
 		2984C9462954F091009669EF /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984C9412954F091009669EF /* Entry.swift */; };
@@ -334,7 +335,7 @@
 		2913FB472A1CA6560065F0D5 /* MasterConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MasterConfig.xcconfig; sourceTree = "<group>"; };
 		2913FB4B2A1CA6B30065F0D5 /* AppVersion.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppVersion.xcconfig; sourceTree = "<group>"; };
 		2920609329523C0B006B20C1 /* LoyaltyMobileSDK-iOS */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "LoyaltyMobileSDK-iOS"; path = ../..; sourceTree = "<group>"; };
-		292104942B336E65005A6754 /* MyReferralsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReferralsViewModel.swift; sourceTree = "<group>"; };
+		292104942B336E65005A6754 /* ReferralViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralViewModel.swift; sourceTree = "<group>"; };
 		292453E52A185D75002112B3 /* Bundle+Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Info.swift"; sourceTree = "<group>"; };
 		292453E72A1C4658002112B3 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		292ADC6D294BFD7700753541 /* PreviewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
@@ -371,6 +372,7 @@
 		296D393D28DE1EFF0078C88E /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		296D393F28DE59240078C88E /* TextFieldStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyles.swift; sourceTree = "<group>"; };
 		296D394128DE76A40078C88E /* RevealableSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealableSecureField.swift; sourceTree = "<group>"; };
+		297F109E2B59DEF60058105C /* ReferralsGatewayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralsGatewayView.swift; sourceTree = "<group>"; };
 		2984C93E2954F091009669EF /* LoyaltyUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyaltyUtilities.swift; sourceTree = "<group>"; };
 		2984C9402954F091009669EF /* LocalFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
 		2984C9412954F091009669EF /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
@@ -747,7 +749,7 @@
 		292104922B336E09005A6754 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				292104942B336E65005A6754 /* MyReferralsViewModel.swift */,
+				292104942B336E65005A6754 /* ReferralViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -755,6 +757,7 @@
 		292104932B336E17005A6754 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				297F109E2B59DEF60058105C /* ReferralsGatewayView.swift */,
 				2947E40E2AE349FE005A0019 /* MyReferralsView.swift */,
 				2945FFBD2AE8926A00D9C8C6 /* ReferAFriendView.swift */,
 				29889A992B46369B0037BD94 /* JoinAndReferView.swift */,
@@ -1751,7 +1754,7 @@
 				2963770E29C10D2400D45AB6 /* ForceClient+SOSL.swift in Sources */,
 				3F714D4829FA0F4A00CD39E7 /* ProductTermsAndConditionsView.swift in Sources */,
 				4F18ED872AD958C6000F64D9 /* GameZoneExpiredView.swift in Sources */,
-				292104952B336E65005A6754 /* MyReferralsViewModel.swift in Sources */,
+				292104952B336E65005A6754 /* ReferralViewModel.swift in Sources */,
 				292453E82A1C4658002112B3 /* WebView.swift in Sources */,
 				290EA9C1292C0ACF00BBF2F2 /* VoucherViewModel.swift in Sources */,
 				3F714D6429FA0FEB00CD39E7 /* VoucherPickerView.swift in Sources */,
@@ -1790,6 +1793,7 @@
 				3FE71D002B3199CD006E6BF5 /* PromotionCarouselView.swift in Sources */,
 				3FE8BFC42A6D8E5700ECD45B /* Receipt.swift in Sources */,
 				296D394028DE59240078C88E /* TextFieldStyles.swift in Sources */,
+				297F109F2B59DEF60058105C /* ReferralsGatewayView.swift in Sources */,
 				2906B1D428FF5031006EAB2D /* MemberModel.swift in Sources */,
 				29EC33242AAA962A00104363 /* ProcessingErrorView.swift in Sources */,
 			);

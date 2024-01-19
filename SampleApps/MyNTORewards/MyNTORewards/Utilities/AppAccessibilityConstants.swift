@@ -181,5 +181,6 @@ enum AppAccessibilty {
         static let referAFriendTitle = "refer_friend_tile"
         static let email = "friend_email"
         static let referralCode = "referral_code"
+        static let joinAndReferButton = "join_refer_button"
     }
 }

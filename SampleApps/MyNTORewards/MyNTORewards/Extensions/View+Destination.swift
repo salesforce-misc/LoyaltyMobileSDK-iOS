@@ -27,7 +27,7 @@ extension View {
             case .vouchers:
                 GameZoneVoucherView()
             case .referrals:
-                MyReferralsView()
+                ReferralsGatewayView()
             }
 		}
 	}

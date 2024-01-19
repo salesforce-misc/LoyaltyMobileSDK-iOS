@@ -1,5 +1,5 @@
 //
-//  MyReferralsViewModel.swift
+//  ReferralViewModel.swift
 //  MyNTORewards
 //
 //  Created by Leon Qi on 12/20/23.
@@ -10,7 +10,7 @@ import SwiftUI
 import ReferralMobileSDK
 
 @MainActor
-class MyReferralsViewModel: ObservableObject {
+class ReferralViewModel: ObservableObject {
     
     @Published var promotionStageCounts: [PromotionStageType: Int] = [:]
     @Published var recentReferralsSuccess: [Referral] = []
@@ -24,12 +24,14 @@ class MyReferralsViewModel: ObservableObject {
             UserDefaults.standard.setValue(referralCode, forKey: "referralCode")
         }
     }
+    @Published var displayMessage: String = ""
+    
     private let authManager: ForceAuthenticator
     private let forceClient: ForceClient
     private let referralAPIManager: ReferralAPIManager
     private let localFileManager: FileManagerProtocol
     private let referralsFolderName = AppSettings.cacheFolders.referrals
-    private let defaultPromotionCode = "TESTRM"
+    private let promotionCode = AppSettings.Defaults.promotionCode
     
     init(
         authManager: ForceAuthenticator = ForceAuthManager.shared,
@@ -48,7 +50,7 @@ class MyReferralsViewModel: ObservableObject {
     
     func loadAllReferrals(reload: Bool = false, devMode: Bool = false) async throws {
         if !reload {
-            if let cached = localFileManager.getData(type: [Referral].self, id: defaultPromotionCode, folderName: referralsFolderName) {
+            if let cached = localFileManager.getData(type: [Referral].self, id: promotionCode, folderName: referralsFolderName) {
                 promotionStageCounts = calculatePromotionStageCounts(in: cached)
                 filterReferrals(referrals: cached)
                 return
@@ -59,7 +61,7 @@ class MyReferralsViewModel: ObservableObject {
                     filterReferrals(referrals: result)
                     
                     // save to local
-                    localFileManager.saveData(item: result, id: defaultPromotionCode, folderName: referralsFolderName, expiry: .never)
+                    localFileManager.saveData(item: result, id: promotionCode, folderName: referralsFolderName, expiry: .never)
                 } catch {
                     Logger.error(error.localizedDescription)
                     throw error
@@ -73,7 +75,7 @@ class MyReferralsViewModel: ObservableObject {
                 filterReferrals(referrals: result)
                 
                 // save to local
-                localFileManager.saveData(item: result, id: defaultPromotionCode, folderName: referralsFolderName, expiry: .never)
+                localFileManager.saveData(item: result, id: promotionCode, folderName: referralsFolderName, expiry: .never)
             } catch {
                 Logger.error(error.localizedDescription)
                 throw error
@@ -102,22 +104,51 @@ class MyReferralsViewModel: ObservableObject {
         let notFound = "NOTFOUND"
         do {
             if let code = try await getReferralCode(for: membershipNumber) {
-                referralCode = "\(defaultPromotionCode)-\(code)"
+                referralCode = "\(promotionCode)-\(code)"
             } else {
-                referralCode = "\(defaultPromotionCode)-\(notFound)"
+                referralCode = "\(promotionCode)-\(notFound)"
             }
         } catch {
-            referralCode = "\(defaultPromotionCode)-\(notFound)"
+            referralCode = "\(promotionCode)-\(notFound)"
         }
     }
     
-    func sendReferral(email: String) async throws {
+    func sendReferral(email: String) async {
         let emailArray = emailStringToArray(emailString: email)
         do {
             _ = try await referralAPIManager.referralEvent(emails: emailArray, referralCode: referralCode)
+        } catch CommonError.responseUnsuccessful(_, let errorMessage), CommonError.unknownException(let errorMessage) {
+            displayMessage = errorMessage
+        } catch {
+            displayMessage = error.localizedDescription
+        }
+    }
+    
+    func isMemberEnrolled(membershipNumber: String) async -> Bool {
+        
+        do {
+            // swiftlint:disable:next line_length
+            let query = "SELECT Id FROM LoyaltyProgramMbrPromotion WHERE LoyaltyProgramMember.MembershipNumber = '\(membershipNumber)' AND Promotion.PromotionCode = '\(promotionCode)'"
+            let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
+            return queryResult.records.isEmpty == false
         } catch {
             Logger.error(error.localizedDescription)
-            throw error
+            return false
+        }
+    }
+    
+    func enroll(membershipNumber: String) async {
+        do {
+            let success = try await referralAPIManager.referralEnrollment(membershipNumber: membershipNumber, promotionCode: promotionCode)
+            if success {
+                displayMessage = "You are successfully joined."
+            } else {
+                displayMessage = "Failed to join, please try again later."
+            }
+        } catch CommonError.responseUnsuccessful(_, let errorMessage), CommonError.unknownException(let errorMessage) {
+            displayMessage = errorMessage
+        } catch {
+            displayMessage = error.localizedDescription
         }
     }
     

@@ -14,7 +14,7 @@ struct ReferAFriendView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.openURL) var openURL
     @EnvironmentObject private var rootVM: AppRootViewModel
-    @EnvironmentObject private var referralVM: MyReferralsViewModel
+    @EnvironmentObject private var referralVM: ReferralViewModel
     
     @State var email: String = ""
     @State private var isEmailValid: Bool = true
@@ -57,14 +57,17 @@ struct ReferAFriendView: View {
                             .frame(height: 58)
                         
                         Button(action: {
-                            // Validate email before sending
+                            referralVM.displayMessage = ""
                             self.isEmailValid = validateEmailInput(input: email)
                             if isEmailValid {
                                 processing = true
                                 Task {
-                                    try await referralVM.sendReferral(email: email)
+                                    await referralVM.sendReferral(email: email)
+                                    processing = false
                                 }
-                                processing = false
+                                
+                            } else {
+                                referralVM.displayMessage = "Please enter valid email addresses."
                             }
                         }) {
                             Image("ic-forward")
@@ -83,12 +86,13 @@ struct ReferAFriendView: View {
                     
                     HStack {
                         Spacer()
-                        Text("Please enter a valid email address or multiple emails.")
+                        Text(referralVM.displayMessage)
                             .font(.caption)
                             .foregroundColor(.red)
                         Spacer()
                     }
-                    .opacity(isEmailValid ? 0 : 1)
+                    .opacity(referralVM.displayMessage.isEmpty ? 0 : 1)
+                    .frame(height: 40)
 
                 }
                 .padding()
@@ -176,23 +180,18 @@ struct ReferAFriendView: View {
                         Spacer()
                     }
                     
-                    Spacer()
-                    
                     Button("Done") {
                         dismiss()
                     }
                     .buttonStyle(DarkLongButton())
-                    
                     Spacer()
+
                 }
                 .padding()
-
             }
             .ignoresSafeArea()
             .task {
-                if referralVM.referralCode == "" {
-                    await referralVM.loadReferralCode(membershipNumber: rootVM.member?.membershipNumber ?? "")
-                }
+                await referralVM.loadReferralCode(membershipNumber: rootVM.member?.membershipNumber ?? "")
             }
             if processing {
                 ProgressView()
@@ -230,4 +229,6 @@ struct ReferAFriendView: View {
 
 #Preview {
     ReferAFriendView()
+        .environmentObject(AppRootViewModel())
+        .environmentObject(ReferralViewModel())
 }

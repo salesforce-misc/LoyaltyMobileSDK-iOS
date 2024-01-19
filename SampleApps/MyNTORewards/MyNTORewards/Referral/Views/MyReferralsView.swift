@@ -10,9 +10,10 @@ import ReferralMobileSDK
 
 struct MyReferralsView: View {
     
-    @StateObject var viewModel = MyReferralsViewModel()
+    @EnvironmentObject private var viewModel: ReferralViewModel
     @State private var tabIndex = 0
     @State var showReferAFriendView = false
+    @State var showJoinandReferView = false
     var tabbarItems = ["Success", "In Progress"]
     
     var body: some View {
@@ -141,10 +142,14 @@ struct MyReferralsView: View {
             }
             Spacer()
         }
+        .ignoresSafeArea(edges: .bottom)
         .navigationBarBackButtonHidden()
         .sheet(isPresented: $showReferAFriendView) {
             ReferAFriendView()
                 .environmentObject(viewModel)
+        }
+        .sheet(isPresented: $showJoinandReferView) {
+            JoinAndReferView()
         }
         .task {
             do {
@@ -164,7 +169,7 @@ struct MyReferralsView: View {
 }
 
 struct SuccessView: View {
-    @EnvironmentObject var viewModel: MyReferralsViewModel
+    @EnvironmentObject var viewModel: ReferralViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -192,7 +197,7 @@ struct SuccessView: View {
 }
 
 struct InProcessView: View {
-    @EnvironmentObject var viewModel: MyReferralsViewModel
+    @EnvironmentObject var viewModel: ReferralViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
