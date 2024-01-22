@@ -182,5 +182,7 @@ enum AppAccessibilty {
         static let email = "friend_email"
         static let referralCode = "referral_code"
         static let joinAndReferButton = "join_refer_button"
+        static let emailErrorBackButton = "email_error_back_button"
+        static let joinErrorBackButton = "join_error_back_button"
     }
 }

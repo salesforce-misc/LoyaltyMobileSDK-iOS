@@ -266,4 +266,5 @@ struct ReferralCard: View {
 
 #Preview {
     MyReferralsView()
+        .environmentObject(ReferralViewModel())
 }

@@ -24,7 +24,7 @@ class ReferralViewModel: ObservableObject {
             UserDefaults.standard.setValue(referralCode, forKey: "referralCode")
         }
     }
-    @Published var displayMessage: String = ""
+    @Published var displayError: (Bool, String) = (false, "")
     
     private let authManager: ForceAuthenticator
     private let forceClient: ForceClient
@@ -118,9 +118,9 @@ class ReferralViewModel: ObservableObject {
         do {
             _ = try await referralAPIManager.referralEvent(emails: emailArray, referralCode: referralCode)
         } catch CommonError.responseUnsuccessful(_, let errorMessage), CommonError.unknownException(let errorMessage) {
-            displayMessage = errorMessage
+            displayError = (true, errorMessage)
         } catch {
-            displayMessage = error.localizedDescription
+            displayError = (true, error.localizedDescription)
         }
     }
     
@@ -141,14 +141,14 @@ class ReferralViewModel: ObservableObject {
         do {
             let success = try await referralAPIManager.referralEnrollment(membershipNumber: membershipNumber, promotionCode: promotionCode)
             if success {
-                displayMessage = "You are successfully joined."
+                displayError = (false, "You are successfully joined.")
             } else {
-                displayMessage = "Failed to join, please try again later."
+                displayError = (true, "Failed to join, please try again later.")
             }
         } catch CommonError.responseUnsuccessful(_, let errorMessage), CommonError.unknownException(let errorMessage) {
-            displayMessage = errorMessage
+            displayError = (true, errorMessage)
         } catch {
-            displayMessage = error.localizedDescription
+            displayError = (true, error.localizedDescription)
         }
     }
     

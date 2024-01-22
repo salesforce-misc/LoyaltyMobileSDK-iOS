@@ -59,6 +59,20 @@ struct JoinAndReferView: View {
                 ProgressView()
             }
         }
+        .fullScreenCover(isPresented: $referralVM.displayError.0) {
+            Spacer()
+            ProcessingErrorView(message: referralVM.displayError.1)
+            Spacer()
+            Button {
+                referralVM.displayError = (false, "")
+            } label: {
+                Text(StringConstants.Receipts.backButton)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .longFlexibleButtonStyle()
+            .accessibilityIdentifier(AppAccessibilty.Referrals.joinErrorBackButton)
+        }
         
     }
 }

@@ -16,11 +16,12 @@ struct ReferAFriendView: View {
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var referralVM: ReferralViewModel
     
-    @State var email: String = ""
+    @State private var email: String = ""
     @State private var isEmailValid: Bool = true
     @State private var showCodeCopiedAlert = false
     @State private var showShareSheet: Bool = false
     @State private var processing: Bool = false
+    @State private var validationMessage = ""
     
     var body: some View {
         ZStack {
@@ -57,7 +58,7 @@ struct ReferAFriendView: View {
                             .frame(height: 58)
                         
                         Button(action: {
-                            referralVM.displayMessage = ""
+                            validationMessage = ""
                             self.isEmailValid = validateEmailInput(input: email)
                             if isEmailValid {
                                 processing = true
@@ -67,7 +68,7 @@ struct ReferAFriendView: View {
                                 }
                                 
                             } else {
-                                referralVM.displayMessage = "Please enter valid email addresses."
+                                validationMessage = "Please enter valid email addresses."
                             }
                         }) {
                             Image("ic-forward")
@@ -86,12 +87,12 @@ struct ReferAFriendView: View {
                     
                     HStack {
                         Spacer()
-                        Text(referralVM.displayMessage)
+                        Text(validationMessage)
                             .font(.caption)
                             .foregroundColor(.red)
                         Spacer()
                     }
-                    .opacity(referralVM.displayMessage.isEmpty ? 0 : 1)
+                    .opacity(validationMessage.isEmpty ? 0 : 1)
                     .frame(height: 40)
 
                 }
@@ -196,6 +197,21 @@ struct ReferAFriendView: View {
             if processing {
                 ProgressView()
             }
+        }
+        .fullScreenCover(isPresented: $referralVM.displayError.0) {
+            Spacer()
+            ProcessingErrorView(message: referralVM.displayError.1)
+            Spacer()
+            Button {
+                email = ""
+                referralVM.displayError = (false, "")
+            } label: {
+                Text(StringConstants.Receipts.backButton)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .longFlexibleButtonStyle()
+            .accessibilityIdentifier(AppAccessibilty.Referrals.emailErrorBackButton)
         }
         
     }
