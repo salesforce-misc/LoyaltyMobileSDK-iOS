@@ -21,6 +21,7 @@ class GameZoneViewModel: ObservableObject, Reloadable {
     @Published var playedGameDefinitions: [GameDefinition]?
     @Published var activeGameDefinitions: [GameDefinition]?
     @Published var expiredGameDefinitions: [GameDefinition]?
+	@Published var tabSelected: Int = 0
     
     private let authManager: GamificationForceAuthenticator
     private var gamificationAPIManager: APIManager
