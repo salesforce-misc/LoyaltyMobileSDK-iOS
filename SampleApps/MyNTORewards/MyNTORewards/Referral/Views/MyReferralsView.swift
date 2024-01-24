@@ -238,66 +238,69 @@ struct InProcessView: View {
     @EnvironmentObject var viewModel: ReferralViewModel
     
     var body: some View {
-        LazyVStack {
-            if !viewModel.recentReferralsInProgress.isEmpty {
-                Group {
-                    HStack {
-                        Text("Recent Referrals")
-                            .font(.referralTimeTitle)
-                            .padding(.horizontal)
-                            .padding(.vertical, 5)
-                        Spacer()
-                    }
-                    ForEach(viewModel.recentReferralsInProgress) { referral in
-                        ReferralCard(status: PromotionStageType(rawValue: referral.currentPromotionStage.type)?.correspondingReferralStatus ?? .unknown,
-                                     email: referral.referredParty.account.personEmail,
-                                     referralDate: referral.referralDate)
-                    }
-                }
-            }
-            
-            if !viewModel.oneMonthAgoReferralsInProgress.isEmpty {
-                Group {
-                    HStack {
-                        Text("Referrals one month ago")
-                            .font(.referralTimeTitle)
-                            .padding(.horizontal)
-                            .padding(.vertical, 5)
-                        Spacer()
-                    }
-                    ForEach(viewModel.oneMonthAgoReferralsInProgress) { referral in
-                        ReferralCard(status: PromotionStageType(rawValue: referral.currentPromotionStage.type)?.correspondingReferralStatus ?? .unknown,
-                                     email: referral.referredParty.account.personEmail,
-                                     referralDate: referral.referralDate)
+        ScrollView {
+            LazyVStack {
+                if !viewModel.recentReferralsInProgress.isEmpty {
+                    Group {
+                        HStack {
+                            Text("Recent Referrals")
+                                .font(.referralTimeTitle)
+                                .padding(.horizontal)
+                                .padding(.vertical, 5)
+                            Spacer()
+                        }
+                        ForEach(viewModel.recentReferralsInProgress) { referral in
+                            ReferralCard(status: PromotionStageType(rawValue: referral.currentPromotionStage.type)?.correspondingReferralStatus ?? .unknown,
+                                         email: referral.referredParty.account.personEmail,
+                                         referralDate: referral.referralDate)
+                        }
                     }
                 }
-            }
-            
-            if !viewModel.threeMonthsAgoReferralsInProgress.isEmpty {
-                Group {
-                    HStack {
-                        Text("Referrals older than three month")
-                            .font(.referralTimeTitle)
-                            .padding(.horizontal)
-                            .padding(.vertical, 5)
-                        Spacer()
-                    }
-                    ForEach(viewModel.threeMonthsAgoReferralsInProgress) { referral in
-                        ReferralCard(status: PromotionStageType(rawValue: referral.currentPromotionStage.type)?.correspondingReferralStatus ?? .unknown,
-                                     email: referral.referredParty.account.personEmail,
-                                     referralDate: referral.referralDate)
+                
+                if !viewModel.oneMonthAgoReferralsInProgress.isEmpty {
+                    Group {
+                        HStack {
+                            Text("Referrals one month ago")
+                                .font(.referralTimeTitle)
+                                .padding(.horizontal)
+                                .padding(.vertical, 5)
+                            Spacer()
+                        }
+                        ForEach(viewModel.oneMonthAgoReferralsInProgress) { referral in
+                            ReferralCard(status: PromotionStageType(rawValue: referral.currentPromotionStage.type)?.correspondingReferralStatus ?? .unknown,
+                                         email: referral.referredParty.account.personEmail,
+                                         referralDate: referral.referralDate)
+                        }
                     }
                 }
+                
+                if !viewModel.threeMonthsAgoReferralsInProgress.isEmpty {
+                    Group {
+                        HStack {
+                            Text("Referrals older than three month")
+                                .font(.referralTimeTitle)
+                                .padding(.horizontal)
+                                .padding(.vertical, 5)
+                            Spacer()
+                        }
+                        ForEach(viewModel.threeMonthsAgoReferralsInProgress) { referral in
+                            ReferralCard(status: PromotionStageType(rawValue: referral.currentPromotionStage.type)?.correspondingReferralStatus ?? .unknown,
+                                         email: referral.referredParty.account.personEmail,
+                                         referralDate: referral.referralDate)
+                        }
+                    }
+                }
+                
+                if viewModel.recentReferralsInProgress.isEmpty &&
+                    viewModel.oneMonthAgoReferralsInProgress.isEmpty &&
+                    viewModel.threeMonthsAgoReferralsInProgress.isEmpty {
+                    EmptyStateView(title: "No Referrals Found", subTitle: "No referrals in progress found, please start referring your friends now.")
+                }
+                
+                Spacer()
             }
-            
-            if viewModel.recentReferralsInProgress.isEmpty &&
-                viewModel.oneMonthAgoReferralsInProgress.isEmpty &&
-                viewModel.threeMonthsAgoReferralsInProgress.isEmpty {
-                EmptyStateView(title: "No Referrals Found", subTitle: "No referrals in progress found, please start referring your friends now.")
-            }
-            
-            Spacer()
         }
+        
     }
 }
 

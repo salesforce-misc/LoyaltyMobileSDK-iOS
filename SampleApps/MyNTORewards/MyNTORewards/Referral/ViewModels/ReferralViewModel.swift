@@ -195,7 +195,7 @@ class ReferralViewModel: ObservableObject {
             return date >= Date().monthBefore && referral.currentPromotionStage.type == PromotionStageType.voucherEarned.rawValue
         }
         
-        recentReferralsSuccess = referrals.filter { referral in
+        recentReferralsInProgress = referrals.filter { referral in
             guard let date = referral.referralDate.toDate(withFormat: AppSettings.Defaults.referralDateFormatWithoutTime) else {
                 return false
             }
