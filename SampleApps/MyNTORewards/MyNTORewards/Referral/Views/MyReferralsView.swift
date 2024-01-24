@@ -135,14 +135,16 @@ struct MyReferralsView: View {
                                 .environmentObject(viewModel)
                                 .tag(1)
                         }
-                        .frame(height: 1000)
+                        .frame(minHeight: 500, maxHeight: .infinity)
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                        
                     }
                 }
             }
             Spacer()
         }
         .ignoresSafeArea(edges: .bottom)
+        .frame(maxHeight: .infinity)
         .navigationBarBackButtonHidden()
         .sheet(isPresented: $showReferAFriendView) {
             ReferAFriendView()
@@ -172,27 +174,63 @@ struct SuccessView: View {
     @EnvironmentObject var viewModel: ReferralViewModel
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Recent Referrals")
-                .font(.referralTimeTitle)
-                .padding(.vertical, 5)
-            ForEach(viewModel.recentReferralsSuccess) { referral in
-                ReferralCard(status: .purchaseCompleted, email: referral.clientEmail, referralDate: referral.referralDate)
+        ScrollView {
+            LazyVStack {
+                if !viewModel.recentReferralsSuccess.isEmpty {
+                    Group {
+                        HStack {
+                            Text("Recent Referrals")
+                                .font(.referralTimeTitle)
+                                .padding(.horizontal)
+                                .padding(.vertical, 5)
+                            Spacer()
+                        }
+                        ForEach(viewModel.recentReferralsSuccess) { referral in
+                            ReferralCard(status: .purchaseCompleted, email: referral.referredParty.account.personEmail, referralDate: referral.referralDate)
+                        }
+                    }
+                }
+                
+                if !viewModel.oneMonthAgoReferralsSuccess.isEmpty {
+                    Group {
+                        HStack {
+                            Text("Referrals one month ago")
+                                .font(.referralTimeTitle)
+                                .padding(.horizontal)
+                                .padding(.vertical, 5)
+                            Spacer()
+                        }
+                        ForEach(viewModel.oneMonthAgoReferralsSuccess) { referral in
+                            ReferralCard(status: .purchaseCompleted, email: referral.referredParty.account.personEmail, referralDate: referral.referralDate)
+                        }
+                    }
+
+                }
+                      
+                if !viewModel.threeMonthsAgoReferralsSuccess.isEmpty {
+                    Group {
+                        HStack {
+                            Text("Referrals older than three month")
+                                .font(.referralTimeTitle)
+                                .padding(.horizontal)
+                                .padding(.vertical, 5)
+                            Spacer()
+                        }
+                        ForEach(viewModel.threeMonthsAgoReferralsSuccess) { referral in
+                            ReferralCard(status: .purchaseCompleted, email: referral.referredParty.account.personEmail, referralDate: referral.referralDate)
+                        }
+                    }
+                }
+                if viewModel.recentReferralsSuccess.isEmpty &&
+                    viewModel.oneMonthAgoReferralsSuccess.isEmpty &&
+                    viewModel.threeMonthsAgoReferralsSuccess.isEmpty {
+                    EmptyStateView(title: "No Referrals Found", subTitle: "No succesful referrals found, please start referring your friends now.")
+                }
+                
+                Spacer()
             }
-            Text("Referrals one month ago")
-                .font(.referralTimeTitle)
-                .padding(.vertical, 5)
-            ForEach(viewModel.oneMonthAgoReferralsSuccess) { referral in
-                ReferralCard(status: .purchaseCompleted, email: referral.clientEmail, referralDate: referral.referralDate)
-            }
-            Text("Referrals older than three month")
-                .font(.referralTimeTitle)
-                .padding(.vertical, 5)
-            ForEach(viewModel.threeMonthsAgoReferralsSuccess) { referral in
-                ReferralCard(status: .purchaseCompleted, email: referral.clientEmail, referralDate: referral.referralDate)
-            }
-            Spacer()
         }
+        
     }
 }
 
@@ -200,31 +238,64 @@ struct InProcessView: View {
     @EnvironmentObject var viewModel: ReferralViewModel
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Recent Referrals")
-                .font(.referralTimeTitle)
-                .padding(.vertical, 5)
-            ForEach(viewModel.recentReferralsInProgress) { referral in
-                ReferralCard(status: PromotionStageType(rawValue: referral.currentPromotionStage.type)?.correspondingReferralStatus ?? .unknown,
-                             email: referral.clientEmail,
-                             referralDate: referral.referralDate)
+        LazyVStack {
+            if !viewModel.recentReferralsInProgress.isEmpty {
+                Group {
+                    HStack {
+                        Text("Recent Referrals")
+                            .font(.referralTimeTitle)
+                            .padding(.horizontal)
+                            .padding(.vertical, 5)
+                        Spacer()
+                    }
+                    ForEach(viewModel.recentReferralsInProgress) { referral in
+                        ReferralCard(status: PromotionStageType(rawValue: referral.currentPromotionStage.type)?.correspondingReferralStatus ?? .unknown,
+                                     email: referral.referredParty.account.personEmail,
+                                     referralDate: referral.referralDate)
+                    }
+                }
             }
-            Text("Referrals one month ago")
-                .font(.referralTimeTitle)
-                .padding(.vertical, 5)
-            ForEach(viewModel.oneMonthAgoReferralsInProgress) { referral in
-                ReferralCard(status: PromotionStageType(rawValue: referral.currentPromotionStage.type)?.correspondingReferralStatus ?? .unknown,
-                             email: referral.clientEmail,
-                             referralDate: referral.referralDate)
+            
+            if !viewModel.oneMonthAgoReferralsInProgress.isEmpty {
+                Group {
+                    HStack {
+                        Text("Referrals one month ago")
+                            .font(.referralTimeTitle)
+                            .padding(.horizontal)
+                            .padding(.vertical, 5)
+                        Spacer()
+                    }
+                    ForEach(viewModel.oneMonthAgoReferralsInProgress) { referral in
+                        ReferralCard(status: PromotionStageType(rawValue: referral.currentPromotionStage.type)?.correspondingReferralStatus ?? .unknown,
+                                     email: referral.referredParty.account.personEmail,
+                                     referralDate: referral.referralDate)
+                    }
+                }
             }
-            Text("Referrals older than three month")
-                .font(.referralTimeTitle)
-                .padding(.vertical, 5)
-            ForEach(viewModel.threeMonthsAgoReferralsInProgress) { referral in
-                ReferralCard(status: PromotionStageType(rawValue: referral.currentPromotionStage.type)?.correspondingReferralStatus ?? .unknown,
-                             email: referral.clientEmail,
-                             referralDate: referral.referralDate)
+            
+            if !viewModel.threeMonthsAgoReferralsInProgress.isEmpty {
+                Group {
+                    HStack {
+                        Text("Referrals older than three month")
+                            .font(.referralTimeTitle)
+                            .padding(.horizontal)
+                            .padding(.vertical, 5)
+                        Spacer()
+                    }
+                    ForEach(viewModel.threeMonthsAgoReferralsInProgress) { referral in
+                        ReferralCard(status: PromotionStageType(rawValue: referral.currentPromotionStage.type)?.correspondingReferralStatus ?? .unknown,
+                                     email: referral.referredParty.account.personEmail,
+                                     referralDate: referral.referralDate)
+                    }
+                }
             }
+            
+            if viewModel.recentReferralsInProgress.isEmpty &&
+                viewModel.oneMonthAgoReferralsInProgress.isEmpty &&
+                viewModel.threeMonthsAgoReferralsInProgress.isEmpty {
+                EmptyStateView(title: "No Referrals Found", subTitle: "No referrals in progress found, please start referring your friends now.")
+            }
+            
             Spacer()
         }
     }

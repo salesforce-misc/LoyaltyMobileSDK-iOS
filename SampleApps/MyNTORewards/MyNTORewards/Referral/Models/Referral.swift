@@ -11,8 +11,11 @@ import Foundation
 struct Referral: Codable, Identifiable {
     let attributes: RecordAttributes
     let referrerID: String?
-    let id, clientEmail, referrerEmail, referralDate: String
+    let id: String
+    let clientEmail, referrerEmail: String?
+    let referralDate: String
     let currentPromotionStage: CurrentPromotionStage
+    let referredParty: ReferredParty
 
     enum CodingKeys: String, CodingKey {
         case attributes
@@ -22,8 +25,10 @@ struct Referral: Codable, Identifiable {
         case referrerEmail = "ReferrerEmail"
         case referralDate = "ReferralDate"
         case currentPromotionStage = "CurrentPromotionStage"
+        case referredParty = "ReferredParty"
     }
 }
+
 // MARK: - CurrentPromotionStage
 struct CurrentPromotionStage: Codable {
     let attributes: RecordAttributes
@@ -32,6 +37,28 @@ struct CurrentPromotionStage: Codable {
     enum CodingKeys: String, CodingKey {
         case attributes
         case type = "Type"
+    }
+}
+
+// MARK: - ReferredParty
+struct ReferredParty: Codable {
+    let attributes: RecordAttributes
+    let account: Account
+    
+    enum CodingKeys: String, CodingKey {
+        case attributes
+        case account = "Account"
+    }
+}
+
+// MARK: - Account
+struct Account: Codable {
+    let attributes: RecordAttributes
+    let personEmail: String
+    
+    enum CodingKeys: String, CodingKey {
+        case attributes
+        case personEmail = "PersonEmail"
     }
 }
 

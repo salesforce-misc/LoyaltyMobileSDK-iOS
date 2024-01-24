@@ -84,8 +84,14 @@ class ReferralViewModel: ObservableObject {
     }
     
     func fetchAllReferrals(devMode: Bool = false) async throws -> [Referral] {
-        // swiftlint:disable:next line_length
-        let query = "SELECT ReferrerId, Id, ClientEmail, ReferrerEmail, ReferralDate, CurrentPromotionStage.Type FROM Referral WHERE ReferralDate = LAST_90_DAYS ORDER BY ReferralDate DESC"
+        let query = """
+            SELECT ReferrerId, Id, ClientEmail, ReferrerEmail, ReferralDate, CurrentPromotionStage.Type,
+                TYPEOF ReferredParty
+                    WHEN Contact THEN Account.PersonEmail
+                    WHEN Account THEN PersonEmail
+                END
+            FROM Referral WHERE ReferralDate = LAST_90_DAYS ORDER BY ReferralDate DESC
+        """
         
         do {
             if devMode {
