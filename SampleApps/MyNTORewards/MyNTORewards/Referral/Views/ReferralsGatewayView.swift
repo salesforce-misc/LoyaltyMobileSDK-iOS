@@ -32,4 +32,5 @@ struct ReferralsGatewayView: View {
 
 #Preview {
     ReferralsGatewayView()
+        .environmentObject(AppRootViewModel())
 }

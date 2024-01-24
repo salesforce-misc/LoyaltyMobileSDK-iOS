@@ -186,10 +186,11 @@ class AppRootViewModel: ObservableObject {
 												  email: userEmail,
 												  loyaltyProgramMemberId: profile.loyaltyProgramMemberID,
 												  loyaltyProgramName: profile.loyaltyProgramName,
-												  membershipNumber: profile.membershipNumber)
+                                                  membershipNumber: profile.membershipNumber,
+                                                  contactId: profile.associatedContact?.contactID ?? "")
 				// Save member to local disk
 				LocalFileManager.instance.saveData(item: member, id: userEmail)
-                
+                Logger.debug("Member Info: \(member)")
                 self.member = member
 			}
 			
@@ -237,7 +238,8 @@ class AppRootViewModel: ObservableObject {
                                                   email: email,
                                                   loyaltyProgramMemberId: enrolledMember.loyaltyProgramMemberId,
                                                   loyaltyProgramName: enrolledMember.loyaltyProgramName,
-                                                  membershipNumber: membershipNumber)
+                                                  membershipNumber: membershipNumber,
+                                                  contactId: enrolledMember.contactId)
                 // Save member to local disk
                 LocalFileManager.instance.saveData(item: member, id: email)
 

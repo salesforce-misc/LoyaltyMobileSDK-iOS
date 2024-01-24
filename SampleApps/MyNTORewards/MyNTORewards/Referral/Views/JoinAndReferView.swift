@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct JoinAndReferView: View {
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var referralVM: ReferralViewModel
+    @EnvironmentObject private var routerPath: RouterPath
     @State private var processing: Bool = false
     
     var body: some View {
@@ -49,6 +51,14 @@ struct JoinAndReferView: View {
                 .disabled(processing)
                 .opacity(processing ? 0.5 : 1)
                 .accessibilityIdentifier(AppAccessibilty.Referrals.joinAndReferButton)
+                
+                Button {
+                    dismiss()
+                    routerPath.pathFromMore = []
+                } label: {
+                    Text(StringConstants.Referrals.backButton)
+                        .frame(maxWidth: .infinity)
+                }
 
                 Spacer()
             }
@@ -66,7 +76,7 @@ struct JoinAndReferView: View {
             Button {
                 referralVM.displayError = (false, "")
             } label: {
-                Text(StringConstants.Receipts.backButton)
+                Text(StringConstants.Referrals.backButton)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
@@ -79,4 +89,5 @@ struct JoinAndReferView: View {
 
 #Preview {
     JoinAndReferView()
+        .environmentObject(ReferralViewModel())
 }

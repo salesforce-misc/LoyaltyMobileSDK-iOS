@@ -206,7 +206,7 @@ struct ReferAFriendView: View {
                 email = ""
                 referralVM.displayError = (false, "")
             } label: {
-                Text(StringConstants.Receipts.backButton)
+                Text(StringConstants.Referrals.backButton)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)

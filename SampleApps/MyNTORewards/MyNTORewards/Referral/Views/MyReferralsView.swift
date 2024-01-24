@@ -11,6 +11,7 @@ import ReferralMobileSDK
 struct MyReferralsView: View {
     
     @EnvironmentObject private var viewModel: ReferralViewModel
+    @EnvironmentObject private var rootVM: AppRootViewModel
     @State private var tabIndex = 0
     @State var showReferAFriendView = false
     @State var showJoinandReferView = false
@@ -48,33 +49,63 @@ struct MyReferralsView: View {
                                     Spacer()
                                 }
                                 
-                                HStack(spacing: 30) {
-                                    VStack(alignment: .leading) {
-                                        Text("SENT")
-                                            .font(.referralText)
-                                        Text("**\(viewModel.promotionStageCounts[.sent] ?? 0)**")
-                                            .font(.referralBoldText)
-                                            .padding(.bottom)
-                                        Text("VOUCHERS EARNED")
-                                            .font(.referralText)
-                                        Text("**\(viewModel.promotionStageCounts[.voucherEarned] ?? 0)**")
-                                            .font(.referralBoldText)
+                                if !showJoinandReferView {
+                                    HStack(spacing: 30) {
+                                        VStack(alignment: .leading) {
+                                            Text("SENT")
+                                                .font(.referralText)
+                                            Text("**\(viewModel.promotionStageCounts[.sent] ?? 0)**")
+                                                .font(.referralBoldText)
+                                                .padding(.bottom)
+                                            Text("VOUCHERS EARNED")
+                                                .font(.referralText)
+                                            Text("**\(viewModel.promotionStageCounts[.voucherEarned] ?? 0)**")
+                                                .font(.referralBoldText)
+                                        }
+                                        VStack(alignment: .leading) {
+                                            Text("ACCEPTED")
+                                                .font(.referralText)
+                                            Text("**\(viewModel.promotionStageCounts[.accepted] ?? 0)**")
+                                                .font(.referralBoldText)
+                                                .padding(.bottom)
+                                            Text("POINTS EARNED")
+                                                .font(.referralText)
+                                                .opacity(0)
+                                            Text("**0**")
+                                                .font(.referralBoldText)
+                                                .opacity(0)
+                                        }
                                     }
-                                    VStack(alignment: .leading) {
-                                        Text("ACCEPTED")
-                                            .font(.referralText)
-                                        Text("**\(viewModel.promotionStageCounts[.accepted] ?? 0)**")
-                                            .font(.referralBoldText)
-                                            .padding(.bottom)
-                                        Text("POINTS EARNED")
-                                            .font(.referralText)
-                                            .opacity(0)
-                                        Text("**1200**")
-                                            .font(.referralBoldText)
-                                            .opacity(0)
+                                    .padding(.leading, 30)
+                                } else {
+                                    HStack(spacing: 30) {
+                                        VStack(alignment: .leading) {
+                                            Text("SENT")
+                                                .font(.referralText)
+                                            Text("**0**")
+                                                .font(.referralBoldText)
+                                                .padding(.bottom)
+                                            Text("VOUCHERS EARNED")
+                                                .font(.referralText)
+                                            Text("**0**")
+                                                .font(.referralBoldText)
+                                        }
+                                        VStack(alignment: .leading) {
+                                            Text("ACCEPTED")
+                                                .font(.referralText)
+                                            Text("**0**")
+                                                .font(.referralBoldText)
+                                                .padding(.bottom)
+                                            Text("POINTS EARNED")
+                                                .font(.referralText)
+                                                .opacity(0)
+                                            Text("**0**")
+                                                .font(.referralBoldText)
+                                                .opacity(0)
+                                        }
                                     }
+                                    .padding(.leading, 30)
                                 }
-                                .padding(.leading, 30)
                                 
                                 HStack {
                                     Spacer()
@@ -152,17 +183,19 @@ struct MyReferralsView: View {
         }
         .sheet(isPresented: $showJoinandReferView) {
             JoinAndReferView()
+                .interactiveDismissDisabled()
+                .presentationDetents([.height(480)])
         }
         .task {
             do {
-                try await viewModel.loadAllReferrals(devMode: true)
+                try await viewModel.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", devMode: true)
             } catch {
                 Logger.error(error.localizedDescription)
             }
         }
         .refreshable {
             do {
-                try await viewModel.loadAllReferrals(reload: true, devMode: true)
+                try await viewModel.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", reload: true, devMode: true)
             } catch {
                 Logger.error(error.localizedDescription)
             }
@@ -341,4 +374,5 @@ struct ReferralCard: View {
 #Preview {
     MyReferralsView()
         .environmentObject(ReferralViewModel())
+        .environmentObject(AppRootViewModel())
 }

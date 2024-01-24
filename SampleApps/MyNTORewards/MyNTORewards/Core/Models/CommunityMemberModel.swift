@@ -14,4 +14,5 @@ struct CommunityMemberModel: Codable {
     let loyaltyProgramMemberId: String
     let loyaltyProgramName: String
     let membershipNumber: String
+    let contactId: String
 }

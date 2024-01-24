@@ -82,4 +82,8 @@ struct StringConstants {
 		static let emptySubtitleForExpiredView = "When your games expire, you’ll see them here."
 		static let emptySubtitleForPlayedView = "After you play a game, you’ll see it here."
     }
+    
+    struct Referrals {
+        static let backButton = "Back"
+    }
 }

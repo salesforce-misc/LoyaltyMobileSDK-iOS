@@ -36,7 +36,8 @@ class DeveloperPreview {
                                       email: "julia.green@gmail.com",
                                       loyaltyProgramMemberId: "0lM4x000000LECA",
                                       loyaltyProgramName: "NTO Insider",
-                                      membershipNumber: "24345671")
+                                      membershipNumber: "24345671",
+                                      contactId: "0lM4x000000LECA")
     
     /*
      [

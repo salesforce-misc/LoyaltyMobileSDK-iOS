@@ -48,7 +48,7 @@ class ReferralViewModel: ObservableObject {
         self.referralCode = UserDefaults.standard.string(forKey: "referralCode") ?? ""
     }
     
-    func loadAllReferrals(reload: Bool = false, devMode: Bool = false) async throws {
+    func loadAllReferrals(memberContactId: String, reload: Bool = false, devMode: Bool = false) async throws {
         if !reload {
             if let cached = localFileManager.getData(type: [Referral].self, id: promotionCode, folderName: referralsFolderName) {
                 promotionStageCounts = calculatePromotionStageCounts(in: cached)
@@ -56,7 +56,7 @@ class ReferralViewModel: ObservableObject {
                 return
             } else {
                 do {
-                    let result = try await fetchAllReferrals(devMode: devMode)
+                    let result = try await fetchAllReferrals(memberContactId: memberContactId, devMode: devMode)
                     promotionStageCounts = calculatePromotionStageCounts(in: result)
                     filterReferrals(referrals: result)
                     
@@ -70,7 +70,7 @@ class ReferralViewModel: ObservableObject {
             
         } else {
             do {
-                let result = try await fetchAllReferrals(devMode: devMode)
+                let result = try await fetchAllReferrals(memberContactId: memberContactId, devMode: devMode)
                 promotionStageCounts = calculatePromotionStageCounts(in: result)
                 filterReferrals(referrals: result)
                 
@@ -83,14 +83,15 @@ class ReferralViewModel: ObservableObject {
         }
     }
     
-    func fetchAllReferrals(devMode: Bool = false) async throws -> [Referral] {
+    func fetchAllReferrals(memberContactId: String, devMode: Bool = false) async throws -> [Referral] {
         let query = """
             SELECT ReferrerId, Id, ClientEmail, ReferrerEmail, ReferralDate, CurrentPromotionStage.Type,
                 TYPEOF ReferredParty
                     WHEN Contact THEN Account.PersonEmail
                     WHEN Account THEN PersonEmail
                 END
-            FROM Referral WHERE ReferralDate = LAST_90_DAYS ORDER BY ReferralDate DESC
+            FROM Referral WHERE ReferralDate = LAST_90_DAYS AND Promotion.PromotionCode = '\(promotionCode)' AND ReferrerId = '\(memberContactId)'
+            ORDER BY ReferralDate DESC
         """
         
         do {
