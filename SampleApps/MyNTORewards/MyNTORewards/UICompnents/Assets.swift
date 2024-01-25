@@ -80,7 +80,7 @@ struct Assets {
     
     static func getReferralStatusIcon(status: ReferralStatus) -> Image {
         switch status {
-        case .pending:
+        case .invitationSent:
             return Image("ic-defer")
         case .signedUp:
             return Image("ic-update-status")

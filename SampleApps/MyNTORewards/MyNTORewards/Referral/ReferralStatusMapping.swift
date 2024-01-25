@@ -14,14 +14,14 @@ enum PromotionStageType: String {
 }
 
 enum ReferralStatus: String {
-    case pending = "Pending"
-    case signedUp = "Signed-up"
+    case invitationSent = "Invitation Sent"
+    case signedUp = "Signed Up"
     case purchaseCompleted = "Purchase Completed"
     case unknown = "Unknown" // Default case
 }
 
 let mapping: [String: ReferralStatus] = [
-    "Advocate Refers Friend": .pending,
+    "Advocate Refers Friend": .invitationSent,
     "Friend Signs Up": .signedUp,
     "Friend Completes First Purchase": .purchaseCompleted
 ]

@@ -27,20 +27,16 @@ struct JoinAndReferView: View {
                 .frame(maxHeight: 160)
                 
                 VStack(alignment: .leading, spacing: 20) {
-                    Text("**Refer a Friend and Earn**")
+                    Text("**\(StringConstants.Referrals.joinTitle)**")
                         .font(.referModalText)
                         .accessibilityIdentifier(AppAccessibilty.Referrals.referAFriendTitle)
-                    Text("Invite your friends and get a voucher when they shop for the first time. Join the referral program to start.")
+                    Text(StringConstants.Referrals.joinText)
                         .lineSpacing(5)
                         .font(.referModalText)
-                    Text("Tap 'Join and Refer' to participate. By joining you agree to the terms and conditions.")
-                        .lineSpacing(5)
-                        .font(.referModalText)
-                    
                 }
                 .padding()
-                
-                Button("Join and Refer") {
+                Spacer()
+                Button(StringConstants.Referrals.joinButton) {
                     processing = true
                     Task {
                         // await referralVM.enroll(membershipNumber: rootVM.member?.membershipNumber ?? "")

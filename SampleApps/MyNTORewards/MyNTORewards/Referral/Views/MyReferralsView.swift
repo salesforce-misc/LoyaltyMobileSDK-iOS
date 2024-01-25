@@ -15,12 +15,12 @@ struct MyReferralsView: View {
     @State private var tabIndex = 0
     @State var showReferAFriendView = false
     @State var showJoinandReferView = false
-    var tabbarItems = ["Success", "In Progress"]
+    var tabbarItems = [StringConstants.Referrals.successTab, StringConstants.Referrals.inProgressTab]
     
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("My Referrals")
+                Text(StringConstants.Referrals.referralsTitle)
                     .font(.congratsTitle)
                     .padding(.leading, 15)
                     .accessibilityIdentifier(AppAccessibilty.Referrals.referralsViewTitle)
@@ -43,7 +43,7 @@ struct MyReferralsView: View {
                             
                             VStack(alignment: .leading) {
                                 HStack {
-                                    Text("**YOUR REFERRALS**: Last 90 Days")
+                                    Text(StringConstants.Referrals.infoTitle)
                                         .font(.referralText)
                                         .padding(10)
                                     Spacer()
@@ -52,23 +52,23 @@ struct MyReferralsView: View {
                                 if !showJoinandReferView {
                                     HStack(spacing: 30) {
                                         VStack(alignment: .leading) {
-                                            Text("SENT")
+                                            Text(StringConstants.Referrals.sent.uppercased())
                                                 .font(.referralText)
                                             Text("**\(viewModel.promotionStageCounts[.sent] ?? 0)**")
                                                 .font(.referralBoldText)
                                                 .padding(.bottom)
-                                            Text("VOUCHERS EARNED")
+                                            Text(StringConstants.Referrals.vouchersEarned.uppercased())
                                                 .font(.referralText)
                                             Text("**\(viewModel.promotionStageCounts[.voucherEarned] ?? 0)**")
                                                 .font(.referralBoldText)
                                         }
                                         VStack(alignment: .leading) {
-                                            Text("ACCEPTED")
+                                            Text(StringConstants.Referrals.accepted.uppercased())
                                                 .font(.referralText)
                                             Text("**\(viewModel.promotionStageCounts[.accepted] ?? 0)**")
                                                 .font(.referralBoldText)
                                                 .padding(.bottom)
-                                            Text("POINTS EARNED")
+                                            Text(StringConstants.Referrals.pointsEarned.uppercased())
                                                 .font(.referralText)
                                                 .opacity(0)
                                             Text("**0**")
@@ -80,23 +80,23 @@ struct MyReferralsView: View {
                                 } else {
                                     HStack(spacing: 30) {
                                         VStack(alignment: .leading) {
-                                            Text("SENT")
+                                            Text(StringConstants.Referrals.sent.uppercased())
                                                 .font(.referralText)
                                             Text("**0**")
                                                 .font(.referralBoldText)
                                                 .padding(.bottom)
-                                            Text("VOUCHERS EARNED")
+                                            Text(StringConstants.Referrals.vouchersEarned.uppercased())
                                                 .font(.referralText)
                                             Text("**0**")
                                                 .font(.referralBoldText)
                                         }
                                         VStack(alignment: .leading) {
-                                            Text("ACCEPTED")
+                                            Text(StringConstants.Referrals.accepted.uppercased())
                                                 .font(.referralText)
                                             Text("**0**")
                                                 .font(.referralBoldText)
                                                 .padding(.bottom)
-                                            Text("POINTS EARNED")
+                                            Text(StringConstants.Referrals.pointsEarned.uppercased())
                                                 .font(.referralText)
                                                 .opacity(0)
                                             Text("**0**")
@@ -109,7 +109,7 @@ struct MyReferralsView: View {
                                 
                                 HStack {
                                     Spacer()
-                                    Button("Refer a Friend Now!") {
+                                    Button(StringConstants.Referrals.referButton) {
                                         // Refer
                                         showReferAFriendView.toggle()
                                     }
@@ -212,7 +212,7 @@ struct SuccessView: View {
                 if !viewModel.recentReferralsSuccess.isEmpty {
                     Group {
                         HStack {
-                            Text("Recent Referrals")
+                            Text(StringConstants.Referrals.sectionOneTitle)
                                 .font(.referralTimeTitle)
                                 .padding(.horizontal)
                                 .padding(.vertical, 5)
@@ -227,7 +227,7 @@ struct SuccessView: View {
                 if !viewModel.oneMonthAgoReferralsSuccess.isEmpty {
                     Group {
                         HStack {
-                            Text("Referrals one month ago")
+                            Text(StringConstants.Referrals.sectionTwoTitle)
                                 .font(.referralTimeTitle)
                                 .padding(.horizontal)
                                 .padding(.vertical, 5)
@@ -243,7 +243,7 @@ struct SuccessView: View {
                 if !viewModel.threeMonthsAgoReferralsSuccess.isEmpty {
                     Group {
                         HStack {
-                            Text("Referrals older than three month")
+                            Text(StringConstants.Referrals.sectionThreeTitle)
                                 .font(.referralTimeTitle)
                                 .padding(.horizontal)
                                 .padding(.vertical, 5)
@@ -257,7 +257,7 @@ struct SuccessView: View {
                 if viewModel.recentReferralsSuccess.isEmpty &&
                     viewModel.oneMonthAgoReferralsSuccess.isEmpty &&
                     viewModel.threeMonthsAgoReferralsSuccess.isEmpty {
-                    EmptyStateView(title: "No Referrals Found", subTitle: "No succesful referrals found, please start referring your friends now.")
+                    EmptyStateView(subTitle: StringConstants.Referrals.noReferralsFound)
                 }
                 
                 Spacer()
@@ -276,7 +276,7 @@ struct InProcessView: View {
                 if !viewModel.recentReferralsInProgress.isEmpty {
                     Group {
                         HStack {
-                            Text("Recent Referrals")
+                            Text(StringConstants.Referrals.sectionOneTitle)
                                 .font(.referralTimeTitle)
                                 .padding(.horizontal)
                                 .padding(.vertical, 5)
@@ -293,7 +293,7 @@ struct InProcessView: View {
                 if !viewModel.oneMonthAgoReferralsInProgress.isEmpty {
                     Group {
                         HStack {
-                            Text("Referrals one month ago")
+                            Text(StringConstants.Referrals.sectionTwoTitle)
                                 .font(.referralTimeTitle)
                                 .padding(.horizontal)
                                 .padding(.vertical, 5)
@@ -310,7 +310,7 @@ struct InProcessView: View {
                 if !viewModel.threeMonthsAgoReferralsInProgress.isEmpty {
                     Group {
                         HStack {
-                            Text("Referrals older than three month")
+                            Text(StringConstants.Referrals.sectionThreeTitle)
                                 .font(.referralTimeTitle)
                                 .padding(.horizontal)
                                 .padding(.vertical, 5)
@@ -327,7 +327,7 @@ struct InProcessView: View {
                 if viewModel.recentReferralsInProgress.isEmpty &&
                     viewModel.oneMonthAgoReferralsInProgress.isEmpty &&
                     viewModel.threeMonthsAgoReferralsInProgress.isEmpty {
-                    EmptyStateView(title: "No Referrals Found", subTitle: "No referrals in progress found, please start referring your friends now.")
+                    EmptyStateView(subTitle: StringConstants.Referrals.noReferralsFound)
                 }
                 
                 Spacer()

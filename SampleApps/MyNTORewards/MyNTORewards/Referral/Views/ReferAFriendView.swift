@@ -44,14 +44,14 @@ struct ReferAFriendView: View {
                 .frame(maxHeight: 160)
                 
                 VStack(alignment: .leading, spacing: 20) {
-                    Text("**Refer a Friend and Earn**")
+                    Text("**\(StringConstants.Referrals.referTitle)**")
                         .font(.referModalText)
                         .accessibilityIdentifier(AppAccessibilty.Referrals.referAFriendTitle)
-                    Text("Invite your friends and get a voucher when they shop for the first time.")
+                    Text(StringConstants.Referrals.referText)
                         .font(.referModalText)
                     
                     ZStack(alignment: .trailing) {
-                        TextField("Friend's Email Address", text: $email)
+                        TextField(StringConstants.Referrals.referEmailText, text: $email)
                             .textFieldStyle(RegularTextFieldStyle())
                             .keyboardType(.emailAddress)
                             .accessibilityIdentifier(AppAccessibilty.Referrals.email)
@@ -79,7 +79,7 @@ struct ReferAFriendView: View {
                         .opacity(processing || email.isEmpty ? 0.5 : 1)
                     }
                     
-                    Text("Separate emails with commas.")
+                    Text(StringConstants.Referrals.commaText)
                         .font(.referralInfoDesc)
                         .foregroundColor(Color.theme.textInactive)
                         .padding(.leading, 30)
@@ -101,7 +101,7 @@ struct ReferAFriendView: View {
                 VStack(spacing: 20) {
                     HStack {
                         Spacer()
-                        Text("**Or Share Via**")
+                        Text("**\(StringConstants.Referrals.shareText)**")
                             .font(.referModalText)
                         Spacer()
                     }
@@ -150,7 +150,7 @@ struct ReferAFriendView: View {
                             .foregroundColor(Color.theme.referralCodeColor)
                             .padding(.leading, 8)
                         Spacer()
-                        Text("TAP TO COPY")
+                        Text(StringConstants.Referrals.copyText)
                             .font(.referralTapText)
                             .foregroundColor(Color.theme.referralCodeCopy)
                             .padding(.trailing, 8)
@@ -170,18 +170,10 @@ struct ReferAFriendView: View {
                         showCodeCopiedAlert = true
                     }
                     .alert(isPresented: $showCodeCopiedAlert) {
-                        Alert(title: Text(AppSettings.Vouchers.codeSuccessfullyCopied))
-                    }
-                    HStack {
-                        Text("Share the referral code above in any other way.")
-                            .font(.referralInfoDesc)
-                            .foregroundColor(Color.theme.textInactive)
-                            .padding(.leading, 30)
-                            .padding(.top, -10)
-                        Spacer()
+                        Alert(title: Text(StringConstants.Referrals.copiedText))
                     }
                     
-                    Button("Done") {
+                    Button(StringConstants.Referrals.doneButton) {
                         dismiss()
                     }
                     .buttonStyle(DarkLongButton())
