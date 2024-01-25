@@ -43,7 +43,8 @@ struct JoinAndReferView: View {
                 Button("Join and Refer") {
                     processing = true
                     Task {
-                        await referralVM.enroll(membershipNumber: rootVM.member?.membershipNumber ?? "")
+                        // await referralVM.enroll(membershipNumber: rootVM.member?.membershipNumber ?? "")
+                        await referralVM.enroll(contactId: rootVM.member?.contactId ?? "")
                         processing = false
                     }
                 }

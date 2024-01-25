@@ -159,6 +159,21 @@ class ReferralViewModel: ObservableObject {
         }
     }
     
+    func enroll(contactId: String) async {
+        do {
+            let success = try await referralAPIManager.referralEnrollment(contactID: contactId, promotionCode: promotionCode)
+            if success {
+                displayError = (false, "You are successfully joined.")
+            } else {
+                displayError = (true, "Failed to join, please try again later.")
+            }
+        } catch CommonError.responseUnsuccessful(_, let errorMessage), CommonError.unknownException(let errorMessage) {
+            displayError = (true, errorMessage)
+        } catch {
+            displayError = (true, error.localizedDescription)
+        }
+    }
+    
     private func emailStringToArray(emailString: String) -> [String] {
         return emailString.split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
     }
