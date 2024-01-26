@@ -13,7 +13,7 @@ struct Referral: Codable, Identifiable {
     let referrerID: String?
     let id: String
     let clientEmail, referrerEmail: String?
-    let referralDate: String
+    let referralDate: Date
     let currentPromotionStage: CurrentPromotionStage
     let referredParty: ReferredParty
 

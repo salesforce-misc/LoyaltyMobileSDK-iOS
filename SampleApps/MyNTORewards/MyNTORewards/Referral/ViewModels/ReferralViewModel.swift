@@ -204,55 +204,35 @@ class ReferralViewModel: ObservableObject {
     
     private func filterReferrals(referrals: [Referral]) {
         recentReferralsSuccess = referrals.filter { referral in
-            guard let date = referral.referralDate.toDate(withFormat: AppSettings.Defaults.referralDateFormatWithoutTime) else {
-                return false
-            }
-            
-            return date >= Date().monthBefore && referral.currentPromotionStage.type == PromotionStageType.voucherEarned.rawValue
+            return referral.referralDate >= Date().monthBefore && 
+                referral.currentPromotionStage.type == PromotionStageType.voucherEarned.rawValue
         }
         
         recentReferralsInProgress = referrals.filter { referral in
-            guard let date = referral.referralDate.toDate(withFormat: AppSettings.Defaults.referralDateFormatWithoutTime) else {
-                return false
-            }
-            
-            return date >= Date().monthBefore && referral.currentPromotionStage.type != PromotionStageType.voucherEarned.rawValue
+            return referral.referralDate >= Date().monthBefore && 
+                referral.currentPromotionStage.type != PromotionStageType.voucherEarned.rawValue
         }
         
         oneMonthAgoReferralsSuccess = referrals.filter { referral in
-            guard let date = referral.referralDate.toDate(withFormat: AppSettings.Defaults.referralDateFormatWithoutTime) else {
-                return false
-            }
-            
-            return date < Date().monthBefore && 
-                date >= Date().threeMonthsBefore &&
+            return referral.referralDate < Date().monthBefore &&
+                referral.referralDate >= Date().threeMonthsBefore &&
                 referral.currentPromotionStage.type == PromotionStageType.voucherEarned.rawValue
         }
         
         oneMonthAgoReferralsInProgress = referrals.filter { referral in
-            guard let date = referral.referralDate.toDate(withFormat: AppSettings.Defaults.referralDateFormatWithoutTime) else {
-                return false
-            }
-            
-            return date < Date().monthBefore && 
-                date >= Date().threeMonthsBefore &&
+            return referral.referralDate < Date().monthBefore &&
+                referral.referralDate >= Date().threeMonthsBefore &&
                 referral.currentPromotionStage.type != PromotionStageType.voucherEarned.rawValue
         }
         
         threeMonthsAgoReferralsSuccess = referrals.filter { referral in
-            guard let date = referral.referralDate.toDate(withFormat: AppSettings.Defaults.referralDateFormatWithoutTime) else {
-                return false
-            }
-            
-            return date < Date().threeMonthsBefore && referral.currentPromotionStage.type == PromotionStageType.voucherEarned.rawValue
+            return referral.referralDate < Date().threeMonthsBefore && 
+                referral.currentPromotionStage.type == PromotionStageType.voucherEarned.rawValue
         }
         
         threeMonthsAgoReferralsInProgress = referrals.filter { referral in
-            guard let date = referral.referralDate.toDate(withFormat: AppSettings.Defaults.referralDateFormatWithoutTime) else {
-                return false
-            }
-            
-            return date < Date().threeMonthsBefore && referral.currentPromotionStage.type != PromotionStageType.voucherEarned.rawValue
+            return referral.referralDate < Date().threeMonthsBefore && 
+                referral.currentPromotionStage.type != PromotionStageType.voucherEarned.rawValue
         }
             
     }

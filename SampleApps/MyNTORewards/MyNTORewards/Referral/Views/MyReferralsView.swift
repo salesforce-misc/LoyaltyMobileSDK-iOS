@@ -219,7 +219,9 @@ struct SuccessView: View {
                             Spacer()
                         }
                         ForEach(viewModel.recentReferralsSuccess) { referral in
-                            ReferralCard(status: .purchaseCompleted, email: referral.referredParty.account.personEmail, referralDate: referral.referralDate)
+                            ReferralCard(status: .purchaseCompleted, 
+                                         email: referral.referredParty.account.personEmail,
+                                         referralDate: referral.referralDate)
                         }
                     }
                 }
@@ -234,7 +236,9 @@ struct SuccessView: View {
                             Spacer()
                         }
                         ForEach(viewModel.oneMonthAgoReferralsSuccess) { referral in
-                            ReferralCard(status: .purchaseCompleted, email: referral.referredParty.account.personEmail, referralDate: referral.referralDate)
+                            ReferralCard(status: .purchaseCompleted, 
+                                         email: referral.referredParty.account.personEmail,
+                                         referralDate: referral.referralDate)
                         }
                     }
 
@@ -250,7 +254,9 @@ struct SuccessView: View {
                             Spacer()
                         }
                         ForEach(viewModel.threeMonthsAgoReferralsSuccess) { referral in
-                            ReferralCard(status: .purchaseCompleted, email: referral.referredParty.account.personEmail, referralDate: referral.referralDate)
+                            ReferralCard(status: .purchaseCompleted, 
+                                         email: referral.referredParty.account.personEmail,
+                                         referralDate: referral.referralDate)
                         }
                     }
                 }
@@ -340,7 +346,7 @@ struct InProcessView: View {
 struct ReferralCard: View {
     let status: ReferralStatus
     let email: String
-    let referralDate: String
+    let referralDate: Date
     
     var body: some View {
         VStack {
@@ -355,7 +361,7 @@ struct ReferralCard: View {
             }
             .padding(.horizontal, 10)
             HStack {
-                Text(referralDate)
+                Text(displayDate(referralDate: referralDate))
                     .font(.referralCardText)
                 Spacer()
                 Text("**\(status.rawValue)**")
@@ -368,6 +374,17 @@ struct ReferralCard: View {
         .frame(width: 343, height: 66)
         .background(.white)
         .cornerRadius(10)
+    }
+    
+    func displayDate(referralDate: Date) -> String {
+        let calendar = Calendar.current
+        let startOfCurrentDate = calendar.startOfDay(for: Date())
+        let startOfInputDate = calendar.startOfDay(for: referralDate)
+        
+        let components = calendar.dateComponents([.day], from: startOfInputDate, to: startOfCurrentDate)
+        let days: Int = components.day ?? 0
+        return days == 0 ? "Today" : days == 1 ? "One Day Ago" : days <= 30 ? "\(days) Days Ago" : referralDate.toString()
+        
     }
 }
 
