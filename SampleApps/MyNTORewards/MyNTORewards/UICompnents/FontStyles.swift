@@ -415,7 +415,7 @@ extension Font {
     }
     
     static var referralCode: Font {
-        return Font.custom("Lato-Heavy", size: 16)
+        return Font.custom("Lato-Regular", size: 14)
     }
     
     static var referralTapText: Font {

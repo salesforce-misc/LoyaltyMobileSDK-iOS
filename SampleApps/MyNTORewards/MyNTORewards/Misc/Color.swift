@@ -92,6 +92,7 @@ struct ColorTheme {
     let referralCardBackground = Color("ReferralCardBackgroundColor") // #5A1BA9
     let purchaseCompleted = Color("VoucherCodeBorderColor") // #2E844A
     let referralCodeColor = Color("ReferralCodeColor") // #6A6A6A
+    let referralLinkDivider = Color("ReferralLinkDividerColor") // ##DC9F4B
     let referralCodeCopy = Color("TextRedeemButtonColor") // #8C4B02
     let referralCodeBackground = Color("ReferralCodeBackgroundColor") // #F5EDE2
     let referralCodeBorder = Color("ReferralCodeBorderColor") // #DC9F4B

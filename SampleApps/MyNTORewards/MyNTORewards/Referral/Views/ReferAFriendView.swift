@@ -46,9 +46,13 @@ struct ReferAFriendView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("**\(StringConstants.Referrals.referTitle)**")
                         .font(.referModalText)
+                        .padding(.top, 10)
+                        .padding(.horizontal, 15)
                         .accessibilityIdentifier(AppAccessibilty.Referrals.referAFriendTitle)
                     Text(StringConstants.Referrals.referText)
                         .font(.referModalText)
+                        .padding(.horizontal, 15)
+                        .frame(height: 60)
                     
                     ZStack(alignment: .trailing) {
                         TextField(StringConstants.Referrals.referEmailText, text: $email)
@@ -96,7 +100,6 @@ struct ReferAFriendView: View {
                     .frame(height: 40)
 
                 }
-                .padding()
                 
                 VStack(spacing: 20) {
                     HStack {
@@ -144,18 +147,27 @@ struct ReferAFriendView: View {
                     }
                     
                     HStack {
-                        Text(referralVM.referralCode)
-                            .accessibilityIdentifier(AppAccessibilty.Referrals.referralCode)
-                            .font(.referralCode)
-                            .foregroundColor(Color.theme.referralCodeColor)
-                            .padding(.leading, 8)
+                        ZStack {
+                            VStack(alignment: .leading) {
+                                Spacer()
+                                Text("\(AppSettings.Defaults.referralLink)\(referralVM.referralCode)")
+                                    .accessibilityIdentifier(AppAccessibilty.Referrals.referralCode)
+                                    .font(.referralCode)
+                                    .foregroundColor(Color.theme.referralCodeColor)
+                                    .padding(.leading, 8)
+                                Spacer()
+                            }
+                        }
+                        .frame(width: 300, height: 40)
                         Spacer()
-                        Text(StringConstants.Referrals.copyText)
+                        Divider()
+                            .background(Color.theme.referralLinkDivider)
+                        Text(StringConstants.Referrals.copyText.uppercased())
                             .font(.referralTapText)
                             .foregroundColor(Color.theme.referralCodeCopy)
                             .padding(.trailing, 8)
                     }
-                    .frame(width: 360, height: 40)
+                    .frame(height: 40)
                     .background(Color.theme.referralCodeBackground)
                     .cornerRadius(10)
                     .overlay(
@@ -163,6 +175,7 @@ struct ReferAFriendView: View {
                             .stroke(style: StrokeStyle(lineWidth: 1, dash: [2.0]))
                             .foregroundColor(Color.theme.referralCodeBorder)
                     )
+                    .padding(.horizontal, 15)
                     .padding(.top, 6)
                     .onTapGesture {
                         let pasteboard = UIPasteboard.general
@@ -180,7 +193,6 @@ struct ReferAFriendView: View {
                     Spacer()
 
                 }
-                .padding()
             }
             .ignoresSafeArea()
             .task {

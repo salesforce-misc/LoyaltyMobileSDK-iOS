@@ -55,6 +55,7 @@ struct AppSettings {
         static let promotionCode = "TESTRM"
         static let referralDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         static let referralDateFormatWithoutTime = "yyyy-MM-dd"
+        static let referralLink = "https://rb.gy/m7bt48?referralCode="
     }
     
     struct cacheFolders {
