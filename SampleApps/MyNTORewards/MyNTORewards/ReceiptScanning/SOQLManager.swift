@@ -9,26 +9,27 @@ import Foundation
 import LoyaltyMobileSDK
 
 final class SOQLManager {
+	static let namespace = "ReceiptScanner"
 	private let forceClient: ForceClient
-	private let receiptsRecordName = "Receipts__c"
+	private let receiptsRecordName = "\(namespace)__Receipts__c"
 	init(forceClient: ForceClient) {
 		self.forceClient = forceClient
 	}
 	
 	func getReceipts(membershipNumber: String) async throws -> [Receipt] {
 		let queryFields = ["Id",
-						   "PurchaseDate__c",
-						   "ReceiptID__c",
+						   "\(Self.namespace)__PurchaseDate__c",
+						   "\(Self.namespace)__ReceiptID__c",
 						   "Name",
-						   "Status__c",
-						   "StoreName__c",
-						   "TotalRewardPoints__c",
+						   "\(Self.namespace)__Status__c",
+						   "\(Self.namespace)__StoreName__c",
+						   "\(Self.namespace)__TotalRewardPoints__c",
 						   "CreatedDate",
-						   "TotalAmount__c",
-						   "ImageUrl__c",
-						   "APIResponse__c",
-						   "ReceiptCurrency__c",
-						   "Comments__c"]
+						   "\(Self.namespace)__TotalAmount__c",
+						   "\(Self.namespace)__ImageUrl__c",
+						   "\(Self.namespace)__APIResponse__c",
+						   "\(Self.namespace)__ReceiptCurrency__c",
+						   "\(Self.namespace)__Comments__c"]
 		let whereClause = "LoyaltyProgramMember__r.MembershipNumber"
 		let orderByField = "CreatedDate"
 		let sortOrder = SortOrder.DESC
@@ -48,12 +49,12 @@ final class SOQLManager {
 	
 	func getReceipt(membershipNumber: String, id: String) async throws -> Receipt? {
 		let queryFields = ["Id",
-						   "PurchaseDate__c",
-						   "ReceiptID__c",
+						   "\(Self.namespace)__PurchaseDate__c",
+						   "\(Self.namespace)__ReceiptID__c",
 						   "Name",
-						   "Status__c",
-						   "StoreName__c",
-						   "TotalRewardPoints__c",
+						   "\(Self.namespace)__Status__c",
+						   "\(Self.namespace)__StoreName__c",
+						   "\(Self.namespace)__TotalRewardPoints__c",
 						   "CreatedDate"]
 		let whereClauseMembershipNumber = "LoyaltyProgramMember__r.MembershipNumber"
 		let whereClauseId = "Id"

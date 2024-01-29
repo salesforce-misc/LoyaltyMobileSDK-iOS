@@ -44,7 +44,8 @@ final class ProcessedReceiptViewModel: ObservableObject {
     private let localFileManager: FileManagerProtocol
     private let soqlManager: SOQLManager
     private var uploadImageTask: Task<Void, Never>?
-    
+	private let namespace = "ReceiptScanner"
+	
     init(
         localFileManager: FileManagerProtocol = LocalFileManager.instance,
         authManager: ForceAuthenticator = ForceAuthManager.shared,
@@ -78,7 +79,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
             let headers = ["Content-Type": "image/jpeg"]
             
             do {
-                let path = "/services/apexrest/upload-receipt/"
+				let path = "/services/apexrest/\(namespace)/upload-receipt/"
                 let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(),
                                                       path: path,
                                                       method: "PUT",
@@ -110,7 +111,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
         ]
         
         do {
-            let path = "/services/apexrest/expense-analysis/"
+            let path = "/services/apexrest/\(namespace)/expense-analysis/"
             let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(),
                                                   path: path,
                                                   method: "POST",
@@ -175,7 +176,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
             "status": status.rawValue,
             "comments": comments
         ]
-        let path = "/services/apexrest/receipt-status-updation/"
+        let path = "/services/apexrest/\(namespace)/receipt-status-updation/"
         let bodyJsonData = try JSONSerialization.data(withJSONObject: body)
         let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(), path: path, method: "PUT", body: bodyJsonData)
         let response = try await forceClient.fetch(type: ReceiptStatusUpdateResponse.self, with: request)
