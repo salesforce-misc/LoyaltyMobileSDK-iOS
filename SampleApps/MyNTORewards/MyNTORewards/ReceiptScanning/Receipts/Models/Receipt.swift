@@ -22,16 +22,16 @@ struct Receipt: Identifiable, Codable, Equatable {
 	
 	enum CodingKeys: String, CodingKey {
 		case id = "Id"
-		case receiptId = "ReceiptID__c"
+		case receiptId = "pppos123__ReceiptID__c"
 		case name = "Name"
-		case status = "Status__c"
-		case storeName = "StoreName__c"
-		case purchaseDate = "PurchaseDate__c"
-		case totalAmount = "TotalAmount__c"
-		case totalPoints = "TotalRewardPoints__c"
+		case status = "pppos123__Status__c"
+		case storeName = "pppos123__StoreName__c"
+		case purchaseDate = "pppos123__PurchaseDate__c"
+		case totalAmount = "pppos123__TotalAmount__c"
+		case totalPoints = "pppos123__TotalRewardPoints__c"
 		case createdDate = "CreatedDate"
-		case imageUrl = "ImageUrl__c"
-		case processedAwsReceipt = "APIResponse__c"
+		case imageUrl = "pppos123__ImageUrl__c"
+		case processedAwsReceipt = "pppos123__APIResponse__c"
 	}
 }
 

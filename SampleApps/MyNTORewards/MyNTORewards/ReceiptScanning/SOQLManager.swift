@@ -9,7 +9,7 @@ import Foundation
 import LoyaltyMobileSDK
 
 final class SOQLManager {
-	static let namespace = "ReceiptScanner"
+	static let namespace = "pppos123"
 	private let forceClient: ForceClient
 	private let receiptsRecordName = "\(namespace)__Receipts__c"
 	init(forceClient: ForceClient) {
@@ -30,7 +30,7 @@ final class SOQLManager {
 						   "\(Self.namespace)__APIResponse__c",
 						   "\(Self.namespace)__ReceiptCurrency__c",
 						   "\(Self.namespace)__Comments__c"]
-		let whereClause = "LoyaltyProgramMember__r.MembershipNumber"
+		let whereClause = "\(Self.namespace)__LoyaltyProgramMember__r.MembershipNumber"
 		let orderByField = "CreatedDate"
 		let sortOrder = SortOrder.DESC
 		let operation = "SELECT \(queryFields.joined(separator: ","))"

@@ -44,7 +44,7 @@ final class ProcessedReceiptViewModel: ObservableObject {
     private let localFileManager: FileManagerProtocol
     private let soqlManager: SOQLManager
     private var uploadImageTask: Task<Void, Never>?
-	private let namespace = "ReceiptScanner"
+	private let namespace = "pppos123"
 	
     init(
         localFileManager: FileManagerProtocol = LocalFileManager.instance,
