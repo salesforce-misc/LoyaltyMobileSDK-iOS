@@ -8,24 +8,17 @@
 import SwiftUI
 
 struct ReferralsGatewayView: View {
-    @StateObject private var referralVM = ReferralViewModel()
+    @EnvironmentObject private var referralVM: ReferralViewModel
     @EnvironmentObject private var rootVM: AppRootViewModel
-    @State var isEnrolled = false
     
     var body: some View {
             
         VStack {
-            if isEnrolled {
-                MyReferralsView()
-                    .environmentObject(referralVM)
-            } else {
-                MyReferralsView(showJoinandReferView: true)
-                    .environmentObject(referralVM)
-            }
-            
+            MyReferralsView()
         }
         .task {
-            isEnrolled = await referralVM.isMemberEnrolled(membershipNumber: rootVM.member?.membershipNumber ?? "")
+            await referralVM.getMembershipNumber(contactId: rootVM.member?.contactId ?? "")
+            // isEnrolled = await referralVM.checkEnrollmentStatus(membershipNumber: rootVM.member?.membershipNumber ?? "")
         }
     }
 }

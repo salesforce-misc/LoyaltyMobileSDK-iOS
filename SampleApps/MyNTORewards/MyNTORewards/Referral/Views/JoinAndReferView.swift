@@ -42,6 +42,7 @@ struct JoinAndReferView: View {
                         // await referralVM.enroll(membershipNumber: rootVM.member?.membershipNumber ?? "")
                         await referralVM.enroll(contactId: rootVM.member?.contactId ?? "")
                         processing = false
+                        dismiss()
                     }
                 }
                 .buttonStyle(DarkLongButton())

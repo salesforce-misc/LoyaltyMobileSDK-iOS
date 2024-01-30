@@ -114,5 +114,7 @@ struct StringConstants {
         static let sectionThreeTitle = "Three Months Ago"
         static let referralLink = "Use my referral link to sign up: "
         static let noReferralsFound = "After you refer a friend, you’ll see it here."
+        static let emailSentAlertTitle = "Email Sent"
+        static let emailSentAlertText = "Your referral code has been sent."
     }
 }

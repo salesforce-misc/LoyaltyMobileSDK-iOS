@@ -14,7 +14,6 @@ struct MyReferralsView: View {
     @EnvironmentObject private var rootVM: AppRootViewModel
     @State private var tabIndex = 0
     @State var showReferAFriendView = false
-    @State var showJoinandReferView = false
     var tabbarItems = [StringConstants.Referrals.successTab, StringConstants.Referrals.inProgressTab]
     
     var body: some View {
@@ -49,7 +48,7 @@ struct MyReferralsView: View {
                                     Spacer()
                                 }
                                 
-                                if !showJoinandReferView {
+                                if viewModel.showEnrollmentView {
                                     HStack(spacing: 30) {
                                         VStack(alignment: .leading) {
                                             Text(StringConstants.Referrals.sent.uppercased())
@@ -181,21 +180,21 @@ struct MyReferralsView: View {
             ReferAFriendView()
                 .environmentObject(viewModel)
         }
-        .sheet(isPresented: $showJoinandReferView) {
+        .sheet(isPresented: $viewModel.showEnrollmentView) {
             JoinAndReferView()
                 .interactiveDismissDisabled()
                 .presentationDetents([.height(480)])
         }
         .task {
             do {
-                try await viewModel.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", devMode: true)
+                try await viewModel.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "")
             } catch {
                 Logger.error(error.localizedDescription)
             }
         }
         .refreshable {
             do {
-                try await viewModel.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", reload: true, devMode: true)
+                try await viewModel.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", reload: true)
             } catch {
                 Logger.error(error.localizedDescription)
             }

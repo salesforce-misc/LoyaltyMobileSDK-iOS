@@ -18,6 +18,7 @@ struct BottomNavTabsView: View {
 	@EnvironmentObject var appViewRouter: AppViewRouter
     @StateObject var rootVM = AppRootViewModel()
 	@StateObject var gameZoneVM: GameZoneViewModel
+    @StateObject var referralVM = ReferralViewModel()
 	@State var selectedTab: Int
 	
 	init(selectedTab: Int = Tab.home.rawValue) {
@@ -93,6 +94,7 @@ struct BottomNavTabsView: View {
         .environmentObject(routerPath)
         .environmentObject(receiptListViewModel)
         .environmentObject(gameZoneVM)
+        .environmentObject(referralVM)
 	}
 }
 

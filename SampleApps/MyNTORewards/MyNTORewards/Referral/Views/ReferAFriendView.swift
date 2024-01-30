@@ -19,6 +19,7 @@ struct ReferAFriendView: View {
     @State private var email: String = ""
     @State private var isEmailValid: Bool = true
     @State private var showCodeCopiedAlert = false
+    @State private var showEmailSentAlert = false
     @State private var showShareSheet: Bool = false
     @State private var processing: Bool = false
     @State private var validationMessage = ""
@@ -69,6 +70,8 @@ struct ReferAFriendView: View {
                                 Task {
                                     await referralVM.sendReferral(email: email)
                                     processing = false
+                                    showEmailSentAlert = true
+                                    email = ""
                                 }
                                 
                             } else {
@@ -81,6 +84,9 @@ struct ReferAFriendView: View {
                         .padding(.trailing, 20)
                         .disabled(processing || email.isEmpty)
                         .opacity(processing || email.isEmpty ? 0.5 : 1)
+                        .alert(isPresented: $showEmailSentAlert) {
+                            Alert(title: Text(StringConstants.Referrals.emailSentAlertTitle), message: Text(StringConstants.Referrals.emailSentAlertText))
+                        }
                     }
                     
                     Text(StringConstants.Referrals.commaText)
@@ -196,7 +202,7 @@ struct ReferAFriendView: View {
             }
             .ignoresSafeArea()
             .task {
-                await referralVM.loadReferralCode(membershipNumber: rootVM.member?.membershipNumber ?? "")
+                await referralVM.loadReferralCode(membershipNumber: referralVM.referralMember?.membershipNumber ?? referralVM.referralMembershipNumber)
             }
             if processing {
                 ProgressView()
