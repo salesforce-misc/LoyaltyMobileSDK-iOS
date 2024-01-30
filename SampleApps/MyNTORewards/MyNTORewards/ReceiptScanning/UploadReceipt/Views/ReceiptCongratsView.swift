@@ -65,7 +65,7 @@ struct ReceiptCongratsView: View {
 	}
 	
 	private func getMessage(for points: Double?) -> String {
-		if let points = points, points != 0 {
+		if let points = points {
 			return "We’ve credited \(points.truncate(to: 2)) points for the uploaded receipt."
 		} else {
 			return "Calculating loyalty points for the eligible items can take a while. Check back later."

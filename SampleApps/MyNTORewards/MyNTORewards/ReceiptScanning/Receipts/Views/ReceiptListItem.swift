@@ -15,7 +15,7 @@ struct ReceiptListItem: View {
     var body: some View {
 		VStack(spacing: 8) {
 			HStack {
-				Text("Receipt \(receipt.receiptId)")
+				Text("Receipt \(receipt.receiptId ?? "")")
 				Spacer()
 				Text("\(receipt.totalAmount ?? "0")")
 			}

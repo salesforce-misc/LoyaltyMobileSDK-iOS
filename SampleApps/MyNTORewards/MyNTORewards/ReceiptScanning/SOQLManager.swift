@@ -9,28 +9,27 @@ import Foundation
 import LoyaltyMobileSDK
 
 final class SOQLManager {
-	static let namespace = "pppos123"
 	private let forceClient: ForceClient
-	private let receiptsRecordName = "\(namespace)__Receipts__c"
+	private let receiptsRecordName = "\(StringConstants.Receipts.namespace)__Receipts__c"
 	init(forceClient: ForceClient) {
 		self.forceClient = forceClient
 	}
 	
 	func getReceipts(membershipNumber: String) async throws -> [Receipt] {
 		let queryFields = ["Id",
-						   "\(Self.namespace)__PurchaseDate__c",
-						   "\(Self.namespace)__ReceiptID__c",
+						   "\(StringConstants.Receipts.namespace)__PurchaseDate__c",
+						   "\(StringConstants.Receipts.namespace)__ReceiptID__c",
 						   "Name",
-						   "\(Self.namespace)__Status__c",
-						   "\(Self.namespace)__StoreName__c",
-						   "\(Self.namespace)__TotalRewardPoints__c",
+						   "\(StringConstants.Receipts.namespace)__Status__c",
+						   "\(StringConstants.Receipts.namespace)__StoreName__c",
+						   "\(StringConstants.Receipts.namespace)__TotalRewardPoints__c",
 						   "CreatedDate",
-						   "\(Self.namespace)__TotalAmount__c",
-						   "\(Self.namespace)__ImageUrl__c",
-						   "\(Self.namespace)__APIResponse__c",
-						   "\(Self.namespace)__ReceiptCurrency__c",
-						   "\(Self.namespace)__Comments__c"]
-		let whereClause = "\(Self.namespace)__LoyaltyProgramMember__r.MembershipNumber"
+						   "\(StringConstants.Receipts.namespace)__TotalAmount__c",
+						   "\(StringConstants.Receipts.namespace)__ImageUrl__c",
+						   "\(StringConstants.Receipts.namespace)__APIResponse__c",
+						   "\(StringConstants.Receipts.namespace)__ReceiptCurrency__c",
+						   "\(StringConstants.Receipts.namespace)__Comments__c"]
+		let whereClause = "\(StringConstants.Receipts.namespace)__LoyaltyProgramMember__r.MembershipNumber"
 		let orderByField = "CreatedDate"
 		let sortOrder = SortOrder.DESC
 		let operation = "SELECT \(queryFields.joined(separator: ","))"
@@ -49,14 +48,14 @@ final class SOQLManager {
 	
 	func getReceipt(membershipNumber: String, id: String) async throws -> Receipt? {
 		let queryFields = ["Id",
-						   "\(Self.namespace)__PurchaseDate__c",
-						   "\(Self.namespace)__ReceiptID__c",
+						   "\(StringConstants.Receipts.namespace)__PurchaseDate__c",
+						   "\(StringConstants.Receipts.namespace)__ReceiptID__c",
 						   "Name",
-						   "\(Self.namespace)__Status__c",
-						   "\(Self.namespace)__StoreName__c",
-						   "\(Self.namespace)__TotalRewardPoints__c",
+						   "\(StringConstants.Receipts.namespace)__Status__c",
+						   "\(StringConstants.Receipts.namespace)__StoreName__c",
+						   "\(StringConstants.Receipts.namespace)__TotalRewardPoints__c",
 						   "CreatedDate"]
-		let whereClauseMembershipNumber = "LoyaltyProgramMember__r.MembershipNumber"
+		let whereClauseMembershipNumber = "\(StringConstants.Receipts.namespace)__LoyaltyProgramMember__r.MembershipNumber"
 		let whereClauseId = "Id"
 		let operation = "SELECT \(queryFields.joined(separator: ","))"
 		let target = "FROM \(receiptsRecordName)"
