@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -35,7 +35,6 @@
 		292ADC76294C064600753541 /* ProfileModel+CurrencyPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292ADC75294C064600753541 /* ProfileModel+CurrencyPoints.swift */; };
 		2930A3F22B50C65B006D5571 /* ReferralMobileSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2930A3F12B50C65B006D5571 /* ReferralMobileSDK */; };
 		2930A3F42B51D33D006D5571 /* View+SessiomTimeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2930A3F32B51D33D006D5571 /* View+SessiomTimeout.swift */; };
-		293293C92A0EEE1700244BE1 /* TermsAndConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293293C82A0EEE1700244BE1 /* TermsAndConditionsView.swift */; };
 		293293CD2A13EDAC00244BE1 /* ExpiryDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293293CC2A13EDAC00244BE1 /* ExpiryDatePickerView.swift */; };
 		293F642F29D64E48001AC795 /* CommunityMemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F642E29D64E48001AC795 /* CommunityMemberModel.swift */; };
 		293F643129D6C5AD001AC795 /* ForceConnectedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */; };
@@ -208,7 +207,6 @@
 		3FE71CF82B3199CD006E6BF5 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CCD2B3199C9006E6BF5 /* MoreView.swift */; };
 		3FE71CF92B3199CD006E6BF5 /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CCE2B3199C9006E6BF5 /* OnboardingCardView.swift */; };
 		3FE71CFA2B3199CD006E6BF5 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CCF2B3199C9006E6BF5 /* QRCodeView.swift */; };
-		3FE71CFB2B3199CD006E6BF5 /* TermsAndConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CD02B3199C9006E6BF5 /* TermsAndConditionsView.swift */; };
 		3FE71CFC2B3199CD006E6BF5 /* BadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CD12B3199C9006E6BF5 /* BadgesView.swift */; };
 		3FE71CFD2B3199CD006E6BF5 /* AllTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CD22B3199C9006E6BF5 /* AllTransactionsView.swift */; };
 		3FE71CFE2B3199CD006E6BF5 /* RewardPointsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CD32B3199C9006E6BF5 /* RewardPointsCardView.swift */; };
@@ -272,6 +270,9 @@
 		4F7BD9922AE1326D003B7ADA /* GameZoneViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9912AE1326D003B7ADA /* GameZoneViewHelper.swift */; };
 		4F7BD9942AE66534003B7ADA /* ReceiptScanErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9932AE66534003B7ADA /* ReceiptScanErrorView.swift */; };
 		4F8F7FC52B0C7EA80058F64B /* PlayGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F7FC42B0C7EA80058F64B /* PlayGameViewModel.swift */; };
+		4FA187EB2B68BB12009A92D0 /* ReferralMobileSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 4FA187EA2B68BB12009A92D0 /* ReferralMobileSDK */; };
+		4FA187EC2B68BC05009A92D0 /* TermsAndConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CD02B3199C9006E6BF5 /* TermsAndConditionsView.swift */; };
+		4FA187EF2B68BC32009A92D0 /* ReferralViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA187EE2B68BC32009A92D0 /* ReferralViewModelTests.swift */; };
 		4FD635E32B4BDD0C004E4696 /* GamificationMobileSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 4FD635E22B4BDD0C004E4696 /* GamificationMobileSDK */; };
 		4FECF86C2AEB7FC90070E89A /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FECF86A2AEB7FC80070E89A /* ConfettiView.swift */; };
 		4FECF86D2AEB7FC90070E89A /* EmitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FECF86B2AEB7FC90070E89A /* EmitterView.swift */; };
@@ -348,7 +349,6 @@
 		292ADC73294C055200753541 /* TransactionHistory+CurrencyPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionHistory+CurrencyPoints.swift"; sourceTree = "<group>"; };
 		292ADC75294C064600753541 /* ProfileModel+CurrencyPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileModel+CurrencyPoints.swift"; sourceTree = "<group>"; };
 		2930A3F32B51D33D006D5571 /* View+SessiomTimeout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SessiomTimeout.swift"; sourceTree = "<group>"; };
-		293293C82A0EEE1700244BE1 /* TermsAndConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsView.swift; sourceTree = "<group>"; };
 		293293CC2A13EDAC00244BE1 /* ExpiryDatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDatePickerView.swift; sourceTree = "<group>"; };
 		293F642E29D64E48001AC795 /* CommunityMemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMemberModel.swift; sourceTree = "<group>"; };
 		293F643029D6C5AD001AC795 /* ForceConnectedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceConnectedApp.swift; sourceTree = "<group>"; };
@@ -587,6 +587,7 @@
 		4F7BD9912AE1326D003B7ADA /* GameZoneViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneViewHelper.swift; sourceTree = "<group>"; };
 		4F7BD9932AE66534003B7ADA /* ReceiptScanErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptScanErrorView.swift; sourceTree = "<group>"; };
 		4F8F7FC42B0C7EA80058F64B /* PlayGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayGameViewModel.swift; sourceTree = "<group>"; };
+		4FA187EE2B68BC32009A92D0 /* ReferralViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralViewModelTests.swift; sourceTree = "<group>"; };
 		4FECF86A2AEB7FC80070E89A /* ConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		4FECF86B2AEB7FC90070E89A /* EmitterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmitterView.swift; sourceTree = "<group>"; };
 		AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewHelper.swift; sourceTree = "<group>"; };
@@ -631,6 +632,7 @@
 				292104972B336F71005A6754 /* ReferralMobileSDK in Frameworks */,
 				4FD635E32B4BDD0C004E4696 /* GamificationMobileSDK in Frameworks */,
 				2930A3F22B50C65B006D5571 /* ReferralMobileSDK in Frameworks */,
+				4FA187EB2B68BB12009A92D0 /* ReferralMobileSDK in Frameworks */,
 				2920609529523C9C006B20C1 /* LoyaltyMobileSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1346,6 +1348,14 @@
 			path = GameZone;
 			sourceTree = "<group>";
 		};
+		4FA187ED2B68BC32009A92D0 /* Referral */ = {
+			isa = PBXGroup;
+			children = (
+				4FA187EE2B68BC32009A92D0 /* ReferralViewModelTests.swift */,
+			);
+			path = Referral;
+			sourceTree = "<group>";
+		};
 		4FBDAAC22ADD44650057C637 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -1388,6 +1398,7 @@
 				AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */,
 				AFCE106D2A20BA2A00602E35 /* MockAuthManager.swift */,
 				3FFCCC232A8F50500014823E /* ReceiptsListViewModelTests.swift */,
+				4FA187ED2B68BC32009A92D0 /* Referral */,
 				3F8381FA2B50CDE400D2BBAB /* Gamification */,
 			);
 			path = MyNTORewardsTests;
@@ -1439,6 +1450,7 @@
 				292104962B336F71005A6754 /* ReferralMobileSDK */,
 				4FD635E22B4BDD0C004E4696 /* GamificationMobileSDK */,
 				2930A3F12B50C65B006D5571 /* ReferralMobileSDK */,
+				4FA187EA2B68BB12009A92D0 /* ReferralMobileSDK */,
 			);
 			productName = LoyaltyStarter;
 			productReference = 216F217B28B6141E00DAA66D /* MyNTORewards.app */;
@@ -1514,7 +1526,7 @@
 			mainGroup = 216F217228B6141E00DAA66D;
 			packageReferences = (
 				4FD635E12B4BDD0C004E4696 /* XCRemoteSwiftPackageReference "GamificationMobileSDK-iOS" */,
-				2930A3F02B50C65B006D5571 /* XCLocalSwiftPackageReference "../../../ReferralMobileSDK-iOS" */,
+				4FA187E92B68BB12009A92D0 /* XCRemoteSwiftPackageReference "ReferralMobileSDK-iOS" */,
 			);
 			productRefGroup = 216F217C28B6141E00DAA66D /* Products */;
 			projectDirPath = "";
@@ -1690,7 +1702,6 @@
 				3FE71D072B3199CD006E6BF5 /* PromotionCardView.swift in Sources */,
 				3F714D6D29FA104F00CD39E7 /* OrderDetailsViewModel.swift in Sources */,
 				4F7BD9942AE66534003B7ADA /* ReceiptScanErrorView.swift in Sources */,
-				3FE71CFB2B3199CD006E6BF5 /* TermsAndConditionsView.swift in Sources */,
 				2963770F29C10D2400D45AB6 /* ForceClient+SOQL.swift in Sources */,
 				216F217F28B6141E00DAA66D /* MyNTORewardsApp.swift in Sources */,
 				4F7BD9872ADE7F88003B7ADA /* GameZoneCardView.swift in Sources */,
@@ -1758,6 +1769,7 @@
 				3FE71D1D2B3199CD006E6BF5 /* OnboardingView.swift in Sources */,
 				2955346529E788C100CFA391 /* ForceConnectedAppKeychainManager.swift in Sources */,
 				3F714D6B29FA0FEB00CD39E7 /* OrderVoucherView.swift in Sources */,
+				4FA187EC2B68BC05009A92D0 /* TermsAndConditionsView.swift in Sources */,
 				29A39BC529397B98005833C2 /* EmptyStateView.swift in Sources */,
 				3FB5E6A02B35595F0057C46B /* View+LifeCycle.swift in Sources */,
 				3FE71D192B3199CD006E6BF5 /* SignInView.swift in Sources */,
@@ -1837,6 +1849,7 @@
 				AFB345D429F0DD6B00F40502 /* BenefitViewModelTestCase.swift in Sources */,
 				AFB345D329F0DD6B00F40502 /* TransactionsViewModelTests.swift in Sources */,
 				AFB345CF29F0DD6B00F40502 /* VoucherViewModelTests.swift in Sources */,
+				4FA187EF2B68BC32009A92D0 /* ReferralViewModelTests.swift in Sources */,
 				AF1691BC2A1B0D0C005A0EB3 /* StringExtensionTests.swift in Sources */,
 				3FBEFDEE2A0D1CB400685BAF /* TestDataStore.swift in Sources */,
 				3F75ABC72B3049CB0018CB2B /* GameZoneViewModelTests.swift in Sources */,
@@ -2252,14 +2265,15 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		2930A3F02B50C65B006D5571 /* XCLocalSwiftPackageReference "../../../ReferralMobileSDK-iOS" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../../ReferralMobileSDK-iOS";
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
+		4FA187E92B68BB12009A92D0 /* XCRemoteSwiftPackageReference "ReferralMobileSDK-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:loyaltysampleapp/ReferralMobileSDK-iOS.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
 		4FD635E12B4BDD0C004E4696 /* XCRemoteSwiftPackageReference "GamificationMobileSDK-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:loyaltysampleapp/GamificationMobileSDK-iOS.git";
@@ -2281,6 +2295,11 @@
 		};
 		2930A3F12B50C65B006D5571 /* ReferralMobileSDK */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = ReferralMobileSDK;
+		};
+		4FA187EA2B68BB12009A92D0 /* ReferralMobileSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4FA187E92B68BB12009A92D0 /* XCRemoteSwiftPackageReference "ReferralMobileSDK-iOS" */;
 			productName = ReferralMobileSDK;
 		};
 		4FD635E22B4BDD0C004E4696 /* GamificationMobileSDK */ = {
