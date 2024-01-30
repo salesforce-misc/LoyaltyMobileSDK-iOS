@@ -113,9 +113,12 @@ struct StringConstants {
         static let sectionOneTitle = "Recent"
         static let sectionTwoTitle = "One Month Ago"
         static let sectionThreeTitle = "Three Months Ago"
-        static let referralLink = "Use my referral link to sign up: "
+        static let shareReferralText = "Use my referral link to sign up: "
         static let noReferralsFound = "After you refer a friend, you’ll see it here."
         static let emailSentAlertTitle = "Email Sent"
-        static let emailSentAlertText = "Your referral code has been sent."
+        static let emailSentAlertText = "An invitation email was sent to your friends with your referral link."
+        static let emailUnableToSent = "Something doesn't look right with one of the email addresses."
+        static let emailValidationError = "Something doesn't look right with one of the email addresses."
+        static let enrollmentError = "We couldn’t enroll you as a member of the referral program. Try joining again."
     }
 }
