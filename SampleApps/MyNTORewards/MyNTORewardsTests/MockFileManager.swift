@@ -9,7 +9,7 @@ import XCTest
 @testable import MyNTORewards
 @testable import LoyaltyMobileSDK
 
-class MockAuthenticator: ForceAuthenticator {
+class MockAuthenticator: Authenticator {
     func getAccessToken() -> String? {
         return "Access1234"
     }
