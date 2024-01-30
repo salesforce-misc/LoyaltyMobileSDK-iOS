@@ -11,6 +11,7 @@ import LoyaltyMobileSDK
 public class ForceAuthManager: Authenticator, ObservableObject {
     
     @Published public var auth: ForceAuth?
+    @Published public var sessionTimeout: Bool = false
     public static let shared = ForceAuthManager()
     
     private init() {
@@ -37,9 +38,6 @@ public class ForceAuthManager: Authenticator, ObservableObject {
                 self.auth = newAuth
                 return newAuth.accessToken
             } catch {
-                if let error = error as? CommonError, error == .sessionExpired {
-                    clearAuth()
-                }
                 throw error
             }
         } else {
@@ -47,6 +45,7 @@ public class ForceAuthManager: Authenticator, ObservableObject {
                 let savedAuth = try retrieveAuth()
                 self.auth = savedAuth
                 guard let savedRefreshToken = savedAuth.refreshToken else {
+                    sessionTimeout = true
                     throw CommonError.authenticationFailed
                 }
                 let newAuth = try await refresh(url: url,
@@ -56,9 +55,6 @@ public class ForceAuthManager: Authenticator, ObservableObject {
                 return newAuth.accessToken
                 
             } catch {
-                if let error = error as? CommonError, error == .sessionExpired {
-                    clearAuth()
-                }
                 throw error
             }
         }
@@ -215,6 +211,7 @@ public class ForceAuthManager: Authenticator, ObservableObject {
             
         } catch {
             Logger.error("Error to refresh the token and cannot renew the session. \(error.localizedDescription)")
+            sessionTimeout = true
             throw CommonError.sessionExpired
         }
         

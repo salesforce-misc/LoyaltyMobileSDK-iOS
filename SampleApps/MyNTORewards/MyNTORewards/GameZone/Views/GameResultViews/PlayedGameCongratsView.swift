@@ -76,7 +76,12 @@ struct PlayedGameCongratsView: View {
     }
     
     func getAttributedStringForGreetingsBody() -> AttributedString {
-        let greetingsText = StringConstants.Gamification.playedGameSuccessGreeting
+		let greetingsText: String
+		if rewardType == .voucher {
+			greetingsText = StringConstants.Gamification.playedGameSuccessGreetingForVoucher
+		} else {
+			greetingsText = StringConstants.Gamification.playedGameSuccessGreeting
+		}
         let replacedString = greetingsText.replacingOccurrences(of: "{n}", with: getOfferTextWithSpacing(for: offerText))
         var attributedString = AttributedString(replacedString)
         attributedString.foregroundColor = Color.theme.superLightText
@@ -87,10 +92,6 @@ struct PlayedGameCongratsView: View {
         }
         return attributedString
     }
-	
-	func getRewardBody() -> String {
-		return "Here’s your reward: \(offerText)\nTo redeem your reward, go to Vouchers."
-	}
 }
 
 #Preview {
