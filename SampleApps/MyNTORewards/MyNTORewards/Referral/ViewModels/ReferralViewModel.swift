@@ -186,12 +186,13 @@ class ReferralViewModel: ObservableObject {
                 self.referralMembershipNumber = output.membershipNumber
                 
             } else {
-                displayError = (true, "Failed to join, please try again later.")
+                // status is not `Processed`, if `Pending` should
+                Logger.debug("The enrollment status is: \(output.transactionJournals.first?.status ?? "NOTFOUND")")
+                displayError = (true, StringConstants.Referrals.enrollmentError)
             }
-        } catch CommonError.responseUnsuccessful(_, let errorMessage), CommonError.unknownException(let errorMessage) {
-            displayError = (true, errorMessage)
         } catch {
-            displayError = (true, error.localizedDescription)
+            Logger.error(error.localizedDescription)
+            displayError = (true, StringConstants.Referrals.enrollmentError)
         }
     }
     
@@ -213,12 +214,13 @@ class ReferralViewModel: ObservableObject {
                 self.referralMembershipNumber = output.membershipNumber
                 
             } else {
-                displayError = (true, "Failed to join, please try again later.")
+                // status is not `Processed`, if `Pending` should
+                Logger.debug("The enrollment status is: \(output.transactionJournals.first?.status ?? "NOTFOUND")")
+                displayError = (true, StringConstants.Referrals.enrollmentError)
             }
-        } catch CommonError.responseUnsuccessful(_, let errorMessage), CommonError.unknownException(let errorMessage) {
-            displayError = (true, errorMessage)
         } catch {
-            displayError = (true, error.localizedDescription)
+            Logger.error(error.localizedDescription)
+            displayError = (true, StringConstants.Referrals.enrollmentError)
         }
     }
     

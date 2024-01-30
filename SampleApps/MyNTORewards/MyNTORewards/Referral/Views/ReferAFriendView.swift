@@ -25,6 +25,9 @@ struct ReferAFriendView: View {
     @State private var validationMessage = ""
     
     var body: some View {
+        let referralLink = "\(AppSettings.Defaults.referralLink)\(referralVM.referralCode)"
+        let shareText = "\(StringConstants.Referrals.shareReferralText) \(referralLink)"
+        
         ZStack {
             VStack {
                 GeometryReader { geometry in
@@ -75,7 +78,7 @@ struct ReferAFriendView: View {
                                 }
                                 
                             } else {
-                                validationMessage = "Please enter valid email addresses."
+                                validationMessage = StringConstants.Referrals.emailValidationError
                             }
                         }) {
                             Image("ic-forward")
@@ -122,7 +125,7 @@ struct ReferAFriendView: View {
                             Image("ic-fb")
                         }
                         .sheet(isPresented: $showShareSheet) {
-                            ActivityViewController(activityItems: ["Check out my referral code: \(referralVM.referralCode)"])
+                            ActivityViewController(activityItems: [shareText])
                         }
                         Button {
                             showShareSheet.toggle()
@@ -130,15 +133,15 @@ struct ReferAFriendView: View {
                             Image("ic-ig")
                         }
                         .sheet(isPresented: $showShareSheet) {
-                            ActivityViewController(activityItems: ["Check out my referral code: \(referralVM.referralCode)"])
+                            ActivityViewController(activityItems: [shareText])
                         }
                         Button {
-                            shareToWhatsApp()
+                            shareToWhatsApp(text: shareText)
                         } label: {
                             Image("ic-whatsapp")
                         }
                         Button {
-                            shareToTwitter()
+                            shareToTwitter(text: shareText)
                         } label: {
                             Image("ic-twitter")
                         }
@@ -148,7 +151,7 @@ struct ReferAFriendView: View {
                             Image("ic-share")
                         }
                         .sheet(isPresented: $showShareSheet) {
-                            ActivityViewController(activityItems: ["Check out my referral code: \(referralVM.referralCode)"])
+                            ActivityViewController(activityItems: [shareText])
                         }
                     }
                     
@@ -156,7 +159,7 @@ struct ReferAFriendView: View {
                         ZStack {
                             VStack(alignment: .leading) {
                                 Spacer()
-                                Text("\(AppSettings.Defaults.referralLink)\(referralVM.referralCode)")
+                                Text(referralLink)
                                     .accessibilityIdentifier(AppAccessibilty.Referrals.referralCode)
                                     .font(.referralCode)
                                     .foregroundColor(Color.theme.referralCodeColor)
@@ -185,7 +188,7 @@ struct ReferAFriendView: View {
                     .padding(.top, 6)
                     .onTapGesture {
                         let pasteboard = UIPasteboard.general
-                        pasteboard.string = referralVM.referralCode
+                        pasteboard.string = referralLink
                         showCodeCopiedAlert = true
                     }
                     .alert(isPresented: $showCodeCopiedAlert) {
@@ -237,16 +240,16 @@ struct ReferAFriendView: View {
         return emails.allSatisfy(isValidEmail)
     }
 
-    func shareToWhatsApp() {
-        let urlString = "whatsapp://send?text=Check out my referral code: \(referralVM.referralCode)"
+    func shareToWhatsApp(text: String) {
+        let urlString = "whatsapp://send?text=\(text)"
         if let urlStringEncoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
            let url = URL(string: urlStringEncoded) {
             openURL(url)
         }
     }
 
-    func shareToTwitter() {
-        let urlString = "https://twitter.com/intent/tweet?text=Check out my referral code: \(referralVM.referralCode)"
+    func shareToTwitter(text: String) {
+        let urlString = "https://twitter.com/intent/tweet?text=\(text)"
         if let url = URL(string: urlString) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
