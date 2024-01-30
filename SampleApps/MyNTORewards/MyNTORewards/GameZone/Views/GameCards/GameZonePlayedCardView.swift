@@ -16,15 +16,9 @@ struct GameZonePlayedCardView: View, GameCardView {
     
     var body: some View {
         VStack {
-            ZStack {
-                if gameCardModel.type == .scratchCard {
-                    Color.theme.expiredBackgroundText
-                }
-                Image(getImageName())
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .saturation(0)
-            }
+			Image(getImageName())
+				.resizable()
+				.aspectRatio(contentMode: .fill)
             .frame(width: 165, height: 90)
             .cornerRadius(5, corners: [.topLeft, .topRight])
             VStack(alignment: .leading, spacing: 8) {
@@ -101,9 +95,12 @@ struct GameZonePlayedCardView: View, GameCardView {
     }
     
     func getFormattedPlayedLabel() -> String {
-        // To Do need to update to game played date
+        // TODO: Update the below code to used played date when it is available in the getGames API.
+		/*
         guard let expirationDate = gameCardModel.participantGameRewards.first?.expirationDate else { return "Never Played" }
         return "\(StringConstants.Gamification.playedTab) \(expirationDate.toString(withFormat: "dd MMM yyyy"))"
+		*/
+		return "\(StringConstants.Gamification.playedTab)"
     }
     
     func getRewardLabel() -> String? {

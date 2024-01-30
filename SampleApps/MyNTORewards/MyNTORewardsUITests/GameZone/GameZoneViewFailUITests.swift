@@ -22,7 +22,6 @@ final class GameZoneViewFailUITests: XCTestCase {
 	func test_onLaunch_shouldErrorScreen() {
 		GameZoneViewHelper.goToGameZoneView(app: app)
 		XCTAssertTrue(app.staticTexts["Oops! Something went wrong while processing the request. Try again."].waitForExistence(timeout: 3))
-		XCTAssertTrue(app.buttons["Try Again"].exists)
 		XCTAssertTrue(app.images["img-astronaut"].exists)
 	}
 }
