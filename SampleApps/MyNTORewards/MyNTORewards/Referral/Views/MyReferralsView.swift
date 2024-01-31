@@ -48,7 +48,7 @@ struct MyReferralsView: View {
                                     Spacer()
                                 }
                                 
-                                if viewModel.showEnrollmentView {
+                                if !viewModel.showEnrollmentView {
                                     HStack(spacing: 30) {
                                         VStack(alignment: .leading) {
                                             Text(StringConstants.Referrals.sent.uppercased())
@@ -169,6 +169,7 @@ struct MyReferralsView: View {
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                         
                     }
+                    .padding(.bottom, 100)
                 }
             }
             Spacer()
@@ -267,6 +268,7 @@ struct SuccessView: View {
                 
                 Spacer()
             }
+            .padding(.bottom, 200)
         }
         
     }
@@ -337,6 +339,7 @@ struct InProcessView: View {
                 
                 Spacer()
             }
+            .padding(.bottom, 200)
         }
         
     }
