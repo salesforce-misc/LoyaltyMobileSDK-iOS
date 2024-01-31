@@ -191,7 +191,7 @@ class ReferralViewModel: ObservableObject {
                 displayError = (true, StringConstants.Referrals.enrollmentError)
             }
         } catch {
-            Logger.error(error.localizedDescription)
+            Logger.error("Referral Enrollment Error: \(error.localizedDescription)")
             displayError = (true, StringConstants.Referrals.enrollmentError)
         }
     }
@@ -219,7 +219,7 @@ class ReferralViewModel: ObservableObject {
                 displayError = (true, StringConstants.Referrals.enrollmentError)
             }
         } catch {
-            Logger.error(error.localizedDescription)
+            Logger.error("Referral Enrollment Error: \(error.localizedDescription)")
             displayError = (true, StringConstants.Referrals.enrollmentError)
         }
     }

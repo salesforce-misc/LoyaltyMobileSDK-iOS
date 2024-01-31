@@ -13,6 +13,7 @@ struct JoinAndReferView: View {
     @EnvironmentObject private var referralVM: ReferralViewModel
     @EnvironmentObject private var routerPath: RouterPath
     @State private var processing: Bool = false
+    @Binding var showReferAFriendView: Bool
     
     var body: some View {
         ZStack {
@@ -43,6 +44,9 @@ struct JoinAndReferView: View {
                         await referralVM.enroll(contactId: rootVM.member?.contactId ?? "")
                         processing = false
                         dismiss()
+                        if !referralVM.displayError.0 {
+                            showReferAFriendView = true
+                        }
                     }
                 }
                 .buttonStyle(DarkLongButton())
@@ -67,25 +71,11 @@ struct JoinAndReferView: View {
                 ProgressView()
             }
         }
-        .fullScreenCover(isPresented: $referralVM.displayError.0) {
-            Spacer()
-            ProcessingErrorView(message: referralVM.displayError.1)
-            Spacer()
-            Button {
-                referralVM.displayError = (false, "")
-            } label: {
-                Text(StringConstants.Referrals.backButton)
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(.borderedProminent)
-            .longFlexibleButtonStyle()
-            .accessibilityIdentifier(AppAccessibilty.Referrals.joinErrorBackButton)
-        }
         
     }
 }
 
 #Preview {
-    JoinAndReferView()
+    JoinAndReferView(showReferAFriendView: .constant(false))
         .environmentObject(ReferralViewModel())
 }

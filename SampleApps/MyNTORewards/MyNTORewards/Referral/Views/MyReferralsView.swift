@@ -12,6 +12,7 @@ struct MyReferralsView: View {
     
     @EnvironmentObject private var viewModel: ReferralViewModel
     @EnvironmentObject private var rootVM: AppRootViewModel
+    @EnvironmentObject private var routerPath: RouterPath
     @State private var tabIndex = 0
     @State var showReferAFriendView = false
     var tabbarItems = [StringConstants.Referrals.successTab, StringConstants.Referrals.inProgressTab]
@@ -155,19 +156,20 @@ struct MyReferralsView: View {
                         }
                         .padding()
                         
-                        TopTabBar(barItems: tabbarItems, tabIndex: $tabIndex)
-                        
-                        TabView(selection: $tabIndex) {
-                            SuccessView()
-                                .environmentObject(viewModel)
-                                .tag(0)
-                            InProcessView()
-                                .environmentObject(viewModel)
-                                .tag(1)
+                        if !viewModel.showEnrollmentView {
+                            TopTabBar(barItems: tabbarItems, tabIndex: $tabIndex)
+                            
+                            TabView(selection: $tabIndex) {
+                                SuccessView()
+                                    .environmentObject(viewModel)
+                                    .tag(0)
+                                InProcessView()
+                                    .environmentObject(viewModel)
+                                    .tag(1)
+                            }
+                            .frame(minHeight: 500, maxHeight: .infinity)
+                            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                         }
-                        .frame(minHeight: 500, maxHeight: .infinity)
-                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                        
                     }
                     .padding(.bottom, 100)
                 }
@@ -182,9 +184,24 @@ struct MyReferralsView: View {
                 .environmentObject(viewModel)
         }
         .sheet(isPresented: $viewModel.showEnrollmentView) {
-            JoinAndReferView()
+            JoinAndReferView(showReferAFriendView: $showReferAFriendView)
                 .interactiveDismissDisabled()
                 .presentationDetents([.height(480)])
+        }
+        .fullScreenCover(isPresented: $viewModel.displayError.0) {
+            Spacer()
+            ProcessingErrorView(message: viewModel.displayError.1)
+            Spacer()
+            Button {
+                viewModel.displayError = (false, "")
+                routerPath.pathFromMore = []
+            } label: {
+                Text(StringConstants.Referrals.backButton)
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .longFlexibleButtonStyle()
+            .accessibilityIdentifier(AppAccessibilty.Referrals.joinErrorBackButton)
         }
         .task {
             do {
