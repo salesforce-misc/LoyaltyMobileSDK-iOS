@@ -23,7 +23,7 @@ struct ReceiptDetailView: View {
         VStack {
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
-                        Text("Receipt \(receipt.receiptId)")
+                        Text("Receipt \(receipt.receiptId ?? "")")
                             .font(.transactionText)
                             .accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberText)
                         Spacer()
@@ -151,7 +151,7 @@ struct ReceiptDetailView: View {
     }
 	
 	private func getRequestSubmittedAlertMessage() -> String {
-		return "Receipt \(receipt.receiptId) was submitted for manual review."
+		return "Receipt \(receipt.receiptId ?? "") was submitted for manual review."
 	}
 }
 

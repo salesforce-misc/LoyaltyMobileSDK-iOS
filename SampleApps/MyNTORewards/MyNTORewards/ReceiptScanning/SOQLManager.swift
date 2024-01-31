@@ -10,26 +10,26 @@ import LoyaltyMobileSDK
 
 final class SOQLManager {
 	private let forceClient: ForceClient
-	private let receiptsRecordName = "Receipts__c"
+	private let receiptsRecordName = "\(StringConstants.Receipts.namespace)__Receipts__c"
 	init(forceClient: ForceClient) {
 		self.forceClient = forceClient
 	}
 	
 	func getReceipts(membershipNumber: String) async throws -> [Receipt] {
 		let queryFields = ["Id",
-						   "PurchaseDate__c",
-						   "ReceiptID__c",
+						   "\(StringConstants.Receipts.namespace)__PurchaseDate__c",
+						   "\(StringConstants.Receipts.namespace)__ReceiptID__c",
 						   "Name",
-						   "Status__c",
-						   "StoreName__c",
-						   "TotalRewardPoints__c",
+						   "\(StringConstants.Receipts.namespace)__Status__c",
+						   "\(StringConstants.Receipts.namespace)__StoreName__c",
+						   "\(StringConstants.Receipts.namespace)__TotalRewardPoints__c",
 						   "CreatedDate",
-						   "TotalAmount__c",
-						   "ImageUrl__c",
-						   "APIResponse__c",
-						   "ReceiptCurrency__c",
-						   "Comments__c"]
-		let whereClause = "LoyaltyProgramMember__r.MembershipNumber"
+						   "\(StringConstants.Receipts.namespace)__TotalAmount__c",
+						   "\(StringConstants.Receipts.namespace)__ImageUrl__c",
+						   "\(StringConstants.Receipts.namespace)__APIResponse__c",
+						   "\(StringConstants.Receipts.namespace)__ReceiptCurrency__c",
+						   "\(StringConstants.Receipts.namespace)__Comments__c"]
+		let whereClause = "\(StringConstants.Receipts.namespace)__LoyaltyProgramMember__r.MembershipNumber"
 		let orderByField = "CreatedDate"
 		let sortOrder = SortOrder.DESC
 		let operation = "SELECT \(queryFields.joined(separator: ","))"
@@ -48,14 +48,14 @@ final class SOQLManager {
 	
 	func getReceipt(membershipNumber: String, id: String) async throws -> Receipt? {
 		let queryFields = ["Id",
-						   "PurchaseDate__c",
-						   "ReceiptID__c",
+						   "\(StringConstants.Receipts.namespace)__PurchaseDate__c",
+						   "\(StringConstants.Receipts.namespace)__ReceiptID__c",
 						   "Name",
-						   "Status__c",
-						   "StoreName__c",
-						   "TotalRewardPoints__c",
+						   "\(StringConstants.Receipts.namespace)__Status__c",
+						   "\(StringConstants.Receipts.namespace)__StoreName__c",
+						   "\(StringConstants.Receipts.namespace)__TotalRewardPoints__c",
 						   "CreatedDate"]
-		let whereClauseMembershipNumber = "LoyaltyProgramMember__r.MembershipNumber"
+		let whereClauseMembershipNumber = "\(StringConstants.Receipts.namespace)__LoyaltyProgramMember__r.MembershipNumber"
 		let whereClauseId = "Id"
 		let operation = "SELECT \(queryFields.joined(separator: ","))"
 		let target = "FROM \(receiptsRecordName)"
