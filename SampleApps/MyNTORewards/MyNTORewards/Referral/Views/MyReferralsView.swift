@@ -15,6 +15,7 @@ struct MyReferralsView: View {
     @EnvironmentObject private var routerPath: RouterPath
     @State private var tabIndex = 0
     @State var showReferAFriendView = false
+    @State var showEnrollmentView = false
     var tabbarItems = [StringConstants.Referrals.successTab, StringConstants.Referrals.inProgressTab]
     
     var body: some View {
@@ -183,7 +184,7 @@ struct MyReferralsView: View {
             ReferAFriendView()
                 .environmentObject(viewModel)
         }
-        .sheet(isPresented: $viewModel.showEnrollmentView) {
+        .sheet(isPresented: $showEnrollmentView) {
             JoinAndReferView(showReferAFriendView: $showReferAFriendView)
                 .interactiveDismissDisabled()
                 .presentationDetents([.height(480)])

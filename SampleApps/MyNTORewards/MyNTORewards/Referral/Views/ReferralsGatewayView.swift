@@ -39,7 +39,7 @@ struct ReferralsGatewayView: View {
         case .failed:
             ProcessingErrorView(message: "Oops! Something went wrong while processing the request. Try again.")
         case .loaded:
-            MyReferralsView()
+            MyReferralsView(showEnrollmentView: referralVM.showEnrollmentView)
         }
     }
     

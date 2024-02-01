@@ -56,7 +56,9 @@ struct JoinAndReferView: View {
                 
                 Button {
                     dismiss()
-                    routerPath.pathFromMore = []
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        routerPath.pathFromMore = []
+                    }
                 } label: {
                     Text(StringConstants.Referrals.backButton)
                         .frame(maxWidth: .infinity)
