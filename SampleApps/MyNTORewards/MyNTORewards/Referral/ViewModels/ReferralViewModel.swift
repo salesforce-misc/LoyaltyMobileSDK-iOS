@@ -40,7 +40,7 @@ class ReferralViewModel: ObservableObject {
     private let localFileManager: FileManagerProtocol
     private let referralsFolderName = AppSettings.cacheFolders.referrals
     private let promotionCode = AppSettings.Defaults.promotionCode
-    private let referralProgramName = AppSettings.Defaults.referralProgramName
+    private let referralProgramName = AppSettings.Defaults.loyaltyProgramName
     
     init(
         authManager: ForceAuthenticator = ForceAuthManager.shared,
@@ -50,7 +50,7 @@ class ReferralViewModel: ObservableObject {
         self.authManager = authManager
         self.forceClient = forceClient ?? ForceClient(auth: authManager)
         self.referralAPIManager = ReferralAPIManager(auth: self.authManager,
-                                                     referralProgramName: AppSettings.Defaults.referralProgramName,
+                                                     referralProgramName: AppSettings.Defaults.loyaltyProgramName,
                                                      instanceURL: AppSettings.shared.getInstanceURL(),
                                                      forceClient: self.forceClient)
         self.localFileManager = localFileManager
@@ -200,6 +200,7 @@ class ReferralViewModel: ObservableObject {
                 self.referralMember = referralMember
                 self.referralCode = output.promotionReferralCode
                 self.referralMembershipNumber = output.membershipNumber
+                showEnrollmentView = false
                 
             } else {
                 // status is not `Processed`, if `Pending` should
@@ -228,6 +229,7 @@ class ReferralViewModel: ObservableObject {
                 self.referralMember = referralMember
                 self.referralCode = output.promotionReferralCode
                 self.referralMembershipNumber = output.membershipNumber
+                showEnrollmentView = false
                 
             } else {
                 // status is not `Processed`, if `Pending` should
