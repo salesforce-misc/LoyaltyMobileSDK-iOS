@@ -53,23 +53,23 @@ struct MyReferralsView: View {
                                 if !viewModel.showEnrollmentView {
                                     HStack(spacing: 30) {
                                         VStack(alignment: .leading) {
-                                            Text(StringConstants.Referrals.sent.uppercased())
+                                            Text(StringConstants.Referrals.sent)
                                                 .font(.referralText)
                                             Text("**\(viewModel.promotionStageCounts[.sent] ?? 0)**")
                                                 .font(.referralBoldText)
                                                 .padding(.bottom)
-                                            Text(StringConstants.Referrals.vouchersEarned.uppercased())
+                                            Text(StringConstants.Referrals.vouchersEarned)
                                                 .font(.referralText)
                                             Text("**\(viewModel.promotionStageCounts[.voucherEarned] ?? 0)**")
                                                 .font(.referralBoldText)
                                         }
                                         VStack(alignment: .leading) {
-                                            Text(StringConstants.Referrals.accepted.uppercased())
+                                            Text(StringConstants.Referrals.accepted)
                                                 .font(.referralText)
                                             Text("**\(viewModel.promotionStageCounts[.accepted] ?? 0)**")
                                                 .font(.referralBoldText)
                                                 .padding(.bottom)
-                                            Text(StringConstants.Referrals.pointsEarned.uppercased())
+                                            Text(StringConstants.Referrals.pointsEarned)
                                                 .font(.referralText)
                                                 .opacity(0)
                                             Text("**0**")
@@ -81,23 +81,23 @@ struct MyReferralsView: View {
                                 } else {
                                     HStack(spacing: 30) {
                                         VStack(alignment: .leading) {
-                                            Text(StringConstants.Referrals.sent.uppercased())
+                                            Text(StringConstants.Referrals.sent)
                                                 .font(.referralText)
                                             Text("**0**")
                                                 .font(.referralBoldText)
                                                 .padding(.bottom)
-                                            Text(StringConstants.Referrals.vouchersEarned.uppercased())
+                                            Text(StringConstants.Referrals.vouchersEarned)
                                                 .font(.referralText)
                                             Text("**0**")
                                                 .font(.referralBoldText)
                                         }
                                         VStack(alignment: .leading) {
-                                            Text(StringConstants.Referrals.accepted.uppercased())
+                                            Text(StringConstants.Referrals.accepted)
                                                 .font(.referralText)
                                             Text("**0**")
                                                 .font(.referralBoldText)
                                                 .padding(.bottom)
-                                            Text(StringConstants.Referrals.pointsEarned.uppercased())
+                                            Text(StringConstants.Referrals.pointsEarned)
                                                 .font(.referralText)
                                                 .opacity(0)
                                             Text("**0**")

@@ -162,7 +162,6 @@ class ReferralViewModel: ObservableObject {
             let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
             enrollmentStatusApiState = .loaded
             showEnrollmentView = queryResult.records.isEmpty
-
         } catch {
             enrollmentStatusApiState = .failed(error)
             Logger.error(error.localizedDescription)
