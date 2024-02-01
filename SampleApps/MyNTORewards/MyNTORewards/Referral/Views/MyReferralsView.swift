@@ -222,7 +222,8 @@ struct MyReferralsView: View {
 
 struct SuccessView: View {
     @EnvironmentObject var viewModel: ReferralViewModel
-    
+    @EnvironmentObject private var rootVM: AppRootViewModel
+
     var body: some View {
         ScrollView {
             LazyVStack {
@@ -286,14 +287,20 @@ struct SuccessView: View {
                 Spacer()
             }
             .padding(.bottom, 200)
+        }.refreshable {
+            do {
+                try await viewModel.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", reload: true)
+            } catch {
+                Logger.error(error.localizedDescription)
+            }
         }
-        
     }
 }
 
 struct InProcessView: View {
     @EnvironmentObject var viewModel: ReferralViewModel
-    
+    @EnvironmentObject private var rootVM: AppRootViewModel
+
     var body: some View {
         ScrollView {
             LazyVStack {
@@ -357,6 +364,12 @@ struct InProcessView: View {
                 Spacer()
             }
             .padding(.bottom, 200)
+        }.refreshable {
+            do {
+                try await viewModel.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", reload: true)
+            } catch {
+                Logger.error(error.localizedDescription)
+            }
         }
         
     }
@@ -368,31 +381,30 @@ struct ReferralCard: View {
     let referralDate: Date
     
     var body: some View {
-        VStack {
-            HStack {
-                Assets.getReferralStatusIcon(status: status)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 24, height: 24)
+        HStack(alignment: .center) {
+            Assets.getReferralStatusIcon(status: status)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 24, height: 24)
+                .padding(.leading, 8)
+            VStack(alignment: .leading, spacing: 6) {
                 Text("**\(email)**")
                     .font(.referralCardText)
-                Spacer()
-            }
-            .padding(.horizontal, 10)
-            HStack {
-                Text(displayDate(referralDate: referralDate))
-                    .font(.referralCardText)
-                Spacer()
-                Text("**\(status.rawValue)**")
-                    .font(.referralStatus)
-                    .foregroundColor(status == .purchaseCompleted ? Color.theme.purchaseCompleted : .black)
-            }
-            .padding(.leading, 44)
-            .padding(.trailing, 10)
+                HStack {
+                    Text(displayDate(referralDate: referralDate))
+                        .font(.referralCardText)
+                        .foregroundColor(Color.theme.textInactive)
+                    Spacer()
+                    Text("**\(status.rawValue)**")
+                        .font(.referralStatus)
+                        .foregroundColor(status == .purchaseCompleted ? Color.theme.purchaseCompleted : Color.theme.superLightText)
+                }
+                .padding(.trailing, 10)
+            }.padding(.vertical, 14)
         }
-        .frame(width: 343, height: 66)
         .background(.white)
         .cornerRadius(10)
+        .padding(.horizontal, 16)
     }
     
     func displayDate(referralDate: Date) -> String {

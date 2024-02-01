@@ -407,7 +407,7 @@ extension Font {
     }
     
     static var referralStatus: Font {
-        return Font.custom("SFProDisplay-Regular", size: 14)
+        return Font.custom("SFProDisplay-Regular", size: 13)
     }
     
     static var referModalText: Font {

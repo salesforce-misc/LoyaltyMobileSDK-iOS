@@ -12,13 +12,40 @@ struct ReferralsGatewayView: View {
     @EnvironmentObject private var rootVM: AppRootViewModel
     
     var body: some View {
-            
-        VStack {
+        switch referralVM.enrollmentStatusApiState {
+        case .idle:
+            Color.theme.background.onAppear(perform: checkEnrollmentStatus)
+        case .loading:
+            VStack(spacing: 0) {
+                HStack {
+                    Text(StringConstants.Referrals.referralsTitle)
+                        .font(.congratsTitle)
+                        .padding(.leading, 15)
+                        .accessibilityIdentifier(AppAccessibilty.Referrals.referralsViewTitle)
+                    Spacer()
+                }
+                .frame(height: 44)
+                .frame(maxWidth: .infinity)
+                .background(.white)
+                ZStack {
+                    Color.theme.background
+                    ProgressView()
+                }
+                Spacer()
+            }
+            .ignoresSafeArea(edges: .bottom)
+            .frame(maxHeight: .infinity)
+            .navigationBarBackButtonHidden()
+        case .failed:
+            ProcessingErrorView(message: "Oops! Something went wrong while processing the request. Try again.")
+        case .loaded:
             MyReferralsView()
         }
-        .task {
-            await referralVM.getMembershipNumber(contactId: rootVM.member?.contactId ?? "")
-            // isEnrolled = await referralVM.checkEnrollmentStatus(membershipNumber: rootVM.member?.membershipNumber ?? "")
+    }
+    
+    func checkEnrollmentStatus() {
+        Task {
+            await referralVM.checkEnrollmentStatus(contactId: rootVM.member?.contactId ?? "")
         }
     }
 }
