@@ -10,6 +10,7 @@ import SwiftUI
 
 struct StringConstants {
 	struct Receipts {
+		static let namespace = "ReceiptScanner"
 		static let receiptsListTitle = "Receipts"
 		static let uploadReceiptButton = "New"
 		static let searchPlaceholder = "Search receipts..."

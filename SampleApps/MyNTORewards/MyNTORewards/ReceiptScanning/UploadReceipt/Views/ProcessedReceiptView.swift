@@ -100,7 +100,7 @@ struct ProcessedReceiptView: View {
     
     private func header(receipt: ProcessedReceipt) -> some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("Receipt \(receipt.receiptNumber)")
+            Text("Receipt \(receipt.receiptNumber ?? "")")
                 .font(.offerTitle)
                 .accessibilityIdentifier(AppAccessibilty.Receipts.receiptNumberLabel)
             HStack {
