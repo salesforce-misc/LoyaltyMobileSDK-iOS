@@ -7,7 +7,6 @@
 
 import SwiftUI
 import UIKit
-import LoyaltyMobileSDK
 import ReferralMobileSDK
 
 struct ReferAFriendView: View {
@@ -75,6 +74,11 @@ struct ReferAFriendView: View {
                                     processing = false
                                     showEmailSentAlert = true
                                     email = ""
+                                    do {
+                                        try await referralVM.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", reload: true)
+                                    } catch {
+                                        Logger.error(error.localizedDescription)
+                                    }
                                 }
                                 
                             } else {
@@ -205,7 +209,7 @@ struct ReferAFriendView: View {
             }
             .ignoresSafeArea()
             .task {
-                await referralVM.loadReferralCode(membershipNumber: referralVM.referralMember?.membershipNumber ?? referralVM.referralMembershipNumber)
+                await referralVM.loadReferralCode(membershipNumber: rootVM.member?.membershipNumber ?? "")
             }
             if processing {
                 ProgressView()

@@ -15,6 +15,7 @@ struct MyReferralsView: View {
     @EnvironmentObject private var routerPath: RouterPath
     @State private var tabIndex = 0
     @State var showReferAFriendView = false
+    @State var showEnrollmentView = false
     var tabbarItems = [StringConstants.Referrals.successTab, StringConstants.Referrals.inProgressTab]
     
     var body: some View {
@@ -52,23 +53,23 @@ struct MyReferralsView: View {
                                 if !viewModel.showEnrollmentView {
                                     HStack(spacing: 30) {
                                         VStack(alignment: .leading) {
-                                            Text(StringConstants.Referrals.sent.uppercased())
+                                            Text(StringConstants.Referrals.sent)
                                                 .font(.referralText)
                                             Text("**\(viewModel.promotionStageCounts[.sent] ?? 0)**")
                                                 .font(.referralBoldText)
                                                 .padding(.bottom)
-                                            Text(StringConstants.Referrals.vouchersEarned.uppercased())
+                                            Text(StringConstants.Referrals.vouchersEarned)
                                                 .font(.referralText)
                                             Text("**\(viewModel.promotionStageCounts[.voucherEarned] ?? 0)**")
                                                 .font(.referralBoldText)
                                         }
                                         VStack(alignment: .leading) {
-                                            Text(StringConstants.Referrals.accepted.uppercased())
+                                            Text(StringConstants.Referrals.accepted)
                                                 .font(.referralText)
                                             Text("**\(viewModel.promotionStageCounts[.accepted] ?? 0)**")
                                                 .font(.referralBoldText)
                                                 .padding(.bottom)
-                                            Text(StringConstants.Referrals.pointsEarned.uppercased())
+                                            Text(StringConstants.Referrals.pointsEarned)
                                                 .font(.referralText)
                                                 .opacity(0)
                                             Text("**0**")
@@ -80,23 +81,23 @@ struct MyReferralsView: View {
                                 } else {
                                     HStack(spacing: 30) {
                                         VStack(alignment: .leading) {
-                                            Text(StringConstants.Referrals.sent.uppercased())
+                                            Text(StringConstants.Referrals.sent)
                                                 .font(.referralText)
                                             Text("**0**")
                                                 .font(.referralBoldText)
                                                 .padding(.bottom)
-                                            Text(StringConstants.Referrals.vouchersEarned.uppercased())
+                                            Text(StringConstants.Referrals.vouchersEarned)
                                                 .font(.referralText)
                                             Text("**0**")
                                                 .font(.referralBoldText)
                                         }
                                         VStack(alignment: .leading) {
-                                            Text(StringConstants.Referrals.accepted.uppercased())
+                                            Text(StringConstants.Referrals.accepted)
                                                 .font(.referralText)
                                             Text("**0**")
                                                 .font(.referralBoldText)
                                                 .padding(.bottom)
-                                            Text(StringConstants.Referrals.pointsEarned.uppercased())
+                                            Text(StringConstants.Referrals.pointsEarned)
                                                 .font(.referralText)
                                                 .opacity(0)
                                             Text("**0**")
@@ -183,7 +184,7 @@ struct MyReferralsView: View {
             ReferAFriendView()
                 .environmentObject(viewModel)
         }
-        .sheet(isPresented: $viewModel.showEnrollmentView) {
+        .sheet(isPresented: $showEnrollmentView) {
             JoinAndReferView(showReferAFriendView: $showReferAFriendView)
                 .interactiveDismissDisabled()
                 .presentationDetents([.height(480)])
@@ -222,7 +223,8 @@ struct MyReferralsView: View {
 
 struct SuccessView: View {
     @EnvironmentObject var viewModel: ReferralViewModel
-    
+    @EnvironmentObject private var rootVM: AppRootViewModel
+
     var body: some View {
         ScrollView {
             LazyVStack {
@@ -286,14 +288,20 @@ struct SuccessView: View {
                 Spacer()
             }
             .padding(.bottom, 200)
+        }.refreshable {
+            do {
+                try await viewModel.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", reload: true)
+            } catch {
+                Logger.error(error.localizedDescription)
+            }
         }
-        
     }
 }
 
 struct InProcessView: View {
     @EnvironmentObject var viewModel: ReferralViewModel
-    
+    @EnvironmentObject private var rootVM: AppRootViewModel
+
     var body: some View {
         ScrollView {
             LazyVStack {
@@ -357,6 +365,12 @@ struct InProcessView: View {
                 Spacer()
             }
             .padding(.bottom, 200)
+        }.refreshable {
+            do {
+                try await viewModel.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", reload: true)
+            } catch {
+                Logger.error(error.localizedDescription)
+            }
         }
         
     }
@@ -368,31 +382,30 @@ struct ReferralCard: View {
     let referralDate: Date
     
     var body: some View {
-        VStack {
-            HStack {
-                Assets.getReferralStatusIcon(status: status)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 24, height: 24)
+        HStack(alignment: .center) {
+            Assets.getReferralStatusIcon(status: status)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 24, height: 24)
+                .padding(.leading, 8)
+            VStack(alignment: .leading, spacing: 6) {
                 Text("**\(email)**")
                     .font(.referralCardText)
-                Spacer()
-            }
-            .padding(.horizontal, 10)
-            HStack {
-                Text(displayDate(referralDate: referralDate))
-                    .font(.referralCardText)
-                Spacer()
-                Text("**\(status.rawValue)**")
-                    .font(.referralStatus)
-                    .foregroundColor(status == .purchaseCompleted ? Color.theme.purchaseCompleted : .black)
-            }
-            .padding(.leading, 44)
-            .padding(.trailing, 10)
+                HStack {
+                    Text(displayDate(referralDate: referralDate))
+                        .font(.referralCardText)
+                        .foregroundColor(Color.theme.textInactive)
+                    Spacer()
+                    Text("**\(status.rawValue)**")
+                        .font(.referralStatus)
+                        .foregroundColor(status == .purchaseCompleted ? Color.theme.purchaseCompleted : Color.theme.superLightText)
+                }
+                .padding(.trailing, 10)
+            }.padding(.vertical, 14)
         }
-        .frame(width: 343, height: 66)
         .background(.white)
         .cornerRadius(10)
+        .padding(.horizontal, 16)
     }
     
     func displayDate(referralDate: Date) -> String {

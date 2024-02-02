@@ -21,6 +21,7 @@ class ReferralViewModel: ObservableObject {
     @Published var recentReferralsInProgress: [Referral] = []
     @Published var oneMonthAgoReferralsInProgress: [Referral] = []
     @Published var threeMonthsAgoReferralsInProgress: [Referral] = []
+    @Published private(set) var enrollmentStatusApiState = LoadingState.idle
     @Published var referralCode: String {
         didSet {
             UserDefaults.standard.setValue(referralCode, forKey: "referralCode")
@@ -153,6 +154,20 @@ class ReferralViewModel: ObservableObject {
         }
     }
     
+    func checkEnrollmentStatus(contactId: String) async {
+        do {
+            enrollmentStatusApiState = .loading
+            // swiftlint:disable:next line_length
+            let query = "SELECT Id, Name, PromotionId, LoyaltyProgramMemberId, LoyaltyProgramMember.ContactId FROM LoyaltyProgramMbrPromotion where LoyaltyProgramMember.ContactId='\(contactId)' AND Promotion.PromotionCode='\(promotionCode)'"
+            let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
+            enrollmentStatusApiState = .loaded
+            showEnrollmentView = queryResult.records.isEmpty
+        } catch {
+            enrollmentStatusApiState = .failed(error)
+            Logger.error(error.localizedDescription)
+        }
+    }
+    
     func getMembershipNumber(contactId: String) async {
         do {
             // swiftlint:disable:next line_length
@@ -184,6 +199,7 @@ class ReferralViewModel: ObservableObject {
                 self.referralMember = referralMember
                 self.referralCode = output.promotionReferralCode
                 self.referralMembershipNumber = output.membershipNumber
+                showEnrollmentView = false
                 
             } else {
                 // status is not `Processed`, if `Pending` should
@@ -212,6 +228,7 @@ class ReferralViewModel: ObservableObject {
                 self.referralMember = referralMember
                 self.referralCode = output.promotionReferralCode
                 self.referralMembershipNumber = output.membershipNumber
+                showEnrollmentView = false
                 
             } else {
                 // status is not `Processed`, if `Pending` should

@@ -28,7 +28,7 @@ final class ReferralViewModelTests: XCTestCase {
     
     @MainActor func test_loadReferralCode() async throws {
         await viewModel.loadReferralCode(membershipNumber: "")
-        XCTAssertEqual(viewModel.referralCode, "NOTFOUND-TESTRM")
+        XCTAssertEqual(viewModel.referralCode, "NOTFOUND-\(AppSettings.Defaults.promotionCode)")
     }
     
     @MainActor func test_loadAllReferrals() async throws {
@@ -80,6 +80,10 @@ final class ReferralViewModelTests: XCTestCase {
     
     @MainActor func test_checkEnrollmentStatus() async throws {
         await viewModel.checkEnrollmentStatus(membershipNumber: "")
+    }
+    
+    @MainActor func test_checkEnrollmentStatusWithContactID() async throws {
+        await viewModel.checkEnrollmentStatus(contactId: "")
     }
     
     @MainActor func test_getMembershipNumber() async throws {
