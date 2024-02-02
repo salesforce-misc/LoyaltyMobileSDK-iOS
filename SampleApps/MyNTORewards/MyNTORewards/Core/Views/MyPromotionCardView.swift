@@ -12,6 +12,7 @@ struct MyPromotionCardView: View {
     
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
+    @EnvironmentObject private var routerPath: RouterPath
     @State var showPromotionDetailView = false
     @State var processing = false
     let accessibilityID: String
@@ -79,6 +80,10 @@ struct MyPromotionCardView: View {
                  )
         )
         .onTapGesture {
+            if promotion.promotionName == "TemporaryReferralPromo9" {
+                routerPath.navigatFromPromotion(to: .referrals)
+                return
+            }
             showPromotionDetailView.toggle()
         }
         .sheet(isPresented: $showPromotionDetailView, onDismiss: {

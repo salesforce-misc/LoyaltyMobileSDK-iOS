@@ -12,11 +12,12 @@ struct MyPromotionsView: View {
     
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
+    @EnvironmentObject private var routerPath: RouterPath
     @State var offerTabSelected: Int = 0
     let barItems = ["All", "Opted In", "Available to Opt In"]
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $routerPath.pathFromPromotion) {
             VStack(spacing: 0) {
                 VStack(spacing: 0) {
                     HStack {
@@ -78,7 +79,7 @@ struct MyPromotionsView: View {
                 } label: {
                     EmptyView()
                 }
-            }
+            }.withAppRouter()
         }
     }
     

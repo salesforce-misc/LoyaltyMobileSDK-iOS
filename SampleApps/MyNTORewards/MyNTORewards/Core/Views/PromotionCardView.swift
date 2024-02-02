@@ -11,6 +11,7 @@ import LoyaltyMobileSDK
 struct PromotionCardView: View {
 
     @EnvironmentObject private var promotionVM: PromotionViewModel
+    @EnvironmentObject private var routerPath: RouterPath
     @State var showPromotionDetailView = false
     @State var processing = false
     let accessibilityID: String
@@ -69,6 +70,10 @@ struct PromotionCardView: View {
                  )
         )
         .onTapGesture {
+            if promotion.promotionName == "TemporaryReferralPromo9" {
+                routerPath.navigateFromHome(to: .referrals)
+                return
+            }
             showPromotionDetailView.toggle()
         }
         .sheet(isPresented: $showPromotionDetailView, onDismiss: {
