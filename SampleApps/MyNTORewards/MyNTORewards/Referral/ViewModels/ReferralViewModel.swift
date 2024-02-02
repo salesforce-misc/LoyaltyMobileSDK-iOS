@@ -40,7 +40,7 @@ class ReferralViewModel: ObservableObject {
     private let localFileManager: FileManagerProtocol
     private let referralsFolderName = AppSettings.cacheFolders.referrals
     private let promotionCode = AppSettings.Defaults.promotionCode
-    private let referralProgramName = AppSettings.Defaults.loyaltyProgramName
+    private let referralProgramName = AppSettings.Defaults.referralProgramName
     
     init(
         authManager: ForceAuthenticator = ForceAuthManager.shared,
@@ -50,7 +50,7 @@ class ReferralViewModel: ObservableObject {
         self.authManager = authManager
         self.forceClient = forceClient ?? ForceClient(auth: authManager)
         self.referralAPIManager = ReferralAPIManager(auth: self.authManager,
-                                                     referralProgramName: AppSettings.Defaults.loyaltyProgramName,
+                                                     referralProgramName: AppSettings.Defaults.referralProgramName,
                                                      instanceURL: AppSettings.shared.getInstanceURL(),
                                                      forceClient: self.forceClient)
         self.localFileManager = localFileManager

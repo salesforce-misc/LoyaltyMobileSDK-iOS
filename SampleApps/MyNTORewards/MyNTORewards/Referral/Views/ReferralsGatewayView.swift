@@ -37,7 +37,7 @@ struct ReferralsGatewayView: View {
             .frame(maxHeight: .infinity)
             .navigationBarBackButtonHidden()
         case .failed:
-            ProcessingErrorView(message: "Oops! Something went wrong while processing the request. Try again.")
+            ProcessingErrorView(message: StringConstants.Referrals.genericError)
         case .loaded:
             MyReferralsView(showEnrollmentView: referralVM.showEnrollmentView)
         }
