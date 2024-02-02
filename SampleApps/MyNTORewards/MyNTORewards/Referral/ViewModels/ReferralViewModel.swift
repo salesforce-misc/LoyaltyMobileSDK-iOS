@@ -41,11 +41,15 @@ class ReferralViewModel: ObservableObject {
     private let referralsFolderName = AppSettings.cacheFolders.referrals
     private let promotionCode = AppSettings.Defaults.promotionCode
     private let referralProgramName = AppSettings.Defaults.loyaltyProgramName
-    
+	var devMode: Bool = false
+	var isEnrolled: Bool = false
+	
     init(
         authManager: ForceAuthenticator = ForceAuthManager.shared,
         forceClient: ForceClient? = nil,
-        localFileManager: FileManagerProtocol = LocalFileManager.instance
+        localFileManager: FileManagerProtocol = LocalFileManager.instance,
+		devMode: Bool = false,
+		isEnrolled: Bool = false
     ) {
         self.authManager = authManager
         self.forceClient = forceClient ?? ForceClient(auth: authManager)
@@ -53,20 +57,22 @@ class ReferralViewModel: ObservableObject {
                                                      referralProgramName: AppSettings.Defaults.loyaltyProgramName,
                                                      instanceURL: AppSettings.shared.getInstanceURL(),
                                                      forceClient: self.forceClient)
+		self.devMode = devMode
+		self.isEnrolled = isEnrolled
         self.localFileManager = localFileManager
         self.referralCode = UserDefaults.standard.string(forKey: "referralCode") ?? ""
         self.referralMembershipNumber = UserDefaults.standard.string(forKey: "referralMembershipNumber") ?? ""
     }
     
-    func loadAllReferrals(memberContactId: String, reload: Bool = false, devMode: Bool = false) async throws {
-        if !reload {
+    func loadAllReferrals(memberContactId: String, reload: Bool = false) async throws {
+        if !reload && !devMode {
             if let cached = localFileManager.getData(type: [Referral].self, id: promotionCode, folderName: referralsFolderName) {
                 promotionStageCounts = calculatePromotionStageCounts(in: cached)
                 filterReferrals(referrals: cached)
                 return
             } else {
                 do {
-                    let result = try await fetchAllReferrals(memberContactId: memberContactId, devMode: devMode)
+                    let result = try await fetchAllReferrals(memberContactId: memberContactId)
                     promotionStageCounts = calculatePromotionStageCounts(in: result)
                     filterReferrals(referrals: result)
                     
@@ -80,7 +86,7 @@ class ReferralViewModel: ObservableObject {
             
         } else {
             do {
-                let result = try await fetchAllReferrals(memberContactId: memberContactId, devMode: devMode)
+                let result = try await fetchAllReferrals(memberContactId: memberContactId)
                 promotionStageCounts = calculatePromotionStageCounts(in: result)
                 filterReferrals(referrals: result)
                 
@@ -93,7 +99,7 @@ class ReferralViewModel: ObservableObject {
         }
     }
     
-    func fetchAllReferrals(memberContactId: String, devMode: Bool = false) async throws -> [Referral] {
+    func fetchAllReferrals(memberContactId: String) async throws -> [Referral] {
         let query = """
             SELECT ReferrerId, Id, ClientEmail, ReferrerEmail, ReferralDate, CurrentPromotionStage.Type,
                 TYPEOF ReferredParty
@@ -161,7 +167,11 @@ class ReferralViewModel: ObservableObject {
             let query = "SELECT Id, Name, PromotionId, LoyaltyProgramMemberId, LoyaltyProgramMember.ContactId FROM LoyaltyProgramMbrPromotion where LoyaltyProgramMember.ContactId='\(contactId)' AND Promotion.PromotionCode='\(promotionCode)'"
             let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
             enrollmentStatusApiState = .loaded
-            showEnrollmentView = queryResult.records.isEmpty
+			if devMode {
+				showEnrollmentView = !isEnrolled
+			} else {
+				showEnrollmentView = queryResult.records.isEmpty
+			}
         } catch {
             enrollmentStatusApiState = .failed(error)
             Logger.error(error.localizedDescription)

@@ -123,6 +123,10 @@
 		3F16D95D2A9D8E85003DA01A /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F16D95C2A9D8E85003DA01A /* ZoomableScrollView.swift */; };
 		3F19C2E12AFB4BE4003AECDC /* UIView+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F19C2E02AFB4BE4003AECDC /* UIView+Shimmer.swift */; };
 		3F2055B62A81134800D38034 /* CameraViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2055B52A81134800D38034 /* CameraViewUITests.swift */; };
+		3F219E392B6A95A300FCA205 /* MyReferralViewEnrolledUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F219E382B6A95A300FCA205 /* MyReferralViewEnrolledUITests.swift */; };
+		3F219E3C2B6A95D600FCA205 /* ReferralViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F219E3B2B6A95D600FCA205 /* ReferralViewHelper.swift */; };
+		3F219E3E2B6B41BE00FCA205 /* ReferAFriendViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F219E3D2B6B41BE00FCA205 /* ReferAFriendViewUITests.swift */; };
+		3F219E462B6C08C000FCA205 /* MyReferralViewUnEnrolledUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F219E452B6C08C000FCA205 /* MyReferralViewUnEnrolledUITests.swift */; };
 		3F29C5A32AA7371E00FBE5B0 /* ProcessedAwsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29C5A22AA7371E00FBE5B0 /* ProcessedAwsResponse.swift */; };
 		3F2B758A2B2E048900B2AA9C /* FortuneWheelWithoutRewardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B75892B2E048900B2AA9C /* FortuneWheelWithoutRewardUITests.swift */; };
 		3F2B758C2B2E104C00B2AA9C /* FortuneWheelPlayGameFailUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B758B2B2E104C00B2AA9C /* FortuneWheelPlayGameFailUITests.swift */; };
@@ -439,6 +443,10 @@
 		3F16D95C2A9D8E85003DA01A /* ZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
 		3F19C2E02AFB4BE4003AECDC /* UIView+Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmer.swift"; sourceTree = "<group>"; };
 		3F2055B52A81134800D38034 /* CameraViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewUITests.swift; sourceTree = "<group>"; };
+		3F219E382B6A95A300FCA205 /* MyReferralViewEnrolledUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReferralViewEnrolledUITests.swift; sourceTree = "<group>"; };
+		3F219E3B2B6A95D600FCA205 /* ReferralViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralViewHelper.swift; sourceTree = "<group>"; };
+		3F219E3D2B6B41BE00FCA205 /* ReferAFriendViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferAFriendViewUITests.swift; sourceTree = "<group>"; };
+		3F219E452B6C08C000FCA205 /* MyReferralViewUnEnrolledUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReferralViewUnEnrolledUITests.swift; sourceTree = "<group>"; };
 		3F29C5A22AA7371E00FBE5B0 /* ProcessedAwsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessedAwsResponse.swift; sourceTree = "<group>"; };
 		3F2B75892B2E048900B2AA9C /* FortuneWheelWithoutRewardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneWheelWithoutRewardUITests.swift; sourceTree = "<group>"; };
 		3F2B758B2B2E104C00B2AA9C /* FortuneWheelPlayGameFailUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneWheelPlayGameFailUITests.swift; sourceTree = "<group>"; };
@@ -1011,6 +1019,17 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		3F219E3A2B6A95A900FCA205 /* Referral */ = {
+			isa = PBXGroup;
+			children = (
+				3F219E382B6A95A300FCA205 /* MyReferralViewEnrolledUITests.swift */,
+				3F219E452B6C08C000FCA205 /* MyReferralViewUnEnrolledUITests.swift */,
+				3F219E3D2B6B41BE00FCA205 /* ReferAFriendViewUITests.swift */,
+				3F219E3B2B6A95D600FCA205 /* ReferralViewHelper.swift */,
+			);
+			path = Referral;
+			sourceTree = "<group>";
+		};
 		3F3E65A02A02B67F00180569 /* IntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1416,6 +1435,7 @@
 				AFE960DE29EE489500C888C0 /* SignUpViewHelper.swift */,
 				AFE960E029EE4B9D00C888C0 /* SignInViewHelper.swift */,
 				AFE960E229EE4D0800C888C0 /* MoreViewHelper.swift */,
+				3F219E3A2B6A95A900FCA205 /* Referral */,
 				4F7BD98E2AE12EBA003B7ADA /* GameZone */,
 				3F667E082A86407B00267958 /* Receipt Scanning */,
 				AFAF523E29F63C6F00478F67 /* VoucherViewHelper.swift */,
@@ -1880,12 +1900,14 @@
 				4F7BD9902AE12EF8003B7ADA /* GameZoneViewUITests.swift in Sources */,
 				AF468B5729EEFB28003C1344 /* MyProfileViewHelper.swift in Sources */,
 				3F2055B62A81134800D38034 /* CameraViewUITests.swift in Sources */,
+				3F219E3E2B6B41BE00FCA205 /* ReferAFriendViewUITests.swift in Sources */,
 				AFCDDAAD29E54621006B00EB /* OnBoardingViewUITests.swift in Sources */,
 				AFE960E129EE4B9D00C888C0 /* SignInViewHelper.swift in Sources */,
 				AFCDDAA629E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift in Sources */,
 				3FC37C8E2B444534005A3E2C /* PlayedTabUITests.swift in Sources */,
 				3F7DAFA32A81E6D900A521E2 /* ReceiptsViewHelper.swift in Sources */,
 				3F8A88212B2BF633009D05A3 /* ScratchCardViewRewardedUITests.swift in Sources */,
+				3F219E392B6A95A300FCA205 /* MyReferralViewEnrolledUITests.swift in Sources */,
 				AFE960DD29EE47A700C888C0 /* OnBoardingViewHelper.swift in Sources */,
 				AFE960E329EE4D0800C888C0 /* MoreViewHelper.swift in Sources */,
 				3F7DAF9D2A81314300A521E2 /* ProcessingReceiptViewUITests.swift in Sources */,
@@ -1894,11 +1916,13 @@
 				3F2B758C2B2E104C00B2AA9C /* FortuneWheelPlayGameFailUITests.swift in Sources */,
 				AFAF524329F63E2900478F67 /* TransactionsViewHelper.swift in Sources */,
 				AF468B5929EEFB60003C1344 /* HomeViewHelper.swift in Sources */,
+				3F219E462B6C08C000FCA205 /* MyReferralViewUnEnrolledUITests.swift in Sources */,
 				AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */,
 				3F2B75922B2ED14600B2AA9C /* GameZoneExpiryLabelTests.swift in Sources */,
 				3F2B758A2B2E048900B2AA9C /* FortuneWheelWithoutRewardUITests.swift in Sources */,
 				3F7DAF9B2A81276D00A521E2 /* CapturedImageViewUITests.swift in Sources */,
 				AFE960DF29EE489500C888C0 /* SignUpViewHelper.swift in Sources */,
+				3F219E3C2B6A95D600FCA205 /* ReferralViewHelper.swift in Sources */,
 				3F8A88282B2CAF23009D05A3 /* FortuneWheelWithRewardUITests.swift in Sources */,
 				3F9149A32A7DD6DC009FADAB /* ReceiptsViewUITests.swift in Sources */,
 				3F667DFA2A836E2100267958 /* ReceiptDetailsUITests.swift in Sources */,
