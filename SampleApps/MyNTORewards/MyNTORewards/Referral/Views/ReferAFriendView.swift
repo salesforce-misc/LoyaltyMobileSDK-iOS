@@ -209,7 +209,7 @@ struct ReferAFriendView: View {
             }
             .ignoresSafeArea()
             .task {
-                await referralVM.loadReferralCode(membershipNumber: referralVM.referralMember?.membershipNumber ?? referralVM.referralMembershipNumber)
+                await referralVM.loadReferralCode(membershipNumber: rootVM.member?.membershipNumber ?? "")
             }
             if processing {
                 ProgressView()
