@@ -102,10 +102,11 @@ struct LightLongPromotionButton: ButtonStyle {
 }
 
 struct DarkFlexibleButton: ButtonStyle {
+    var buttonFont: Font = .buttonText
 	
 	func makeBody(configuration: Configuration) -> some View {
 		configuration.label
-			.font(.buttonText)
+			.font(buttonFont)
 			.foregroundColor(.white)
 			.frame(maxWidth: .infinity)
 			.frame(height: 48)

@@ -122,7 +122,7 @@ final class VoucherViewModelTests: XCTestCase {
 	
 	@MainActor func test_getRecentlyExpiredVouchers_whenPassing10Days_shouldReturnOneVoucher() async throws {
 		let vouchers = try await viewModel.fetchVouchers(membershipNumber: "1234", devMode: true)
-		let currentDate = "2023-05-30".toDate()
+		let currentDate = "2023-12-09".toDate()
 		let recentVouchers: [VoucherModel] = viewModel.getRecentlyExpiredVouchers(from: vouchers,
 																		 withinDays: 10,
 																		 currentDate: currentDate)
@@ -131,7 +131,7 @@ final class VoucherViewModelTests: XCTestCase {
 	
 	@MainActor func test_getRecentlyExpiredVouchers_whenPassing9Days_shouldNotReturnAnyVouchers() async throws {
 		let vouchers = try await viewModel.fetchVouchers(membershipNumber: "1234", devMode: true)
-		let currentDate = "2023-05-30".toDate()
+		let currentDate = "2023-12-10".toDate()
 		let recentVouchers: [VoucherModel] = viewModel.getRecentlyExpiredVouchers(from: vouchers,
 																		 withinDays: 9,
 																		 currentDate: currentDate)

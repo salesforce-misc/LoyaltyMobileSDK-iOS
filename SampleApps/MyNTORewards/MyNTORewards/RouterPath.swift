@@ -12,6 +12,7 @@ class RouterPath: ObservableObject {
 	@Published var pathFromHome: [RouterDestination] = []
 	@Published var pathFromMore: [RouterDestination] = []
 	@Published var presentedSheet: SheetDestination?
+	var startWithGameZoneInMore = false
 	
 	func dismissSheets() {
 		presentedSheet = nil
@@ -24,6 +25,10 @@ class RouterPath: ObservableObject {
 	func navigateFromMore(to destination: RouterDestination) {
 		pathFromMore.append(destination)
 	}
+    
+    func navigateFromGameZone(to destination: RouterDestination) {
+        pathFromMore.append(destination)
+    }
 	
 	func presentSheet(destination: SheetDestination) {
 		dismissSheets()

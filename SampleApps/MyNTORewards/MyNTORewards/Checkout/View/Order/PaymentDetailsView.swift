@@ -15,6 +15,7 @@ struct PaymentDetailsView: View {
 	@EnvironmentObject private var productVM: ProductViewModel
 	@EnvironmentObject private var transactionVM: TransactionViewModel
 	@EnvironmentObject private var vouchersVM: VoucherViewModel
+	@EnvironmentObject private var gameZoneViewModel: GameZoneViewModel
 	@State private var isScreenLoading = false
 	
     var body: some View {
@@ -42,17 +43,30 @@ struct PaymentDetailsView: View {
                                     productVM: productVM,
                                     profileVM: profileVM,
                                     membershipNumber: membershipNumber)
+								if orderDetailsVM.gameParticipantRewardId.isEmpty {
+									orderDetailsVM.isOrderPlacedNavigationActive = true
+								} else {
+									orderDetailsVM.gameDefinition = try await gameZoneViewModel.fetchGame(for: rootVM.member?.loyaltyProgramMemberId ?? "",
+																										  gameParticipantRewardId: orderDetailsVM.gameParticipantRewardId)
+									orderDetailsVM.isOrderPlacedWithGameNavigationActive = true
+								}
+								
                             } catch {
                                 Logger.error("Unable to create order: \(error.localizedDescription)")
                             }
                             isScreenLoading = false
                         }
-                    }
-                    .longFlexibleButtonStyle()
-                    .navigationDestination(isPresented: $orderDetailsVM.isOrderPlacedNavigationActive) {
-                        OrderPlacedView()
-                            .environmentObject(orderDetailsVM)
-                    }
+					}
+					.longFlexibleButtonStyle()
+					.navigationDestination(isPresented: $orderDetailsVM.isOrderPlacedNavigationActive) {
+						OrderPlacedView()
+							.environmentObject(orderDetailsVM)
+					}
+					.navigationDestination(isPresented: $orderDetailsVM.isOrderPlacedWithGameNavigationActive) {
+						OrderPlacedGameView(game: orderDetailsVM.gameType ?? .scratchCard)
+							.environmentObject(orderDetailsVM)
+							.navigationBarBackButtonHidden()
+					}
 			}
             .background(Color.theme.productBackground)
             

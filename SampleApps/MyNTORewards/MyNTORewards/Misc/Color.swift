@@ -84,6 +84,13 @@ struct ColorTheme {
     let shippingBackground = Color("ShippingBackgroundColor") // #FAFBFC
 	let vibrantViolet = Color("VibrantViolet") // #BA01FF
 	let lightGray = Color("LightGray") // #E0E0E0
+    let wheelIndicatorBackground = Color("DarkGreyColor") // #23475F
+    let scratchCardBackground = Color("LightGreyColor") // #D9D9D9
+    let scratchCardDotsBackground = Color("ScratchCardDotsColor") //#F8EFFF
+    let scratchCardText = Color("ScratchCardTextColor") // #939393
+    let noLuckViewLineColor = Color("NoLuckViewLineColor") // #FFCBC7
+	let fortuneWheelStrokeColor = Color("FortuneWheelStrokeColor") // #23475F
+	let fortuneWheelSecondaryStrokeColor = Color("FortuneWheelSecondaryStrokeColor") // #D9D9D9
 }
 
 struct TierColor {

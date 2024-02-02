@@ -181,8 +181,8 @@ class AppRootViewModel: ObservableObject {
                                                           forceClient: ForceClient(auth: authManager))
 				let profile = try await loyaltyAPIManager.getCommunityMemberProfile()
 				
-				let member = CommunityMemberModel(firstName: profile.associatedContact.firstName,
-												  lastName: profile.associatedContact.lastName,
+				let member = CommunityMemberModel(firstName: profile.associatedContact?.firstName ?? "F",
+												  lastName: profile.associatedContact?.lastName ?? "L",
 												  email: userEmail,
 												  loyaltyProgramMemberId: profile.loyaltyProgramMemberID,
 												  loyaltyProgramName: profile.loyaltyProgramName,

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct StringConstants {
 	struct Receipts {
@@ -38,4 +39,49 @@ struct StringConstants {
 		static let submitForManualReviewButton = "Submit for Manual Review"
         static let noEligibleItemsText = "We couldn’t find any eligible items in the receipt."
 	}
+    
+    struct Gamification {
+        static let successGreetingTitle = "Congratulations!"
+        static let successVoucherGreeting = "You've won a{n}for your next purchase. To redeem your reward, go to the Voucher section."
+		static let playedGameSuccessGreeting = "Here’s your reward:{n}"
+		static let playedGameSuccessGreetingForVoucher = "Here’s your reward:{n}\nTo redeem your reward, go to Vouchers."
+        static let successPointsGreeting = "You've won{n}that you can redeem on your next purchase."
+        static let successNoRewardGreeting = "Better luck next time!"
+        static let successCustomRewardGreeting = "You’ve won a reward."
+
+        static let placeHolderOfferText = "20% off"
+        static let backButtonTitle = "Back"
+        static let successBackButtonTitle = "Play More"
+        static let failureMessageTitle = "Better luck next time!"
+        static let failureBodyText = ""
+        static let failureBodySubText = "Thank you for playing! Stay tuned for more offers."
+        static let gameZoneHeader = "Game Zone"
+        static let activeTab = "Active"
+        static let expiredTab = "Expired"
+        static let playedTab = "Played"
+        static let expiringToday = "Expiring today"
+        static let expiringTomorrow = "Expiring tomorrow"
+        static let expiryLabel = "Expiry"
+        static let expiredTabHeaderLabel = "No longer available"
+        static let playedTabHeaderLabel = "Games Played in Last 90 Days"
+        static let spinaWheelHeaderLabel = "Spin a wheel"
+        static let spinaWheelSubHeaderLabel = "Spin the wheel and unlock instant rewards!"
+        // swiftlint:disable line_length
+        static let spinaWheelBodyLabel = "Grab this exclusive onetime offer and win some exciting rewards. For more information, refer to the terms and conditions."
+        // swiftlint:enable line_length
+        static let tapSpinaWheeltoPlayLabel = ""
+		static let tapSpinButtonLabel: LocalizedStringKey = "**SPIN**"
+        static let scratchCardTitleLabel = "Scratch a Card and Win"
+        static let scratchCardSubTitleLabel = "Unlock instant rewards!"
+        static let scratchCardLabel = " SCRATCH & WIN "
+        static let scratchCardBodyLabel = "Grab this exclusive onetime offer and win some exciting rewards."
+        static let wonLabel = "Won"
+        static let noWonLabel = "Won"
+        static let voucherSectionButton = "Go to the Voucher Section"
+
+		// Empty State
+		static let emptySubtitleForActiveView = "When you have games available, you’ll see them here."
+		static let emptySubtitleForExpiredView = "When your games expire, you’ll see them here."
+		static let emptySubtitleForPlayedView = "After you play a game, you’ll see it here."
+    }
 }

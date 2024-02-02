@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import LoyaltyMobileSDK
+import GamificationMobileSDK
 
 extension PreviewProvider {
     
@@ -219,6 +220,27 @@ class DeveloperPreview {
 												lineItemPrice: "$30",
 												isEligible: false)
 	]
+    
+    let activeGame = GameDefinition(name: "Barney and Clyde Style Promotion",
+                                    gameDefinitionId: "1",
+                                    description: "",
+                                    type: .spinaWheel,
+                                    startDate: Date(),
+                                    endDate: nil,
+                                    timeoutDuration: 10,
+                                    gameRewards: [],
+                                    participantGameRewards: [])
+    
+    let expiredGame = GameDefinition(name: "Barney and Clyde Style Promotion",
+                                      gameDefinitionId: "2",
+                                      description: "",
+                                      type: .spinaWheel,
+                                      startDate: Date(),
+                                      endDate: nil,
+                                      timeoutDuration: 10,
+                                      gameRewards: [],
+                                      participantGameRewards: [])
+
     let rootVM = AppRootViewModel()
     let benefitVM = BenefitViewModel()
     let promotionVM = PromotionViewModel()
@@ -233,7 +255,7 @@ class DeveloperPreview {
     let camVM = CameraViewModel()
     let routerPath = RouterPath()
     let receiptVM = ReceiptViewModel()
-	let receiptListVM = ReceiptListViewModel()
+    let receiptListVM = ReceiptListViewModel()
     
     private init() {
         setMember(member: member)

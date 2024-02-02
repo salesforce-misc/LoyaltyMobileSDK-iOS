@@ -335,4 +335,57 @@ extension Font {
     static var errorMessageText: Font {
         return Font.custom("SFProText-Regular", size: 14)
     }
+    
+    /// Game Zone Card
+    static var gameTitle: Font {
+        return Font.custom("SFPro-Bold", size: 13)
+    }
+    
+    /// Spin a wheel
+    static var gameHeaderTitle: Font {
+        return Font.custom("SFPro-Bold", size: 24)
+    }
+    
+    static var gameHeaderSubTitle: Font {
+        return Font.custom("SFPro-Medium", size: 16)
+    }
+    
+    static var gameDescTitle: Font {
+        return Font.custom("SFPro-Heavy", size: 16)
+    }
+    
+    static var gameDescText: Font {
+        return Font.custom("SFPro-Regular", size: 16)
+    }
+    
+    /// Scratch Card
+    static var scratchText: Font {
+        return Font.custom("SFProDisplay-Regular", size: 12)
+    }
+    
+    /// Order Placed - Game Zone
+    static var orderPlacedTitle: Font {
+        return Font.custom("SFProDisplay-Regular", size: 22).weight(.bold)
+    }
+    
+    static var orderPlacedDescription: Font {
+        return Font.custom("SFProDisplay-Regular", size: 14)
+    }
+    
+    static var unlockedGameTitle: Font {
+        return Font.custom("SFProDisplay-Regular", size: 16).weight(.bold)
+    }
+    
+    static var unlockedGameDescription: Font {
+        return Font.custom("SFProDisplay-Regular", size: 12)
+    }
+    
+    static var footerButtonText: Font {
+        return Font.custom("SFProDisplay-Regular", size: 16)
+    }
+
+    /// Game NoLuck View
+    static var betterLuckText: Font {
+        return Font.custom("SFProDisplay-Bold", size: 24)
+    }
 }

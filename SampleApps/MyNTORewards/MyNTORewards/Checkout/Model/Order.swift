@@ -38,3 +38,8 @@ struct OrderDetails: Codable {
 		case activatedDate = "ActivatedDate"
 	}
 }
+
+struct PlacedOrderResponse: Decodable {
+	let orderId: String
+	let gameParticipantRewardId: String
+}

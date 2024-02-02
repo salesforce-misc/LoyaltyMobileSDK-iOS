@@ -62,6 +62,7 @@ enum AppAccessibilty {
         static let support = "support_label"
         static let favourites = "favourites_label"
         static let logout = "logout_button"
+        static let game = "game_label"
     }
     
     enum Promotion {
@@ -169,4 +170,8 @@ enum AppAccessibilty {
 		static let eligibleItemsTitle = "eligible_items_title"
 		static let ineligibleItemsTitle = "ineligible_items_title"
 	}
+    
+    enum GameZone {
+        static let header = "game_zone_header"
+    }
 }

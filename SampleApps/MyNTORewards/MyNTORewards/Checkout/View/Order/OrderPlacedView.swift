@@ -14,13 +14,16 @@ struct OrderPlacedView: View {
     @EnvironmentObject private var profileVM: ProfileViewModel
     @EnvironmentObject private var transactionVM: TransactionViewModel
     @EnvironmentObject private var vouchersVM: VoucherViewModel
+	@State var orderNumber = ""
+	
     var body: some View {
 		VStack {
 			Spacer()
 			VStack(spacing: 16) {
 				Image("circle_checked")
-				Text("Your Order \(orderDetailsVM.orderId) is Placed.")
+				Text("Your Order \(orderNumber) is Placed.")
 					.font(.productDetailTitleText)
+					.multilineTextAlignment(.center)
 				Text("You can view the delivery status on the tracking page.")
 					.font(.aggreementText)
 					.multilineTextAlignment(.center)
@@ -47,7 +50,8 @@ struct OrderPlacedView: View {
 		}
 		.task {
 			do {
-				_ = try await orderDetailsVM.getOrderDetails()
+				let orderDetails = try await orderDetailsVM.getOrderDetails()
+				orderNumber = orderDetails.orderNumber
 			} catch {
                 Logger.error("Error fetching order details..")
 			}

@@ -6,15 +6,27 @@
 //
 
 import SwiftUI
+import GamificationMobileSDK
+import LoyaltyMobileSDK
 
 @MainActor
 extension View {
 	func withAppRouter() -> some View {
 		navigationDestination(for: RouterDestination.self) { destination in
-			switch destination {
-			case .receipts:
-				ReceiptsView()
-			}
+            switch destination {
+            case .receipts:
+                ReceiptsView()
+            case .gameZone:
+                GameZoneView()
+            case .gameZoneBetterLuck:
+                GamificationNoLuckView().toolbar(.hidden, for: .tabBar, .navigationBar)
+            case .gameZoneCongrats(let offerText, let reward):
+                GamificationCongratsView(offerText: offerText, 
+										 rewardType: RewardType(rawValue: reward) ?? .voucher)
+				.toolbar(.hidden, for: .tabBar, .navigationBar)
+            case .vouchers:
+                GameZoneVoucherView()
+            }
 		}
 	}
 	

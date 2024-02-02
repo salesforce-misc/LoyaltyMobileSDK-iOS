@@ -60,6 +60,9 @@ public class LoyaltyAPIManager {
         case enrollInPromotion(programName: String, version: String)
         case unenrollPromotion(programName: String, version: String)
         case getVouchers(programName: String, membershipNumber: String, version: String)
+        case getGames(participantId: String, version: String)
+        case playGame(gameParticipantRewardId: String, version: String)
+
     }
     
     /// Get path for given API resource
@@ -84,8 +87,11 @@ public class LoyaltyAPIManager {
 			return ForceAPI.path(for: "connect/loyalty/programs/\(programName)/program-processes/OptOutOfPromotion", version: version)
         case .getVouchers(let programName, let membershipNumber, let version):
             return ForceAPI.path(for: "loyalty/programs/\(programName)/members/\(membershipNumber)/vouchers", version: version)
+        case .getGames(participantId: let participantId, version: let version):
+            return ForceAPI.path(for: "game/participant/\(participantId)/games", version: version)
+        case .playGame(gameParticipantRewardId: let gameParticipantRewardId, version: let version):
+            return ForceAPI.path(for: "game/gameParticipantReward/\(gameParticipantRewardId)/game-reward", version: version)
         }
-    
     }
     
     /// Get Member Benefits - Makes an asynchronous request for data from the Salesforce
