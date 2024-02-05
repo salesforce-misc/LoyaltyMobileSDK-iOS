@@ -246,7 +246,7 @@ struct SuccessView: View {
                 }
                 
                 if !viewModel.oneMonthAgoReferralsSuccess.isEmpty {
-                    Group {
+                    VStack {
                         HStack {
                             Text(StringConstants.Referrals.sectionTwoTitle)
                                 .font(.referralTimeTitle)
@@ -264,7 +264,7 @@ struct SuccessView: View {
                 }
                       
                 if !viewModel.threeMonthsAgoReferralsSuccess.isEmpty {
-                    Group {
+                    VStack {
                         HStack {
                             Text(StringConstants.Referrals.sectionThreeTitle)
                                 .font(.referralTimeTitle)
@@ -306,7 +306,7 @@ struct InProcessView: View {
         ScrollView {
             LazyVStack {
                 if !viewModel.recentReferralsInProgress.isEmpty {
-                    Group {
+                    VStack {
                         HStack {
                             Text(StringConstants.Referrals.sectionOneTitle)
                                 .font(.referralTimeTitle)
@@ -323,7 +323,7 @@ struct InProcessView: View {
                 }
                 
                 if !viewModel.oneMonthAgoReferralsInProgress.isEmpty {
-                    Group {
+                    VStack {
                         HStack {
                             Text(StringConstants.Referrals.sectionTwoTitle)
                                 .font(.referralTimeTitle)
@@ -340,7 +340,7 @@ struct InProcessView: View {
                 }
                 
                 if !viewModel.threeMonthsAgoReferralsInProgress.isEmpty {
-                    Group {
+                    VStack {
                         HStack {
                             Text(StringConstants.Referrals.sectionThreeTitle)
                                 .font(.referralTimeTitle)

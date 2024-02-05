@@ -18,7 +18,7 @@ struct BottomNavTabsView: View {
 	@EnvironmentObject var appViewRouter: AppViewRouter
     @StateObject var rootVM = AppRootViewModel()
 	@StateObject var gameZoneVM: GameZoneViewModel
-    @StateObject var referralVM = ReferralViewModel()
+	@StateObject var referralVM: ReferralViewModel
 	@State var selectedTab: Int
 	
 	init(selectedTab: Int = Tab.home.rawValue) {
@@ -28,11 +28,14 @@ struct BottomNavTabsView: View {
             _gameZoneVM = StateObject(wrappedValue: GameZoneViewModel(devMode: true,
                                                                                   mockFileName: UITestingHelper.getGamesMockFileName
                                                                                  ))
+			_referralVM = StateObject(wrappedValue: ReferralViewModel(devMode: true, isEnrolled: UITestingHelper.isUserEnrolledForReferral))
         } else {
 			_gameZoneVM = StateObject(wrappedValue: GameZoneViewModel())
+			_referralVM = StateObject(wrappedValue: ReferralViewModel())
 		}
 		#else
 			_gameZoneVM = StateObject(wrappedValue: GameZoneViewModel())
+			_referralVM = StateObject(wrappedValue: ReferralViewModel())
 		#endif
 	}
 	
