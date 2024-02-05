@@ -37,7 +37,38 @@ struct ReferralsGatewayView: View {
             .frame(maxHeight: .infinity)
             .navigationBarBackButtonHidden()
         case .failed:
-            ProcessingErrorView(message: StringConstants.Referrals.genericError)
+            VStack(spacing: 0) {
+                HStack {
+                    Text(StringConstants.Referrals.referralsTitle)
+                        .font(.congratsTitle)
+                        .padding(.leading, 15)
+                        .accessibilityIdentifier(AppAccessibilty.Referrals.referralsViewTitle)
+                    Spacer()
+                }
+                .frame(height: 44)
+                .frame(maxWidth: .infinity)
+                .background(.white)
+                ZStack {
+                    Color.theme.background
+                    GeometryReader { geometry in
+                        ScrollView(.vertical) {
+                            VStack {
+                                ProcessingErrorView(message: StringConstants.Referrals.genericError)
+                            }
+                            .padding()
+                            .frame(width: geometry.size.width)
+                            .frame(minHeight: geometry.size.height)
+                        }.refreshable {
+                            checkEnrollmentStatus()
+                        }
+                    }
+                }
+                Spacer()
+            }
+            .ignoresSafeArea(edges: .bottom)
+            .frame(maxHeight: .infinity)
+            .navigationBarBackButtonHidden()
+
         case .loaded:
             MyReferralsView(showEnrollmentView: referralVM.showEnrollmentView)
         }
