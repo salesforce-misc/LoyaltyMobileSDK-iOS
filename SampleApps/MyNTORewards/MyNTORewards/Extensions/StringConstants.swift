@@ -120,5 +120,6 @@ struct StringConstants {
         static let emailUnableToSent = "Something doesn't look right with one of the email addresses."
         static let emailValidationError = "Something doesn't look right with one of the email addresses."
         static let enrollmentError = "We couldn’t enroll you as a member of the referral program. Try joining again."
+        static let genericError = "Oops! Something went wrong while processing the request. Try again."
     }
 }

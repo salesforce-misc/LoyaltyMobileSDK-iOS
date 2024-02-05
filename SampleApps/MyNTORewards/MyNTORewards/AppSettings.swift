@@ -51,7 +51,7 @@ struct AppSettings {
         static let displayDateFormat = "yyyy-MM-dd"
         
         // Referral settings
-        static let referralProgramName = "Referral Program"
+        static let referralProgramName = loyaltyProgramName
         static let promotionCode = "TEMPRP5"
         static let referralDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         static let referralDateFormatWithoutTime = "yyyy-MM-dd"
