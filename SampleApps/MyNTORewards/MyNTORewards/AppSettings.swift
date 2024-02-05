@@ -28,6 +28,12 @@ struct AppSettings {
             communityURL: connectedAppSettings["COMMUNITY_URL"] as? String ?? "",
             selfRegisterURL: connectedAppSettings["SELF_REGISTER_URL"] as? String ?? ""
         )
+        
+        do {
+            try ForceConnectedAppKeychainManager.save(item: connectedApp)
+        } catch {
+            Logger.error("Failed to save the connecte app to keychain - \(error.localizedDescription)")
+        }
     }
 
     struct Defaults {
