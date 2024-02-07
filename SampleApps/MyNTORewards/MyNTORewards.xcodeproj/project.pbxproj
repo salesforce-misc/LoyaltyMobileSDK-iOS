@@ -255,6 +255,8 @@
 		4F18ED832AD5737B000F64D9 /* ScrollViewBounceModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED822AD5737B000F64D9 /* ScrollViewBounceModifier.swift */; };
 		4F18ED852AD94D50000F64D9 /* GameZoneActiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED842AD94D50000F64D9 /* GameZoneActiveView.swift */; };
 		4F18ED872AD958C6000F64D9 /* GameZoneExpiredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */; };
+		4F2B802A2B737F2D007ECECF /* PromotionGatewayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2B80292B737F2D007ECECF /* PromotionGatewayView.swift */; };
+		4F2B802C2B73953B007ECECF /* PromotionGateWayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2B802B2B73953B007ECECF /* PromotionGateWayViewModel.swift */; };
 		4F3F630E2B32C662008954FB /* GamificationForceAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F630D2B32C662008954FB /* GamificationForceAuthManager.swift */; };
 		4F534C1F2B4FE442004DF036 /* GameZoneVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F534C1E2B4FE442004DF036 /* GameZoneVoucherView.swift */; };
 		4F53BF6D2B6925330076ACF3 /* ReferralMockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F53BF6C2B6925330076ACF3 /* ReferralMockNetworkManager.swift */; };
@@ -573,6 +575,8 @@
 		4F18ED822AD5737B000F64D9 /* ScrollViewBounceModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewBounceModifier.swift; sourceTree = "<group>"; };
 		4F18ED842AD94D50000F64D9 /* GameZoneActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneActiveView.swift; sourceTree = "<group>"; };
 		4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneExpiredView.swift; sourceTree = "<group>"; };
+		4F2B80292B737F2D007ECECF /* PromotionGatewayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionGatewayView.swift; sourceTree = "<group>"; };
+		4F2B802B2B73953B007ECECF /* PromotionGateWayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionGateWayViewModel.swift; sourceTree = "<group>"; };
 		4F3F630D2B32C662008954FB /* GamificationForceAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationForceAuthManager.swift; sourceTree = "<group>"; };
 		4F534C1E2B4FE442004DF036 /* GameZoneVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneVoucherView.swift; sourceTree = "<group>"; };
 		4F53BF6C2B6925330076ACF3 /* ReferralMockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralMockNetworkManager.swift; sourceTree = "<group>"; };
@@ -762,6 +766,7 @@
 			isa = PBXGroup;
 			children = (
 				292104942B336E65005A6754 /* ReferralViewModel.swift */,
+				4F2B802B2B73953B007ECECF /* PromotionGateWayViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -770,6 +775,7 @@
 			isa = PBXGroup;
 			children = (
 				297F109E2B59DEF60058105C /* ReferralsGatewayView.swift */,
+				4F2B80292B737F2D007ECECF /* PromotionGatewayView.swift */,
 				2947E40E2AE349FE005A0019 /* MyReferralsView.swift */,
 				2945FFBD2AE8926A00D9C8C6 /* ReferAFriendView.swift */,
 				29889A992B46369B0037BD94 /* JoinAndReferView.swift */,
@@ -1702,6 +1708,7 @@
 				3F714D5629FA0FC200CD39E7 /* SizeSelectorView.swift in Sources */,
 				4F18ED812AD52F2B000F64D9 /* GamificationNoLuckView.swift in Sources */,
 				3FE71CFD2B3199CD006E6BF5 /* AllTransactionsView.swift in Sources */,
+				4F2B802C2B73953B007ECECF /* PromotionGateWayViewModel.swift in Sources */,
 				292ADC76294C064600753541 /* ProfileModel+CurrencyPoints.swift in Sources */,
 				3F714D6729FA0FEB00CD39E7 /* OrderPlacedView.swift in Sources */,
 				3FE71D072B3199CD006E6BF5 /* PromotionCardView.swift in Sources */,
@@ -1806,6 +1813,7 @@
 				AF8AA4CD29E3ED54007E2F6F /* AppAccessibilityConstants.swift in Sources */,
 				29BAF6CF28F0FC3A00A3F9EB /* CornerRadiusStyle.swift in Sources */,
 				3FE71D222B3199CD006E6BF5 /* ProfileView.swift in Sources */,
+				4F2B802A2B737F2D007ECECF /* PromotionGatewayView.swift in Sources */,
 				2906B1DB28FF7348006EAB2D /* CheckboxStyle.swift in Sources */,
 				298D5EEC29CCF5340062F16E /* ForceAuthManager.swift in Sources */,
 				2984C9452954F091009669EF /* LocalFileManager.swift in Sources */,

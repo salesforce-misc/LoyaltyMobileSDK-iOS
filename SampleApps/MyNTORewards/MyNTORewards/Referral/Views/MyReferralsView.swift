@@ -181,7 +181,7 @@ struct MyReferralsView: View {
         .frame(maxHeight: .infinity)
         .navigationBarBackButtonHidden()
         .sheet(isPresented: $showReferAFriendView) {
-            ReferAFriendView()
+            ReferAFriendView(promotionCode: AppSettings.Defaults.promotionCode)
                 .environmentObject(viewModel)
         }
         .sheet(isPresented: $showEnrollmentView) {

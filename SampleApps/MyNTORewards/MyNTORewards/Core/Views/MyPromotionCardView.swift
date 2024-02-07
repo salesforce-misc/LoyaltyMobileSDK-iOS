@@ -80,10 +80,6 @@ struct MyPromotionCardView: View {
                  )
         )
         .onTapGesture {
-            if promotion.promotionName == "TemporaryReferralPromo9" {
-                routerPath.navigatFromPromotion(to: .referrals)
-                return
-            }
             showPromotionDetailView.toggle()
         }
         .sheet(isPresented: $showPromotionDetailView, onDismiss: {
@@ -93,7 +89,7 @@ struct MyPromotionCardView: View {
                 promotionVM.actionTaskList[promotion.id] = (false, true)
             }
         }) {
-			MyPromotionDetailView(promotion: promotion, processing: $processing)
+            PromotionGatewayView(promotion: promotion, processing: $processing)
         }
         .onReceive(promotionVM.$actionTaskList) { action in
             if let currentAction = action[promotion.id], currentAction == (true, true) {

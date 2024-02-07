@@ -14,6 +14,7 @@ struct ReferAFriendView: View {
     @Environment(\.openURL) var openURL
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var referralVM: ReferralViewModel
+    let promotionCode: String
     
     @State private var email: String = ""
     @State private var isEmailValid: Bool = true
@@ -209,7 +210,7 @@ struct ReferAFriendView: View {
             }
             .ignoresSafeArea()
             .task {
-                await referralVM.loadReferralCode(membershipNumber: rootVM.member?.membershipNumber ?? "")
+                await referralVM.loadReferralCode(membershipNumber: rootVM.member?.membershipNumber ?? "", promoCode: promotionCode)
             }
             if processing {
                 ProgressView()
@@ -261,7 +262,7 @@ struct ReferAFriendView: View {
 }
 
 #Preview {
-    ReferAFriendView()
+    ReferAFriendView(promotionCode: "")
         .environmentObject(AppRootViewModel())
         .environmentObject(ReferralViewModel())
 }
