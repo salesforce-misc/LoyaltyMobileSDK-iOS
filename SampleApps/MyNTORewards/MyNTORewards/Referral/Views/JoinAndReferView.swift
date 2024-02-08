@@ -11,10 +11,12 @@ struct JoinAndReferView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var referralVM: ReferralViewModel
+    @EnvironmentObject private var promotionGateWayViewModel: PromotionGateWayViewModel
     @EnvironmentObject private var routerPath: RouterPath
     @State private var processing: Bool = false
     @Binding var showReferAFriendView: Bool
-    
+    var isFromMyReferralView: Bool = false
+
     var body: some View {
         ZStack {
             VStack {
@@ -22,10 +24,10 @@ struct JoinAndReferView: View {
                     Image("img-join")
                         .resizable()
                         .scaledToFill()
-                        .frame(maxWidth: geometry.size.width, maxHeight: 160)
+                        .frame(maxWidth: geometry.size.width, maxHeight: 241)
                         .clipped()
                 }
-                .frame(maxHeight: 160)
+                .frame(maxHeight: 241)
                 
                 VStack(alignment: .leading, spacing: 20) {
                     Text("**\(StringConstants.Referrals.joinTitle)**")
@@ -40,12 +42,17 @@ struct JoinAndReferView: View {
                 Button(StringConstants.Referrals.joinButton) {
                     processing = true
                     Task {
-                        // await referralVM.enroll(membershipNumber: rootVM.member?.membershipNumber ?? "")
-                        await referralVM.enroll(contactId: rootVM.member?.contactId ?? "")
-                        processing = false
-                        dismiss()
-                        if !referralVM.displayError.0 {
-                            showReferAFriendView = true
+                        if isFromMyReferralView {
+                            await referralVM.enroll(contactId: rootVM.member?.contactId ?? "")
+                            processing = false
+                            dismiss()
+                            if !referralVM.displayError.0 {
+                                showReferAFriendView = true
+                            }
+
+                        } else {
+                            await  promotionGateWayViewModel.enroll(contactId: rootVM.member?.contactId ?? "")
+                            processing = false
                         }
                     }
                 }
@@ -56,17 +63,14 @@ struct JoinAndReferView: View {
                 
                 Button {
                     dismiss()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         routerPath.pathFromMore = []
                     }
                 } label: {
                     Text(StringConstants.Referrals.backButton)
                         .frame(maxWidth: .infinity)
-                }
-
-                Spacer()
+                }.padding(.bottom, 20)
             }
-            .ignoresSafeArea()
             .navigationBarBackButtonHidden()
             
             if processing {

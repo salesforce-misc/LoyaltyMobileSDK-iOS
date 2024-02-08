@@ -185,9 +185,8 @@ struct MyReferralsView: View {
                 .environmentObject(viewModel)
         }
         .sheet(isPresented: $showEnrollmentView) {
-            JoinAndReferView(showReferAFriendView: $showReferAFriendView)
+            JoinAndReferView(showReferAFriendView: $showReferAFriendView, isFromMyReferralView: true)
                 .interactiveDismissDisabled()
-                .presentationDetents([.height(480)])
         }
         .fullScreenCover(isPresented: $viewModel.displayError.0) {
             Spacer()

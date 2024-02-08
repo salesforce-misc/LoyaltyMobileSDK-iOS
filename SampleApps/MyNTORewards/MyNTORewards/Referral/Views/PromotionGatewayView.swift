@@ -11,6 +11,7 @@ import LoyaltyMobileSDK
 struct PromotionGatewayView: View {
     @StateObject private var viewModel = PromotionGateWayViewModel()
     @EnvironmentObject private var rootVM: AppRootViewModel
+    @Environment(\.dismiss) private var dismiss
     let promotion: PromotionResult
     @Binding var processing: Bool
     
@@ -39,14 +40,32 @@ struct PromotionGatewayView: View {
                 }
                 
             case .loaded:
-                if viewModel.isReferralPromotion {
-                    if viewModel.enrolledToPromotion {
-                        ReferAFriendView(promotionCode: viewModel.promoCode )
-                    } else {
-                        JoinAndReferView(showReferAFriendView: .constant(true))
-                    }
-                } else {
+                switch viewModel.promotionScreenType {
+                case .loyaltyPromotion:
                     MyPromotionDetailView(promotion: promotion, processing: $processing)
+                case .joinReferralPromotion:
+                    JoinAndReferView(showReferAFriendView: .constant(true)).environmentObject(viewModel)
+                case .referFriend:
+                    ReferAFriendView(promotionCode: viewModel.promoCode )
+                case .joinPromotionError:
+                    ZStack {
+                        Color.theme.background
+                        VStack {
+                            Spacer()
+                            ProcessingErrorView(message: viewModel.displayError.1)
+                            Spacer()
+                            Button {
+                                viewModel.displayError = (false, "")
+                                dismiss()
+                            } label: {
+                                Text(StringConstants.Referrals.backButton)
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .longFlexibleButtonStyle()
+                            .accessibilityIdentifier(AppAccessibilty.Referrals.joinErrorBackButton)
+                        }
+                        }
                 }
             }
         }.onAppear {
@@ -56,8 +75,8 @@ struct PromotionGatewayView: View {
     
     func checkEnrollmentStatus() {
         Task {
-            let memberId = rootVM.member?.loyaltyProgramMemberId ?? ""
-            await viewModel.getPromotionTypeAndStatus(promotionId: promotion.id, loyaltyProgramMemberId: memberId)
+            let contactId = rootVM.member?.contactId ?? ""
+            await viewModel.getPromotionType(promotionId: promotion.id, contactId: contactId)
         }
     }
 }
