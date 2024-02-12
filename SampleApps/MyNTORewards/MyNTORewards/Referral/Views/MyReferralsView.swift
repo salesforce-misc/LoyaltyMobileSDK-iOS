@@ -209,7 +209,9 @@ struct MyReferralsView: View {
             Spacer()
             Button {
                 viewModel.displayError = (false, "")
-                routerPath.pathFromMore = []
+                if !viewModel.showJoinDefaultPromotion {
+                    routerPath.pathFromMore = []
+                }
             } label: {
                 Text(StringConstants.Referrals.backButton)
                     .frame(maxWidth: .infinity)
