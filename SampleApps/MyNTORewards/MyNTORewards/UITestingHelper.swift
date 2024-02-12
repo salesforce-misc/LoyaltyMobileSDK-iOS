@@ -65,5 +65,13 @@ struct UITestingHelper {
 	static var getGamesMockFileName: String {
 		isGetGamesSuccess ? "GetGames_Success" : "GetGames_Fail"
 	}
+	
+	static var isUserEnrolledForReferral: Bool {
+		ProcessInfo.processInfo.environment["isEnrolled"] == "true"
+	}
+	
+	static var referralMockFileName: String {
+		"Referrals"
+	}
 }
 #endif

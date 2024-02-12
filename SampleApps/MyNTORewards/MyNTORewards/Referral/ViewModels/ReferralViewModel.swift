@@ -42,12 +42,16 @@ class ReferralViewModel: ObservableObject {
     private let localFileManager: FileManagerProtocol
     private let referralsFolderName = AppSettings.cacheFolders.referrals
     private let promotionCode = AppSettings.Defaults.promotionCode
-    private let referralProgramName = AppSettings.Defaults.referralProgramName
-    
+	private let referralProgramName = AppSettings.Defaults.referralProgramName
+	var devMode: Bool = false
+	var isEnrolled: Bool = false
+	
     init(
         authManager: ForceAuthenticator = ForceAuthManager.shared,
         forceClient: ForceClient? = nil,
-        localFileManager: FileManagerProtocol = LocalFileManager.instance
+        localFileManager: FileManagerProtocol = LocalFileManager.instance,
+        devMode: Bool = false,
+        isEnrolled: Bool = false
     ) {
         self.authManager = authManager
         self.forceClient = forceClient ?? ForceClient(auth: authManager)
@@ -55,20 +59,22 @@ class ReferralViewModel: ObservableObject {
                                                      referralProgramName: AppSettings.Defaults.referralProgramName,
                                                      instanceURL: AppSettings.shared.getInstanceURL(),
                                                      forceClient: self.forceClient)
+        self.devMode = devMode
+        self.isEnrolled = isEnrolled
         self.localFileManager = localFileManager
         self.referralCode = UserDefaults.standard.string(forKey: "referralCode") ?? ""
         self.referralMembershipNumber = UserDefaults.standard.string(forKey: "referralMembershipNumber") ?? ""
     }
     
-    func loadAllReferrals(memberContactId: String, reload: Bool = false, devMode: Bool = false) async throws {
-        if !reload {
+    func loadAllReferrals(memberContactId: String, reload: Bool = false) async throws {
+        if !reload && !devMode {
             if let cached = localFileManager.getData(type: [Referral].self, id: promotionCode, folderName: referralsFolderName) {
                 promotionStageCounts = calculatePromotionStageCounts(in: cached)
                 filterReferrals(referrals: cached)
                 return
             } else {
                 do {
-                    let result = try await fetchAllReferrals(memberContactId: memberContactId, devMode: devMode)
+                    let result = try await fetchAllReferrals(memberContactId: memberContactId)
                     promotionStageCounts = calculatePromotionStageCounts(in: result)
                     filterReferrals(referrals: result)
                     
@@ -82,7 +88,7 @@ class ReferralViewModel: ObservableObject {
             
         } else {
             do {
-                let result = try await fetchAllReferrals(memberContactId: memberContactId, devMode: devMode)
+                let result = try await fetchAllReferrals(memberContactId: memberContactId)
                 promotionStageCounts = calculatePromotionStageCounts(in: result)
                 filterReferrals(referrals: result)
                 
@@ -95,16 +101,17 @@ class ReferralViewModel: ObservableObject {
         }
     }
     
-    func fetchAllReferrals(memberContactId: String, devMode: Bool = false) async throws -> [Referral] {
+    func fetchAllReferrals(memberContactId: String) async throws -> [Referral] {
         let query = """
             SELECT ReferrerId, Id, ClientEmail, ReferrerEmail, ReferralDate, CurrentPromotionStage.Type,
                 TYPEOF ReferredParty
                     WHEN Contact THEN Account.PersonEmail
                     WHEN Account THEN PersonEmail
                 END
-            FROM Referral WHERE ReferralDate = LAST_90_DAYS AND ReferrerId = '\(memberContactId)'
+            FROM Referral WHERE ReferralDate = LAST_90_DAYS AND Promotion.PromotionCode = '\(promotionCode)' AND ReferrerId = '\(memberContactId)'
             ORDER BY ReferralDate DESC
         """
+        
         do {
             if devMode {
                 let result = try forceClient.fetchLocalJson(type: [Referral].self, file: "Referrals")
@@ -119,17 +126,17 @@ class ReferralViewModel: ObservableObject {
     }
     
     func loadReferralCode(membershipNumber: String, promoCode: String) async {
-        let notFound = "NOTFOUND"
-        do {
-            if let code = try await getReferralCode(for: membershipNumber) {
-                referralCode = "\(code)-\(promoCode)"
-            } else {
-                referralCode = "\(notFound)-\(promoCode)"
-            }
-        } catch {
-            referralCode = "\(notFound)-\(promoCode)"
-        }
-    }
+           let notFound = "NOTFOUND"
+           do {
+               if let code = try await getReferralCode(for: membershipNumber) {
+                   referralCode = "\(code)-\(promoCode)"
+               } else {
+                   referralCode = "\(notFound)-\(promoCode)"
+               }
+           } catch {
+               referralCode = "\(notFound)-\(promoCode)"
+           }
+       }
     
     func sendReferral(email: String) async {
         let emailArray = emailStringToArray(emailString: email)
@@ -151,6 +158,24 @@ class ReferralViewModel: ObservableObject {
             let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
             showEnrollmentView = queryResult.records.isEmpty == true
         } catch {
+            Logger.error(error.localizedDescription)
+        }
+    }
+    
+    func checkEnrollmentStatus(contactId: String) async {
+        do {
+            enrollmentStatusApiState = .loading
+            // swiftlint:disable:next line_length
+            let query = "SELECT Id, Name, PromotionId, LoyaltyProgramMemberId, LoyaltyProgramMember.ContactId FROM LoyaltyProgramMbrPromotion where LoyaltyProgramMember.ContactId='\(contactId)' AND Promotion.PromotionCode='\(promotionCode)'"
+            let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
+            enrollmentStatusApiState = .loaded
+			if devMode {
+				showEnrollmentView = !isEnrolled
+			} else {
+				showEnrollmentView = queryResult.records.isEmpty
+			}
+        } catch {
+            enrollmentStatusApiState = .failed(error)
             Logger.error(error.localizedDescription)
         }
     }

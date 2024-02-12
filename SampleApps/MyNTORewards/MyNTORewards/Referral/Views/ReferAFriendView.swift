@@ -255,7 +255,8 @@ struct ReferAFriendView: View {
 
     func shareToTwitter(text: String) {
         let urlString = "https://twitter.com/intent/tweet?text=\(text)"
-        if let url = URL(string: urlString) {
+		if let urlStringEncoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+		   let url = URL(string: urlStringEncoded) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
