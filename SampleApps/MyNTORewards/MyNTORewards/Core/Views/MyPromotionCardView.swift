@@ -20,14 +20,21 @@ struct MyPromotionCardView: View {
     
     var body: some View {
         HStack {
-            LoyaltyAsyncImage(url: promotion.promotionImageURL, content: { image in
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .clipped()
-            }, placeholder: {
-                ProgressView()
-            })
+            Group {
+                if promotion.promotionImageURL != nil {
+                    LoyaltyAsyncImage(url: promotion.promotionImageURL, content: { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                    }, placeholder: {
+                        ProgressView()
+                    })
+                } else {
+                    Image("img-join")
+                        .resizable()
+                        .scaledToFill()
+                }
+            }
             .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.image)
             .frame(width: 133, height: 166)
             .cornerRadius(5, corners: [.topLeft, .bottomLeft])

@@ -72,7 +72,7 @@ class PromotionGateWayViewModel: ObservableObject {
     func getPromotionType(promotionId: String, contactId: String) async {
         promotionStatusApiState = .loading
         do {
-            let query = "SELECT Id, IsReferralPromotion, PromotionCode, Name, IsEnrollmentRequired, OwnerId FROM Promotion Where Id= '\(promotionId)'"
+            let query = "SELECT Id, IsReferralPromotion, PromotionCode, Name  FROM Promotion Where Id= '\(promotionId)'"
             let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
             isReferralPromotion = queryResult.records.first?.bool(forField: "IsReferralPromotion") ?? false
             if isReferralPromotion {

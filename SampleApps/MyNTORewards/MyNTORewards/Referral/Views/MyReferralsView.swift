@@ -112,7 +112,15 @@ struct MyReferralsView: View {
                                     Spacer()
                                     Button(StringConstants.Referrals.referButton) {
                                         // Refer
-                                        showReferAFriendView.toggle()
+                                        // show basesd on status for default promotion
+                                        Task {
+                                          let isEnrolled =  await viewModel.isEnrolledForDefaultPromotion(contactId: rootVM.member?.contactId ?? "")
+                                            if isEnrolled {
+                                                showReferAFriendView = true
+                                            } else {
+                                                showEnrollmentView = true
+                                            }
+                                        }
                                     }
                                     .buttonStyle(LightShortReferralsButton())
                                     Spacer()
@@ -174,8 +182,13 @@ struct MyReferralsView: View {
                     }
                     .padding(.bottom, 100)
                 }
+                if viewModel.isEnrollmentStatusApiLoading {
+                    ProgressView()
+                }
             }
+           
             Spacer()
+            
         }
         .ignoresSafeArea(edges: .bottom)
         .frame(maxHeight: .infinity)
@@ -185,7 +198,9 @@ struct MyReferralsView: View {
                 .environmentObject(viewModel)
         }
         .sheet(isPresented: $showEnrollmentView) {
-            JoinAndReferView(showReferAFriendView: $showReferAFriendView, isFromMyReferralView: true)
+            JoinAndReferView(showReferAFriendView: $showReferAFriendView,
+                             isFromMyReferralView: true,
+                             disablePoptoRoot: viewModel.showJoinDefaultPromotion)
                 .interactiveDismissDisabled()
         }
         .fullScreenCover(isPresented: $viewModel.displayError.0) {

@@ -99,7 +99,7 @@ struct StringConstants {
         static let signUpButton = "Sign Up"
         static let joinTitle = "Join Referral Program"
         static let joinText = "Join our referral program and share your referral code with friends to get rewarded."
-        static let joinButton = "Join"
+        static let joinButton = "Start Referring"
         static let referTitle = "Start Referring"
         static let referText = "Your referral code is ready! Share the referral code with your friends and get rewarded when they place their first order."
         static let referEmailText = "Enter the email addresses of your friends…"

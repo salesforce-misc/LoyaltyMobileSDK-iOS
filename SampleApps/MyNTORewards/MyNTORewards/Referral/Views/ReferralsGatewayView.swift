@@ -76,8 +76,7 @@ struct ReferralsGatewayView: View {
     
     func checkEnrollmentStatus() {
         Task {
-            await referralVM.checkEnrollmentStatus(contactId: rootVM.member?.contactId ?? "")
-//              await referralVM.checkEnrollmentStatusForReferralProgram(contactId: rootVM.member?.contactId ?? "")
+              await referralVM.checkEnrollmentStatusForReferralProgram(contactId: rootVM.member?.contactId ?? "")
         }
     }
 }

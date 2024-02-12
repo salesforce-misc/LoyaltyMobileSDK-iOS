@@ -19,13 +19,21 @@ struct PromotionCardView: View {
     
     var body: some View {
         VStack {
-            LoyaltyAsyncImage(url: promotion.promotionImageURL, content: { image in
-                image
-                    .resizable()
-                    .scaledToFill()
-            }, placeholder: {
-                ProgressView()
-            })
+            Group {
+                if promotion.promotionImageURL != nil {
+                    LoyaltyAsyncImage(url: promotion.promotionImageURL, content: { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                    }, placeholder: {
+                        ProgressView()
+                    })
+                } else {
+                    Image("img-join")
+                        .resizable()
+                        .scaledToFill()
+                }
+            }
             .frame(width: 289, height: 154)
             .contentShape(Rectangle())
             .cornerRadius(5, corners: [.topLeft, .topRight])

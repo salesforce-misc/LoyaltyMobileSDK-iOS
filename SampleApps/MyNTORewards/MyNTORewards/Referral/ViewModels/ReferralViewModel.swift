@@ -14,6 +14,7 @@ class ReferralViewModel: ObservableObject {
     
     @Published var referralMember: ReferralMember?
     @Published var showEnrollmentView = false
+    @Published var showJoinDefaultPromotion = false
     @Published var promotionStageCounts: [PromotionStageType: Int] = [:]
     @Published var recentReferralsSuccess: [Referral] = []
     @Published var oneMonthAgoReferralsSuccess: [Referral] = []
@@ -22,6 +23,7 @@ class ReferralViewModel: ObservableObject {
     @Published var oneMonthAgoReferralsInProgress: [Referral] = []
     @Published var threeMonthsAgoReferralsInProgress: [Referral] = []
     @Published private(set) var enrollmentStatusApiState = LoadingState.idle
+    @Published private(set) var isEnrollmentStatusApiLoading = false
     @Published var referralCode: String {
         didSet {
             UserDefaults.standard.setValue(referralCode, forKey: "referralCode")
@@ -153,17 +155,27 @@ class ReferralViewModel: ObservableObject {
         }
     }
     
-    func checkEnrollmentStatus(contactId: String) async {
+    func isEnrolledForDefaultPromotion(contactId: String) async -> Bool {
+        if let isEnrolled =  UserDefaults.standard.value(forKey: "isEnrolledForDefaultPromotion") as? Bool {
+            if isEnrolled {
+                return true
+            }
+        }
         do {
-            enrollmentStatusApiState = .loading
+            isEnrollmentStatusApiLoading = true
             // swiftlint:disable:next line_length
             let query = "SELECT Id, Name, PromotionId, LoyaltyProgramMemberId, LoyaltyProgramMember.ContactId FROM LoyaltyProgramMbrPromotion where LoyaltyProgramMember.ContactId='\(contactId)' AND Promotion.PromotionCode='\(promotionCode)'"
             let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
-            enrollmentStatusApiState = .loaded
-            showEnrollmentView = queryResult.records.isEmpty
+            UserDefaults.standard.setValue(!queryResult.records.isEmpty, forKey: "isEnrolledForDefaultPromotion")
+            isEnrollmentStatusApiLoading = false
+            if queryResult.records.isEmpty {
+                showJoinDefaultPromotion = true
+            }
+            return !queryResult.records.isEmpty
         } catch {
-            enrollmentStatusApiState = .failed(error)
             Logger.error(error.localizedDescription)
+            isEnrollmentStatusApiLoading = false
+            return false
         }
     }
     
@@ -171,12 +183,9 @@ class ReferralViewModel: ObservableObject {
         do {
             enrollmentStatusApiState = .loading
             // swiftlint:disable:next line_length
-            let query = "SELECT Id, MembershipNumber FROM LoyaltyProgramMember WHERE Program.Name = '\(referralProgramName)' AND Program.Type = 'REFERRAL_PROGRAM' AND Contact.Id = '\(contactId)'"
+            let query = "SELECT Id, Name, PromotionId, LoyaltyProgramMemberId, LoyaltyProgramMember.ContactId FROM LoyaltyProgramMbrPromotion where LoyaltyProgramMember.ContactId='\(contactId)' AND Promotion.IsReferralPromotion = true"
             let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
-            let membershipNumber = queryResult.records.first?.string(forField: "MembershipNumber")
-            if membershipNumber == nil {
-                showEnrollmentView = true
-            }
+            showEnrollmentView = queryResult.records.isEmpty
             enrollmentStatusApiState = .loaded
         } catch {
             enrollmentStatusApiState = .failed(error)

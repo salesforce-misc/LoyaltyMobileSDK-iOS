@@ -16,6 +16,7 @@ struct JoinAndReferView: View {
     @State private var processing: Bool = false
     @Binding var showReferAFriendView: Bool
     var isFromMyReferralView: Bool = false
+    var disablePoptoRoot: Bool = false
 
     var body: some View {
         ZStack {
@@ -62,9 +63,13 @@ struct JoinAndReferView: View {
                 .accessibilityIdentifier(AppAccessibilty.Referrals.joinAndReferButton)
                 
                 Button {
-                    dismiss()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        routerPath.pathFromMore = []
+                    if disablePoptoRoot {
+                        dismiss()
+                    } else {
+                        dismiss()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            routerPath.pathFromMore = []
+                        }
                     }
                 } label: {
                     Text(StringConstants.Referrals.backButton)
