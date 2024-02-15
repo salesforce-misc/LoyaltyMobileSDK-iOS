@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct JoinAndReferView: View {
     @Environment(\.dismiss) private var dismiss
@@ -16,27 +17,45 @@ struct JoinAndReferView: View {
     @State private var processing: Bool = false
     @Binding var showReferAFriendView: Bool
     var isFromMyReferralView: Bool = false
-    var disablePoptoRoot: Bool = false
-
+    let promotion: PromotionResult?
+    
     var body: some View {
+        let termsLink = AppSettings.Defaults.referralTermsLink
         ZStack {
             VStack {
                 GeometryReader { geometry in
-                    Image("img-join")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(maxWidth: geometry.size.width, maxHeight: 241)
-                        .clipped()
+                    Group {
+                        if promotion?.promotionImageURL != nil {
+                            LoyaltyAsyncImage(url: promotion?.promotionImageURL, content: { image in
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                            }, placeholder: {
+                                ProgressView()
+                            })
+                        } else {
+                            Image("img-join")
+                                .resizable()
+                                .scaledToFill()
+                        }
+                    }
+                    .frame(maxWidth: geometry.size.width, maxHeight: 241)
+                    .clipped()
                 }
                 .frame(maxHeight: 241)
                 
                 VStack(alignment: .leading, spacing: 20) {
-                    Text("**\(StringConstants.Referrals.joinTitle)**")
-                        .font(.referModalText)
+                    Text("**\(promotion?.promotionName ?? "")**")
+                        .font(.referModalNameText)
+                        .foregroundStyle(Color.theme.lightText)
                         .accessibilityIdentifier(AppAccessibilty.Referrals.referAFriendTitle)
-                    Text(StringConstants.Referrals.joinText)
-                        .lineSpacing(5)
-                        .font(.referModalText)
+                    Group {
+                        Text(promotion?.description ?? "")
+                        Text("\(StringConstants.Referrals.termsText) [\(StringConstants.Referrals.termsLinkText)](\(termsLink)).")
+                    }
+                    .lineSpacing(5)
+                    .font(.referModalText)
+                    .foregroundStyle(Color.theme.superLightText)
                 }
                 .padding()
                 Spacer()
@@ -50,7 +69,7 @@ struct JoinAndReferView: View {
                             if !referralVM.displayError.0 {
                                 showReferAFriendView = true
                             }
-
+                            
                         } else {
                             await  promotionGateWayViewModel.enroll(contactId: rootVM.member?.contactId ?? "")
                             processing = false
@@ -63,14 +82,7 @@ struct JoinAndReferView: View {
                 .accessibilityIdentifier(AppAccessibilty.Referrals.joinAndReferButton)
                 
                 Button {
-                    if disablePoptoRoot {
-                        dismiss()
-                    } else {
-                        dismiss()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                            routerPath.pathFromMore = []
-                        }
-                    }
+                    dismiss()
                 } label: {
                     Text(StringConstants.Referrals.backButton)
                         .frame(maxWidth: .infinity)
@@ -87,6 +99,6 @@ struct JoinAndReferView: View {
 }
 
 #Preview {
-    JoinAndReferView(showReferAFriendView: .constant(false))
+    JoinAndReferView(showReferAFriendView: .constant(false), promotion: nil)
         .environmentObject(ReferralViewModel())
 }

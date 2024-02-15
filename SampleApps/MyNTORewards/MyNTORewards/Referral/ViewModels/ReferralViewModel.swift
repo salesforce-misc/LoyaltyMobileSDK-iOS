@@ -9,10 +9,30 @@ import Foundation
 import SwiftUI
 import ReferralMobileSDK
 
+struct ReferralPromotionObject: Codable {
+    let isReferralPromotion: Bool?
+    let promotionCode: String
+    let id: String
+    let name: String
+    let description: String
+    let promotionImageUrl: String
+
+    enum CodingKeys: String, CodingKey {
+        case isReferralPromotion = "IsReferralPromotion"
+        case promotionCode = "PromotionCode"
+        case id = "Id"
+        case name = "Name"
+        case description = "Description"
+        case promotionImageUrl = "ImageUrl"
+
+    }
+}
+
 @MainActor
 class ReferralViewModel: ObservableObject {
     
     @Published var referralMember: ReferralMember?
+    @Published var defaultReferralPromotion: ReferralPromotionObject?
     @Published var showEnrollmentView = false
     @Published var showJoinDefaultPromotion = false
     @Published var promotionStageCounts: [PromotionStageType: Int] = [:]
@@ -101,6 +121,22 @@ class ReferralViewModel: ObservableObject {
         }
     }
     
+    func getDefaultPromotionDetails() async throws -> ReferralPromotionObject? {
+        if defaultReferralPromotion != nil {
+            return defaultReferralPromotion
+        }
+        do {
+            let query = "SELECT Id, IsReferralPromotion, PromotionCode, Name, Description, ImageUrl  FROM Promotion Where PromotionCode= '\(promotionCode)'"
+            let promotion = try await forceClient.SOQL(type: ReferralPromotionObject.self, for: query)
+            defaultReferralPromotion = promotion.records.first
+            return defaultReferralPromotion
+
+        } catch {
+            Logger.error(error.localizedDescription)
+            return nil
+        }
+    }
+    
     func fetchAllReferrals(memberContactId: String) async throws -> [Referral] {
         let query = """
             SELECT ReferrerId, Id, ClientEmail, ReferrerEmail, ReferralDate, CurrentPromotionStage.Type,
@@ -108,7 +144,7 @@ class ReferralViewModel: ObservableObject {
                     WHEN Contact THEN Account.PersonEmail
                     WHEN Account THEN PersonEmail
                 END
-            FROM Referral WHERE ReferralDate = LAST_90_DAYS AND Promotion.PromotionCode = '\(promotionCode)' AND ReferrerId = '\(memberContactId)'
+            FROM Referral WHERE ReferralDate = LAST_90_DAYS AND ReferrerId = '\(memberContactId)'
             ORDER BY ReferralDate DESC
         """
         
@@ -126,15 +162,17 @@ class ReferralViewModel: ObservableObject {
     }
     
     func loadReferralCode(membershipNumber: String, promoCode: String) async {
-        let notFound = "NOTFOUND"
-        do {
-            if let code = try await getReferralCode(for: membershipNumber) {
-                referralCode = "\(code)-\(promoCode)"
-            } else {
+        if referralCode .isEmpty {
+            let notFound = "NOTFOUND"
+            do {
+                if let code = try await getReferralCode(for: membershipNumber) {
+                    referralCode = "\(code)-\(promoCode)"
+                } else {
+                    referralCode = "\(notFound)-\(promoCode)"
+                }
+            } catch {
                 referralCode = "\(notFound)-\(promoCode)"
             }
-        } catch {
-            referralCode = "\(notFound)-\(promoCode)"
         }
     }
     
@@ -148,38 +186,7 @@ class ReferralViewModel: ObservableObject {
             displayError = (true, error.localizedDescription)
         }
     }
-    
-    // Need to use referral membershipNumber
-    func checkEnrollmentStatus(membershipNumber: String) async {
         
-        do {
-            // swiftlint:disable:next line_length
-            let query = "SELECT Id FROM LoyaltyProgramMbrPromotion WHERE LoyaltyProgramMember.MembershipNumber = '\(membershipNumber)' AND Promotion.PromotionCode = '\(promotionCode)'"
-            let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
-            showEnrollmentView = queryResult.records.isEmpty == true
-        } catch {
-            Logger.error(error.localizedDescription)
-        }
-    }
-    
-    func checkEnrollmentStatus(contactId: String) async {
-        do {
-            enrollmentStatusApiState = .loading
-            // swiftlint:disable:next line_length
-            let query = "SELECT Id, Name, PromotionId, LoyaltyProgramMemberId, LoyaltyProgramMember.ContactId FROM LoyaltyProgramMbrPromotion where LoyaltyProgramMember.ContactId='\(contactId)' AND Promotion.PromotionCode='\(promotionCode)'"
-            let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
-            enrollmentStatusApiState = .loaded
-            if devMode {
-                showEnrollmentView = !isEnrolled
-            } else {
-                showEnrollmentView = queryResult.records.isEmpty
-            }
-        } catch {
-            enrollmentStatusApiState = .failed(error)
-            Logger.error(error.localizedDescription)
-        }
-    }
-    
     func isEnrolledForDefaultPromotion(contactId: String) async -> Bool {
         if let isEnrolled =  UserDefaults.standard.value(forKey: "isEnrolledForDefaultPromotion") as? Bool {
             if isEnrolled {
@@ -201,64 +208,6 @@ class ReferralViewModel: ObservableObject {
             Logger.error(error.localizedDescription)
             isEnrollmentStatusApiLoading = false
             return false
-        }
-    }
-    
-    func checkEnrollmentStatusForReferralProgram(contactId: String) async {
-        do {
-            enrollmentStatusApiState = .loading
-            // swiftlint:disable:next line_length
-            let query = "SELECT Id, Name, PromotionId, LoyaltyProgramMemberId, LoyaltyProgramMember.ContactId FROM LoyaltyProgramMbrPromotion where LoyaltyProgramMember.ContactId='\(contactId)' AND Promotion.IsReferralPromotion = true"
-            let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
-            showEnrollmentView = queryResult.records.isEmpty
-            enrollmentStatusApiState = .loaded
-        } catch {
-            enrollmentStatusApiState = .failed(error)
-            Logger.error(error.localizedDescription)
-        }
-    }
-    
-    func getMembershipNumber(contactId: String) async {
-        do {
-            // swiftlint:disable:next line_length
-            let query = "SELECT Id, MembershipNumber FROM LoyaltyProgramMember WHERE Program.Name = '\(referralProgramName)' AND Program.Type = 'REFERRAL_PROGRAM' AND Contact.Id = '\(contactId)'"
-            let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
-            let membershipNumber = queryResult.records.first?.string(forField: "MembershipNumber")
-            if membershipNumber == nil {
-                showEnrollmentView = true
-            }
-            self.referralMembershipNumber = membershipNumber ?? ""
-        } catch {
-            Logger.error(error.localizedDescription)
-        }
-    }
-    
-    func enroll(membershipNumber: String) async {
-        do {
-            let output = try await referralAPIManager.referralEnrollment(membershipNumber: membershipNumber, promotionCode: promotionCode)
-            if output.transactionJournals.first?.status.uppercased() == "PROCESSED" {
-                displayError = (false, "You are successfully joined.")
-                let referralMember = ReferralMember(id: output.memberID,
-                                                    contactId: output.contactID,
-                                                    membershipNumber: output.membershipNumber,
-                                                    programName: output.programName,
-                                                    promotionReferralCode: output.promotionReferralCode,
-                                                    enrollmentDate: output.transactionJournals.first?.activityDate ?? Date())
-                // save to local
-                localFileManager.saveData(item: referralMember, id: output.membershipNumber, folderName: referralsFolderName, expiry: .never)
-                self.referralMember = referralMember
-                self.referralCode = output.promotionReferralCode
-                self.referralMembershipNumber = output.membershipNumber
-                showEnrollmentView = false
-                
-            } else {
-                // status is not `Processed`, if `Pending` should
-                Logger.debug("The enrollment status is: \(output.transactionJournals.first?.status ?? "NOTFOUND")")
-                displayError = (true, StringConstants.Referrals.enrollmentError)
-            }
-        } catch {
-            Logger.error("Referral Enrollment Error: \(error.localizedDescription)")
-            displayError = (true, StringConstants.Referrals.enrollmentError)
         }
     }
     

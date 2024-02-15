@@ -414,6 +414,10 @@ extension Font {
         return Font.custom("SFProDisplay-Regular", size: 16)
     }
     
+    static var referModalNameText: Font {
+        return Font.custom("SFProDisplay-Regular", size: 18)
+    }
+    
     static var referralCode: Font {
         return Font.custom("Lato-Regular", size: 14)
     }

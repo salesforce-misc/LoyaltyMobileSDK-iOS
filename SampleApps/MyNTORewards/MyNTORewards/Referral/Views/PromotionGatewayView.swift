@@ -29,6 +29,14 @@ struct PromotionGatewayView: View {
                         ScrollView(.vertical) {
                             VStack {
                                 ProcessingErrorView(message: StringConstants.Referrals.genericError)
+                                Button {
+                                    dismiss()
+                                } label: {
+                                    Text(StringConstants.Referrals.backButton)
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(.borderedProminent)
+                                .longFlexibleButtonStyle()
                             }
                             .padding()
                             .frame(width: geometry.size.width)
@@ -44,9 +52,9 @@ struct PromotionGatewayView: View {
                 case .loyaltyPromotion:
                     MyPromotionDetailView(promotion: promotion, processing: $processing)
                 case .joinReferralPromotion:
-                    JoinAndReferView(showReferAFriendView: .constant(true)).environmentObject(viewModel)
+                    JoinAndReferView(showReferAFriendView: .constant(true), promotion: promotion).environmentObject(viewModel)
                 case .referFriend:
-                    ReferAFriendView(promotionCode: viewModel.promoCode )
+                    ReferAFriendView(promotionCode: viewModel.promoCode, promotion: promotion )
                 case .joinPromotionError:
                     ZStack {
                         Color.theme.background
@@ -80,7 +88,3 @@ struct PromotionGatewayView: View {
         }
     }
 }
-
-//#Preview {
-//    PromotionGatewayView(promotion: dev.promotion, processing: .constant(false))
-//}

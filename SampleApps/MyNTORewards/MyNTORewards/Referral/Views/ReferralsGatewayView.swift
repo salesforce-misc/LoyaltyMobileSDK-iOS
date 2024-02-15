@@ -58,8 +58,6 @@ struct ReferralsGatewayView: View {
                             .padding()
                             .frame(width: geometry.size.width)
                             .frame(minHeight: geometry.size.height)
-                        }.refreshable {
-                            checkEnrollmentStatus()
                         }
                     }
                 }
@@ -75,9 +73,6 @@ struct ReferralsGatewayView: View {
     }
     
     func checkEnrollmentStatus() {
-        Task {
-              await referralVM.checkEnrollmentStatusForReferralProgram(contactId: rootVM.member?.contactId ?? "")
-        }
     }
 }
 

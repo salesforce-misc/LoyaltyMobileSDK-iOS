@@ -9,8 +9,7 @@ import SwiftUI
 import ReferralMobileSDK
 
 struct MyReferralsView: View {
-    
-    @EnvironmentObject private var viewModel: ReferralViewModel
+    @EnvironmentObject internal var viewModel: ReferralViewModel
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var routerPath: RouterPath
     @State private var tabIndex = 0
@@ -114,7 +113,7 @@ struct MyReferralsView: View {
                                         // Refer
                                         // show basesd on status for default promotion
                                         Task {
-                                          let isEnrolled =  await viewModel.isEnrolledForDefaultPromotion(contactId: rootVM.member?.contactId ?? "")
+                                            let isEnrolled =  await viewModel.isEnrolledForDefaultPromotion(contactId: rootVM.member?.contactId ?? "")
                                             if isEnrolled {
                                                 showReferAFriendView = true
                                             } else {
@@ -126,7 +125,7 @@ struct MyReferralsView: View {
                                     Spacer()
                                 }
                                 .padding(.bottom, 10)
-
+                                
                             }
                             .foregroundColor(Color.white)
                             .frame(width: 328, height: 204)
@@ -186,7 +185,7 @@ struct MyReferralsView: View {
                     ProgressView()
                 }
             }
-           
+            
             Spacer()
             
         }
@@ -194,14 +193,16 @@ struct MyReferralsView: View {
         .frame(maxHeight: .infinity)
         .navigationBarBackButtonHidden()
         .sheet(isPresented: $showReferAFriendView) {
-            ReferAFriendView(promotionCode: AppSettings.Defaults.promotionCode)
+            let promotion = getPromotionData(membershipNumber: rootVM.member?.membershipNumber ?? "")
+            ReferAFriendView(promotionCode: AppSettings.Defaults.promotionCode, promotion: promotion)
                 .environmentObject(viewModel)
         }
         .sheet(isPresented: $showEnrollmentView) {
+            let promotion = getPromotionData(membershipNumber: rootVM.member?.membershipNumber ?? "")
             JoinAndReferView(showReferAFriendView: $showReferAFriendView,
                              isFromMyReferralView: true,
-                             disablePoptoRoot: viewModel.showJoinDefaultPromotion)
-                .interactiveDismissDisabled()
+                             promotion: promotion)
+            .interactiveDismissDisabled()
         }
         .fullScreenCover(isPresented: $viewModel.displayError.0) {
             Spacer()
@@ -240,7 +241,7 @@ struct MyReferralsView: View {
 struct SuccessView: View {
     @EnvironmentObject var viewModel: ReferralViewModel
     @EnvironmentObject private var rootVM: AppRootViewModel
-
+    
     var body: some View {
         ScrollView {
             LazyVStack {
@@ -254,7 +255,7 @@ struct SuccessView: View {
                             Spacer()
                         }
                         ForEach(viewModel.recentReferralsSuccess) { referral in
-                            ReferralCard(status: .purchaseCompleted, 
+                            ReferralCard(status: .purchaseCompleted,
                                          email: referral.referredParty.account.personEmail,
                                          referralDate: referral.referralDate)
                         }
@@ -271,14 +272,14 @@ struct SuccessView: View {
                             Spacer()
                         }
                         ForEach(viewModel.oneMonthAgoReferralsSuccess) { referral in
-                            ReferralCard(status: .purchaseCompleted, 
+                            ReferralCard(status: .purchaseCompleted,
                                          email: referral.referredParty.account.personEmail,
                                          referralDate: referral.referralDate)
                         }
                     }
-
+                    
                 }
-                      
+                
                 if !viewModel.threeMonthsAgoReferralsSuccess.isEmpty {
                     VStack {
                         HStack {
@@ -289,7 +290,7 @@ struct SuccessView: View {
                             Spacer()
                         }
                         ForEach(viewModel.threeMonthsAgoReferralsSuccess) { referral in
-                            ReferralCard(status: .purchaseCompleted, 
+                            ReferralCard(status: .purchaseCompleted,
                                          email: referral.referredParty.account.personEmail,
                                          referralDate: referral.referralDate)
                         }
@@ -317,7 +318,7 @@ struct SuccessView: View {
 struct InProcessView: View {
     @EnvironmentObject var viewModel: ReferralViewModel
     @EnvironmentObject private var rootVM: AppRootViewModel
-
+    
     var body: some View {
         ScrollView {
             LazyVStack {

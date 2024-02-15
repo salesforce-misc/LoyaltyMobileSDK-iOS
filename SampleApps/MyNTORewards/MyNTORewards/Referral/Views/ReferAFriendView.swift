@@ -8,14 +8,13 @@
 import SwiftUI
 import UIKit
 import ReferralMobileSDK
+import LoyaltyMobileSDK
 
 struct ReferAFriendView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.openURL) var openURL
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var referralVM: ReferralViewModel
-    let promotionCode: String
-    
     @State private var email: String = ""
     @State private var isEmailValid: Bool = true
     @State private var showCodeCopiedAlert = false
@@ -23,6 +22,8 @@ struct ReferAFriendView: View {
     @State private var showShareSheet: Bool = false
     @State private var processing: Bool = false
     @State private var validationMessage = ""
+    let promotionCode: String
+    let promotion: PromotionResult?
     
     var body: some View {
         let referralLink = "\(AppSettings.Defaults.referralLink)\(referralVM.referralCode)"
@@ -31,9 +32,21 @@ struct ReferAFriendView: View {
         ZStack {
             VStack {
                 GeometryReader { geometry in
-                    Image("img-join")
-                        .resizable()
-                        .scaledToFill()
+                    Group {
+                        if promotion?.promotionImageURL != nil {
+                            LoyaltyAsyncImage(url: promotion?.promotionImageURL, content: { image in
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                            }, placeholder: {
+                                ProgressView()
+                            })
+                        } else {
+                            Image("img-join")
+                                .resizable()
+                                .scaledToFill()
+                        }
+                    }
                         .frame(maxWidth: geometry.size.width, maxHeight: 160)
                         .clipped()
                         .overlay(alignment: .topTrailing) {
@@ -48,13 +61,15 @@ struct ReferAFriendView: View {
                 .frame(maxHeight: 160)
                 
                 VStack(alignment: .leading, spacing: 20) {
-                    Text("**\(StringConstants.Referrals.referTitle)**")
-                        .font(.referModalText)
+                    Text("**\(promotion?.promotionName ?? "")**")
+                        .font(.referModalNameText)
                         .padding(.top, 10)
                         .padding(.horizontal, 15)
                         .accessibilityIdentifier(AppAccessibilty.Referrals.referAFriendTitle)
-                    Text(StringConstants.Referrals.referText)
+                    Text(promotion?.description ?? "")
+                        .lineSpacing(5)
                         .font(.referModalText)
+                        .foregroundStyle(Color.theme.superLightText)
                         .padding(.horizontal, 15)
                         .frame(height: 60)
                     
@@ -78,7 +93,7 @@ struct ReferAFriendView: View {
                                     do {
                                         try await referralVM.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", reload: true)
                                     } catch {
-                                        Logger.error(error.localizedDescription)
+                                        print(error.localizedDescription)
                                     }
                                 }
                                 
@@ -263,7 +278,7 @@ struct ReferAFriendView: View {
 }
 
 #Preview {
-    ReferAFriendView(promotionCode: "")
+    ReferAFriendView(promotionCode: "", promotion: nil)
         .environmentObject(AppRootViewModel())
         .environmentObject(ReferralViewModel())
 }
