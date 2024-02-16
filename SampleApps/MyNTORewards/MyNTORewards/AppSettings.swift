@@ -52,12 +52,12 @@ struct AppSettings {
         
         // Referral settings
         static let referralProgramName = loyaltyProgramName
-        static let promotionCode = "TEMP16"
-        static let defaultReferralPromotionId = "0c81Q0000004W6PQAU"
+        static let promotionCode = "PVH"
+        static let referralPromotionId = "0c81Q0000004T02QAE"
         static let referralDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         static let referralDateFormatWithoutTime = "yyyy-MM-dd"
         static let referralLink = "https://rb.gy/m7bt48?referralCode="
-        static let referralTermsLink = "https://www.google.com/"
+        static let referralTermsLink = "https://www.google.com"
 
     }
     

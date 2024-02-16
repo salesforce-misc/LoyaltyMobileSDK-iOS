@@ -13,7 +13,7 @@ extension MyReferralsView {
         if let promotions = LocalFileManager.instance.getData(type: [PromotionResult].self,
                                                               id: membershipNumber,
                                                               folderName: AppSettings.cacheFolders.promotions),
-           let defaultPromotion = promotions.first(where: {$0.id == AppSettings.Defaults.defaultReferralPromotionId}) {
+           let defaultPromotion = promotions.first(where: {$0.id == AppSettings.Defaults.referralPromotionId}) {
             
             return defaultPromotion
         }
@@ -24,7 +24,7 @@ extension MyReferralsView {
     if let promotions = LocalFileManager.instance.getData(type: [PromotionResult].self,
                                                           id: membershipNumber,
                                                           folderName: AppSettings.cacheFolders.promotions),
-           let defaultPromotion = promotions.first(where: {$0.id == AppSettings.Defaults.defaultReferralPromotionId}) {
+           let defaultPromotion = promotions.first(where: {$0.id == AppSettings.Defaults.referralPromotionId}) {
             
             return defaultPromotion
         } else {

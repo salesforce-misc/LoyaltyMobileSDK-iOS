@@ -262,6 +262,9 @@
 		4F2B802A2B737F2D007ECECF /* PromotionGatewayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2B80292B737F2D007ECECF /* PromotionGatewayView.swift */; };
 		4F2B802C2B73953B007ECECF /* PromotionGateWayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2B802B2B73953B007ECECF /* PromotionGateWayViewModel.swift */; };
 		4F2B802E2B7DDFB5007ECECF /* MyReferralsView+PromotionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2B802D2B7DDFB5007ECECF /* MyReferralsView+PromotionResult.swift */; };
+		4F2B80302B7E03CA007ECECF /* ReferralListSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2B802F2B7E03CA007ECECF /* ReferralListSuccessView.swift */; };
+		4F2B80322B7E03DA007ECECF /* ReferralListInProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2B80312B7E03DA007ECECF /* ReferralListInProcessView.swift */; };
+		4F2B80342B7E048F007ECECF /* ReferralCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2B80332B7E048F007ECECF /* ReferralCardView.swift */; };
 		4F3F630E2B32C662008954FB /* GamificationForceAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F630D2B32C662008954FB /* GamificationForceAuthManager.swift */; };
 		4F534C1F2B4FE442004DF036 /* GameZoneVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F534C1E2B4FE442004DF036 /* GameZoneVoucherView.swift */; };
 		4F53BF6D2B6925330076ACF3 /* ReferralMockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F53BF6C2B6925330076ACF3 /* ReferralMockNetworkManager.swift */; };
@@ -587,6 +590,9 @@
 		4F2B80292B737F2D007ECECF /* PromotionGatewayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionGatewayView.swift; sourceTree = "<group>"; };
 		4F2B802B2B73953B007ECECF /* PromotionGateWayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionGateWayViewModel.swift; sourceTree = "<group>"; };
 		4F2B802D2B7DDFB5007ECECF /* MyReferralsView+PromotionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyReferralsView+PromotionResult.swift"; sourceTree = "<group>"; };
+		4F2B802F2B7E03CA007ECECF /* ReferralListSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralListSuccessView.swift; sourceTree = "<group>"; };
+		4F2B80312B7E03DA007ECECF /* ReferralListInProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralListInProcessView.swift; sourceTree = "<group>"; };
+		4F2B80332B7E048F007ECECF /* ReferralCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralCardView.swift; sourceTree = "<group>"; };
 		4F3F630D2B32C662008954FB /* GamificationForceAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationForceAuthManager.swift; sourceTree = "<group>"; };
 		4F534C1E2B4FE442004DF036 /* GameZoneVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneVoucherView.swift; sourceTree = "<group>"; };
 		4F53BF6C2B6925330076ACF3 /* ReferralMockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralMockNetworkManager.swift; sourceTree = "<group>"; };
@@ -790,6 +796,9 @@
 				2945FFBD2AE8926A00D9C8C6 /* ReferAFriendView.swift */,
 				29889A992B46369B0037BD94 /* JoinAndReferView.swift */,
 				4F2B802D2B7DDFB5007ECECF /* MyReferralsView+PromotionResult.swift */,
+				4F2B802F2B7E03CA007ECECF /* ReferralListSuccessView.swift */,
+				4F2B80312B7E03DA007ECECF /* ReferralListInProcessView.swift */,
+				4F2B80332B7E048F007ECECF /* ReferralCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1764,6 +1773,7 @@
 				298D5EF229CCF94D0062F16E /* WebAuthenticationSession.swift in Sources */,
 				216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */,
 				3F714D5429FA0FC200CD39E7 /* QuantityView.swift in Sources */,
+				4F2B80322B7E03DA007ECECF /* ReferralListInProcessView.swift in Sources */,
 				2944F88A28B9A7220098ED1B /* AppSettings.swift in Sources */,
 				298CAA0F2A6B4B48003F7F42 /* CircularButtonStyle.swift in Sources */,
 				3F714D6F2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift in Sources */,
@@ -1796,6 +1806,7 @@
 				298D5EF429CCF94D0062F16E /* Keychain.swift in Sources */,
 				3F75ABC92B307C370018CB2B /* ReflectiveEquatable.swift in Sources */,
 				293F643329DCDAF8001AC795 /* ForceClient+Image.swift in Sources */,
+				4F2B80342B7E048F007ECECF /* ReferralCardView.swift in Sources */,
 				2947E40F2AE349FE005A0019 /* MyReferralsView.swift in Sources */,
 				3F714D4529FA0F4A00CD39E7 /* ProductReviewView.swift in Sources */,
 				3FE71CF82B3199CD006E6BF5 /* MoreView.swift in Sources */,
@@ -1846,6 +1857,7 @@
 				293F643129D6C5AD001AC795 /* ForceConnectedApp.swift in Sources */,
 				2905820C2B685C580071CB43 /* ReferralMember.swift in Sources */,
 				2955346B29E93EF800CFA391 /* InfoNavigationLink.swift in Sources */,
+				4F2B80302B7E03CA007ECECF /* ReferralListSuccessView.swift in Sources */,
 				292453E62A185D75002112B3 /* Bundle+Info.swift in Sources */,
 				3FE71D0A2B3199CD006E6BF5 /* BenefitView.swift in Sources */,
 				3F7DAFA92A825F9600A521E2 /* ReceiptViewModel.swift in Sources */,

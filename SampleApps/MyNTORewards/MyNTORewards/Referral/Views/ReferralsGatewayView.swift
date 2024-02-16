@@ -6,15 +6,16 @@
 //
 
 import SwiftUI
+import ReferralMobileSDK
 
 struct ReferralsGatewayView: View {
     @EnvironmentObject private var referralVM: ReferralViewModel
     @EnvironmentObject private var rootVM: AppRootViewModel
     
     var body: some View {
-        switch referralVM.enrollmentStatusApiState {
+        switch referralVM.loadAllReferralsApiState {
         case .idle:
-            Color.theme.background.onAppear(perform: checkEnrollmentStatus)
+            Color.theme.background.onAppear(perform: loadReferralsData)
         case .loading:
             VStack(spacing: 0) {
                 HStack {
@@ -59,6 +60,9 @@ struct ReferralsGatewayView: View {
                             .frame(width: geometry.size.width)
                             .frame(minHeight: geometry.size.height)
                         }
+                        .refreshable {
+                            loadReferralsData()
+                        }
                     }
                 }
                 Spacer()
@@ -68,11 +72,18 @@ struct ReferralsGatewayView: View {
             .navigationBarBackButtonHidden()
 
         case .loaded:
-            MyReferralsView(showEnrollmentView: referralVM.showEnrollmentView)
+            MyReferralsView()
         }
     }
     
-    func checkEnrollmentStatus() {
+    func loadReferralsData() {
+        Task {
+            do {
+                try await referralVM.getReferralsDataFromServer(memberContactId: rootVM.member?.contactId ?? "")
+            } catch {
+                Logger.error(error.localizedDescription)
+            }
+        }
     }
 }
 

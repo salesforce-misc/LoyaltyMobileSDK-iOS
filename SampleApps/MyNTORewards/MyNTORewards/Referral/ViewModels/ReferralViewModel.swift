@@ -33,7 +33,6 @@ class ReferralViewModel: ObservableObject {
     
     @Published var referralMember: ReferralMember?
     @Published var defaultReferralPromotion: ReferralPromotionObject?
-    @Published var showEnrollmentView = false
     @Published var showJoinDefaultPromotion = false
     @Published var promotionStageCounts: [PromotionStageType: Int] = [:]
     @Published var recentReferralsSuccess: [Referral] = []
@@ -42,7 +41,7 @@ class ReferralViewModel: ObservableObject {
     @Published var recentReferralsInProgress: [Referral] = []
     @Published var oneMonthAgoReferralsInProgress: [Referral] = []
     @Published var threeMonthsAgoReferralsInProgress: [Referral] = []
-    @Published private(set) var enrollmentStatusApiState = LoadingState.idle
+    @Published private(set) var loadAllReferralsApiState = LoadingState.idle
     @Published private(set) var isEnrollmentStatusApiLoading = false
     @Published var referralCode: String {
         didSet {
@@ -88,19 +87,24 @@ class ReferralViewModel: ObservableObject {
     
     func loadAllReferrals(memberContactId: String, reload: Bool = false) async throws {
         if !reload && !devMode {
+            
             if let cached = localFileManager.getData(type: [Referral].self, id: promotionCode, folderName: referralsFolderName) {
                 promotionStageCounts = calculatePromotionStageCounts(in: cached)
                 filterReferrals(referrals: cached)
+                loadAllReferralsApiState = .loaded
                 return
             } else {
+                loadAllReferralsApiState = .loading
                 do {
                     let result = try await fetchAllReferrals(memberContactId: memberContactId)
                     promotionStageCounts = calculatePromotionStageCounts(in: result)
                     filterReferrals(referrals: result)
                     
                     // save to local
+                    loadAllReferralsApiState = .loaded
                     localFileManager.saveData(item: result, id: promotionCode, folderName: referralsFolderName, expiry: .never)
                 } catch {
+                    loadAllReferralsApiState = .failed(error)
                     Logger.error(error.localizedDescription)
                     throw error
                 }
@@ -111,13 +115,31 @@ class ReferralViewModel: ObservableObject {
                 let result = try await fetchAllReferrals(memberContactId: memberContactId)
                 promotionStageCounts = calculatePromotionStageCounts(in: result)
                 filterReferrals(referrals: result)
-                
+
                 // save to local
                 localFileManager.saveData(item: result, id: promotionCode, folderName: referralsFolderName, expiry: .never)
             } catch {
                 Logger.error(error.localizedDescription)
                 throw error
             }
+           
+        }
+    }
+    func getReferralsDataFromServer(memberContactId: String) async throws {
+        
+        do {
+            loadAllReferralsApiState = .loading
+            let result = try await fetchAllReferrals(memberContactId: memberContactId)
+            promotionStageCounts = calculatePromotionStageCounts(in: result)
+            filterReferrals(referrals: result)
+            loadAllReferralsApiState = .loaded
+
+            // save to local
+            localFileManager.saveData(item: result, id: promotionCode, folderName: referralsFolderName, expiry: .never)
+        } catch {
+            Logger.error(error.localizedDescription)
+            loadAllReferralsApiState = .failed(error)
+            throw error
         }
     }
     
@@ -227,7 +249,7 @@ class ReferralViewModel: ObservableObject {
                 self.referralMember = referralMember
                 self.referralCode = output.promotionReferralCode
                 self.referralMembershipNumber = output.membershipNumber
-                showEnrollmentView = false
+                UserDefaults.standard.setValue(true, forKey: "isEnrolledForDefaultPromotion")
                 
             } else {
                 // status is not `Processed`, if `Pending` should
