@@ -28,7 +28,6 @@ struct ReferAFriendView: View {
     var body: some View {
         let referralLink = "\(AppSettings.Defaults.referralLink)\(referralVM.referralCode)"
         let shareText = "\(StringConstants.Referrals.shareReferralText) \(referralLink)"
-        
         ZStack {
             VStack {
                 GeometryReader { geometry in
@@ -47,16 +46,16 @@ struct ReferAFriendView: View {
                                 .scaledToFill()
                         }
                     }
-                        .frame(maxWidth: geometry.size.width, maxHeight: 160)
-                        .clipped()
-                        .overlay(alignment: .topTrailing) {
-                            Image("ic-dismiss")
-                                .accessibilityIdentifier(AppAccessibilty.Promotion.dismissButton)
-                                .padding()
-                                .onTapGesture {
-                                    dismiss()
-                                }
-                        }
+                    .frame(maxWidth: geometry.size.width, maxHeight: 160)
+                    .clipped()
+                    .overlay(alignment: .topTrailing) {
+                        Image("ic-dismiss")
+                            .accessibilityIdentifier(AppAccessibilty.Promotion.dismissButton)
+                            .padding()
+                            .onTapGesture {
+                                dismiss()
+                            }
+                    }
                 }
                 .frame(maxHeight: 160)
                 
@@ -86,15 +85,21 @@ struct ReferAFriendView: View {
                             if isEmailValid {
                                 processing = true
                                 Task {
-                                    await referralVM.sendReferral(email: email)
-                                    processing = false
-                                    showEmailSentAlert = true
-                                    email = ""
                                     do {
-                                        try await referralVM.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", reload: true)
+                                        try await referralVM.sendReferral(email: email)
+                                        if !referralVM.displayError.0 {
+                                            showEmailSentAlert = true
+                                            do {
+                                                try await referralVM.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", reload: true)
+                                            } catch {
+                                                print(error.localizedDescription)
+                                            }
+                                        }
                                     } catch {
                                         print(error.localizedDescription)
                                     }
+                                    processing = false
+                                    email = ""
                                 }
                                 
                             } else {
@@ -127,7 +132,7 @@ struct ReferAFriendView: View {
                     }
                     .opacity(validationMessage.isEmpty ? 0 : 1)
                     .frame(height: 40)
-
+                    
                 }
                 
                 VStack(spacing: 20) {
@@ -220,7 +225,7 @@ struct ReferAFriendView: View {
                     }
                     .buttonStyle(DarkLongButton())
                     Spacer()
-
+                    
                 }
             }
             .ignoresSafeArea()
@@ -231,22 +236,6 @@ struct ReferAFriendView: View {
                 ProgressView()
             }
         }
-        .fullScreenCover(isPresented: $referralVM.displayError.0) {
-            Spacer()
-            ProcessingErrorView(message: referralVM.displayError.1)
-            Spacer()
-            Button {
-                email = ""
-                referralVM.displayError = (false, "")
-            } label: {
-                Text(StringConstants.Referrals.backButton)
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(.borderedProminent)
-            .longFlexibleButtonStyle()
-            .accessibilityIdentifier(AppAccessibilty.Referrals.emailErrorBackButton)
-        }
-        
     }
     
     func isValidEmail(_ email: String) -> Bool {
@@ -254,12 +243,12 @@ struct ReferAFriendView: View {
         let emailPred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
-
+    
     func validateEmailInput(input: String) -> Bool {
         let emails = input.split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
         return emails.allSatisfy(isValidEmail)
     }
-
+    
     func shareToWhatsApp(text: String) {
         let urlString = "whatsapp://send?text=\(text)"
         if let urlStringEncoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
@@ -267,11 +256,11 @@ struct ReferAFriendView: View {
             openURL(url)
         }
     }
-
+    
     func shareToTwitter(text: String) {
         let urlString = "https://twitter.com/intent/tweet?text=\(text)"
-		if let urlStringEncoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-		   let url = URL(string: urlStringEncoded) {
+        if let urlStringEncoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+           let url = URL(string: urlStringEncoded) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }

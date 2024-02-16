@@ -28,12 +28,17 @@ struct ReferralPromotionObject: Codable {
     }
 }
 
+enum DefaultPromotionGateWayViewScreenState {
+    case joinReferralPromotion
+    case referFriend
+    case promotionError
+}
+
 @MainActor
 class ReferralViewModel: ObservableObject {
     
     @Published var referralMember: ReferralMember?
     @Published var defaultReferralPromotion: ReferralPromotionObject?
-    @Published var showJoinDefaultPromotion = false
     @Published var promotionStageCounts: [PromotionStageType: Int] = [:]
     @Published var recentReferralsSuccess: [Referral] = []
     @Published var oneMonthAgoReferralsSuccess: [Referral] = []
@@ -42,7 +47,9 @@ class ReferralViewModel: ObservableObject {
     @Published var oneMonthAgoReferralsInProgress: [Referral] = []
     @Published var threeMonthsAgoReferralsInProgress: [Referral] = []
     @Published private(set) var loadAllReferralsApiState = LoadingState.idle
-    @Published private(set) var isEnrollmentStatusApiLoading = false
+    @Published private(set) var enrollmentStatusApiState = LoadingState.idle
+    @Published private(set) var promotionScreenType: DefaultPromotionGateWayViewScreenState = .joinReferralPromotion
+
     @Published var referralCode: String {
         didSet {
             UserDefaults.standard.setValue(referralCode, forKey: "referralCode")
@@ -198,38 +205,41 @@ class ReferralViewModel: ObservableObject {
         }
     }
     
-    func sendReferral(email: String) async {
+    func sendReferral(email: String) async throws {
         let emailArray = emailStringToArray(emailString: email)
         do {
             _ = try await referralAPIManager.referralEvent(emails: emailArray, referralCode: referralCode)
         } catch CommonError.responseUnsuccessful(_, let errorMessage), CommonError.unknownException(let errorMessage) {
             displayError = (true, errorMessage)
+            promotionScreenType = .promotionError
+
         } catch {
             displayError = (true, error.localizedDescription)
+            promotionScreenType = .promotionError
+            throw error
         }
     }
         
-    func isEnrolledForDefaultPromotion(contactId: String) async -> Bool {
+    func isEnrolledForDefaultPromotion(contactId: String) async {
         if let isEnrolled =  UserDefaults.standard.value(forKey: "isEnrolledForDefaultPromotion") as? Bool {
             if isEnrolled {
-                return true
+                enrollmentStatusApiState = .loaded
+                promotionScreenType = .referFriend
+                return
             }
         }
         do {
-            isEnrollmentStatusApiLoading = true
+            enrollmentStatusApiState = .loading
             // swiftlint:disable:next line_length
             let query = "SELECT Id, Name, PromotionId, LoyaltyProgramMemberId, LoyaltyProgramMember.ContactId FROM LoyaltyProgramMbrPromotion where LoyaltyProgramMember.ContactId='\(contactId)' AND Promotion.PromotionCode='\(promotionCode)'"
             let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
             UserDefaults.standard.setValue(!queryResult.records.isEmpty, forKey: "isEnrolledForDefaultPromotion")
-            isEnrollmentStatusApiLoading = false
-            if queryResult.records.isEmpty {
-                showJoinDefaultPromotion = true
-            }
-            return !queryResult.records.isEmpty
+            enrollmentStatusApiState = .loaded
+            promotionScreenType =  queryResult.records.isEmpty ? .joinReferralPromotion : .referFriend
         } catch {
             Logger.error(error.localizedDescription)
-            isEnrollmentStatusApiLoading = false
-            return false
+            enrollmentStatusApiState = .failed(error)
+            promotionScreenType = .promotionError
         }
     }
     
@@ -250,14 +260,16 @@ class ReferralViewModel: ObservableObject {
                 self.referralCode = output.promotionReferralCode
                 self.referralMembershipNumber = output.membershipNumber
                 UserDefaults.standard.setValue(true, forKey: "isEnrolledForDefaultPromotion")
-                
+                promotionScreenType = .referFriend
             } else {
                 // status is not `Processed`, if `Pending` should
                 Logger.debug("The enrollment status is: \(output.transactionJournals.first?.status ?? "NOTFOUND")")
+                promotionScreenType = .promotionError
                 displayError = (true, StringConstants.Referrals.enrollmentError)
             }
         } catch {
             Logger.error("Referral Enrollment Error: \(error.localizedDescription)")
+            promotionScreenType = .promotionError
             displayError = (true, StringConstants.Referrals.enrollmentError)
         }
     }

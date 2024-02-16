@@ -1,23 +1,20 @@
 //
-//  PromotionGatewayView.swift
+//  DefaultPromotionGateWayView.swift
 //  MyNTORewards
 //
-//  Created by Damodaram Nandi on 07/02/24.
+//  Created by Damodaram Nandi on 16/02/24.
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
 
-struct PromotionGatewayView: View {
-    @StateObject private var viewModel = PromotionGateWayViewModel()
+struct DefaultPromotionGateWayView: View {
     @EnvironmentObject private var rootVM: AppRootViewModel
+    @EnvironmentObject private var viewModel: ReferralViewModel
     @Environment(\.dismiss) private var dismiss
-    let promotion: PromotionResult
-    @Binding var processing: Bool
     
     var body: some View {
         Group {
-            switch viewModel.promotionStatusApiState {
+            switch viewModel.enrollmentStatusApiState {
             case .idle:
                 Color.theme.background
             case .loading:
@@ -49,13 +46,15 @@ struct PromotionGatewayView: View {
                 
             case .loaded:
                 switch viewModel.promotionScreenType {
-                case .loyaltyPromotion:
-                    MyPromotionDetailView(promotion: promotion, processing: $processing)
                 case .joinReferralPromotion:
-                    JoinAndReferView(promotion: promotion).environmentObject(viewModel)
+                    let promotion = getPromotionData(membershipNumber: rootVM.member?.membershipNumber ?? "")
+                    JoinAndReferView(isFromMyReferralView: true,
+                                     promotion: promotion)
                 case .referFriend:
-                    ReferAFriendView(promotionCode: viewModel.promoCode, promotion: promotion )
-                case .joinPromotionError:
+                    let promotion = getPromotionData(membershipNumber: rootVM.member?.membershipNumber ?? "")
+                    ReferAFriendView(promotionCode: AppSettings.Defaults.promotionCode, promotion: promotion)
+                        .environmentObject(viewModel)
+                case .promotionError:
                     ZStack {
                         Color.theme.background
                         VStack {
@@ -73,7 +72,7 @@ struct PromotionGatewayView: View {
                             .longFlexibleButtonStyle()
                             .accessibilityIdentifier(AppAccessibilty.Referrals.joinErrorBackButton)
                         }
-                        }
+                    }
                 }
             }
         }.onAppear {
@@ -84,7 +83,11 @@ struct PromotionGatewayView: View {
     func checkEnrollmentStatus() {
         Task {
             let contactId = rootVM.member?.contactId ?? ""
-            await viewModel.getPromotionType(promotionId: promotion.id, contactId: contactId)
+            await viewModel.isEnrolledForDefaultPromotion(contactId: contactId)
         }
     }
+}
+
+#Preview {
+    DefaultPromotionGateWayView()
 }

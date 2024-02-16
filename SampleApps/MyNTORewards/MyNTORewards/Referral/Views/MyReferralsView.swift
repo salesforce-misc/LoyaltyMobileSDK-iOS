@@ -13,8 +13,7 @@ struct MyReferralsView: View {
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var routerPath: RouterPath
     @State private var tabIndex = 0
-    @State var showReferAFriendView = false
-    @State var showEnrollmentView = false
+    @State var showPromotionView = false
     var tabbarItems = [StringConstants.Referrals.successTab, StringConstants.Referrals.inProgressTab]
     
     var body: some View {
@@ -81,15 +80,7 @@ struct MyReferralsView: View {
                                     Spacer()
                                     Button(StringConstants.Referrals.referButton) {
                                         // Refer
-                                        // show basesd on status for default promotion
-                                        Task {
-                                            let isEnrolled =  await viewModel.isEnrolledForDefaultPromotion(contactId: rootVM.member?.contactId ?? "")
-                                            if isEnrolled {
-                                                showReferAFriendView = true
-                                            } else {
-                                                showEnrollmentView = true
-                                            }
-                                        }
+                                        showPromotionView.toggle()
                                     }
                                     .buttonStyle(LightShortReferralsButton())
                                     Spacer()
@@ -149,43 +140,15 @@ struct MyReferralsView: View {
                     }
                     .padding(.bottom, 100)
                 }
-                if viewModel.isEnrollmentStatusApiLoading {
-                    ProgressView()
-                }
             }
             Spacer()
         }
         .ignoresSafeArea(edges: .bottom)
         .frame(maxHeight: .infinity)
         .navigationBarBackButtonHidden()
-        .sheet(isPresented: $showReferAFriendView) {
-            let promotion = getPromotionData(membershipNumber: rootVM.member?.membershipNumber ?? "")
-            ReferAFriendView(promotionCode: AppSettings.Defaults.promotionCode, promotion: promotion)
+        .sheet(isPresented: $showPromotionView) {
+            DefaultPromotionGateWayView()
                 .environmentObject(viewModel)
-        }
-        .sheet(isPresented: $showEnrollmentView) {
-            let promotion = getPromotionData(membershipNumber: rootVM.member?.membershipNumber ?? "")
-            JoinAndReferView(showReferAFriendView: $showReferAFriendView,
-                             isFromMyReferralView: true,
-                             promotion: promotion)
-            .interactiveDismissDisabled()
-        }
-        .fullScreenCover(isPresented: $viewModel.displayError.0) {
-            Spacer()
-            ProcessingErrorView(message: viewModel.displayError.1)
-            Spacer()
-            Button {
-                viewModel.displayError = (false, "")
-                if !viewModel.showJoinDefaultPromotion {
-                    routerPath.pathFromMore = []
-                }
-            } label: {
-                Text(StringConstants.Referrals.backButton)
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(.borderedProminent)
-            .longFlexibleButtonStyle()
-            .accessibilityIdentifier(AppAccessibilty.Referrals.joinErrorBackButton)
         }
         .refreshable {
             do {

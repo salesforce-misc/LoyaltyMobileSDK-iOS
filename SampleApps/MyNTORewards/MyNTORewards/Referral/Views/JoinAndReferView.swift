@@ -15,7 +15,6 @@ struct JoinAndReferView: View {
     @EnvironmentObject private var promotionGateWayViewModel: PromotionGateWayViewModel
     @EnvironmentObject private var routerPath: RouterPath
     @State private var processing: Bool = false
-    @Binding var showReferAFriendView: Bool
     var isFromMyReferralView: Bool = false
     let promotion: PromotionResult?
     
@@ -64,11 +63,6 @@ struct JoinAndReferView: View {
                         if isFromMyReferralView {
                             await referralVM.enroll(contactId: rootVM.member?.contactId ?? "")
                             processing = false
-                            dismiss()
-                            if !referralVM.displayError.0 {
-                                showReferAFriendView = true
-                            }
-                            
                         } else {
                             await  promotionGateWayViewModel.enroll(contactId: rootVM.member?.contactId ?? "")
                             processing = false
@@ -98,6 +92,6 @@ struct JoinAndReferView: View {
 }
 
 #Preview {
-    JoinAndReferView(showReferAFriendView: .constant(false), promotion: nil)
+    JoinAndReferView(promotion: nil)
         .environmentObject(ReferralViewModel())
 }
