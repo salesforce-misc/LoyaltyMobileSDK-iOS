@@ -24,12 +24,14 @@ public struct ForceRequest {
     public struct MIMEType {
         static let json = "application/json;charset=UTF-8"
         static let formUrlEncoded = "application/x-www-form-urlencoded;charset=utf-8"
+		static let loyaltyMobileSdkiOS = "client=loyaltyMobileSdk-iOS"
     }
     
     /// Constants for HTTP headers.
     public struct Header {
         static let accept = "Accept"
         static let contentType = "Content-Type"
+		static let callOptions = "Sforce-Call-Options"
     }
     
     /// create a URLRequest with path
@@ -138,7 +140,8 @@ public struct ForceRequest {
         }()
         let defaultHeaders: [String: String] = [
             Header.accept: MIMEType.json,
-            Header.contentType: contentType
+            Header.contentType: contentType,
+			Header.callOptions: MIMEType.loyaltyMobileSdkiOS
         ].reduce(into: [:]) { $0[$1.0] = $1.1 }
         request.allHTTPHeaderFields = defaultHeaders.merging(headers ?? [:]) { (_, new) in new }
         
