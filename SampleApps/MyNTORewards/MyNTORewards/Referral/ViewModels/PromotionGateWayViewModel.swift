@@ -8,21 +8,6 @@
 import Foundation
 import ReferralMobileSDK
 
-struct PromotionObject: Codable {
-    let isReferralPromotion: Bool?
-    let promotionCode: String
-    enum CodingKeys: String, CodingKey {
-        case isReferralPromotion = "IsReferralPromotion"
-        case promotionCode = "PromotionCode"
-    }
-}
-
-struct PromotionInfo {
-    let isReferralPromotion: Bool?
-    let promotionCode: String
-    let IsEnrolledToPromotion: Bool?
-}
-
 enum PromotionGateWayScreenState {
     case loyaltyPromotion
     case joinReferralPromotion
@@ -32,7 +17,6 @@ enum PromotionGateWayScreenState {
 
 @MainActor
 class PromotionGateWayViewModel: ObservableObject {
-    @Published private(set) var promotionReferralInfo: PromotionInfo?
     @Published private(set) var promotionStatusApiState = LoadingState.idle
     @Published private(set) var promoCode = AppSettings.Defaults.promotionCode
     @Published var displayError: (Bool, String) = (false, "")

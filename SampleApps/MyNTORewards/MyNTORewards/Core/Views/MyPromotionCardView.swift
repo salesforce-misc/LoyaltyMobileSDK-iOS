@@ -12,7 +12,6 @@ struct MyPromotionCardView: View {
     
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var promotionVM: PromotionViewModel
-    @EnvironmentObject private var routerPath: RouterPath
     @State var showPromotionDetailView = false
     @State var processing = false
     let accessibilityID: String
