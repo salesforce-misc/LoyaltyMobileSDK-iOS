@@ -273,6 +273,7 @@ class AppRootViewModel: ObservableObject {
         member = nil
         
         // delete all cached data
+        UserDefaults.standard.removeObject(forKey: "isEnrolledForDefaultPromotion")
         LocalFileManager.instance.removeAllAppData()
     }
     
