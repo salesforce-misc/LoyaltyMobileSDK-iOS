@@ -24,7 +24,6 @@ public struct ForceRequest {
     public struct MIMEType {
         static let json = "application/json;charset=UTF-8"
         static let formUrlEncoded = "application/x-www-form-urlencoded;charset=utf-8"
-		static let loyaltyMobileSdkiOS = "client=loyaltyMobileSdk-iOS"
     }
     
     /// Constants for HTTP headers.
@@ -138,10 +137,11 @@ public struct ForceRequest {
                 return MIMEType.formUrlEncoded
             }
         }()
+		let clientIdentifier = "client=loyaltyMobileSdk-iOS"
         let defaultHeaders: [String: String] = [
             Header.accept: MIMEType.json,
             Header.contentType: contentType,
-			Header.callOptions: MIMEType.loyaltyMobileSdkiOS
+			Header.callOptions: clientIdentifier
         ].reduce(into: [:]) { $0[$1.0] = $1.1 }
         request.allHTTPHeaderFields = defaultHeaders.merging(headers ?? [:]) { (_, new) in new }
         
