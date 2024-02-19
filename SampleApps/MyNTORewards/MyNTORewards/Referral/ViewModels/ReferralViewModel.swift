@@ -194,12 +194,12 @@ class ReferralViewModel: ObservableObject {
             let notFound = "NOTFOUND"
             do {
                 if let code = try await getReferralCode(for: membershipNumber) {
-                    referralCode = "\(code)-\(promoCode)"
+                    referralCode = code
                 } else {
-                    referralCode = "\(notFound)-\(promoCode)"
+                    referralCode = notFound
                 }
             } catch {
-                referralCode = "\(notFound)-\(promoCode)"
+                referralCode = notFound
             }
     }
     
@@ -277,6 +277,9 @@ class ReferralViewModel: ObservableObject {
     }
     
     private func getReferralCode(for membershipNumber: String) async throws -> String? {
+        if !referralCode.isEmpty {
+            return referralCode
+        }
         let query = "SELECT Id, ReferralCode FROM LoyaltyProgramMember WHERE MembershipNumber = '\(membershipNumber)'"
         
         do {

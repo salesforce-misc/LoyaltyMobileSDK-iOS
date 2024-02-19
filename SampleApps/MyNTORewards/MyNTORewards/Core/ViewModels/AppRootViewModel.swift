@@ -274,6 +274,7 @@ class AppRootViewModel: ObservableObject {
         
         // delete all cached data
         UserDefaults.standard.removeObject(forKey: "isEnrolledForDefaultPromotion")
+        UserDefaults.standard.removeObject(forKey: "referralCode")
         LocalFileManager.instance.removeAllAppData()
     }
     

@@ -26,7 +26,7 @@ struct ReferAFriendView: View {
     let promotion: PromotionResult?
     
     var body: some View {
-        let referralLink = "\(AppSettings.Defaults.referralLink)\(referralVM.referralCode)"
+        let referralLink = "\(AppSettings.Defaults.referralLink)\(referralVM.referralCode)-\(promotionCode)"
         let shareText = "\(StringConstants.Referrals.shareReferralText) \(referralLink)"
         if referralVM.displayError.0 {
             ZStack {
