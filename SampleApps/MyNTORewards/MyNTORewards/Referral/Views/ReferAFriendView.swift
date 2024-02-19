@@ -79,6 +79,8 @@ struct ReferAFriendView: View {
                     }
                     .frame(maxHeight: 160)
                     
+                    ScrollView {
+
                     VStack(alignment: .leading, spacing: 20) {
                         Text("**\(promotion?.promotionName ?? "")**")
                             .font(.referModalNameText)
@@ -90,7 +92,6 @@ struct ReferAFriendView: View {
                             .font(.referModalText)
                             .foregroundStyle(Color.theme.superLightText)
                             .padding(.horizontal, 15)
-                            .frame(height: 60)
                         
                         ZStack(alignment: .trailing) {
                             TextField(StringConstants.Referrals.referEmailText, text: $email)
@@ -248,6 +249,7 @@ struct ReferAFriendView: View {
                         
                     }
                 }
+            }
                 if processing {
                     ProgressView()
                 }

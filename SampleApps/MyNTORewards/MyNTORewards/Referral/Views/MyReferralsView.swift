@@ -150,13 +150,6 @@ struct MyReferralsView: View {
             DefaultPromotionGateWayView()
                 .environmentObject(viewModel)
         }
-        .refreshable {
-            do {
-                try await viewModel.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", reload: true)
-            } catch {
-                Logger.error(error.localizedDescription)
-            }
-        }
     }
 }
 
