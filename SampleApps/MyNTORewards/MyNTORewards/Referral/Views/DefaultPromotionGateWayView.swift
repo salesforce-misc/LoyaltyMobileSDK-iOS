@@ -53,7 +53,6 @@ struct DefaultPromotionGateWayView: View {
                 case .referFriend:
                     let promotion = getPromotionData(membershipNumber: rootVM.member?.membershipNumber ?? "")
                     ReferAFriendView(promotionCode: AppSettings.Defaults.promotionCode, promotion: promotion)
-                        .environmentObject(viewModel)
                 case .promotionError:
                     ZStack {
                         Color.theme.background

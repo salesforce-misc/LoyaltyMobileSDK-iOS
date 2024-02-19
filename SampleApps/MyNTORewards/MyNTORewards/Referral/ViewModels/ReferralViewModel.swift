@@ -191,7 +191,6 @@ class ReferralViewModel: ObservableObject {
     }
     
     func loadReferralCode(membershipNumber: String, promoCode: String) async {
-        if referralCode .isEmpty {
             let notFound = "NOTFOUND"
             do {
                 if let code = try await getReferralCode(for: membershipNumber) {
@@ -202,7 +201,6 @@ class ReferralViewModel: ObservableObject {
             } catch {
                 referralCode = "\(notFound)-\(promoCode)"
             }
-        }
     }
     
     func sendReferral(email: String) async throws {
@@ -211,11 +209,11 @@ class ReferralViewModel: ObservableObject {
             _ = try await referralAPIManager.referralEvent(emails: emailArray, referralCode: referralCode)
         } catch CommonError.responseUnsuccessful(_, let errorMessage), CommonError.unknownException(let errorMessage) {
             displayError = (true, errorMessage)
-            promotionScreenType = .promotionError
+//            promotionScreenType = .promotionError
 
         } catch {
             displayError = (true, error.localizedDescription)
-            promotionScreenType = .promotionError
+//            promotionScreenType = .promotionError
             throw error
         }
     }
