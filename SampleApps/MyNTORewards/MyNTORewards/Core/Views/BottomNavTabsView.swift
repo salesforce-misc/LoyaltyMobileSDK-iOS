@@ -120,6 +120,12 @@ extension BottomNavTabsView {
 				} else {
 					routerPath.pathFromMore = []
 				}
+                //User tapped on the tab twice == Pop to root view for More tab
+                if routerPath.pathFromPromotion.isEmpty {
+                    //User already on home view, scroll to top
+                } else {
+                    routerPath.pathFromPromotion = []
+                }
 			}
 			//Set the tab to the tabbed tab
 			appViewRouter.selectedTab = tappedTab

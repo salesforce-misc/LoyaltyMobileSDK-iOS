@@ -6,46 +6,66 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct JoinAndReferView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var rootVM: AppRootViewModel
     @EnvironmentObject private var referralVM: ReferralViewModel
+    @EnvironmentObject private var promotionGateWayViewModel: PromotionGateWayViewModel
     @EnvironmentObject private var routerPath: RouterPath
     @State private var processing: Bool = false
-    @Binding var showReferAFriendView: Bool
+    var isFromMyReferralView: Bool = false
+    let promotion: PromotionResult?
     
     var body: some View {
         ZStack {
             VStack {
                 GeometryReader { geometry in
-                    Image("img-join")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(maxWidth: geometry.size.width, maxHeight: 160)
-                        .clipped()
+                    Group {
+                        if promotion?.promotionImageURL != nil {
+                            LoyaltyAsyncImage(url: promotion?.promotionImageURL, content: { image in
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                            }, placeholder: {
+                                ProgressView()
+                            })
+                        } else {
+                            Image("img-join")
+                                .resizable()
+                                .scaledToFill()
+                        }
+                    }
+                    .frame(maxWidth: geometry.size.width, maxHeight: 241)
+                    .clipped()
                 }
-                .frame(maxHeight: 160)
+                .frame(maxHeight: 241)
                 
                 VStack(alignment: .leading, spacing: 20) {
-                    Text("**\(StringConstants.Referrals.joinTitle)**")
-                        .font(.referModalText)
+                    Text("**\(promotion?.promotionName ?? "")**")
+                        .font(.referModalNameText)
+                        .foregroundStyle(Color.theme.lightText)
                         .accessibilityIdentifier(AppAccessibilty.Referrals.referAFriendTitle)
-                    Text(StringConstants.Referrals.joinText)
-                        .lineSpacing(5)
-                        .font(.referModalText)
+                    Group {
+                        Text(promotion?.description ?? "")
+                        Text("\(StringConstants.Referrals.termsText) [\(StringConstants.Referrals.termsLinkText)](https://www.google.com).")
+                    }
+                    .lineSpacing(5)
+                    .font(.referModalText)
+                    .foregroundStyle(Color.theme.superLightText)
                 }
                 .padding()
                 Spacer()
                 Button(StringConstants.Referrals.joinButton) {
                     processing = true
                     Task {
-                        // await referralVM.enroll(membershipNumber: rootVM.member?.membershipNumber ?? "")
-                        await referralVM.enroll(contactId: rootVM.member?.contactId ?? "")
-                        processing = false
-                        dismiss()
-                        if !referralVM.displayError.0 {
-                            showReferAFriendView = true
+                        if isFromMyReferralView {
+                            await referralVM.enroll(contactId: rootVM.member?.contactId ?? "")
+                            processing = false
+                        } else {
+                            await  promotionGateWayViewModel.enroll(contactId: rootVM.member?.contactId ?? "")
+                            processing = false
                         }
                     }
                 }
@@ -56,17 +76,11 @@ struct JoinAndReferView: View {
                 
                 Button {
                     dismiss()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                        routerPath.pathFromMore = []
-                    }
                 } label: {
                     Text(StringConstants.Referrals.backButton)
                         .frame(maxWidth: .infinity)
-                }
-
-                Spacer()
+                }.padding(.bottom, 20)
             }
-            .ignoresSafeArea()
             .navigationBarBackButtonHidden()
             
             if processing {
@@ -78,6 +92,6 @@ struct JoinAndReferView: View {
 }
 
 #Preview {
-    JoinAndReferView(showReferAFriendView: .constant(false))
+    JoinAndReferView(promotion: nil)
         .environmentObject(ReferralViewModel())
 }

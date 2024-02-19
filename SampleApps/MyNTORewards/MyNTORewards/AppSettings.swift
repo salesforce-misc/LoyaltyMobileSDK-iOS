@@ -52,10 +52,13 @@ struct AppSettings {
         
         // Referral settings
         static let referralProgramName = loyaltyProgramName
-        static let promotionCode = "TEMPRP5"
+        static let promotionCode = "TEMPRP9"
+        static let referralPromotionId = "0c81Q0000004ULEQA2"
         static let referralDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         static let referralDateFormatWithoutTime = "yyyy-MM-dd"
         static let referralLink = "https://rb.gy/m7bt48?referralCode="
+        static let referralTermsLink = "https://www.google.com"
+
     }
     
     struct cacheFolders {

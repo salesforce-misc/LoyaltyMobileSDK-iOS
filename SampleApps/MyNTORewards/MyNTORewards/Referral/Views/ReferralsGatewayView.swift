@@ -6,15 +6,16 @@
 //
 
 import SwiftUI
+import ReferralMobileSDK
 
 struct ReferralsGatewayView: View {
     @EnvironmentObject private var referralVM: ReferralViewModel
     @EnvironmentObject private var rootVM: AppRootViewModel
     
     var body: some View {
-        switch referralVM.enrollmentStatusApiState {
+        switch referralVM.loadAllReferralsApiState {
         case .idle:
-            Color.theme.background.onAppear(perform: checkEnrollmentStatus)
+            Color.theme.background.onAppear(perform: loadReferralsData)
         case .loading:
             VStack(spacing: 0) {
                 HStack {
@@ -37,15 +38,51 @@ struct ReferralsGatewayView: View {
             .frame(maxHeight: .infinity)
             .navigationBarBackButtonHidden()
         case .failed:
-            ProcessingErrorView(message: StringConstants.Referrals.genericError)
+            VStack(spacing: 0) {
+                HStack {
+                    Text(StringConstants.Referrals.referralsTitle)
+                        .font(.congratsTitle)
+                        .padding(.leading, 15)
+                        .accessibilityIdentifier(AppAccessibilty.Referrals.referralsViewTitle)
+                    Spacer()
+                }
+                .frame(height: 44)
+                .frame(maxWidth: .infinity)
+                .background(.white)
+                ZStack {
+                    Color.theme.background
+                    GeometryReader { geometry in
+                        ScrollView(.vertical) {
+                            VStack {
+                                ProcessingErrorView(message: StringConstants.Referrals.genericError)
+                            }
+                            .padding()
+                            .frame(width: geometry.size.width)
+                            .frame(minHeight: geometry.size.height)
+                        }
+                        .refreshable {
+                            loadReferralsData()
+                        }
+                    }
+                }
+                Spacer()
+            }
+            .ignoresSafeArea(edges: .bottom)
+            .frame(maxHeight: .infinity)
+            .navigationBarBackButtonHidden()
+
         case .loaded:
-            MyReferralsView(showEnrollmentView: referralVM.showEnrollmentView)
+            MyReferralsView()
         }
     }
     
-    func checkEnrollmentStatus() {
+    func loadReferralsData() {
         Task {
-            await referralVM.checkEnrollmentStatus(contactId: rootVM.member?.contactId ?? "")
+            do {
+                try await referralVM.getReferralsDataFromServer(memberContactId: rootVM.member?.contactId ?? "")
+            } catch {
+                Logger.error(error.localizedDescription)
+            }
         }
     }
 }
