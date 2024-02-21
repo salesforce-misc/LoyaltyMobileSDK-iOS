@@ -50,11 +50,7 @@ class ReferralViewModel: ObservableObject {
     @Published private(set) var enrollmentStatusApiState = LoadingState.idle
     @Published private(set) var promotionScreenType: DefaultPromotionGateWayViewScreenState = .joinReferralPromotion
 
-    @Published var referralCode: String {
-        didSet {
-            UserDefaults.standard.setValue(referralCode, forKey: "referralCode")
-        }
-    }
+    @Published var referralCode: String = ""
     @Published var referralMembershipNumber: String {
         didSet {
             UserDefaults.standard.setValue(referralMembershipNumber, forKey: "referralMembershipNumber")
@@ -88,7 +84,6 @@ class ReferralViewModel: ObservableObject {
         self.devMode = devMode
         self.isEnrolled = isEnrolled
         self.localFileManager = localFileManager
-        self.referralCode = UserDefaults.standard.string(forKey: "referralCode") ?? ""
         self.referralMembershipNumber = UserDefaults.standard.string(forKey: "referralMembershipNumber") ?? ""
     }
     
@@ -191,16 +186,18 @@ class ReferralViewModel: ObservableObject {
     }
     
     func loadReferralCode(membershipNumber: String, promoCode: String) async {
+        if referralCode .isEmpty {
             let notFound = "NOTFOUND"
             do {
                 if let code = try await getReferralCode(for: membershipNumber) {
-                    referralCode = code
+                    referralCode = "\(code)-\(promoCode)"
                 } else {
-                    referralCode = notFound
+                    referralCode = "\(notFound)-\(promoCode)"
                 }
             } catch {
-                referralCode = notFound
+                referralCode = "\(notFound)-\(promoCode)"
             }
+        }
     }
     
     func sendReferral(email: String) async throws {
@@ -277,9 +274,6 @@ class ReferralViewModel: ObservableObject {
     }
     
     private func getReferralCode(for membershipNumber: String) async throws -> String? {
-        if !referralCode.isEmpty {
-            return referralCode
-        }
         let query = "SELECT Id, ReferralCode FROM LoyaltyProgramMember WHERE MembershipNumber = '\(membershipNumber)'"
         
         do {
