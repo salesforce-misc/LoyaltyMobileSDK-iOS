@@ -127,6 +127,7 @@ class ReferralViewModel: ObservableObject {
            
         }
     }
+    
     func getReferralsDataFromServer(memberContactId: String) async throws {
         
         do {
@@ -142,22 +143,6 @@ class ReferralViewModel: ObservableObject {
             Logger.error(error.localizedDescription)
             loadAllReferralsApiState = .failed(error)
             throw error
-        }
-    }
-    
-    func getDefaultPromotionDetails() async throws -> ReferralPromotionObject? {
-        if defaultReferralPromotion != nil {
-            return defaultReferralPromotion
-        }
-        do {
-            let query = "SELECT Id, IsReferralPromotion, PromotionCode, Name, Description, ImageUrl  FROM Promotion Where PromotionCode= '\(promotionCode)'"
-            let promotion = try await forceClient.SOQL(type: ReferralPromotionObject.self, for: query)
-            defaultReferralPromotion = promotion.records.first
-            return defaultReferralPromotion
-
-        } catch {
-            Logger.error(error.localizedDescription)
-            return nil
         }
     }
     
@@ -215,9 +200,9 @@ class ReferralViewModel: ObservableObject {
         }
     }
         
-    func isEnrolledForDefaultPromotion(contactId: String) async {
+    func isEnrolledForDefaultPromotion(contactId: String, devMode: Bool = false) async {
         if let isEnrolled =  UserDefaults.standard.value(forKey: "isEnrolledForDefaultPromotion") as? Bool {
-            if isEnrolled {
+            if isEnrolled &&  !devMode {
                 enrollmentStatusApiState = .loaded
                 promotionScreenType = .referFriend
                 return

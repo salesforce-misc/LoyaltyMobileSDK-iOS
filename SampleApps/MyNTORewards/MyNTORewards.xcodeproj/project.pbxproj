@@ -288,6 +288,7 @@
 		4FD635E32B4BDD0C004E4696 /* GamificationMobileSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 4FD635E22B4BDD0C004E4696 /* GamificationMobileSDK */; };
 		4FECF86C2AEB7FC90070E89A /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FECF86A2AEB7FC80070E89A /* ConfettiView.swift */; };
 		4FECF86D2AEB7FC90070E89A /* EmitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FECF86B2AEB7FC90070E89A /* EmitterView.swift */; };
+		4FF009A32B8727ED00E3FB21 /* PromotionGateWayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF009A22B8727ED00E3FB21 /* PromotionGateWayViewModelTests.swift */; };
 		AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */; };
 		AF1691BC2A1B0D0C005A0EB3 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */; };
 		AF1691C02A1B2225005A0EB3 /* MockConnectedAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */; };
@@ -614,6 +615,7 @@
 		4FA187EE2B68BC32009A92D0 /* ReferralViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralViewModelTests.swift; sourceTree = "<group>"; };
 		4FECF86A2AEB7FC80070E89A /* ConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		4FECF86B2AEB7FC90070E89A /* EmitterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmitterView.swift; sourceTree = "<group>"; };
+		4FF009A22B8727ED00E3FB21 /* PromotionGateWayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionGateWayViewModelTests.swift; sourceTree = "<group>"; };
 		AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewHelper.swift; sourceTree = "<group>"; };
 		AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectedAppManager.swift; sourceTree = "<group>"; };
@@ -1394,6 +1396,7 @@
 			isa = PBXGroup;
 			children = (
 				4FA187EE2B68BC32009A92D0 /* ReferralViewModelTests.swift */,
+				4FF009A22B8727ED00E3FB21 /* PromotionGateWayViewModelTests.swift */,
 				4F53BF6C2B6925330076ACF3 /* ReferralMockNetworkManager.swift */,
 			);
 			path = Referral;
@@ -1900,6 +1903,7 @@
 				AFB345D229F0DD6B00F40502 /* PromotionViewModelTests.swift in Sources */,
 				AFCE106E2A20BA2A00602E35 /* MockAuthManager.swift in Sources */,
 				AFB345D429F0DD6B00F40502 /* BenefitViewModelTestCase.swift in Sources */,
+				4FF009A32B8727ED00E3FB21 /* PromotionGateWayViewModelTests.swift in Sources */,
 				4F53BF6D2B6925330076ACF3 /* ReferralMockNetworkManager.swift in Sources */,
 				AFB345D329F0DD6B00F40502 /* TransactionsViewModelTests.swift in Sources */,
 				AFB345CF29F0DD6B00F40502 /* VoucherViewModelTests.swift in Sources */,
