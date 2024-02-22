@@ -27,10 +27,10 @@ final class FortuneWheelWithRewardUITests: XCTestCase {
 		app.launch()
 		GameZoneViewHelper.goToGameZoneView(app: app)
 		GameZoneViewHelper.goToSpinAWheelView(app: app)
-		let title = app.staticTexts["Spin a wheel"]
+		let title = app.staticTexts["Billy the Kid Promotion"]
 		XCTAssertTrue(title.exists)
 		
-		let subtitle = app.staticTexts["Spin the wheel and unlock instant rewards!"]
+		let subtitle = app.staticTexts["Play Spin The Wheel to Get Amazing Rewards"]
 		XCTAssertTrue(subtitle.exists)
 
 		XCTAssertTrue(app.staticTexts["Get 10% Off Voucher"].exists)
