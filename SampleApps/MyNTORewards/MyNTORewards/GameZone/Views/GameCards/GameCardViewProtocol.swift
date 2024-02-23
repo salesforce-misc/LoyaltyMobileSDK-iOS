@@ -18,9 +18,9 @@ extension GameCardView {
 		var gameType: String
 		switch gameCardModel.type {
 		case .spinaWheel:
-			gameType = "Spin a Wheel"
+			gameType = "Spin the Wheel"
 		case .scratchCard:
-			gameType = "Scratch a Card"
+			gameType = "Scratchcard"
 		}
 		return gameType
 	}

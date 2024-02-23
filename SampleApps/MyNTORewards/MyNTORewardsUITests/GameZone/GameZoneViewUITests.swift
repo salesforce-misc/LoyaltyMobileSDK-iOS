@@ -53,7 +53,7 @@ final class GameZoneViewUITests: XCTestCase {
     
     func testSpinaWheelNavigation() {
         GameZoneViewHelper.goToSpinAWheelView(app: app)
-        XCTAssert(app.staticTexts["Spin a wheel"].waitForExistence(timeout: 1))
+        XCTAssert(app.staticTexts["Spin the Wheel"].waitForExistence(timeout: 1))
     }
     
     func testExpiredTabNavigation() {
