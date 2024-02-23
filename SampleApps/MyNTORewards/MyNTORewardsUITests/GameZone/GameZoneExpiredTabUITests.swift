@@ -24,9 +24,9 @@ final class GameZoneExpiredTabUITests: XCTestCase {
 		app.staticTexts["Expired"].tap()
 		
 		XCTAssertTrue(app.staticTexts["No longer available"].exists)
-		let scratchCardItems = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Scratch a Card'"))
+		let scratchCardItems = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Scratchcard'"))
 		XCTAssertEqual(scratchCardItems.count, 1)
-		let spinAWheelItems = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Spin a Wheel'"))
+		let spinAWheelItems = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Spin the Wheel'"))
 		XCTAssertEqual(spinAWheelItems.count, 1)
 	}
 	
