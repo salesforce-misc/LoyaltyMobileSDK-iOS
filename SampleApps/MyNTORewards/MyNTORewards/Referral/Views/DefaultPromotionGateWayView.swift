@@ -47,12 +47,11 @@ struct DefaultPromotionGateWayView: View {
             case .loaded:
                 switch viewModel.promotionScreenType {
                 case .joinReferralPromotion:
-                    let promotion = getPromotionData(membershipNumber: rootVM.member?.membershipNumber ?? "")
                     JoinAndReferView(isFromMyReferralView: true,
-                                     promotion: promotion)
+                                     promotion: viewModel.defaultPromotionInfo)
                 case .referFriend:
-                    let promotion = getPromotionData(membershipNumber: rootVM.member?.membershipNumber ?? "")
-                    ReferAFriendView(promotionCode: AppSettings.Defaults.promotionCode, promotion: promotion)
+                    ReferAFriendView(promotionCode: AppSettings.Defaults.promotionCode,
+                                     promotion: viewModel.defaultPromotionInfo)
                 case .promotionError:
                     ZStack {
                         Color.theme.background
@@ -82,7 +81,7 @@ struct DefaultPromotionGateWayView: View {
     func checkEnrollmentStatus() {
         Task {
             let contactId = rootVM.member?.contactId ?? ""
-            await viewModel.isEnrolledForDefaultPromotion(contactId: contactId)
+            try await viewModel.getDefaultPromotionDetailsAndEnrollmentStatus(contactId: contactId)
         }
     }
 }

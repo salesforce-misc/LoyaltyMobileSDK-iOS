@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import LoyaltyMobileSDK
 
 struct JoinAndReferView: View {
     @Environment(\.dismiss) private var dismiss
@@ -16,16 +15,17 @@ struct JoinAndReferView: View {
     @EnvironmentObject private var routerPath: RouterPath
     @State private var processing: Bool = false
     var isFromMyReferralView: Bool = false
-    let promotion: PromotionResult?
+    let promotion: ReferralPromotionObject?
     
     var body: some View {
+        // swiftlint:disable:next line_length
         let termsText: String = ("\(StringConstants.Referrals.termsText) [\(StringConstants.Referrals.termsLinkText)](\(AppSettings.Defaults.referralTermsLink)).")
         ZStack {
             VStack {
                 GeometryReader { geometry in
                     Group {
-                        if promotion?.promotionImageURL != nil {
-                            LoyaltyAsyncImage(url: promotion?.promotionImageURL, content: { image in
+                        if promotion?.promotionImageUrl != nil {
+                            LoyaltyAsyncImage(url: promotion?.promotionImageUrl, content: { image in
                                 image
                                     .resizable()
                                     .scaledToFill()
@@ -44,7 +44,7 @@ struct JoinAndReferView: View {
                 .frame(maxHeight: 241)
                 
                 VStack(alignment: .leading, spacing: 20) {
-                    Text("**\(promotion?.promotionName ?? "")**")
+                    Text("**\(promotion?.name ?? "")**")
                         .font(.referModalNameText)
                         .foregroundStyle(Color.theme.lightText)
                         .accessibilityIdentifier(AppAccessibilty.Referrals.referAFriendTitle)

@@ -14,9 +14,10 @@ struct ReferralPromotionObject: Codable {
     let promotionCode: String
     let id: String
     let name: String
-    let description: String
-    let promotionImageUrl: String
-
+    let description: String?
+    let promotionImageUrl: String?
+    let promotionPageUrl: String?
+    
     enum CodingKeys: String, CodingKey {
         case isReferralPromotion = "IsReferralPromotion"
         case promotionCode = "PromotionCode"
@@ -24,7 +25,7 @@ struct ReferralPromotionObject: Codable {
         case name = "Name"
         case description = "Description"
         case promotionImageUrl = "ImageUrl"
-
+        case promotionPageUrl = "PromotionPageUrl"
     }
 }
 
@@ -38,7 +39,7 @@ enum DefaultPromotionGateWayViewScreenState {
 class ReferralViewModel: ObservableObject {
     
     @Published var referralMember: ReferralMember?
-    @Published var defaultReferralPromotion: ReferralPromotionObject?
+    @Published var defaultPromotionInfo: ReferralPromotionObject?
     @Published var promotionStageCounts: [PromotionStageType: Int] = [:]
     @Published var recentReferralsSuccess: [Referral] = []
     @Published var oneMonthAgoReferralsSuccess: [Referral] = []
@@ -49,8 +50,13 @@ class ReferralViewModel: ObservableObject {
     @Published private(set) var loadAllReferralsApiState = LoadingState.idle
     @Published private(set) var enrollmentStatusApiState = LoadingState.idle
     @Published private(set) var promotionScreenType: DefaultPromotionGateWayViewScreenState = .joinReferralPromotion
-
-    @Published var referralCode: String = ""
+    
+    @Published var referralCode: String {
+        didSet {
+            UserDefaults.standard.setValue(referralCode, forKey: "referralCode")
+        }
+    }
+    
     @Published var referralMembershipNumber: String {
         didSet {
             UserDefaults.standard.setValue(referralMembershipNumber, forKey: "referralMembershipNumber")
@@ -64,7 +70,6 @@ class ReferralViewModel: ObservableObject {
     private let localFileManager: FileManagerProtocol
     private let referralsFolderName = AppSettings.cacheFolders.referrals
     private let promotionCode = AppSettings.Defaults.promotionCode
-    private let referralProgramName = AppSettings.Defaults.referralProgramName
     var devMode: Bool = false
     var isEnrolled: Bool = false
     
@@ -85,6 +90,7 @@ class ReferralViewModel: ObservableObject {
         self.isEnrolled = isEnrolled
         self.localFileManager = localFileManager
         self.referralMembershipNumber = UserDefaults.standard.string(forKey: "referralMembershipNumber") ?? ""
+        self.referralCode = UserDefaults.standard.string(forKey: "referralCode") ?? ""
     }
     
     func loadAllReferrals(memberContactId: String, reload: Bool = false) async throws {
@@ -117,26 +123,25 @@ class ReferralViewModel: ObservableObject {
                 let result = try await fetchAllReferrals(memberContactId: memberContactId)
                 promotionStageCounts = calculatePromotionStageCounts(in: result)
                 filterReferrals(referrals: result)
-
+                
                 // save to local
                 localFileManager.saveData(item: result, id: promotionCode, folderName: referralsFolderName, expiry: .never)
             } catch {
                 Logger.error(error.localizedDescription)
                 throw error
             }
-           
+            
         }
     }
     
     func getReferralsDataFromServer(memberContactId: String) async throws {
-        
         do {
             loadAllReferralsApiState = .loading
             let result = try await fetchAllReferrals(memberContactId: memberContactId)
             promotionStageCounts = calculatePromotionStageCounts(in: result)
             filterReferrals(referrals: result)
             loadAllReferralsApiState = .loaded
-
+            
             // save to local
             localFileManager.saveData(item: result, id: promotionCode, folderName: referralsFolderName, expiry: .never)
         } catch {
@@ -171,35 +176,50 @@ class ReferralViewModel: ObservableObject {
     }
     
     func loadReferralCode(membershipNumber: String, promoCode: String) async {
-        if referralCode .isEmpty {
-            let notFound = "NOTFOUND"
-            do {
-                if let code = try await getReferralCode(for: membershipNumber) {
-                    referralCode = "\(code)-\(promoCode)"
-                } else {
-                    referralCode = "\(notFound)-\(promoCode)"
-                }
-            } catch {
-                referralCode = "\(notFound)-\(promoCode)"
+        let notFound = "NOTFOUND"
+        do {
+            if let code = try await getReferralCode(for: membershipNumber) {
+                referralCode = code
+            } else {
+                referralCode = notFound
             }
+        } catch {
+            referralCode = notFound
         }
     }
     
-    func sendReferral(email: String) async throws {
+    func sendReferral(email: String, promoCode: String?) async throws {
         let emailArray = emailStringToArray(emailString: email)
         do {
-            _ = try await referralAPIManager.referralEvent(emails: emailArray, referralCode: referralCode)
+            _ = try await referralAPIManager.referralEvent(emails: emailArray, referralCode: "\(referralCode)-\(promoCode ?? promotionCode)")
         } catch CommonError.responseUnsuccessful(_, let errorMessage), CommonError.unknownException(let errorMessage) {
             displayError = (true, errorMessage)
-//            promotionScreenType = .promotionError
-
+            
         } catch {
             displayError = (true, error.localizedDescription)
-//            promotionScreenType = .promotionError
             throw error
         }
     }
-        
+    
+    func getDefaultPromotionDetailsAndEnrollmentStatus(contactId: String, devMode: Bool = false) async throws {
+        enrollmentStatusApiState = .loading
+        if defaultPromotionInfo != nil {
+            await isEnrolledForDefaultPromotion(contactId: contactId, devMode: devMode)
+        }
+        do {
+            // swiftlint:disable:next line_length
+            let query = "SELECT Id, IsReferralPromotion, PromotionCode, Name, Description, ImageUrl, PromotionPageUrl  FROM Promotion Where PromotionCode= '\(promotionCode)'"
+            let promotion = try await forceClient.SOQL(type: ReferralPromotionObject.self, for: query)
+            defaultPromotionInfo = promotion.records.first
+            await isEnrolledForDefaultPromotion(contactId: contactId, devMode: devMode)
+            
+        } catch {
+            Logger.error(error.localizedDescription)
+            enrollmentStatusApiState = .failed(error)
+            promotionScreenType = .promotionError
+        }
+    }
+    
     func isEnrolledForDefaultPromotion(contactId: String, devMode: Bool = false) async {
         if let isEnrolled =  UserDefaults.standard.value(forKey: "isEnrolledForDefaultPromotion") as? Bool {
             if isEnrolled &&  !devMode {
@@ -209,7 +229,6 @@ class ReferralViewModel: ObservableObject {
             }
         }
         do {
-            enrollmentStatusApiState = .loading
             // swiftlint:disable:next line_length
             let query = "SELECT Id, Name, PromotionId, LoyaltyProgramMemberId, LoyaltyProgramMember.ContactId FROM LoyaltyProgramMbrPromotion where LoyaltyProgramMember.ContactId='\(contactId)' AND Promotion.PromotionCode='\(promotionCode)'"
             let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
@@ -259,6 +278,9 @@ class ReferralViewModel: ObservableObject {
     }
     
     private func getReferralCode(for membershipNumber: String) async throws -> String? {
+        if !referralCode.isEmpty {
+            return referralCode
+        }
         let query = "SELECT Id, ReferralCode FROM LoyaltyProgramMember WHERE MembershipNumber = '\(membershipNumber)'"
         
         do {
