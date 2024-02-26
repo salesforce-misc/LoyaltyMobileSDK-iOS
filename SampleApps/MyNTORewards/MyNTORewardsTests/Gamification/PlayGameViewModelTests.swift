@@ -88,13 +88,13 @@ final class PlayGameViewModelTests: XCTestCase {
 		let gameDefinition = getGameModel()
 		let wheelColorsArray = playGameViewModel.getWheelColors(gameModel: gameDefinition)
 		XCTAssertTrue(wheelColorsArray?.first is Color)
-		XCTAssertEqual(wheelColorsArray?.first?.description, "white")
+		XCTAssertEqual(wheelColorsArray?.first?.description, "#2636E3FF")
 	}
 	
 	@MainActor func test_getWheelColors_shouldReturnWhiteWhenGameHasNoColor() {
 		let gameDefinitionWithoutColor = getGameModel(withColor: nil)
 		let wheelColors = viewModel.getWheelColors(gameModel: gameDefinitionWithoutColor)
 		XCTAssertTrue(wheelColors?.first is Color)
-		XCTAssertEqual(wheelColors?.first, .white)
+		XCTAssertEqual(wheelColors?.first, Color(hex: "#2636E3") )
 	}
 }

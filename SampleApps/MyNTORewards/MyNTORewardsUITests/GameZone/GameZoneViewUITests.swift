@@ -48,12 +48,12 @@ final class GameZoneViewUITests: XCTestCase {
     
     func testScratchCardNavigation() {
         GameZoneViewHelper.goToScratchCardView(app: app)
-        XCTAssert(app.staticTexts["Scratch a Card and Win"].waitForExistence(timeout: 1))
+        XCTAssert(app.staticTexts["Cat Scratch Fever Returns"].waitForExistence(timeout: 1))
     }
     
     func testSpinaWheelNavigation() {
         GameZoneViewHelper.goToSpinAWheelView(app: app)
-        XCTAssert(app.staticTexts["Spin the Wheel"].waitForExistence(timeout: 1))
+        XCTAssert(app.staticTexts["Billy the Kid Promotion"].waitForExistence(timeout: 1))
     }
     
     func testExpiredTabNavigation() {
