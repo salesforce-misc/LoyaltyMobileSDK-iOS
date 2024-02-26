@@ -594,7 +594,6 @@
 		4F2B80312B7E03DA007ECECF /* ReferralListInProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralListInProcessView.swift; sourceTree = "<group>"; };
 		4F2B80332B7E048F007ECECF /* ReferralCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralCardView.swift; sourceTree = "<group>"; };
 		4F2B80352B7FA885007ECECF /* DefaultPromotionGateWayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPromotionGateWayView.swift; sourceTree = "<group>"; };
-		4F2B80372B7FAC98007ECECF /* DefaultPromotionGateWayView+PromotionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DefaultPromotionGateWayView+PromotionResult.swift"; sourceTree = "<group>"; };
 		4F3F630D2B32C662008954FB /* GamificationForceAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationForceAuthManager.swift; sourceTree = "<group>"; };
 		4F534C1E2B4FE442004DF036 /* GameZoneVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneVoucherView.swift; sourceTree = "<group>"; };
 		4F53BF6C2B6925330076ACF3 /* ReferralMockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralMockNetworkManager.swift; sourceTree = "<group>"; };
@@ -801,7 +800,6 @@
 				4F2B802F2B7E03CA007ECECF /* ReferralListSuccessView.swift */,
 				4F2B80312B7E03DA007ECECF /* ReferralListInProcessView.swift */,
 				4F2B80332B7E048F007ECECF /* ReferralCardView.swift */,
-				4F2B80372B7FAC98007ECECF /* DefaultPromotionGateWayView+PromotionResult.swift */,
 				4F2B80352B7FA885007ECECF /* DefaultPromotionGateWayView.swift */,
 			);
 			path = Views;
