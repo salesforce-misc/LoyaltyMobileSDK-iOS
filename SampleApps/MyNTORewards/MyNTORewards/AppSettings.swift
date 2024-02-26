@@ -55,6 +55,8 @@ struct AppSettings {
         static let promotionCode = "TEMPRP7"
         static let referralDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         static let referralDateFormatWithoutTime = "yyyy-MM-dd"
+        /* Provided random link here instead of actual Terms and Conditions link.
+        Replace with valid terms and conditions link while using the feature */
         static let referralTermsLink = "https://www.google.com"
     }
     

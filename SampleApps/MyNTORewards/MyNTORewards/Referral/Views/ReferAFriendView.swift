@@ -86,11 +86,13 @@ struct ReferAFriendView: View {
                             .padding(.top, 10)
                             .padding(.horizontal, 15)
                             .accessibilityIdentifier(AppAccessibilty.Referrals.referAFriendTitle)
-                        Text(promotion?.description ?? "")
-                            .lineSpacing(5)
-                            .font(.referModalText)
-                            .foregroundStyle(Color.theme.superLightText)
-                            .padding(.horizontal, 15)
+                        if let description = promotion?.description {
+                            Text(description)
+                                .lineSpacing(5)
+                                .font(.referModalText)
+                                .foregroundStyle(Color.theme.superLightText)
+                                .padding(.horizontal, 15)
+                        }
                         
                         ZStack(alignment: .trailing) {
                             TextField(StringConstants.Referrals.referEmailText, text: $email)
@@ -151,7 +153,6 @@ struct ReferAFriendView: View {
                             Spacer()
                         }
                         .opacity(validationMessage.isEmpty ? 0 : 1)
-                        .frame(height: 40)
                         
                     }
                     
@@ -246,7 +247,7 @@ struct ReferAFriendView: View {
                         .buttonStyle(DarkLongButton())
                         Spacer()
                         
-                    }
+                    }.padding(.top, 10)
                 }
             }
                 if processing {

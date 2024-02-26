@@ -11,7 +11,7 @@ import ReferralMobileSDK
 
 struct ReferralPromotionObject: Codable {
     let isReferralPromotion: Bool?
-    let promotionCode: String
+    let promotionCode: String?
     let id: String
     let name: String
     let description: String?
@@ -256,7 +256,7 @@ class ReferralViewModel: ObservableObject {
                 // save to local
                 localFileManager.saveData(item: referralMember, id: output.membershipNumber, folderName: referralsFolderName, expiry: .never)
                 self.referralMember = referralMember
-                self.referralCode = output.promotionReferralCode
+                self.referralCode = output.promotionReferralCode.components(separatedBy: "-").first ?? ""
                 self.referralMembershipNumber = output.membershipNumber
                 UserDefaults.standard.setValue(true, forKey: "isEnrolledForDefaultPromotion")
                 promotionScreenType = .referFriend

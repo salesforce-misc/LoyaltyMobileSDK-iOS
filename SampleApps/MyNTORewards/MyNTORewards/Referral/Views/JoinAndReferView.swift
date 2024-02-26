@@ -49,7 +49,9 @@ struct JoinAndReferView: View {
                         .foregroundStyle(Color.theme.lightText)
                         .accessibilityIdentifier(AppAccessibilty.Referrals.referAFriendTitle)
                     Group {
-                        Text(promotion?.description ?? "")
+                        if let description = promotion?.description {
+                            Text(description)
+                        }
                         Text(termsText.markdownToAttributed())
                     }
                     .lineSpacing(5)

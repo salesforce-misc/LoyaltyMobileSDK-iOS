@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import ReferralMobileSDK
+@testable import MyNTORewards
 
 class ReferralMockNetworkManager: NetworkManagerProtocol {
     public var statusCode = 200
@@ -66,6 +67,8 @@ class ReferralMockNetworkManager: NetworkManagerProtocol {
             return try XCTestCase.load(resource: "ReferralEnrollmentOutput")
         } else if type.self == ReferralEventOutputModel.Type.self {
             return try XCTestCase.load(resource: "ReferralEventOutput")
+        } else if type.self == QueryResult<ReferralPromotionObject>.Type.self {
+            return try XCTestCase.load(resource: "DefaultReferralPromotionInfo", inBundle: Bundle.main)
         }
         
         return Data()

@@ -288,6 +288,7 @@
 		4FECF86C2AEB7FC90070E89A /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FECF86A2AEB7FC80070E89A /* ConfettiView.swift */; };
 		4FECF86D2AEB7FC90070E89A /* EmitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FECF86B2AEB7FC90070E89A /* EmitterView.swift */; };
 		4FF009A32B8727ED00E3FB21 /* PromotionGateWayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF009A22B8727ED00E3FB21 /* PromotionGateWayViewModelTests.swift */; };
+		4FF009A92B8CD83D00E3FB21 /* DefaultReferralPromotionInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FF009A82B8CD83D00E3FB21 /* DefaultReferralPromotionInfo.json */; };
 		AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */; };
 		AF1691BC2A1B0D0C005A0EB3 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */; };
 		AF1691C02A1B2225005A0EB3 /* MockConnectedAppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */; };
@@ -614,6 +615,7 @@
 		4FECF86A2AEB7FC80070E89A /* ConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		4FECF86B2AEB7FC90070E89A /* EmitterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmitterView.swift; sourceTree = "<group>"; };
 		4FF009A22B8727ED00E3FB21 /* PromotionGateWayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionGateWayViewModelTests.swift; sourceTree = "<group>"; };
+		4FF009A82B8CD83D00E3FB21 /* DefaultReferralPromotionInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DefaultReferralPromotionInfo.json; sourceTree = "<group>"; };
 		AF04A42529EEDCC00081D7C5 /* PromotionViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewHelper.swift; sourceTree = "<group>"; };
 		AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockConnectedAppManager.swift; sourceTree = "<group>"; };
@@ -866,6 +868,7 @@
 		2963770B29C10CFB00D45AB6 /* SOQL+SOSL */ = {
 			isa = PBXGroup;
 			children = (
+				4FF009A72B8CD80E00E3FB21 /* MockJSONFiles */,
 				2963771029C10D4000D45AB6 /* Models */,
 				2963770D29C10D2400D45AB6 /* ForceClient+SOQL.swift */,
 				2988B5BD2B4F2ACB00C2D74C /* ReferralForceClient+SOQL.swift */,
@@ -1417,6 +1420,14 @@
 			path = Confettis;
 			sourceTree = "<group>";
 		};
+		4FF009A72B8CD80E00E3FB21 /* MockJSONFiles */ = {
+			isa = PBXGroup;
+			children = (
+				4FF009A82B8CD83D00E3FB21 /* DefaultReferralPromotionInfo.json */,
+			);
+			path = MockJSONFiles;
+			sourceTree = "<group>";
+		};
 		AF141A282A02284200D953E2 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -1597,6 +1608,7 @@
 				298613CA28CBBFA200BDC744 /* Archivo-Bold.ttf in Resources */,
 				216F218628B6141F00DAA66D /* Preview Assets.xcassets in Resources */,
 				3FA6B0562A6967AD00E5878E /* IBMPlexMono-SemiBold.ttf in Resources */,
+				4FF009A92B8CD83D00E3FB21 /* DefaultReferralPromotionInfo.json in Resources */,
 				29AC2F0328F8B2D7003F56F6 /* Roboto-Regular.ttf in Resources */,
 				3F667DF72A829B9A00267958 /* SF-Pro-Display-Bold.otf in Resources */,
 				294E6FEB2AE9E46A00DC10C2 /* Segoe UI.ttf in Resources */,
