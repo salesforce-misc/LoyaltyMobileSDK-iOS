@@ -19,6 +19,7 @@ struct JoinAndReferView: View {
     let promotion: PromotionResult?
     
     var body: some View {
+        let termsText: String = ("\(StringConstants.Referrals.termsText) [\(StringConstants.Referrals.termsLinkText)](\(AppSettings.Defaults.referralTermsLink)).")
         ZStack {
             VStack {
                 GeometryReader { geometry in
@@ -49,7 +50,7 @@ struct JoinAndReferView: View {
                         .accessibilityIdentifier(AppAccessibilty.Referrals.referAFriendTitle)
                     Group {
                         Text(promotion?.description ?? "")
-                        Text("\(StringConstants.Referrals.termsText) [\(StringConstants.Referrals.termsLinkText)](https://www.google.com).")
+                        Text(termsText.markdownToAttributed())
                     }
                     .lineSpacing(5)
                     .font(.referModalText)
