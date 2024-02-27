@@ -200,13 +200,20 @@ class ReferralViewModel: ObservableObject {
         enrollmentStatusApiState = .loading
         if defaultPromotionInfo != nil {
             await isEnrolledForDefaultPromotion(contactId: contactId, devMode: devMode)
+            return
         }
         do {
             // swiftlint:disable:next line_length
             let query = "SELECT Id, IsReferralPromotion, PromotionCode, Name, Description, ImageUrl, PromotionPageUrl  FROM Promotion Where PromotionCode= '\(promotionCode)'"
             let promotion = try await forceClient.SOQL(type: ReferralPromotionObject.self, for: query)
             defaultPromotionInfo = promotion.records.first
-            await isEnrolledForDefaultPromotion(contactId: contactId, devMode: devMode)
+            if defaultPromotionInfo?.promotionCode != nil {
+                await isEnrolledForDefaultPromotion(contactId: contactId, devMode: devMode)
+            } else {
+                displayError = (true, StringConstants.Referrals.genericError)
+                enrollmentStatusApiState = .loaded
+                promotionScreenType = .promotionError
+            }
             
         } catch {
             Logger.error(error.localizedDescription)
