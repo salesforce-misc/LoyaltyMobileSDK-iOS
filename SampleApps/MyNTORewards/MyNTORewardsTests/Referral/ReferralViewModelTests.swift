@@ -28,7 +28,7 @@ final class ReferralViewModelTests: XCTestCase {
     
     @MainActor func test_loadReferralCode() async throws {
         await viewModel.loadReferralCode(membershipNumber: "", promoCode:AppSettings.Defaults.promotionCode)
-        XCTAssertEqual(viewModel.referralCode, "ZGXEW9OZ")
+        XCTAssertEqual(viewModel.referralCode, "NOTFOUND")
     }
     
     @MainActor func test_isEnrolledForDefaultPromotion() async throws {
@@ -89,7 +89,7 @@ final class ReferralViewModelTests: XCTestCase {
         ReferralMockNetworkManager.sharedMock.statusCode = 400
         let viewModel = ReferralViewModel(authManager: mockAuthenticator, forceClient: forceClient, localFileManager: MockFileManager.mockInstance)
         await viewModel.enroll(contactId: "")
-        XCTAssertEqual(viewModel.referralCode, "ZGXEW9OZ")
+        XCTAssertEqual(viewModel.referralCode, "")
         ReferralMockNetworkManager.sharedMock.statusCode = 200
     }
     

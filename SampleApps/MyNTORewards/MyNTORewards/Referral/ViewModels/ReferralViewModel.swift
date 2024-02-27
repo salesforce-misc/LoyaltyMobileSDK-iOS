@@ -50,12 +50,7 @@ class ReferralViewModel: ObservableObject {
     @Published private(set) var loadAllReferralsApiState = LoadingState.idle
     @Published private(set) var enrollmentStatusApiState = LoadingState.idle
     @Published private(set) var promotionScreenType: DefaultPromotionGateWayViewScreenState = .joinReferralPromotion
-    
-    @Published var referralCode: String {
-        didSet {
-            UserDefaults.standard.setValue(referralCode, forKey: "referralCode")
-        }
-    }
+    @Published var referralCode: String
     
     @Published var referralMembershipNumber: String {
         didSet {
@@ -90,7 +85,7 @@ class ReferralViewModel: ObservableObject {
         self.isEnrolled = isEnrolled
         self.localFileManager = localFileManager
         self.referralMembershipNumber = UserDefaults.standard.string(forKey: "referralMembershipNumber") ?? ""
-        self.referralCode = UserDefaults.standard.string(forKey: "referralCode") ?? ""
+        self.referralCode = ""
     }
     
     func loadAllReferrals(memberContactId: String, reload: Bool = false) async throws {
