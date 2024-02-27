@@ -41,38 +41,49 @@ extension Color {
 }
 
 struct ColorTheme {
-    
-    let accent = Color("AccentColor")
-    let background = Color("BackgroundColor")
-    let backgroundPink = Color("BackgroundPinkColor")
-    let darkBlue = Color("DarkBlueColor")
-    let lightBlue = Color("LightBlueColor")
-    let superLightBlue = Color("SuperLightBlueColor")
-    let titleColor = Color("TitleColor")
-    
-    let listSeparatorPink = Color("ListSeparatorColor")
+    let accent = Color("AccentColor") // #7526E3
+    let background = Color("BackgroundColor") // #F7F4FB
+    let backgroundPink = Color("BackgroundPinkColor") // #F9F0FF
+    let darkBlue = Color("DarkBlueColor") // #4141E7
+    let lightBlue = Color("LightBlueColor") // #5B5FC7
+    let superLightBlue = Color("SuperLightBlueColor") // #D8E6FE
+    let titleColor = Color("TitleColor") // #09101D
+    let listSeparatorPink = Color("ListSeparatorColor") // #ECE1F9
     let textInactive = Color("TextInactiveColor") // #747474
-    let lightText = Color("TextLightColor")
-    let superLightText = Color("TextSuperLightColor") // #181818
-    let lightButton = Color("ButtonLightColor")
-    let darkButton = Color("ButtonDarkColor")
-    let textFieldBackground = Color("TextFieldBackgroundColor")
-    let textFieldBorder = Color("TextFieldBorderColor")
-    let voucherCode = Color("VoucherCodeColor")
-    let voucherBorder = Color("VoucherCodeBorderColor")
-    let voucherBackground = Color("VoucherCodeBackgroundColor")
-    let points = Color("PointsColor")
-    let negativePoints = Color("NegativePointsColor")
-    let badgeBackground = Color("BadgeTextBackgroundColor")
-    let memberStatus = Color("GoldColor")
-    let progressBarBackground = Color("ProgressBarBackgroundColor")
-    let tierPoints = Color("TierPointsColor")
+    let lightText = Color("TextLightColor") // #181818
+    let superLightText = Color("TextSuperLightColor") // #444444
+    let lightButton = Color("ButtonLightColor") // #F9F0FF
+    let darkButton = Color("ButtonDarkColor") // #7526E3
+    let textFieldBackground = Color("TextFieldBackgroundColor") // #F6F2FB
+    let textFieldBorder = Color("TextFieldBorderColor") // #AD7BEE
+    let voucherCode = Color("VoucherCodeColor") // #04844B
+    let voucherBorder = Color("VoucherCodeBorderColor") // #2E844A
+    let voucherBackground = Color("VoucherCodeBackgroundColor") // #EBF7E6
+    let points = Color("PointsColor") // #2E844A
+    let negativePoints = Color("NegativePointsColor") // #BA0517
+    let badgeBackground = Color("BadgeTextBackgroundColor") // #FAFAFA
+    let memberStatus = Color("GoldColor") // #FCC003
+    let progressBarBackground = Color("ProgressBarBackgroundColor") // #E2E2E2
+    let tierPoints = Color("TierPointsColor") // #7D7D7D
     let lightBlackText = Color("TextLightBlackColor") // #231F20
     let redeemedButtonText = Color("TextRedeemButtonColor") // #8C4B02
     let redeemedButtonBackground = Color("RedeemedBackgroundColor") // #FBF3E0
     let expiredButtonText = Color("TextExpiredButtonColor") // #5C5C5C
     let expiredBackgroundText = Color("ExpiredBackgroundColor") // #E5E5E5
-    
+	let receiptListItemShadowColor = Color("ReceiptListItemShadowColor") // #ABABAB
+    let searchBarBackgroundColor = Color("SearchBarBackgroundColor") // #E9E1F3
+	let manualReviewCommentLabelColor = Color("ManualReviewCommentLabelColor") // #444444
+	let commentsTextFieldBorderColor = Color("CommentsTextFieldBorderColor") // #A0A0A0
+	let commentsTextFieldBackground = Color("CommentsTextFieldBackground") // #FAFCFF
+	let receiptStatusPending = Color("ReceiptStatusPending") // #DD7A01
+	let receiptStatusManualReview = Color("ReceiptStatusManualReview") // #DD7901
+	let receiptStatusRejected = Color("ReceiptStatusRejected") // #BA0517
+    let lightSilverBackground = Color("LightSilverBackgroundColor") // #F4F6F9
+    let productBackground = Color("ProductBackgroundColor") // #F1F3FB
+    let paymentCardText = Color("PaymentCardTextColor") // #747B84
+    let shippingBackground = Color("ShippingBackgroundColor") // #FAFBFC
+	let vibrantViolet = Color("VibrantViolet") // #BA01FF
+	let lightGray = Color("LightGray") // #E0E0E0
 }
 
 struct TierColor {

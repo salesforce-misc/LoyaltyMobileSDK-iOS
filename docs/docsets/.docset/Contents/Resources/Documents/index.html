@@ -325,9 +325,17 @@
 <h3 id='usage' class='heading'>Usage</h3>
 
 <ol>
+<li><p>In order to use the SDK, you need to provide a valid <code>accessToken</code> to interact with Salesforce API. To do this, you are required to conform and implement <a href="https://github.com/salesforce-misc/LoyaltyMobileSDK-iOS/blob/main/Sources/LoyaltyMobileSDK/ForceSwift/ForceAuthenticator.swift"><code><a href="Protocols/ForceAuthenticator.html">ForceAuthenticator</a></code></a> protocol which we provided in the SDK. For our sample app, we implemented this protocol in <a href="https://github.com/salesforce-misc/LoyaltyMobileSDK-iOS/blob/main/SampleApps/MyNTORewards/MyNTORewards/ForceSwift%2BExtra/ForceAuthManager.swift"><code>ForceAuthManager.swift</code></a>.</p></li>
+<li><p>Create an instance of <code><a href="Classes/ForceClient.html">ForceClient</a></code> with the necessary parameters:</p></li>
+</ol>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">authManager</span> <span class="o">=</span> <span class="kt">ForceAuthManager</span><span class="o">.</span><span class="n">shared</span>
+<span class="k">let</span> <span class="nv">forceClient</span> <span class="o">=</span> <span class="kt">ForceClient</span><span class="p">(</span><span class="nv">auth</span><span class="p">:</span> <span class="n">authManager</span><span class="p">)</span>
+</code></pre>
+
+<ol>
 <li>Create an instance of <code><a href="Classes/LoyaltyAPIManager.html">LoyaltyAPIManager</a></code> with the necessary parameters:</li>
 </ol>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">loyaltyAPIManager</span> <span class="o">=</span> <span class="kt">LoyaltyAPIManager</span><span class="p">(</span><span class="nv">auth</span><span class="p">:</span> <span class="n">forceAuthenticator</span><span class="p">,</span> <span class="nv">loyaltyProgramName</span><span class="p">:</span> <span class="s">"YourLoyaltyProgramName"</span><span class="p">,</span> <span class="nv">instanceURL</span><span class="p">:</span> <span class="s">"YourInstanceURL"</span><span class="p">,</span> <span class="nv">forceClient</span><span class="p">:</span> <span class="n">forceClient</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">loyaltyAPIManager</span> <span class="o">=</span> <span class="kt">LoyaltyAPIManager</span><span class="p">(</span><span class="nv">auth</span><span class="p">:</span> <span class="n">authManager</span><span class="p">,</span> <span class="nv">loyaltyProgramName</span><span class="p">:</span> <span class="s">"YourLoyaltyProgramName"</span><span class="p">,</span> <span class="nv">instanceURL</span><span class="p">:</span> <span class="s">"YourInstanceURL"</span><span class="p">,</span> <span class="nv">forceClient</span><span class="p">:</span> <span class="n">forceClient</span><span class="p">)</span>
 </code></pre>
 
 <ol>
@@ -337,9 +345,10 @@
 
 <span class="k">let</span> <span class="nv">instanceURL</span> <span class="o">=</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"https://your_salesforce_instance_url"</span><span class="p">)</span><span class="o">!</span>
 <span class="k">let</span> <span class="nv">loyaltyProgramName</span> <span class="o">=</span> <span class="s">"YourLoyaltyProgramName"</span>
-<span class="k">let</span> <span class="nv">forceClient</span> <span class="o">=</span> <span class="kt">ForceClient</span><span class="p">(</span><span class="nv">clientId</span><span class="p">:</span> <span class="s">"your_client_id"</span><span class="p">,</span> <span class="nv">clientSecret</span><span class="p">:</span> <span class="s">"your_client_secret"</span><span class="p">,</span> <span class="nv">redirectURI</span><span class="p">:</span> <span class="s">"your_redirect_uri"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">authManager</span> <span class="o">=</span> <span class="kt">ForceAuthManager</span><span class="o">.</span><span class="n">shared</span>
+<span class="k">let</span> <span class="nv">forceClient</span> <span class="o">=</span> <span class="kt">ForceClient</span><span class="p">(</span><span class="nv">auth</span><span class="p">:</span> <span class="n">authManager</span><span class="p">)</span>
 
-<span class="k">let</span> <span class="nv">loyaltyAPIManager</span> <span class="o">=</span> <span class="kt">LoyaltyAPIManager</span><span class="p">(</span><span class="nv">instanceURL</span><span class="p">:</span> <span class="n">instanceURL</span><span class="p">,</span> <span class="nv">loyaltyProgramName</span><span class="p">:</span> <span class="n">loyaltyProgramName</span><span class="p">,</span> <span class="nv">forceClient</span><span class="p">:</span> <span class="n">forceClient</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">loyaltyAPIManager</span> <span class="o">=</span> <span class="kt">LoyaltyAPIManager</span><span class="p">(</span><span class="nv">auth</span><span class="p">:</span> <span class="n">authManager</span><span class="p">,</span> <span class="nv">loyaltyProgramName</span><span class="p">:</span> <span class="n">loyaltyProgramName</span><span class="p">,</span> <span class="nv">instanceURL</span><span class="p">:</span> <span class="n">instanceURL</span><span class="p">,</span> <span class="nv">forceClient</span><span class="p">:</span> <span class="n">forceClient</span><span class="p">)</span>
 
 <span class="c1">// Enroll Members</span>
 <span class="k">let</span> <span class="nv">membershipNumber</span> <span class="o">=</span> <span class="s">"1234567890"</span>

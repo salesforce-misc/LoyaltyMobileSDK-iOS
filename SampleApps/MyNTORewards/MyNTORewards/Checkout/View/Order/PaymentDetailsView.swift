@@ -31,33 +31,31 @@ struct PaymentDetailsView: View {
 					.padding()
 				}
 				
-				NavigationLink(isActive: $orderDetailsVM.isOrderPlacedNavigationActive) {
-					OrderPlacedView()
-						.environmentObject(orderDetailsVM)
-				} label: {
-					Text("Confirm Order")
-						.onTapGesture {
-							Task {
-								let memberId = profileVM.profile?.loyaltyProgramMemberID
-								let membershipNumber = profileVM.profile?.membershipNumber
-								isScreenLoading = true
-								do {
-									try await orderDetailsVM.createOrder(
-                                        reloadables: [transactionVM, vouchersVM, profileVM],
-                                        productVM: productVM,
-                                        profileVM: profileVM,
-                                        memberId: memberId,
-                                        membershipNumber: membershipNumber)
-								} catch {
-                                    Logger.error("Unable to create order: \(error.localizedDescription)")
-								}
-								isScreenLoading = false
-							}
-						}
-						.longFlexibleButtonStyle()
-				}
+                Text("Confirm Order")
+                    .onTapGesture {
+                        Task {
+                            let membershipNumber = profileVM.profile?.membershipNumber
+                            isScreenLoading = true
+                            do {
+                                try await orderDetailsVM.createOrder(
+                                    reloadables: [transactionVM, vouchersVM, profileVM],
+                                    productVM: productVM,
+                                    profileVM: profileVM,
+                                    membershipNumber: membershipNumber)
+                            } catch {
+                                Logger.error("Unable to create order: \(error.localizedDescription)")
+                            }
+                            isScreenLoading = false
+                        }
+                    }
+                    .longFlexibleButtonStyle()
+                    .navigationDestination(isPresented: $orderDetailsVM.isOrderPlacedNavigationActive) {
+                        OrderPlacedView()
+                            .environmentObject(orderDetailsVM)
+                    }
 			}
-			.background(Color(hex: "#F1F3FB"))
+            .background(Color.theme.productBackground)
+            
 			if isScreenLoading {
 				LoadingScreen()
 			}
@@ -78,5 +76,12 @@ struct LoadingScreen: View {
 struct PaymentDetailsView_Previews: PreviewProvider {
     static var previews: some View {
 		PaymentDetailsView()
+            .environmentObject(dev.orderDetailsVM)
+            .environmentObject(dev.rootVM)
+            .environmentObject(dev.profileVM)
+            .environmentObject(dev.productVM)
+            .environmentObject(dev.transactionVM)
+            .environmentObject(dev.voucherVM)
+        
     }
 }

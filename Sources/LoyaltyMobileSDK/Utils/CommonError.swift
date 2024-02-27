@@ -12,16 +12,17 @@ public enum CommonError: Error, Equatable {
     case requestFailed(message: String)
     case jsonConversionFailure(message: String)
     case invalidData
-    case responseUnsuccessful(message: String)
+	case responseUnsuccessful(message: String, displayMessage: String)
     case authenticationNeeded
     case userIdentityUnknown
     case authNotFoundInKeychain
     case authenticationFailed
     case codeCredentials
     case functionalityNotEnabled
-    case unknownException
+	case unknownException(displayMessage: String)
     case sessionExpired
     case urlEncodingFailed
+    case imageConversionError
 }
 
 extension CommonError: CustomStringConvertible, LocalizedError {
@@ -34,7 +35,7 @@ extension CommonError: CustomStringConvertible, LocalizedError {
             return "Request Failed Error -> \(message)"
         case .invalidData:
             return "Invalid Data Error"
-        case let .responseUnsuccessful(message):
+        case let .responseUnsuccessful(message, _):
             return "Response Unsuccessful Error -> \(message)"
         case let .jsonConversionFailure(message):
             return "JSON Conversion Failure -> \(message)"
@@ -56,6 +57,8 @@ extension CommonError: CustomStringConvertible, LocalizedError {
             return "You sesssion has expired."
         case .urlEncodingFailed:
             return "Failed to encode the string."
+        case .imageConversionError:
+            return "Failed to convert UIImage to Data."
         }
     }
     
@@ -67,7 +70,7 @@ extension CommonError: CustomStringConvertible, LocalizedError {
             return NSLocalizedString("Request Failed Error -> \(message)", comment: "Request Failed Error")
         case .invalidData:
             return NSLocalizedString("Invalid Data Error", comment: "Invalid Data Error")
-        case let .responseUnsuccessful(message):
+        case let .responseUnsuccessful(message, _):
             return NSLocalizedString("Response Unsuccessful Error -> \(message)", comment: "Response Unsuccessful Error")
         case let .jsonConversionFailure(message):
             return NSLocalizedString("JSON Conversion Failure -> \(message)", comment: "JSON Conversion Failure")
@@ -89,6 +92,8 @@ extension CommonError: CustomStringConvertible, LocalizedError {
             return NSLocalizedString("Your session has expired.", comment: "Session Expired Error")
         case .urlEncodingFailed:
             return NSLocalizedString("Failed to encode the string.", comment: "URL Encoding Error")
+        case .imageConversionError:
+            return NSLocalizedString("Failed to convert UIImage to Data.", comment: "Image Conversion Error")
         }
     }
 }

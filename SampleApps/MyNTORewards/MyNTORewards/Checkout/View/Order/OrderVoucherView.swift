@@ -9,29 +9,19 @@ import SwiftUI
 import LoyaltyMobileSDK
 
 struct OrderVoucherView: View {
-	@EnvironmentObject var profileVM: ProfileViewModel
-	@EnvironmentObject var vouchersVM: VoucherViewModel
 	@State var selectedValue: VoucherTitle = VoucherTitle(id: "0", title: "Select a Voucher")
 	
     var body: some View {
         VStack(alignment: .leading) {
             Text("Vouchers")
                 .font(.voucherHederText)
-                .foregroundColor(Color(hex: "#181818"))
-			VoucherPickerView(selectedValue: $selectedValue, pickerViewInputValues: vouchersVM.availableVouchersTitles)
+                .foregroundColor(Color.theme.lightText)
+			VoucherPickerView(selectedValue: $selectedValue)
                 .frame(height: 44)
                 .padding([.top, .bottom])
         }
         .padding()
         .background(Color.white)
-		.task {
-			do {
-				let membershipNumber = profileVM.profile?.membershipNumber ?? ""
-				try await vouchersVM.getTitlesOfAvailableVouchers(membershipNumber: membershipNumber)
-			} catch {
-				Logger.error("Error fetch vouchers titles")
-			}
-		}
     }
 }
 

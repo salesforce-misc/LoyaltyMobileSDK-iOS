@@ -14,7 +14,7 @@ struct ProductDetailsView: View {
 	var body: some View {
 		ScrollView(showsIndicators: false) {
 			ZStack {
-				Color(hex: "#F1F3FB")
+                Color.theme.productBackground
 				VStack {
 					VStack {
 						ProductHeaderView(title: "SHOP", subTitle: "Men's Rainier L4 Windproof Soft Shell Hoodie", rating: 4)
@@ -49,5 +49,6 @@ struct ProductDetailsView: View {
 struct ProductDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         ProductDetailsView()
+            .environmentObject(dev.productVM)
     }
 }

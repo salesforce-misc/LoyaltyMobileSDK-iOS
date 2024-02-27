@@ -26,32 +26,31 @@ struct AmountPayableView: View {
         VStack(spacing: 16) {
             HStack {
                 CheckBoxView(checked: .constant(false))
-                Text("use loyalty points")
+                Text("Use my points")
                     .font(.useMyPointsText)
-                    .foregroundColor(Color(hex: "#181818"))
                 Spacer()
-				Text("Points Available: \(Int(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0))")
+				Text("Available Points: \(Int(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0))")
                     .font(.useMyPointsText)
-                    .foregroundColor(Color(hex: "#181818"))
             }
             HStack {
-                Text("Amount Payable:")
+                Text("Pay:")
                     .font(.voucherHederText)
-                    .foregroundColor(Color(hex: "#181818"))
                 Spacer()
 				Text(" $\(productVM.getTotalAmount())")
 					.font(.totalAmountText)
-                    .foregroundColor(Color(hex: "#181818"))
             }
             .padding()
             .background(Color.white)
             .cornerRadius(16, corners: .allCorners)
         }
+        .foregroundColor(Color.theme.lightText)
     }
 }
 
 struct AmountPayableView_Previews: PreviewProvider {
     static var previews: some View {
         AmountPayableView()
+            .environmentObject(dev.profileVM)
+            .environmentObject(dev.productVM)
     }
 }

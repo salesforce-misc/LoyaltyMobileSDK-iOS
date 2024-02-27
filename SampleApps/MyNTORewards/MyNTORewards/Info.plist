@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleShortVersionString</key>
-	<string>$(MARKETING_VERSION)</string>
-	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -19,38 +15,36 @@
 			</array>
 		</dict>
 	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>SF-Pro.ttf</string>
-		<string>Archivo-Regular.ttf</string>
-		<string>Archivo-Bold.ttf</string>
-		<string>Roboto-Regular.ttf</string>
-	</array>
-	<key>UIApplicationSceneManifest</key>
-	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<true/>
-		<key>UISceneConfigurations</key>
-		<dict/>
-	</dict>
 	<key>ConnectedApp</key>
 	<dict>
+		<key>BASE_URL</key>
+		<string>https://$(BASE_URL)</string>
+		<key>CALLBACK_URL</key>
+		<string>https://$(CALLBACK_URL)</string>
+		<key>COMMUNITY_URL</key>
+		<string>https://$(COMMUNITY_URL)</string>
 		<key>CONNECTED_APP_NAME</key>
 		<string>$(CONNECTED_APP_NAME)</string>
 		<key>CONSUMER_KEY</key>
 		<string>$(CONSUMER_KEY)</string>
 		<key>CONSUMER_SECRET</key>
 		<string>$(CONSUMER_SECRET)</string>
-		<key>CALLBACK_URL</key>
-		<string>https://$(CALLBACK_URL)</string>
-		<key>BASE_URL</key>
-		<string>https://$(BASE_URL)</string>
 		<key>INSTANCE_URL</key>
 		<string>https://$(INSTANCE_URL)</string>
-		<key>COMMUNITY_URL</key>
-		<string>https://$(COMMUNITY_URL)</string>
 		<key>SELF_REGISTER_URL</key>
 		<string>https://$(SELF_REGISTER_URL)</string>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SF-Pro.ttf</string>
+		<string>Archivo-Regular.ttf</string>
+		<string>Archivo-Bold.ttf</string>
+		<string>Roboto-Regular.ttf</string>
+		<string>IBMPlexMono-Regular.ttf</string>
+		<string>IBMPlexMono-SemiBold.ttf</string>
+		<string>SF-Pro-Display-Bold.otf</string>
+		<string>SF-Pro-Display-Heavy.otf</string>
+		<string>SF-Pro-Display-Regular.otf</string>
+	</array>
 </dict>
 </plist>

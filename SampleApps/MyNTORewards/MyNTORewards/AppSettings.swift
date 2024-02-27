@@ -48,10 +48,19 @@ struct AppSettings {
         static let storedInstanceURLKey = "LoyaltyMobileSDK.instanceURL"
         static let storedBaseURLKey = "LoyaltyMobileSDK.baseURL"
         static let adminMenuTapCountRequired = 6
+        static let displayDateFormat = "yyyy-MM-dd"
+    }
+    
+    struct cacheFolders {
+        static let vouchers = "Vouchers"
+        static let promotions = "Promotions"
+        static let benefits = "Benefits"
+        static let transactions = "Transactions"
+        static let images = "Images"
     }
     
     struct Vouchers {
-        static let codeSuccessfullyCopied = "Code successfully copied!"
+        static let codeSuccessfullyCopied = "Code was copied!"
     }
     
     func getInstanceURL() -> String {

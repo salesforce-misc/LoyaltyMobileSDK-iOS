@@ -7,6 +7,7 @@
 
 import SwiftUI
 import LoyaltyMobileSDK
+import Combine
 
 // recommend MainActor in ObservableObject class
 // https://www.hackingwithswift.com/quick-start/concurrency/how-to-use-mainactor-to-run-code-on-the-main-queue
@@ -17,10 +18,17 @@ class AppViewRouter: ObservableObject {
     @Published var currentPage: Page = .onboardingPage
     // used for managing the signIn state.
     @Published var signedIn = false
-    
     // check if the user is authenticated
-    var isAuthenticated: Bool {
-        return ForceAuthManager.shared.getAuth() != nil
+    @Published var isAuthenticated: Bool = ForceAuthManager.shared.auth != nil
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        ForceAuthManager.shared.$auth
+            .receive(on: DispatchQueue.main)
+            .map { $0 != nil }
+            .assign(to: \.isAuthenticated, on: self)
+            .store(in: &cancellables)
     }
     
     enum DeeplinkHosts: String {

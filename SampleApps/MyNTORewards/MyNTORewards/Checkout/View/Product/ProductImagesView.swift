@@ -13,23 +13,35 @@ struct ProductAsyncImagesView: View {
 	
     var body: some View {
 		VStack {
-			AsyncImageView(imageUrl: selectedImageURL)
-				.cornerRadius(10, corners: .allCorners)
-				.scaledToFit()
-				.padding(16)
-				ScrollView(.horizontal, showsIndicators: false) {
-					LazyHStack {
-						ForEach(images, id: \.self) {image in
-							AsyncImageView(imageUrl: image)
-								.scaledToFit()
-								.frame(width: 92, height: 92)
-								.onTapGesture {
-									selectedImageURL = image
-								}
-						}
-					}
-				}
-				.frame(height: 100)
+            LoyaltyAsyncImage(url: selectedImageURL, content: { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+            }, placeholder: {
+                ProgressView()
+            })
+            .cornerRadius(10, corners: .allCorners)
+            .scaledToFit()
+            .padding(16)
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack {
+                    ForEach(images, id: \.self) { image in
+                        LoyaltyAsyncImage(url: image, content: { image in
+                            image
+                                .resizable()
+                                .scaledToFill()
+                        }, placeholder: {
+                            ProgressView()
+                        })
+                        .scaledToFit()
+                        .frame(width: 92, height: 92)
+                        .onTapGesture {
+                            selectedImageURL = image
+                        }
+                    }
+                }
+            }
+            .frame(height: 100)
 		}
 		.onAppear {
 			selectedImageURL = images.first ?? " "

@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct VoucherPickerView: View {
+    @EnvironmentObject var vouchersVM: VoucherViewModel
 	@Binding var selectedValue: VoucherTitle
-	
-    var pickerViewInputValues: [VoucherTitle]
 	
     var body: some View {
         Menu {
             Picker("", selection: $selectedValue) {
-                ForEach(pickerViewInputValues, id: \.self) {
-					Text($0.title)
+                ForEach(vouchersVM.availableVouchersTitles, id: \.self) { voucherTitle in
+                    Text(voucherTitle.title)
                         .listRowSeparator(.hidden)
                 }
             }
@@ -24,6 +23,7 @@ struct VoucherPickerView: View {
             customLabel
         }
         .listRowSeparator(.hidden)
+        
     }
     
     var customLabel: some View {
@@ -38,15 +38,16 @@ struct VoucherPickerView: View {
                 .foregroundColor(.black)
                 .padding(.trailing, 16)
         }
-        .foregroundColor(Color(hex: "#747474"))
+        .foregroundColor(Color.theme.textInactive)
         .frame(height: 44)
-        .background(Color(hex: "#F4F6F9"))
+        .background(Color.theme.lightSilverBackground)
         .cornerRadius(16)
     }
 }
 
 struct VoucherPickerView_Previews: PreviewProvider {
     static var previews: some View {
-		VoucherPickerView(selectedValue: .constant(dev.voucherTitles[0]), pickerViewInputValues: dev.voucherTitles)
+        VoucherPickerView(selectedValue: .constant(dev.voucherTitles[0]))
+            .environmentObject(dev.voucherVM)
     }
 }

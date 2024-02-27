@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 @main
 struct MyNTORewardsApp: App {
@@ -13,15 +14,23 @@ struct MyNTORewardsApp: App {
     @StateObject var appViewRouter = AppViewRouter()
     @StateObject var appRootVM = AppRootViewModel()
     @StateObject var benefitVM = BenefitViewModel()
-    @StateObject var profileVM = ProfileViewModel()
-    @StateObject var promotionVM = PromotionViewModel()
-    @StateObject var transactionVM = TransactionViewModel()
-    @StateObject var voucherVM = VoucherViewModel()
+	@StateObject var profileVM = ProfileViewModel()
     @StateObject var imageVM = ImageViewModel()
     @StateObject var connectedAppVM = ConnectedAppsViewModel<ForceConnectedAppKeychainManager>()
+    @StateObject var processedReceiptVM = ProcessedReceiptViewModel()
+    @StateObject var localeManager = LocaleManager()
     
     init() {
         _ = AppSettings.shared
+
+        // delete all cached data to force reload data from server
+        // in case of reinit after app cold relaunch, crashes, updates, reboot or terminated in background
+        let folders = [AppSettings.cacheFolders.benefits,
+                       AppSettings.cacheFolders.images,
+                       AppSettings.cacheFolders.promotions,
+                       AppSettings.cacheFolders.transactions,
+                       AppSettings.cacheFolders.vouchers]
+        LocalFileManager.instance.removeDataFolders(folderNames: folders)
     }
 
     var body: some Scene {
@@ -30,12 +39,12 @@ struct MyNTORewardsApp: App {
                 .environmentObject(appViewRouter)
                 .environmentObject(appRootVM)
                 .environmentObject(benefitVM)
-                .environmentObject(profileVM)
-                .environmentObject(promotionVM)
-                .environmentObject(transactionVM)
-                .environmentObject(voucherVM)
+				.environmentObject(profileVM)
                 .environmentObject(imageVM)
                 .environmentObject(connectedAppVM)
+                .environmentObject(processedReceiptVM)
+                .environmentObject(localeManager)
+                .autoSignOutOnSessionTimeout()
         }
     }
 }

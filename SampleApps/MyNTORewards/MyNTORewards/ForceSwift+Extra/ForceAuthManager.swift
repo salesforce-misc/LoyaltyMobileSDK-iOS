@@ -8,15 +8,14 @@
 import Foundation
 import LoyaltyMobileSDK
 
-public class ForceAuthManager: ForceAuthenticator {
+public class ForceAuthManager: ForceAuthenticator, ObservableObject {
     
-    public var auth: ForceAuth?
-    private let defaults: UserDefaults
-    
+    @Published public var auth: ForceAuth?
+    @Published public var sessionTimeout: Bool = false
     public static let shared = ForceAuthManager()
     
-    private init(defaults: UserDefaults = .shared) {
-        self.defaults = defaults
+    private init() {
+        self.auth = getAuth()
     }
     
     public func getAccessToken() -> String? {
@@ -39,9 +38,6 @@ public class ForceAuthManager: ForceAuthenticator {
                 self.auth = newAuth
                 return newAuth.accessToken
             } catch {
-                if let error = error as? CommonError, error == .sessionExpired {
-                    clearAuth()
-                }
                 throw error
             }
         } else {
@@ -49,6 +45,7 @@ public class ForceAuthManager: ForceAuthenticator {
                 let savedAuth = try retrieveAuth()
                 self.auth = savedAuth
                 guard let savedRefreshToken = savedAuth.refreshToken else {
+                    sessionTimeout = true
                     throw CommonError.authenticationFailed
                 }
                 let newAuth = try await refresh(url: url,
@@ -58,21 +55,8 @@ public class ForceAuthManager: ForceAuthenticator {
                 return newAuth.accessToken
                 
             } catch {
-                if let error = error as? CommonError, error == .sessionExpired {
-                    clearAuth()
-                }
                 throw error
             }
-        }
-    }
-    
-    /// Unique identifier for current Salesforce user.
-    public var userIdentifier: ForceUserIdentifier? {
-        get {
-            return defaults.userIdentifier
-        }
-        set {
-            self.defaults.userIdentifier = newValue
         }
     }
     
@@ -82,10 +66,12 @@ public class ForceAuthManager: ForceAuthenticator {
         } else {
             do {
                 let savedAuth = try retrieveAuth()
-                self.auth = savedAuth
+                DispatchQueue.main.async {
+                    self.auth = savedAuth
+                }
                 return savedAuth
             } catch {
-                Logger.debug("No auth found. Please login.")
+                Logger.error("No auth found. Please login.")
             }
         }
         return nil
@@ -95,13 +81,14 @@ public class ForceAuthManager: ForceAuthenticator {
         guard let auth = self.auth else {
             return
         }
-        defer {
-            self.auth = nil
-        }
         Task {
             do {
                 let revokeURL = AppSettings.shared.getConnectedApp().instanceURL + AppSettings.Defaults.revokePath
                 try await self.revoke(url: revokeURL, token: auth.accessToken)
+                
+                DispatchQueue.main.async {
+                    self.auth = nil
+                }
             } catch {
                 Logger.error("Failed to revolk token")
             }
@@ -224,6 +211,7 @@ public class ForceAuthManager: ForceAuthenticator {
             
         } catch {
             Logger.error("Error to refresh the token and cannot renew the session. \(error.localizedDescription)")
+            sessionTimeout = true
             throw CommonError.sessionExpired
         }
         
@@ -326,7 +314,7 @@ public class ForceAuthManager: ForceAuthenticator {
                   let redirectUrl = response.url,
                   response.statusCode == 401 else {
                 Logger.debug("[requestAuthorizationCode] Error getting redirect URL")
-                throw CommonError.responseUnsuccessful(message: "Failed getting rediect URL for authorization code")
+				throw CommonError.responseUnsuccessful(message: "Failed getting rediect URL for authorization code", displayMessage: "")
             }
 
             guard let authCode = getAuthorizationCode(fromUrl: redirectUrl) else {
@@ -401,7 +389,7 @@ public class ForceAuthManager: ForceAuthenticator {
     public func saveAuth<KeychainManagerType: KeychainManagerProtocol>(for auth: ForceAuth, using keychainManagerType: KeychainManagerType.Type) throws where KeychainManagerType.T == ForceAuth {
         do {
             try keychainManagerType.save(item: auth)
-            defaults.userIdentifier = auth.identityURL
+            UserDefaults.shared.userIdentifier = auth.identityURL
         } catch {
             throw error
         }
@@ -413,7 +401,7 @@ public class ForceAuthManager: ForceAuthenticator {
     
     /// Delete Auth from Keychain
     public func deleteAuth<KeychainManagerType: KeychainManagerProtocol>(using keychainManagerType: KeychainManagerType.Type) throws where KeychainManagerType.T == ForceAuth {
-        if let id = self.userIdentifier {
+        if let id = UserDefaults.shared.userIdentifier {
             try? KeychainManagerType.delete(for: id)
         }
     }
@@ -424,7 +412,7 @@ public class ForceAuthManager: ForceAuthenticator {
     
     /// Retrieve Auth from Keychain
     public func retrieveAuth<KeychainManagerType: KeychainManagerProtocol>(using keychainManagerType: KeychainManagerType.Type) throws -> ForceAuth where KeychainManagerType.T == ForceAuth {
-        guard let id = ForceAuthManager.shared.userIdentifier else {
+        guard let id = UserDefaults.shared.userIdentifier else {
             throw CommonError.userIdentityUnknown
         }
         guard let auth = try KeychainManagerType.retrieve(for: id) else {

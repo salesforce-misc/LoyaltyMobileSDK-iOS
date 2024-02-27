@@ -87,11 +87,10 @@ class DeveloperPreview {
      ]
      */
     
-    // swiftlint:disable line_length
     let promotion = PromotionResult(fulfillmentAction: "CREDIT_POINTS",
                                     promotionEnrollmentRqr: false,
                                     memberEligibilityCategory: "Eligible",
-                                    promotionImageURL: "https://unsplash.com/photos/sTa-fO_VM4k/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjc4NzI2MDcx&force=true&w=640",
+                                    promotionImageURL: "https://salesforce.widen.net/content/f1h2462zr8/png/AdobeStock_328036344.jpeg",
                                     loyaltyPromotionType: "STANDARD",
                                     totalPromotionRewardPointsVal: 250,
                                     promotionName: "Mountain Biking Bonanza",
@@ -102,7 +101,6 @@ class DeveloperPreview {
                                     description: "Promote sustainable travel alternatives and earn rewards by joining us in the Mountain Biking Bonanza event",
                                     promotionEnrollmentEndDate: "end",
                                     promEnrollmentStartDate: "start")
-    // swiftlint:enable line_length
     
     // let currency = TransactionCurrency(value: 100, name: "Reward Points")
     let transactions = [
@@ -186,7 +184,41 @@ class DeveloperPreview {
 						 VoucherTitle(id: "2", title: "Winter Jacket")]
     
     let checkoutVouchersCode = ["Trendy wear 25 off", "Trendy wear 50 off", "Trendy wear 15 off", "Trendy wear 75 off", "Trendy wear 100 off"]
-    
+	
+	let processedReceipt = ProcessedReceipt(receiptSfdcId: "sdgd3434345",
+											totalAmount: "$154.0",
+											storeName: "Costco",
+											storeAddress: "San Jose",
+											receiptNumber: "R-US-001",
+											receiptDate: Date(),
+											lineItem: [ProcessedReceiptItem(quantity: "4",
+																			productName: "Nike Shoes",
+																			price: "$20",
+																			lineItemPrice: "$30",
+                                                                            isEligible: true)], 
+                                                                            confidenceStatus: .success)
+	let eligibleItems = [ProcessedReceiptItem(quantity: "4",
+											  productName: "Nike Shoes",
+											  price: "$20",
+											  lineItemPrice: "$30",
+											  isEligible: true),
+						 ProcessedReceiptItem(quantity: "4",
+											  productName: "Nike Shoes",
+											  price: "$20",
+											  lineItemPrice: "$30",
+											  isEligible: true)
+	]
+	let ineligibleItems = [ProcessedReceiptItem(quantity: "4",
+												productName: "Nike Shoes",
+												price: "$20",
+												lineItemPrice: "$30",
+												isEligible: false),
+						   ProcessedReceiptItem(quantity: "4",
+												productName: "Nike Shoes",
+												price: "$20",
+												lineItemPrice: "$30",
+												isEligible: false)
+	]
     let rootVM = AppRootViewModel()
     let benefitVM = BenefitViewModel()
     let promotionVM = PromotionViewModel()
@@ -196,10 +228,19 @@ class DeveloperPreview {
     let transactionVM = TransactionViewModel()
 	let orderDetailsVM = OrderDetailsViewModel()
     let connectedAppVM = ConnectedAppsViewModel<ForceConnectedAppKeychainManager>()
+    let productVM = ProductViewModel()
+    let processedReceiptVM = ProcessedReceiptViewModel()
+    let camVM = CameraViewModel()
+    let routerPath = RouterPath()
+    let receiptVM = ReceiptViewModel()
+	let receiptListVM = ReceiptListViewModel()
     
     private init() {
         setMember(member: member)
         promotionVM.promotions = [promotion]
+		processedReceiptVM.processedReceipt = processedReceipt
+		processedReceiptVM.eligibleItems = eligibleItems
+		processedReceiptVM.inEligibleItems = ineligibleItems
     }
     
     func setMember(member: CommunityMemberModel) {
