@@ -11,6 +11,7 @@ import ReferralMobileSDK
 struct ReferralsGatewayView: View {
     @EnvironmentObject private var referralVM: ReferralViewModel
     @EnvironmentObject private var rootVM: AppRootViewModel
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         switch referralVM.loadAllReferralsApiState {
@@ -54,7 +55,17 @@ struct ReferralsGatewayView: View {
                     GeometryReader { geometry in
                         ScrollView(.vertical) {
                             VStack {
+                                Spacer()
                                 ProcessingErrorView(message: StringConstants.Referrals.genericError)
+                                Spacer()
+                                Button {
+                                    dismiss()
+                                } label: {
+                                    Text(StringConstants.Referrals.backButton)
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(.borderedProminent)
+                                .longFlexibleButtonStyle()
                             }
                             .padding()
                             .frame(width: geometry.size.width)

@@ -8,7 +8,6 @@
 import SwiftUI
 import UIKit
 import ReferralMobileSDK
-import LoyaltyMobileSDK
 
 struct ReferAFriendView: View {
     @Environment(\.dismiss) private var dismiss
@@ -23,10 +22,10 @@ struct ReferAFriendView: View {
     @State private var processing: Bool = false
     @State private var validationMessage = ""
     let promotionCode: String
-    let promotion: PromotionResult?
+    let promotion: ReferralPromotionObject?
     
     var body: some View {
-        let referralLink = "\(AppSettings.Defaults.referralLink)\(referralVM.referralCode)-\(promotionCode)"
+        let referralLink = "\(promotion?.promotionPageUrl ?? "")\(referralVM.referralCode)-\(promotionCode)"
         let shareText = "\(StringConstants.Referrals.shareReferralText) \(referralLink)"
         if referralVM.displayError.0 {
             ZStack {
@@ -52,8 +51,8 @@ struct ReferAFriendView: View {
                 VStack {
                     GeometryReader { geometry in
                         Group {
-                            if promotion?.promotionImageURL != nil {
-                                LoyaltyAsyncImage(url: promotion?.promotionImageURL, content: { image in
+                            if promotion?.promotionImageUrl != nil {
+                                LoyaltyAsyncImage(url: promotion?.promotionImageUrl, content: { image in
                                     image
                                         .resizable()
                                         .scaledToFill()
@@ -82,16 +81,18 @@ struct ReferAFriendView: View {
                     ScrollView {
 
                     VStack(alignment: .leading, spacing: 20) {
-                        Text("**\(promotion?.promotionName ?? "")**")
+                        Text("**\(promotion?.name ?? "")**")
                             .font(.referModalNameText)
                             .padding(.top, 10)
                             .padding(.horizontal, 15)
                             .accessibilityIdentifier(AppAccessibilty.Referrals.referAFriendTitle)
-                        Text(promotion?.description ?? "")
-                            .lineSpacing(5)
-                            .font(.referModalText)
-                            .foregroundStyle(Color.theme.superLightText)
-                            .padding(.horizontal, 15)
+                        if let description = promotion?.description {
+                            Text(description)
+                                .lineSpacing(5)
+                                .font(.referModalText)
+                                .foregroundStyle(Color.theme.superLightText)
+                                .padding(.horizontal, 15)
+                        }
                         
                         ZStack(alignment: .trailing) {
                             TextField(StringConstants.Referrals.referEmailText, text: $email)
@@ -107,7 +108,7 @@ struct ReferAFriendView: View {
                                     processing = true
                                     Task {
                                         do {
-                                            try await referralVM.sendReferral(email: email)
+                                            try await referralVM.sendReferral(email: email, promoCode: promotionCode)
                                             if !referralVM.displayError.0 {
                                                 showEmailSentAlert = true
                                                 do {
@@ -152,7 +153,6 @@ struct ReferAFriendView: View {
                             Spacer()
                         }
                         .opacity(validationMessage.isEmpty ? 0 : 1)
-                        .frame(height: 40)
                         
                     }
                     
@@ -247,7 +247,7 @@ struct ReferAFriendView: View {
                         .buttonStyle(DarkLongButton())
                         Spacer()
                         
-                    }
+                    }.padding(.top, 10)
                 }
             }
                 if processing {

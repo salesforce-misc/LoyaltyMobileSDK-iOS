@@ -28,7 +28,9 @@ struct PromotionGatewayView: View {
                     GeometryReader { geometry in
                         ScrollView(.vertical) {
                             VStack {
+                                Spacer()
                                 ProcessingErrorView(message: StringConstants.Referrals.genericError)
+                                Spacer()
                                 Button {
                                     dismiss()
                                 } label: {
@@ -52,9 +54,9 @@ struct PromotionGatewayView: View {
                 case .loyaltyPromotion:
                     MyPromotionDetailView(promotion: promotion, processing: $processing)
                 case .joinReferralPromotion:
-                    JoinAndReferView(promotion: promotion).environmentObject(viewModel)
+                    JoinAndReferView(promotion: viewModel.promotionInfo).environmentObject(viewModel)
                 case .referFriend:
-                    ReferAFriendView(promotionCode: viewModel.promoCode, promotion: promotion )
+                    ReferAFriendView(promotionCode: viewModel.promotionInfo?.promotionCode ?? "", promotion: viewModel.promotionInfo)
                 case .joinPromotionError:
                     ZStack {
                         Color.theme.background

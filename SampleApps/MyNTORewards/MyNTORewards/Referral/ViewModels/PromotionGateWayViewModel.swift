@@ -18,11 +18,9 @@ enum PromotionGateWayScreenState {
 @MainActor
 class PromotionGateWayViewModel: ObservableObject {
     @Published private(set) var promotionStatusApiState = LoadingState.idle
-    @Published private(set) var promoCode = AppSettings.Defaults.promotionCode
     @Published var displayError: (Bool, String) = (false, "")
     @Published var promotionScreenType: PromotionGateWayScreenState = .loyaltyPromotion
-    
-    private var isReferralPromotion = false
+    @Published private(set) var promotionInfo: ReferralPromotionObject?
     private let authManager: ForceAuthenticator
     private let forceClient: ForceClient
     private let referralAPIManager: ReferralAPIManager
@@ -56,12 +54,12 @@ class PromotionGateWayViewModel: ObservableObject {
     func getPromotionType(promotionId: String, contactId: String) async {
         promotionStatusApiState = .loading
         do {
-            let query = "SELECT Id, IsReferralPromotion, PromotionCode, Name  FROM Promotion Where Id= '\(promotionId)'"
-            let queryResult = try await forceClient.SOQL(type: Record.self, for: query)
-            isReferralPromotion = queryResult.records.first?.bool(forField: "IsReferralPromotion") ?? false
-            if isReferralPromotion {
-                promoCode = queryResult.records.first?.string(forField: "PromotionCode") ?? ""
-                await checkEnrollmentStatus(contactId: contactId, promotionCode: promoCode)
+            // swiftlint:disable:next line_length
+            let query = "SELECT Id, IsReferralPromotion, PromotionCode, Name, Description, ImageUrl, PromotionPageUrl  FROM Promotion Where Id= '\(promotionId)'"
+            let promotion = try await forceClient.SOQL(type: ReferralPromotionObject.self, for: query)
+            promotionInfo = promotion.records.first
+            if promotionInfo?.isReferralPromotion ?? false {
+                await checkEnrollmentStatus(contactId: contactId, promotionCode: promotionInfo?.promotionCode ?? "")
             } else {
                 promotionStatusApiState = .loaded
                 promotionScreenType = .loyaltyPromotion
@@ -74,7 +72,7 @@ class PromotionGateWayViewModel: ObservableObject {
     
     func enroll(contactId: String) async {
         do {
-            let output = try await referralAPIManager.referralEnrollment(contactID: contactId, promotionCode: promoCode)
+            let output = try await referralAPIManager.referralEnrollment(contactID: contactId, promotionCode: promotionInfo?.promotionCode ?? "")
             if output.transactionJournals.first?.status.uppercased() == "PROCESSED" {
                 promotionScreenType = .referFriend
             } else {
