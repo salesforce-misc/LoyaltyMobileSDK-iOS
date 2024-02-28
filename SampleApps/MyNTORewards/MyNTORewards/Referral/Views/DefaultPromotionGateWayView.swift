@@ -25,9 +25,7 @@ struct DefaultPromotionGateWayView: View {
                     GeometryReader { geometry in
                         ScrollView(.vertical) {
                             VStack {
-                                Spacer()
                                 ProcessingErrorView(message: StringConstants.Referrals.genericError)
-                                Spacer()
                                 Button {
                                     dismiss()
                                 } label: {
