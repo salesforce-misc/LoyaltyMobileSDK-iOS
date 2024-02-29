@@ -32,12 +32,12 @@ final class ReferralViewModelTests: XCTestCase {
     }
     
     @MainActor func test_isEnrolledForDefaultPromotion() async throws {
-        await viewModel.isEnrolledForDefaultPromotion(contactId: "", devMode: false)
+        await viewModel.isEnrolledForDefaultPromotion(contactId: "")
         XCTAssertEqual(viewModel.promotionScreenType, .referFriend)
     }
     
     @MainActor func test_isEnrolledForDefaultPromotionWithDevMode() async throws {
-        await viewModel.isEnrolledForDefaultPromotion(contactId: "", devMode: true)
+        await viewModel.isEnrolledForDefaultPromotion(contactId: "")
         XCTAssertEqual(viewModel.promotionScreenType, .promotionError)
     }
     
@@ -123,7 +123,7 @@ final class ReferralViewModelTests: XCTestCase {
     }
     
     @MainActor func test_getDefaultPromotionData() async throws {
-        try await viewModel.getDefaultPromotionDetailsAndEnrollmentStatus(contactId: "",devMode: true)
+        try await viewModel.getDefaultPromotionDetailsAndEnrollmentStatus(contactId: "")
         XCTAssertNotNil(viewModel.defaultPromotionInfo)
         XCTAssertEqual(viewModel.defaultPromotionInfo?.name, "Referral Promotion Without  Description")
     }

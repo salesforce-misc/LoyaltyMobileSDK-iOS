@@ -9,11 +9,29 @@ import SwiftUI
 import LoyaltyMobileSDK
 
 struct PromotionGatewayView: View {
-    @StateObject private var viewModel = PromotionGateWayViewModel()
+	@StateObject private var viewModel: PromotionGateWayViewModel
     @EnvironmentObject private var rootVM: AppRootViewModel
     @Environment(\.dismiss) private var dismiss
     let promotion: PromotionResult
     @Binding var processing: Bool
+	
+	init(promotion: PromotionResult, processing: Binding<Bool>) {
+		self.promotion = promotion
+		self._processing = processing
+#if DEBUG
+		if UITestingHelper.isUITesting {
+			self._viewModel = StateObject(wrappedValue: PromotionGateWayViewModel(devMode: true,
+																				  mockPromotionStatusApiState: UITestingHelper.mockPromotionStatusApiState,
+																				  mockPromotionScreenType: UITestingHelper.mockPromotionScreenType
+																				 ))
+		} else {
+			self._viewModel = StateObject(wrappedValue: PromotionGateWayViewModel())
+		}
+#else
+		_playGameViewModel = StateObject(wrappedValue: PlayGameViewModel())
+#endif
+		
+	}
     
     var body: some View {
         Group {

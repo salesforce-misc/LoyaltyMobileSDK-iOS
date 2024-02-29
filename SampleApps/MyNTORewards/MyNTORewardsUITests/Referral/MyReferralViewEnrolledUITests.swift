@@ -14,7 +14,7 @@ final class MyReferralViewEnrolledUITests: XCTestCase {
 		continueAfterFailure = false
 		XCUIDevice.shared.orientation = .portrait
 		app.launchArguments = ["ui_test"]
-		app.launchEnvironment = ["isEnrolled": "true"]
+		app.launchEnvironment = ["isEnrolled": "true", "mockDate": "2024-02-02", "dateFormat": "yyyy-MM-dd"]
 		app.launch()
 		ReferralViewHelper.goToReferralView(app: app)
     }
@@ -33,7 +33,7 @@ final class MyReferralViewEnrolledUITests: XCTestCase {
 	func test_onTappingReferAFriend_shouldShowReferAFriendView() {
 		XCTAssertTrue(app.buttons["Refer Now"].waitForExistence(timeout: 5))
 		app.buttons["Refer Now"].tap()
-		XCTAssertTrue(app.staticTexts["Start Referring"].exists)
+		XCTAssertTrue(app.staticTexts["refer_friend_title"].waitForExistence(timeout: 5))
 	}
 	
 	func test_completedReferralsView() {

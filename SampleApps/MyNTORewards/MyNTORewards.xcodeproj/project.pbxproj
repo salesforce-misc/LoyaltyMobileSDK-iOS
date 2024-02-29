@@ -139,6 +139,7 @@
 		3F3805B62A7A6EF700223808 /* View+Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3805B52A7A6EF700223808 /* View+Destination.swift */; };
 		3F3983D72AB00AAD00C5C980 /* ReceiptStatusUpdateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3983D62AB00AAD00C5C980 /* ReceiptStatusUpdateResponse.swift */; };
 		3F3E65A42A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */; };
+		3F4026B42B8F74BE009CC1F9 /* ReferralPromotionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4026B32B8F74BE009CC1F9 /* ReferralPromotionUITests.swift */; };
 		3F5002AF2A5F9AB900E12AE4 /* ReceiptListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002AE2A5F9AB900E12AE4 /* ReceiptListItem.swift */; };
 		3F5002B12A5FA07100E12AE4 /* ReceiptList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */; };
 		3F5002B72A5FC82800E12AE4 /* ReceiptSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */; };
@@ -177,6 +178,7 @@
 		3F714D6B29FA0FEB00CD39E7 /* OrderVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D6129FA0FEB00CD39E7 /* OrderVoucherView.swift */; };
 		3F714D6D29FA104F00CD39E7 /* OrderDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D6C29FA104F00CD39E7 /* OrderDetailsViewModel.swift */; };
 		3F714D6F2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F714D6E2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift */; };
+		3F71AB112B8FA158007CAA50 /* MyReferralViewFailedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F71AB102B8FA158007CAA50 /* MyReferralViewFailedUITests.swift */; };
 		3F75ABC72B3049CB0018CB2B /* GameZoneViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75ABC62B3049CB0018CB2B /* GameZoneViewModelTests.swift */; };
 		3F75ABC92B307C370018CB2B /* ReflectiveEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75ABC82B307C370018CB2B /* ReflectiveEquatable.swift */; };
 		3F75ABCB2B308CC30018CB2B /* PlayGameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75ABCA2B308CC30018CB2B /* PlayGameViewModelTests.swift */; };
@@ -467,6 +469,7 @@
 		3F3805B52A7A6EF700223808 /* View+Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Destination.swift"; sourceTree = "<group>"; };
 		3F3983D62AB00AAD00C5C980 /* ReceiptStatusUpdateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptStatusUpdateResponse.swift; sourceTree = "<group>"; };
 		3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAndLoyaltyAPITests.swift; sourceTree = "<group>"; };
+		3F4026B32B8F74BE009CC1F9 /* ReferralPromotionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralPromotionUITests.swift; sourceTree = "<group>"; };
 		3F5002AE2A5F9AB900E12AE4 /* ReceiptListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListItem.swift; sourceTree = "<group>"; };
 		3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptList.swift; sourceTree = "<group>"; };
 		3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptSearchBar.swift; sourceTree = "<group>"; };
@@ -505,6 +508,7 @@
 		3F714D6129FA0FEB00CD39E7 /* OrderVoucherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderVoucherView.swift; sourceTree = "<group>"; };
 		3F714D6C29FA104F00CD39E7 /* OrderDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewModel.swift; sourceTree = "<group>"; };
 		3F714D6E2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyConditionalNavLink.swift; sourceTree = "<group>"; };
+		3F71AB102B8FA158007CAA50 /* MyReferralViewFailedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReferralViewFailedUITests.swift; sourceTree = "<group>"; };
 		3F75ABC62B3049CB0018CB2B /* GameZoneViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneViewModelTests.swift; sourceTree = "<group>"; };
 		3F75ABC82B307C370018CB2B /* ReflectiveEquatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectiveEquatable.swift; sourceTree = "<group>"; };
 		3F75ABCA2B308CC30018CB2B /* PlayGameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayGameViewModelTests.swift; sourceTree = "<group>"; };
@@ -1046,6 +1050,8 @@
 			isa = PBXGroup;
 			children = (
 				3F219E382B6A95A300FCA205 /* MyReferralViewEnrolledUITests.swift */,
+				3F71AB102B8FA158007CAA50 /* MyReferralViewFailedUITests.swift */,
+				3F4026B32B8F74BE009CC1F9 /* ReferralPromotionUITests.swift */,
 				3F219E452B6C08C000FCA205 /* MyReferralViewUnEnrolledUITests.swift */,
 				3F219E3D2B6B41BE00FCA205 /* ReferAFriendViewUITests.swift */,
 				3F219E3B2B6A95D600FCA205 /* ReferralViewHelper.swift */,
@@ -1953,6 +1959,7 @@
 				3F7DAF9D2A81314300A521E2 /* ProcessingReceiptViewUITests.swift in Sources */,
 				3F8A88252B2C6F64009D05A3 /* ScratchCardViewPlayGameFailUITests.swift in Sources */,
 				4F7BD9922AE1326D003B7ADA /* GameZoneViewHelper.swift in Sources */,
+				3F71AB112B8FA158007CAA50 /* MyReferralViewFailedUITests.swift in Sources */,
 				3F2B758C2B2E104C00B2AA9C /* FortuneWheelPlayGameFailUITests.swift in Sources */,
 				AFAF524329F63E2900478F67 /* TransactionsViewHelper.swift in Sources */,
 				AF468B5929EEFB60003C1344 /* HomeViewHelper.swift in Sources */,
@@ -1960,6 +1967,7 @@
 				AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */,
 				3F2B75922B2ED14600B2AA9C /* GameZoneExpiryLabelTests.swift in Sources */,
 				3F2B758A2B2E048900B2AA9C /* FortuneWheelWithoutRewardUITests.swift in Sources */,
+				3F4026B42B8F74BE009CC1F9 /* ReferralPromotionUITests.swift in Sources */,
 				3F7DAF9B2A81276D00A521E2 /* CapturedImageViewUITests.swift in Sources */,
 				AFE960DF29EE489500C888C0 /* SignUpViewHelper.swift in Sources */,
 				3F219E3C2B6A95D600FCA205 /* ReferralViewHelper.swift in Sources */,

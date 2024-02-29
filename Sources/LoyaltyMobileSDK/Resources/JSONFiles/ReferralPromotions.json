@@ -1,0 +1,58 @@
+{
+    "message": null,
+    "outputParameters": {
+        "outputParameters": {
+            "results": [
+				{
+					"loyaltyPromotionType": "STANDARD",
+					"maximumPromotionRewardValue": 0,
+					"totalPromotionRewardPointsVal": null,
+					"loyaltyProgramCurrency": null,
+					"memberEligibilityCategory": "Eligible",
+					"promotionEnrollmentRqr": true,
+					"fulfillmentAction": null,
+					"promotionName": "Refer & Save",
+					"promotionId": "0c84x000000CoNhAAK",
+					"startDate": "2024-01-01",
+					"endDate": "2024-02-29",
+					"description": "Refer a friend and save big on your next purchase. You can get $200 if you refer a friend and when they shop for the first time.",
+					"imageName": "offer2",
+					"promotionImageURL": "https://unsplash.com/photos/f94JPVrDbnY/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mnx8Z2lmdHxlbnwwfHx8fDE2ODM2NDc5ODk&amp;amp;force=true&amp;amp;w=640",
+					"promotionEnrollmentEndDate": null,
+					"promEnrollmentStartDate": "2024-01-01"
+				},
+                {
+                    "loyaltyPromotionType": "STANDARD",
+                    "maximumPromotionRewardValue": 0,
+                    "totalPromotionRewardPointsVal": 0,
+                    "loyaltyProgramCurrency": "0lc4x000000L1bmAAC",
+                    "memberEligibilityCategory": "Eligible",
+                    "promotionEnrollmentRqr": true,
+                    "fulfillmentAction": "CREDIT_POINTS",
+                    "promotionName": "Anniversary promotion",
+                    "promotionId": "0c84x000000CoNhAAK",
+                    "startDate": "2020-01-01",
+                    "endDate": "2022-12-31",
+                    "description": "Double point promotion on member purchases on their anniversary",
+                    "imageName": "offer2"
+                },
+                {
+                    "loyaltyPromotionType": "CUMULATIVE",
+                    "maximumPromotionRewardValue": 0,
+                    "totalPromotionRewardPointsVal": 200,
+                    "loyaltyProgramCurrency": "0lc4x000000L1bmAAC",
+                    "memberEligibilityCategory": "Eligible",
+                    "promotionEnrollmentRqr": false,
+                    "fulfillmentAction": "CREDIT_POINTS",
+                    "promotionName": "Referral Promotions",
+                    "promotionId": "0c84x000000CoNiAAK",
+                    "startDate": "2021-01-02",
+                    "description": "Additional points for member referral",
+                    "imageName": "promotion1"
+                }
+            ]
+        }
+    },
+    "simulationDetails": {},
+    "status": true
+}

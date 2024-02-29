@@ -28,7 +28,12 @@ struct BottomNavTabsView: View {
             _gameZoneVM = StateObject(wrappedValue: GameZoneViewModel(devMode: true,
                                                                                   mockFileName: UITestingHelper.getGamesMockFileName
                                                                                  ))
-			_referralVM = StateObject(wrappedValue: ReferralViewModel(devMode: true, isEnrolled: UITestingHelper.isUserEnrolledForReferral))
+			_referralVM = StateObject(wrappedValue: ReferralViewModel(devMode: true, 
+																	  isEnrolledMock: UITestingHelper.isUserEnrolledForReferral,
+																	  currentDate: UITestingHelper.mockCurrentDate,
+																	  mockApiState: UITestingHelper.mockApiState,
+																	  mockEnrollmentStatusApiState: UITestingHelper.mockEnrollmentStatusApiState
+																	 ))
         } else {
 			_gameZoneVM = StateObject(wrappedValue: GameZoneViewModel())
 			_referralVM = StateObject(wrappedValue: ReferralViewModel())
