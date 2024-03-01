@@ -216,10 +216,10 @@ class AppRootViewModel: ObservableObject {
         Task {
             do {
                 let forceClient = ForceClient(auth: authManager)
-                let contactQuery = "SELECT Contact.FirstName, Contact.LastName, Contact.Phone FROM User WHERE Username = \(email)"
+                let contactQuery = "SELECT Contact.FirstName, Contact.LastName, Contact.Phone FROM User WHERE Username = '\(email)'"
                 let queryResult = try await forceClient.SOQL(type: Record.self, for: contactQuery)
                 let user = queryResult.records.first
-                let contact = user?.subqueryResult(forField: "Contact")?.records.first
+                let contact: Record? = try user?.value(forField: "Contact")
                 
                 // Need to save contact info for enrollment
                 let firstName = contact?.string(forField: "FirstName") ?? ""
