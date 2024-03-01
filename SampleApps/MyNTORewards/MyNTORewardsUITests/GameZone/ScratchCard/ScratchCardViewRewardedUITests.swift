@@ -91,7 +91,7 @@ final class ScratchCardViewRewardedUITests: XCTestCase {
 		XCTAssertTrue(app.staticTexts["Congratulations!"].waitForExistence(timeout: 5))
 		app.buttons["Play More"].tap()
 		XCTAssert(app.staticTexts["Game Zone"].exists)
-		XCTAssert(app.staticTexts["Active"].exists)
+		XCTAssert(app.staticTexts["Available"].exists)
 		XCTAssert(app.staticTexts["Expired"].exists)
 	}
 }
