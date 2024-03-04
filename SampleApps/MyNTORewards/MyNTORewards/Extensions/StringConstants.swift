@@ -56,7 +56,7 @@ struct StringConstants {
         static let failureBodyText = ""
         static let failureBodySubText = "Thank you for playing! Stay tuned for more offers."
         static let gameZoneHeader = "Game Zone"
-        static let activeTab = "Active"
+        static let activeTab = "Available"
         static let expiredTab = "Expired"
         static let playedTab = "Played"
         static let expiringToday = "Expiring today"
