@@ -65,15 +65,23 @@ class ReferralViewModel: ObservableObject {
     private let localFileManager: FileManagerProtocol
     private let referralsFolderName = AppSettings.cacheFolders.referrals
     private let promotionCode = AppSettings.Defaults.promotionCode
-    var devMode: Bool = false
-    var isEnrolled: Bool = false
     
+    var isEnrolled: Bool = false
+	var currentDate: Date
+	// For dev mode and UI tests
+	var devMode: Bool = false
+	var isEnrolledMock: Bool = false
+	var mockApiState: LoadingState
+	var mockEnrollmentStatusApiState: LoadingState
     init(
-        authManager: ForceAuthenticator = ForceAuthManager.shared,
-        forceClient: ForceClient? = nil,
-        localFileManager: FileManagerProtocol = LocalFileManager.instance,
-        devMode: Bool = false,
-        isEnrolled: Bool = false
+		authManager: ForceAuthenticator = ForceAuthManager.shared,
+		forceClient: ForceClient? = nil,
+		localFileManager: FileManagerProtocol = LocalFileManager.instance,
+		devMode: Bool = false,
+		isEnrolledMock: Bool = false,
+		currentDate: Date = Date(),
+		mockApiState: LoadingState = .idle,
+		mockEnrollmentStatusApiState: LoadingState = .idle
     ) {
         self.authManager = authManager
         self.forceClient = forceClient ?? ForceClient(auth: authManager)
@@ -82,10 +90,13 @@ class ReferralViewModel: ObservableObject {
                                                      instanceURL: AppSettings.shared.getInstanceURL(),
                                                      forceClient: self.forceClient)
         self.devMode = devMode
-        self.isEnrolled = isEnrolled
+        self.isEnrolledMock = isEnrolledMock
         self.localFileManager = localFileManager
         self.referralMembershipNumber = UserDefaults.standard.string(forKey: "referralMembershipNumber") ?? ""
         self.referralCode = ""
+		self.currentDate = currentDate
+		self.mockApiState = mockApiState
+		self.mockEnrollmentStatusApiState = mockEnrollmentStatusApiState
     }
     
     func loadAllReferrals(memberContactId: String, reload: Bool = false) async throws {
@@ -114,6 +125,10 @@ class ReferralViewModel: ObservableObject {
             }
             
         } else {
+			if devMode && mockApiState == .failed(CommonError.invalidData) {
+				loadAllReferralsApiState = .failed(CommonError.invalidData)
+				throw CommonError.invalidData
+			}
             do {
                 let result = try await fetchAllReferrals(memberContactId: memberContactId)
                 promotionStageCounts = calculatePromotionStageCounts(in: result)
@@ -130,6 +145,10 @@ class ReferralViewModel: ObservableObject {
     }
     
     func getReferralsDataFromServer(memberContactId: String) async throws {
+		if devMode && mockApiState == .failed(CommonError.invalidData) {
+			loadAllReferralsApiState = .failed(CommonError.invalidData)
+			throw CommonError.invalidData
+		}
         do {
             loadAllReferralsApiState = .loading
             let result = try await fetchAllReferrals(memberContactId: memberContactId)
@@ -196,10 +215,15 @@ class ReferralViewModel: ObservableObject {
         }
     }
     
-    func getDefaultPromotionDetailsAndEnrollmentStatus(contactId: String, devMode: Bool = false) async throws {
+    func getDefaultPromotionDetailsAndEnrollmentStatus(contactId: String) async throws {
         enrollmentStatusApiState = .loading
+		if devMode && mockEnrollmentStatusApiState == .failed(CommonError.invalidData) {
+			enrollmentStatusApiState = .failed(CommonError.invalidData)
+			promotionScreenType = .promotionError
+			return
+		}
         if defaultPromotionInfo != nil {
-            await isEnrolledForDefaultPromotion(contactId: contactId, devMode: devMode)
+            await isEnrolledForDefaultPromotion(contactId: contactId)
             return
         }
         do {
@@ -208,7 +232,7 @@ class ReferralViewModel: ObservableObject {
             let promotion = try await forceClient.SOQL(type: ReferralPromotionObject.self, for: query)
             defaultPromotionInfo = promotion.records.first
             if defaultPromotionInfo?.promotionCode != nil {
-                await isEnrolledForDefaultPromotion(contactId: contactId, devMode: devMode)
+                await isEnrolledForDefaultPromotion(contactId: contactId)
             } else {
                 displayError = (true, StringConstants.Referrals.genericError)
                 enrollmentStatusApiState = .loaded
@@ -222,13 +246,17 @@ class ReferralViewModel: ObservableObject {
         }
     }
     
-    func isEnrolledForDefaultPromotion(contactId: String, devMode: Bool = false) async {
+    func isEnrolledForDefaultPromotion(contactId: String) async {
         if let isEnrolled =  UserDefaults.standard.value(forKey: "isEnrolledForDefaultPromotion") as? Bool {
             if isEnrolled &&  !devMode {
                 enrollmentStatusApiState = .loaded
                 promotionScreenType = .referFriend
                 return
-            }
+			} else if devMode {
+				enrollmentStatusApiState = .loaded
+				promotionScreenType = isEnrolledMock ? .referFriend : .joinReferralPromotion
+				return
+			}
         }
         do {
             // swiftlint:disable:next line_length
@@ -308,34 +336,34 @@ class ReferralViewModel: ObservableObject {
     
     private func filterReferrals(referrals: [Referral]) {
         recentReferralsSuccess = referrals.filter { referral in
-            return referral.referralDate >= Date().monthBefore &&
+            return referral.referralDate >= currentDate.monthBefore &&
             referral.currentPromotionStage.type == PromotionStageType.voucherEarned.rawValue
         }
         
         recentReferralsInProgress = referrals.filter { referral in
-            return referral.referralDate >= Date().monthBefore &&
+            return referral.referralDate >= currentDate.monthBefore &&
             referral.currentPromotionStage.type != PromotionStageType.voucherEarned.rawValue
         }
         
         oneMonthAgoReferralsSuccess = referrals.filter { referral in
-            return referral.referralDate < Date().monthBefore &&
-            referral.referralDate >= Date().threeMonthsBefore &&
+            return referral.referralDate < currentDate.monthBefore &&
+            referral.referralDate >= currentDate.threeMonthsBefore &&
             referral.currentPromotionStage.type == PromotionStageType.voucherEarned.rawValue
         }
         
         oneMonthAgoReferralsInProgress = referrals.filter { referral in
-            return referral.referralDate < Date().monthBefore &&
-            referral.referralDate >= Date().threeMonthsBefore &&
+            return referral.referralDate < currentDate.monthBefore &&
+            referral.referralDate >= currentDate.threeMonthsBefore &&
             referral.currentPromotionStage.type != PromotionStageType.voucherEarned.rawValue
         }
         
         threeMonthsAgoReferralsSuccess = referrals.filter { referral in
-            return referral.referralDate < Date().threeMonthsBefore &&
+            return referral.referralDate < currentDate.threeMonthsBefore &&
             referral.currentPromotionStage.type == PromotionStageType.voucherEarned.rawValue
         }
         
         threeMonthsAgoReferralsInProgress = referrals.filter { referral in
-            return referral.referralDate < Date().threeMonthsBefore &&
+            return referral.referralDate < currentDate.threeMonthsBefore &&
             referral.currentPromotionStage.type != PromotionStageType.voucherEarned.rawValue
         }
         

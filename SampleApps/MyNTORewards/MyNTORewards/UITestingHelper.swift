@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import LoyaltyMobileSDK
 
 #if DEBUG
 struct UITestingHelper {
@@ -72,6 +73,80 @@ struct UITestingHelper {
 	
 	static var referralMockFileName: String {
 		"Referrals"
+	}
+	
+	static var mockCurrentDateString: String? {
+		ProcessInfo.processInfo.environment["mockDate"]
+	}
+	
+	static var dateFormat: String? {
+		ProcessInfo.processInfo.environment["dateFormat"]
+	}
+	
+	static var mockCurrentDate: Date {
+		guard let dateString = mockCurrentDateString,
+			  let format = dateFormat else {
+			return Date()
+		}
+		return dateString.toDate(withFormat: format) ?? Date()
+	}
+	
+	static var isHavingReferralPromotion: Bool {
+		ProcessInfo.processInfo.environment["referral_promotion"] == "true"
+	}
+	
+	static var referralsMockFileName: String {
+		if isHavingReferralPromotion {
+			return "ReferralPromotions"
+		}
+		return "ReferralPromotions"
+	}
+	
+	private static func getLoadingState(for stateString: String?) -> LoadingState {
+		switch stateString {
+		case "loading":
+			return .loading
+		case "loaded":
+			return .loaded
+		case "idle":
+			return .idle
+		case "failed":
+			return .failed(CommonError.invalidData)
+		default:
+			return .idle
+		}
+	}
+	
+	static var mockApiState: LoadingState {
+		let loadingStateString = ProcessInfo.processInfo.environment["loadingState"]
+		return getLoadingState(for: loadingStateString)
+	}
+	
+	static var mockEnrollmentStatusApiState: LoadingState {
+		let loadingStateString = ProcessInfo.processInfo.environment["mockEnrollmentStatusApiState"]
+		return getLoadingState(for: loadingStateString)
+	}
+	
+	static var mockPromotionStatusApiState: LoadingState {
+		let loadingStateString = ProcessInfo.processInfo.environment["mockPromotionStatusApiState"]
+		return getLoadingState(for: loadingStateString)
+	}
+	
+	static var mockPromotionScreenType: PromotionGateWayScreenState {
+		let screenState = ProcessInfo.processInfo.environment["mockPromotionScreenType"]
+		switch screenState {
+		case "loyaltyPromotion":
+			return .loyaltyPromotion
+		case "joinReferralPromotion":
+			return .joinReferralPromotion
+		case "referFriend":
+			return .referFriend
+		case "joinPromotionError":
+			return .joinPromotionError
+		default:
+			return .loyaltyPromotion
+		}
+		
 	}
 }
 #endif

@@ -20,24 +20,25 @@ final class MyReferralViewUnEnrolledUITests: XCTestCase {
 	}
 	
 	func test_UIElements() {
-		XCTAssert(app.staticTexts["Join Referral Program"].waitForExistence(timeout: 5))
-		
-		let joinReferralProgramDescription = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Join our referral program'"))
-		XCTAssertEqual(joinReferralProgramDescription.count, 1)
-		
-		XCTAssertTrue(app.buttons["Join"].exists)
+		XCTAssertTrue(app.buttons["Refer Now"].waitForExistence(timeout: 5))
+		app.buttons["Refer Now"].tap()
+		XCTAssertTrue(app.staticTexts["refer_friend_title"].waitForExistence(timeout: 5))
+		XCTAssertTrue(app.buttons["join_refer_button"].exists)
 		XCTAssertTrue(app.buttons["Back"].exists)
 	}
 	
 	func test_onTappingBack_shouldTakeToMore() {
-		XCTAssert(app.staticTexts["Join Referral Program"].waitForExistence(timeout: 5))
+		app.buttons["Refer Now"].tap()
+		XCTAssert(app.buttons["join_refer_button"].waitForExistence(timeout: 5))
 		app.buttons["Back"].tap()
-		XCTAssertTrue(app.staticTexts["Log Out"].waitForExistence(timeout: 5))
+		XCTAssert(app.staticTexts["My Referrals"].waitForExistence(timeout: 3))
+		XCTAssertFalse(app.buttons["join_refer_button"].waitForExistence(timeout: 5))
 	}
 	
 	func test_joinButton() {
-		XCTAssert(app.staticTexts["Join Referral Program"].waitForExistence(timeout: 5))
-		app.buttons["Join"].tap()
+		app.buttons["Refer Now"].tap()
+		XCTAssert(app.buttons["join_refer_button"].waitForExistence(timeout: 5))
+		app.buttons["join_refer_button"].tap()
 		let errorView = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Try joining again.'"))
 		XCTAssertTrue(errorView.firstMatch.waitForExistence(timeout: 5))
 	}

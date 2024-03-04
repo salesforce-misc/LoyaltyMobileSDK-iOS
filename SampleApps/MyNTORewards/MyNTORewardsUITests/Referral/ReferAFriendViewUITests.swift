@@ -18,8 +18,8 @@ final class ReferAFriendViewUITests: XCTestCase {
 	}
 	
 	func test_UIElements() {
-		XCTAssertTrue(app.staticTexts["Start Referring"].exists)
-		let referAFriendDescription = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Your referral code is ready!'"))
+		XCTAssertTrue(app.staticTexts["refer_friend_title"].waitForExistence(timeout: 5))
+		let referAFriendDescription = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'Invite your friends and get a voucher'"))
 		XCTAssertEqual(referAFriendDescription.count, 1)
 		
 		let friendEmailTextField = app.textFields.containing(NSPredicate(format: "identifier CONTAINS 'friend_email'"))

@@ -26,19 +26,34 @@ class PromotionGateWayViewModel: ObservableObject {
     private let referralAPIManager: ReferralAPIManager
     private let defaultPromotionCode = AppSettings.Defaults.promotionCode
     private let referralProgramName = AppSettings.Defaults.referralProgramName
+	
+	let devMode: Bool
+	let mockPromotionStatusApiState: LoadingState
+	let mockPromotionScreenType: PromotionGateWayScreenState
     
     init(
-        authManager: ForceAuthenticator = ForceAuthManager.shared,
-        forceClient: ForceClient? = nil) {
+		authManager: ForceAuthenticator = ForceAuthManager.shared,
+		forceClient: ForceClient? = nil,
+		devMode: Bool = false,
+		mockPromotionStatusApiState: LoadingState = .idle,
+		mockPromotionScreenType: PromotionGateWayScreenState = .loyaltyPromotion
+	) {
             self.authManager = authManager
             self.forceClient = forceClient ?? ForceClient(auth: authManager)
             self.referralAPIManager = ReferralAPIManager(auth: self.authManager,
                                                          referralProgramName: AppSettings.Defaults.referralProgramName,
                                                          instanceURL: AppSettings.shared.getInstanceURL(),
                                                          forceClient: self.forceClient)
+		self.devMode = devMode
+		self.mockPromotionStatusApiState = mockPromotionStatusApiState
+		self.mockPromotionScreenType = mockPromotionScreenType
         }
     
     func checkEnrollmentStatus(contactId: String, promotionCode: String) async {
+		if devMode && mockPromotionStatusApiState == .failed(CommonError.invalidData) {
+			promotionStatusApiState = .failed(CommonError.invalidData)
+			return
+		}
         do {
             // swiftlint:disable:next line_length
             let query = "SELECT Id, Name, PromotionId, LoyaltyProgramMemberId, LoyaltyProgramMember.ContactId FROM LoyaltyProgramMbrPromotion where LoyaltyProgramMember.ContactId='\(contactId)' AND Promotion.PromotionCode='\(promotionCode)'"
@@ -53,6 +68,15 @@ class PromotionGateWayViewModel: ObservableObject {
     
     func getPromotionType(promotionId: String, contactId: String) async {
         promotionStatusApiState = .loading
+		if devMode && mockPromotionStatusApiState == .failed(CommonError.invalidData) {
+			promotionStatusApiState = .failed(CommonError.invalidData)
+			return
+		} else if devMode && mockPromotionStatusApiState == .loaded && mockPromotionScreenType == .joinPromotionError {
+			promotionStatusApiState = .loaded
+			displayError = (true, StringConstants.Referrals.genericError)
+			promotionScreenType = .joinPromotionError
+			return
+		}
         do {
             // swiftlint:disable:next line_length
             let query = "SELECT Id, IsReferralPromotion, PromotionCode, Name, Description, ImageUrl, PromotionPageUrl  FROM Promotion Where Id= '\(promotionId)'"
@@ -71,6 +95,10 @@ class PromotionGateWayViewModel: ObservableObject {
     }
     
     func enroll(contactId: String) async {
+		if devMode && mockPromotionScreenType == .joinPromotionError {
+			promotionScreenType = .joinPromotionError
+			return
+		}
         do {
             let output = try await referralAPIManager.referralEnrollment(contactID: contactId, promotionCode: promotionInfo?.promotionCode ?? "")
             if output.transactionJournals.first?.status.uppercased() == "PROCESSED" {
