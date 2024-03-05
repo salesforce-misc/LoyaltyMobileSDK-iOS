@@ -30,16 +30,17 @@ final class GameZoneViewUITests: XCTestCase {
     
     func testGameZoneViewUIElements() {
         XCTAssert(app.staticTexts["Game Zone"].exists)
-        XCTAssert(app.staticTexts["Active"].exists)
+        XCTAssert(app.staticTexts["Available"].exists)
+		XCTAssert(app.staticTexts["Played"].exists)
         XCTAssert(app.staticTexts["Expired"].exists)
     }
     
     func testTab() {
-        XCTAssert(app.staticTexts["Active"].waitForExistence(timeout: 2))
-        app.staticTexts["Active"].tap()
+        XCTAssert(app.staticTexts["Available"].waitForExistence(timeout: 2))
+        app.staticTexts["Available"].tap()
 		let activeItem = app.staticTexts.containing(NSPredicate(format: "identifier CONTAINS 'active_game'"))
 		
-		XCTAssertNotEqual(activeItem.count, 0, "Active items count should not be 0.")
+		XCTAssertNotEqual(activeItem.count, 0, "Available items count should not be 0.")
         XCTAssertFalse(app.staticTexts["Expired in the last 90 Days"].waitForExistence(timeout: 2))
         app.staticTexts["Expired"].tap()
         XCTAssert(app.staticTexts["game_zone_expired_card_title"].waitForExistence(timeout: 1))
@@ -48,12 +49,12 @@ final class GameZoneViewUITests: XCTestCase {
     
     func testScratchCardNavigation() {
         GameZoneViewHelper.goToScratchCardView(app: app)
-        XCTAssert(app.staticTexts["Scratch a Card and Win"].waitForExistence(timeout: 1))
+        XCTAssert(app.staticTexts["Cat Scratch Fever Returns"].waitForExistence(timeout: 1))
     }
     
     func testSpinaWheelNavigation() {
         GameZoneViewHelper.goToSpinAWheelView(app: app)
-        XCTAssert(app.staticTexts["Spin a wheel"].waitForExistence(timeout: 1))
+        XCTAssert(app.staticTexts["Billy the Kid Promotion"].waitForExistence(timeout: 1))
     }
     
     func testExpiredTabNavigation() {

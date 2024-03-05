@@ -82,7 +82,7 @@ final class ScratchCardViewNoRewardUITests: XCTestCase {
 		XCTAssertTrue(app.staticTexts["Thank you for playing! Stay tuned for more offers."].waitForExistence(timeout: 5))
 		app.buttons["Back"].tap()
 		XCTAssert(app.staticTexts["Game Zone"].exists)
-		XCTAssert(app.staticTexts["Active"].exists)
+		XCTAssert(app.staticTexts["Available"].exists)
 		XCTAssert(app.staticTexts["Expired"].exists)
 	}
 	

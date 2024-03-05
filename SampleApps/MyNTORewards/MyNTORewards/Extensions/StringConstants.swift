@@ -56,7 +56,7 @@ struct StringConstants {
         static let failureBodyText = ""
         static let failureBodySubText = "Thank you for playing! Stay tuned for more offers."
         static let gameZoneHeader = "Game Zone"
-        static let activeTab = "Active"
+        static let activeTab = "Available"
         static let expiredTab = "Expired"
         static let playedTab = "Played"
         static let expiringToday = "Expiring today"
@@ -64,7 +64,7 @@ struct StringConstants {
         static let expiryLabel = "Expiry"
         static let expiredTabHeaderLabel = "No longer available"
         static let playedTabHeaderLabel = "Games Played in Last 90 Days"
-        static let spinaWheelHeaderLabel = "Spin a wheel"
+        static let spinaWheelHeaderLabel = "Spin the Wheel"
         static let spinaWheelSubHeaderLabel = "Spin the wheel and unlock instant rewards!"
         // swiftlint:disable line_length
         static let spinaWheelBodyLabel = "Grab this exclusive onetime offer and win some exciting rewards. For more information, refer to the terms and conditions."
