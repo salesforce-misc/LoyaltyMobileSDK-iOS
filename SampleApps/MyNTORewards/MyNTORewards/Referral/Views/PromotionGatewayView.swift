@@ -28,7 +28,7 @@ struct PromotionGatewayView: View {
 			self._viewModel = StateObject(wrappedValue: PromotionGateWayViewModel())
 		}
 #else
-		_playGameViewModel = StateObject(wrappedValue: PlayGameViewModel())
+		self._viewModel = StateObject(wrappedValue: PromotionGateWayViewModel())
 #endif
 		
 	}
