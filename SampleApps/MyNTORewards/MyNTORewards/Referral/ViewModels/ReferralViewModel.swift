@@ -17,6 +17,7 @@ struct ReferralPromotionObject: Codable {
     let description: String?
     let promotionImageUrl: String?
     let promotionPageUrl: String?
+    let endDate: String?
     
     enum CodingKeys: String, CodingKey {
         case isReferralPromotion = "IsReferralPromotion"
@@ -26,6 +27,7 @@ struct ReferralPromotionObject: Codable {
         case description = "Description"
         case promotionImageUrl = "ImageUrl"
         case promotionPageUrl = "PromotionPageUrl"
+        case endDate = "EndDate"
     }
 }
 
@@ -215,22 +217,40 @@ class ReferralViewModel: ObservableObject {
         }
     }
     
+    func checkDefaultPromotionExpiryStaus() -> Bool {
+        if let promotionEndDateString = defaultPromotionInfo?.endDate, let promotionEndDate = promotionEndDateString.toDate(), promotionEndDate < Date() {
+            // expired promotion
+            displayError = (true, StringConstants.Referrals.expiredPromotionError)
+            enrollmentStatusApiState = .loaded
+            promotionScreenType = .promotionError
+            return true
+        }
+        return false
+    }
+    
     func getDefaultPromotionDetailsAndEnrollmentStatus(contactId: String) async throws {
         enrollmentStatusApiState = .loading
+        promotionScreenType = .joinReferralPromotion
 		if devMode && mockEnrollmentStatusApiState == .failed(CommonError.invalidData) {
 			enrollmentStatusApiState = .failed(CommonError.invalidData)
 			promotionScreenType = .promotionError
 			return
 		}
         if defaultPromotionInfo != nil {
+            if checkDefaultPromotionExpiryStaus() {
+                return
+            }
             await isEnrolledForDefaultPromotion(contactId: contactId)
             return
         }
         do {
             // swiftlint:disable:next line_length
-            let query = "SELECT Id, IsReferralPromotion, PromotionCode, Name, Description, ImageUrl, PromotionPageUrl  FROM Promotion Where PromotionCode= '\(promotionCode)'"
+            let query = "SELECT Id, IsReferralPromotion, PromotionCode, Name, Description, ImageUrl, PromotionPageUrl, EndDate  FROM Promotion Where PromotionCode= '\(promotionCode)'"
             let promotion = try await forceClient.SOQL(type: ReferralPromotionObject.self, for: query)
             defaultPromotionInfo = promotion.records.first
+            if checkDefaultPromotionExpiryStaus() {
+                return
+            }
             if defaultPromotionInfo?.promotionCode != nil {
                 await isEnrolledForDefaultPromotion(contactId: contactId)
             } else {

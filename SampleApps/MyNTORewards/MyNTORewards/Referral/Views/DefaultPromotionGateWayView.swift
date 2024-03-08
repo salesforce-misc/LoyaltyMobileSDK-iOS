@@ -70,7 +70,9 @@ struct DefaultPromotionGateWayView: View {
                             .longFlexibleButtonStyle()
                             .accessibilityIdentifier(AppAccessibilty.Referrals.joinErrorBackButton)
                         }
-                    }
+                    }.onDisappear(perform: {
+                        viewModel.displayError = (false, "")
+                    })
                 }
             }
         }.onAppear {

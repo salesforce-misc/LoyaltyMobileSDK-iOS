@@ -121,6 +121,7 @@ struct StringConstants {
         static let emailValidationError = "Something doesn't look right with one of the email addresses."
         static let enrollmentError = "We couldn’t enroll you as a member of the referral program. Try joining again."
         static let genericError = "Oops! Something went wrong while processing the request. Try again."
+        static let expiredPromotionError = "Promotion expired"
         // swiftlint:disable line_length
         static let termsText =  "To join the promotion and start referring your friends, tap Start Referring. By clicking Start Referring, you agree to the promotion’s "
         // swiftlint:enable line_length

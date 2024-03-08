@@ -45,7 +45,9 @@ struct ReferAFriendView: View {
                     .longFlexibleButtonStyle()
                     .accessibilityIdentifier(AppAccessibilty.Referrals.joinErrorBackButton)
                 }
-            }
+            }.onDisappear(perform: {
+                referralVM.displayError = (false, "")
+            })
         } else {
             ZStack {
                 VStack {
