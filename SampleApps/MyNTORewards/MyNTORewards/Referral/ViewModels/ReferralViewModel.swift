@@ -319,7 +319,7 @@ class ReferralViewModel: ObservableObject {
         } catch {
             Logger.error("Referral Enrollment Error: \(error.localizedDescription)")
             promotionScreenType = .promotionError
-            displayError = (true, StringConstants.Referrals.enrollmentError)
+            displayError = (true, error.localizedDescription)
         }
     }
     
