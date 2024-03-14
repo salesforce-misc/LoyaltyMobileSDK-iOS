@@ -60,7 +60,7 @@ struct PromotionGatewayView: View {
                             .frame(width: geometry.size.width)
                             .frame(minHeight: geometry.size.height)
                         }.refreshable {
-                            checkEnrollmentStatus()
+                            getPromotionData()
                         }
                     }
                 }
@@ -91,15 +91,17 @@ struct PromotionGatewayView: View {
                             .longFlexibleButtonStyle()
                             .accessibilityIdentifier(AppAccessibilty.Referrals.joinErrorBackButton)
                         }
-                        }
+                        }.onDisappear(perform: {
+                            viewModel.displayError = (false, "")
+                        })
                 }
             }
         }.onAppear {
-            checkEnrollmentStatus()
+            getPromotionData()
         }
     }
     
-    func checkEnrollmentStatus() {
+    func getPromotionData() {
         Task {
             let contactId = rootVM.member?.contactId ?? ""
             await viewModel.getPromotionType(promotionId: promotion.id, contactId: contactId)

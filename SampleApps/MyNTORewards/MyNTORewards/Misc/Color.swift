@@ -98,6 +98,7 @@ struct ColorTheme {
     let referralCodeBorder = Color("ReferralCodeBorderColor") // #DC9F4B
 	let fortuneWheelStrokeColor = Color("FortuneWheelStrokeColor") // #23475F
 	let fortuneWheelSecondaryStrokeColor = Color("FortuneWheelSecondaryStrokeColor") // #D9D9D9
+    let referralShareLinkColor = Color("ReferralLinkColor") // #B78DEF
 }
 
 struct TierColor {
