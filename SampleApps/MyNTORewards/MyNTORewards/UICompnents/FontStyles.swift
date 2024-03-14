@@ -419,7 +419,7 @@ extension Font {
     }
     
     static var referralCode: Font {
-        return Font.custom("Lato-Regular", size: 14)
+        return Font.custom("SFProDisplay-Regular", size: 16)
     }
     
     static var referralTapText: Font {
@@ -428,5 +428,9 @@ extension Font {
     
     static var referralInfoDesc: Font {
         return Font.custom("Segoe UI", size: 12)
+    }
+    
+    static var referralShareLinkText: Font {
+        return Font.custom("SFProDisplay-Regular", size: 9)
     }
 }
