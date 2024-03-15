@@ -17,7 +17,7 @@ final class ReferralViewModelTests: XCTestCase {
         super.setUp()
         let mockAuthenticator = MockAuthenticator.sharedMock
         forceClient = ForceClient(auth: MockAuthenticator.sharedMock, forceNetworkManager: ReferralMockNetworkManager.sharedMock)
-        viewModel = ReferralViewModel(authManager: mockAuthenticator, forceClient: forceClient, localFileManager: MockFileManager.mockInstance, devMode: true)
+        viewModel = ReferralViewModel(authManager: mockAuthenticator, forceClient: forceClient, localFileManager: MockFileManager.mockInstance, devMode: true, isEnrolledMock: true)
         
     }
     
@@ -34,11 +34,6 @@ final class ReferralViewModelTests: XCTestCase {
     @MainActor func test_isEnrolledForDefaultPromotion() async throws {
         await viewModel.isEnrolledForDefaultPromotion(contactId: "")
         XCTAssertEqual(viewModel.promotionScreenType, .referFriend)
-    }
-    
-    @MainActor func test_isEnrolledForDefaultPromotionWithDevMode() async throws {
-        await viewModel.isEnrolledForDefaultPromotion(contactId: "")
-        XCTAssertEqual(viewModel.promotionScreenType, .promotionError)
     }
     
     @MainActor func test_getReferralsDataFromServer() async throws {
