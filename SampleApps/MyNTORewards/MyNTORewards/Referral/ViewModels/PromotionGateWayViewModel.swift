@@ -68,6 +68,11 @@ class PromotionGateWayViewModel: ObservableObject {
     
     func getPromotionType(promotionId: String, contactId: String) async {
         promotionStatusApiState = .loading
+        if !LoyaltyFeatureManager.shared.isReferralFeatureEnabled {
+            promotionStatusApiState = .loaded
+            promotionScreenType = .loyaltyPromotion
+            return
+        }
 		if devMode && mockPromotionStatusApiState == .failed(CommonError.invalidData) {
 			promotionStatusApiState = .failed(CommonError.invalidData)
 			return

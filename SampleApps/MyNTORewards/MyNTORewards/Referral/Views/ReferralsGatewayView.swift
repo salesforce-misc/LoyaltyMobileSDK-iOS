@@ -14,6 +14,7 @@ struct ReferralsGatewayView: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
+        let errorMessage = LoyaltyFeatureManager.shared.isReferralFeatureEnabled ? StringConstants.Referrals.genericError: StringConstants.Referrals.notEnabledMessage
         switch referralVM.loadAllReferralsApiState {
         case .idle:
             Color.theme.background.onAppear(perform: loadReferralsData)
@@ -55,7 +56,7 @@ struct ReferralsGatewayView: View {
                     GeometryReader { geometry in
                         ScrollView(.vertical) {
                             VStack {
-                                ProcessingErrorView(message: StringConstants.Referrals.genericError)
+                                ProcessingErrorView(message: errorMessage)
                                 Button {
                                     dismiss()
                                 } label: {

@@ -261,6 +261,7 @@
 		4F18ED832AD5737B000F64D9 /* ScrollViewBounceModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED822AD5737B000F64D9 /* ScrollViewBounceModifier.swift */; };
 		4F18ED852AD94D50000F64D9 /* GameZoneActiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED842AD94D50000F64D9 /* GameZoneActiveView.swift */; };
 		4F18ED872AD958C6000F64D9 /* GameZoneExpiredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */; };
+		4F2544322BA942EB00334CAD /* LoyaltyFeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2544312BA942EB00334CAD /* LoyaltyFeatureManager.swift */; };
 		4F2B802A2B737F2D007ECECF /* PromotionGatewayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2B80292B737F2D007ECECF /* PromotionGatewayView.swift */; };
 		4F2B802C2B73953B007ECECF /* PromotionGateWayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2B802B2B73953B007ECECF /* PromotionGateWayViewModel.swift */; };
 		4F2B80302B7E03CA007ECECF /* ReferralListSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2B802F2B7E03CA007ECECF /* ReferralListSuccessView.swift */; };
@@ -593,6 +594,7 @@
 		4F18ED822AD5737B000F64D9 /* ScrollViewBounceModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewBounceModifier.swift; sourceTree = "<group>"; };
 		4F18ED842AD94D50000F64D9 /* GameZoneActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneActiveView.swift; sourceTree = "<group>"; };
 		4F18ED862AD958C6000F64D9 /* GameZoneExpiredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneExpiredView.swift; sourceTree = "<group>"; };
+		4F2544312BA942EB00334CAD /* LoyaltyFeatureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoyaltyFeatureManager.swift; sourceTree = "<group>"; };
 		4F2B80292B737F2D007ECECF /* PromotionGatewayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionGatewayView.swift; sourceTree = "<group>"; };
 		4F2B802B2B73953B007ECECF /* PromotionGateWayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionGateWayViewModel.swift; sourceTree = "<group>"; };
 		4F2B802F2B7E03CA007ECECF /* ReferralListSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralListSuccessView.swift; sourceTree = "<group>"; };
@@ -924,6 +926,7 @@
 				2984C93E2954F091009669EF /* LoyaltyUtilities.swift */,
 				AF8AA4CC29E3ED54007E2F6F /* AppAccessibilityConstants.swift */,
 				29BD48932AC696D400F10158 /* LocaleManager.swift */,
+				4F2544312BA942EB00334CAD /* LoyaltyFeatureManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1751,6 +1754,7 @@
 				3F714D6929FA0FEB00CD39E7 /* OrderDetailsView.swift in Sources */,
 				3FE71D022B3199CD006E6BF5 /* MyPromotionsView.swift in Sources */,
 				3F5002B12A5FA07100E12AE4 /* ReceiptList.swift in Sources */,
+				4F2544322BA942EB00334CAD /* LoyaltyFeatureManager.swift in Sources */,
 				3F714D6629FA0FEB00CD39E7 /* PaymentDetailsView.swift in Sources */,
 				2945FFC82AE9C4AB00D9C8C6 /* ActivityViewController.swift in Sources */,
 				29694EDC2A8D8BE800E5F2ED /* Base64.swift in Sources */,
