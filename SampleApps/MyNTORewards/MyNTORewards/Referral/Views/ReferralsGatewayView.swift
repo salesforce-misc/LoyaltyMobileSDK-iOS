@@ -14,6 +14,7 @@ struct ReferralsGatewayView: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
+        // swiftlint:disable:next line_length
         let errorMessage = LoyaltyFeatureManager.shared.isReferralFeatureEnabled ? StringConstants.Referrals.genericError: StringConstants.Referrals.notEnabledMessage
         switch referralVM.loadAllReferralsApiState {
         case .idle:
@@ -72,6 +73,7 @@ struct ReferralsGatewayView: View {
                         }
                         .refreshable {
                             loadReferralsData()
+                            LoyaltyFeatureManager.shared.checkIsReferralFeatureEnabled()
                         }
                     }
                 }
