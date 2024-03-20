@@ -24,9 +24,10 @@ final class LoyaltyFeatureManager {
     
     func getPromotionType() async {
         do {
-            let query = "SELECT Id, IsReferralPromotion FROM Promotion Where PromotionCode = '\(AppSettings.Defaults.promotionCode)'"
-            let promotion = try await forceClient.SOQL(type: Record.self, for: query)
-            isReferralFeatureEnabled = true
+             let query = "SELECT FIELDS(ALL) FROM Promotion LIMIT 1"
+             let promotion = try await forceClient.SOQL(type: Record.self, for: query)
+             let isColumnExists = promotion.records.first?.hasField(named: "IsReferralPromotion") ?? false
+             isReferralFeatureEnabled = isColumnExists
         } catch {
             Logger.error(error.localizedDescription)
             isReferralFeatureEnabled = false
