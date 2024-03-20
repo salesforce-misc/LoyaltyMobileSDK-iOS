@@ -57,7 +57,9 @@ struct ReferralsGatewayView: View {
                     GeometryReader { geometry in
                         ScrollView(.vertical) {
                             VStack {
+                                Spacer()
                                 ProcessingErrorView(message: errorMessage)
+                                Spacer()
                                 Button {
                                     dismiss()
                                 } label: {
@@ -79,7 +81,6 @@ struct ReferralsGatewayView: View {
                 }
                 Spacer()
             }
-            .ignoresSafeArea(edges: .bottom)
             .frame(maxHeight: .infinity)
             .navigationBarBackButtonHidden()
 
