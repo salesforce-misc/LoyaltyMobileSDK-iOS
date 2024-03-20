@@ -12,10 +12,9 @@ struct ReferralsGatewayView: View {
     @EnvironmentObject private var referralVM: ReferralViewModel
     @EnvironmentObject private var rootVM: AppRootViewModel
     @Environment(\.dismiss) private var dismiss
+    @StateObject private var loyaltyFeatureManager = LoyaltyFeatureManager.shared
     
     var body: some View {
-        // swiftlint:disable:next line_length
-        let errorMessage = LoyaltyFeatureManager.shared.isReferralFeatureEnabled ? StringConstants.Referrals.genericError: StringConstants.Referrals.notEnabledMessage
         switch referralVM.loadAllReferralsApiState {
         case .idle:
             Color.theme.background.onAppear(perform: loadReferralsData)
@@ -58,7 +57,8 @@ struct ReferralsGatewayView: View {
                         ScrollView(.vertical) {
                             VStack {
                                 Spacer()
-                                ProcessingErrorView(message: errorMessage)
+                                // swiftlint:disable:next line_length
+                                ProcessingErrorView(message: loyaltyFeatureManager.isReferralFeatureEnabled ? StringConstants.Referrals.genericError: StringConstants.Referrals.notEnabledMessage)
                                 Spacer()
                                 Button {
                                     dismiss()

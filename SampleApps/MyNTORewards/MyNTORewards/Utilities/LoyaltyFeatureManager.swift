@@ -8,13 +8,13 @@
 import Foundation
 import ReferralMobileSDK
 
-final class LoyaltyFeatureManager {
+@MainActor final class LoyaltyFeatureManager: ObservableObject {
     static let shared = LoyaltyFeatureManager()
     private init() { }
     
     private let forceClient: ForceClient = ForceClient(auth: ForceAuthManager.shared)
 
-    var isReferralFeatureEnabled: Bool = false
+    @Published public var isReferralFeatureEnabled: Bool = false
     
     public func checkIsReferralFeatureEnabled() {
         Task {
