@@ -100,7 +100,7 @@ final class ReferAFriendViewUITests: XCTestCase {
 	}
 	
 	func test_tappingCopyButton_shouldCopyCodeAndShowAlert() {
-		app.staticTexts["COPY"].tap()
+        app.buttons["ic-copyLink"].tap()
 		XCTAssertTrue(app.alerts["Referral code copied"].exists)
 		app.textFields["friend_email"].tap()
 		app.textFields["friend_email"].tap()

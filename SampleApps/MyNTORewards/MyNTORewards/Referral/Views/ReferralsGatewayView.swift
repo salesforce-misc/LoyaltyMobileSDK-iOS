@@ -12,6 +12,7 @@ struct ReferralsGatewayView: View {
     @EnvironmentObject private var referralVM: ReferralViewModel
     @EnvironmentObject private var rootVM: AppRootViewModel
     @Environment(\.dismiss) private var dismiss
+    @StateObject private var loyaltyFeatureManager = LoyaltyFeatureManager.shared
     
     var body: some View {
         switch referralVM.loadAllReferralsApiState {
@@ -55,7 +56,10 @@ struct ReferralsGatewayView: View {
                     GeometryReader { geometry in
                         ScrollView(.vertical) {
                             VStack {
-                                ProcessingErrorView(message: StringConstants.Referrals.genericError)
+                                Spacer()
+                                // swiftlint:disable:next line_length
+                                ProcessingErrorView(message: loyaltyFeatureManager.isReferralFeatureEnabled ? StringConstants.Referrals.genericError: StringConstants.Referrals.notEnabledMessage)
+                                Spacer()
                                 Button {
                                     dismiss()
                                 } label: {
@@ -71,12 +75,12 @@ struct ReferralsGatewayView: View {
                         }
                         .refreshable {
                             loadReferralsData()
+                            LoyaltyFeatureManager.shared.checkIsReferralFeatureEnabled()
                         }
                     }
                 }
                 Spacer()
             }
-            .ignoresSafeArea(edges: .bottom)
             .frame(maxHeight: .infinity)
             .navigationBarBackButtonHidden()
 

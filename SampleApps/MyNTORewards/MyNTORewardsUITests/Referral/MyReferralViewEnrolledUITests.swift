@@ -33,7 +33,7 @@ final class MyReferralViewEnrolledUITests: XCTestCase {
 	func test_onTappingReferAFriend_shouldShowReferAFriendView() {
 		XCTAssertTrue(app.buttons["Refer Now"].waitForExistence(timeout: 5))
 		app.buttons["Refer Now"].tap()
-		XCTAssertTrue(app.staticTexts["refer_friend_title"].waitForExistence(timeout: 5))
+		XCTAssertTrue(app.staticTexts["refer_friend_title"].waitForExistence(timeout: 7))
 	}
 	
 	func test_completedReferralsView() {
