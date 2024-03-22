@@ -39,7 +39,7 @@ final class ReferralViewModelTests: XCTestCase {
     @MainActor func test_getReferralsDataFromServer() async throws {
         try await viewModel.getReferralsDataFromServer(memberContactId: "")
         XCTAssertEqual(viewModel.promotionStageCounts[.accepted], 1)
-        XCTAssertEqual(viewModel.promotionStageCounts[.sent], 36)
+        XCTAssertEqual(viewModel.promotionStageCounts[.sent], 38)
 
     }
     
@@ -47,7 +47,7 @@ final class ReferralViewModelTests: XCTestCase {
         do {
             try await viewModel.loadAllReferrals(memberContactId: "")
             XCTAssertEqual(viewModel.promotionStageCounts[.accepted], 1)
-            XCTAssertEqual(viewModel.promotionStageCounts[.sent], 36)
+            XCTAssertEqual(viewModel.promotionStageCounts[.sent], 38)
         }
         catch {
             XCTAssert(true)
@@ -58,7 +58,7 @@ final class ReferralViewModelTests: XCTestCase {
         do {
             try await viewModel.loadAllReferrals(memberContactId: "", reload: true)
             XCTAssertEqual(viewModel.promotionStageCounts[.accepted], 1)
-            XCTAssertEqual(viewModel.promotionStageCounts[.sent], 36)
+            XCTAssertEqual(viewModel.promotionStageCounts[.sent], 38)
         }
         catch {
             XCTAssert(true)
@@ -94,7 +94,7 @@ final class ReferralViewModelTests: XCTestCase {
         let viewModel = ReferralViewModel(authManager: mockAuthenticator, forceClient: forceClient, localFileManager: MockFileManager.mockInstance,devMode: false)
         try await viewModel.loadAllReferrals(memberContactId: "")
         XCTAssertEqual(viewModel.promotionStageCounts[.accepted], 1)
-        XCTAssertEqual(viewModel.promotionStageCounts[.sent], 36)   
+        XCTAssertEqual(viewModel.promotionStageCounts[.sent], 38)   
     }
     
     @MainActor func test_loadAllReferralsWithOutCache() async throws {
