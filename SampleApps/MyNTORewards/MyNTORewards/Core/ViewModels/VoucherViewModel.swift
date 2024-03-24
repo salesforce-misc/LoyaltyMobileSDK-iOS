@@ -41,7 +41,7 @@ class VoucherViewModel: ObservableObject, Reloadable {
 		self.authManager = authManager
 		self.localFileManager = localFileManager
 		loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
-											  loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+                                              loyaltyProgramName: AppSettings.shared.getLoyaltyProgramName(),
 											  instanceURL: AppSettings.shared.getInstanceURL(),
 											  forceClient: ForceClient(auth: authManager))
 	}

@@ -135,5 +135,4 @@ struct AppSettings {
             return Defaults.rewardCurrencyNameShort
         }
     }
-
 }

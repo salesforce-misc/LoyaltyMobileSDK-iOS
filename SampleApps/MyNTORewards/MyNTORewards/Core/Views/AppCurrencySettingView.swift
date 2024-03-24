@@ -41,6 +41,8 @@ struct AppCurrencySettingView: View {
                 }
                 
             }
+            .navigationTitle("Currencies")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
