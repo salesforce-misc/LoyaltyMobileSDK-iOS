@@ -10,16 +10,16 @@ import SwiftUI
 struct AdminMenuView: View {
     var body: some View {
         NavigationStack {
-            VStack {
-                List {
-                    NavigationLink(destination: ConnectedAppsView()) {
-                        Text("Connected App")
-                    }
+            List {
+                NavigationLink(destination: ConnectedAppsView()) {
+                    Text("Connected App")
                 }
-                Spacer()
+                NavigationLink(destination: AdminAppSettingsView()) {
+                    Text("App Settings")
+                }
             }
             .navigationTitle("Settings")
-            .edgesIgnoringSafeArea(.bottom)
+            .navigationBarTitleDisplayMode(.large)
         }
     }
 }
