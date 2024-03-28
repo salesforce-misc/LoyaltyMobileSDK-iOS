@@ -92,7 +92,7 @@ struct ReferralsGatewayView: View {
     func loadReferralsData() {
         Task {
             do {
-                try await referralVM.getReferralsDataFromServer(memberContactId: rootVM.member?.contactId ?? "")
+                try await referralVM.getReferralsDataFromServer(membershipNumber: rootVM.member?.membershipNumber ?? "")
             } catch {
                 Logger.error(error.localizedDescription)
             }

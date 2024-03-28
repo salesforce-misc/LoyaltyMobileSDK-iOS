@@ -77,7 +77,7 @@ struct ReferralListSuccessView: View {
             .padding(.bottom, 200)
         }.refreshable {
             do {
-                try await viewModel.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", reload: true)
+                try await viewModel.loadAllReferrals(membershipNumber: rootVM.member?.membershipNumber ?? "", reload: true)
             } catch {
                 Logger.error(error.localizedDescription)
             }
