@@ -180,8 +180,8 @@ class ReferralViewModel: ObservableObject {
             let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(),
                                                   path: path,
                                                   method: "GET", queryItems: queryItems)
-            let referralList = try await forceClient.fetch(type: [Referral].self, with: request)
-            return referralList
+            let referralOutput = try await forceClient.fetch(type: MyReferralListOutPutModel.self, with: request)
+            return referralOutput.referralList ?? []
         } catch {
             Logger.error(error.localizedDescription)
             throw error
