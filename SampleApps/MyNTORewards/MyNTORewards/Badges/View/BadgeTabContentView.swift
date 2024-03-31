@@ -39,13 +39,7 @@ struct BadgeTabContentView: View {
 }
 
 #Preview {
-	BadgeTabContentView(badges: [Badge(id: "id001",
-									   name: "NTO Fashionista",
-									   description: "Rewarded to members who purchase new products within a month from launch",
-									   type: .achieved,
-									   endDate: Date(),
-									   currentDate: Date().getDate(beforeDays: 3) ?? Date(),
-									   imageUrl: nil)],
+	BadgeTabContentView(badges: [DeveloperPreview.instance.badge],
 						error: nil,
 						emptyTitle: "No badges yet.",
 						emptySubtitle: "When you have badges to claim, you’ll see them here.",

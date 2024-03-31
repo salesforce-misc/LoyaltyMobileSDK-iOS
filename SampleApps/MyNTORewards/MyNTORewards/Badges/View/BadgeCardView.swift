@@ -113,11 +113,5 @@ struct BadgeCardView: View {
 }
 
 #Preview {
-	BadgeCardView(badge: Badge(id: "id001",
-							   name: "NTO Fashionista",
-							   description: "Rewarded to members who purchase new products within a month from launch",
-							   type: .achieved,
-							   endDate: Date(), 
-							   currentDate: Date().getDate(beforeDays: 3) ?? Date(),
-							   imageUrl: nil))
+	BadgeCardView(badge: DeveloperPreview.instance.badge)
 }

@@ -61,14 +61,6 @@ struct BadgePreviewCardView: View {
 	}
 }
 
-struct BadgePreviewCardView_Previews: PreviewProvider {
-    static var previews: some View {
-		BadgePreviewCardView(badge: Badge(id: "id001",
-										  name: "NTO Fashionista",
-										  description: "Rewarded to members who purchase new products within a month from launch",
-										  type: .achieved,
-										  endDate: Date(),
-										  currentDate: Date().getDate(beforeDays: 3) ?? Date(),
-										  imageUrl: nil) )
-    }
+#Preview {
+	BadgePreviewCardView(badge: DeveloperPreview.instance.badge)
 }

@@ -49,8 +49,8 @@ struct BadgesView: View {
 	}
 }
 
-struct BadgesView_Previews: PreviewProvider {
-    static var previews: some View {
-		BadgesView()
-    }
+#Preview {
+	BadgesView()
+		.environmentObject(DeveloperPreview.instance.rootVM)
+		.environmentObject(DeveloperPreview.instance.badgesVM)
 }
