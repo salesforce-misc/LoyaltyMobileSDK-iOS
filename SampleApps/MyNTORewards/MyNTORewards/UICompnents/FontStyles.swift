@@ -148,11 +148,6 @@ extension Font {
         return Font.custom("SFPro-Bold", size: 18)
     }
     
-    // badge
-    static var badgeLabel: Font {
-        return Font.custom("SFPro-Medium", size: 14)
-    }
-    
     /// My Profile
     static var profileTitle: Font {
         return Font.custom("SFPro-Bold", size: 16)

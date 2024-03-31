@@ -15,6 +15,7 @@ struct BottomNavTabsView: View {
 	@StateObject var cameraVM = CameraViewModel()
 	@StateObject var routerPath = RouterPath()
 	@StateObject var receiptListViewModel = ReceiptListViewModel()
+	@StateObject var badgesVM = BadgesViewModel()
 	@EnvironmentObject var appViewRouter: AppViewRouter
     @StateObject var rootVM = AppRootViewModel()
 	@StateObject var gameZoneVM: GameZoneViewModel
@@ -93,6 +94,7 @@ struct BottomNavTabsView: View {
         .environmentObject(routerPath)
         .environmentObject(receiptListViewModel)
         .environmentObject(gameZoneVM)
+		.environmentObject(badgesVM)
 	}
 }
 

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "img-card.png",
+      "filename" : "expired_badge.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "img-card@2x.png",
+      "filename" : "expired_badge@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "img-card@3x.png",
+      "filename" : "expired_badge@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

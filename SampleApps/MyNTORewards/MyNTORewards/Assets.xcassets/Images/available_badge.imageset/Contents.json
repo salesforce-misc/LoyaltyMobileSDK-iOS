@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Gift@1x.png",
+      "filename" : "available_badge.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Gift@2x.png",
+      "filename" : "available_badge@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Gift.png",
+      "filename" : "available_badge@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

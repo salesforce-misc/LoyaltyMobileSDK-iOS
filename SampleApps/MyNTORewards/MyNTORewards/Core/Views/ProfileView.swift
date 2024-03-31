@@ -15,6 +15,7 @@ struct ProfileView: View {
     @EnvironmentObject private var transactionVM: TransactionViewModel
     @EnvironmentObject private var voucherVM: VoucherViewModel
     @EnvironmentObject private var benefitVM: BenefitViewModel
+	@EnvironmentObject private var badgesVM: BadgesViewModel
     
     @State var loadRewardPointCardView: Bool = false
 
@@ -33,7 +34,7 @@ struct ProfileView: View {
                             TransactionsView()
                             VouchersView()
                             BenefitView()
-                            // BadgesView()
+                             BadgesView()
                             Rectangle()
                                 .frame(height: 400)
                                 .foregroundColor(Color.theme.background)
@@ -78,6 +79,15 @@ struct ProfileView: View {
                             Logger.error("Reload Benefits Error: \(error)")
                         }
                     }
+					
+					Task {
+						do {
+							Logger.debug("Profile screen :- Reloading Badges...")
+							try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "", reload: true)
+						} catch {
+							Logger.error("Profile screen :- Reload Badges Error: \(error)")
+						}
+					}
                     
                 }
                 .offset(y: 40)

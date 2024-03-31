@@ -1,0 +1,54 @@
+//
+//  BadgeTabContentView.swift
+//  MyNTORewards
+//
+//  Created by Vasanthkumar Velusamy on 28/03/24.
+//
+
+import SwiftUI
+
+struct BadgeTabContentView: View {
+	let badges: [Badge]
+	let error: String?
+	let columns = [GridItem()]
+	let emptyTitle: String
+	let emptySubtitle: String
+	let onRefresh: () -> Void
+	
+    var body: some View {
+		ScrollView {
+			if self.error != nil {
+				ProcessingErrorView(message: BadgeSettings.Message.errorMessage)
+			} else if badges.isEmpty {
+				EmptyStateView(title: emptyTitle, subTitle: emptySubtitle)
+			} else {
+				LazyVGrid(columns: columns, spacing: 15) {
+					ForEach(Array(badges.enumerated()), id: \.offset) { _, badge in
+						BadgeCardView(badge: badge)
+							.padding(.horizontal, 16)
+					}
+				}
+				.frame(maxWidth: .infinity)
+				.padding(.top, 20)
+			}
+		}
+		.refreshable {
+			onRefresh()
+		}
+    }
+}
+
+#Preview {
+	BadgeTabContentView(badges: [Badge(id: "id001",
+									   name: "NTO Fashionista",
+									   description: "Rewarded to members who purchase new products within a month from launch",
+									   type: .achieved,
+									   endDate: Date(),
+									   currentDate: Date().getDate(beforeDays: 3) ?? Date(),
+									   imageUrl: nil)],
+						error: nil,
+						emptyTitle: "No badges yet.",
+						emptySubtitle: "When you have badges to claim, you’ll see them here.",
+						onRefresh: { print("refreshing") }
+	)
+}
