@@ -203,7 +203,6 @@
 		3FBFB8D12BB991EF0090552E /* BadgeTabContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8CB2BB991EE0090552E /* BadgeTabContentView.swift */; };
 		3FBFB8D22BB991EF0090552E /* BadgeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8CC2BB991EF0090552E /* BadgeCardView.swift */; };
 		3FBFB8D52BB991FE0090552E /* BadgesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8D42BB991FE0090552E /* BadgesViewModel.swift */; };
-		3FBFB8D82BB995A40090552E /* EmptyPreviewBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8D72BB995A40090552E /* EmptyPreviewBadgeView.swift */; };
 		3FBFB8DA2BB995FC0090552E /* BadgeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8D92BB995FC0090552E /* BadgeViewModelTests.swift */; };
 		3FC37C8E2B444534005A3E2C /* PlayedTabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC37C8D2B444534005A3E2C /* PlayedTabUITests.swift */; };
 		3FC92C612A0AA9E30081BFEC /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC92C602A0AA9E30081BFEC /* Order.swift */; };
@@ -520,7 +519,6 @@
 		3FBFB8CB2BB991EE0090552E /* BadgeTabContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeTabContentView.swift; sourceTree = "<group>"; };
 		3FBFB8CC2BB991EF0090552E /* BadgeCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeCardView.swift; sourceTree = "<group>"; };
 		3FBFB8D42BB991FE0090552E /* BadgesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgesViewModel.swift; sourceTree = "<group>"; };
-		3FBFB8D72BB995A40090552E /* EmptyPreviewBadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyPreviewBadgeView.swift; sourceTree = "<group>"; };
 		3FBFB8D92BB995FC0090552E /* BadgeViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeViewModelTests.swift; sourceTree = "<group>"; };
 		3FC37C8D2B444534005A3E2C /* PlayedTabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayedTabUITests.swift; sourceTree = "<group>"; };
 		3FC92C602A0AA9E30081BFEC /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
@@ -838,7 +836,6 @@
 				29053F7C2907452800F84561 /* Assets.swift */,
 				290EA9BC2928ADB700BBF2F2 /* ViewAllView.swift */,
 				29A39BC02937C699005833C2 /* LoyaltyAsyncImage.swift */,
-				3FBFB8D72BB995A40090552E /* EmptyPreviewBadgeView.swift */,
 				29A39BC429397B98005833C2 /* EmptyStateView.swift */,
 				2955346A29E93EF800CFA391 /* InfoNavigationLink.swift */,
 				292453E72A1C4658002112B3 /* WebView.swift */,
@@ -1414,6 +1411,7 @@
 				AFE960E229EE4D0800C888C0 /* MoreViewHelper.swift */,
 				4F7BD98E2AE12EBA003B7ADA /* GameZone */,
 				3F667E082A86407B00267958 /* Receipt Scanning */,
+				3F0C2F1A2BB9B4C400A1A9E9 /* Badges */,
 				AFAF523E29F63C6F00478F67 /* VoucherViewHelper.swift */,
 				AFAF524029F63D8E00478F67 /* BenefitsViewHelper.swift */,
 				AFAF524229F63E2900478F67 /* TransactionsViewHelper.swift */,
@@ -1423,7 +1421,6 @@
 				AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */,
 				AF27B7772A05261000399D77 /* UITestingHelper.swift */,
 				AF463C252A1722EE00323FD1 /* UITestingInfo.plist */,
-				3F0C2F1A2BB9B4C400A1A9E9 /* Badges */,
 			);
 			path = MyNTORewardsUITests;
 			sourceTree = "<group>";
@@ -1699,7 +1696,6 @@
 				3FBFB8C22BB991D30090552E /* Badge.swift in Sources */,
 				3FBFB8CD2BB991EF0090552E /* AllBadgesView.swift in Sources */,
 				4F7BD9872ADE7F88003B7ADA /* GameZoneCardView.swift in Sources */,
-				3FBFB8D82BB995A40090552E /* EmptyPreviewBadgeView.swift in Sources */,
 				29AC2F0128F89EBE003F56F6 /* LoyaltyNavLink.swift in Sources */,
 				298CAA0D2A6A3499003F7F42 /* CapturedImageView.swift in Sources */,
 				29A39BC32937F46D005833C2 /* String+MD5.swift in Sources */,

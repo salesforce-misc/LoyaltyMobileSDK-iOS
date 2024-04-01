@@ -65,4 +65,13 @@ final class ExpiredBadgesTabViewUITests: XCTestCase {
 		XCTAssertTrue(app.staticTexts["No expired badges"].waitForExistence(timeout: 2))
 	}
 	
+	func testErrorView() {
+		setUpTestingEnvironment(mockFileName: "LoyaltyProgramMemberBadgesWithoutId")
+		BadgesViewHelper.goToMyBadgesView(app: app)
+		app.staticTexts["Expired"].tap()
+		// Refreshing to clear cache and fetch data from mock file.
+		BadgesViewHelper.pullToRefresh(app: app)
+		XCTAssertTrue(app.staticTexts["We couldn’t get your badges."].exists)
+	}
+	
 }
