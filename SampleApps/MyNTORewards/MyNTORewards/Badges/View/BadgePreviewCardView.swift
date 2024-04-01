@@ -31,6 +31,10 @@ struct BadgePreviewCardView: View {
 			.cornerRadius(5, corners: [.topLeft, .topRight])
 			 */
 			Image(BadgeSettings.Asset.defaultBadgeImage)
+				.resizable()
+				.frame(width: BadgeSettings.Dimension.previewBadgeImageWidth,
+					   height: BadgeSettings.Dimension.previewBadgeImageHeight
+				)
 			Spacer()
 			Text(badge.name)
 				.frame(width: 72)

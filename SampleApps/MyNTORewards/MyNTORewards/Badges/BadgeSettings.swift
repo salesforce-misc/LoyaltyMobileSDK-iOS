@@ -19,14 +19,18 @@ struct BadgeSettings {
 		static let previewCardCornerRadius: CGFloat = 10
 		static let messageImageHeight: CGFloat = 82
 		static let messageImageWidth: CGFloat = 82
+		static let previewBadgeImageWidth: CGFloat = 40
+		static let previewBadgeImageHeight: CGFloat = 48
 		
 		// BadgeDetailView
 		static let detailBackgroundRectangleHeight: CGFloat = 180
 		static let detailBadgeImageHeight: CGFloat = 128
-		static let detailBadgeImageWidth: CGFloat = 128
+		static let detailBadgeImageWidth: CGFloat = 105
 		
 		// BadgeCardView
 		static let expiryTextWidth: CGFloat = 52
+		static let cardWidth: CGFloat = 53
+		static let cardHeight: CGFloat = 64
 		
 		// Error
 		static let errorViewTopPadding: CGFloat = 100

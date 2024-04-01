@@ -14,6 +14,10 @@ struct BadgeCardView: View {
     var body: some View {
 		HStack(spacing: 16) {
 			Image(BadgeSettings.Asset.defaultBadgeImage)
+				.resizable()
+				.frame(width: BadgeSettings.Dimension.cardWidth,
+					   height: BadgeSettings.Dimension.cardHeight
+				)
 			Group {
 				VStack(alignment: .leading, spacing: 8) {
 					title
