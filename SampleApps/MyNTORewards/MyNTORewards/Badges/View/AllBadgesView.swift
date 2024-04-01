@@ -70,8 +70,20 @@ struct AllBadgesView: View {
 	private func reloadBadges() {
 		Task {
 			Logger.debug("My Badges Screen :- Reloading Badges...")
+#if DEBUG
+			if UITestingHelper.isUITesting {
+				try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "",
+												  reload: true,
+												  devMode: true,
+												  mockMemberBadgeFileName: UITestingHelper.mockMemberBadgeFileName)
+			} else {
+				try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "",
+												  reload: true)
+			}
+#else
 			try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "",
 											  reload: true)
+#endif
 		}
 	}
 }

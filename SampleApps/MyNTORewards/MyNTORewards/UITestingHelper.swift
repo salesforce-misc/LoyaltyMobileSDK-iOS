@@ -65,5 +65,23 @@ struct UITestingHelper {
 	static var getGamesMockFileName: String {
 		isGetGamesSuccess ? "GetGames_Success" : "GetGames_Fail"
 	}
+	
+	// Badges
+	static var isGetBadgesSuccess: Bool {
+		ProcessInfo.processInfo.environment["get_badges"] == "success"
+	}
+	
+	static var mockMemberBadgeFileName: String {
+		ProcessInfo.processInfo.environment["mock_member_badge_filename"] ?? "LoyaltyProgramMemberBadges"
+	}
+	
+	static var mockProgramBadgeFileName: String {
+		ProcessInfo.processInfo.environment["mock_program_badge_filename"] ?? "LoyaltyProgramBadges"
+	}
+	
+	static var currentDate: Date {
+		let dateString = ProcessInfo.processInfo.environment["currect_date"] ?? "2024-03-31"
+		return dateString.toDate(withFormat: "yyyy-MM-dd") ?? Date()
+	}
 }
 #endif

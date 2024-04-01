@@ -102,6 +102,10 @@
 		29BD48942AC696D400F10158 /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD48932AC696D400F10158 /* LocaleManager.swift */; };
 		29BD48992ACCB42C00F10158 /* ScratchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD48982ACCB42C00F10158 /* ScratchCardView.swift */; };
 		29EC33242AAA962A00104363 /* ProcessingErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EC33232AAA962A00104363 /* ProcessingErrorView.swift */; };
+		3F0C2F192BB9B4BF00A1A9E9 /* AllBadgesViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C2F182BB9B4BF00A1A9E9 /* AllBadgesViewUITests.swift */; };
+		3F0C2F1C2BB9BB0300A1A9E9 /* BadgesViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C2F1B2BB9BB0300A1A9E9 /* BadgesViewHelper.swift */; };
+		3F0C2F1E2BB9C4F600A1A9E9 /* AvailableBadgesTabViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C2F1D2BB9C4F600A1A9E9 /* AvailableBadgesTabViewUITests.swift */; };
+		3F0C2F202BB9C65600A1A9E9 /* ExpiredBadgesTabViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C2F1F2BB9C65600A1A9E9 /* ExpiredBadgesTabViewUITests.swift */; };
 		3F0C4F792A827A0B00394CB0 /* ManualReviewInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C4F782A827A0B00394CB0 /* ManualReviewInputView.swift */; };
 		3F1447222B2B2C4300047888 /* UITestingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1447212B2B2C4300047888 /* UITestingHelper.swift */; };
 		3F16D95D2A9D8E85003DA01A /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F16D95C2A9D8E85003DA01A /* ZoomableScrollView.swift */; };
@@ -412,6 +416,10 @@
 		29BD48982ACCB42C00F10158 /* ScratchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScratchCardView.swift; sourceTree = "<group>"; };
 		29EC33232AAA962A00104363 /* ProcessingErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingErrorView.swift; sourceTree = "<group>"; };
 		29EC33252AAA999F00104363 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		3F0C2F182BB9B4BF00A1A9E9 /* AllBadgesViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBadgesViewUITests.swift; sourceTree = "<group>"; };
+		3F0C2F1B2BB9BB0300A1A9E9 /* BadgesViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewHelper.swift; sourceTree = "<group>"; };
+		3F0C2F1D2BB9C4F600A1A9E9 /* AvailableBadgesTabViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableBadgesTabViewUITests.swift; sourceTree = "<group>"; };
+		3F0C2F1F2BB9C65600A1A9E9 /* ExpiredBadgesTabViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiredBadgesTabViewUITests.swift; sourceTree = "<group>"; };
 		3F0C4F782A827A0B00394CB0 /* ManualReviewInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualReviewInputView.swift; sourceTree = "<group>"; };
 		3F1447212B2B2C4300047888 /* UITestingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingHelper.swift; sourceTree = "<group>"; };
 		3F16D95C2A9D8E85003DA01A /* ZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
@@ -943,6 +951,17 @@
 			path = ScrachCard;
 			sourceTree = "<group>";
 		};
+		3F0C2F1A2BB9B4C400A1A9E9 /* Badges */ = {
+			isa = PBXGroup;
+			children = (
+				3F0C2F182BB9B4BF00A1A9E9 /* AllBadgesViewUITests.swift */,
+				3F0C2F1D2BB9C4F600A1A9E9 /* AvailableBadgesTabViewUITests.swift */,
+				3F0C2F1F2BB9C65600A1A9E9 /* ExpiredBadgesTabViewUITests.swift */,
+				3F0C2F1B2BB9BB0300A1A9E9 /* BadgesViewHelper.swift */,
+			);
+			path = Badges;
+			sourceTree = "<group>";
+		};
 		3F16D95E2A9D9471003DA01A /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -1398,6 +1417,7 @@
 				AFCDDAA529E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift */,
 				AF27B7772A05261000399D77 /* UITestingHelper.swift */,
 				AF463C252A1722EE00323FD1 /* UITestingInfo.plist */,
+				3F0C2F1A2BB9B4C400A1A9E9 /* Badges */,
 			);
 			path = MyNTORewardsUITests;
 			sourceTree = "<group>";
@@ -1840,10 +1860,12 @@
 				4F7BD9902AE12EF8003B7ADA /* GameZoneViewUITests.swift in Sources */,
 				AF468B5729EEFB28003C1344 /* MyProfileViewHelper.swift in Sources */,
 				3F2055B62A81134800D38034 /* CameraViewUITests.swift in Sources */,
+				3F0C2F1E2BB9C4F600A1A9E9 /* AvailableBadgesTabViewUITests.swift in Sources */,
 				AFCDDAAD29E54621006B00EB /* OnBoardingViewUITests.swift in Sources */,
 				AFE960E129EE4B9D00C888C0 /* SignInViewHelper.swift in Sources */,
 				AFCDDAA629E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift in Sources */,
 				3FC37C8E2B444534005A3E2C /* PlayedTabUITests.swift in Sources */,
+				3F0C2F202BB9C65600A1A9E9 /* ExpiredBadgesTabViewUITests.swift in Sources */,
 				3F7DAFA32A81E6D900A521E2 /* ReceiptsViewHelper.swift in Sources */,
 				3F8A88212B2BF633009D05A3 /* ScratchCardViewRewardedUITests.swift in Sources */,
 				AFE960DD29EE47A700C888C0 /* OnBoardingViewHelper.swift in Sources */,
@@ -1854,6 +1876,8 @@
 				3F2B758C2B2E104C00B2AA9C /* FortuneWheelPlayGameFailUITests.swift in Sources */,
 				AFAF524329F63E2900478F67 /* TransactionsViewHelper.swift in Sources */,
 				AF468B5929EEFB60003C1344 /* HomeViewHelper.swift in Sources */,
+				3F0C2F192BB9B4BF00A1A9E9 /* AllBadgesViewUITests.swift in Sources */,
+				3F0C2F1C2BB9BB0300A1A9E9 /* BadgesViewHelper.swift in Sources */,
 				AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */,
 				3F2B75922B2ED14600B2AA9C /* GameZoneExpiryLabelTests.swift in Sources */,
 				3F2B758A2B2E048900B2AA9C /* FortuneWheelWithoutRewardUITests.swift in Sources */,

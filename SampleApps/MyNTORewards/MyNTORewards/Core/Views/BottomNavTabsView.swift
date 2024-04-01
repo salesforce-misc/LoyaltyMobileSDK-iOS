@@ -28,6 +28,7 @@ struct BottomNavTabsView: View {
             _gameZoneVM = StateObject(wrappedValue: GameZoneViewModel(devMode: true,
                                                                                   mockFileName: UITestingHelper.getGamesMockFileName
                                                                                  ))
+			_badgesVM = StateObject(wrappedValue: BadgesViewModel(currentDate: UITestingHelper.currentDate))
         } else {
 			_gameZoneVM = StateObject(wrappedValue: GameZoneViewModel())
 		}

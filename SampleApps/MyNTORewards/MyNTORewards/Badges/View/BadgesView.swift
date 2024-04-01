@@ -42,7 +42,18 @@ struct BadgesView: View {
 	private func fetchBadges() async {
 		do {
 			Logger.debug("Profile Screen -> BadgesView :- Fetching Badges...")
+#if DEBUG
+			if UITestingHelper.isUITesting {
+				try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "",
+												  devMode: true,
+												  mockMemberBadgeFileName: UITestingHelper.mockMemberBadgeFileName)
+			} else {
+				try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "")
+			}
+#else
 			try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "")
+#endif
+			
 		} catch {
 			Logger.error("Profile Screen -> BadgesView :- Load Badges Error: \(error)")
 		}
