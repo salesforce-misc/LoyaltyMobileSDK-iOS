@@ -34,6 +34,11 @@ final class ReferralViewModelTests: XCTestCase {
     @MainActor func test_isEnrolledForDefaultPromotion() async throws {
         await viewModel.isEnrolledForDefaultPromotion(contactId: "")
         XCTAssertEqual(viewModel.promotionScreenType, .referFriend)
+        let mockAuthenticator = MockAuthenticator.sharedMock
+        let forceClient = ForceClient(auth: MockAuthenticator.sharedMock, forceNetworkManager: ReferralMockNetworkManager.sharedMock)
+        let viewModel = ReferralViewModel(authManager: mockAuthenticator, forceClient: forceClient, localFileManager: MockFileManager.mockInstance,devMode: false)
+        await viewModel.isEnrolledForDefaultPromotion(contactId: "")
+        XCTAssertEqual(viewModel.promotionScreenType, .referFriend)
     }
     
     @MainActor func test_getReferralsDataFromServer() async throws {
@@ -121,5 +126,13 @@ final class ReferralViewModelTests: XCTestCase {
         try await viewModel.getDefaultPromotionDetailsAndEnrollmentStatus(contactId: "")
         XCTAssertNotNil(viewModel.defaultPromotionInfo)
         XCTAssertEqual(viewModel.defaultPromotionInfo?.name, "Referral Promotion Without  Description")
+    }
+
+    @MainActor func test_getDefaultPromotionDataForError() async throws {
+        let mockAuthenticator = MockAuthenticator.sharedMock
+        let forceClient = ForceClient(auth: MockAuthenticator.sharedMock, forceNetworkManager: ReferralMockNetworkManager.sharedMock)
+        let viewModel = ReferralViewModel(authManager: mockAuthenticator, forceClient: forceClient, localFileManager: MockFileManager.mockInstance,devMode: true, mockEnrollmentStatusApiState: .failed(CommonError.invalidData))
+        try await viewModel.getDefaultPromotionDetailsAndEnrollmentStatus(contactId: "")
+        XCTAssertEqual(viewModel.promotionScreenType, .promotionError)
     }
 }
