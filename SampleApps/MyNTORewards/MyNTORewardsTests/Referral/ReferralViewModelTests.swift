@@ -37,7 +37,7 @@ final class ReferralViewModelTests: XCTestCase {
     }
     
     @MainActor func test_getReferralsDataFromServer() async throws {
-        try await viewModel.getReferralsDataFromServer(memberContactId: "")
+        try await viewModel.getReferralsDataFromServer(membershipNumber: "")
         XCTAssertEqual(viewModel.promotionStageCounts[.accepted], 1)
         XCTAssertEqual(viewModel.promotionStageCounts[.sent], 38)
 
@@ -45,7 +45,7 @@ final class ReferralViewModelTests: XCTestCase {
     
     @MainActor func test_loadAllReferrals() async throws {
         do {
-            try await viewModel.loadAllReferrals(memberContactId: "")
+            try await viewModel.loadAllReferrals(membershipNumber: "")
             XCTAssertEqual(viewModel.promotionStageCounts[.accepted], 1)
             XCTAssertEqual(viewModel.promotionStageCounts[.sent], 38)
         }
@@ -56,7 +56,7 @@ final class ReferralViewModelTests: XCTestCase {
     
     @MainActor func test_loadAllReferralsWithReload() async throws {
         do {
-            try await viewModel.loadAllReferrals(memberContactId: "", reload: true)
+            try await viewModel.loadAllReferrals(membershipNumber: "", reload: true)
             XCTAssertEqual(viewModel.promotionStageCounts[.accepted], 1)
             XCTAssertEqual(viewModel.promotionStageCounts[.sent], 38)
         }
@@ -92,7 +92,7 @@ final class ReferralViewModelTests: XCTestCase {
         let mockAuthenticator = MockAuthenticator.sharedMock
         let forceClient = ForceClient(auth: MockAuthenticator.sharedMock, forceNetworkManager: ReferralMockNetworkManager.sharedMock)
         let viewModel = ReferralViewModel(authManager: mockAuthenticator, forceClient: forceClient, localFileManager: MockFileManager.mockInstance,devMode: false)
-        try await viewModel.loadAllReferrals(memberContactId: "")
+        try await viewModel.loadAllReferrals(membershipNumber: "")
         XCTAssertEqual(viewModel.promotionStageCounts[.accepted], 1)
         XCTAssertEqual(viewModel.promotionStageCounts[.sent], 38)   
     }
@@ -104,7 +104,7 @@ final class ReferralViewModelTests: XCTestCase {
         let viewModel = ReferralViewModel(authManager: mockAuthenticator, forceClient: forceClient, localFileManager: MockFileManager.mockInstance, devMode: false)
         do {
             
-            try await viewModel.loadAllReferrals(memberContactId: "")
+            try await viewModel.loadAllReferrals(membershipNumber: "")
             XCTAssertEqual(viewModel.promotionStageCounts[.accepted], 1)
             XCTAssertEqual(viewModel.promotionStageCounts[.sent], 36)
         } catch {
