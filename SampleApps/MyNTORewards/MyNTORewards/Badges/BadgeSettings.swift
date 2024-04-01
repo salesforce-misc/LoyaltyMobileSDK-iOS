@@ -17,6 +17,8 @@ struct BadgeSettings {
 		static let previewCardHeight: CGFloat = 126
 		static let previewCardWidth: CGFloat = 106
 		static let previewCardCornerRadius: CGFloat = 10
+		static let messageImageHeight: CGFloat = 82
+		static let messageImageWidth: CGFloat = 82
 		
 		// BadgeDetailView
 		static let detailBackgroundRectangleHeight: CGFloat = 180
@@ -25,12 +27,15 @@ struct BadgeSettings {
 		
 		// BadgeCardView
 		static let expiryTextWidth: CGFloat = 52
+		
+		// Error
+		static let errorViewTopPadding: CGFloat = 100
 	}
 	
 	struct Message {
 		// Preview
-		static let previewErrorTitle = "No badges earned"
-		static let previewErrorSubtitle = "After you receive a badge, you’ll see it here."
+		static let previewTitle = "No badges earned"
+		static let previewSubtitle = "After you receive a badge, you’ll see it here."
 		
 		// Achieved
 		static let achievedTitle = "No badges earned"

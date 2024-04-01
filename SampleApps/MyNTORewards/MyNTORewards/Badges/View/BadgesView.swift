@@ -17,11 +17,10 @@ struct BadgesView: View {
 		ViewAllView(title: BadgeSettings.Text.mainTitle) {
 			AllBadgesView()
 		} content: {
-			if badgesVM.previewBadges.isEmpty {
-				EmptyPreviewBadgeView(title: BadgeSettings.Message.previewErrorTitle,
-									  subTitle: BadgeSettings.Message.previewErrorSubtitle)
-					.frame(height: BadgeSettings.Dimension.previewErrorHeight)
-					.offset(y: BadgeSettings.Dimension.previewErrorYOffset)
+			if badgesVM.error != nil {
+				PreviewErrorView(message: BadgeSettings.Message.errorMessage)
+			} else if badgesVM.previewBadges.isEmpty {
+				PreviewEmptyView(message: BadgeSettings.Message.previewSubtitle)
 					.task {
 						await fetchBadges()
 					}

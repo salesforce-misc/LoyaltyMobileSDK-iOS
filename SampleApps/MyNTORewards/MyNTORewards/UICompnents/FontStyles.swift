@@ -11,6 +11,9 @@ import SwiftUI
 extension Font {
     
     /// Shared
+	static var previewMessageText: Font {
+		return Font.custom("SFPro-Display", size: 14)
+	}
     
     /// Already a member? Not a member?
     static var footerText: Font {

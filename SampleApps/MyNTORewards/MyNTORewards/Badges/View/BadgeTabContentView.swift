@@ -19,6 +19,7 @@ struct BadgeTabContentView: View {
 		ScrollView {
 			if self.error != nil {
 				ProcessingErrorView(message: BadgeSettings.Message.errorMessage)
+					.padding(.top, BadgeSettings.Dimension.errorViewTopPadding)
 			} else if badges.isEmpty {
 				EmptyStateView(title: emptyTitle, subTitle: emptySubtitle)
 			} else {

@@ -123,6 +123,8 @@
 		3F3805B62A7A6EF700223808 /* View+Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3805B52A7A6EF700223808 /* View+Destination.swift */; };
 		3F3983D72AB00AAD00C5C980 /* ReceiptStatusUpdateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3983D62AB00AAD00C5C980 /* ReceiptStatusUpdateResponse.swift */; };
 		3F3E65A42A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */; };
+		3F45CD082BBAE205001D787F /* PreviewErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45CD072BBAE205001D787F /* PreviewErrorView.swift */; };
+		3F45CD0A2BBAEFA6001D787F /* PreviewEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45CD092BBAEFA5001D787F /* PreviewEmptyView.swift */; };
 		3F5002AF2A5F9AB900E12AE4 /* ReceiptListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002AE2A5F9AB900E12AE4 /* ReceiptListItem.swift */; };
 		3F5002B12A5FA07100E12AE4 /* ReceiptList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */; };
 		3F5002B72A5FC82800E12AE4 /* ReceiptSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */; };
@@ -437,6 +439,8 @@
 		3F3805B52A7A6EF700223808 /* View+Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Destination.swift"; sourceTree = "<group>"; };
 		3F3983D62AB00AAD00C5C980 /* ReceiptStatusUpdateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptStatusUpdateResponse.swift; sourceTree = "<group>"; };
 		3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAndLoyaltyAPITests.swift; sourceTree = "<group>"; };
+		3F45CD072BBAE205001D787F /* PreviewErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewErrorView.swift; sourceTree = "<group>"; };
+		3F45CD092BBAEFA5001D787F /* PreviewEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewEmptyView.swift; sourceTree = "<group>"; };
 		3F5002AE2A5F9AB900E12AE4 /* ReceiptListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListItem.swift; sourceTree = "<group>"; };
 		3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptList.swift; sourceTree = "<group>"; };
 		3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptSearchBar.swift; sourceTree = "<group>"; };
@@ -839,6 +843,8 @@
 				2955346A29E93EF800CFA391 /* InfoNavigationLink.swift */,
 				292453E72A1C4658002112B3 /* WebView.swift */,
 				4F18ED822AD5737B000F64D9 /* ScrollViewBounceModifier.swift */,
+				3F45CD072BBAE205001D787F /* PreviewErrorView.swift */,
+				3F45CD092BBAEFA5001D787F /* PreviewEmptyView.swift */,
 			);
 			path = UICompnents;
 			sourceTree = "<group>";
@@ -1635,6 +1641,7 @@
 				3F2D8B702A651E46008F5AE0 /* ProcessedReceiptView.swift in Sources */,
 				292ADC6E294BFD7700753541 /* PreviewProvider.swift in Sources */,
 				3FE71D122B3199CD006E6BF5 /* BottomNavTabsView.swift in Sources */,
+				3F45CD082BBAE205001D787F /* PreviewErrorView.swift in Sources */,
 				3F5002B92A5FE65200E12AE4 /* ReceiptsView.swift in Sources */,
 				3FBFB8C52BB991D30090552E /* BadgeType.swift in Sources */,
 				3F62709A2ABB21B200C0E148 /* ProcessedReceiptListContent.swift in Sources */,
@@ -1811,6 +1818,7 @@
 				29BAF6D128F1032800A3F9EB /* Carousel.swift in Sources */,
 				3FE71D002B3199CD006E6BF5 /* PromotionCarouselView.swift in Sources */,
 				3FE8BFC42A6D8E5700ECD45B /* Receipt.swift in Sources */,
+				3F45CD0A2BBAEFA6001D787F /* PreviewEmptyView.swift in Sources */,
 				296D394028DE59240078C88E /* TextFieldStyles.swift in Sources */,
 				2906B1D428FF5031006EAB2D /* MemberModel.swift in Sources */,
 				3FBFB8CF2BB991EF0090552E /* BadgesView.swift in Sources */,
