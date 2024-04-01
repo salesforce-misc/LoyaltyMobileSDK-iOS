@@ -48,7 +48,7 @@ struct BadgeSettings {
 	}
 	
 	struct Asset {
-		static let defaultBadgeImage = "badge"
+		static let defaultBadgeImage = "img-badge"
 		static let closeIcon = "ic-close"
 	}
 	
