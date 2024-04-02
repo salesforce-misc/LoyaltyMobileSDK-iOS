@@ -22,7 +22,7 @@ class TransactionViewModel: ObservableObject, Reloadable {
         self.authManager = authManager
         self.localFileManager = localFileManager
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
-                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+                                              loyaltyProgramName: AppSettings.shared.getLoyaltyProgramName(),
                                               instanceURL: AppSettings.shared.getInstanceURL(),
                                               forceClient: ForceClient(auth: authManager))
     }
@@ -57,7 +57,7 @@ class TransactionViewModel: ObservableObject, Reloadable {
             let result = try await loyaltyAPIManager.getTransactions(for: membershipNumber, devMode: devMode)
             let filtered = result.filter { transaction in
                 transaction.pointsChange.contains { currency in
-                    currency.loyaltyMemberCurrency == AppSettings.Defaults.rewardCurrencyName
+                    currency.loyaltyMemberCurrency == AppSettings.shared.getRewardCurrencyName()
                 }
             }
             return filtered
