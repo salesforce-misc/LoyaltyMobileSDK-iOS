@@ -15,8 +15,8 @@ struct AdminAppSettingsView: View {
         Section {
             List {
                 HStack {
-                    Text("Program Name")
-                    NavigationLink(destination: AppSettingsTextFieldView(settingName: "Program Name", 
+                    Text("Loyalty Program")
+                    NavigationLink(destination: AppSettingsTextFieldView(settingName: "Loyalty Program",
                                                                          textFieldValue: appSettingsVM.loyaltyProgramName,
                                                                          fieldType: .loyaltyProgramNameField)) {
                         HStack {
