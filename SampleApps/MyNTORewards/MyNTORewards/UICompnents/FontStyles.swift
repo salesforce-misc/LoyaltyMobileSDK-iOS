@@ -11,6 +11,9 @@ import SwiftUI
 extension Font {
     
     /// Shared
+	static var previewMessageText: Font {
+		return Font.custom("SFPro-Display", size: 14)
+	}
     
     /// Already a member? Not a member?
     static var footerText: Font {
@@ -146,11 +149,6 @@ extension Font {
     
     static var pointsText: Font {
         return Font.custom("SFPro-Bold", size: 18)
-    }
-    
-    // badge
-    static var badgeLabel: Font {
-        return Font.custom("SFPro-Medium", size: 14)
     }
     
     /// My Profile
