@@ -135,4 +135,12 @@ final class ReferralViewModelTests: XCTestCase {
         try await viewModel.getDefaultPromotionDetailsAndEnrollmentStatus(contactId: "")
         XCTAssertEqual(viewModel.promotionScreenType, .promotionError)
     }
+    
+    @MainActor func test_checkDefaultPromotionExpiryStaus()   {
+        let status = viewModel.checkDefaultPromotionExpiryStaus(promotionEndDateString: "2023-01-01")
+        XCTAssertEqual(status, true)
+        let expiredStatus = viewModel.checkDefaultPromotionExpiryStaus(promotionEndDateString: "2026-01-01")
+        XCTAssertEqual(expiredStatus, false)
+    }
+
 }

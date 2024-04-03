@@ -214,8 +214,8 @@ class ReferralViewModel: ObservableObject {
         }
     }
     
-    func checkDefaultPromotionExpiryStaus() -> Bool {
-        if let promotionEndDateString = defaultPromotionInfo?.endDate, let promotionEndDate = promotionEndDateString.toDate(), promotionEndDate < Date() {
+    func checkDefaultPromotionExpiryStaus(promotionEndDateString: String?) -> Bool {
+        if let promotionEndDateString = promotionEndDateString, let promotionEndDate = promotionEndDateString.toDate(), promotionEndDate < Date() {
             // expired promotion
             displayError = (true, StringConstants.Referrals.expiredPromotionError)
             enrollmentStatusApiState = .loaded
@@ -234,7 +234,7 @@ class ReferralViewModel: ObservableObject {
 			return
 		}
         if defaultPromotionInfo != nil {
-            if checkDefaultPromotionExpiryStaus() {
+            if checkDefaultPromotionExpiryStaus(promotionEndDateString: defaultPromotionInfo?.endDate) {
                 return
             }
             await isEnrolledForDefaultPromotion(contactId: contactId)
@@ -245,7 +245,7 @@ class ReferralViewModel: ObservableObject {
             let query = "SELECT Id, IsReferralPromotion, PromotionCode, Name, Description, ImageUrl, PromotionPageUrl, EndDate  FROM Promotion Where PromotionCode= '\(promotionCode)'"
             let promotion = try await forceClient.SOQL(type: ReferralPromotionObject.self, for: query)
             defaultPromotionInfo = promotion.records.first
-            if checkDefaultPromotionExpiryStaus() {
+            if checkDefaultPromotionExpiryStaus(promotionEndDateString: defaultPromotionInfo?.endDate) {
                 return
             }
             if defaultPromotionInfo?.promotionCode != nil {
