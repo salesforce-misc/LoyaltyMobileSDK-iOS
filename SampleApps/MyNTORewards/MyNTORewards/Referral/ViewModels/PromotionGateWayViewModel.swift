@@ -116,7 +116,7 @@ class PromotionGateWayViewModel: ObservableObject {
             }
         } catch {
             Logger.error("Referral Enrollment Error: \(error.localizedDescription)")
-            displayError = (true, StringConstants.Referrals.enrollmentError)
+            displayError = (true, error.localizedDescription)
             promotionScreenType = .joinPromotionError
         }
     }
