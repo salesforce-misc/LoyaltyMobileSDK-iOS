@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LoyaltyMobileSDK
 
 struct BadgeCardView: View {
 	@State var showDetail = false
@@ -41,6 +42,9 @@ struct BadgeCardView: View {
 		.background(.white)
 		.cornerRadius(10)
 		.frame(maxWidth: .infinity)
+		.onChange(of: showDetail, perform: { value in
+			Logger.debug("\n show detail changed: \(value)")
+		})
     }
 	
 	var title: some View {
