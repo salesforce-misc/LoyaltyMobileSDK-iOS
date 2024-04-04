@@ -240,13 +240,6 @@ class DeveloperPreview {
                                       timeoutDuration: 10,
                                       gameRewards: [],
                                       participantGameRewards: [])
-	let badge = Badge(id: "id001",
-					  name: "NTO Fashionista",
-					  description: "Rewarded to members who purchase new products within a month from launch",
-					  type: .achieved,
-					  endDate: Date(),
-					  currentDate: Date().getDate(beforeDays: 3) ?? Date(),
-					  imageUrl: nil)
 
     let rootVM = AppRootViewModel()
     let benefitVM = BenefitViewModel()
@@ -263,7 +256,6 @@ class DeveloperPreview {
     let routerPath = RouterPath()
     let receiptVM = ReceiptViewModel()
     let receiptListVM = ReceiptListViewModel()
-	let badgesVM = BadgesViewModel()
     
     private init() {
         setMember(member: member)

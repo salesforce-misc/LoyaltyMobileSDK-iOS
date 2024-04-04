@@ -44,19 +44,6 @@ public extension Date {
 	func getDate(beforeDays days: Int) -> Date? {
 		return Calendar.current.date(byAdding: .day, value: -days, to: self)
 	}
-	
-	func getDays(from currentDate: Date = Date()) -> Int? {
-		var calendar = Calendar.current
-		calendar.locale = Locale(identifier: "en_US_POSIX")
-		if let timeZone = TimeZone(secondsFromGMT: 0) {
-			calendar.timeZone = timeZone
-		}
-		// Using calendar.startOfDay to ignore time and to compare just dates.
-		let currentDate = calendar.startOfDay(for: currentDate)
-		let expiryDate = calendar.startOfDay(for: self)
-		let component = Calendar.current.dateComponents([.day], from: currentDate, to: expiryDate)
-		return component.day
-	}
 }
 
 public extension Date {

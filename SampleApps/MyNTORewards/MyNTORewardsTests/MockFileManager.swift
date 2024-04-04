@@ -31,17 +31,15 @@ class MockFileManager: FileManagerProtocol {
     var imageData: [String: UIImage] = [:]
     
     public func saveData<T: Codable>(item: T, id: String, folderName: String? = nil, expiry: Expiry = .never) {
-		fileData.updateValue(item, forKey: folderName ?? id)
-		Logger.debug("\n\nData saved in Mock File Manager: \n\(fileData)")
+        fileData.updateValue(item, forKey: id)
     }
     
     func getData<T: Codable>(type: T.Type, id: String, folderName: String?) -> T? {
-		Logger.debug("\n\nData retrieved from Mock File Manager: \n\(fileData)")
-		return fileData[folderName ?? id] as? T
+        return fileData[id] as? T
     }
     
     func removeData<T>(type: T.Type, id: String, folderName: String?){
-		fileData.removeValue(forKey: folderName ?? id)
+        fileData.removeValue(forKey: id)
     }
     
     func saveImage(image: UIImage, imageName: String, folderName: String?, expiry: Expiry) {
