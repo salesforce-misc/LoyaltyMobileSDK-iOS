@@ -91,7 +91,6 @@ struct ColorTheme {
     let noLuckViewLineColor = Color("NoLuckViewLineColor") // #FFCBC7
 	let fortuneWheelStrokeColor = Color("FortuneWheelStrokeColor") // #23475F
 	let fortuneWheelSecondaryStrokeColor = Color("FortuneWheelSecondaryStrokeColor") // #D9D9D9
-	let previewErrorTextColor = Color("PreviewErrorTextColor") // #BA0517
 }
 
 struct TierColor {
