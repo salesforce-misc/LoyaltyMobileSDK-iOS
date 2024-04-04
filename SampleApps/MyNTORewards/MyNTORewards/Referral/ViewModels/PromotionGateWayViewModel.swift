@@ -25,7 +25,6 @@ class PromotionGateWayViewModel: ObservableObject {
     private let forceClient: ForceClient
     private let referralAPIManager: ReferralAPIManager
     private let defaultPromotionCode = AppSettings.Defaults.promotionCode
-    private let referralProgramName = AppSettings.Defaults.referralProgramName
 	
 	let devMode: Bool
 	let mockPromotionStatusApiState: LoadingState
@@ -41,7 +40,7 @@ class PromotionGateWayViewModel: ObservableObject {
             self.authManager = authManager
             self.forceClient = forceClient ?? ForceClient(auth: authManager)
             self.referralAPIManager = ReferralAPIManager(auth: self.authManager,
-                                                         referralProgramName: AppSettings.Defaults.referralProgramName,
+                                                         referralProgramName: AppSettings.shared.getLoyaltyProgramName(),
                                                          instanceURL: AppSettings.shared.getInstanceURL(),
                                                          forceClient: self.forceClient)
 		self.devMode = devMode
@@ -114,7 +113,10 @@ class PromotionGateWayViewModel: ObservableObject {
                 displayError = (true, StringConstants.Referrals.enrollmentError)
                 promotionScreenType = .joinPromotionError
             }
-        } catch {
+        } catch CommonError.responseUnsuccessful(_, let errorMessage), CommonError.unknownException(let errorMessage) {
+           displayError = (true, errorMessage)
+           promotionScreenType = .joinPromotionError
+       } catch {
             Logger.error("Referral Enrollment Error: \(error.localizedDescription)")
             displayError = (true, error.localizedDescription)
             promotionScreenType = .joinPromotionError

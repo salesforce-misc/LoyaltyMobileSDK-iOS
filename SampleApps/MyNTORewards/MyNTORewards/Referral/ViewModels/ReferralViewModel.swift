@@ -88,7 +88,7 @@ class ReferralViewModel: ObservableObject {
         self.authManager = authManager
         self.forceClient = forceClient ?? ForceClient(auth: authManager)
         self.referralAPIManager = ReferralAPIManager(auth: self.authManager,
-                                                     referralProgramName: AppSettings.Defaults.referralProgramName,
+                                                     referralProgramName: AppSettings.shared.getLoyaltyProgramName(),
                                                      instanceURL: AppSettings.shared.getInstanceURL(),
                                                      forceClient: self.forceClient)
         self.devMode = devMode
@@ -313,7 +313,10 @@ class ReferralViewModel: ObservableObject {
                 promotionScreenType = .promotionError
                 displayError = (true, StringConstants.Referrals.enrollmentError)
             }
-        } catch {
+        } catch CommonError.responseUnsuccessful(_, let errorMessage), CommonError.unknownException(let errorMessage) {
+            displayError = (true, errorMessage)
+            promotionScreenType = .promotionError
+       } catch {
             Logger.error("Referral Enrollment Error: \(error.localizedDescription)")
             promotionScreenType = .promotionError
             displayError = (true, error.localizedDescription)
