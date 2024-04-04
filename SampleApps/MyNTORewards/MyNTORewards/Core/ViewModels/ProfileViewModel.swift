@@ -17,15 +17,19 @@ class ProfileViewModel: ObservableObject, Reloadable {
     private let authManager: ForceAuthenticator
     private let localFileManager: FileManagerProtocol
     private var loyaltyAPIManager: LoyaltyAPIManager
-    
-    init(authManager: ForceAuthenticator = ForceAuthManager.shared, localFileManager: FileManagerProtocol = LocalFileManager.instance) {
-        self.authManager = authManager
-        self.localFileManager = localFileManager
-        loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
-                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
-                                              instanceURL: AppSettings.shared.getInstanceURL(),
-                                              forceClient: ForceClient(auth: authManager))
-    }
+	
+	init(
+		authManager: ForceAuthenticator = ForceAuthManager.shared,
+		localFileManager: FileManagerProtocol = LocalFileManager.instance
+	) {
+		self.authManager = authManager
+		self.localFileManager = localFileManager
+		let forceClient = ForceClient(auth: authManager)
+		loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
+											  loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+											  instanceURL: AppSettings.shared.getInstanceURL(),
+											  forceClient: forceClient)
+	}
     
     func getProfileData(memberId: String, reload: Bool = false, devMode: Bool = false) async throws {
         

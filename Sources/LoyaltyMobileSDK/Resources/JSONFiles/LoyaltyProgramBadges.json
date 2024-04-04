@@ -1,0 +1,87 @@
+[
+	{
+		"attributes": {
+			"type": "LoyaltyProgramBadge",
+			"url": "/services/data/v58.0/sobjects/LoyaltyProgramBadge/0w81Q0000004CsnQAE"
+		},
+		"Id": "0w81Q0000004CsnQAE",
+		"Description": "The one creates vlog and influence people",
+		"ImageUrl": null,
+		"LoyaltyProgramId": "0lpB0000000TUU3IAO",
+		"Name": "NTO Vlogger",
+		"StartDate": "2024-03-01",
+		"Status": "Expired",
+		"ValidityDuration": 24,
+		"ValidityDurationUnit": "Months",
+		"ValidityEndDate": null,
+		"ValidityType": "Period"
+	},
+	{
+		"attributes": {
+			"type": "LoyaltyProgramBadge",
+			"url": "/services/data/v58.0/sobjects/LoyaltyProgramBadge/0w8B0000000KyjkIAC"
+		},
+		"Id": "0w8B0000000KyjkIAC",
+		"Description": "Rewarded to members who purchase new products within a month from launch",
+		"ImageUrl": "https://hutl.file.force.com/sfc/dist/version/download/?oid=00DB000000FX0aR&ids=068B000000FpL2t&d=%2Fa%2FB00000004N1C%2FBuc8Wb0IAjLJ_42ehqfnJMJOhJg6dzsmhFzlZ5HhfEY&asPdf=false",
+		"LoyaltyProgramId": "0lpB0000000TUU3IAO",
+		"Name": "NTO Fashionista",
+		"StartDate": "2023-05-04",
+		"Status": "Active",
+		"ValidityDuration": 30,
+		"ValidityDurationUnit": "Months",
+		"ValidityEndDate": null,
+		"ValidityType": "Period"
+	},
+	{
+		"attributes": {
+			"type": "LoyaltyProgramBadge",
+			"url": "/services/data/v58.0/sobjects/LoyaltyProgramBadge/0w8B0000000KyjlIAC"
+		},
+		"Id": "0w8B0000000KyjlIAC",
+		"Description": "Awarded to Loyalty Program Member for shopping sustainable products",
+		"ImageUrl": "https://hutl.file.force.com/sfc/dist/version/download/?oid=00DB000000FX0aR&ids=068B000000FpL2v&d=%2Fa%2FB00000004N1E%2FCeUkH35GWFu7kjHmoaxCcnXhEvEVMpCTDHIx15qGI9E&asPdf=false",
+		"LoyaltyProgramId": "0lpB0000000TUU3IAO",
+		"Name": "NTO Sustainable Shopper",
+		"StartDate": "2023-05-04",
+		"Status": "Active",
+		"ValidityDuration": null,
+		"ValidityDurationUnit": null,
+		"ValidityEndDate": "2025-05-04",
+		"ValidityType": "FixedDate"
+	},
+	{
+		"attributes": {
+			"type": "LoyaltyProgramBadge",
+			"url": "/services/data/v58.0/sobjects/LoyaltyProgramBadge/0w8B0000000KyjmIAC"
+		},
+		"Id": "0w8B0000000KyjmIAC",
+		"Description": "Members who regularly post about NTO on social media",
+		"ImageUrl": "https://hutl.file.force.com/sfc/dist/version/download/?oid=00DB000000FX0aR&ids=068B000000FpL2u&d=%2Fa%2FB00000004N1D%2FjBBh2W3FrZc4lSFKQOyV7Ibnc0OWfvuvYKcPcAsY5_Q&asPdf=false",
+		"LoyaltyProgramId": "0lpB0000000TUU3IAO",
+		"Name": "NTO Social Influencer",
+		"StartDate": "2023-05-04",
+		"Status": "Active",
+		"ValidityDuration": 24,
+		"ValidityDurationUnit": "Months",
+		"ValidityEndDate": null,
+		"ValidityType": "Period"
+	},
+	{
+		"attributes": {
+			"type": "LoyaltyProgramBadge",
+			"url": "/services/data/v58.0/sobjects/LoyaltyProgramBadge/0w8B0000000RyjmIAC"
+		},
+		"Id": "0w8B0000000RyjmIAC",
+		"Description": "Members who regularly post about NTO on social media",
+		"ImageUrl": "https://hutl.file.force.com/sfc/dist/version/download/?oid=00DB000000FX0aR&ids=068B000000FpL2u&d=%2Fa%2FB00000004N1D%2FjBBh2W3FrZc4lSFKQOyV7Ibnc0OWfvuvYKcPcAsY5_Q&asPdf=false",
+		"LoyaltyProgramId": "0lpB0000000TUU3IAO",
+		"Name": "NTO Social Influencer",
+		"StartDate": "2024-05-04",
+		"Status": "Active",
+		"ValidityDuration": 24,
+		"ValidityDurationUnit": "Months",
+		"ValidityEndDate": null,
+		"ValidityType": "Period"
+	}
+]

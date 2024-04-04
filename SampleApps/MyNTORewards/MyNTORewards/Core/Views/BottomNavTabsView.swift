@@ -15,6 +15,7 @@ struct BottomNavTabsView: View {
 	@StateObject var cameraVM = CameraViewModel()
 	@StateObject var routerPath = RouterPath()
 	@StateObject var receiptListViewModel = ReceiptListViewModel()
+	@StateObject var badgesVM = BadgesViewModel()
 	@EnvironmentObject var appViewRouter: AppViewRouter
     @StateObject var rootVM = AppRootViewModel()
 	@StateObject var gameZoneVM: GameZoneViewModel
@@ -27,6 +28,7 @@ struct BottomNavTabsView: View {
             _gameZoneVM = StateObject(wrappedValue: GameZoneViewModel(devMode: true,
                                                                                   mockFileName: UITestingHelper.getGamesMockFileName
                                                                                  ))
+			_badgesVM = StateObject(wrappedValue: BadgesViewModel(currentDate: UITestingHelper.currentDate))
         } else {
 			_gameZoneVM = StateObject(wrappedValue: GameZoneViewModel())
 		}
@@ -93,6 +95,7 @@ struct BottomNavTabsView: View {
         .environmentObject(routerPath)
         .environmentObject(receiptListViewModel)
         .environmentObject(gameZoneVM)
+		.environmentObject(badgesVM)
 	}
 }
 
