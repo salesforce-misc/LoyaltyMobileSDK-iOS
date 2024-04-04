@@ -49,7 +49,7 @@ struct HomeView: View {
 							.accessibilityIdentifier(AppAccessibilty.Home.userName)
 						Spacer()
 						// swiftlint:disable line_length
-						Text("\(String(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0)) \(AppSettings.Defaults.rewardCurrencyName)")
+                        Text("\(String(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.shared.getRewardCurrencyName()) ?? 0)) \(AppSettings.shared.getRewardCurrencyName())")
 							.padding(.trailing, 15)
 							.accessibilityIdentifier(AppAccessibilty.Home.rewardPoints)
 						// swiftlint:enable line_length
