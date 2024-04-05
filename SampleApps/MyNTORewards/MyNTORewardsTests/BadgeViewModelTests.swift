@@ -31,19 +31,19 @@ final class BadgeViewModelTests: XCTestCase {
 	func testFetchAllBadges_shouldBadgesAccordingly() async throws {
 		try await viewModel.fetchAllBadges(membershipNumber: "Testmember03", reload: true, devMode: true)
 		
-		XCTAssertEqual(viewModel.loyaltyProgramBadges.count, 5)
-		XCTAssertEqual(viewModel.loyaltyProgramMemberBadges.count, 3)
-		XCTAssertEqual(viewModel.achievedBadges.count, 2)
+		XCTAssertEqual(viewModel.loyaltyProgramBadges.count, 6)
+		XCTAssertEqual(viewModel.loyaltyProgramMemberBadges.count, 4)
+		XCTAssertEqual(viewModel.achievedBadges.count, 3)
 		XCTAssertEqual(viewModel.availableBadges.count, 1)
 		XCTAssertEqual(viewModel.expiredBadges.count, 1)
-		XCTAssertEqual(viewModel.previewBadges.count, 2)
+		XCTAssertEqual(viewModel.previewBadges.count, 3)
 		
-		XCTAssertEqual(viewModel.achievedBadges[0].id, "0w8B0000000KyjlIAC")
-		XCTAssertEqual(viewModel.achievedBadges[1].id, "0w8B0000000KyjkIAC")
+		XCTAssertEqual(viewModel.achievedBadges[0].id, "0w8B0000000KyjlIBC")
+		XCTAssertEqual(viewModel.achievedBadges[1].id, "0w8B0000000KyjlIAC")
 		XCTAssertEqual(viewModel.availableBadges[0].id, "0w8B0000000KyjmIAC")
 		XCTAssertEqual(viewModel.expiredBadges[0].id, "0w81Q0000004CsnQAE")
-		XCTAssertEqual(viewModel.previewBadges[0].id, "0w8B0000000KyjlIAC")
-		XCTAssertEqual(viewModel.previewBadges[1].id, "0w8B0000000KyjkIAC")
+		XCTAssertEqual(viewModel.previewBadges[0].id, "0w8B0000000KyjlIBC")
+		XCTAssertEqual(viewModel.previewBadges[1].id, "0w8B0000000KyjlIAC")
 	}
 	
 	@MainActor
@@ -57,7 +57,7 @@ final class BadgeViewModelTests: XCTestCase {
 		try await viewModel.fetchAllBadges(membershipNumber: "Testmember03", devMode: true)
 		
 		let memberBadges = MockFileManager.mockInstance.getData(type: [LoyaltyProgramMemberBadge].self, id: "Testmember03", folderName: "LoyaltyProgramMemberBadges") ?? []
-		XCTAssertEqual(memberBadges.count, 3)
+		XCTAssertEqual(memberBadges.count, 4)
 	}
 
 	@MainActor
@@ -67,22 +67,22 @@ final class BadgeViewModelTests: XCTestCase {
 		
 		// Tests if the data is saved in cache.
 		let memberBadges = MockFileManager.mockInstance.getData(type: [LoyaltyProgramMemberBadge].self, id: membershipNumber, folderName: "LoyaltyProgramMemberBadges") ?? []
-		XCTAssertEqual(memberBadges.count, 3)
+		XCTAssertEqual(memberBadges.count, 4)
 		let programBadges = MockFileManager.mockInstance.getData(type: [LoyaltyProgramBadge].self, id: membershipNumber, folderName: "LoyaltyProgramBadges") ?? []
-		XCTAssertEqual(programBadges.count, 5)
+		XCTAssertEqual(programBadges.count, 6)
 		
 		
 		// If loyaltyProgramBadges array is not empty, method skips and neither fetch from API nor from cache. So clearing it.
 		viewModel.loyaltyProgramBadges.removeAll()
 		// Tests if method fetches data from cache instead of from API since data must be present in cache because of previous API call.
 		try await viewModel.fetchAllBadges(membershipNumber: membershipNumber, devMode: true, mockMemberBadgeFileName: "LoyaltyProgramMemberBadgesWithTwoObjects")
-		XCTAssertEqual(viewModel.loyaltyProgramMemberBadges.count, 3)
+		XCTAssertEqual(viewModel.loyaltyProgramMemberBadges.count, 4)
 		
 		// If loyaltyProgramMemberBadges array is not empty, method skips and neither fetch from API nor from cache. So clearing it.
 		viewModel.loyaltyProgramMemberBadges.removeAll()
 		// Tests if method fetches data from cache instead of from API since data must be present in cache because of previous API call.
 		try await viewModel.fetchAllBadges(membershipNumber: membershipNumber, devMode: true, mockMemberBadgeFileName: "LoyaltyProgramMemberBadgesWithTwoObjects")
-		XCTAssertEqual(viewModel.loyaltyProgramMemberBadges.count, 3)
+		XCTAssertEqual(viewModel.loyaltyProgramMemberBadges.count, 4)
 		
 		// Tests if reloading fetches data from API.
 		try await viewModel.fetchAllBadges(membershipNumber: membershipNumber, reload: true, devMode: true, mockMemberBadgeFileName: "LoyaltyProgramMemberBadgesWithTwoObjects")

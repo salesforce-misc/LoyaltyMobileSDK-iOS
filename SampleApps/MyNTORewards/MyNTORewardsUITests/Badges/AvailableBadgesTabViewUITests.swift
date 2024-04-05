@@ -37,5 +37,7 @@ final class AvailableBadgesTabViewUITests: XCTestCase {
 		XCTAssertTrue(app.staticTexts["Not achieved yet."].exists)
 		XCTAssertTrue(app.staticTexts["Learn More"].exists)
 		XCTAssertTrue(app.buttons["Close"].exists)
+		app.buttons["Close"].tap()
+		XCTAssertFalse(app.staticTexts["Not achieved yet."].exists)
 	}
 }

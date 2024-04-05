@@ -44,7 +44,9 @@ final class ExpiredBadgesTabViewUITests: XCTestCase {
 		XCTAssertEqual(focuesedBadge.count, 2)
 		XCTAssertTrue(app.staticTexts["Badge expired on"].exists)
 		XCTAssertTrue(app.staticTexts["Learn More"].exists)
-		XCTAssertTrue(app.buttons["Close"].exists)
+		XCTAssertTrue(app.images["ic-close"].exists)
+		app.images["ic-close"].tap()
+		XCTAssertFalse(app.staticTexts["Learn More"].exists)
 	}
 	
 	func testReloadingExpiredBadgesView() {

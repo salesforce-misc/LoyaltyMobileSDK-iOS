@@ -9,7 +9,6 @@ import SwiftUI
 import LoyaltyMobileSDK
 
 struct BadgeCardView: View {
-	@State var showDetail = false
 	let badge: Badge
 	
     var body: some View {
@@ -28,23 +27,12 @@ struct BadgeCardView: View {
 			}
 			.font(.badgeCardDescriptionLabel)
 		}
-		.contentShape(Rectangle())
-		.onTapGesture {
-			showDetail.toggle()
-		}
-		.sheet(isPresented: $showDetail, content: {
-			BadgeDetailView(badge: badge)
-				.presentationDetents([.medium])
-		})
 		.padding(.leading, 21)
 		.padding(.trailing, 13)
 		.padding(.vertical, 16)
 		.background(.white)
 		.cornerRadius(10)
 		.frame(maxWidth: .infinity)
-		.onChange(of: showDetail, perform: { value in
-			Logger.debug("\n show detail changed: \(value)")
-		})
     }
 	
 	var title: some View {

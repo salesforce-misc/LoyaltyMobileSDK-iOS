@@ -83,5 +83,22 @@
 		"ValidityDurationUnit": "Months",
 		"ValidityEndDate": null,
 		"ValidityType": "Period"
+	},
+	{
+		"attributes": {
+			"type": "LoyaltyProgramBadge",
+			"url": "/services/data/v58.0/sobjects/LoyaltyProgramBadge/0w8B0000000KyjlIBC"
+		},
+		"Id": "0w8B0000000KyjlIBC",
+		"Description": "Members who regularly post about NTO on social media",
+		"ImageUrl": "https://hutl.file.force.com/sfc/dist/version/download/?oid=00DB000000FX0aR&ids=068B000000FpL2u&d=%2Fa%2FB00000004N1D%2FjBBh2W3FrZc4lSFKQOyV7Ibnc0OWfvuvYKcPcAsY5_Q&asPdf=false",
+		"LoyaltyProgramId": "0lpB0000000TUU3IAO",
+		"Name": "NTO Social Influencer",
+		"StartDate": "2024-05-04",
+		"Status": "Active",
+		"ValidityDuration": 24,
+		"ValidityDurationUnit": "Months",
+		"ValidityEndDate": null,
+		"ValidityType": "Period"
 	}
 ]

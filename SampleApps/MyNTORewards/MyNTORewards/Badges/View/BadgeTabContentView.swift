@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct BadgeTabContentView: View {
+	@State var showDetail = false
+	@State var tappedBadge: Badge?
 	let badges: [Badge]
 	let error: String?
 	let columns = [GridItem()]
@@ -26,6 +28,9 @@ struct BadgeTabContentView: View {
 				LazyVGrid(columns: columns, spacing: 15) {
 					ForEach(Array(badges.enumerated()), id: \.offset) { _, badge in
 						BadgeCardView(badge: badge)
+							.onTapGesture {
+								tappedBadge = badge
+							}
 							.padding(.horizontal, 16)
 					}
 				}
@@ -33,6 +38,10 @@ struct BadgeTabContentView: View {
 				.padding(.top, 20)
 			}
 		}
+		.sheet(item: $tappedBadge, content: { badge in
+			BadgeDetailView(badge: badge)
+				.presentationDetents([.medium])
+		})
 		.refreshable {
 			onRefresh()
 		}
