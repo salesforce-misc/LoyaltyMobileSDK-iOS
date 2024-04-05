@@ -57,7 +57,6 @@ struct AppSettings {
         static let storedTierCurrencyNameKey = "LoyaltyMobileSDK.tierCurrencyName"
         
         // Referral settings
-        static let referralProgramName = loyaltyProgramName
         // Configure Referral Promotion Details below, where user can also able to enroll and refer from My Referrals screen
         static let promotionCode = "TEMPRP7"
         static let referralDateFormat = "yyyy-MM-dd'T'HH:mm:ss"

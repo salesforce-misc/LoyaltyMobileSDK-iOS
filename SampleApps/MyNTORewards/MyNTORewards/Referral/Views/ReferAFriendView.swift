@@ -114,7 +114,8 @@ struct ReferAFriendView: View {
                                                 if !referralVM.displayError.0 {
                                                     showEmailSentAlert = true
                                                     do {
-                                                        try await referralVM.loadAllReferrals(memberContactId: rootVM.member?.contactId ?? "", reload: true)
+                                                        
+                                                try await referralVM.loadAllReferrals(membershipNumber: rootVM.member?.membershipNumber ?? "", reload: true)
                                                     } catch {
                                                         print(error.localizedDescription)
                                                     }

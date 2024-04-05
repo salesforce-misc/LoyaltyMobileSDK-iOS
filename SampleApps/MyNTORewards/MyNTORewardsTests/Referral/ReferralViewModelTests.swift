@@ -34,20 +34,25 @@ final class ReferralViewModelTests: XCTestCase {
     @MainActor func test_isEnrolledForDefaultPromotion() async throws {
         await viewModel.isEnrolledForDefaultPromotion(contactId: "")
         XCTAssertEqual(viewModel.promotionScreenType, .referFriend)
+        let mockAuthenticator = MockAuthenticator.sharedMock
+        let forceClient = ForceClient(auth: MockAuthenticator.sharedMock, forceNetworkManager: ReferralMockNetworkManager.sharedMock)
+        let viewModel = ReferralViewModel(authManager: mockAuthenticator, forceClient: forceClient, localFileManager: MockFileManager.mockInstance,devMode: false)
+        await viewModel.isEnrolledForDefaultPromotion(contactId: "")
+        XCTAssertEqual(viewModel.promotionScreenType, .referFriend)
     }
     
     @MainActor func test_getReferralsDataFromServer() async throws {
-        try await viewModel.getReferralsDataFromServer(memberContactId: "")
+        try await viewModel.getReferralsDataFromServer(membershipNumber: "")
         XCTAssertEqual(viewModel.promotionStageCounts[.accepted], 1)
-        XCTAssertEqual(viewModel.promotionStageCounts[.sent], 36)
+        XCTAssertEqual(viewModel.promotionStageCounts[.sent], 38)
 
     }
     
     @MainActor func test_loadAllReferrals() async throws {
         do {
-            try await viewModel.loadAllReferrals(memberContactId: "")
+            try await viewModel.loadAllReferrals(membershipNumber: "")
             XCTAssertEqual(viewModel.promotionStageCounts[.accepted], 1)
-            XCTAssertEqual(viewModel.promotionStageCounts[.sent], 36)
+            XCTAssertEqual(viewModel.promotionStageCounts[.sent], 38)
         }
         catch {
             XCTAssert(true)
@@ -56,9 +61,9 @@ final class ReferralViewModelTests: XCTestCase {
     
     @MainActor func test_loadAllReferralsWithReload() async throws {
         do {
-            try await viewModel.loadAllReferrals(memberContactId: "", reload: true)
+            try await viewModel.loadAllReferrals(membershipNumber: "", reload: true)
             XCTAssertEqual(viewModel.promotionStageCounts[.accepted], 1)
-            XCTAssertEqual(viewModel.promotionStageCounts[.sent], 36)
+            XCTAssertEqual(viewModel.promotionStageCounts[.sent], 38)
         }
         catch {
             XCTAssert(true)
@@ -92,9 +97,9 @@ final class ReferralViewModelTests: XCTestCase {
         let mockAuthenticator = MockAuthenticator.sharedMock
         let forceClient = ForceClient(auth: MockAuthenticator.sharedMock, forceNetworkManager: ReferralMockNetworkManager.sharedMock)
         let viewModel = ReferralViewModel(authManager: mockAuthenticator, forceClient: forceClient, localFileManager: MockFileManager.mockInstance,devMode: false)
-        try await viewModel.loadAllReferrals(memberContactId: "")
+        try await viewModel.loadAllReferrals(membershipNumber: "")
         XCTAssertEqual(viewModel.promotionStageCounts[.accepted], 1)
-        XCTAssertEqual(viewModel.promotionStageCounts[.sent], 36)   
+        XCTAssertEqual(viewModel.promotionStageCounts[.sent], 38)   
     }
     
     @MainActor func test_loadAllReferralsWithOutCache() async throws {
@@ -104,7 +109,7 @@ final class ReferralViewModelTests: XCTestCase {
         let viewModel = ReferralViewModel(authManager: mockAuthenticator, forceClient: forceClient, localFileManager: MockFileManager.mockInstance, devMode: false)
         do {
             
-            try await viewModel.loadAllReferrals(memberContactId: "")
+            try await viewModel.loadAllReferrals(membershipNumber: "")
             XCTAssertEqual(viewModel.promotionStageCounts[.accepted], 1)
             XCTAssertEqual(viewModel.promotionStageCounts[.sent], 36)
         } catch {
@@ -122,4 +127,20 @@ final class ReferralViewModelTests: XCTestCase {
         XCTAssertNotNil(viewModel.defaultPromotionInfo)
         XCTAssertEqual(viewModel.defaultPromotionInfo?.name, "Referral Promotion Without  Description")
     }
+
+    @MainActor func test_getDefaultPromotionDataForError() async throws {
+        let mockAuthenticator = MockAuthenticator.sharedMock
+        let forceClient = ForceClient(auth: MockAuthenticator.sharedMock, forceNetworkManager: ReferralMockNetworkManager.sharedMock)
+        let viewModel = ReferralViewModel(authManager: mockAuthenticator, forceClient: forceClient, localFileManager: MockFileManager.mockInstance,devMode: true, mockEnrollmentStatusApiState: .failed(CommonError.invalidData))
+        try await viewModel.getDefaultPromotionDetailsAndEnrollmentStatus(contactId: "")
+        XCTAssertEqual(viewModel.promotionScreenType, .promotionError)
+    }
+    
+    @MainActor func test_checkDefaultPromotionExpiryStaus()   {
+        let status = viewModel.checkDefaultPromotionExpiryStaus(promotionEndDateString: "2023-01-01")
+        XCTAssertEqual(status, true)
+        let expiredStatus = viewModel.checkDefaultPromotionExpiryStaus(promotionEndDateString: "2026-01-01")
+        XCTAssertEqual(expiredStatus, false)
+    }
+
 }

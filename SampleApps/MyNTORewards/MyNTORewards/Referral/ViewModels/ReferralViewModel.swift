@@ -88,7 +88,7 @@ class ReferralViewModel: ObservableObject {
         self.authManager = authManager
         self.forceClient = forceClient ?? ForceClient(auth: authManager)
         self.referralAPIManager = ReferralAPIManager(auth: self.authManager,
-                                                     referralProgramName: AppSettings.Defaults.referralProgramName,
+                                                     referralProgramName: AppSettings.shared.getLoyaltyProgramName(),
                                                      instanceURL: AppSettings.shared.getInstanceURL(),
                                                      forceClient: self.forceClient)
         self.devMode = devMode
@@ -101,7 +101,7 @@ class ReferralViewModel: ObservableObject {
 		self.mockEnrollmentStatusApiState = mockEnrollmentStatusApiState
     }
     
-    func loadAllReferrals(memberContactId: String, reload: Bool = false) async throws {
+    func loadAllReferrals(membershipNumber: String, reload: Bool = false) async throws {
         if !reload && !devMode {
             
             if let cached = localFileManager.getData(type: [Referral].self, id: promotionCode, folderName: referralsFolderName) {
@@ -112,7 +112,7 @@ class ReferralViewModel: ObservableObject {
             } else {
                 loadAllReferralsApiState = .loading
                 do {
-                    let result = try await fetchAllReferrals(memberContactId: memberContactId)
+                    let result = try await fetchAllReferrals(membershipNumber: membershipNumber)
                     promotionStageCounts = calculatePromotionStageCounts(in: result)
                     filterReferrals(referrals: result)
                     
@@ -132,7 +132,7 @@ class ReferralViewModel: ObservableObject {
 				throw CommonError.invalidData
 			}
             do {
-                let result = try await fetchAllReferrals(memberContactId: memberContactId)
+                let result = try await fetchAllReferrals(membershipNumber: membershipNumber)
                 promotionStageCounts = calculatePromotionStageCounts(in: result)
                 filterReferrals(referrals: result)
                 
@@ -146,14 +146,14 @@ class ReferralViewModel: ObservableObject {
         }
     }
     
-    func getReferralsDataFromServer(memberContactId: String) async throws {
+    func getReferralsDataFromServer(membershipNumber: String) async throws {
 		if devMode && mockApiState == .failed(CommonError.invalidData) {
 			loadAllReferralsApiState = .failed(CommonError.invalidData)
 			throw CommonError.invalidData
 		}
         do {
             loadAllReferralsApiState = .loading
-            let result = try await fetchAllReferrals(memberContactId: memberContactId)
+            let result = try await fetchAllReferrals(membershipNumber: membershipNumber)
             promotionStageCounts = calculatePromotionStageCounts(in: result)
             filterReferrals(referrals: result)
             loadAllReferralsApiState = .loaded
@@ -167,24 +167,21 @@ class ReferralViewModel: ObservableObject {
         }
     }
     
-    func fetchAllReferrals(memberContactId: String) async throws -> [Referral] {
-        let query = """
-            SELECT ReferrerId, Id, ClientEmail, ReferrerEmail, ReferralDate, CurrentPromotionStage.Type,
-                TYPEOF ReferredParty
-                    WHEN Contact THEN Account.PersonEmail
-                    WHEN Account THEN PersonEmail
-                END
-            FROM Referral WHERE ReferralDate = LAST_90_DAYS AND ReferrerId = '\(memberContactId)'
-            ORDER BY ReferralDate DESC
-        """
-        
+    func fetchAllReferrals(membershipNumber: String) async throws -> [Referral] {
         do {
             if devMode {
                 let result = try forceClient.fetchLocalJson(type: [Referral].self, file: "Referrals")
                 return result
             }
-            let queryResult = try await forceClient.SOQL(type: Referral.self, for: query)
-            return queryResult.records
+            let queryItems = [
+                "membershipnumber": membershipNumber
+            ]
+            let path = "/services/apexrest/get-referral-details/"
+            let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(),
+                                                  path: path,
+                                                  method: "GET", queryItems: queryItems)
+            let referralOutput = try await forceClient.fetch(type: MyReferralListOutPutModel.self, with: request)
+            return referralOutput.referralList ?? []
         } catch {
             Logger.error(error.localizedDescription)
             throw error
@@ -217,8 +214,8 @@ class ReferralViewModel: ObservableObject {
         }
     }
     
-    func checkDefaultPromotionExpiryStaus() -> Bool {
-        if let promotionEndDateString = defaultPromotionInfo?.endDate, let promotionEndDate = promotionEndDateString.toDate(), promotionEndDate < Date() {
+    func checkDefaultPromotionExpiryStaus(promotionEndDateString: String?) -> Bool {
+        if let promotionEndDateString = promotionEndDateString, let promotionEndDate = promotionEndDateString.toDate(), promotionEndDate < Date() {
             // expired promotion
             displayError = (true, StringConstants.Referrals.expiredPromotionError)
             enrollmentStatusApiState = .loaded
@@ -237,7 +234,7 @@ class ReferralViewModel: ObservableObject {
 			return
 		}
         if defaultPromotionInfo != nil {
-            if checkDefaultPromotionExpiryStaus() {
+            if checkDefaultPromotionExpiryStaus(promotionEndDateString: defaultPromotionInfo?.endDate) {
                 return
             }
             await isEnrolledForDefaultPromotion(contactId: contactId)
@@ -248,7 +245,7 @@ class ReferralViewModel: ObservableObject {
             let query = "SELECT Id, IsReferralPromotion, PromotionCode, Name, Description, ImageUrl, PromotionPageUrl, EndDate  FROM Promotion Where PromotionCode= '\(promotionCode)'"
             let promotion = try await forceClient.SOQL(type: ReferralPromotionObject.self, for: query)
             defaultPromotionInfo = promotion.records.first
-            if checkDefaultPromotionExpiryStaus() {
+            if checkDefaultPromotionExpiryStaus(promotionEndDateString: defaultPromotionInfo?.endDate) {
                 return
             }
             if defaultPromotionInfo?.promotionCode != nil {
@@ -316,7 +313,10 @@ class ReferralViewModel: ObservableObject {
                 promotionScreenType = .promotionError
                 displayError = (true, StringConstants.Referrals.enrollmentError)
             }
-        } catch {
+        } catch CommonError.responseUnsuccessful(_, let errorMessage), CommonError.unknownException(let errorMessage) {
+            displayError = (true, errorMessage)
+            promotionScreenType = .promotionError
+       } catch {
             Logger.error("Referral Enrollment Error: \(error.localizedDescription)")
             promotionScreenType = .promotionError
             displayError = (true, error.localizedDescription)

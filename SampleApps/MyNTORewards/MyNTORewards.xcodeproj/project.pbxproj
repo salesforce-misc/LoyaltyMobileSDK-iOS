@@ -280,6 +280,7 @@
 		4F6809F72B3552560001E175 /* GameZonePlayedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6809F62B3552560001E175 /* GameZonePlayedCardView.swift */; };
 		4F6809F92B3564190001E175 /* PlayedGameNoLuckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6809F82B3564190001E175 /* PlayedGameNoLuckView.swift */; };
 		4F6809FB2B3569380001E175 /* PlayedGameCongratsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6809FA2B3569380001E175 /* PlayedGameCongratsView.swift */; };
+		4F6849312BB586AF00ADBEC0 /* MyReferralListOutPutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6849302BB586AF00ADBEC0 /* MyReferralListOutPutModel.swift */; };
 		4F7BD9852ADE417E003B7ADA /* GameZoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9842ADE417E003B7ADA /* GameZoneViewModel.swift */; };
 		4F7BD9872ADE7F88003B7ADA /* GameZoneCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9862ADE7F88003B7ADA /* GameZoneCardView.swift */; };
 		4F7BD9892ADE8D52003B7ADA /* GameZoneGridContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7BD9882ADE8D52003B7ADA /* GameZoneGridContainerView.swift */; };
@@ -616,6 +617,7 @@
 		4F6809F62B3552560001E175 /* GameZonePlayedCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZonePlayedCardView.swift; sourceTree = "<group>"; };
 		4F6809F82B3564190001E175 /* PlayedGameNoLuckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayedGameNoLuckView.swift; sourceTree = "<group>"; };
 		4F6809FA2B3569380001E175 /* PlayedGameCongratsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayedGameCongratsView.swift; sourceTree = "<group>"; };
+		4F6849302BB586AF00ADBEC0 /* MyReferralListOutPutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReferralListOutPutModel.swift; sourceTree = "<group>"; };
 		4F7BD9842ADE417E003B7ADA /* GameZoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneViewModel.swift; sourceTree = "<group>"; };
 		4F7BD9862ADE7F88003B7ADA /* GameZoneCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneCardView.swift; sourceTree = "<group>"; };
 		4F7BD9882ADE8D52003B7ADA /* GameZoneGridContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameZoneGridContainerView.swift; sourceTree = "<group>"; };
@@ -974,6 +976,7 @@
 			isa = PBXGroup;
 			children = (
 				2988B5B72B4CD9D900C2D74C /* Referral.swift */,
+				4F6849302BB586AF00ADBEC0 /* MyReferralListOutPutModel.swift */,
 				2905820B2B685C580071CB43 /* ReferralMember.swift */,
 			);
 			path = Models;
@@ -1898,6 +1901,7 @@
 				293F643129D6C5AD001AC795 /* ForceConnectedApp.swift in Sources */,
 				2905820C2B685C580071CB43 /* ReferralMember.swift in Sources */,
 				2955346B29E93EF800CFA391 /* InfoNavigationLink.swift in Sources */,
+				4F6849312BB586AF00ADBEC0 /* MyReferralListOutPutModel.swift in Sources */,
 				4F2B80302B7E03CA007ECECF /* ReferralListSuccessView.swift in Sources */,
 				292453E62A185D75002112B3 /* Bundle+Info.swift in Sources */,
 				3FE71D0A2B3199CD006E6BF5 /* BenefitView.swift in Sources */,
