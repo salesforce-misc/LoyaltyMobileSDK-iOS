@@ -46,7 +46,7 @@ class AppRootViewModel: ObservableObject {
     
     init() {
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
-                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+                                              loyaltyProgramName: AppSettings.shared.getLoyaltyProgramName(),
                                               instanceURL: AppSettings.shared.getInstanceURL(),
                                               forceClient: ForceClient(auth: authManager))
     }
@@ -176,7 +176,7 @@ class AppRootViewModel: ObservableObject {
 				// Cannot get the member info from local, then call getCommunityMemberProfile
 				let authManager = ForceAuthManager.shared
 				let loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
-														  loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+                                                          loyaltyProgramName: AppSettings.shared.getLoyaltyProgramName(),
                                                           instanceURL: AppSettings.shared.getInstanceURL(),
                                                           forceClient: ForceClient(auth: authManager))
 				let profile = try await loyaltyAPIManager.getCommunityMemberProfile()
