@@ -28,8 +28,8 @@ struct AppCurrencySettingView: View {
                 }
                 
                 HStack {
-                    Text("Redeemable Currency Nickname")
-                    NavigationLink(destination: AppSettingsTextFieldView(settingName: "Redeemable Currency Nickname",
+                    Text("Redeemable Currency Alias")
+                    NavigationLink(destination: AppSettingsTextFieldView(settingName: "Redeemable Currency Alias",
                                                                          textFieldValue: appSettingsVM.rewardCurrencyNameShort,
                                                                          fieldType: .rewardCurrencyNameShortField)) {
                         HStack {
@@ -62,4 +62,5 @@ struct AppCurrencySettingView: View {
 
 #Preview {
     AppCurrencySettingView()
+        .environmentObject(AdminAppSettingsViewModel())
 }
