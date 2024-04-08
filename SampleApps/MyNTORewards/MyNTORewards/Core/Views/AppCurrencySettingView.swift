@@ -40,6 +40,19 @@ struct AppCurrencySettingView: View {
                     }
                 }
                 
+                HStack {
+                    Text("Tier Currency Name")
+                    NavigationLink(destination: AppSettingsTextFieldView(settingName: "Tier Currency Name",
+                                                                         textFieldValue: appSettingsVM.tierCurrencyName,
+                                                                         fieldType: .tierCurrencyNameField)) {
+                        HStack {
+                            Spacer()
+                            Text(appSettingsVM.tierCurrencyName)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                }
+                
             }
             .navigationTitle("Currencies")
             .navigationBarTitleDisplayMode(.inline)

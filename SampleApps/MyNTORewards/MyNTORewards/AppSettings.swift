@@ -60,6 +60,7 @@ struct AppSettings {
         static let storedLoyaltyProgramNameKey = "LoyaltyMobileSDK.loyaltyProgramName"
         static let storedRewardCurrencyNameKey = "LoyaltyMobileSDK.rewardCurrencyName"
         static let storedRewardCurrencyNameShortKey = "LoyaltyMobileSDK.rewardCurrencyNameShort"
+        static let storedTierCurrencyNameKey = "LoyaltyMobileSDK.tierCurrencyName"
     }
     
     struct cacheFolders {
@@ -128,6 +129,14 @@ struct AppSettings {
             return storedValue
         } else {
             return Defaults.rewardCurrencyNameShort
+        }
+    }
+    
+    func getTierCurrencyName() -> String {
+        if let storedValue = UserDefaults.standard.string(forKey: Defaults.storedTierCurrencyNameKey) {
+            return storedValue
+        } else {
+            return Defaults.tierCurrencyName
         }
     }
 }

@@ -11,6 +11,7 @@ enum AdminAppSettingsField {
     case loyaltyProgramNameField
     case rewardCurrencyNameField
     case rewardCurrencyNameShortField
+    case tierCurrencyNameField
 }
 
 class AdminAppSettingsViewModel: ObservableObject {
@@ -18,6 +19,7 @@ class AdminAppSettingsViewModel: ObservableObject {
     @Published var loyaltyProgramName = AppSettings.shared.getLoyaltyProgramName()
     @Published var rewardCurrencyName = AppSettings.shared.getRewardCurrencyName()
     @Published var rewardCurrencyNameShort = AppSettings.shared.getRewardCurrencyNameShort()
+    @Published var tierCurrencyName = AppSettings.shared.getTierCurrencyName()
     
     private func updateLoyaltyProgramName(newValue: String) {
         if loyaltyProgramName != newValue {
@@ -40,6 +42,13 @@ class AdminAppSettingsViewModel: ObservableObject {
         }
     }
     
+    private func updateTierCurrencyName(newValue: String) {
+        if tierCurrencyName != newValue {
+            tierCurrencyName = newValue
+            UserDefaults.standard.setValue(newValue, forKey: AppSettings.Defaults.storedTierCurrencyNameKey)
+        }
+    }
+    
     func update(field: AdminAppSettingsField, newValue: String) {
         switch field {
         case .loyaltyProgramNameField:
@@ -48,6 +57,8 @@ class AdminAppSettingsViewModel: ObservableObject {
             updateRewardCurrencyName(newValue: newValue)
         case .rewardCurrencyNameShortField:
             updateRewardCurrencyNameShort(newValue: newValue)
+        case .tierCurrencyNameField:
+            updateTierCurrencyName(newValue: newValue)
             
         }
     }
