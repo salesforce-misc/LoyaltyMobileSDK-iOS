@@ -40,7 +40,7 @@ class PromotionGateWayViewModel: ObservableObject {
             self.authManager = authManager
             self.forceClient = forceClient ?? ForceClient(auth: authManager)
             self.referralAPIManager = ReferralAPIManager(auth: self.authManager,
-                                                         referralProgramName: AppSettings.shared.getLoyaltyProgramName(),
+                                                         referralProgramName: AppSettings.shared.getReferralProgramName(),
                                                          instanceURL: AppSettings.shared.getInstanceURL(),
                                                          forceClient: self.forceClient)
 		self.devMode = devMode
