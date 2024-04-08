@@ -15,8 +15,8 @@ struct AppCurrencySettingView: View {
         Section {
             List {
                 HStack {
-                    Text("Currency Name")
-                    NavigationLink(destination: AppSettingsTextFieldView(settingName: "Currency Name", 
+                    Text("Redeemable Currency")
+                    NavigationLink(destination: AppSettingsTextFieldView(settingName: "Redeemable Currency",
                                                                          textFieldValue: appSettingsVM.rewardCurrencyName,
                                                                          fieldType: .rewardCurrencyNameField)) {
                         HStack {
@@ -28,8 +28,8 @@ struct AppCurrencySettingView: View {
                 }
                 
                 HStack {
-                    Text("Currency Name Short")
-                    NavigationLink(destination: AppSettingsTextFieldView(settingName: "Currency Name Short", 
+                    Text("Redeemable Currency Nickname")
+                    NavigationLink(destination: AppSettingsTextFieldView(settingName: "Redeemable Currency Nickname",
                                                                          textFieldValue: appSettingsVM.rewardCurrencyNameShort,
                                                                          fieldType: .rewardCurrencyNameShortField)) {
                         HStack {
@@ -41,8 +41,8 @@ struct AppCurrencySettingView: View {
                 }
                 
                 HStack {
-                    Text("Tier Currency Name")
-                    NavigationLink(destination: AppSettingsTextFieldView(settingName: "Tier Currency Name",
+                    Text("Tier Qualification Currency")
+                    NavigationLink(destination: AppSettingsTextFieldView(settingName: "Tier Qualification Currency",
                                                                          textFieldValue: appSettingsVM.tierCurrencyName,
                                                                          fieldType: .tierCurrencyNameField)) {
                         HStack {

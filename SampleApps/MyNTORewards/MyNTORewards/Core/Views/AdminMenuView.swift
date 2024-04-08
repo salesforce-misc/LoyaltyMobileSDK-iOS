@@ -15,7 +15,7 @@ struct AdminMenuView: View {
                     Text("Connected App")
                 }
                 NavigationLink(destination: AdminAppSettingsView()) {
-                    Text("App Settings")
+                    Text("Loyalty Program Settings")
                 }
             }
             .navigationTitle("Settings")
