@@ -57,7 +57,7 @@ struct RewardPointsCardView: View {
 
                     }
                     .overlay(alignment: .bottomLeading) {
-                        Text("REWARD POINTS") // Hardcoded for now
+                        Text(AppSettings.shared.getRewardCurrencyName().uppercased())
                             .accessibilityIdentifier(AppAccessibilty.Profile.rewardPointsText)
                             .font(.transactionPoints)
                             .foregroundColor(.white)
