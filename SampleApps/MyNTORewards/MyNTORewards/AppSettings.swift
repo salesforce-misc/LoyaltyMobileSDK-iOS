@@ -120,6 +120,10 @@ struct AppSettings {
         }
     }
     
+    func getReferralProgramName() -> String {
+        return getLoyaltyProgramName()
+    }
+    
     func getRewardCurrencyName() -> String {
         if let storedValue = UserDefaults.standard.string(forKey: Defaults.storedRewardCurrencyNameKey) {
             return storedValue
