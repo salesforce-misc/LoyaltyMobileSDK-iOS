@@ -227,7 +227,13 @@ class AppRootViewModel: ObservableObject {
                 let phone = contact?.string(forField: "Phone") ?? ""
                 
                 let membershipNumber = LoyaltyUtilities.randomString(of: 8)
-                let enrolledMember = try await loyaltyAPIManager.postEnrollment(membershipNumber: membershipNumber,
+                let authManager = ForceAuthManager.shared
+                let loyaltyAPIManagerEnrollMent = LoyaltyAPIManager(auth: authManager,
+                                                          loyaltyProgramName: AppSettings.shared.getLoyaltyProgramName(),
+                                                          instanceURL: AppSettings.shared.getInstanceURL(),
+                                                          forceClient: ForceClient(auth: authManager))
+                
+                let enrolledMember = try await loyaltyAPIManagerEnrollMent.postEnrollment(membershipNumber: membershipNumber,
                                                                                 firstName: firstName,
                                                                                 lastName: lastName,
                                                                                 email: email,

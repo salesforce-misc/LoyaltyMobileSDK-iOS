@@ -174,7 +174,8 @@ class ReferralViewModel: ObservableObject {
                 return result
             }
             let queryItems = [
-                "membershipnumber": membershipNumber
+                "membershipnumber": membershipNumber,
+                "noOfDays": "90"
             ]
             let path = "/services/apexrest/get-referral-details/"
             let request = try ForceRequest.create(instanceURL: AppSettings.shared.getInstanceURL(),
