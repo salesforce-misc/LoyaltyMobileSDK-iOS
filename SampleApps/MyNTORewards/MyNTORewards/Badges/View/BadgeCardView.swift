@@ -13,11 +13,7 @@ struct BadgeCardView: View {
 	
     var body: some View {
 		HStack(spacing: 16) {
-			Image(BadgeSettings.Asset.defaultBadgeImage)
-				.resizable()
-				.frame(width: BadgeSettings.Dimension.cardWidth,
-					   height: BadgeSettings.Dimension.cardHeight
-				)
+			badgeImage
 			Group {
 				VStack(alignment: .leading, spacing: 8) {
 					title
@@ -34,6 +30,25 @@ struct BadgeCardView: View {
 		.cornerRadius(10)
 		.frame(maxWidth: .infinity)
     }
+	
+	@ViewBuilder
+	var badgeImage: some View {
+		Group {
+			if let imageUrl = badge.imageUrl {
+				LoyaltyAsyncImage(url: imageUrl, content: { image in
+					image
+						.resizable()
+						.scaledToFill()
+				}, placeholder: {
+					ProgressView()
+				})
+			} else {
+				Image(BadgeSettings.Asset.defaultBadgeImage)
+					.resizable()
+			}
+		}.frame(width: BadgeSettings.Dimension.cardWidth,
+				height: BadgeSettings.Dimension.cardHeight)
+	}
 	
 	var title: some View {
 		HStack {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LoyaltyProgramMemberBadge: Codable {
+struct LoyaltyProgramMemberBadge: Codable, Hashable, Equatable {
 	let name: String
 	let startDate: Date?
 	let endDate: Date?
@@ -24,6 +24,14 @@ struct LoyaltyProgramMemberBadge: Codable {
 		case status = "Status"
 		case loyaltyProgramMemberId = "LoyaltyProgramMemberId"
 		case loyaltyProgramBadgeId = "LoyaltyProgramBadgeId"
+	}
+	
+	static func == (lhs: LoyaltyProgramMemberBadge, rhs: LoyaltyProgramMemberBadge) -> Bool {
+		return lhs.loyaltyProgramBadgeId == rhs.loyaltyProgramBadgeId
+	}
+
+	func hash(into hasher: inout Hasher) {
+		hasher.combine(loyaltyProgramBadgeId)
 	}
 }
 

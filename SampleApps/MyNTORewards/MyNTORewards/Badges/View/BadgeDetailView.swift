@@ -40,10 +40,21 @@ struct BadgeDetailView: View {
 				.frame(height: BadgeSettings.Dimension.detailBackgroundRectangleHeight)
 				.foregroundColor(badge.type == .expired ? BadgeSettings.Colors.expiredBadgeDetailBackgroundColor : BadgeSettings.Colors.badgeDetailBackgroundColor)
 				.overlay(alignment: .topTrailing, content: { closeIcon })
-			Image(BadgeSettings.Asset.defaultBadgeImage)
-				.resizable()
-				.frame(width: BadgeSettings.Dimension.detailBadgeImageWidth,
-					   height: BadgeSettings.Dimension.detailBadgeImageHeight)
+			Group {
+				if let imageUrl = badge.imageUrl {
+					LoyaltyAsyncImage(url: imageUrl, content: { image in
+						image
+							.resizable()
+							.scaledToFill()
+					}, placeholder: {
+						ProgressView()
+					})
+				} else {
+					Image(BadgeSettings.Asset.defaultBadgeImage)
+						.resizable()
+				}
+			}.frame(width: BadgeSettings.Dimension.detailBadgeImageWidth,
+					height: BadgeSettings.Dimension.detailBadgeImageHeight)
 		}
 	}
 	

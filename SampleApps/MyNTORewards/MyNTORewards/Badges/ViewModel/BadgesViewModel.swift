@@ -124,9 +124,10 @@ final class BadgesViewModel: ObservableObject {
 	/// Available Badges = LoyaltyProgramBadge's Id not matching with LoyaltyProgramMemberBadge's LoyaltyProgramBadgeId
 	private func loadBadges() {
 		clearBadges()
-		for programBadge in loyaltyProgramBadges {
+		let uniqueMemberBadges = Array(Set(self.loyaltyProgramMemberBadges))
+		for programBadge in self.loyaltyProgramBadges {
 			var isMemberBadgeFound: Bool = false
-			for memberBadge in loyaltyProgramMemberBadges 
+			for memberBadge in uniqueMemberBadges
 			where memberBadge.loyaltyProgramBadgeId == programBadge.id {
 				isMemberBadgeFound = true
 				switch memberBadge.status {
