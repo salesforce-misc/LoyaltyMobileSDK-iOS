@@ -29,6 +29,9 @@ struct BadgesView: View {
 					ForEach(Array(badgesVM.previewBadges.enumerated()), id: \.offset) { _, badge in
 						BadgePreviewCardView(badge: badge)
 					}
+					if badgesVM.previewBadges.count < 3 {
+						Spacer()
+					}
 				}
 				.padding(.horizontal, 16)
 				Spacer()
