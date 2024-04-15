@@ -37,7 +37,7 @@ struct AppSettings {
     }
 
     struct Defaults {
-        static let loyaltyProgramName = "VIP Pro"
+        static let loyaltyProgramName = "NTO Insider"
         static let apiVersion = "54.0"
         static let authPath = "/services/oauth2/authorize"
         static let tokenPath = "/services/oauth2/token"
