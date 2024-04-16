@@ -14,10 +14,10 @@ struct TransactionCardView: View {
     
     var body: some View {
         
-        let points = transaction.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName)
+        let points = transaction.getCurrencyPoints(currencyName: AppSettings.shared.getRewardCurrencyName())
         // swiftlint:disable line_length
         let roundedPoints = String(format: "%.2f", points)
-        let pointsString = Int(points) >= 0 ? "+\(roundedPoints) \(AppSettings.Defaults.rewardCurrencyNameShort)" : "\(roundedPoints) \(AppSettings.Defaults.rewardCurrencyNameShort)"
+        let pointsString = Int(points) >= 0 ? "+\(roundedPoints) \(AppSettings.shared.getRewardCurrencyNameShort())" : "\(roundedPoints) \(AppSettings.shared.getRewardCurrencyNameShort())"
         // swiftlint:enable line_length
         
         HStack(spacing: 10) {

@@ -29,7 +29,7 @@ struct AmountPayableView: View {
                 Text("Use my points")
                     .font(.useMyPointsText)
                 Spacer()
-				Text("Available Points: \(Int(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0))")
+                Text("Available Points: \(Int(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.shared.getRewardCurrencyName()) ?? 0))")
                     .font(.useMyPointsText)
             }
             HStack {

@@ -41,7 +41,7 @@ class OrderDetailsViewModel: ObservableObject {
 		do {
 			let productPrice = Double(productVM.basePrice)
 			let orderTotal = Double(productVM.getTotalAmount())
-			let pointsBalance = profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0
+            let pointsBalance = profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.shared.getRewardCurrencyName()) ?? 0
 			
 			let placedOrderResponse = try await placeOrder(productPrice: productPrice,
 										   orderTotal: orderTotal,
