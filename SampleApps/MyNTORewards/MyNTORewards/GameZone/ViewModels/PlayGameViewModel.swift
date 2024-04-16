@@ -14,9 +14,8 @@ class PlayGameViewModel: ObservableObject {
     @Published private(set) var state = LoadingState.idle
     @Published var playedGameRewards: [PlayGameReward]?
     @Published var issuedRewardId: String?
-    let defaultColors: [String] = ["01CD6C", "#0099DD", "#FF4B3A", "#0099DD", "#0099DD", "#FF4B3A", "01CD6C", "#0099DD", "#FF4B3A", "#FFC501" ]
-    var wheelColors: [Color]?
-
+    
+	var wheelColors: [Color]?
     private let authManager: GamificationForceAuthenticator
     private var gamificationAPIManager: APIManager
     private var devMode: Bool
@@ -61,7 +60,7 @@ class PlayGameViewModel: ObservableObject {
         if let wheelColors = wheelColors {
             return wheelColors
         }
-        if let colors: [Color] = gameModel?.gameRewards.map({(Color(hex: ($0.color ?? "#FFFFFF")))}) {
+        if let colors: [Color] = gameModel?.gameRewards.map({(Color(hex: ($0.color ?? "#2636E3")))}) {
             wheelColors = colors
             return wheelColors
         }

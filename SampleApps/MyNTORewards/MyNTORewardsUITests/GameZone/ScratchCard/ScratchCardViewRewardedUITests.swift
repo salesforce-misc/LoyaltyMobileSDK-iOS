@@ -29,10 +29,10 @@ final class ScratchCardViewRewardedUITests: XCTestCase {
 	func test_scratchCardUIElements() {
 		GameZoneViewHelper.goToScratchCardView(app: app)
 		
-		let title = app.staticTexts["Scratch a Card and Win"]
+		let title = app.staticTexts["Cat Scratch Fever Returns"]
 		XCTAssertTrue(title.waitForExistence(timeout: 1))
 		
-		let subtitle = app.staticTexts["Unlock instant rewards!"]
+		let subtitle = app.staticTexts["Play Spin The Wheel to Get Amazing Rewards"]
 		XCTAssertTrue(subtitle.exists)
 		
 		let wrapperTexts = app.staticTexts.containing(NSPredicate(format: "label CONTAINS 'SCRATCH & WIN  SCRATCH & WIN  SCRATCH & WIN'")).firstMatch
@@ -91,7 +91,7 @@ final class ScratchCardViewRewardedUITests: XCTestCase {
 		XCTAssertTrue(app.staticTexts["Congratulations!"].waitForExistence(timeout: 5))
 		app.buttons["Play More"].tap()
 		XCTAssert(app.staticTexts["Game Zone"].exists)
-		XCTAssert(app.staticTexts["Active"].exists)
+		XCTAssert(app.staticTexts["Available"].exists)
 		XCTAssert(app.staticTexts["Expired"].exists)
 	}
 }

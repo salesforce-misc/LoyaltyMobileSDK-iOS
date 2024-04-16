@@ -19,7 +19,7 @@ struct ProcessedReceipt: Codable, Identifiable, Hashable {
     let totalAmount: String?
     let storeName: String
     let storeAddress: String?
-    let receiptNumber: String
+    let receiptNumber: String?
     let receiptDate: Date?
     let lineItem: [ProcessedReceiptItem]
     let confidenceStatus: ProcessedReceiptConfidenceStatus
@@ -29,7 +29,7 @@ struct ProcessedReceipt: Codable, Identifiable, Hashable {
         totalAmount: String?,
         storeName: String,
         storeAddress: String,
-        receiptNumber: String,
+        receiptNumber: String?,
         receiptDate: Date?,
         lineItem: [ProcessedReceiptItem],
         confidenceStatus: ProcessedReceiptConfidenceStatus) {

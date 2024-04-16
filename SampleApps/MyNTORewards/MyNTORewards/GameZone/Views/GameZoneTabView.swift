@@ -16,7 +16,7 @@ struct GameZoneTabView: View {
     var body: some View {
         switch gameViewModel.state {
         case .idle:
-            Color.theme.background.onAppear(perform: getGames)
+            Color.theme.background
         case .loading:
             ProgressView()
         case .failed:
