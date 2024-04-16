@@ -107,6 +107,10 @@
 		29BD48942AC696D400F10158 /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD48932AC696D400F10158 /* LocaleManager.swift */; };
 		29BD48992ACCB42C00F10158 /* ScratchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD48982ACCB42C00F10158 /* ScratchCardView.swift */; };
 		29EC33242AAA962A00104363 /* ProcessingErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EC33232AAA962A00104363 /* ProcessingErrorView.swift */; };
+		3F0C2F192BB9B4BF00A1A9E9 /* AllBadgesViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C2F182BB9B4BF00A1A9E9 /* AllBadgesViewUITests.swift */; };
+		3F0C2F1C2BB9BB0300A1A9E9 /* BadgesViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C2F1B2BB9BB0300A1A9E9 /* BadgesViewHelper.swift */; };
+		3F0C2F1E2BB9C4F600A1A9E9 /* AvailableBadgesTabViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C2F1D2BB9C4F600A1A9E9 /* AvailableBadgesTabViewUITests.swift */; };
+		3F0C2F202BB9C65600A1A9E9 /* ExpiredBadgesTabViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C2F1F2BB9C65600A1A9E9 /* ExpiredBadgesTabViewUITests.swift */; };
 		3F0C4F792A827A0B00394CB0 /* ManualReviewInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C4F782A827A0B00394CB0 /* ManualReviewInputView.swift */; };
 		3F1447222B2B2C4300047888 /* UITestingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1447212B2B2C4300047888 /* UITestingHelper.swift */; };
 		3F16D95D2A9D8E85003DA01A /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F16D95C2A9D8E85003DA01A /* ZoomableScrollView.swift */; };
@@ -124,6 +128,8 @@
 		3F3805B62A7A6EF700223808 /* View+Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3805B52A7A6EF700223808 /* View+Destination.swift */; };
 		3F3983D72AB00AAD00C5C980 /* ReceiptStatusUpdateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3983D62AB00AAD00C5C980 /* ReceiptStatusUpdateResponse.swift */; };
 		3F3E65A42A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */; };
+		3F45CD082BBAE205001D787F /* PreviewErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45CD072BBAE205001D787F /* PreviewErrorView.swift */; };
+		3F45CD0A2BBAEFA6001D787F /* PreviewEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45CD092BBAEFA5001D787F /* PreviewEmptyView.swift */; };
 		3F5002AF2A5F9AB900E12AE4 /* ReceiptListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002AE2A5F9AB900E12AE4 /* ReceiptListItem.swift */; };
 		3F5002B12A5FA07100E12AE4 /* ReceiptList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */; };
 		3F5002B72A5FC82800E12AE4 /* ReceiptSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */; };
@@ -190,6 +196,19 @@
 		3FB333972A18E33800C3A639 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB333962A18E33800C3A639 /* ProductViewModel.swift */; };
 		3FB5E6A02B35595F0057C46B /* View+LifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB5E69F2B35595F0057C46B /* View+LifeCycle.swift */; };
 		3FBEFDEE2A0D1CB400685BAF /* TestDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBEFDED2A0D1CB400685BAF /* TestDataStore.swift */; };
+		3FBFB8BC2BB991B30090552E /* BadgeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8BB2BB991B30090552E /* BadgeSettings.swift */; };
+		3FBFB8C22BB991D30090552E /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8BE2BB991D20090552E /* Badge.swift */; };
+		3FBFB8C32BB991D30090552E /* LoyaltyProgramBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8BF2BB991D20090552E /* LoyaltyProgramBadge.swift */; };
+		3FBFB8C42BB991D30090552E /* LoyaltyProgramMemberBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8C02BB991D30090552E /* LoyaltyProgramMemberBadge.swift */; };
+		3FBFB8C52BB991D30090552E /* BadgeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8C12BB991D30090552E /* BadgeType.swift */; };
+		3FBFB8CD2BB991EF0090552E /* AllBadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8C72BB991EC0090552E /* AllBadgesView.swift */; };
+		3FBFB8CE2BB991EF0090552E /* BadgePreviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8C82BB991ED0090552E /* BadgePreviewCardView.swift */; };
+		3FBFB8CF2BB991EF0090552E /* BadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8C92BB991ED0090552E /* BadgesView.swift */; };
+		3FBFB8D02BB991EF0090552E /* BadgeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8CA2BB991EE0090552E /* BadgeDetailView.swift */; };
+		3FBFB8D12BB991EF0090552E /* BadgeTabContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8CB2BB991EE0090552E /* BadgeTabContentView.swift */; };
+		3FBFB8D22BB991EF0090552E /* BadgeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8CC2BB991EF0090552E /* BadgeCardView.swift */; };
+		3FBFB8D52BB991FE0090552E /* BadgesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8D42BB991FE0090552E /* BadgesViewModel.swift */; };
+		3FBFB8DA2BB995FC0090552E /* BadgeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFB8D92BB995FC0090552E /* BadgeViewModelTests.swift */; };
 		3FC37C8E2B444534005A3E2C /* PlayedTabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC37C8D2B444534005A3E2C /* PlayedTabUITests.swift */; };
 		3FC92C612A0AA9E30081BFEC /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC92C602A0AA9E30081BFEC /* Order.swift */; };
 		3FE082DC2B47FC080034BF93 /* GameCardViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE082DB2B47FC080034BF93 /* GameCardViewProtocol.swift */; };
@@ -197,14 +216,11 @@
 		3FE71CF92B3199CD006E6BF5 /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CCE2B3199C9006E6BF5 /* OnboardingCardView.swift */; };
 		3FE71CFA2B3199CD006E6BF5 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CCF2B3199C9006E6BF5 /* QRCodeView.swift */; };
 		3FE71CFB2B3199CD006E6BF5 /* TermsAndConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CD02B3199C9006E6BF5 /* TermsAndConditionsView.swift */; };
-		3FE71CFC2B3199CD006E6BF5 /* BadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CD12B3199C9006E6BF5 /* BadgesView.swift */; };
 		3FE71CFD2B3199CD006E6BF5 /* AllTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CD22B3199C9006E6BF5 /* AllTransactionsView.swift */; };
 		3FE71CFE2B3199CD006E6BF5 /* RewardPointsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CD32B3199C9006E6BF5 /* RewardPointsCardView.swift */; };
 		3FE71D002B3199CD006E6BF5 /* PromotionCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CD52B3199CA006E6BF5 /* PromotionCarouselView.swift */; };
 		3FE71D012B3199CD006E6BF5 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CD62B3199CA006E6BF5 /* AppRootView.swift */; };
 		3FE71D022B3199CD006E6BF5 /* MyPromotionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CD72B3199CA006E6BF5 /* MyPromotionsView.swift */; };
-		3FE71D032B3199CD006E6BF5 /* BadgeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CD82B3199CA006E6BF5 /* BadgeCardView.swift */; };
-		3FE71D042B3199CD006E6BF5 /* AllBadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CD92B3199CA006E6BF5 /* AllBadgesView.swift */; };
 		3FE71D052B3199CD006E6BF5 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CDA2B3199CA006E6BF5 /* ResetPasswordView.swift */; };
 		3FE71D062B3199CD006E6BF5 /* CheckYourEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CDB2B3199CA006E6BF5 /* CheckYourEmailView.swift */; };
 		3FE71D072B3199CD006E6BF5 /* PromotionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE71CDC2B3199CA006E6BF5 /* PromotionCardView.swift */; };
@@ -411,6 +427,10 @@
 		29BD48982ACCB42C00F10158 /* ScratchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScratchCardView.swift; sourceTree = "<group>"; };
 		29EC33232AAA962A00104363 /* ProcessingErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingErrorView.swift; sourceTree = "<group>"; };
 		29EC33252AAA999F00104363 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		3F0C2F182BB9B4BF00A1A9E9 /* AllBadgesViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBadgesViewUITests.swift; sourceTree = "<group>"; };
+		3F0C2F1B2BB9BB0300A1A9E9 /* BadgesViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewHelper.swift; sourceTree = "<group>"; };
+		3F0C2F1D2BB9C4F600A1A9E9 /* AvailableBadgesTabViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableBadgesTabViewUITests.swift; sourceTree = "<group>"; };
+		3F0C2F1F2BB9C65600A1A9E9 /* ExpiredBadgesTabViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiredBadgesTabViewUITests.swift; sourceTree = "<group>"; };
 		3F0C4F782A827A0B00394CB0 /* ManualReviewInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualReviewInputView.swift; sourceTree = "<group>"; };
 		3F1447212B2B2C4300047888 /* UITestingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingHelper.swift; sourceTree = "<group>"; };
 		3F16D95C2A9D8E85003DA01A /* ZoomableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
@@ -428,6 +448,8 @@
 		3F3805B52A7A6EF700223808 /* View+Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Destination.swift"; sourceTree = "<group>"; };
 		3F3983D62AB00AAD00C5C980 /* ReceiptStatusUpdateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptStatusUpdateResponse.swift; sourceTree = "<group>"; };
 		3F3E65A32A02BAAA00180569 /* AuthenticationAndLoyaltyAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAndLoyaltyAPITests.swift; sourceTree = "<group>"; };
+		3F45CD072BBAE205001D787F /* PreviewErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewErrorView.swift; sourceTree = "<group>"; };
+		3F45CD092BBAEFA5001D787F /* PreviewEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewEmptyView.swift; sourceTree = "<group>"; };
 		3F5002AE2A5F9AB900E12AE4 /* ReceiptListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListItem.swift; sourceTree = "<group>"; };
 		3F5002B02A5FA07100E12AE4 /* ReceiptList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptList.swift; sourceTree = "<group>"; };
 		3F5002B62A5FC82800E12AE4 /* ReceiptSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptSearchBar.swift; sourceTree = "<group>"; };
@@ -495,6 +517,19 @@
 		3FB5E69F2B35595F0057C46B /* View+LifeCycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+LifeCycle.swift"; sourceTree = "<group>"; };
 		3FBEFDEC2A0D1C3C00685BAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3FBEFDED2A0D1CB400685BAF /* TestDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataStore.swift; sourceTree = "<group>"; };
+		3FBFB8BB2BB991B30090552E /* BadgeSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeSettings.swift; sourceTree = "<group>"; };
+		3FBFB8BE2BB991D20090552E /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		3FBFB8BF2BB991D20090552E /* LoyaltyProgramBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyaltyProgramBadge.swift; sourceTree = "<group>"; };
+		3FBFB8C02BB991D30090552E /* LoyaltyProgramMemberBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoyaltyProgramMemberBadge.swift; sourceTree = "<group>"; };
+		3FBFB8C12BB991D30090552E /* BadgeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeType.swift; sourceTree = "<group>"; };
+		3FBFB8C72BB991EC0090552E /* AllBadgesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllBadgesView.swift; sourceTree = "<group>"; };
+		3FBFB8C82BB991ED0090552E /* BadgePreviewCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgePreviewCardView.swift; sourceTree = "<group>"; };
+		3FBFB8C92BB991ED0090552E /* BadgesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgesView.swift; sourceTree = "<group>"; };
+		3FBFB8CA2BB991EE0090552E /* BadgeDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeDetailView.swift; sourceTree = "<group>"; };
+		3FBFB8CB2BB991EE0090552E /* BadgeTabContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeTabContentView.swift; sourceTree = "<group>"; };
+		3FBFB8CC2BB991EF0090552E /* BadgeCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeCardView.swift; sourceTree = "<group>"; };
+		3FBFB8D42BB991FE0090552E /* BadgesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgesViewModel.swift; sourceTree = "<group>"; };
+		3FBFB8D92BB995FC0090552E /* BadgeViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeViewModelTests.swift; sourceTree = "<group>"; };
 		3FC37C8D2B444534005A3E2C /* PlayedTabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayedTabUITests.swift; sourceTree = "<group>"; };
 		3FC92C602A0AA9E30081BFEC /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		3FE082DB2B47FC080034BF93 /* GameCardViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCardViewProtocol.swift; sourceTree = "<group>"; };
@@ -502,14 +537,11 @@
 		3FE71CCE2B3199C9006E6BF5 /* OnboardingCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
 		3FE71CCF2B3199C9006E6BF5 /* QRCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		3FE71CD02B3199C9006E6BF5 /* TermsAndConditionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsView.swift; sourceTree = "<group>"; };
-		3FE71CD12B3199C9006E6BF5 /* BadgesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgesView.swift; sourceTree = "<group>"; };
 		3FE71CD22B3199C9006E6BF5 /* AllTransactionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTransactionsView.swift; sourceTree = "<group>"; };
 		3FE71CD32B3199C9006E6BF5 /* RewardPointsCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardPointsCardView.swift; sourceTree = "<group>"; };
 		3FE71CD52B3199CA006E6BF5 /* PromotionCarouselView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionCarouselView.swift; sourceTree = "<group>"; };
 		3FE71CD62B3199CA006E6BF5 /* AppRootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppRootView.swift; path = ../Views/AppRootView.swift; sourceTree = "<group>"; };
 		3FE71CD72B3199CA006E6BF5 /* MyPromotionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPromotionsView.swift; sourceTree = "<group>"; };
-		3FE71CD82B3199CA006E6BF5 /* BadgeCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeCardView.swift; sourceTree = "<group>"; };
-		3FE71CD92B3199CA006E6BF5 /* AllBadgesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllBadgesView.swift; sourceTree = "<group>"; };
 		3FE71CDA2B3199CA006E6BF5 /* ResetPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		3FE71CDB2B3199CA006E6BF5 /* CheckYourEmailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckYourEmailView.swift; sourceTree = "<group>"; };
 		3FE71CDC2B3199CA006E6BF5 /* PromotionCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionCardView.swift; sourceTree = "<group>"; };
@@ -679,6 +711,7 @@
 				2963770B29C10CFB00D45AB6 /* SOQL+SOSL */,
 				2944F87F28B98C2C0098ED1B /* Extensions */,
 				2984C93D2954F091009669EF /* Utilities */,
+				3FBFB8BD2BB991B70090552E /* Badges */,
 				290FBB41294A8C460038D47A /* Misc */,
 				296D393828DCE9890078C88E /* UICompnents */,
 				3F714D4B29FA0F6F00CD39E7 /* Checkout */,
@@ -818,6 +851,8 @@
 				2955346A29E93EF800CFA391 /* InfoNavigationLink.swift */,
 				292453E72A1C4658002112B3 /* WebView.swift */,
 				4F18ED822AD5737B000F64D9 /* ScrollViewBounceModifier.swift */,
+				3F45CD072BBAE205001D787F /* PreviewErrorView.swift */,
+				3F45CD092BBAEFA5001D787F /* PreviewEmptyView.swift */,
 			);
 			path = UICompnents;
 			sourceTree = "<group>";
@@ -928,6 +963,17 @@
 				29BD48982ACCB42C00F10158 /* ScratchCardView.swift */,
 			);
 			path = ScrachCard;
+			sourceTree = "<group>";
+		};
+		3F0C2F1A2BB9B4C400A1A9E9 /* Badges */ = {
+			isa = PBXGroup;
+			children = (
+				3F0C2F182BB9B4BF00A1A9E9 /* AllBadgesViewUITests.swift */,
+				3F0C2F1D2BB9C4F600A1A9E9 /* AvailableBadgesTabViewUITests.swift */,
+				3F0C2F1F2BB9C65600A1A9E9 /* ExpiredBadgesTabViewUITests.swift */,
+				3F0C2F1B2BB9BB0300A1A9E9 /* BadgesViewHelper.swift */,
+			);
+			path = Badges;
 			sourceTree = "<group>";
 		};
 		3F16D95E2A9D9471003DA01A /* Components */ = {
@@ -1144,6 +1190,49 @@
 			path = FortuneWheel;
 			sourceTree = "<group>";
 		};
+		3FBFB8BD2BB991B70090552E /* Badges */ = {
+			isa = PBXGroup;
+			children = (
+				3FBFB8BB2BB991B30090552E /* BadgeSettings.swift */,
+				3FBFB8D62BB992020090552E /* ViewModel */,
+				3FBFB8D32BB991F20090552E /* View */,
+				3FBFB8C62BB991D70090552E /* Model */,
+			);
+			path = Badges;
+			sourceTree = "<group>";
+		};
+		3FBFB8C62BB991D70090552E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3FBFB8BE2BB991D20090552E /* Badge.swift */,
+				3FBFB8C12BB991D30090552E /* BadgeType.swift */,
+				3FBFB8BF2BB991D20090552E /* LoyaltyProgramBadge.swift */,
+				3FBFB8C02BB991D30090552E /* LoyaltyProgramMemberBadge.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3FBFB8D32BB991F20090552E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3FBFB8C72BB991EC0090552E /* AllBadgesView.swift */,
+				3FBFB8CC2BB991EF0090552E /* BadgeCardView.swift */,
+				3FBFB8CA2BB991EE0090552E /* BadgeDetailView.swift */,
+				3FBFB8C82BB991ED0090552E /* BadgePreviewCardView.swift */,
+				3FBFB8C92BB991ED0090552E /* BadgesView.swift */,
+				3FBFB8CB2BB991EE0090552E /* BadgeTabContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3FBFB8D62BB992020090552E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3FBFB8D42BB991FE0090552E /* BadgesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		3FC92C622A0AAA230081BFEC /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1206,8 +1295,6 @@
 				3FE71CD22B3199C9006E6BF5 /* AllTransactionsView.swift */,
 				3FE71CEA2B3199CC006E6BF5 /* AllVouchersView.swift */,
 				3FE71CD62B3199CA006E6BF5 /* AppRootView.swift */,
-				3FE71CD82B3199CA006E6BF5 /* BadgeCardView.swift */,
-				3FE71CD12B3199C9006E6BF5 /* BadgesView.swift */,
 				3FE71CDF2B3199CA006E6BF5 /* BenefitView.swift */,
 				3FE71CE72B3199CB006E6BF5 /* BottomNavTabsView.swift */,
 				3FE71CDB2B3199CA006E6BF5 /* CheckYourEmailView.swift */,
@@ -1321,6 +1408,7 @@
 				AF1691BB2A1B0D0C005A0EB3 /* StringExtensionTests.swift */,
 				AF1691BF2A1B2225005A0EB3 /* MockConnectedAppManager.swift */,
 				AFCE106D2A20BA2A00602E35 /* MockAuthManager.swift */,
+				3FBFB8D92BB995FC0090552E /* BadgeViewModelTests.swift */,
 				3FFCCC232A8F50500014823E /* ReceiptsListViewModelTests.swift */,
 				3F8381FA2B50CDE400D2BBAB /* Gamification */,
 			);
@@ -1338,6 +1426,7 @@
 				AFE960E229EE4D0800C888C0 /* MoreViewHelper.swift */,
 				4F7BD98E2AE12EBA003B7ADA /* GameZone */,
 				3F667E082A86407B00267958 /* Receipt Scanning */,
+				3F0C2F1A2BB9B4C400A1A9E9 /* Badges */,
 				AFAF523E29F63C6F00478F67 /* VoucherViewHelper.swift */,
 				AFAF524029F63D8E00478F67 /* BenefitsViewHelper.swift */,
 				AFAF524229F63E2900478F67 /* TransactionsViewHelper.swift */,
@@ -1551,6 +1640,7 @@
 				295DF2722BB00B5B006D49CB /* AdminAppSettingsViewModel.swift in Sources */,
 				3F1447222B2B2C4300047888 /* UITestingHelper.swift in Sources */,
 				3F0C4F792A827A0B00394CB0 /* ManualReviewInputView.swift in Sources */,
+				3FBFB8D12BB991EF0090552E /* BadgeTabContentView.swift in Sources */,
 				298D5EF329CCF94D0062F16E /* ForceUserIdentifier.swift in Sources */,
 				299B38E228ED24B900E45D97 /* PasswordResetModel.swift in Sources */,
 				3F29C5A32AA7371E00FBE5B0 /* ProcessedAwsResponse.swift in Sources */,
@@ -1567,7 +1657,9 @@
 				3F2D8B702A651E46008F5AE0 /* ProcessedReceiptView.swift in Sources */,
 				292ADC6E294BFD7700753541 /* PreviewProvider.swift in Sources */,
 				3FE71D122B3199CD006E6BF5 /* BottomNavTabsView.swift in Sources */,
+				3F45CD082BBAE205001D787F /* PreviewErrorView.swift in Sources */,
 				3F5002B92A5FE65200E12AE4 /* ReceiptsView.swift in Sources */,
+				3FBFB8C52BB991D30090552E /* BadgeType.swift in Sources */,
 				3F62709A2ABB21B200C0E148 /* ProcessedReceiptListContent.swift in Sources */,
 				294E341E293C39E6001F7F48 /* ImageViewModel.swift in Sources */,
 				298D5EF629CCFCE60062F16E /* ForceRequest+Auth.swift in Sources */,
@@ -1583,7 +1675,6 @@
 				3FE71D1C2B3199CD006E6BF5 /* SheetHeader.swift in Sources */,
 				3F3983D72AB00AAD00C5C980 /* ReceiptStatusUpdateResponse.swift in Sources */,
 				3FB333972A18E33800C3A639 /* ProductViewModel.swift in Sources */,
-				3FE71D032B3199CD006E6BF5 /* BadgeCardView.swift in Sources */,
 				3F874FD62A652A6B00F90C4D /* ProcessedReceiptViewModel.swift in Sources */,
 				3F714D6829FA0FEB00CD39E7 /* PaymentCardTextField.swift in Sources */,
 				216F218F28B6148800DAA66D /* AppViewRouter.swift in Sources */,
@@ -1602,6 +1693,7 @@
 				3FFCCC262A973B3E0014823E /* ReceiptDetailView.swift in Sources */,
 				3F714D6929FA0FEB00CD39E7 /* OrderDetailsView.swift in Sources */,
 				3FE71D022B3199CD006E6BF5 /* MyPromotionsView.swift in Sources */,
+				3FBFB8C42BB991D30090552E /* LoyaltyProgramMemberBadge.swift in Sources */,
 				3F5002B12A5FA07100E12AE4 /* ReceiptList.swift in Sources */,
 				3F714D6629FA0FEB00CD39E7 /* PaymentDetailsView.swift in Sources */,
 				29694EDC2A8D8BE800E5F2ED /* Base64.swift in Sources */,
@@ -1620,6 +1712,8 @@
 				3FE71CFB2B3199CD006E6BF5 /* TermsAndConditionsView.swift in Sources */,
 				2963770F29C10D2400D45AB6 /* ForceClient+SOQL.swift in Sources */,
 				216F217F28B6141E00DAA66D /* MyNTORewardsApp.swift in Sources */,
+				3FBFB8C22BB991D30090552E /* Badge.swift in Sources */,
+				3FBFB8CD2BB991EF0090552E /* AllBadgesView.swift in Sources */,
 				4F7BD9872ADE7F88003B7ADA /* GameZoneCardView.swift in Sources */,
 				29AC2F0128F89EBE003F56F6 /* LoyaltyNavLink.swift in Sources */,
 				298CAA0D2A6A3499003F7F42 /* CapturedImageView.swift in Sources */,
@@ -1645,6 +1739,7 @@
 				298D5EF229CCF94D0062F16E /* WebAuthenticationSession.swift in Sources */,
 				216A9CC128BDD958007881FE /* BenefitViewModel.swift in Sources */,
 				3F714D5429FA0FC200CD39E7 /* QuantityView.swift in Sources */,
+				3FBFB8D02BB991EF0090552E /* BadgeDetailView.swift in Sources */,
 				2944F88A28B9A7220098ED1B /* AppSettings.swift in Sources */,
 				298CAA0F2A6B4B48003F7F42 /* CircularButtonStyle.swift in Sources */,
 				3F714D6F2A00B50200CD39E7 /* LoyaltyConditionalNavLink.swift in Sources */,
@@ -1657,6 +1752,7 @@
 				3F19C2E12AFB4BE4003AECDC /* UIView+Shimmer.swift in Sources */,
 				2963771529C10D6200D45AB6 /* Address.swift in Sources */,
 				3F7EF5322A70D0E90005BA30 /* Double+round.swift in Sources */,
+				3FBFB8CE2BB991EF0090552E /* BadgePreviewCardView.swift in Sources */,
 				4F6809FB2B3569380001E175 /* PlayedGameCongratsView.swift in Sources */,
 				4FECF86C2AEB7FC90070E89A /* ConfettiView.swift in Sources */,
 				3F714D6529FA0FEB00CD39E7 /* AddressView.swift in Sources */,
@@ -1674,6 +1770,7 @@
 				3F714D6A29FA0FEB00CD39E7 /* ShippingDetailsView.swift in Sources */,
 				4F18ED852AD94D50000F64D9 /* GameZoneActiveView.swift in Sources */,
 				298D5EF429CCF94D0062F16E /* Keychain.swift in Sources */,
+				3FBFB8D22BB991EF0090552E /* BadgeCardView.swift in Sources */,
 				3F75ABC92B307C370018CB2B /* ReflectiveEquatable.swift in Sources */,
 				293F643329DCDAF8001AC795 /* ForceClient+Image.swift in Sources */,
 				3F714D4529FA0F4A00CD39E7 /* ProductReviewView.swift in Sources */,
@@ -1691,8 +1788,10 @@
 				3FE71D1F2B3199CD006E6BF5 /* ConnectedAppSettingsView.swift in Sources */,
 				3FE71D0B2B3199CD006E6BF5 /* RedeemCardView.swift in Sources */,
 				29BAF6DF28F3ECA600A3F9EB /* TopTabBar.swift in Sources */,
+				3FBFB8C32BB991D30090552E /* LoyaltyProgramBadge.swift in Sources */,
 				29A39BC12937C699005833C2 /* LoyaltyAsyncImage.swift in Sources */,
 				3F3805B42A7A6D8500223808 /* Destination.swift in Sources */,
+				3FBFB8D52BB991FE0090552E /* BadgesViewModel.swift in Sources */,
 				3F714D5729FA0FC200CD39E7 /* StarRatingView.swift in Sources */,
 				2963770E29C10D2400D45AB6 /* ForceClient+SOSL.swift in Sources */,
 				3F714D4829FA0F4A00CD39E7 /* ProductTermsAndConditionsView.swift in Sources */,
@@ -1727,16 +1826,18 @@
 				3FE71D1B2B3199CD006E6BF5 /* SignUpView.swift in Sources */,
 				3FE71CFA2B3199CD006E6BF5 /* QRCodeView.swift in Sources */,
 				3FE71D092B3199CD006E6BF5 /* TransactionsView.swift in Sources */,
+				3FBFB8BC2BB991B30090552E /* BadgeSettings.swift in Sources */,
 				29B1CE432A2A464A00F21C1D /* ForceRequest+PercentEncoding.swift in Sources */,
 				2955346729E88BC500CFA391 /* ConnectedAppsViewModel.swift in Sources */,
 				3FE71D0C2B3199CD006E6BF5 /* MyPromotionCardView.swift in Sources */,
-				3FE71D042B3199CD006E6BF5 /* AllBadgesView.swift in Sources */,
 				29AC2EFF28F896C2003F56F6 /* LoyaltyNavBarPreferenceKeys.swift in Sources */,
 				29BAF6D128F1032800A3F9EB /* Carousel.swift in Sources */,
 				3FE71D002B3199CD006E6BF5 /* PromotionCarouselView.swift in Sources */,
 				3FE8BFC42A6D8E5700ECD45B /* Receipt.swift in Sources */,
+				3F45CD0A2BBAEFA6001D787F /* PreviewEmptyView.swift in Sources */,
 				296D394028DE59240078C88E /* TextFieldStyles.swift in Sources */,
 				2906B1D428FF5031006EAB2D /* MemberModel.swift in Sources */,
+				3FBFB8CF2BB991EF0090552E /* BadgesView.swift in Sources */,
 				29EC33242AAA962A00104363 /* ProcessingErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1747,6 +1848,7 @@
 			files = (
 				3FFCCC242A8F50500014823E /* ReceiptsListViewModelTests.swift in Sources */,
 				AFB345C329F0DD5300F40502 /* MyNTORewardsTests.swift in Sources */,
+				3FBFB8DA2BB995FC0090552E /* BadgeViewModelTests.swift in Sources */,
 				AF5660022A1F921F008C5F47 /* ForceAuthManagerTests.swift in Sources */,
 				AF1691C02A1B2225005A0EB3 /* MockConnectedAppManager.swift in Sources */,
 				AFB345D029F0DD6B00F40502 /* MockFileManager.swift in Sources */,
@@ -1782,10 +1884,12 @@
 				4F7BD9902AE12EF8003B7ADA /* GameZoneViewUITests.swift in Sources */,
 				AF468B5729EEFB28003C1344 /* MyProfileViewHelper.swift in Sources */,
 				3F2055B62A81134800D38034 /* CameraViewUITests.swift in Sources */,
+				3F0C2F1E2BB9C4F600A1A9E9 /* AvailableBadgesTabViewUITests.swift in Sources */,
 				AFCDDAAD29E54621006B00EB /* OnBoardingViewUITests.swift in Sources */,
 				AFE960E129EE4B9D00C888C0 /* SignInViewHelper.swift in Sources */,
 				AFCDDAA629E53EA2006B00EB /* MyNTORewardsUITestsLaunchTests.swift in Sources */,
 				3FC37C8E2B444534005A3E2C /* PlayedTabUITests.swift in Sources */,
+				3F0C2F202BB9C65600A1A9E9 /* ExpiredBadgesTabViewUITests.swift in Sources */,
 				3F7DAFA32A81E6D900A521E2 /* ReceiptsViewHelper.swift in Sources */,
 				3F8A88212B2BF633009D05A3 /* ScratchCardViewRewardedUITests.swift in Sources */,
 				AFE960DD29EE47A700C888C0 /* OnBoardingViewHelper.swift in Sources */,
@@ -1796,6 +1900,8 @@
 				3F2B758C2B2E104C00B2AA9C /* FortuneWheelPlayGameFailUITests.swift in Sources */,
 				AFAF524329F63E2900478F67 /* TransactionsViewHelper.swift in Sources */,
 				AF468B5929EEFB60003C1344 /* HomeViewHelper.swift in Sources */,
+				3F0C2F192BB9B4BF00A1A9E9 /* AllBadgesViewUITests.swift in Sources */,
+				3F0C2F1C2BB9BB0300A1A9E9 /* BadgesViewHelper.swift in Sources */,
 				AF04A42629EEDCC00081D7C5 /* PromotionViewHelper.swift in Sources */,
 				3F2B75922B2ED14600B2AA9C /* GameZoneExpiryLabelTests.swift in Sources */,
 				3F2B758A2B2E048900B2AA9C /* FortuneWheelWithoutRewardUITests.swift in Sources */,
