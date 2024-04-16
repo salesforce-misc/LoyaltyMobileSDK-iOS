@@ -50,11 +50,17 @@ struct AppSettings {
         static let rewardCurrencyNameShort = "Points"
         static let tierCurrencyName = "Tier Points"
         static let apiDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        static let adminMenuTapCountRequired = 6
+        static let displayDateFormat = "yyyy-MM-dd"
+        
+        // Keys used by UserDefaults
         static let connectedAppUserDefaultsKey = "LoyaltyMobileSDK.savedConnectedApp"
         static let storedInstanceURLKey = "LoyaltyMobileSDK.instanceURL"
         static let storedBaseURLKey = "LoyaltyMobileSDK.baseURL"
-        static let adminMenuTapCountRequired = 6
-        static let displayDateFormat = "yyyy-MM-dd"
+        static let storedLoyaltyProgramNameKey = "LoyaltyMobileSDK.loyaltyProgramName"
+        static let storedRewardCurrencyNameKey = "LoyaltyMobileSDK.rewardCurrencyName"
+        static let storedRewardCurrencyNameShortKey = "LoyaltyMobileSDK.rewardCurrencyNameShort"
+        static let storedTierCurrencyNameKey = "LoyaltyMobileSDK.tierCurrencyName"
     }
     
     struct cacheFolders {
@@ -101,5 +107,36 @@ struct AppSettings {
             return self.connectedApp.baseURL
         }
     }
-
+    
+    func getLoyaltyProgramName() -> String {
+        if let storedValue = UserDefaults.standard.string(forKey: Defaults.storedLoyaltyProgramNameKey) {
+            return storedValue
+        } else {
+            return Defaults.loyaltyProgramName
+        }
+    }
+    
+    func getRewardCurrencyName() -> String {
+        if let storedValue = UserDefaults.standard.string(forKey: Defaults.storedRewardCurrencyNameKey) {
+            return storedValue
+        } else {
+            return Defaults.rewardCurrencyName
+        }
+    }
+    
+    func getRewardCurrencyNameShort() -> String {
+        if let storedValue = UserDefaults.standard.string(forKey: Defaults.storedRewardCurrencyNameShortKey) {
+            return storedValue
+        } else {
+            return Defaults.rewardCurrencyNameShort
+        }
+    }
+    
+    func getTierCurrencyName() -> String {
+        if let storedValue = UserDefaults.standard.string(forKey: Defaults.storedTierCurrencyNameKey) {
+            return storedValue
+        } else {
+            return Defaults.tierCurrencyName
+        }
+    }
 }

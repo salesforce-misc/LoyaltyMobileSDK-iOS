@@ -19,6 +19,7 @@ struct MyNTORewardsApp: App {
     @StateObject var connectedAppVM = ConnectedAppsViewModel<ForceConnectedAppKeychainManager>()
     @StateObject var processedReceiptVM = ProcessedReceiptViewModel()
     @StateObject var localeManager = LocaleManager()
+    @StateObject var adminAppSettingsVM = AdminAppSettingsViewModel()
     
     init() {
         _ = AppSettings.shared
@@ -44,6 +45,7 @@ struct MyNTORewardsApp: App {
                 .environmentObject(connectedAppVM)
                 .environmentObject(processedReceiptVM)
                 .environmentObject(localeManager)
+                .environmentObject(adminAppSettingsVM)
                 .autoSignOutOnSessionTimeout()
         }
     }

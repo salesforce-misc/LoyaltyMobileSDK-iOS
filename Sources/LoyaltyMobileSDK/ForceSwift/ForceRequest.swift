@@ -68,6 +68,8 @@ public struct ForceRequest {
                 comps.queryItems = queryItems.map({ (key, value) -> URLQueryItem in
                     URLQueryItem(name: key, value: value)
                 })
+                comps.percentEncodedQuery = comps.percentEncodedQuery?
+                    .replacingOccurrences(of: "+", with: "%2B")
             }
             guard let requestURL = comps.url else {
                 throw URLError(.badURL)
