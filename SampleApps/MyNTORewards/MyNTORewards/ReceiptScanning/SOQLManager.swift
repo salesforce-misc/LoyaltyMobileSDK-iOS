@@ -11,6 +11,9 @@ import LoyaltyMobileSDK
 final class SOQLManager {
 	private let forceClient: ForceClient
 	private let receiptsRecordName = "\(StringConstants.Receipts.namespace)__Receipts__c"
+	private let loyaltyProgramMemberBadge = "LoyaltyProgramMemberBadge"
+	private let loyaltyProgramBadge = "LoyaltyProgramBadge"
+	
 	init(forceClient: ForceClient) {
 		self.forceClient = forceClient
 	}
@@ -69,5 +72,85 @@ final class SOQLManager {
 			Logger.error(error.localizedDescription)
 			throw error
 		}
+	}
+	
+	func getProgramMemberBadges(devMode: Bool = false, mockFileName: String) async throws -> [LoyaltyProgramMemberBadge] {
+		if devMode {
+			let result = try fetchLocalJson(type: [LoyaltyProgramMemberBadge].self, file: mockFileName)
+			return result
+		}
+		let queryFields = ["Name",
+						   "StartDate",
+						   "EndDate",
+						   "Reason",
+						   "Status",
+						   "LoyaltyProgramMemberId",
+						   "LoyaltyProgramBadgeId"]
+		let operation = "SELECT \(queryFields.joined(separator: ","))"
+		let target = "FROM \(loyaltyProgramMemberBadge)"
+		let query = "\(operation) \(target)"
+		
+		do {
+			let queryResult = try await forceClient.SOQL(type: LoyaltyProgramMemberBadge.self, for: query)
+			return queryResult.records
+		} catch {
+			Logger.error(error.localizedDescription)
+			throw error
+		}
+	}
+	
+	func getProgramBadges(devMode: Bool = false, mockFileName: String) async throws -> [LoyaltyProgramBadge] {
+		if devMode {
+			let result = try fetchLocalJson(type: [LoyaltyProgramBadge].self, file: mockFileName)
+			return result
+		}
+		let queryFields = ["Id",
+						   "Description",
+						   "ImageUrl",
+						   "LoyaltyProgramId",
+						   "Name",
+						   "StartDate",
+						   "Status",
+						   "ValidityDuration",
+						   "ValidityDurationUnit",
+						   "ValidityEndDate",
+						   "ValidityType"
+		]
+		let operation = "SELECT \(queryFields.joined(separator: ","))"
+		let target = "FROM \(loyaltyProgramBadge)"
+		let query = "\(operation) \(target)"
+		
+		do {
+			let queryResult = try await forceClient.SOQL(type: LoyaltyProgramBadge.self, for: query)
+			return queryResult.records
+		} catch {
+			Logger.error(error.localizedDescription)
+			throw error
+		}
+	}
+	
+	private func fetchLocalJson<T: Decodable>(type: T.Type, file: String, bundle: Bundle = Bundle.publicModule) throws -> T {
+		
+		guard let fileURL = bundle.url(forResource: file, withExtension: "json") else {
+			throw URLError(.badURL, userInfo: [NSURLErrorFailingURLStringErrorKey: "\(file).json"])
+		}
+		
+		let dateFormatters = DateFormatter.forceFormatters()
+		let decoder = JSONDecoder()
+		
+		decoder.dateDecodingStrategy = .custom { decoder -> Date in
+			let container = try decoder.singleValueContainer()
+			let dateString = try container.decode(String.self)
+			
+			for dateFormatter in dateFormatters {
+				if let date = dateFormatter.date(from: dateString) {
+					return date
+				}
+			}
+			
+			throw DecodingError.dataCorruptedError(in: container, debugDescription: "NetworkManager cannot decode date string \(dateString)")
+		}
+		
+		return try decoder.decode(T.self, from: try Data(contentsOf: fileURL))
 	}
 }

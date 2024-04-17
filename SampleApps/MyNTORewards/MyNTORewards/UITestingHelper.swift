@@ -131,6 +131,24 @@ struct UITestingHelper {
 		let loadingStateString = ProcessInfo.processInfo.environment["mockPromotionStatusApiState"]
 		return getLoadingState(for: loadingStateString)
 	}
+    
+    // Badges
+    static var isGetBadgesSuccess: Bool {
+        ProcessInfo.processInfo.environment["get_badges"] == "success"
+    }
+    
+    static var mockMemberBadgeFileName: String {
+        ProcessInfo.processInfo.environment["mock_member_badge_filename"] ?? "LoyaltyProgramMemberBadges"
+    }
+    
+    static var mockProgramBadgeFileName: String {
+        ProcessInfo.processInfo.environment["mock_program_badge_filename"] ?? "LoyaltyProgramBadges"
+    }
+    
+    static var currentDate: Date {
+        let dateString = ProcessInfo.processInfo.environment["currect_date"] ?? "2024-03-31"
+        return dateString.toDate(withFormat: "yyyy-MM-dd") ?? Date()
+    }
 	
 	static var mockPromotionScreenType: PromotionGateWayScreenState {
 		let screenState = ProcessInfo.processInfo.environment["mockPromotionScreenType"]
