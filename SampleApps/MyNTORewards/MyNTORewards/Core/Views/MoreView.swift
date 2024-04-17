@@ -25,7 +25,7 @@ struct MoreView: View {
 //        MenuItem(icon: "ic-card", title: "Payment Methods", accessibilityIdentifier: AppAccessibilty.More.paymentMethod),
 //        MenuItem(icon: "ic-orders", title: "Orders", accessibilityIdentifier: AppAccessibilty.More.orders),
 		MenuItem(icon: "ic-receipts", title: "Receipts", accessibilityIdentifier: AppAccessibilty.More.receipts),
-        MenuItem(icon: "ic-game", title: "Game Zone", accessibilityIdentifier: AppAccessibilty.More.game),
+        MenuItem(icon: "ic-game", title: "Game Zone", accessibilityIdentifier: AppAccessibilty.More.game)
 //        MenuItem(icon: "ic-case", title: "Support", accessibilityIdentifier: AppAccessibilty.More.support),
 //        MenuItem(icon: "ic-heart", title: "Favorites", accessibilityIdentifier: AppAccessibilty.More.favourites)
     ]
