@@ -252,7 +252,7 @@ class ReferralViewModel: ObservableObject {
             if defaultPromotionInfo?.promotionCode != nil {
                 await isEnrolledForDefaultPromotion(contactId: contactId)
             } else {
-                displayError = (true, StringConstants.Referrals.genericError)
+                displayError = (true, StringConstants.Referrals.notEnabledMessage)
                 enrollmentStatusApiState = .loaded
                 promotionScreenType = .promotionError
             }
