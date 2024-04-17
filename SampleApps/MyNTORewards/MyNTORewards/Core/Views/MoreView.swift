@@ -18,14 +18,14 @@ struct MoreView: View {
     
     @EnvironmentObject private var rootVM: AppRootViewModel
 	@EnvironmentObject private var routerPath: RouterPath
-    let menuItems: [MenuItem] = [
+    @StateObject private var loyaltyFeatureManager = LoyaltyFeatureManager.shared
+    @State private var menuItems: [MenuItem] = [
 //        MenuItem(icon: "ic-person", title: "Account", accessibilityIdentifier: AppAccessibilty.More.account),
 //        MenuItem(icon: "ic-address", title: "Addresses", accessibilityIdentifier: AppAccessibilty.More.address),
 //        MenuItem(icon: "ic-card", title: "Payment Methods", accessibilityIdentifier: AppAccessibilty.More.paymentMethod),
 //        MenuItem(icon: "ic-orders", title: "Orders", accessibilityIdentifier: AppAccessibilty.More.orders),
 		MenuItem(icon: "ic-receipts", title: "Receipts", accessibilityIdentifier: AppAccessibilty.More.receipts),
         MenuItem(icon: "ic-game", title: "Game Zone", accessibilityIdentifier: AppAccessibilty.More.game),
-        MenuItem(icon: "ic-groups", title: "My Referrals", accessibilityIdentifier: AppAccessibilty.More.referrals)
 //        MenuItem(icon: "ic-case", title: "Support", accessibilityIdentifier: AppAccessibilty.More.support),
 //        MenuItem(icon: "ic-heart", title: "Favorites", accessibilityIdentifier: AppAccessibilty.More.favourites)
     ]
@@ -96,19 +96,31 @@ struct MoreView: View {
 							routerPath.navigateFromMore(to: .gameZone)
 						}
 					}
+                    addReferralsMenu()
 				}
                 .listStyle(.plain)
                 .navigationBarHidden(true)
 				.withAppRouter()
 				.environmentObject(rootVM)
-            }
+            }.onChange(of: LoyaltyFeatureManager.shared.isReferralFeatureEnabled, perform: { _ in 
+                addReferralsMenu()
+            })
 			.environmentObject(routerPath)
             
             if rootVM.isInProgress {
                 ProgressView()
             }
         }
-
+    }
+    
+    func addReferralsMenu() {
+            if LoyaltyFeatureManager.shared.isReferralFeatureEnabled {
+                if !menuItems.contains(where: {$0.icon == "ic-groups" && $0.title == "My Referrals"}) {
+                    menuItems.append(MenuItem(icon: "ic-groups", title: "My Referrals", accessibilityIdentifier: AppAccessibilty.More.referrals))
+            }
+            } else {
+                menuItems.removeAll(where: {$0.icon == "ic-groups" && $0.title == "My Referrals"})
+            }
     }
 }
 
