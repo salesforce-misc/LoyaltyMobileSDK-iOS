@@ -26,6 +26,8 @@ extension View {
 				.toolbar(.hidden, for: .tabBar, .navigationBar)
             case .vouchers:
                 GameZoneVoucherView()
+            case .referrals:
+                ReferralsGatewayView()
             }
 		}
 	}

@@ -19,6 +19,7 @@ struct BottomNavTabsView: View {
 	@EnvironmentObject var appViewRouter: AppViewRouter
     @StateObject var rootVM = AppRootViewModel()
 	@StateObject var gameZoneVM: GameZoneViewModel
+	@StateObject var referralVM: ReferralViewModel
 	@State var selectedTab: Int
 	
 	init(selectedTab: Int = Tab.home.rawValue) {
@@ -28,12 +29,21 @@ struct BottomNavTabsView: View {
             _gameZoneVM = StateObject(wrappedValue: GameZoneViewModel(devMode: true,
                                                                                   mockFileName: UITestingHelper.getGamesMockFileName
                                                                                  ))
-			_badgesVM = StateObject(wrappedValue: BadgesViewModel(currentDate: UITestingHelper.currentDate))
+			_referralVM = StateObject(wrappedValue: ReferralViewModel(devMode: true, 
+																	  isEnrolledMock: UITestingHelper.isUserEnrolledForReferral,
+																	  currentDate: UITestingHelper.mockCurrentDate,
+																	  mockApiState: UITestingHelper.mockApiState,
+																	  mockEnrollmentStatusApiState: UITestingHelper.mockEnrollmentStatusApiState
+																	 ))
+            _badgesVM = StateObject(wrappedValue: BadgesViewModel(currentDate: UITestingHelper.currentDate))
+
         } else {
 			_gameZoneVM = StateObject(wrappedValue: GameZoneViewModel())
+			_referralVM = StateObject(wrappedValue: ReferralViewModel())
 		}
 		#else
 			_gameZoneVM = StateObject(wrappedValue: GameZoneViewModel())
+			_referralVM = StateObject(wrappedValue: ReferralViewModel())
 		#endif
 	}
 	
@@ -72,6 +82,8 @@ struct BottomNavTabsView: View {
         }
         .navigationBarHidden(true)
         .onAppear {
+            // check Referral Features enabled
+            LoyaltyFeatureManager.shared.checkIsReferralFeatureEnabled()
             // correct the transparency bug for Tab bars
             let tabBarAppearance = UITabBarAppearance()
             tabBarAppearance.configureWithOpaqueBackground()
@@ -95,7 +107,8 @@ struct BottomNavTabsView: View {
         .environmentObject(routerPath)
         .environmentObject(receiptListViewModel)
         .environmentObject(gameZoneVM)
-		.environmentObject(badgesVM)
+        .environmentObject(referralVM)
+        .environmentObject(badgesVM)
 	}
 }
 
@@ -118,6 +131,12 @@ extension BottomNavTabsView {
 				} else {
 					routerPath.pathFromMore = []
 				}
+                //User tapped on the tab twice == Pop to root view for More tab
+                if routerPath.pathFromPromotion.isEmpty {
+                    //User already on home view, scroll to top
+                } else {
+                    routerPath.pathFromPromotion = []
+                }
 			}
 			//Set the tab to the tabbed tab
 			appViewRouter.selectedTab = tappedTab

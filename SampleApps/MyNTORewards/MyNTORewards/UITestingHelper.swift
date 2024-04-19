@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import LoyaltyMobileSDK
 
 #if DEBUG
 struct UITestingHelper {
@@ -66,22 +67,104 @@ struct UITestingHelper {
 		isGetGamesSuccess ? "GetGames_Success" : "GetGames_Fail"
 	}
 	
-	// Badges
-	static var isGetBadgesSuccess: Bool {
-		ProcessInfo.processInfo.environment["get_badges"] == "success"
+	static var isUserEnrolledForReferral: Bool {
+		ProcessInfo.processInfo.environment["isEnrolled"] == "true"
 	}
 	
-	static var mockMemberBadgeFileName: String {
-		ProcessInfo.processInfo.environment["mock_member_badge_filename"] ?? "LoyaltyProgramMemberBadges"
+	static var referralMockFileName: String {
+		"Referrals"
 	}
 	
-	static var mockProgramBadgeFileName: String {
-		ProcessInfo.processInfo.environment["mock_program_badge_filename"] ?? "LoyaltyProgramBadges"
+	static var mockCurrentDateString: String? {
+		ProcessInfo.processInfo.environment["mockDate"]
 	}
 	
-	static var currentDate: Date {
-		let dateString = ProcessInfo.processInfo.environment["currect_date"] ?? "2024-03-31"
-		return dateString.toDate(withFormat: "yyyy-MM-dd") ?? Date()
+	static var dateFormat: String? {
+		ProcessInfo.processInfo.environment["dateFormat"]
+	}
+	
+	static var mockCurrentDate: Date {
+		guard let dateString = mockCurrentDateString,
+			  let format = dateFormat else {
+			return Date()
+		}
+		return dateString.toDate(withFormat: format) ?? Date()
+	}
+	
+	static var isHavingReferralPromotion: Bool {
+		ProcessInfo.processInfo.environment["referral_promotion"] == "true"
+	}
+	
+	static var referralsMockFileName: String {
+		if isHavingReferralPromotion {
+			return "ReferralPromotions"
+		}
+		return "ReferralPromotions"
+	}
+	
+	private static func getLoadingState(for stateString: String?) -> LoadingState {
+		switch stateString {
+		case "loading":
+			return .loading
+		case "loaded":
+			return .loaded
+		case "idle":
+			return .idle
+		case "failed":
+			return .failed(CommonError.invalidData)
+		default:
+			return .idle
+		}
+	}
+	
+	static var mockApiState: LoadingState {
+		let loadingStateString = ProcessInfo.processInfo.environment["loadingState"]
+		return getLoadingState(for: loadingStateString)
+	}
+	
+	static var mockEnrollmentStatusApiState: LoadingState {
+		let loadingStateString = ProcessInfo.processInfo.environment["mockEnrollmentStatusApiState"]
+		return getLoadingState(for: loadingStateString)
+	}
+	
+	static var mockPromotionStatusApiState: LoadingState {
+		let loadingStateString = ProcessInfo.processInfo.environment["mockPromotionStatusApiState"]
+		return getLoadingState(for: loadingStateString)
+	}
+    
+    // Badges
+    static var isGetBadgesSuccess: Bool {
+        ProcessInfo.processInfo.environment["get_badges"] == "success"
+    }
+    
+    static var mockMemberBadgeFileName: String {
+        ProcessInfo.processInfo.environment["mock_member_badge_filename"] ?? "LoyaltyProgramMemberBadges"
+    }
+    
+    static var mockProgramBadgeFileName: String {
+        ProcessInfo.processInfo.environment["mock_program_badge_filename"] ?? "LoyaltyProgramBadges"
+    }
+    
+    static var currentDate: Date {
+        let dateString = ProcessInfo.processInfo.environment["currect_date"] ?? "2024-03-31"
+        return dateString.toDate(withFormat: "yyyy-MM-dd") ?? Date()
+    }
+	
+	static var mockPromotionScreenType: PromotionGateWayScreenState {
+		let screenState = ProcessInfo.processInfo.environment["mockPromotionScreenType"]
+		switch screenState {
+		case "loyaltyPromotion":
+			return .loyaltyPromotion
+		case "joinReferralPromotion":
+			return .joinReferralPromotion
+		case "referFriend":
+			return .referFriend
+		case "joinPromotionError":
+			return .joinPromotionError
+		default:
+			return .loyaltyPromotion
+		}
+		
 	}
 }
 #endif

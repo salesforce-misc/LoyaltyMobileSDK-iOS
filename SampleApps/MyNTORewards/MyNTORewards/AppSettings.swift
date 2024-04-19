@@ -61,6 +61,15 @@ struct AppSettings {
         static let storedRewardCurrencyNameKey = "LoyaltyMobileSDK.rewardCurrencyName"
         static let storedRewardCurrencyNameShortKey = "LoyaltyMobileSDK.rewardCurrencyNameShort"
         static let storedTierCurrencyNameKey = "LoyaltyMobileSDK.tierCurrencyName"
+        
+        // Referral settings
+        // Configure Referral Promotion Details below, where user can also able to enroll and refer from My Referrals screen
+        static let promotionCode = "NEWPR2"
+        static let referralDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        static let referralDateFormatWithoutTime = "yyyy-MM-dd"
+        /* Provided random link here instead of actual Terms and Conditions link.
+        Replace with valid terms and conditions link while using the feature */
+        static let referralTermsLink = "https://www.google.com"
     }
     
     struct cacheFolders {
@@ -69,6 +78,7 @@ struct AppSettings {
         static let benefits = "Benefits"
         static let transactions = "Transactions"
         static let images = "Images"
+        static let referrals = "Referrals"
     }
     
     struct Vouchers {
@@ -114,6 +124,10 @@ struct AppSettings {
         } else {
             return Defaults.loyaltyProgramName
         }
+    }
+    
+    func getReferralProgramName() -> String {
+        return getLoyaltyProgramName()
     }
     
     func getRewardCurrencyName() -> String {

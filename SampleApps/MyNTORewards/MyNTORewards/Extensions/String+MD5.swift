@@ -14,3 +14,13 @@ extension String {
         return computed.map { String(format: "%02hhx", $0) }.joined()
     }
 }
+
+extension String {
+    func markdownToAttributed() -> AttributedString {
+        do {
+            return try AttributedString(markdown: self) /// convert to AttributedString
+        } catch {
+            return AttributedString("Error parsing markdown: \(error)")
+        }
+    }
+}

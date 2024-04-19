@@ -19,14 +19,21 @@ struct MyPromotionCardView: View {
     
     var body: some View {
         HStack {
-            LoyaltyAsyncImage(url: promotion.promotionImageURL, content: { image in
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .clipped()
-            }, placeholder: {
-                ProgressView()
-            })
+            Group {
+                if promotion.promotionImageURL != nil {
+                    LoyaltyAsyncImage(url: promotion.promotionImageURL, content: { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                    }, placeholder: {
+                        ProgressView()
+                    })
+                } else {
+                    Image("img-join")
+                        .resizable()
+                        .scaledToFill()
+                }
+            }
             .accessibilityIdentifier(accessibilityID + "_" + AppAccessibilty.Promotion.image)
             .frame(width: 133, height: 166)
             .cornerRadius(5, corners: [.topLeft, .bottomLeft])
@@ -88,7 +95,7 @@ struct MyPromotionCardView: View {
                 promotionVM.actionTaskList[promotion.id] = (false, true)
             }
         }) {
-			MyPromotionDetailView(promotion: promotion, processing: $processing)
+            PromotionGatewayView(promotion: promotion, processing: $processing)
         }
         .onReceive(promotionVM.$actionTaskList) { action in
             if let currentAction = action[promotion.id], currentAction == (true, true) {

@@ -186,10 +186,11 @@ class AppRootViewModel: ObservableObject {
 												  email: userEmail,
 												  loyaltyProgramMemberId: profile.loyaltyProgramMemberID,
 												  loyaltyProgramName: profile.loyaltyProgramName,
-												  membershipNumber: profile.membershipNumber)
+                                                  membershipNumber: profile.membershipNumber,
+                                                  contactId: profile.associatedContact?.contactID ?? "")
 				// Save member to local disk
 				LocalFileManager.instance.saveData(item: member, id: userEmail)
-                
+                Logger.debug("Member Info: \(member)")
                 self.member = member
 			}
 			
@@ -215,7 +216,7 @@ class AppRootViewModel: ObservableObject {
         Task {
             do {
                 let forceClient = ForceClient(auth: authManager)
-				let contactQuery = "SELECT Contact.FirstName, Contact.LastName, Contact.Phone FROM User WHERE Username = '\(email)'"
+                let contactQuery = "SELECT Contact.FirstName, Contact.LastName, Contact.Phone FROM User WHERE Username = '\(email)'"
                 let queryResult = try await forceClient.SOQL(type: Record.self, for: contactQuery)
 				let user = queryResult.records.first
 				let contact: Record? = try user?.value(forField: "Contact")
@@ -244,7 +245,8 @@ class AppRootViewModel: ObservableObject {
                                                   email: email,
                                                   loyaltyProgramMemberId: enrolledMember.loyaltyProgramMemberId,
                                                   loyaltyProgramName: enrolledMember.loyaltyProgramName,
-                                                  membershipNumber: membershipNumber)
+                                                  membershipNumber: membershipNumber,
+                                                  contactId: enrolledMember.contactId)
                 // Save member to local disk
                 LocalFileManager.instance.saveData(item: member, id: email)
 
@@ -278,6 +280,8 @@ class AppRootViewModel: ObservableObject {
         member = nil
         
         // delete all cached data
+        UserDefaults.standard.removeObject(forKey: "isEnrolledForDefaultPromotion")
+        UserDefaults.standard.removeObject(forKey: "referralCode")
         LocalFileManager.instance.removeAllAppData()
     }
     
@@ -326,5 +330,4 @@ class AppRootViewModel: ObservableObject {
             userErrorMessage = (error.localizedDescription, .createNewPassword)
         }
     }
-    
 }

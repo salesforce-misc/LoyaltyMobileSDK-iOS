@@ -93,6 +93,7 @@ struct HomeView: View {
 				}
 				.refreshable {
 					Logger.debug("Reloading home...")
+                    LoyaltyFeatureManager.shared.checkIsReferralFeatureEnabled()
 					Task {
 						do {
 							try await profileVM.fetchProfile(memberId: rootVM.member?.loyaltyProgramMemberId ?? "")

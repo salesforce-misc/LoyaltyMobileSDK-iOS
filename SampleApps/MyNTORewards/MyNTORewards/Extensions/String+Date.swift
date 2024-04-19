@@ -64,4 +64,8 @@ public extension Date {
     var monthBefore: Date {
         return Calendar.current.date(byAdding: .month, value: -1, to: self)!
     }
+    
+    var threeMonthsBefore: Date {
+        return Calendar.current.date(byAdding: .month, value: -3, to: self)!
+    }
 }

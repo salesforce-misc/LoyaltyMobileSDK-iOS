@@ -8,7 +8,7 @@
 import Foundation
 import LoyaltyMobileSDK
 
-public class ForceAuthManager: ForceAuthenticator, ObservableObject {
+public class ForceAuthManager: Authenticator, ObservableObject {
     
     @Published public var auth: ForceAuth?
     @Published public var sessionTimeout: Bool = false

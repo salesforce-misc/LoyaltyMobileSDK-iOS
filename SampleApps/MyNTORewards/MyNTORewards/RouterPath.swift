@@ -10,6 +10,7 @@ import SwiftUI
 @MainActor
 class RouterPath: ObservableObject {
 	@Published var pathFromHome: [RouterDestination] = []
+    @Published var pathFromPromotion: [RouterDestination] = []
 	@Published var pathFromMore: [RouterDestination] = []
 	@Published var presentedSheet: SheetDestination?
 	var startWithGameZoneInMore = false
@@ -21,6 +22,10 @@ class RouterPath: ObservableObject {
 	func navigateFromHome(to destination: RouterDestination) {
 		pathFromHome.append(destination)
 	}
+    
+    func navigatFromPromotion(to destination: RouterDestination) {
+        pathFromPromotion.append(destination)
+    }
 	
 	func navigateFromMore(to destination: RouterDestination) {
 		pathFromMore.append(destination)

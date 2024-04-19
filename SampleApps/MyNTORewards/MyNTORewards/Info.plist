@@ -45,6 +45,26 @@
 		<string>SF-Pro-Display-Bold.otf</string>
 		<string>SF-Pro-Display-Heavy.otf</string>
 		<string>SF-Pro-Display-Regular.otf</string>
+		<string>Lato-Regular.ttf</string>
+		<string>Lato-Heavy.ttf</string>
+		<string>Segoe UI.ttf</string>
+	</array>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<true/>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to your camera to take photos</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We need access to your photo library to save photos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photo library to select photos</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>whatsapp</string>
 	</array>
 </dict>
 </plist>

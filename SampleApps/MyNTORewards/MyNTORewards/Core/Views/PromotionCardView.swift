@@ -11,6 +11,7 @@ import LoyaltyMobileSDK
 struct PromotionCardView: View {
 
     @EnvironmentObject private var promotionVM: PromotionViewModel
+    @EnvironmentObject private var routerPath: RouterPath
     @State var showPromotionDetailView = false
     @State var processing = false
     let accessibilityID: String
@@ -18,13 +19,21 @@ struct PromotionCardView: View {
     
     var body: some View {
         VStack {
-            LoyaltyAsyncImage(url: promotion.promotionImageURL, content: { image in
-                image
-                    .resizable()
-                    .scaledToFill()
-            }, placeholder: {
-                ProgressView()
-            })
+            Group {
+                if promotion.promotionImageURL != nil {
+                    LoyaltyAsyncImage(url: promotion.promotionImageURL, content: { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                    }, placeholder: {
+                        ProgressView()
+                    })
+                } else {
+                    Image("img-join")
+                        .resizable()
+                        .scaledToFill()
+                }
+            }
             .frame(width: 289, height: 154)
             .contentShape(Rectangle())
             .cornerRadius(5, corners: [.topLeft, .topRight])
@@ -78,7 +87,7 @@ struct PromotionCardView: View {
                 promotionVM.actionTaskList[promotion.id] = (false, true)
             }
         }) {
-			MyPromotionDetailView(promotion: promotion, processing: $processing)
+            PromotionGatewayView(promotion: promotion, processing: $processing)
         }
         .padding()
     }

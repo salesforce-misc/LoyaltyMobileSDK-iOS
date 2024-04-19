@@ -36,7 +36,8 @@ class DeveloperPreview {
                                       email: "julia.green@gmail.com",
                                       loyaltyProgramMemberId: "0lM4x000000LECA",
                                       loyaltyProgramName: "NTO Insider",
-                                      membershipNumber: "24345671")
+                                      membershipNumber: "24345671",
+                                      contactId: "0lM4x000000LECA")
     
     /*
      [
@@ -263,7 +264,8 @@ class DeveloperPreview {
     let routerPath = RouterPath()
     let receiptVM = ReceiptViewModel()
     let receiptListVM = ReceiptListViewModel()
-	let badgesVM = BadgesViewModel()
+    let localeManager = LocaleManager()
+    let badgesVM = BadgesViewModel()
     
     private init() {
         setMember(member: member)
