@@ -2480,7 +2480,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:loyaltysampleapp/ReferralMobileSDK-iOS.git";
 			requirement = {
-				branch = develop;
+				branch = "release-248.0.0";
 				kind = branch;
 			};
 		};
