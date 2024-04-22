@@ -31,21 +31,13 @@ struct GameZoneView: View {
             }
             ZStack {
                 Color.theme.background
-				GameZoneTabView(tabSelected: $gameViewModel.tabSelected)
+				GameZoneTabView(tabSelected: $tabSelected)
             }
         }
         .navigationBarHidden(true)
         .onWillAppear {
             getGames()
         }
-		
-		//TODO: Have only one source of truth for tab selection
-		.onChange(of: tabSelected, perform: { tabIndex in
-			gameViewModel.tabSelected = tabIndex
-		})
-		.onChange(of: gameViewModel.tabSelected, perform: { tabIndex in
-			tabSelected = tabIndex
-		})
     }
 	
 	func getGames() {
