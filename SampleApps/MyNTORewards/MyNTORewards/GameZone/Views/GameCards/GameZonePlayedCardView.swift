@@ -16,9 +16,14 @@ struct GameZonePlayedCardView: View, GameCardView {
     
     var body: some View {
         VStack {
-			Image(getImageName())
-				.resizable()
-				.aspectRatio(contentMode: .fill)
+			ZStack {
+				if gameCardModel.type == .scratchCard {
+					Color.theme.expiredBackgroundText
+				}
+				Image(getImageName())
+					.resizable()
+					.aspectRatio(contentMode: .fill)
+			}
             .frame(width: 165, height: 90)
             .cornerRadius(5, corners: [.topLeft, .topRight])
             VStack(alignment: .leading, spacing: 8) {
