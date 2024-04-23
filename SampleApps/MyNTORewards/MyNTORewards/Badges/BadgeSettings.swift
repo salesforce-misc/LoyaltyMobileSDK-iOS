@@ -24,13 +24,19 @@ struct BadgeSettings {
 		
 		// BadgeDetailView
 		static let detailBackgroundRectangleHeight: CGFloat = 180
-		static let detailBadgeImageHeight: CGFloat = 128
-		static let detailBadgeImageWidth: CGFloat = 105
+		static let detailBadgeImageHeight: CGFloat = 134
+		static let detailBadgeImageWidth: CGFloat = 134
+		
+		static let detailBadgeExpiredTimerIconHeight: CGFloat = 48
+		static let detailBadgeExpiredTimerIconWidth: CGFloat = 48
 		
 		// BadgeCardView
 		static let expiryTextWidth: CGFloat = 52
-		static let cardWidth: CGFloat = 53
-		static let cardHeight: CGFloat = 64
+		static let imageWidth: CGFloat = 64
+		static let imageHeight: CGFloat = 64
+		
+		static let expiredTimerIconHeight: CGFloat = 24
+		static let expiredTimerIconWidth: CGFloat = 24
 		
 		// Error
 		static let errorViewTopPadding: CGFloat = 100
@@ -54,7 +60,9 @@ struct BadgeSettings {
 	
 	struct Asset {
 		static let defaultBadgeImage = "img-badge"
+		static let availableBadgeImage = "img-available-badge"
 		static let closeIcon = "ic-close"
+		static let expiredTimerIcon = "ic-expired-timer"
 	}
 	
 	struct Colors {
