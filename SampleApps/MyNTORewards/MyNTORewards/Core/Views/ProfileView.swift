@@ -33,8 +33,8 @@ struct ProfileView: View {
                         VStack(spacing: 10) {
                             TransactionsView()
                             VouchersView()
+							BadgesView()
                             BenefitView()
-                             BadgesView()
                             Rectangle()
                                 .frame(height: 400)
                                 .foregroundColor(Color.theme.background)
