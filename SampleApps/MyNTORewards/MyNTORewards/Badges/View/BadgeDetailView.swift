@@ -41,7 +41,10 @@ struct BadgeDetailView: View {
 				.foregroundColor(badge.type == .expired ? BadgeSettings.Colors.expiredBadgeDetailBackgroundColor : BadgeSettings.Colors.badgeDetailBackgroundColor)
 				.overlay(alignment: .topTrailing, content: { closeIcon })
 			Group {
-				if let imageUrl = badge.imageUrl {
+				if badge.type == .available {
+					Image(BadgeSettings.Asset.availableBadgeImage)
+						.resizable()
+				} else if let imageUrl = badge.imageUrl {
 					LoyaltyAsyncImage(url: imageUrl, content: { image in
 						image
 							.resizable()
@@ -53,8 +56,18 @@ struct BadgeDetailView: View {
 					Image(BadgeSettings.Asset.defaultBadgeImage)
 						.resizable()
 				}
-			}.frame(width: BadgeSettings.Dimension.detailBadgeImageWidth,
+			}
+			.frame(width: BadgeSettings.Dimension.detailBadgeImageWidth,
 					height: BadgeSettings.Dimension.detailBadgeImageHeight)
+			.opacity(badge.type == .expired ? 0.25 : 1)
+			.overlay {
+				if badge.type == .expired {
+					Image(BadgeSettings.Asset.expiredTimerIcon)
+						.resizable()
+						.frame(width: BadgeSettings.Dimension.detailBadgeExpiredTimerIconWidth,
+							   height: BadgeSettings.Dimension.detailBadgeExpiredTimerIconHeight)
+				}
+			}
 		}
 	}
 	
