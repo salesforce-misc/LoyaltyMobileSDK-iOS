@@ -44,7 +44,7 @@ struct BadgeCardView: View {
 						.scaledToFill()
 				}, placeholder: {
 					ProgressView()
-				})
+				}, defaultImage: UIImage(named: BadgeSettings.Asset.defaultBadgeImage))
 			} else {
 				Image(BadgeSettings.Asset.defaultBadgeImage)
 					.resizable()
