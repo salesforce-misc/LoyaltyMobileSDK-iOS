@@ -33,12 +33,13 @@ struct WelcomeView: View {
                 .font(.congratsTitle)
                 .padding(.top, 40)
                 .padding()
-            
-            Text("We're thrilled that you joined NTO Insider. You're on your way to earning points and receiving exclusive rewards.")
+			// swiftlint:disable line_length
+            Text("We're thrilled that you joined \(AppSettings.shared.getLoyaltyProgramName()). You're on your way to earning points and receiving exclusive rewards.")
                 .font(.congratsText)
                 .lineSpacing(5)
                 .multilineTextAlignment(.center)
                 .padding([.leading, .trailing], 40)
+			// swiftlint:enable line_length
             
             Text("Log in with your username and password.")
                 .font(.congratsText)
