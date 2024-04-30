@@ -64,7 +64,7 @@ struct AppSettings {
         
         // Referral settings
         // Configure Referral Promotion Details below, where user can also able to enroll and refer from My Referrals screen
-        static let promotionCode = "NEWPR2"
+        static let promotionCode = "LRP24"
         static let referralDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         static let referralDateFormatWithoutTime = "yyyy-MM-dd"
         /* Provided random link here instead of actual Terms and Conditions link.
@@ -92,6 +92,10 @@ struct AppSettings {
         } else {
             return self.connectedApp.instanceURL
         }
+    }
+    
+    func getCommunityURL() -> String {
+       self.connectedApp.communityURL
     }
     
     func getConnectedApp() -> ForceConnectedApp {

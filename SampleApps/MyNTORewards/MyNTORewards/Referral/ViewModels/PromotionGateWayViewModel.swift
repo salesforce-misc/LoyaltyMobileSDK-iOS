@@ -41,7 +41,7 @@ class PromotionGateWayViewModel: ObservableObject {
             self.forceClient = forceClient ?? ForceClient(auth: authManager)
             self.referralAPIManager = ReferralAPIManager(auth: self.authManager,
                                                          referralProgramName: AppSettings.shared.getReferralProgramName(),
-                                                         instanceURL: AppSettings.shared.getInstanceURL(),
+                                                         instanceURL: AppSettings.shared.getCommunityURL(),
                                                          forceClient: self.forceClient)
 		self.devMode = devMode
 		self.mockPromotionStatusApiState = mockPromotionStatusApiState
@@ -105,7 +105,7 @@ class PromotionGateWayViewModel: ObservableObject {
 		}
         do {
             let output = try await referralAPIManager.referralEnrollment(contactID: contactId, promotionCode: promotionInfo?.promotionCode ?? "")
-            if output.transactionJournals.first?.status.uppercased() == "PROCESSED" {
+            if output.transactionJournals.first?.status.uppercased() == "PROCESSED" || output.transactionJournals.first?.status.uppercased() == "PENDING" {
                 promotionScreenType = .referFriend
             } else {
                 // status is not `Processed`, if `Pending` should

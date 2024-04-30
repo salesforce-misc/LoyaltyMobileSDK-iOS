@@ -89,7 +89,7 @@ class ReferralViewModel: ObservableObject {
         self.forceClient = forceClient ?? ForceClient(auth: authManager)
         self.referralAPIManager = ReferralAPIManager(auth: self.authManager,
                                                      referralProgramName: AppSettings.shared.getReferralProgramName(),
-                                                     instanceURL: AppSettings.shared.getInstanceURL(),
+                                                     instanceURL: AppSettings.shared.getCommunityURL(),
                                                      forceClient: self.forceClient)
         self.devMode = devMode
         self.isEnrolledMock = isEnrolledMock
@@ -293,7 +293,7 @@ class ReferralViewModel: ObservableObject {
     func enroll(contactId: String) async {
         do {
             let output = try await referralAPIManager.referralEnrollment(contactID: contactId, promotionCode: promotionCode)
-            if output.transactionJournals.first?.status.uppercased() == "PROCESSED" {
+            if output.transactionJournals.first?.status.uppercased() == "PROCESSED" || output.transactionJournals.first?.status.uppercased() == "PENDING" {
                 displayError = (false, "You are successfully joined.")
                 let referralMember = ReferralMember(id: output.memberID,
                                                     contactId: output.contactID,
