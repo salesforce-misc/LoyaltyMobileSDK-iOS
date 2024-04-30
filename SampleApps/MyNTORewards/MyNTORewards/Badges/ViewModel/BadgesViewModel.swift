@@ -56,6 +56,7 @@ final class BadgesViewModel: ObservableObject {
 	///   - reload: indicates if the call is for reloading
 	func fetchAllBadges(
 		membershipNumber: String,
+		memberId: String,
 		reload: Bool = false,
 		devMode: Bool = false,
 		mockProgramBadgeFileName: String = "LoyaltyProgramBadges",
@@ -77,8 +78,13 @@ final class BadgesViewModel: ObservableObject {
 			} else {
 				do {
 					Logger.debug("\n\nFetching Badges from API... dev mode: \(devMode)")
-					try await fetchProgramBadges(membershipNumber: membershipNumber, devMode: devMode, mockFileName: mockProgramBadgeFileName)
-					try await fetchProgramMemberBadges(membershipNumber: membershipNumber, devMode: devMode, mockFileName: mockMemberBadgeFileName)
+					try await fetchProgramBadges(membershipNumber: membershipNumber,
+												 devMode: devMode,
+												 mockFileName: mockProgramBadgeFileName)
+					try await fetchProgramMemberBadges(membershipNumber: membershipNumber,
+													   devMode: devMode,
+													   mockFileName: mockMemberBadgeFileName,
+													   memberId: memberId)
 					self.error = nil
 					loadBadges()
 				} catch {
@@ -92,27 +98,38 @@ final class BadgesViewModel: ObservableObject {
 		}
 	}
 	
-	private func fetchProgramMemberBadges(membershipNumber: String, devMode: Bool, mockFileName: String) async throws {
+	private func fetchProgramMemberBadges(
+		membershipNumber: String,
+		devMode: Bool,
+		mockFileName: String,
+		memberId: String
+	) async throws {
 		do {
-			self.loyaltyProgramMemberBadges = try await soqlManager.getProgramMemberBadges(devMode: devMode, mockFileName: mockFileName)
+			self.loyaltyProgramMemberBadges = try await soqlManager.getProgramMemberBadges(devMode: devMode,
+																						   mockFileName: mockFileName,
+																						   memberId: memberId)
 			Logger.debug("\n\nFetched loyaltyProgramMemberBadges(\(loyaltyProgramMemberBadges.count)) from API\n\n\(loyaltyProgramMemberBadges)")
 			self.localFileManager.saveData(item: self.loyaltyProgramMemberBadges,
-									  id: membershipNumber,
-									  folderName: memberBadgesFolderName,
-									  expiry: .never)
+										   id: membershipNumber,
+										   folderName: memberBadgesFolderName,
+										   expiry: .never)
 		} catch {
 			throw error
 		}
 	}
 	
-	private func fetchProgramBadges(membershipNumber: String, devMode: Bool, mockFileName: String) async throws {
+	private func fetchProgramBadges(
+		membershipNumber: String,
+		devMode: Bool,
+		mockFileName: String
+	) async throws {
 		do {
 			self.loyaltyProgramBadges = try await soqlManager.getProgramBadges(devMode: devMode, mockFileName: mockFileName)
 			Logger.debug("\n\nFetched loyaltyProgramBadges(\(loyaltyProgramBadges.count)) from API\n\n\(loyaltyProgramBadges)")
 			self.localFileManager.saveData(item: self.loyaltyProgramBadges,
-									  id: membershipNumber,
-									  folderName: programBadgesFolderName,
-									  expiry: .never)
+										   id: membershipNumber,
+										   folderName: programBadgesFolderName,
+										   expiry: .never)
 		} catch {
 			throw error
 		}
