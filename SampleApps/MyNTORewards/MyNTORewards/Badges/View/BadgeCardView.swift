@@ -88,7 +88,11 @@ struct BadgeCardView: View {
 			VStack {
 				Spacer()
 				if badge.type == .achieved {
-					getExpiringText(for: abs(daysToExpire))
+					if daysToExpire < 0 {
+						getExpiredText(for: abs(daysToExpire))
+					} else {
+						getExpiringText(for: abs(daysToExpire))
+					}
 				} else if badge.type == .expired {
 					getExpiredText(for: abs(daysToExpire))
 				}
