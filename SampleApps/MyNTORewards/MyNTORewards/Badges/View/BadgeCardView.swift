@@ -51,6 +51,7 @@ struct BadgeCardView: View {
 			}
 
 		}
+		.scaledToFit()
 		.frame(width: BadgeSettings.Dimension.imageWidth,
 				height: BadgeSettings.Dimension.imageHeight)
 		.opacity(badge.type == .expired ? 0.25 : 1)
