@@ -57,6 +57,7 @@ struct BadgeDetailView: View {
 						.resizable()
 				}
 			}
+			.scaledToFit()
 			.frame(width: BadgeSettings.Dimension.detailBadgeImageWidth,
 					height: BadgeSettings.Dimension.detailBadgeImageHeight)
 			.opacity(badge.type == .expired ? 0.25 : 1)

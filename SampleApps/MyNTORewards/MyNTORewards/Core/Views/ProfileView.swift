@@ -86,11 +86,13 @@ struct ProfileView: View {
 #if DEBUG
 							if UITestingHelper.isUITesting {
 								try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "",
-																  reload: true, 
+																  memberId: rootVM.member?.loyaltyProgramMemberId ?? "",
+																  reload: true,
 																  devMode: true,
 																  mockMemberBadgeFileName: UITestingHelper.mockMemberBadgeFileName)
 							} else {
 								try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "",
+																  memberId: rootVM.member?.loyaltyProgramMemberId ?? "",
 																  reload: true)
 							}
 #else

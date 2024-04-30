@@ -15,23 +15,28 @@ struct LoyaltyAsyncImage<Content: View, Placeholder: View>: View {
     let url: String?
     let content: (Image) -> Content
     let placeholder: () -> Placeholder
+	let defaultImage: UIImage?
     
-    init(url: String?,
-         @ViewBuilder content: @escaping (Image) -> Content,
-         @ViewBuilder placeholder: @escaping () -> Placeholder) {
+    init(
+		url: String?,
+		@ViewBuilder content: @escaping (Image) -> Content,
+		@ViewBuilder placeholder: @escaping () -> Placeholder,
+		defaultImage: UIImage? = nil
+	) {
         self.url = url
         self.content = content
         self.placeholder = placeholder
+		self.defaultImage = defaultImage
     }
     
     var body: some View {
-        if let url = url, let image = imageVM.images[url.MD5] {
-            content(Image(uiImage: image))
-        } else if let url = url {
-            placeholder().task { await imageVM.getImage(url: url) }
-        } else {
-            content(Image("img-placeholder"))
-        }
+		if let url = url, let image = imageVM.images[url.MD5] {
+			content(Image(uiImage: image))
+		} else if let url = url {
+			placeholder().task { await imageVM.getImage(url: url, defaultImage: defaultImage, reload: true) }
+		} else {
+			content(Image("img-placeholder"))
+		}
     }
 }
 

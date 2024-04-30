@@ -43,7 +43,7 @@ struct RewardPointsCardView: View {
                             .padding(.trailing, 35)
                     }
                     .overlay(alignment: .topLeading) {
-                        let tierName = profileVM.profile?.memberTiers[0].loyaltyMemberTierName ?? ""
+						let tierName = profileVM.profile?.memberTiers.first?.loyaltyMemberTierName ?? ""
                         Text(tierName)
                             .accessibilityIdentifier(AppAccessibilty.Profile.tierName)
                             .font(.transactionPoints)

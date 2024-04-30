@@ -44,13 +44,14 @@ struct BadgeCardView: View {
 						.scaledToFill()
 				}, placeholder: {
 					ProgressView()
-				})
+				}, defaultImage: UIImage(named: BadgeSettings.Asset.defaultBadgeImage))
 			} else {
 				Image(BadgeSettings.Asset.defaultBadgeImage)
 					.resizable()
 			}
 
 		}
+		.scaledToFit()
 		.frame(width: BadgeSettings.Dimension.imageWidth,
 				height: BadgeSettings.Dimension.imageHeight)
 		.opacity(badge.type == .expired ? 0.25 : 1)
@@ -88,7 +89,11 @@ struct BadgeCardView: View {
 			VStack {
 				Spacer()
 				if badge.type == .achieved {
-					getExpiringText(for: abs(daysToExpire))
+					if daysToExpire < 0 {
+						getExpiredText(for: abs(daysToExpire))
+					} else {
+						getExpiringText(for: abs(daysToExpire))
+					}
 				} else if badge.type == .expired {
 					getExpiredText(for: abs(daysToExpire))
 				}

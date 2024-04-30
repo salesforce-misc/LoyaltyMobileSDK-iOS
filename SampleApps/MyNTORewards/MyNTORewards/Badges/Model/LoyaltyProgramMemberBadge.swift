@@ -11,7 +11,7 @@ struct LoyaltyProgramMemberBadge: Codable, Hashable, Equatable {
 	let name: String
 	let startDate: Date?
 	let endDate: Date?
-	let reason: String
+	let reason: String?
 	let status: LoyaltyProgramMemberBadgeStatus
 	let loyaltyProgramMemberId: String
 	let loyaltyProgramBadgeId: String

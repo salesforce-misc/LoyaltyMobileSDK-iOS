@@ -74,7 +74,7 @@ final class SOQLManager {
 		}
 	}
 	
-	func getProgramMemberBadges(devMode: Bool = false, mockFileName: String) async throws -> [LoyaltyProgramMemberBadge] {
+	func getProgramMemberBadges(devMode: Bool = false, mockFileName: String, memberId: String) async throws -> [LoyaltyProgramMemberBadge] {
 		if devMode {
 			let result = try fetchLocalJson(type: [LoyaltyProgramMemberBadge].self, file: mockFileName)
 			return result
@@ -88,7 +88,9 @@ final class SOQLManager {
 						   "LoyaltyProgramBadgeId"]
 		let operation = "SELECT \(queryFields.joined(separator: ","))"
 		let target = "FROM \(loyaltyProgramMemberBadge)"
-		let query = "\(operation) \(target)"
+		let whereClause = "LoyaltyProgramMemberId"
+		let condition = "WHERE \(whereClause) = '\(memberId)'"
+		let query = "\(operation) \(target) \(condition)"
 		
 		do {
 			let queryResult = try await forceClient.SOQL(type: LoyaltyProgramMemberBadge.self, for: query)

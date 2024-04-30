@@ -46,10 +46,12 @@ struct BadgesView: View {
 #if DEBUG
 			if UITestingHelper.isUITesting {
 				try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "",
+												  memberId: rootVM.member?.loyaltyProgramMemberId ?? "",
 												  devMode: true,
 												  mockMemberBadgeFileName: UITestingHelper.mockMemberBadgeFileName)
 			} else {
-				try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "")
+				try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "", 
+												  memberId: rootVM.member?.loyaltyProgramMemberId ?? "")
 			}
 #else
 			try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "")
