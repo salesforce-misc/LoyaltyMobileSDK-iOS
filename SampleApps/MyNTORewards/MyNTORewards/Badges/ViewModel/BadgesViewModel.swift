@@ -202,7 +202,7 @@ final class BadgesViewModel: ObservableObject {
 		self.previewBadges.sort { $0.daysToExpire ?? 0 < $1.daysToExpire ?? 0 }
 		self.achievedBadges.sort { $0.daysToExpire ?? 0 < $1.daysToExpire ?? 0 }
 		self.availableBadges.sort { $0.daysToExpire ?? 0 < $1.daysToExpire ?? 0 }
-		self.expiredBadges.sort { $0.daysToExpire ?? 0 < $1.daysToExpire ?? 0 }
+		self.expiredBadges.sort { $0.daysToExpire ?? 0 > $1.daysToExpire ?? 0 }
 	}
 	
 	private func clearBadges() {
