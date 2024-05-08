@@ -96,7 +96,8 @@ struct ProfileView: View {
 																  reload: true)
 							}
 #else
-							try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "", 
+							try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "",
+                                                              memberId: rootVM.member?.loyaltyProgramMemberId ?? "",
 															  reload: true)
 #endif
 							
