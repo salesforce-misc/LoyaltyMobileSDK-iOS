@@ -54,7 +54,7 @@ struct BadgesView: View {
 												  memberId: rootVM.member?.loyaltyProgramMemberId ?? "")
 			}
 #else
-			try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "")
+			try await badgesVM.fetchAllBadges(membershipNumber: rootVM.member?.membershipNumber ?? "", memberId: rootVM.member?.loyaltyProgramMemberId ?? "")
 #endif
 			
 		} catch {
