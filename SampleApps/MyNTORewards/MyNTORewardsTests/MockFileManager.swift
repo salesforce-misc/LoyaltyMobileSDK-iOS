@@ -9,7 +9,7 @@ import XCTest
 @testable import MyNTORewards
 @testable import LoyaltyMobileSDK
 
-class MockAuthenticator: ForceAuthenticator {
+class MockAuthenticator: Authenticator {
     func getAccessToken() -> String? {
         return "Access1234"
     }
@@ -31,15 +31,17 @@ class MockFileManager: FileManagerProtocol {
     var imageData: [String: UIImage] = [:]
     
     public func saveData<T: Codable>(item: T, id: String, folderName: String? = nil, expiry: Expiry = .never) {
-        fileData.updateValue(item, forKey: id)
+		fileData.updateValue(item, forKey: folderName ?? id)
+		Logger.debug("\n\nData saved in Mock File Manager: \n\(fileData)")
     }
     
     func getData<T: Codable>(type: T.Type, id: String, folderName: String?) -> T? {
-        return fileData[id] as? T
+		Logger.debug("\n\nData retrieved from Mock File Manager: \n\(fileData)")
+		return fileData[folderName ?? id] as? T
     }
     
     func removeData<T>(type: T.Type, id: String, folderName: String?){
-        fileData.removeValue(forKey: id)
+		fileData.removeValue(forKey: folderName ?? id)
     }
     
     func saveImage(image: UIImage, imageName: String, folderName: String?, expiry: Expiry) {

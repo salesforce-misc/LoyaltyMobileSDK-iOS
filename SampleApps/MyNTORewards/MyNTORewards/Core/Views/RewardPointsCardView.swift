@@ -43,7 +43,7 @@ struct RewardPointsCardView: View {
                             .padding(.trailing, 35)
                     }
                     .overlay(alignment: .topLeading) {
-                        let tierName = profileVM.profile?.memberTiers[0].loyaltyMemberTierName ?? ""
+						let tierName = profileVM.profile?.memberTiers.first?.loyaltyMemberTierName ?? ""
                         Text(tierName)
                             .accessibilityIdentifier(AppAccessibilty.Profile.tierName)
                             .font(.transactionPoints)
@@ -57,7 +57,7 @@ struct RewardPointsCardView: View {
 
                     }
                     .overlay(alignment: .bottomLeading) {
-                        Text("REWARD POINTS") // Hardcoded for now
+                        Text(AppSettings.shared.getRewardCurrencyName().uppercased())
                             .accessibilityIdentifier(AppAccessibilty.Profile.rewardPointsText)
                             .font(.transactionPoints)
                             .foregroundColor(.white)
@@ -87,7 +87,7 @@ struct RewardPointsCardView: View {
                     }
                     .overlay(alignment: .leading) {
                         VStack(alignment: .leading) {
-                            Text(String(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0))
+                            Text(String(profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.shared.getRewardCurrencyName()) ?? 0))
                                 .font(.cardPointsText)
                                 .accessibilityIdentifier(AppAccessibilty.Profile.rewardPoints)
                             

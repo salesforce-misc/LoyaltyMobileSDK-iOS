@@ -15,10 +15,15 @@ enum SheetDestination: Identifiable {
 	case processingReceipt(receiptListViewModel: ReceiptListViewModel)
 }
 
-enum RouterDestination: Identifiable {
+enum RouterDestination: Identifiable, Hashable {
 	var id: UUID {
 		UUID()
 	}
 	
 	case receipts
+    case gameZone
+    case gameZoneBetterLuck
+    case gameZoneCongrats(offerText: String, rewardType: String)
+    case vouchers
+    case referrals
 }

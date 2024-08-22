@@ -41,5 +41,7 @@ struct TransactionsView: View {
 struct TransactionsView_Previews: PreviewProvider {
     static var previews: some View {
         TransactionsView()
+            .environmentObject(dev.rootVM)
+            .environmentObject(dev.transactionVM)
     }
 }

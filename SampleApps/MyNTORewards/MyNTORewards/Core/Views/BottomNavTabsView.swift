@@ -15,14 +15,42 @@ struct BottomNavTabsView: View {
 	@StateObject var cameraVM = CameraViewModel()
 	@StateObject var routerPath = RouterPath()
 	@StateObject var receiptListViewModel = ReceiptListViewModel()
-    @StateObject var appViewRouter = AppViewRouter()
+	@StateObject var badgesVM = BadgesViewModel()
+	@EnvironmentObject var appViewRouter: AppViewRouter
     @StateObject var rootVM = AppRootViewModel()
-	@State var selectedTab: Int = Tab.home.rawValue
+	@StateObject var gameZoneVM: GameZoneViewModel
+	@StateObject var referralVM: ReferralViewModel
+	@State var selectedTab: Int
+	
+	init(selectedTab: Int = Tab.home.rawValue) {
+		_selectedTab = State(wrappedValue: selectedTab)
+		#if DEBUG
+		if UITestingHelper.isUITesting {
+            _gameZoneVM = StateObject(wrappedValue: GameZoneViewModel(devMode: true,
+                                                                                  mockFileName: UITestingHelper.getGamesMockFileName
+                                                                                 ))
+			_referralVM = StateObject(wrappedValue: ReferralViewModel(devMode: true, 
+																	  isEnrolledMock: UITestingHelper.isUserEnrolledForReferral,
+																	  currentDate: UITestingHelper.mockCurrentDate,
+																	  mockApiState: UITestingHelper.mockApiState,
+																	  mockEnrollmentStatusApiState: UITestingHelper.mockEnrollmentStatusApiState
+																	 ))
+            _badgesVM = StateObject(wrappedValue: BadgesViewModel(currentDate: UITestingHelper.currentDate))
+
+        } else {
+			_gameZoneVM = StateObject(wrappedValue: GameZoneViewModel())
+			_referralVM = StateObject(wrappedValue: ReferralViewModel())
+		}
+		#else
+			_gameZoneVM = StateObject(wrappedValue: GameZoneViewModel())
+			_referralVM = StateObject(wrappedValue: ReferralViewModel())
+		#endif
+	}
 	
 	var body: some View {
         ZStack(alignment: .bottomLeading) {
             TabView(selection: tabSelection()) {
-                HomeView(selectedTab: $selectedTab).tabItem({
+				HomeView(selectedTab: $appViewRouter.selectedTab).tabItem({
                     Label("Home", image: "ic-home")
                 }).tag(Tab.home.rawValue)
                                     
@@ -47,13 +75,15 @@ struct BottomNavTabsView: View {
                     }).tag(Tab.more.rawValue)
 
             }
-            .onChange(of: selectedTab) { _ in
+			.onChange(of: appViewRouter.selectedTab) { _ in
                 routerPath.pathFromHome.removeAll()
                 routerPath.pathFromMore.removeAll()
             }
         }
         .navigationBarHidden(true)
         .onAppear {
+            // check Referral Features enabled
+            LoyaltyFeatureManager.shared.checkIsReferralFeatureEnabled()
             // correct the transparency bug for Tab bars
             let tabBarAppearance = UITabBarAppearance()
             tabBarAppearance.configureWithOpaqueBackground()
@@ -76,37 +106,48 @@ struct BottomNavTabsView: View {
         .environmentObject(cameraVM)
         .environmentObject(routerPath)
         .environmentObject(receiptListViewModel)
+        .environmentObject(gameZoneVM)
+        .environmentObject(referralVM)
+        .environmentObject(badgesVM)
 	}
 }
+
 extension BottomNavTabsView {
-    
-    private func tabSelection() -> Binding<Int> {
-        Binding { //this is the get block
-            self.selectedTab
-        } set: { tappedTab in
-            if tappedTab == self.selectedTab {
-                //User tapped on the tab twice == Pop to root view for Home tab
-                if routerPath.pathFromHome.isEmpty {
-                    //User already on home view, scroll to top
-                } else {
-                    routerPath.pathFromHome = []
-                }
+	
+	private func tabSelection() -> Binding<Int> {
+		Binding { //this is the get block
+			appViewRouter.selectedTab
+		} set: { tappedTab in
+			if tappedTab == appViewRouter.selectedTab {
+				//User tapped on the tab twice == Pop to root view for Home tab
+				if routerPath.pathFromHome.isEmpty {
+					//User already on home view, scroll to top
+				} else {
+					routerPath.pathFromHome = []
+				}
+				//User tapped on the tab twice == Pop to root view for More tab
+				if routerPath.pathFromMore.isEmpty {
+					//User already on home view, scroll to top
+				} else {
+					routerPath.pathFromMore = []
+				}
                 //User tapped on the tab twice == Pop to root view for More tab
-                if routerPath.pathFromMore.isEmpty {
+                if routerPath.pathFromPromotion.isEmpty {
                     //User already on home view, scroll to top
                 } else {
-                    routerPath.pathFromMore = []
+                    routerPath.pathFromPromotion = []
                 }
-            }
-            //Set the tab to the tabbed tab
-            self.selectedTab = tappedTab
-        }
-    }
+			}
+			//Set the tab to the tabbed tab
+			appViewRouter.selectedTab = tappedTab
+		}
+	}
 }
 
 struct BottomNavTabsView_Previews: PreviewProvider {
 	static var previews: some View {
 		BottomNavTabsView()
 			.environmentObject(dev.rootVM)
+            .environmentObject(AppViewRouter())
 	}
 }

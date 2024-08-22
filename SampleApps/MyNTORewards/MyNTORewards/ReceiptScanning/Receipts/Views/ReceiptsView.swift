@@ -123,7 +123,7 @@ struct ReceiptsView_Previews: PreviewProvider {
 		ReceiptsView()
             .environmentObject(dev.rootVM)
             .environmentObject(dev.routerPath)
-			.environmentObject(dev.receiptListVM)
-			.environmentObject(dev.camVM)
+            .environmentObject(dev.receiptListVM)
+            .environmentObject(dev.camVM)
 	}
 }

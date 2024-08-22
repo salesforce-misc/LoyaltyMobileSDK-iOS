@@ -46,7 +46,7 @@ class AppRootViewModel: ObservableObject {
     
     init() {
         loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
-                                              loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+                                              loyaltyProgramName: AppSettings.shared.getLoyaltyProgramName(),
                                               instanceURL: AppSettings.shared.getInstanceURL(),
                                               forceClient: ForceClient(auth: authManager))
     }
@@ -176,20 +176,21 @@ class AppRootViewModel: ObservableObject {
 				// Cannot get the member info from local, then call getCommunityMemberProfile
 				let authManager = ForceAuthManager.shared
 				let loyaltyAPIManager = LoyaltyAPIManager(auth: authManager,
-														  loyaltyProgramName: AppSettings.Defaults.loyaltyProgramName,
+                                                          loyaltyProgramName: AppSettings.shared.getLoyaltyProgramName(),
                                                           instanceURL: AppSettings.shared.getInstanceURL(),
                                                           forceClient: ForceClient(auth: authManager))
 				let profile = try await loyaltyAPIManager.getCommunityMemberProfile()
 				
-				let member = CommunityMemberModel(firstName: profile.associatedContact.firstName,
-												  lastName: profile.associatedContact.lastName,
+				let member = CommunityMemberModel(firstName: profile.associatedContact?.firstName ?? "F",
+												  lastName: profile.associatedContact?.lastName ?? "L",
 												  email: userEmail,
 												  loyaltyProgramMemberId: profile.loyaltyProgramMemberID,
 												  loyaltyProgramName: profile.loyaltyProgramName,
-												  membershipNumber: profile.membershipNumber)
+                                                  membershipNumber: profile.membershipNumber,
+                                                  contactId: profile.associatedContact?.contactID ?? "")
 				// Save member to local disk
 				LocalFileManager.instance.saveData(item: member, id: userEmail)
-                
+                Logger.debug("Member Info: \(member)")
                 self.member = member
 			}
 			
@@ -215,9 +216,10 @@ class AppRootViewModel: ObservableObject {
         Task {
             do {
                 let forceClient = ForceClient(auth: authManager)
-                let contactQuery = "SELECT FirstName, LastName, Phone FROM Contact"
+                let contactQuery = "SELECT Contact.FirstName, Contact.LastName, Contact.Phone FROM User WHERE Username = '\(email)'"
                 let queryResult = try await forceClient.SOQL(type: Record.self, for: contactQuery)
-                let contact = queryResult.records.first
+				let user = queryResult.records.first
+				let contact: Record? = try user?.value(forField: "Contact")
                 
                 // Need to save contact info for enrollment
                 let firstName = contact?.string(forField: "FirstName") ?? ""
@@ -225,7 +227,13 @@ class AppRootViewModel: ObservableObject {
                 let phone = contact?.string(forField: "Phone") ?? ""
                 
                 let membershipNumber = LoyaltyUtilities.randomString(of: 8)
-                let enrolledMember = try await loyaltyAPIManager.postEnrollment(membershipNumber: membershipNumber,
+                let authManager = ForceAuthManager.shared
+                let loyaltyAPIManagerEnrollMent = LoyaltyAPIManager(auth: authManager,
+                                                          loyaltyProgramName: AppSettings.shared.getLoyaltyProgramName(),
+                                                          instanceURL: AppSettings.shared.getInstanceURL(),
+                                                          forceClient: ForceClient(auth: authManager))
+                
+                let enrolledMember = try await loyaltyAPIManagerEnrollMent.postEnrollment(membershipNumber: membershipNumber,
                                                                                 firstName: firstName,
                                                                                 lastName: lastName,
                                                                                 email: email,
@@ -237,7 +245,8 @@ class AppRootViewModel: ObservableObject {
                                                   email: email,
                                                   loyaltyProgramMemberId: enrolledMember.loyaltyProgramMemberId,
                                                   loyaltyProgramName: enrolledMember.loyaltyProgramName,
-                                                  membershipNumber: membershipNumber)
+                                                  membershipNumber: membershipNumber,
+                                                  contactId: enrolledMember.contactId)
                 // Save member to local disk
                 LocalFileManager.instance.saveData(item: member, id: email)
 
@@ -271,6 +280,8 @@ class AppRootViewModel: ObservableObject {
         member = nil
         
         // delete all cached data
+        UserDefaults.standard.removeObject(forKey: "isEnrolledForDefaultPromotion")
+        UserDefaults.standard.removeObject(forKey: "referralCode")
         LocalFileManager.instance.removeAllAppData()
     }
     
@@ -319,5 +330,4 @@ class AppRootViewModel: ObservableObject {
             userErrorMessage = (error.localizedDescription, .createNewPassword)
         }
     }
-    
 }

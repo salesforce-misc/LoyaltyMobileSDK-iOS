@@ -62,6 +62,8 @@ enum AppAccessibilty {
         static let support = "support_label"
         static let favourites = "favourites_label"
         static let logout = "logout_button"
+        static let game = "game_label"
+        static let referrals = "referrals_label"
     }
     
     enum Promotion {
@@ -169,4 +171,18 @@ enum AppAccessibilty {
 		static let eligibleItemsTitle = "eligible_items_title"
 		static let ineligibleItemsTitle = "ineligible_items_title"
 	}
+    
+    enum GameZone {
+        static let header = "game_zone_header"
+    }
+    
+    enum Referrals {
+        static let referralsViewTitle = "referrals_title"
+        static let referAFriendTitle = "refer_friend_title"
+        static let email = "friend_email"
+        static let referralCode = "referral_code"
+        static let joinAndReferButton = "join_refer_button"
+        static let emailErrorBackButton = "email_error_back_button"
+        static let joinErrorBackButton = "join_error_back_button"
+    }
 }

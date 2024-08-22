@@ -118,7 +118,7 @@ import Foundation
 public struct ProfileModel: Codable {
     public let additionalLoyaltyProgramMemberFields: AdditionalLoyaltyProgramMemberFields
     public let associatedAccount: AssociatedAccount?
-    public let associatedContact: AssociatedContact
+    public let associatedContact: AssociatedContact?
     public let canReceivePartnerPromotions, canReceivePromotions: Bool
     public let enrollmentChannel, enrollmentDate: String
     public let groupCreatedByMember, groupName, lastActivityDate: String?

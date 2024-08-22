@@ -168,5 +168,6 @@ struct ReceiptDetailView_Previews: PreviewProvider {
 										   createdDate: "03/05/2022",
 										   imageUrl: "https://hpr.com/wp-content/uploads/2021/08/FI_receipt_restaurant.jpg",
 										   processedAwsReceipt: "{\n  \"totalAmount\" : \"$154.06\",\n  \"storeName\" : \"East Repair Inc.\"n}"))
+            .environmentObject(dev.localeManager)
     }
 }

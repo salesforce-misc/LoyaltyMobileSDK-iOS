@@ -28,6 +28,12 @@ struct AppSettings {
             communityURL: connectedAppSettings["COMMUNITY_URL"] as? String ?? "",
             selfRegisterURL: connectedAppSettings["SELF_REGISTER_URL"] as? String ?? ""
         )
+        
+        do {
+            try ForceConnectedAppKeychainManager.save(item: connectedApp)
+        } catch {
+            Logger.error("Failed to save the connecte app to keychain - \(error.localizedDescription)")
+        }
     }
 
     struct Defaults {
@@ -44,11 +50,26 @@ struct AppSettings {
         static let rewardCurrencyNameShort = "Points"
         static let tierCurrencyName = "Tier Points"
         static let apiDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        static let adminMenuTapCountRequired = 6
+        static let displayDateFormat = "yyyy-MM-dd"
+        
+        // Keys used by UserDefaults
         static let connectedAppUserDefaultsKey = "LoyaltyMobileSDK.savedConnectedApp"
         static let storedInstanceURLKey = "LoyaltyMobileSDK.instanceURL"
         static let storedBaseURLKey = "LoyaltyMobileSDK.baseURL"
-        static let adminMenuTapCountRequired = 6
-        static let displayDateFormat = "yyyy-MM-dd"
+        static let storedLoyaltyProgramNameKey = "LoyaltyMobileSDK.loyaltyProgramName"
+        static let storedRewardCurrencyNameKey = "LoyaltyMobileSDK.rewardCurrencyName"
+        static let storedRewardCurrencyNameShortKey = "LoyaltyMobileSDK.rewardCurrencyNameShort"
+        static let storedTierCurrencyNameKey = "LoyaltyMobileSDK.tierCurrencyName"
+        
+        // Referral settings
+        // Configure Referral Promotion Details below, where user can also able to enroll and refer from My Referrals screen
+        static let promotionCode = "LRP24"
+        static let referralDateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        static let referralDateFormatWithoutTime = "yyyy-MM-dd"
+        /* Provided random link here instead of actual Terms and Conditions link.
+        Replace with valid terms and conditions link while using the feature */
+        static let referralTermsLink = "https://www.google.com"
     }
     
     struct cacheFolders {
@@ -57,6 +78,7 @@ struct AppSettings {
         static let benefits = "Benefits"
         static let transactions = "Transactions"
         static let images = "Images"
+        static let referrals = "Referrals"
     }
     
     struct Vouchers {
@@ -70,6 +92,10 @@ struct AppSettings {
         } else {
             return self.connectedApp.instanceURL
         }
+    }
+    
+    func getCommunityURL() -> String {
+       self.connectedApp.communityURL
     }
     
     func getConnectedApp() -> ForceConnectedApp {
@@ -95,5 +121,40 @@ struct AppSettings {
             return self.connectedApp.baseURL
         }
     }
-
+    
+    func getLoyaltyProgramName() -> String {
+        if let storedValue = UserDefaults.standard.string(forKey: Defaults.storedLoyaltyProgramNameKey) {
+            return storedValue
+        } else {
+            return Defaults.loyaltyProgramName
+        }
+    }
+    
+    func getReferralProgramName() -> String {
+        return getLoyaltyProgramName()
+    }
+    
+    func getRewardCurrencyName() -> String {
+        if let storedValue = UserDefaults.standard.string(forKey: Defaults.storedRewardCurrencyNameKey) {
+            return storedValue
+        } else {
+            return Defaults.rewardCurrencyName
+        }
+    }
+    
+    func getRewardCurrencyNameShort() -> String {
+        if let storedValue = UserDefaults.standard.string(forKey: Defaults.storedRewardCurrencyNameShortKey) {
+            return storedValue
+        } else {
+            return Defaults.rewardCurrencyNameShort
+        }
+    }
+    
+    func getTierCurrencyName() -> String {
+        if let storedValue = UserDefaults.standard.string(forKey: Defaults.storedTierCurrencyNameKey) {
+            return storedValue
+        } else {
+            return Defaults.tierCurrencyName
+        }
+    }
 }

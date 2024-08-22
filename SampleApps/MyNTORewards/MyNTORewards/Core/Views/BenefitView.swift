@@ -66,7 +66,7 @@ struct BenefitView: View {
                 }
                 Spacer()
             }
-            .frame(height: 520)
+			.frame(maxHeight: .infinity)
             .task {
                 do {
                     try await benefitVM.getBenefits(memberId: rootVM.member?.loyaltyProgramMemberId ?? "")

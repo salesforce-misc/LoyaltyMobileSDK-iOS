@@ -7,16 +7,21 @@
 
 import Foundation
 import LoyaltyMobileSDK
+import GamificationMobileSDK
 
 @MainActor
 class OrderDetailsViewModel: ObservableObject {
 	@Published var isOrderPlacedNavigationActive = false
+	@Published var isOrderPlacedWithGameNavigationActive = false
     @Published var shippingAddress: ShippingAddress?
 	
 	var orderId = ""
+	var gameParticipantRewardId = ""
+	var gameDefinition: GameDefinition?
+	var gameType: GameType?
     private let checkout_shipping_method = "/services/apexrest/ShippingMethods/"
     private let checkout_shipping_address_query = "SELECT shippingAddress,billingAddress from Account"
-	private let orderApiEndpoint = "services/apexrest/NTOOrderCheckOut/"
+	private let orderApiEndpoint = "services/apexrest/NTOOrderCheckOutAndGameParticipantReward/"
     private let authManager: ForceAuthManager
     private var forceClient: ForceClient
 	
@@ -36,13 +41,14 @@ class OrderDetailsViewModel: ObservableObject {
 		do {
 			let productPrice = Double(productVM.basePrice)
 			let orderTotal = Double(productVM.getTotalAmount())
-			let pointsBalance = profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.Defaults.rewardCurrencyName) ?? 0
+            let pointsBalance = profileVM.profile?.getCurrencyPoints(currencyName: AppSettings.shared.getRewardCurrencyName()) ?? 0
 			
-			orderId = try await placeOrder(productPrice: productPrice,
+			let placedOrderResponse = try await placeOrder(productPrice: productPrice,
 										   orderTotal: orderTotal,
 										   pointsBalance: pointsBalance,
 										   membershipNumber: membershipNumber ?? "")
-			isOrderPlacedNavigationActive = true
+			orderId = placedOrderResponse.orderId
+			gameParticipantRewardId = placedOrderResponse.gameParticipantRewardId
 		} catch {
             Logger.error("Unable to place order: \(error.localizedDescription)")
             throw error
@@ -72,7 +78,7 @@ class OrderDetailsViewModel: ObservableObject {
 		billingStreet: String = "1520 W 62nd St Cook IL 60636",
 		voucherCode: String = "",
 		membershipNumber: String
-	) async throws -> String {
+	) async throws -> PlacedOrderResponse {
 		let order = Order(productName: productName,
 						  redeemPoints: redeemPoints,
 						  productPrice: productPrice,
@@ -91,7 +97,7 @@ class OrderDetailsViewModel: ObservableObject {
 												  path: self.orderApiEndpoint,
 												  method: "POST",
 												  body: requestBody)
-			return try await forceClient.fetch(type: String.self, with: request)
+			return try await forceClient.fetch(type: PlacedOrderResponse.self, with: request)
 		} catch {
 			throw error
 		}
